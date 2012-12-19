@@ -7,17 +7,20 @@ Stable tag: 1.0.0
 License: GPLv2 or later
 
 
-This plugin was created to help streamline the process adding social feeds (including Facebook Groups, Instagram, and Twitter) to a page or post.
+Feed Them Social allows you to add an Instagram Feed, Facebook Group Feed or Twitter Feed to a page or post very easily. 
 
 == Description ==
-  This plugin was created to help streamline the process adding social feeds (including Facebook Groups, Instagram, and Twitter) to a page or post.
+  Now with one plugin you can make social feeds of all your favorite stars, celebrities, friends or yourself.
 
 = Features include the following: =
-  * Add a single or multiple feeds to any post or page!
-  * Easily Generate all the shortcodes you need for any feed!
+First 5 [Reviews](http://wordpress.org/support/view/plugin-reviews/feed-them-social) get the [Premium Version](http://www.slickremix.com/product/feed-them-social-premium-extension/) FREE.
+= Features include the following: =
+  * Add as many social feeds as you want!
+  * Display social feeds on any post or page!
+  * Easily generate all the shortcodes you need for any feed!
   * Responsive social feeds! 
   * With [Premium Extension](http://www.slickremix.com/product/feed-them-social-premium-extension/) you can set how many posts, pictures, or tweets for each individual social feed!
-  * …and much more!
+
   
   More Social Feeds coming soon! [Suggest a Feed](http://www.slickremix.com/support-forum).
    
@@ -37,7 +40,7 @@ You can find answers to your questions, suggest a feed, or just drop us a line a
 
 = Are there Extensions for this plugin? =
 
-Yes. Currently we have 1 Premium Extension. http://www.slickremix.com/product/feed-them-social-premium-extension/
+Yes. Currently we have [1 Premium Extension](http://www.slickremix.com/product/feed-them-social-premium-extension/). 
 
 == Screenshots ==
 
