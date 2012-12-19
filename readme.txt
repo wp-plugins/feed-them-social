@@ -3,7 +3,7 @@ Contributors: slickremix
 Tags:  social, social plugin, facebook, facebook plugin, facebook group, twitter, twitter plugin, instagram, instagram plugin, feed me social, feed, shortcode, slickremix, plugin, pages, posts, images, page, post, image
 Requires at least: 3.4.0
 Tested up to: 3.5.0
-Stable tag: 1.0.0
+Stable tag: 1.1.0
 License: GPLv2 or later
 
 
@@ -37,6 +37,10 @@ Extract the zip file and just drop the contents in the wp-content/plugins/ direc
 = Version 1.0 =
 
  * Initial Release
+ 
+= Version 1.1 =
+
+ * MAJOR FIX: Fixed bug keeping feeds from showing! (Fatal Error Bug)
 
 == Frequently Asked Questions ==
 
