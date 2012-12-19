@@ -18,6 +18,8 @@ This plugin was created to help streamline the process adding social feeds (incl
   * Responsive social feeds! 
   * With [Premium Extension](http://www.slickremix.com/product/feed-them-social-premium-extension/) you can set how many posts, pictures, or tweets for each individual social feed!
   * …and much more!
+  
+  More Social Feeds coming soon! [Suggest a Feed](http://www.slickremix.com/support-forum).
    
 == Installation ==
 
