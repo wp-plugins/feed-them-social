@@ -10,7 +10,7 @@ License: GPLv2 or later
 Feed Them Social allows you to add an Instagram Feed, Facebook Group Feed or Twitter Feed to a page or post very easily. 
 
 == Description ==
-  Now with one plugin you can make social feeds of all your favorite stars, celebrities, friends or yourself.
+  Now with one plugin you can make social feeds of all your favorite stars, celebrities, friends, family, yourself or business.
 
 First 5 [Reviews](http://wordpress.org/support/view/plugin-reviews/feed-them-social) get the [Premium Version](http://www.slickremix.com/product/feed-them-social-premium-extension/) FREE.
 
@@ -49,11 +49,11 @@ Yes. Currently we have [1 Premium Extension](http://www.slickremix.com/product/f
 == Screenshots ==
 
 1. This is the settings area for the Feed Them Social. Generate shortcodes in seconds!
-2. Facebook Group Shortcode Generator! Just add your Group ID and with the [Premium Extension](http://www.slickremix.com/product/feed-them-social-premium-extension/ change the number of Posts to show.
+2. Facebook Group Shortcode Generator! Just add your Group ID and with the [Premium Extension](http://www.slickremix.com/product/feed-them-social-premium-extension/) change the number of Posts to show.
 3. Example "Facebook Group" feed. Show up to 24 Posts per feed!
-4. Twitter Shortcode Generator! Just add your Twitter name and with the [Premium Extension](http://www.slickremix.com/product/feed-them-social-premium-extension/ change the number of Tweets to show.
+4. Twitter Shortcode Generator! Just add your Twitter name and with the [Premium Extension](http://www.slickremix.com/product/feed-them-social-premium-extension/) change the number of Tweets to show.
 5. Example "Twitter" feed. Show up to 20 Tweets per feed!
-6. Convert Instagram Name to ID and Instagram Shortcode Generator! Just convert your Instagram name and with the [Premium Extension](http://www.slickremix.com/product/feed-them-social-premium-extension/ change the number of Pictures to show.
+6. Convert Instagram Name to ID and Instagram Shortcode Generator! Just convert your Instagram name and with the [Premium Extension](http://www.slickremix.com/product/feed-them-social-premium-extension/) change the number of Pictures to show.
 7. Example "Instagram" feed. Show up to 20 Pictures per feed!
 8. Add your generated shortcode to your post or page!
 9. System Info page. To easily generate a debugging report for us!
