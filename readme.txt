@@ -1,5 +1,5 @@
 === Feed Them Social ===
-Contributors: SlickRemix
+Contributors: slickremix
 Tags:  social, social plugin, facebook, facebook plugin, facebook group, twitter, twitter plugin, instagram, instagram plugin, feed me social, feed, shortcode, slickremix
 Requires at least: 3.4.0
 Tested up to: 3.5.0
