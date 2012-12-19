@@ -10,6 +10,8 @@ add_shortcode( 'fts facebook group', 'fts_fb_group_func' );
 //Main Funtion
 function fts_fb_group_func($atts){
 
+include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
+
 if(is_plugin_active('feed-them-premium/feed-them-premium.php')) {
    include('wp-content/plugins/feed-them-premium/feeds/facebook-group/facebook-group-feed.php');
 }

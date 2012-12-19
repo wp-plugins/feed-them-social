@@ -10,6 +10,8 @@ add_shortcode( 'fts instagram', 'fts_instagram_func' );
 
 //Main Funtion
 function fts_instagram_func($atts){
+	
+include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
 
 if(is_plugin_active('feed-them-premium/feed-them-premium.php')) {
    include('wp-content/plugins/feed-them-premium/feeds/instagram/instagram-feed.php');
