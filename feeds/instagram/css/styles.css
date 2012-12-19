@@ -1,0 +1,155 @@
+.instagram-placeholder	{
+	position: relative;
+	float: left;
+	display: inline;
+	margin: 0 20px 20px 20px;
+	font-family:'proxima-nova', 'Helvetica Neue', Arial, Helvetica, sans-serif !importatnt;
+	
+}
+.instagram-image {
+    width:150px;
+    height:150px; 
+	position:relative;
+	z-index:1;
+	background-color:#ccc;
+	display:block;
+}
+.instaG-photoshadow {
+  background-color: rgba(0, 0, 0, 0.1);
+  bottom: 0;
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  z-index: 1;
+  -webkit-transition: background-color 0.05s ease-out;
+  -moz-transition: background-color 0.05s ease-out;
+  -o-transition: background-color 0.05s ease-out;
+  transition: background-color 0.05s ease-out; 
+  width:148px;
+    height:148px; 
+ }
+.instagram-placeholder:hover .instaG-photoshadow {
+   background-color: rgba(0, 0, 0, 0);
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  -webkit-transition: background-color 0.01s ease-out;
+  -moz-transition: background-color 0.01s ease-out;
+  -o-transition: background-color 0.01s ease-out;
+  transition: background-color 0.01s ease-out; 
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  width:148px;
+    height:148px; 
+  
+}
+a.instaG-backg-link {
+	position:relative;
+	display:block;	
+}
+.instagram-placeholder .date {
+	text-align: center;
+	margin-bottom: 5px;
+	font-size:12px;
+	height:20px;
+	line-height:22px;
+	font-weight:bold;
+	color:#888888;
+	position: relative;
+	z-index:1;
+	opacity:0;
+	pointer-events: none;
+	-webkit-transition: all 0.15s ease-out 0.1s;
+	-moz-transition: all 0.15s ease-out 0.1s;
+	-o-transition: all 0.15s ease-out 0.1s;
+	transition: all 0.15s ease-out 0.1s;
+	text-shadow: 0 1px 0 rgba(255, 255, 255, 0.8);
+}
+.instagram-placeholder .heart-comments-wrap ul {
+	height:20px;
+	margin:8px 0 0 0 !important;
+}
+.instagram-placeholder .heart-comments-wrap li:first-child {
+	
+}
+.instagram-placeholder .heart-comments-wrap li {
+	display: inline-block;
+	margin: 0 0 0 0.5em !important;
+	pointer-events: none;
+	padding:0 0 0 16px;
+	line-height:10px;
+	font-size:12px;
+	font-weight:bold;
+	color:#888888;
+	position:relative;
+	z-index:1;
+	opacity:0;
+	-webkit-transition: all 0.15s ease-out 0.1s;
+	-moz-transition: all 0.15s ease-out 0.1s;
+	-o-transition: all 0.15s ease-out 0.1s;
+	transition: all 0.15s ease-out 0.1s;
+	text-shadow: 0 1px 0 rgba(255, 255, 255, 0.8);
+}
+
+.instagram-placeholder .backg	{
+    position: absolute;
+    z-index:0;
+	top: 25px;
+	left: 0;
+	height:157px;
+	width: 100%;
+	margin: -5px;
+	padding: 5px;
+	background: #FFF;
+	-webkit-box-shadow: 0 0 0 1px rgba(0, 0, 0, .04), 0 1px 5px rgba(0, 0, 0, 0.1);
+	-moz-box-shadow: 0 0 0 1px rgba(0,0,0,.04), 0 1px 5px rgba(0,0,0,0.1);
+	box-shadow: 0 0 0 1px rgba(0, 0, 0, .04), 0 1px 5px rgba(0, 0, 0, 0.1);
+	-webkit-transition: all 0.15s ease-out 0.1s;
+	-moz-transition: all 0.15s ease-out 0.1s;
+	-o-transition: all 0.15s ease-out 0.1s;
+	transition: all 0.15s ease-out 0.1s;
+}
+.instagram-placeholder:hover .backg	{
+    margin: -28px -12px;
+	padding: 8px 12px;
+	height:193px;
+	-webkit-transition-delay: 0s;
+	-moz-transition-delay: 0s;
+	-o-transition-delay: 0s;
+	transition-delay: 0s;
+	-webkit-transition-duration: 0.1s;
+	-moz-transition-duration: 0.1s;
+	-o-transition-duration: 0.1s;
+	transition-duration: 0.1s;
+	-webkit-box-shadow: 0 0 0 1px rgba(0,0,0,.04), 0 1px 5px rgba(0,0,0,0.2);
+	-moz-box-shadow: 0 0 0 1px rgba(0,0,0,.04), 0 1px 5px rgba(0,0,0,0.2);
+	box-shadow: 0 0 0 1px rgba(0,0,0,.04), 0 1px 5px rgba(0,0,0,0.2);
+}
+.instagram-image-likes	{
+	background:url(../images/hearts-instagram.jpg) no-repeat;
+
+}
+.instagram-image-comments	{
+	background:url(../images/comments-instagram.jpg) no-repeat;
+}
+
+.instagram-placeholder:hover .date, .instagram-placeholder:hover .instagram-image-likes, .instagram-placeholder:hover .instagram-image-comments {
+	opacity: 1;
+
+	z-index:1;
+  -webkit-transition-delay: 0.1s;
+  -moz-transition-delay: 0.1s;
+  -o-transition-delay: 0.1s;
+  transition-delay: 0.1s;
+}
+
+@keyframes fade {
+    from { opacity: 1.0; }
+    50% { opacity: 0.5; }
+    to { opacity: 1.0; }
+}
+ 
+@-webkit-keyframes fade {
+    from { opacity: 1.0; }
+    50% { opacity: 0.5; }
+    to { opacity: 1.0; }
+}

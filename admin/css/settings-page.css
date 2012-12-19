@@ -1,0 +1,274 @@
+.clear {
+	clear: both;
+}
+.display {
+	display: block !important;
+}
+.use-of-plugin {
+	color: #fff;
+	font-size: 13px;
+	font-weight: normal;
+	line-height: 20px;
+	width: 65%
+}
+.final-shortcode-textarea, .shortcode-generator-form, .final-instagram-user-id-textarea, instagram-shortcode-form {
+	display: none;
+}
+.fts-empty-error {
+	background-color: #F3CC52 !important;
+}
+.feed-them-social-admin-wrap h1 {
+	font-size: 32px;
+	color: #FFF;
+	font-weight: 700;
+	margin: 8px 0 12px 0;
+	letter-spacing: 1px;
+	font-family: 'Rambla', sans-serif;
+}
+.feed-them-social-admin-wrap h4 {
+	font-size: 12px;
+	font-weight: normal;
+	color: #000;
+	margin: 1px 0 8px;
+}
+.feed-them-social-admin-wrap {
+	max-width: 790px;
+	min-height: 379px;
+	background: url(../images/fts-backg.jpg) no-repeat;
+	background-color: #021D04;
+	padding: 25px 28px 58px 28px;
+	-webkit-box-shadow: 2px 3px 7px 1px #000;
+	box-shadow: 2px 3px 7px 1px #999;
+	-webkit-border-radius: 10px;
+	border: 1px solid #FFF;
+	border-radius: 10px;
+	position: relative;
+	margin: 20px 30px 0 5px;
+}
+.feed-them-social-admin-wrap h2 {
+	color: #fff;
+	font-size: 23px;
+	font-weight: 400;
+	margin: 15px 0 7px 0;
+	font-family: 'Rambla', sans-serif;
+}
+.feed-them-social-admin-form {
+	width: 100%;
+	padding: 20px 0 0px 0;
+}
+.fts-facebook_group-shortcode-form:hover a {
+	background-position: top right !important;
+	background-size: 34px !important;
+	height: 34px !important;
+	width: 34px !important;
+}
+.feed-them-social-admin-input-wrap {
+	background-color: #f6f4f4;
+	padding: 10px 16px;
+	margin-bottom: 10px;
+	border: 1px solid #666;
+	-webkit-border-radius: 4px;
+	border-radius: 4px;
+	-webkit-border-radius: 6px;
+	opacity: .90;
+}
+.twitter-shortcode-form .final-shortcode-textarea .feed-them-social-admin-input-label {
+	color: #0361B8;
+}
+.fb-group-shortcode-form .final-shortcode-textarea .feed-them-social-admin-input-label {
+	color: #0361B8;
+}
+.instagram-shortcode-form .final-shortcode-textarea .feed-them-social-admin-input-label {
+	color: #0361B8;
+}
+.final-shortcode-textarea {
+	margin-top: 25px;
+}
+.final-shortcode-textarea input {
+	width: 98%;
+	margin-top: 2px
+}
+.feed-them-social-admin-input-label {
+	float: left;
+	width: 230px;
+	margin-right: 10px;
+	font-size: 12px;
+	font-weight: bold;
+	text-transform: uppercase;
+	padding-top: 4px;
+}
+.feed-them-social-admin-input-label a {
+	text-decoration: underline !important;
+	cursor: pointer;
+}
+.feed-them-social-admin-input-example {
+	float: left;
+	font-weight: bold;
+	margin-left: 10px;
+	padding-top: 4px;
+}
+.feed-them-social-admin-input {
+	float: left;
+	width: 305px;
+}
+.feed-them-social-admin-input-default {
+	float: left;
+	width: 290px;
+	padding:4px 7px;
+	border-radius:3px;
+	border: 1px solid #DFDFDF;
+	background-color:#FFF;
+}
+.feed-them-social-admin-submit-btn {
+	margin-top: 15px;
+	padding: 10px 15px;
+	border-radius: 30px;
+	background-color: #F15D2E !important;
+	color: #fff !important;
+	font-weight: normal;
+	text-shadow: 1px 1px 3px #000;
+	cursor: pointer !important;
+	-webkit-transition: background 2s;
+	-webkit-transition: all 0.30s ease-in-out;
+	-moz-transition: all 0.30s ease-in-out;
+	-o-transition: all 0.30s ease-in-out;
+	transition: all 0.30s ease-in-out;
+	box-shadow: 0 1px 4px #000;
+	border: none;
+	letter-spacing: 1px;
+}
+.feed-them-social-admin-submit-btn:hover {
+	background-color: #F11E2E !important;
+	color: #FFF !important;
+	text-shadow: 1px 1px 3px #444;
+	-webkit-transition: background 2s;
+	-webkit-transition: all 0.30s ease-in-out;
+	-moz-transition: all 0.30s ease-in-out;
+	-o-transition: all 0.30s ease-in-out;
+	transition: all 0.30s ease-in-out;
+}
+.feed-them-social-admin-slick-logo {
+	background: url(../images/footer-logo.png) center no-repeat;
+	width: 124px;
+	height: 20px;
+	padding: 8px 12px;
+	display: block;
+	position: absolute;
+	bottom: 12px;
+	right: 12px;
+	-webkit-border-radius: 3px;
+	border-radius: 3px;
+}
+/*=================================================
+	Feed Them Social how to's
+=================================================*/
+.feed_them_social_id-answer {
+	padding: 15px 0;
+	display: none;
+	font-weight: bold;
+}
+.feed_them_social_id-answer div {
+	padding-bottom: 10px;
+}
+.feed_them_social_id-answer a {
+	cursor: pointer !important;
+}
+.im-done {
+	padding: 10px;
+	background-color: #CD1723 !important;
+	border: none !important;
+	color: #fff !important;
+	font-weight: bold;
+	text-shadow: 1px 1px 3px #000000;
+	filter: dropshadow(color=#000000, offx=1, offy=1);
+	-webkit-border-radius: 3px;
+	border-radius: 3px;
+	cursor: pointer !important;
+}
+#shortcode-form-selector {
+	margin-bottom: 10px;
+	width: 200px;
+}
+.feed-them-icon-wrap {
+	position: absolute;
+	right: 25px;
+	top: 22px;
+	width: 250px;
+	height: 50px;
+}
+.fts-facebook_group-shortcode-form:hover .feed-them-icon-wrap a.facebook-icon {
+	background-position: top right !important;
+	background-size: 34px !important;
+	height: 34px !important;
+	width: 34px !important;
+	display:none;
+}
+.feed-them-icon-wrap a {
+	float: right;
+	margin-left: 10px;
+	display: block;
+	height: 41px;
+	width: 41px;
+	cursor: default;
+	outline: none;
+	border: none;
+}
+.feed-them-icon-wrap a.facebook-icon {
+	background: url(../images/facebook-icon.png) no-repeat;
+}
+.feed-them-icon-wrap a.twitter-icon {
+	background: url(../images/twitter-icon.png) no-repeat top right;
+}
+.feed-them-icon-wrap a.instagram-icon {
+	background: url(../images/instagram-icon.png) no-repeat top right;
+}
+a.icon-animate-small {
+	background-position: top right !important;
+	background-size: 34px !important;
+	height: 34px !important;
+	width: 34px !important;
+}
+.instructional-text {
+	font-size: 12px;
+	line-height: 16px;
+	margin-bottom: 9px;
+	letter-spacing: 1px;
+	color: #eee;
+}
+.instructional-text a {
+	font-size: 12px;
+	color: #F7C424;
+	-webkit-transition: all 0.30s ease-in-out;
+	-moz-transition: all 0.30s ease-in-out;
+	-o-transition: all 0.30s ease-in-out;
+	transition: all 0.30s ease-in-out;
+}
+.instructional-text a:hover {
+	color: #FFF;
+	-webkit-transition: all 0.30s ease-in-out;
+	-moz-transition: all 0.30s ease-in-out;
+	-o-transition: all 0.30s ease-in-out;
+	transition: all 0.30s ease-in-out;
+}
+ @keyframes fade {
+ from {
+opacity: 1.0;
+}
+ 50% {
+opacity: 0.5;
+}
+to {
+	opacity: 1.0;
+}
+}
+ @-webkit-keyframes fade {
+ from {
+opacity: 1.0;
+}
+ 50% {
+opacity: 0.5;
+}
+to {
+	opacity: 1.0;
+}
+}
