@@ -22,7 +22,7 @@ First 10 [Reviews](http://wordpress.org/support/view/plugin-reviews/feed-them-so
   * With the [Premium Extension](http://www.slickremix.com/product/feed-them-social-premium-extension/) you can set how many posts, pictures, or tweets for each individual social feed!
 
 = Demos =
-  See for yourself how they look and work with these example demos.
+See for yourself how they look and work with these example demos.
   * [Instagram Feed Demo](http://www.slickremix.com/testblog/instagram-feed-demo/)
   * [Facebook Group Demo](http://www.slickremix.com/testblog/facebook-group-feed-demo/)
   * [Twitter Feed Demo](http://www.slickremix.com/testblog/twitter-feed-demo/)
