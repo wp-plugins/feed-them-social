@@ -31,6 +31,8 @@ First 10 [Reviews](http://wordpress.org/support/view/plugin-reviews/feed-them-so
 == Installation ==
 
 Extract the zip file and just drop the contents in the wp-content/plugins/ directory of your WordPress installation and then activate the Plugin from Plugins page.
+or
+in wordpress dahsboard Plugins > Add new > Then under the title "Install Plugins" click "Upload" > choose the zip > Activate the plugin! 
 
 == Changelog ==
 
