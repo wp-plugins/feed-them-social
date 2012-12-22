@@ -1,6 +1,6 @@
 <?php
 
-add_action('wp_head', 'fts_twitter_head');
+add_action('wp_enqueue_scripts', 'fts_twitter_head');
 function  fts_twitter_head() {
     wp_enqueue_style( 'fts_twitter_css', plugins_url( 'twitter/css/styles.css',  dirname(__FILE__) ) ); 
 }

@@ -1,9 +1,10 @@
 <?php
 
-add_action('wp_head', 'fts_fb_group_head');
+add_action('wp_enqueue_scripts', 'fts_fb_group_head');
 function  fts_fb_group_head() {
     wp_enqueue_style( 'fts_fb_group_css', plugins_url( 'facebook-group/css/styles.css',  dirname(__FILE__ ) ) ); 
 }
+
 
 add_shortcode( 'fts facebook group', 'fts_fb_group_func' );
 

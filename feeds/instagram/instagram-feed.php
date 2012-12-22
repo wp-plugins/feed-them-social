@@ -1,6 +1,6 @@
 <?php
 
-add_action('wp_head', 'fts_instagram_head');
+add_action('wp_enqueue_scripts', 'fts_instagram_head');
 function  fts_instagram_head() {
     wp_enqueue_style( 'fts_instagram_css', plugins_url( 'instagram/css/styles.css',  dirname(__FILE__) ) );
 	wp_enqueue_script( 'fts_instagram_date_js', plugins_url( 'instagram/js/date-format.js',  dirname(__FILE__) ) ); 
