@@ -32,17 +32,17 @@ First 10 [Reviews](http://wordpress.org/support/view/plugin-reviews/feed-them-so
 
 Extract the zip file and just drop the contents in the wp-content/plugins/ directory of your WordPress installation and then activate the Plugin from Plugins page.
 or
-in wordpress dahsboard Plugins > Add new > Then under the title "Install Plugins" click "Upload" > choose the zip > Activate the plugin! 
+In WordPress dahsboard Plugins > Add new > Then under the title "Install Plugins" click "Upload" > choose the zip > Activate the plugin! 
 
 == Changelog ==
+
+= Version 1.1 =
+
+ * MAJOR FIX: Fixed bug keeping feeds from showing! (Fatal Error Bug)
 
 = Version 1.0 =
 
  * Initial Release
- 
-= Version 1.1 =
-
- * MAJOR FIX: Fixed bug keeping feeds from showing! (Fatal Error Bug)
 
 == Frequently Asked Questions ==
 
