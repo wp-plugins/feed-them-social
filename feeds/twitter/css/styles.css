@@ -29,6 +29,7 @@
 	-moz-transition: all 0.30s ease-in-out;
 	-o-transition: all 0.30s ease-in-out;
 	transition: all 0.30s ease-in-out;
+	text-decoration:none !important;
 }
 .fts-twitter-div .uppercase {
 	width:70%;
@@ -45,7 +46,9 @@
 }
 .tweeter-info .right {
      margin:0 15px; 
-     width:100%;      
+     width:100%;
+     float:none !important; 
+	 padding:0;     
 }
 .fts-twitter-fade	{
 	display:none;
@@ -106,7 +109,7 @@
 	-moz-transition: all 0.30s ease-in-out;
 	-o-transition: all 0.30s ease-in-out;
 	transition: all 0.30s ease-in-out;
-	text-decoration:none;
+	text-decoration: none !important;
 	color:#1982D1;
 }
 .fts-twitter-div a:hover	{
@@ -115,7 +118,7 @@
 	-moz-transition: all 0.30s ease-in-out;
 	-o-transition: all 0.30s ease-in-out;
 	transition: all 0.30s ease-in-out;
-	text-decoration:none;
+	text-decoration: none !important;
 }
 @keyframes fade {
     from { opacity: 1.0; }
