@@ -1,3 +1,11 @@
+.clear {
+     clear:both;   
+}
+.instagram-placeholder ul, .instagram-placeholder li	{
+	padding: 0 !important;
+	margin: 0 !important;
+	
+}
 .instagram-placeholder	{
 	position: relative;
 	float: left;
@@ -66,16 +74,16 @@ a.instaG-backg-link {
 }
 .instagram-placeholder .heart-comments-wrap ul {
 	height:20px;
-	margin:8px 0 0 0 !important;
+	margin:10px 0 0 0 !important;
 }
 .instagram-placeholder .heart-comments-wrap li:first-child {
 	
 }
 .instagram-placeholder .heart-comments-wrap li {
 	display: inline-block;
-	margin: 0 0 0 0.5em !important;
+	margin: 10px 0 0 0.5em !important;
 	pointer-events: none;
-	padding:0 0 0 16px;
+	padding:0 0 0 16px !important;
 	line-height:10px;
 	font-size:12px;
 	font-weight:bold;
@@ -90,12 +98,12 @@ a.instaG-backg-link {
 	text-shadow: 0 1px 0 rgba(255, 255, 255, 0.8);
 }
 
-.instagram-placeholder .backg	{
+.instagram-placeholder .fts-backg	{
     position: absolute;
     z-index:0;
 	top: 25px;
 	left: 0;
-	height:157px;
+	height:150px;
 	width: 100%;
 	margin: -5px;
 	padding: 5px;
@@ -108,7 +116,7 @@ a.instaG-backg-link {
 	-o-transition: all 0.15s ease-out 0.1s;
 	transition: all 0.15s ease-out 0.1s;
 }
-.instagram-placeholder:hover .backg	{
+.instagram-placeholder:hover .fts-backg	{
     margin: -28px -12px;
 	padding: 8px 12px;
 	height:193px;
