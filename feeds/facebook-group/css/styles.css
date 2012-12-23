@@ -1,17 +1,17 @@
 /*=================================================
-	JAL Facebook Group Header 
+	fts-jal Facebook Group Header 
 =================================================*/
 .clear	{
 	clear:both;
 }
-.jal-fb-group-header-desc	{
+.fts-jal-fb-group-header-desc	{
 	width:100%; 
 	margin: 15px 0;
 }
 /*=================================================
-	JAL Facebook Group Feed 
+	fts-jal Facebook Group Feed 
 =================================================*/
-.jal-single-fb-post a:hover, .jal-fb-header a:hover {
+.fts-jal-single-fb-post a:hover, .fts-jal-fb-header a:hover {
 	font-style: normal;
 	text-decoration: none;
 	-webkit-transition: all 0.30s ease-in-out;
@@ -20,43 +20,45 @@
 	transition: all 0.30s ease-in-out;
     color:#313131; 
 }
-.jal-single-fb-post a, .jal-fb-header a {
+.fts-jal-single-fb-post a, .fts-jal-fb-header a {
     -webkit-transition: all 0.30s ease-in-out;
 	-moz-transition: all 0.30s ease-in-out;
 	-o-transition: all 0.30s ease-in-out;
 	transition: all 0.30s ease-in-out;
 	
 }
-.jal-fb-header h1 {
+.fts-jal-fb-header h1 {
      font-size:1.9em; 
      margin-bottom:0px !important;  
 }	
-.jal-single-fb-post {
-	width:575px;
-	padding:15px 0 10px !important;
+.fts-jal-single-fb-post {
+	width:100%;
+	padding:15px 0 !important;
 	border-bottom: 1px solid rgb(233, 233, 233);
+    position:relative;
 }
-.jal-single-fb-post:last-child	{
+.fts-jal-single-fb-post:last-child	{
 	border-bottom: none !important;
 }
-.jal-fb-user-thumb	{
-	float:left;
+.fts-jal-fb-user-thumb	{
+	position:absolute;
+	top:21px;
+	left:0px;
 	width:50px;
 	height:50px;
 }
-.jal-fb-right-wrap	{
-	width:500px;
-	float:left;
-    padding-left:10px;
+.fts-jal-fb-right-wrap	{
+	padding-left:63px;
 }
-.jal-fb-top-wrap	{
+.fts-jal-fb-top-wrap	{
 	padding-bottom:10px;
 }
-.jal-fb-message	{
+.fts-jal-fb-message	{
 	padding-bottom:10px;
 	line-height:21px;
+	word-wrap: break-word;
 }
-.jal-fb-link-wrap	{
+.fts-jal-fb-link-wrap	{
 	border: 1px solid #D3DAE8;
 	background:#F6F7F9;
 	border-radius:2px;
@@ -67,7 +69,7 @@
 	-o-transition: all 0.30s ease-in-out;
 	transition: all 0.30s ease-in-out; 
 }
-.jal-fb-link-wrap:hover {
+.fts-jal-fb-link-wrap:hover {
 	background:#FFF;
 	border:1px solid #FFF;
 	box-shadow:0px 0px 5px #999;
@@ -77,10 +79,10 @@
 	-o-transition: all 0.30s ease-in-out;
 	transition: all 0.30s ease-in-out;
 }
-.jal-fb-vid-wrap	{
+.fts-jal-fb-vid-wrap	{
 	border: 1px solid #D3DAE8;
 	background:#F6F7F9;
-	padding:5px;
+	padding:5px 6px 0px 5px;
 	border-radius:2px;
 	-webkit-transition: background 2s;
 	-webkit-transition: all 0.30s ease-in-out;
@@ -88,7 +90,10 @@
 	-o-transition: all 0.30s ease-in-out;
 	transition: all 0.30s ease-in-out;
 }
-.jal-fb-vid-wrap:hover {
+.fts-jal-fb-vid-wrap iframe {
+     width:100%;   
+}
+.fts-jal-fb-vid-wrap:hover {
 	background:#FFF;
 	border:1px solid #FFF;
 	box-shadow:0px 0px 5px #999;
@@ -98,65 +103,66 @@
 	-o-transition: all 0.30s ease-in-out;
 	transition: all 0.30s ease-in-out;
 }
-.jal-fb-picture	{
+.fts-jal-fb-picture	{
 	float:left;
 }
-.jal-fb-picture	img { 
+.fts-jal-fb-picture	img { 
 	margin:7px 4px 0px 5px;
 }
-.jal-fb-vid-picture	{
+.fts-jal-fb-vid-picture	{
 	position:relative;
 	float:left;
 	width:130px;
 	margin:8px 0px 3px 6px;
 }
-.jal-fb-description-wrap	{
+.fts-jal-fb-description-wrap	{
 	float:left;
 	padding:7px 10px 6px 10px;
-	max-width:310px;
 	overflow:hidden;
+	max-width:300px;
 	line-height:19px !important; 
 	color: #999;
 	font-size:12px !important;
 	font-weight:normal;
 }
-.jal-fb-description	{
+.fts-jal-fb-description	{
 	text-wrap:normal;
 	padding-top:5px;
 	line-height:17px !important; 
 	font-size:13px;
 	color:#919191;
 }
-.jal-fb-user-name	{
+.fts-jal-fb-user-name	{
 	float:left;
 	font-weight:bold;
 	color: #C00;
+	padding-right:5px;
 }
-.jal-fb-post-time	{
+.fts-jal-fb-post-time	{
 	float:left;
 	color: #999;
-	padding-left:5px;
+	padding-right:15px;
 }
-.jal-fb-name	{
+.fts-jal-fb-name	{
 	font-weight:bold;
 	color: #C00;
 	padding-bottom:2px ;
 	font-size:15px;
 	display:block;
 }
-.jal-fb-vid-play-btn	{
-	background:url(/wp-content/plugins/jal-facebook-group/images/video-play-btn.png) no-repeat 0 0;
+.fts-jal-fb-vid-play-btn	{
+	background:url(../images/video-play-btn.png) no-repeat 0 0;
 	bottom: 11px;
 	height: 26px;
 	left: 6px;
 	position: absolute;
 	width: 35px;
 }
-.vid-div {
-	width:500px;
+.fts-vid-div {
+	width:100%;
 	display:none;
 }
-.jal-fb-see-more	{
+.fts-jal-fb-see-more	{
 	float:right;
 	margin-top:10px;
 	font-size:11px;
@@ -171,4 +177,11 @@
     from { opacity: 1.0; }
     50% { opacity: 0.5; }
     to { opacity: 1.0; }
+}
+
+/* Retina Display Size */
+@media only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (min--moz-device-pixel-ratio: 2), only screen and (-o-min-device-pixel-ratio: 2/1), only screen and (min-device-pixel-ratio: 2) {
+.fts-jal-fb-vid-wrap iframe {
+    height:130px;   
+}
 }
