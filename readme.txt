@@ -3,16 +3,14 @@ Contributors: slickremix
 Tags:  social, social plugin, facebook, facebook plugin, facebook group, twitter, twitter plugin, instagram, instagram plugin, feed me social, feed, shortcode, slickremix, plugin, pages, posts, images, page, post, image
 Requires at least: 3.4.0
 Tested up to: 3.5.0
-Stable tag: 1.1.0
+Stable tag: 1.1.1
 License: GPLv2 or later
 
 
 Feed Them Social allows you to add an Instagram Feed, Facebook Group Feed or Twitter Feed to a page or post very easily. 
 
 == Description ==
-  Now with one plugin you can make social feeds of all your favorite stars, celebrities, friends, family, yourself and or business.
-
-First 10 [Reviews](http://wordpress.org/support/view/plugin-reviews/feed-them-social) get the [Premium Version](http://www.slickremix.com/product/feed-them-social-premium-extension/) FREE.
+  Now with one plugin you can make social feeds of all your favorite stars, celebrities, friends, family, yourself and or businesses. Looks great on Desktops, Tablets and Mobile Devices.
 
 = Features include the following: =
   * Add as many social feeds as you want!
@@ -26,7 +24,7 @@ First 10 [Reviews](http://wordpress.org/support/view/plugin-reviews/feed-them-so
   * [Facebook Group Demo](http://www.slickremix.com/testblog/facebook-group-feed-demo/)
   * [Twitter Feed Demo](http://www.slickremix.com/testblog/twitter-feed-demo/)
   
-  More Social Feeds coming soon! [Suggest a Feed](http://www.slickremix.com/support-forum).
+  More Social Feeds coming soon like YouTube, Vimeo and Pinterest. [Suggest a Feed](http://www.slickremix.com/support-forum).
    
 == Installation ==
 
@@ -36,16 +34,17 @@ In WordPress dahsboard Plugins > Add new > Then under the title "Install Plugins
 
 == Changelog ==
 
-= Version 1.1 =
+= Version 1.1.1 =
+ * MAJOR FIX: Moved css and js to header on feeds
+ * FIX: Responsive, tablet and mobile CSS updates for all feeds... especially the Facebook Group Feed which now also includes the missing play button.
 
+= Version 1.1 =
  * MAJOR FIX: Fixed bug keeping feeds from showing! (Fatal Error Bug)
 
 = Version 1.0 =
-
  * Initial Release
 
 == Frequently Asked Questions ==
-
 You can find answers to your questions, suggest a feed, or just drop us a line at our [Support Forum](http://www.slickremix.com/support-forum).
 
 = Are there Extensions for this plugin? =

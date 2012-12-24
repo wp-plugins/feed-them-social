@@ -1,6 +1,10 @@
 /*=================================================
 	fts-jal Facebook Group Header 
 =================================================*/
+/* Images */
+.fts-jal-fb-group-display img {
+	max-width: 100%; /* Fluid images for posts, comments, and widgets */
+}
 .clear	{
 	clear:both;
 }
@@ -8,12 +12,15 @@
 	width:100%; 
 	margin: 15px 0;
 }
+.fts-jal-fb-header {
+    clear:both;   
+}
 /*=================================================
 	fts-jal Facebook Group Feed 
 =================================================*/
 .fts-jal-single-fb-post a:hover, .fts-jal-fb-header a:hover {
 	font-style: normal;
-	text-decoration: none;
+	text-decoration: none !important;
 	-webkit-transition: all 0.30s ease-in-out;
 	-moz-transition: all 0.30s ease-in-out;
 	-o-transition: all 0.30s ease-in-out;
@@ -25,6 +32,7 @@
 	-moz-transition: all 0.30s ease-in-out;
 	-o-transition: all 0.30s ease-in-out;
 	transition: all 0.30s ease-in-out;
+	text-decoration: none !important;
 	
 }
 .fts-jal-fb-header h1 {
@@ -33,16 +41,17 @@
 }	
 .fts-jal-single-fb-post {
 	width:100%;
-	padding:15px 0 !important;
+	padding:17px 0 !important;
 	border-bottom: 1px solid rgb(233, 233, 233);
     position:relative;
+    line-height:17px;
 }
 .fts-jal-single-fb-post:last-child	{
 	border-bottom: none !important;
 }
 .fts-jal-fb-user-thumb	{
 	position:absolute;
-	top:21px;
+	top:19px;
 	left:0px;
 	width:50px;
 	height:50px;
@@ -82,7 +91,8 @@
 .fts-jal-fb-vid-wrap	{
 	border: 1px solid #D3DAE8;
 	background:#F6F7F9;
-	padding:5px 6px 0px 5px;
+	min-height:84px;
+	padding:5px !important;
 	border-radius:2px;
 	-webkit-transition: background 2s;
 	-webkit-transition: all 0.30s ease-in-out;
@@ -91,7 +101,9 @@
 	transition: all 0.30s ease-in-out;
 }
 .fts-jal-fb-vid-wrap iframe {
-     width:100%;   
+     width:100%;
+     margin:0 !important;
+     padding:0 !important;  
 }
 .fts-jal-fb-vid-wrap:hover {
 	background:#FFF;
@@ -113,7 +125,7 @@
 	position:relative;
 	float:left;
 	width:130px;
-	margin:5px 0px 5px 5px;
+	margin:5px 0px 3px 5px;
 }
 .fts-jal-fb-description-wrap	{
 	float:left;
@@ -152,7 +164,7 @@
 }
 .fts-jal-fb-vid-play-btn	{
 	background:url(../images/video-play-btn.png) no-repeat 0 0;
-	bottom: 11px;
+	top: 42px;
 	height: 26px;
 	left: 6px;
 	position: absolute;
