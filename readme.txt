@@ -6,6 +6,7 @@ Tested up to: 3.5.0
 Stable tag: 1.1.1
 License: GPLv2 or later
 
+Merry Christmas from us here at SlickRemix!! The first 3 people to use this Coupon Code at checkout: **slickchristmas** will recieve the [Feed Them Social Premium Extension](http://www.slickremix.com/product/feed-them-social-premium-extension/) for FREE! 
 
 Feed Them Social allows you to add an Instagram Feed, Facebook Group Feed or Twitter Feed to a page or post very easily. 
 
