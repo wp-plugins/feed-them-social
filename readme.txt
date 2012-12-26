@@ -11,9 +11,7 @@ Feed Them Social allows you to add an Instagram Feed, Facebook Group Feed, or Tw
 
 == Description ==
 
-  Merry Christmas from us here at SlickRemix!! The first 3 people to use this Coupon Code at checkout: **slickchristmas** will recieve the [Feed Them Social Premium Extension](http://www.slickremix.com/product/feed-them-social-premium-extension/) for FREE! 
-
-  Now with one plugin you can make social feeds of all your favorite stars, celebrities, friends, family, yourself and or businesses. Looks great on Desktops, Tablets and Mobile Devices.
+Now with one plugin you can make social feeds of all your favorite stars, celebrities, friends, family, yourself and or businesses. Looks great on Desktops, Tablets and Mobile Devices.
 
 = Features include the following: =
   * Add as many social feeds as you want!
