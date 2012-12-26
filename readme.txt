@@ -7,7 +7,7 @@ Stable tag: 1.1.1
 License: GPLv2 or later
 
 
-Feed Them Social allows you to add an Instagram Feed, Facebook Group Feed or Twitter Feed to a page or post very easily. 
+Feed Them Social allows you to add an Instagram Feed, Facebook Group Feed, or Twitter Feed to a WordPress page or post very easily. 
 
 == Description ==
 
