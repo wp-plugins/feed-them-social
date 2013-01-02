@@ -3,7 +3,7 @@ Contributors: slickremix
 Tags:  social, social plugin, facebook, facebook plugin, facebook group, twitter, twitter plugin, instagram, instagram plugin, feed me social, feed, shortcode, slickremix, plugin, pages, posts, images, page, post, image
 Requires at least: 3.4.0
 Tested up to: 3.5.0
-Stable tag: 1.1.1
+Stable tag: 1.1.2
 License: GPLv2 or later
 
 
@@ -20,10 +20,16 @@ Now with one plugin you can make social feeds of all your favorite stars, celebr
   * Responsive social feeds! 
   * With the [Premium Extension](http://www.slickremix.com/product/feed-them-social-premium-extension/) you can set how many posts, pictures, or tweets for each individual social feed!
 
-= Example Demos =
+= Example SINGLE Feed Demos (1 feed per page) =
   * [Instagram Feed Demo](http://www.slickremix.com/testblog/instagram-feed-demo/)
-  * [Facebook Group Demo](http://www.slickremix.com/testblog/facebook-group-feed-demo/)
+  * [Facebook Group Feeds Demo](http://www.slickremix.com/testblog/facebook-group-feed-demo/)
   * [Twitter Feed Demo](http://www.slickremix.com/testblog/twitter-feed-demo/)
+
+= Example MULTIPLE Feed Demos (2 or more feeds per page) =
+  * [2 (or more) Instagram Feeds Demo](http://www.slickremix.com/testblog/multiple-instagram-feeds-demo/)
+  * [2 (or more) Facebook Group Feeds Demo](http://www.slickremix.com/testblog/multiple-facebook-group-feeds-demo/)
+  * [2 (or more) Twitter Feeds Demo](http://www.slickremix.com/testblog/multiple-twitter-feeds-demo/)
+
   
   More Social Feeds coming soon like YouTube, Vimeo and Pinterest. [Suggest a Feed](http://www.slickremix.com/support-forum).
    
@@ -34,6 +40,9 @@ or
 In WordPress dahsboard Plugins > Add new > Then under the title "Install Plugins" click "Upload" > choose the zip > Activate the plugin! 
 
 == Changelog ==
+
+= Version 1.1.2 =
+ * MAJOR FIX: Fixed all feeds shortcodes to insert into post/page instead of output content.(Now lets different multiple feeds on one page work!)
 
 = Version 1.1.1 =
  * MAJOR FIX: Moved css and js to header on feeds

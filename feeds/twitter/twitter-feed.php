@@ -23,13 +23,15 @@ else 	{
 	$tweets_count ='5';
 }
 
+ob_start();
+
 ?>
 
-<div id="twitter-feed" class="fts-twitter-div"></div>
+<div id="twitter-feed-<?php print $twitter_name?>" class="fts-twitter-div"></div>
 
 <script>
 jQuery(document).ready(function() {
-    loadLatestTweet();
+    loadLatestTweet<?php print $twitter_name?>();
 }); 
  
 //Twitter Parsers
@@ -55,7 +57,7 @@ function parseDate(str) {
     return new Date(Date.parse(v[1]+" "+v[2]+", "+v[5]+" "+v[3]+" UTC"));
 } 
  
-function loadLatestTweet(){
+function loadLatestTweet<?php print $twitter_name?>(){
     var numTweets = <?php print $tweets_count?>;
     var _url = 'https://api.twitter.com/1/statuses/user_timeline/<?php print $twitter_name?>.json?callback=?&count='+numTweets+'&include_rts=1';
    jQuery.getJSON(_url,function(data){
@@ -65,11 +67,14 @@ function loadLatestTweet(){
             var createdDate = created.getDate()+'-'+(created.getMonth()+1)+'-'+created.getFullYear()+' at '+created.getHours()+':'+created.getMinutes();
             tweet = tweet.parseURL().parseUsername().parseHashtag();
             tweet += '<div class="tweeter-info"><div class="fts-twitter-image"><img class="twitter-image" src="'+ data[i].user.profile_image_url +'" /></div><div class="uppercase bold"><a href="https://twitter.com/#!/<?php print $twitter_name?>" target="_blank" class="black">@<?php print $twitter_name?></a></div><div class="right"><a href="https://twitter.com/#!/<?php print $twitter_name?>/status/'+data[i].id_str+'">'+createdDate+'</a></div></div>'
-            jQuery("#twitter-feed").append('<p>'+tweet+'</p>');
+            jQuery("#twitter-feed-<?php print $twitter_name?>").append('<p>'+tweet+'</p>');
         }
     });
 }
 </script>
 <?php
+
+	return ob_get_clean();;
+
 }
 ?>

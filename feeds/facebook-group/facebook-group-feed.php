@@ -24,6 +24,8 @@ else 	{
 	$group_id = $id;
 	$access_token = '226916994002335|ks3AFvyAOckiTA1u_aDoI4HYuuw';
 }
+ob_start(); 
+
 //URL to get page info
 $url1 = 'https://graph.facebook.com/'.$group_id.'?access_token='.$access_token.'';
 $des = json_decode(file_get_contents($url1));
@@ -294,5 +296,7 @@ print '</div><!--/fts-jal-single-fb-post-->';
 
   print '</div><!--/fts-jal-fb-group-display-->';
   print '<div class="clear"></div>'; 
+  
+  return ob_get_clean(); 
 }
 ?>
