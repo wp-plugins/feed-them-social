@@ -20,12 +20,12 @@ Now with one plugin you can make social feeds of all your favorite stars, celebr
   * Responsive social feeds! 
   * With the [Premium Extension](http://www.slickremix.com/product/feed-them-social-premium-extension/) you can set how many posts, pictures, or tweets for each individual social feed!
 
-= Example SINGLE Feed Demos (1 feed per page) =
+= Example SINGLE Feed Demos (1 feed per post/page) =
   * [Instagram Feed Demo](http://www.slickremix.com/testblog/instagram-feed-demo/)
   * [Facebook Group Feeds Demo](http://www.slickremix.com/testblog/facebook-group-feed-demo/)
   * [Twitter Feed Demo](http://www.slickremix.com/testblog/twitter-feed-demo/)
 
-= Example MULTIPLE Feed Demos (2 or more feeds per page) =
+= Example MULTIPLE Feed Demos (2 or more feeds per post/page) =
   * [2 (or more) Instagram Feeds Demo](http://www.slickremix.com/testblog/multiple-instagram-feeds-demo/)
   * [2 (or more) Facebook Group Feeds Demo](http://www.slickremix.com/testblog/multiple-facebook-group-feeds-demo/)
   * [2 (or more) Twitter Feeds Demo](http://www.slickremix.com/testblog/multiple-twitter-feeds-demo/)
