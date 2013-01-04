@@ -32,6 +32,9 @@ Now with one plugin you can make social feeds of all your favorite stars, celebr
 
   
   More Social Feeds coming soon like YouTube, Vimeo and Pinterest. [Suggest a Feed](http://www.slickremix.com/support-forum).
+  
+= Featured Feeds =
+  *** Share your feeds with us and others! Send an email to info@slickremix.com with link showing us how and where you use the feeds and we could display them right here for the rest of the world to see! ***
    
 == Installation ==
 
