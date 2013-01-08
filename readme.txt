@@ -31,8 +31,7 @@ Now with one plugin you can make social feeds of all your favorite stars, celebr
   * [2 (or more) Twitter Feeds Demo](http://www.slickremix.com/testblog/multiple-twitter-feeds-demo/)
 
 = Example PREMIUM Feed Demos =
- * [YouTube Feeds Demos ](http://www.slickremix.com/testblog/2013/01/youtube-feed-demo-1-large-with-3-video-per-row/)
- * You can view more demo options for this plugin such as how many videos display in a row, having one large video on top or not and more.
+ * [YouTube Feeds Demos](http://www.slickremix.com/testblog/2013/01/youtube-feed-demo-1-large-with-3-video-per-row/) 
   
   More Social Feeds coming soon like Vimeo and Pinterest. [Suggest a Feed](http://www.slickremix.com/support-forum).
   
