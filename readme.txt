@@ -1,13 +1,13 @@
 === Feed Them Social ===
 Contributors: slickremix
-Tags:  social, social plugin, facebook, facebook plugin, facebook group, twitter, twitter plugin, instagram, instagram plugin, feed me social, feed, shortcode, slickremix, plugin, pages, posts, images, page, post, image
+Tags:  social, social plugin, facebook, facebook plugin, facebook group, twitter, twitter plugin, instagram, instagram plugin, feed me social, feed, shortcode, slickremix, plugin, pages, posts, images, page, post, image, youtube, youtube feed, youtube channel, youtube video, youtube videos, videos
 Requires at least: 3.4.0
 Tested up to: 3.5.0
-Stable tag: 1.1.2
+Stable tag: 1.1.3
 License: GPLv2 or later
 
 
-Feed Them Social allows you to add an Instagram Feed, Facebook Group Feed, or Twitter Feed to a WordPress page or post very easily. 
+Feed Them Social allows you to add an Instagram Feed, Facebook Group Feed, Twitter Feed, and now Youtube videos to a WordPress page or post very easily. 
 
 == Description ==
 
@@ -18,7 +18,7 @@ Now with one plugin you can make social feeds of all your favorite stars, celebr
   * Display social feeds on any post or page!
   * Easily generate all the shortcodes you need for any feed!
   * Responsive social feeds! 
-  * With the [Premium Extension](http://www.slickremix.com/product/feed-them-social-premium-extension/) you can set how many posts, pictures, or tweets for each individual social feed!
+  * With the [Premium Extension](http://www.slickremix.com/product/feed-them-social-premium-extension/) you can set how many posts, pictures, tweets, or videos for each individual social feed!
 
 = Example SINGLE Feed Demos (1 feed per post/page) =
   * [Instagram Feed Demo](http://www.slickremix.com/testblog/instagram-feed-demo/)
@@ -30,8 +30,10 @@ Now with one plugin you can make social feeds of all your favorite stars, celebr
   * [2 (or more) Facebook Group Feeds Demo](http://www.slickremix.com/testblog/multiple-facebook-group-feeds-demo/)
   * [2 (or more) Twitter Feeds Demo](http://www.slickremix.com/testblog/multiple-twitter-feeds-demo/)
 
+= Example PREMIUM Feed Demos =
+ * [YouTube Feeds Demos ](http://www.slickremix.com/testblog/category/fts-youtube-feed-demo/)
   
-  More Social Feeds coming soon like YouTube, Vimeo and Pinterest. [Suggest a Feed](http://www.slickremix.com/support-forum).
+  More Social Feeds coming soon like Vimeo and Pinterest. [Suggest a Feed](http://www.slickremix.com/support-forum).
   
 = Featured Feeds =
   *** Share your feeds with us and others! Send an email to info@slickremix.com with link showing us how you use the feeds and we could display them right here! ***
@@ -43,6 +45,9 @@ or
 In WordPress dahsboard Plugins > Add new > Then under the title "Install Plugins" click "Upload" > choose the zip > Activate the plugin! 
 
 == Changelog ==
+
+= Version 1.1.3 =
+ * NEW: Added compatibility for YouTube Feed! Video Pop-up is completely HTML5! YouTube settings unlike any other plugin! Update plugin and check them out now! 
 
 = Version 1.1.2 =
  * MAJOR FIX: Fixed all feeds shortcodes to insert into post/page instead of output content.(Now lets different multiple feeds on one page work!)

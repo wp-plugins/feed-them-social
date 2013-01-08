@@ -28,6 +28,7 @@ add_action( 'wp_enqueue_style', 'feed_them_admin_css' );
         	<option value="fb-group-shortcode-form">Facebook Group Feed</option>
             <option value="twitter-shortcode-form">Twitter Feed</option>
             <option value="instagram-shortcode-form">Instagram Feed</option>
+            <option value="youtube-shortcode-form">Youtube Feed</option>
         </select>
     </form><!--/feed-them-social-admin-form-->
 
@@ -113,8 +114,6 @@ else 	{
 </div><!--/fts-twitter-shortcode-form-->
 
 
-
-
 <div class="fts-instagram-shortcode-form">
 
 	<form class="feed-them-social-admin-form shortcode-generator-form instagram-shortcode-form">
@@ -140,20 +139,7 @@ else 	{
     <div class="clear"></div>
       </div><!--/feed-them-social-admin-input-wrap-->
 
-<?php
-if(is_plugin_active('feed-them-premium/feed-them-premium.php')) {
-   include('../wp-content/plugins/feed-them-premium/admin/instagram-settings-fields.php');
-}
-else 	{
-?>
-<div class="feed-them-social-admin-input-wrap">
-  <div class="feed-them-social-admin-input-label"># of Pics (optional)</div>
-  <div class="feed-them-social-admin-input-default">Must have <a target="_blank" href="http://www.slickremix.com/product/feed-them-social-premium-extension/">premium version</a> to edit. Default is 6.</div>
-<div class="clear"></div>
-</div><!--/feed-them-social-admin-input-wrap-->
-<?php
-}
-?>
+
      
       <input type="button" class="feed-them-social-admin-submit-btn" value="Generate instagram Shortcode" onclick="updateTextArea_instagram();" tabindex="4" style="margin-right:1em;" />
       
@@ -169,6 +155,52 @@ else 	{
     </form>
     
 </div><!--/fts-instagram-shortcode-form-->
+
+
+<div class="fts-youtube-shortcode-form">
+    <form class="feed-them-social-admin-form shortcode-generator-form youtube-shortcode-form">
+    <h2>Youtube Shortcode Generator</h2>
+    <div class="instructional-text">You must copy your <a href="http://www.slickremix.com/2012/12/18/how-to-get-your-youtube-name/" target="_blank">Youtube Name</a> and paste it in the first input below.</div>
+      
+      <?php
+if(is_plugin_active('feed-them-premium/feed-them-premium.php')) {
+   include('../wp-content/plugins/feed-them-premium/admin/youtube-settings-fields.php');
+}
+else 	{
+?>
+<div class="feed-them-social-admin-input-wrap">
+  <div class="feed-them-social-admin-input-label">Youtube Name (required)</div>
+  <div class="feed-them-social-admin-input-default">Must have <a target="_blank" href="http://www.slickremix.com/product/feed-them-social-premium-extension/">premium version</a> to edit.</div>
+<div class="clear"></div>
+</div><!--/feed-them-social-admin-input-wrap-->
+
+<div class="feed-them-social-admin-input-wrap">
+  <div class="feed-them-social-admin-input-label"># of videos (required)</div>
+  <div class="feed-them-social-admin-input-default">Must have <a target="_blank" href="http://www.slickremix.com/product/feed-them-social-premium-extension/">premium version</a> to edit.</div>
+<div class="clear"></div>
+</div><!--/feed-them-social-admin-input-wrap-->
+
+<div class="feed-them-social-admin-input-wrap">
+  <div class="feed-them-social-admin-input-label"># of videos in each row?</div>
+  <div class="feed-them-social-admin-input-default">Must have <a target="_blank" href="http://www.slickremix.com/product/feed-them-social-premium-extension/">premium version</a> to edit. </div>
+<div class="clear"></div>
+</div><!--/feed-them-social-admin-input-wrap-->
+
+<div class="feed-them-social-admin-input-wrap">
+  <div class="feed-them-social-admin-input-label">Display First video full size?</div>
+  <div class="feed-them-social-admin-input-default">Must have <a target="_blank" href="http://www.slickremix.com/product/feed-them-social-premium-extension/">premium version</a> to edit.</div>
+<div class="clear"></div>
+</div><!--/feed-them-social-admin-input-wrap-->
+
+ <a href="http://www.slickremix.com/product/feed-them-social-premium-extension/" class="feed-them-social-admin-submit-btn" style="margin-right:1em; margin-top: 15px; display:block; max-width:192px; text-decoration:none !important;">Click here for Premium Plugin</a>
+
+<?php
+}
+?>
+    </form>
+</div><!--/fts-youtube-shortcode-form-->
+
+
       
   	<a class="feed-them-social-admin-slick-logo" href="http://www.slickremix.com" target="_blank"></a>
   
@@ -226,6 +258,7 @@ function updateTextArea_twitter() {
 	  	 jQuery(".twitter_name").addClass('fts-empty-error');  
       	 jQuery("input#twitter_name").focus();
 		 return false;
+		 
 	}
 	if (twitter_name != " twitter_name=") {
 	  	 jQuery(".twitter_name").removeClass('fts-empty-error');  
@@ -241,8 +274,6 @@ function updateTextArea_twitter() {
 	<?php
 	}
 	?>
-	
-	
 
 jQuery('.twitter-final-shortcode').val(final_twitter_shorcode);
 	
@@ -311,6 +342,12 @@ function converter_instagram_username() {
    			 });
 	}
 }
+
+<?php
+	if(is_plugin_active('feed-them-premium/feed-them-premium.php')) {
+	   include('../wp-content/plugins/feed-them-premium/admin/js/youtube-settings-js.js');
+	}
+?>
 
 //select all 
 jQuery(".copyme").focus(function() {
