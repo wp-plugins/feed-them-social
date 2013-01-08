@@ -6,17 +6,13 @@ function feed_them_settings_page() {
 add_action( 'wp_enqueue_style', 'feed_them_admin_css' );
 
 ?>
-<style type="text/css">
-.final-shortcode-textarea, .shortcode-generator-form, .final-instagram-user-id-textarea, instagram-shortcode-form	{
-	display:none;
-}
-</style>
 <link href='http://fonts.googleapis.com/css?family=Rambla:400,700' rel='stylesheet' type='text/css'>				
 <div class="feed-them-social-admin-wrap">
   <h1>Feed Them Social</h1>
   <div class="use-of-plugin">To get started please select what type of feed you would like to generate a shortcode for using the select option below. Then you'll copy that shortcode to a page or post.</div>
   
   <div class="feed-them-icon-wrap">
+    <a href="#" class="youtube-icon"></a>
     <a href="#" class="twitter-icon"></a>
     <a href="#" class="facebook-icon"></a>
   	<a href="#" class="instagram-icon"></a>
@@ -28,7 +24,7 @@ add_action( 'wp_enqueue_style', 'feed_them_admin_css' );
         	<option value="fb-group-shortcode-form">Facebook Group Feed</option>
             <option value="twitter-shortcode-form">Twitter Feed</option>
             <option value="instagram-shortcode-form">Instagram Feed</option>
-            <option value="youtube-shortcode-form">Youtube Feed</option>
+            <option value="youtube-shortcode-form">YouTube Feed</option>
         </select>
     </form><!--/feed-them-social-admin-form-->
 
@@ -159,8 +155,8 @@ else 	{
 
 <div class="fts-youtube-shortcode-form">
     <form class="feed-them-social-admin-form shortcode-generator-form youtube-shortcode-form">
-    <h2>Youtube Shortcode Generator</h2>
-    <div class="instructional-text">You must copy your <a href="http://www.slickremix.com/2012/12/18/how-to-get-your-youtube-name/" target="_blank">Youtube Name</a> and paste it in the first input below.</div>
+    <h2>YouTube Shortcode Generator</h2>
+    <div class="instructional-text">You must copy your <a href="http://www.slickremix.com/2012/12/18/how-to-get-your-youtube-name/" target="_blank">YouTube Name</a> and paste it in the first input below.</div>
       
       <?php
 if(is_plugin_active('feed-them-premium/feed-them-premium.php')) {
@@ -169,7 +165,7 @@ if(is_plugin_active('feed-them-premium/feed-them-premium.php')) {
 else 	{
 ?>
 <div class="feed-them-social-admin-input-wrap">
-  <div class="feed-them-social-admin-input-label">Youtube Name (required)</div>
+  <div class="feed-them-social-admin-input-label">YouTube Name (required)</div>
   <div class="feed-them-social-admin-input-default">Must have <a target="_blank" href="http://www.slickremix.com/product/feed-them-social-premium-extension/">premium version</a> to edit.</div>
 <div class="clear"></div>
 </div><!--/feed-them-social-admin-input-wrap-->
