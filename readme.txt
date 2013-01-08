@@ -37,6 +37,9 @@ Now with one plugin you can make social feeds of all your favorite stars, celebr
  * [YouTube Feeds Demos](http://www.slickremix.com/testblog/2013/01/youtube-feed-demo-1-large-with-3-video-per-row/) 
   
   More Social Feeds coming soon like Vimeo and Pinterest. [Suggest a Feed](http://www.slickremix.com/support-forum).
+  
+  **NOTE** FTS Premium Plugin users receive free udates updates of Premium plugin. 
+
      
 == Installation ==
 
@@ -47,7 +50,7 @@ In WordPress dahsboard Plugins > Add new > Then under the title "Install Plugins
 == Changelog ==
 
 = Version 1.1.3 =
- * NEW: Added compatibility for YouTube Feed! Video Pop-up is completely HTML5! YouTube settings unlike any other plugin! Update plugin and check them out now! 
+ * NEW: Added compatibility for YouTube Feed! Video Pop-up is completely HTML5! YouTube settings unlike any other plugin! Update plugin and check them out now!
 
 = Version 1.1.2 =
  * MAJOR FIX: Fixed all feeds shortcodes to insert into post/page instead of output content.(Now lets different multiple feeds on one page work!)
