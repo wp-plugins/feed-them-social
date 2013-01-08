@@ -95,7 +95,7 @@
 	font-size: 12px;
 	font-weight: bold;
 	text-transform: uppercase;
-	padding-top: 4px;
+	padding-top: 6px;
 }
 .feed-them-social-admin-input-label a {
 	text-decoration: underline !important;
@@ -191,8 +191,8 @@
 }
 .feed-them-icon-wrap {
 	position: absolute;
-	right: 25px;
-	top: 22px;
+	right: 27px;
+	top: 25px;
 	width: 250px;
 	height: 50px;
 }
@@ -207,11 +207,26 @@
 	float: right;
 	margin-left: 10px;
 	display: block;
-	height: 41px;
-	width: 41px;
+	height: 38px;
+	width: 39px;
 	cursor: default;
 	outline: none;
 	border: none;
+	box-shadow:0 5px 30px #222;
+	border-radius:5px; 
+	-webkit-transition: all 0.30s ease-in-out;
+	-moz-transition: all 0.30s ease-in-out;
+	-o-transition: all 0.30s ease-in-out;
+	transition: all 0.30s ease-in-out;
+
+}
+.feed-them-icon-wrap a:hover {
+	opacity:.95;
+	box-shadow:0 3px 5px #000;
+	-webkit-transition: all 0.30s ease-in-out;
+	-moz-transition: all 0.30s ease-in-out;
+	-o-transition: all 0.30s ease-in-out;
+	transition: all 0.30s ease-in-out;
 }
 .feed-them-icon-wrap a.facebook-icon {
 	background: url(../images/facebook-icon.png) no-repeat;
@@ -221,6 +236,9 @@
 }
 .feed-them-icon-wrap a.instagram-icon {
 	background: url(../images/instagram-icon.png) no-repeat top right;
+}
+.feed-them-icon-wrap a.youtube-icon {
+	background: url(../images/youtube-icon.png) no-repeat top right;
 }
 a.icon-animate-small {
 	background-position: top right !important;
