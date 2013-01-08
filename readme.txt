@@ -20,6 +20,9 @@ Now with one plugin you can make social feeds of all your favorite stars, celebr
   * Responsive social feeds! 
   * With the [Premium Extension](http://www.slickremix.com/product/feed-them-social-premium-extension/) you can set how many posts, pictures, tweets, or videos for each individual social feed!
 
+= Featured Feeds =
+  *** Share your feeds with us and others! Send an email to info@slickremix.com with link showing us how you used the feeds and we could post a link to your website right here! ***
+  
 = Example SINGLE Feed Demos (1 feed per post/page) =
   * [Instagram Feed Demo](http://www.slickremix.com/testblog/instagram-feed-demo/)
   * [Facebook Group Feeds Demo](http://www.slickremix.com/testblog/facebook-group-feed-demo/)
@@ -34,10 +37,7 @@ Now with one plugin you can make social feeds of all your favorite stars, celebr
  * [YouTube Feeds Demos](http://www.slickremix.com/testblog/2013/01/youtube-feed-demo-1-large-with-3-video-per-row/) 
   
   More Social Feeds coming soon like Vimeo and Pinterest. [Suggest a Feed](http://www.slickremix.com/support-forum).
-  
-= Featured Feeds =
-  *** Share your feeds with us and others! Send an email to info@slickremix.com with link showing us how you use the feeds and we could display them right here! ***
-   
+     
 == Installation ==
 
 Extract the zip file and just drop the contents in the wp-content/plugins/ directory of your WordPress installation and then activate the Plugin from Plugins page.
