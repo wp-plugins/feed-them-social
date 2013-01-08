@@ -38,7 +38,7 @@ Now with one plugin you can make social feeds of all your favorite stars, celebr
   
   More Social Feeds coming soon like Vimeo and Pinterest. [Suggest a Feed](http://www.slickremix.com/support-forum).
   
-  **NOTE** FTS Premium Plugin users receive free udates updates of Premium plugin. 
+  ***NOTE*** FTS Premium Plugin users receive free udates updates of Premium plugin. 
 
      
 == Installation ==
