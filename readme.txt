@@ -17,7 +17,7 @@ Now with one plugin you can make social feeds of all your favorite stars, celebr
   * Add as many social feeds as you want!
   * Display social feeds on any post or page!
   * Easily generate all the shortcodes you need for any feed!
-  * Responsive social feeds! 
+  * Responsive social feeds!
   * With the [Premium Extension](http://www.slickremix.com/product/feed-them-social-premium-extension/) you can set how many posts, pictures, tweets, or videos for each individual social feed!
 
 = Featured Feeds =
@@ -38,16 +38,16 @@ Now with one plugin you can make social feeds of all your favorite stars, celebr
   
   More Social Feeds coming soon like Vimeo and Pinterest. [Suggest a Feed](http://www.slickremix.com/support-forum).
   
-  ***NOTE*** FTS Premium Plugin users receive FREE updates of Premium plugin. 
+  *** NOTE *** FTS Premium Plugin users receive FREE updates of Premium plugin. 
 
      
 == Installation ==
 
-= Install from FTP =
-  * Extract the zip file and just drop the contents in the wp-content/plugins/ directory of your WordPress installation and then activate the Plugin from Plugins page.
-
 = Install from WordPress Dashboard =
-  *Log into WordPress dahsboard then click Plugins > Add new > Then under the title "Install Plugins" click "Upload" > choose the zip > Activate the plugin! 
+  * Log into WordPress dahsboard then click Plugins > Add new > Then under the title "Install Plugins" click "Upload" > choose the zip > Activate the plugin!
+
+= Install from FTP =
+  * Extract the zip file and just drop the contents in the wp-content/plugins/ directory of your WordPress installation and then activate the Plugin from Plugins page. 
 
 == Changelog ==
 
