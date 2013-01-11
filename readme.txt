@@ -21,7 +21,7 @@ Now with one plugin you can make social feeds of all your favorite stars, celebr
   * With the [Premium Extension](http://www.slickremix.com/product/feed-them-social-premium-extension/) you can set how many posts, pictures, tweets, or videos for each individual social feed!
 
 = Featured Feeds =
-  *** Share your feeds with us and others! Send an email to info@slickremix.com with link showing us how you used the feeds and we could post a link to your website right here! ***
+  *** Share your feeds with us and others! Send an email to info@slickremix.com with link showing us the feeds on your website! ***
   
 = Example SINGLE Feed Demos (1 feed per post/page) =
   * [Instagram Feed Demo](http://www.slickremix.com/testblog/instagram-feed-demo/)
