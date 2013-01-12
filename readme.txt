@@ -38,13 +38,13 @@ Now with one plugin you can make social feeds of all your favorite stars, celebr
   
   More Social Feeds coming soon like Vimeo and Pinterest. [Suggest a Feed](http://www.slickremix.com/support-forum).
   
-  *** NOTE *** FTS Premium Plugin users receive FREE updates of Premium plugin. 
+  ** NOTE ** FTS Premium Plugin users receive FREE updates of Premium plugin. 
 
      
 == Installation ==
 
 = Install from WordPress Dashboard =
-  * Log into WordPress dashboard then click **Plugins** > **Add new** > Then under the title "Install Plugins" click **"Upload"** > **choose the zip** > **Activate the plugin!**
+  * Log into WordPress dashboard then click **Plugins** > **Add new** > Then under the title "Install Plugins" click **Upload** > **choose the zip** > **Activate the plugin!**
 
 = Install from FTP =
   * Extract the zip file and just drop the contents in the wp-content/plugins/ directory of your WordPress installation and then activate the Plugin from Plugins page. 
