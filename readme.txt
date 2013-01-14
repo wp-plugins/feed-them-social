@@ -20,7 +20,7 @@ With one plugin you can make social feeds of all your favorite stars, celebritie
   * Responsive social feeds!
   * With the [Premium Extension](http://www.slickremix.com/product/feed-them-social-premium-extension/) you can set how many posts, pictures, tweets, or videos for each individual social feed!
 
-= Featured Feeds =
+= Showcase Feeds =
   *** Share your feeds with us and others! Send an email to [info@slickremix.com](mailto:info@slickremix.com)  with link showing us the feeds on your website! ***
   
 = Example SINGLE Feed Demos (1 feed per post/page) =
@@ -40,7 +40,6 @@ With one plugin you can make social feeds of all your favorite stars, celebritie
   
   ** NOTE ** FTS Premium Plugin users receive FREE updates of Premium plugin. 
 
-     
 == Installation ==
 
 = Install from WordPress Dashboard =
