@@ -40,7 +40,7 @@ With one plugin you can make social feeds of all your favorite stars, celebritie
   
   ** **NOTE** ** FTS Premium Plugin users receive FREE updates of Premium plugin. 
   
-  ** **DISClAIMER** ** SlickRemix **DOES NOT** support the Internet Explorer browser. For best user experience please use on of the following browsers: 
+  ** **DISClAIMER** ** SlickRemix **DOES NOT** support the Internet Explorer browser. For best user experience please use one of the following browsers: 
   * [Google Chrome](https://www.google.com/intl/en/chrome/browser/) 
   * [Firefox](http://www.mozilla.org/en-US/firefox/)
   * [Safari](http://www.apple.com/safari/)
