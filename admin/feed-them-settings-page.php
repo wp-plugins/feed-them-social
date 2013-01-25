@@ -144,7 +144,7 @@ else 	{
   <div class="feed-them-social-admin-input-default">Must have <a target="_blank" href="http://www.slickremix.com/product/feed-them-social-premium-extension/">premium version</a> to edit.</div>
 <div class="clear"></div>
 </div><!--/feed-them-social-admin-input-wrap-->
-<?php { ?>
+<?php } ?>
 
      
       <input type="button" class="feed-them-social-admin-submit-btn" value="Generate instagram Shortcode" onclick="updateTextArea_instagram();" tabindex="4" style="margin-right:1em;" />
