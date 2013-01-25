@@ -54,8 +54,6 @@ else 	{
 }
 ?>
       
-    
-      
       <input type="button" class="feed-them-social-admin-submit-btn" value="Generate Facebook Group Shortcode" onclick="updateTextArea_fb_group();" tabindex="4" style="margin-right:1em;" />
       <div class="feed-them-social-admin-input-wrap final-shortcode-textarea">
       
@@ -135,6 +133,18 @@ else 	{
     <div class="clear"></div>
       </div><!--/feed-them-social-admin-input-wrap-->
 
+<?php
+  if(is_plugin_active('feed-them-premium/feed-them-premium.php')) {
+	 include('../wp-content/plugins/feed-them-premium/admin/instagram-settings-fields.php');
+  }
+  else 	{
+?>
+<div class="feed-them-social-admin-input-wrap">
+  <div class="feed-them-social-admin-input-label"># of Pics (optional)</div>
+  <div class="feed-them-social-admin-input-default">Must have <a target="_blank" href="http://www.slickremix.com/product/feed-them-social-premium-extension/">premium version</a> to edit.</div>
+<div class="clear"></div>
+</div><!--/feed-them-social-admin-input-wrap-->
+<?php { ?>
 
      
       <input type="button" class="feed-them-social-admin-submit-btn" value="Generate instagram Shortcode" onclick="updateTextArea_instagram();" tabindex="4" style="margin-right:1em;" />
@@ -158,7 +168,7 @@ else 	{
     <h2>YouTube Shortcode Generator</h2>
     <div class="instructional-text">You must copy your <a href="http://www.slickremix.com/2012/12/18/how-to-get-your-youtube-name/" target="_blank">YouTube Name</a> and paste it in the first input below.</div>
       
-      <?php
+<?php
 if(is_plugin_active('feed-them-premium/feed-them-premium.php')) {
    include('../wp-content/plugins/feed-them-premium/admin/youtube-settings-fields.php');
 }

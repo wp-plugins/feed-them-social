@@ -2,8 +2,8 @@
 Contributors: slickremix
 Tags:  social, social plugin, facebook, facebook plugin, facebook group, twitter, twitter plugin, instagram, instagram plugin, feed me social, feed, feeds, shortcode, slickremix, plugin, pages, posts, images, page, post, image, youtube, youtube feed, youtube channel, youtube video, youtube videos, videos, youtube embed, embed, video iframe, admin, comments, Posts
 Requires at least: 3.4.0
-Tested up to: 3.5.0
-Stable tag: 1.1.3
+Tested up to: 3.5.1
+Stable tag: 1.1.4
 License: GPLv2 or later
 
 
@@ -51,6 +51,9 @@ More Social Feeds coming soon like Facebook Pages, Vimeo and Pinterest. [Suggest
   * Extract the zip file and just drop the contents in the wp-content/plugins/ directory of your WordPress installation and then activate the Plugin from Plugins page. 
 
 == Changelog ==
+= Version 1.1.4 =
+ * Fixed: Last update Instagram feed setting "# of pics" was removed. Field has now been put back in! (We appologize for any problems this may have caused!).
+ * Tested: Works with WordPress 3.5.1.
 
 = Version 1.1.3 =
  * NEW: Added compatibility for YouTube Feed! Video Pop-up is completely HTML5! YouTube settings unlike any other plugin! Update plugin and check them out now!
