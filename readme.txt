@@ -11,7 +11,7 @@ Feed Them Social allows you to add an Instagram Feed, Facebook Group Feed, Twitt
 
 == Description ==
 
-With one plugin you can make social feeds of all your favorite stars, celebrities, friends, family, yourself, and/or businesses. Looks great on Desktops, Tablets, and Mobile Devices.
+With our plugin you can make social feeds of all your favorite stars, celebrities, friends, family, yourself, and/or businesses. Looks great on Desktops, Tablets, and Mobile Devices.
 
 **SPECIAL NOTE:** Twitter is experiencing [issues with their servers.](https://dev.twitter.com/status) This problem does not have anything to do with Feed Them Social Twitter Feed. If you see it go down please be patient. 
 
