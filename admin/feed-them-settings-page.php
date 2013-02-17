@@ -144,13 +144,7 @@ else 	{
   <div class="clear"></div>
 </div><!--/feed-them-social-admin-input-wrap-->
 <?php } ?>
-<?php
-  if(is_plugin_active('feed-them-premium/feed-them-premium.php')) {
-	 include('../wp-content/plugins/feed-them-premium/admin/instagram-settings-fields.php');
-  }
-  else 	{
-?>
-<?php } ?>
+ 
      
       <input type="button" class="feed-them-social-admin-submit-btn" value="Generate instagram Shortcode" onclick="updateTextArea_instagram();" tabindex="4" style="margin-right:1em;" />
       
