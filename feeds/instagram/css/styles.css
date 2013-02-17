@@ -6,17 +6,39 @@
 	margin: 0 !important;
 	
 }
+.widget .instagram-placeholder ul, .widget .instagram-placeholder li	{
+	padding: 0 !important;
+	margin: 0 !important;
+	
+}
+.instagram-placeholder p {
+    margin:0;   
+    padding:0;
+}
 .instagram-placeholder	{
 	position: relative;
 	float: left;
+	z-index:0;
 	display: inline;
-	margin: 0 20px 20px 20px;
+	margin: 0px 20px 20px 20px;
 	font-family:'proxima-nova', 'Helvetica Neue', Arial, Helvetica, sans-serif !importatnt;
+	
+}
+.widget .instagram-placeholder	{
+	margin: -10px 10px 0px 10px;
 	
 }
 .instagram-image {
     width:150px;
     height:150px; 
+	position:relative;
+	z-index:1;
+	background-color:#ccc;
+	display:block;
+}
+.widget .instagram-image {
+    width:105px;
+    height:100px; 
 	position:relative;
 	z-index:1;
 	background-color:#ccc;
@@ -38,6 +60,10 @@
   width:148px;
     height:148px; 
  }
+ .widget .instaG-photoshadow {
+  width:103px;
+    height:98px; 
+ }
 .instagram-placeholder:hover .instaG-photoshadow {
    background-color: rgba(0, 0, 0, 0);
   border: 1px solid rgba(0, 0, 0, 0.12);
@@ -50,6 +76,11 @@
     height:148px; 
   
 }
+.widget .instagram-placeholder:hover .instaG-photoshadow {
+  width:103px;
+    height:98px; 
+  
+}
 a.instaG-backg-link {
 	position:relative;
 	display:block;	
@@ -59,7 +90,7 @@ a.instaG-backg-link {
 	margin-bottom: 5px;
 	font-size:12px;
 	height:20px;
-	line-height:22px;
+	line-height:20px;
 	font-weight:bold;
 	color:#888888;
 	position: relative;
@@ -72,9 +103,20 @@ a.instaG-backg-link {
 	transition: all 0.15s ease-out 0.1s;
 	text-shadow: 0 1px 0 rgba(255, 255, 255, 0.8);
 }
+.widget .instagram-placeholder .date {
+	text-align: center;
+	margin-bottom: 5px;
+	font-size:11px;
+	height:15px;
+	line-height:20px;
+}
 .instagram-placeholder .heart-comments-wrap ul {
 	height:20px;
 	margin:10px 0 0 0 !important;
+}
+.widgets .instagram-placeholder .heart-comments-wrap ul {
+	height:15px;
+	margin:6px 0 0 0 !important;
 }
 .instagram-placeholder .heart-comments-wrap li:first-child {
 	
@@ -84,8 +126,8 @@ a.instaG-backg-link {
 	margin: 10px 0 0 0.5em !important;
 	pointer-events: none;
 	padding:0 0 0 16px !important;
-	line-height:10px;
-	font-size:12px;
+	line-height:10px !important;
+	font-size:12px !important;
 	font-weight:bold;
 	color:#888888;
 	position:relative;
@@ -97,7 +139,17 @@ a.instaG-backg-link {
 	transition: all 0.15s ease-out 0.1s;
 	text-shadow: 0 1px 0 rgba(255, 255, 255, 0.8);
 }
-
+.widget .instagram-placeholder .heart-comments-wrap li {
+	display: inline-block;
+	margin: 6px 0px 5px 2px !important;
+	pointer-events: none;
+	padding:0 0 0 15px !important;
+	line-height:10px !important;
+	font-size:11px !important;
+}
+.widget  .instagram-placeholder .heart-comments-wrap .instagram-image-likes {
+     margin-right:4px !important;   
+}
 .instagram-placeholder .fts-backg	{
     position: absolute;
     z-index:0;
@@ -116,6 +168,21 @@ a.instaG-backg-link {
 	-o-transition: all 0.15s ease-out 0.1s;
 	transition: all 0.15s ease-out 0.1s;
 }
+.widget .instagram-placeholder .fts-backg	{
+    position: absolute;
+    z-index:0;
+	top: 20px;
+	left: 0;
+	height:100px;
+	width: 100%;
+	margin: -5px;
+	padding: 5px;
+	background: #FFF;
+	font-size:11px;
+}
+.widget .date {
+     font-size:11px;  
+}
 .instagram-placeholder:hover .fts-backg	{
     margin: -28px -12px;
 	padding: 8px 12px;
@@ -132,6 +199,12 @@ a.instaG-backg-link {
 	-moz-box-shadow: 0 0 0 1px rgba(0,0,0,.04), 0 1px 5px rgba(0,0,0,0.2);
 	box-shadow: 0 0 0 1px rgba(0,0,0,.04), 0 1px 5px rgba(0,0,0,0.2);
 }
+
+.widget .instagram-placeholder:hover .fts-backg	{
+    margin: -22px -10px;
+	padding: 5px 10px;
+	height:135px;
+}
 .instagram-image-likes	{
 	background:url(../images/hearts-instagram.jpg) no-repeat;
 
@@ -142,14 +215,12 @@ a.instaG-backg-link {
 
 .instagram-placeholder:hover .date, .instagram-placeholder:hover .instagram-image-likes, .instagram-placeholder:hover .instagram-image-comments {
 	opacity: 1;
-
 	z-index:1;
   -webkit-transition-delay: 0.1s;
   -moz-transition-delay: 0.1s;
   -o-transition-delay: 0.1s;
   transition-delay: 0.1s;
 }
-
 @keyframes fade {
     from { opacity: 1.0; }
     50% { opacity: 0.5; }

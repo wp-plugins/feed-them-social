@@ -38,7 +38,7 @@ print '<div class="fts-jal-fb-group-display">';
   print '<div class="fts-jal-fb-header">';
     print '<h1><a href="http://www.facebook.com/home.php?sk=group_'.$group_id.'&ap=1">'.$des->name.'</a></h1>';
     	print '<div class="fts-jal-fb-group-header-desc" style="">'.$des->description.'</div>';
-  print '</div><!--/fts-jal-fb-header-->';
+  print '</div>';
  	
 $set_zero = 0;
 foreach($data->data as $d) {
@@ -49,13 +49,13 @@ break;
   
       print '<div class="fts-jal-fb-user-thumb">';
       	print '<a href="http://facebook.com/profile.php?id='.$d->from->id.'"><img border="0" alt="'.$d->from->name.'" src="https://graph.facebook.com/'.$d->from->id.'/picture"/></a>'; 
-      print '</div><!--/fb-user-thumb-->';
+      print '</div>';
       
       print '<div class="fts-jal-fb-right-wrap">';
       	print '<div class="fts-jal-fb-top-wrap">';
           print '<span class="fts-jal-fb-user-name" style=""><a href="http://facebook.com/profile.php?id='.$d->from->id.'">'.$d->from->name.'</a></span>';
           print '<span class="fts-jal-fb-post-time">on '.date('F j, Y H:i',strtotime($d->created_time)).'</span><div class="clear"></div>';
-        print '</div><!--/fts-jal-fb-top-wrap-->';
+        print '</div>';
 
 //Create Facebook Variables 
 $FBtype = $d->type;
@@ -101,8 +101,8 @@ $FBpost_id = $d->id;
 			  print '<a href="'.$FBlink.'" target="_blank" class="fts-jal-fb-name">'.$FBname.'</a>';
 		  };
 		  //Output Link Caption
-		  if ( $FBcaption  == 'Attachment UnavailableThis attachment may have been removed or the person who shared it may not have permission to share it with you.' ) {
-			  	print '<div class="fts-jal-fb-caption" style="width:100% !important">This user\'s persmissions are keeping you from seeing this post. Please Click "See More" to view this post on this group\'s facebook wall.</div>';
+		  if ( $FBcaption  == 'Attachment Unavailable. This attachment may have been removed or the person who shared it may not have permission to share it with you.' ) {
+			  	print '<div class="fts-jal-fb-caption" style="width:100% !important">This user\'s permissions are keeping you from seeing this post. Please Click "See More" to view this post on this group\'s facebook wall.</div>';
 		  }
 		  else {
 			  print '<div class="fts-jal-fb-caption">'.$FBcaption.'</div>';
@@ -113,9 +113,9 @@ $FBpost_id = $d->id;
 		  else {
 			  print '<div class="fts-jal-fb-description">'.$FBdescription.'</div>';
 		  };
-		print '<div class="clear"></div></div><!--/fts-jal-fb-description-wrap-->';
+		print '<div class="clear"></div></div>';
 		
-		print '<div class="clear"></div></div><!--/fts-jal-fb-link-wrap-->';
+		print '<div class="clear"></div></div>';
 	} 
 	
 	elseif ( $FBtype == 'link' ) {
@@ -147,9 +147,9 @@ $FBpost_id = $d->id;
 		  else {
 			  print '<div class="jal-fb-description">'.$FBdescription.'</div>';
 		  };
-		print '<div class="clear"></div></div><!--/fts-jal-fb-description-wrap-->';
+		print '<div class="clear"></div></div>';
 		
-		print '<div class="clear"></div></div><!--/fts-jal-fb-link-wrap-->';
+		print '<div class="clear"></div></div>';
 	}
 	 
 	
@@ -162,7 +162,7 @@ $FBpost_id = $d->id;
 		  }
 		  else{	
 		
-		print '<a href="javascript:;" target="_blank" class="fts-jal-fb-vid-picture fb-id'.$FBpost_id.' vid-btn'.$FBpost_id.'"><img border="0" alt="' .$d->from->name.'" src="'.$d->picture.'"/> <div class="fts-jal-fb-vid-play-btn"></div> </a>';
+		print '<a href="javascript:;" target="_blank" class="fts-jal-fb-vid-picture fb-id'.$FBpost_id.' vid-btn'.$FBpost_id.'"><img border="0" alt="' .$d->from->name.'" src="'.$d->picture.'"/> <div class="fts-jal-fb-vid-play-btn"></div></a>';
 		 
 		print '<div id="video'.$FBpost_id.'" class="fts-vid-div"></div>';
 		 
@@ -242,9 +242,9 @@ $FBpost_id = $d->id;
 		  else {
 			  print '<div class="fts-jal-fb-description fb-id'.$FBpost_id.'">'.$FBdescription.'</div>';
 		  };
-	  	print '<div class="clear"></div></div><!--/fts-jal-fb-description-wrap-->';
+	  	print '<div class="clear"></div></div>';
 		
-	 	print '<div class="clear"></div></div><!--/fts-jal-fb-vid-wrap-->';	
+	 	print '<div class="clear"></div></div>';	
 	}
 	
 	//Output Photo
@@ -279,22 +279,22 @@ $FBpost_id = $d->id;
 			  print '<div class="fts-jal-fb-description">'.$FBdescription.'</div>';
 			  print '<div>By: <a href="'.$FBbylink.'">'.$FBby.'<a/></div>';
 		  };
-		print '</div><!--/fts-jal-fb-description-wrap-->';
+		print '</div>';
 		
-		print '<div class="clear"></div></div><!--/fts-jal-fb-link-wrap-->';
+		print '<div class="clear"></div></div>';
 	} 
 
   print '<div class="clear"></div>';
-	print '</div><!--/fts-jal-fb-right-wrap-->';
+	print '</div>';
 	
 	print '<a href="http://www.facebook.com/home.php?sk=group_'.$group_id.'&ap=1" target="_blank" class="fts-jal-fb-see-more">See More</a>';
 print '<div class="clear"></div>';
-print '</div><!--/fts-jal-single-fb-post-->';
+print '</div>';
 
 	 $set_zero++;
 	 }	
 
-  print '</div><!--/fts-jal-fb-group-display-->';
+  print '</div>';
   print '<div class="clear"></div>'; 
   
   return ob_get_clean(); 

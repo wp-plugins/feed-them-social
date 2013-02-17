@@ -34,15 +34,35 @@
 .fts-twitter-div .uppercase {
 	width:70%;
 }
+.widget .fts-twitter-div .uppercase {
+	width:auto;
+}
 .fts-twitter-div p {
-	margin:0 0 15px;
+	margin:0 0 5px 0 !important;
+	line-height:20px !important;
 	padding:0;
+}
+.widget .fts-twitter-div p {
+	margin:0 0 8px 0 !important;
+	padding:0 !important;
+	line-height:19px !important;
+	font-size:12px !important;
 }
 .fts-twitter-div img {
 	margin:0 15px 0 0;
 }
 .fts-twitter-div .uppercase {
      margin:0 15px 0;
+}
+.widget .fts-twitter-div img {
+     width:40px; 
+     margin-right:10px !important;
+}
+.widget .fts-twitter-div .uppercase, .widget .tweeter-info .right {
+     margin:0 !important;
+     font-size:11px;
+     line-height:14px;
+     font-weight:normal !important;
 }
 .tweeter-info .right {
      margin:0 15px; 
@@ -62,6 +82,10 @@
      margin:0; 
      float:left;  
 }
+.widget .fts-twitter-image {
+     margin:0; 
+     float:left;  
+}
 .tweeter-info {
      padding:11px;
      background:#eee;
@@ -76,11 +100,13 @@
 	transition: all 0.30s ease-in-out;
      
 }
+.widget .tweeter-info {
+     margin-bottom:25px !important;  
+     min-height:44px; 
+}
 .tweeter-info:hover {
      background:#FFF;
-     box-shadow:0 1px 2px #222; 
-     clear:both;  
-     min-height:51px;
+     box-shadow:0 1px 2px #222;
 	-webkit-transition: background 2s;
 	-webkit-transition: all 0.30s ease-in-out;
 	-moz-transition: all 0.30s ease-in-out;
