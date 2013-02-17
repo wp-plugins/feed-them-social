@@ -3,7 +3,7 @@ Contributors: slickremix
 Tags:  social, social plugin, facebook, facebook plugin, facebook group, twitter, twitter plugin, instagram, instagram plugin, feed me social, feed, feeds, shortcode, slickremix, plugin, pages, posts, images, page, post, image, youtube, youtube feed, youtube channel, youtube video, youtube videos, videos, youtube embed, embed, video iframe, admin, comments, Posts
 Requires at least: 3.4.0
 Tested up to: 3.5.1
-Stable tag: 1.1.6
+Stable tag: 1.1.7
 License: GPLv2 or later
 
 
@@ -20,11 +20,14 @@ With our plugin you can make social feeds of all your favorite stars, celebritie
   * Display social feeds on any post or page!
   * Easily generate all the shortcodes you need for any feed!
   * Responsive social feeds!
-  * With the [Premium Extension](http://www.slickremix.com/product/feed-them-social-premium-extension/) you can set how many posts, pictures, tweets, or videos for each individual social feed!
+  * With the [Premium Extension](http://www.slickremix.com/product/feed-them-social-premium-extension/) you can set how many posts, pictures, tweets, or videos for each individual social feed! We now have simple widgets available for all the feeds. This premium edition also allows our basic shortcode to work with text widgets. [See Example Demo](http://www.slickremix.com/testblog/)
 
 = Showcase Feeds =
   *** Send an email to [info@slickremix.com](mailto:info@slickremix.com) with link showing us a feed or feeds on your website to display here! ***
   
+= Example Widget Feed Demo =
+  * [Social Page with Widgets](http://www.slickremix.com/testblog/)
+	
 = Example SINGLE Feed Demos (1 feed per post/page) =
   * [Instagram Feed Demo](http://www.slickremix.com/testblog/instagram-feed-demo/)
   * [Facebook Group Feeds Demo](http://www.slickremix.com/testblog/facebook-group-feed-demo/)
@@ -53,6 +56,15 @@ More Social Feeds coming soon like Facebook Pages, Vimeo, and Pinterest. [Sugges
   * Extract the zip file and just drop the contents in the wp-content/plugins/ directory of your WordPress installation and then activate the Plugin from Plugins page. 
 
 == Changelog ==
+= Version 1.1.7 February 15th, 2013 =
+ * Updated: Instagram, Facebook Group, YouTube, Twitter Feed, and shortcodes now work with widgets in our [Premium Version](http://www.slickremix.com/product/feed-them-social-premium-extension/). CSS styles for all feeds have had minor tweaks, including new styles for widget feeds.
+ * Fixed: Spelling of permissions in facebook group feed.
+ * We are still working on a twitter solution to all those faithfull followers. As of March Twitter will be changing the api for feeds, so a [newer limit will be set on calls](http://arstechnica.com/business/2012/08/new-api-severely-restricts-third-party-twitter-applications/). To many calls to the api an hour from one IP address are most likely the cause for your errors, if you have been experienceing them currently. 
+ 
+= Version 1.1.6 =
+ * Updated: Instagram and Twitter feed no longer JS but now PHP! Should help get rid of any js conflicts! (Including confilct with Google Analytics)
+ * Fixed: Twitter feed's timestamps.
+ 
 = Version 1.1.6 =
  * Updated: Instagram and Twitter feed no longer JS but now PHP! Should help get rid of any js conflicts! (Including confilct with Google Analytics)
  * Fixed: Twitter feed's timestamps.
