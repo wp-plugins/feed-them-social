@@ -3,7 +3,7 @@ Contributors: slickremix
 Tags:  social, social plugin, facebook, facebook plugin, facebook group, twitter, twitter plugin, instagram, instagram plugin, feed me social, feed, feeds, shortcode, slickremix, plugin, pages, posts, images, page, post, image, youtube, youtube feed, youtube channel, youtube video, youtube videos, videos, youtube embed, embed, video iframe, admin, comments, Posts
 Requires at least: 3.4.0
 Tested up to: 3.5.1
-Stable tag: 1.1.7
+Stable tag: 1.1.8
 License: GPLv2 or later
 
 
@@ -13,7 +13,7 @@ Feed Them Social allows you to add an Instagram Feed, Facebook Group Feed, Twitt
 
 With our plugin you can make social feeds of all your favorite stars, celebrities, friends, family, yourself, and/or businesses. Looks great on Desktops, Tablets, and Mobile Devices.
 
-**SPECIAL NOTE:** Widget support now available, Twitter Feed updates coming soon! 
+**SPECIAL NOTE:** Widget support now available, Twitter Feed now updated to API 1.1! (Authenticated) 
 
 = Features include the following: =
   * Add as many social feeds as you want!
@@ -56,6 +56,10 @@ More Social Feeds coming soon like Facebook Pages, Vimeo, and Pinterest. [Sugges
   * Extract the zip file and just drop the contents in the wp-content/plugins/ directory of your WordPress installation and then activate the Plugin from Plugins page. 
 
 == Changelog ==
+
+= Version 1.1.8 February 18th, 2013 =
+ * Updated: Twitter Feed updated to API v.1.1 This way on March th when Twitter takes down the old API v1 this plugin will still work! 
+
 = Version 1.1.7 February 15th, 2013 =
  * Updated: Instagram, Facebook Group, YouTube, Twitter Feed, and shortcodes now work with widgets in our [Premium Version](http://www.slickremix.com/product/feed-them-social-premium-extension/). CSS styles for all feeds have had minor tweaks, including new styles for widget feeds.
  * Fixed: Spelling of permissions in facebook group feed.
