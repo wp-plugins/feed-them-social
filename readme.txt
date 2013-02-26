@@ -23,7 +23,7 @@ With our plugin you can make social feeds of all your favorite stars, celebritie
   * With our [Premium Extension](http://www.slickremix.com/product/feed-them-social-premium-extension/) you can set how many posts, pictures, tweets, or videos for each individual social feed! We now have simple widgets available for all the feeds. This premium edition also allows our basic shortcode to work with text widgets. [See Example Demo](http://www.slickremix.com/testblog/)
 
 = Showcase Feeds =
-  *** Send an email to [info@slickremix.com](mailto:info@slickremix.com) with link showing us a feed or feeds on your website to display here! ***
+  *** Send an email to [info@slickremix.com](mailto:info@slickremix.com) with link showing us a feed/feeds on your website to display here! ***
   
 = Example Widget Feed Demo =
   * [Social Page with Widgets](http://www.slickremix.com/testblog/)
