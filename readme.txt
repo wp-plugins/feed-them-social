@@ -23,7 +23,7 @@ With our plugin you can make social feeds of all your celebrities, friends, fami
   * With our [Premium Extension](http://www.slickremix.com/product/feed-them-social-premium-extension/) you can set how many posts, pictures, tweets, or videos for each individual social feed! We now have simple widgets available for all the feeds. This premium edition also allows our basic shortcode to work with text widgets. [See Example Demo](http://www.slickremix.com/testblog/)
 
 = Showcase Feeds =
-  *** Send an email to [info@slickremix.com](mailto:info@slickremix.com) with link showing us a feed/feeds on your website to display here! ***
+  *** Send an email to [info@slickremix.com](mailto:info@slickremix.com) with link showing us a feed/feeds of your website to display here! ***
   
 = Example Widget Feed Demo =
   * [Social Page with Widgets](http://www.slickremix.com/testblog/)
@@ -58,7 +58,7 @@ More Social Feeds coming soon like Facebook Pages, Vimeo, and Pinterest. [Sugges
 == Changelog ==
 
 = Version 1.1.8 February 18th, 2013 =
- * Updated: Twitter Feed updated to API v.1.1 This way on March when Twitter takes down the old API (v1) this plugin will still work.
+ * Updated: Twitter Feed updated to API v.1.1. Twitters old API (v1) has been deprecated but this plugin still works.
  
 = Version 1.1.7 February 15th, 2013 =
  * Updated: Instagram, Facebook Group, YouTube, Twitter Feed, and shortcodes now work with widgets in our [Premium Version](http://www.slickremix.com/product/feed-them-social-premium-extension/). CSS styles for all feeds have had minor tweaks, including new styles for widget feeds.
