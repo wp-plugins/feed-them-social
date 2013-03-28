@@ -7,7 +7,7 @@ Stable tag: 1.1.8
 License: GPLv2 or later
 
 
-Feed Them Social allows you to add an Instagram Feed, Facebook Group Feed, Twitter Feed, and now YouTube Videos Feed to a page or post on Wordpress. 
+Feed Them Social allows you to add Instagram Feeds, Facebook Group Feeds, Twitter Feeds, and now YouTube Video Feeds to a page or post on Wordpress. 
 
 == Description ==
 
