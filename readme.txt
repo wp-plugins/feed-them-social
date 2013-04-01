@@ -16,7 +16,7 @@ With our plugin you can take your site to the next level with social feeds of al
 **SPECIAL NOTE:** Widget support now available and the Twitter Feed has been updated to API 1.1! (Authenticated) [API 1.0 was eliminated March 5th 2013 by Twitter]
 
 = Features include the following: =
-  * Add as many social feeds as you want!
+  * Add as many social feeds as you want to a page or post!
   * Display social feeds on any post, page or sidebar!
   * Easily generate all the shortcodes you need for any feed!
   * Responsive social feeds!
