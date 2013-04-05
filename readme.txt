@@ -17,7 +17,7 @@ With our plugin you can take your site to the next level with social feeds of al
 
 = Features include the following: =
   * Display as many social feeds on any post, page or sidebar!
-  * Easily generate all the shortcodes you need for any feed!
+  * Easily generate all the shortcodes you need for your feeds!
   * Responsive social feeds!
   * With our [Premium Extension](http://www.slickremix.com/product/feed-them-social-premium-extension/) you can set how many posts, pictures, tweets, or videos for each individual social feed! We now have easy to use widgets available for all the feeds. This premium edition also allows our basic shortcode to work with text widgets. [See Example Demo](http://www.slickremix.com/testblog/)
 
