@@ -13,7 +13,7 @@ Feed Them Social allows you to add Instagram Feeds, Facebook Group Feeds, Twitte
 
 With our plugin you can take your site to the next level with social feeds of all your celebrities, friends, family, yourself, and/or businesses. Looks great on Desktops, Tablets, and Mobile Devices.
 
-**SPECIAL NOTE:** Widget support is now available and the Twitter Feed has been updated to API 1.1! (Authenticated) [API 1.0 was eliminated March 5th 2013 by Twitter]
+**SPECIAL NOTE:** Widget support is now available. The Twitter Feed has been updated to API 1.1! (Authenticated) [API 1.0 was eliminated March 5th 2013 by Twitter]
 
 = Features include the following: =
   * Display as many social feeds on any post, page or sidebar!
