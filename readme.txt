@@ -42,7 +42,7 @@ With our plugin you can take your site to the next level with social feeds of al
   
 More Social Feeds coming soon like Facebook Pages, Vimeo, and Pinterest. [Suggest a Feed](http://www.slickremix.com/support-forum).
   
-**NOTE:** FTS Premium Plugin users receive FREE updates of Premium plugin. 
+**NOTE:** FTS Premium Plugin users will receive FREE updates of Premium plugin. 
 
 If you would like to become a part of our team and help develop and make money check out this [page](http://www.slickremix.com/join-slickremix/) for more details.
   
