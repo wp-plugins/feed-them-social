@@ -7,22 +7,23 @@ Stable tag: 1.1.8
 License: GPLv2 or later
 
 
-Feed Them Social allows you to add Instagram Feeds, Facebook Group Feeds, Twitter Feeds, and now YouTube Video Feeds to a page or post on Wordpress. 
+Feed Them Social allows you to add an Instagram Feed, Facebook Group Feed, Twitter Feed, and now YouTube Videos Feed to a page or post on Wordpress. 
 
 == Description ==
 
-With our plugin you can take your site to the next level with social feeds of all your celebrities, friends, family, yourself, and/or businesses. Looks great on Desktops, Tablets, and Mobile Devices.
+With our plugin you can make social feeds of all your celebrities, friends, family, yourself, and/or businesses. Looks great on Desktops, Tablets, and Mobile Devices.
 
-**SPECIAL NOTE:** Widget support is now available. The Twitter Feed has been updated to API 1.1! (Authenticated) [API 1.0 was eliminated March 5th 2013 by Twitter]
+**SPECIAL NOTE:** Widget support available and Twitter Feed now updated to API 1.1! (Authenticated)
 
 = Features include the following: =
-  * Display as many social feeds on any post, page or sidebar!
-  * Easily generate all the shortcodes you need for feeds!
+  * Add as many social feeds as you want!
+  * Display social feeds on any post, page or sidebar!
+  * Easily generate all the shortcodes you need for any feed!
   * Responsive social feeds!
-  * With our [Premium Extension](http://www.slickremix.com/product/feed-them-social-premium-extension/) you can set how many posts, pictures, tweets, or videos for each individual social feed! We now have easy to use widgets available for all the feeds. This premium edition also allows our basic shortcode to work when inserted into text widgets. [See Example Demo](http://www.slickremix.com/testblog/)
+  * With our [Premium Extension](http://www.slickremix.com/product/feed-them-social-premium-extension/) you can set how many posts, pictures, tweets, or videos for each individual social feed! We now have simple widgets available for all the feeds. This premium edition also allows our basic shortcode to work with text widgets. [See Example Demo](http://www.slickremix.com/testblog/)
 
 = Showcase Feeds =
-  *** Send an email to [info@slickremix.com](mailto:info@slickremix.com) with link showing us a feed/feeds of your website to display here! ***
+  *** Send an email to [info@slickremix.com](mailto:info@slickremix.com) with link showing us a feed/feeds on your website to display here! ***
   
 = Example Widget Feed Demo =
   * [Social Page with Widgets](http://www.slickremix.com/testblog/)
@@ -42,9 +43,7 @@ With our plugin you can take your site to the next level with social feeds of al
   
 More Social Feeds coming soon like Facebook Pages, Vimeo, and Pinterest. [Suggest a Feed](http://www.slickremix.com/support-forum).
   
-**NOTE:** FTS Premium Plugin users will receive FREE updates of Premium plugin. 
-
-If you would like to become a part of our team and help develop and make money check out this [page](http://www.slickremix.com/join-slickremix/) for more details.
+**NOTE:** FTS Premium Plugin users receive FREE updates of Premium plugin. 
   
 **DISClAIMER:** SlickRemix **DOES NOT** code for IE. If it works awesome, if not we highly suggest one of the following modern browsers: [Google Chrome](https://www.google.com/intl/en/chrome/browser/), [Safari](http://www.apple.com/safari/) or [Firefox](http://www.mozilla.org/en-US/firefox/).
 
@@ -54,7 +53,7 @@ If you would like to become a part of our team and help develop and make money c
   * Log into WordPress dashboard then click **Plugins** > **Add new** > Then under the title "Install Plugins" click **Upload** > **choose the zip** > **Activate the plugin!**
 
 = Install from FTP =
-  * Extract the zip file and just drop the contents in the wp-content/plugins/ directory of your WordPress installation and then activate the Plugin from Plugins page. 
+  * Extract the zip file and drop the contents in the wp-content/plugins/ directory of your WordPress installation and then activate the Plugin from Plugins page. 
 
 == Changelog ==
 
@@ -100,12 +99,16 @@ You can find answers to your questions, suggest a feed, or just drop us a line a
 
 Yes. Currently we have [1 Premium Extension](http://www.slickremix.com/product/feed-them-social-premium-extension/). 
 
+= Known Bugs =
+
+* Currently We know Google Analytics may be conflicting with our plugin! Not everyone is experiencing this problem but we are working on resolving this issue. 
+
 == Screenshots ==
 
 1. This is the settings area for the Feed Them Social. Generate shortcodes in seconds!
 2. Facebook Group Shortcode Generator! Just add your Group ID and with the [Premium Extension](http://www.slickremix.com/product/feed-them-social-premium-extension/) change the number of Posts to show.
 3. Example "Facebook Group" feed. Show up to 24 Posts per feed!
-4. Twitter Shortcode Generator! Just add your Twitter name and with the [Premium Extension](http://www.slickremix.com/product/feed-them-social-premium-extension/) you change the number of Tweets to show.
+4. Twitter Shortcode Generator! Just add your Twitter name and with the [Premium Extension](http://www.slickremix.com/product/feed-them-social-premium-extension/) change the number of Tweets to show.
 5. Example "Twitter" feed. Show up to 20 Tweets per feed!
 6. Convert Instagram Name to ID and Instagram Shortcode Generator! Just convert your Instagram name and with the [Premium Extension](http://www.slickremix.com/product/feed-them-social-premium-extension/) change the number of Pictures to show.
 7. Example "Instagram" feed. Show up to 20 Pictures per feed!
