@@ -99,10 +99,6 @@ You can find answers to your questions, suggest a feed, or just drop us a line a
 
 Yes. Currently we have [1 Premium Extension](http://www.slickremix.com/product/feed-them-social-premium-extension/). 
 
-= Known Bugs =
-
-* Currently We know Google Analytics may be conflicting with our plugin! Not everyone is experiencing this problem but we are working on resolving this issue. 
-
 == Screenshots ==
 
 1. This is the settings area for the Feed Them Social. Generate shortcodes in seconds!
