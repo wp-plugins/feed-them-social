@@ -26,9 +26,13 @@ else 	{
 }
 ob_start(); 
 
+$view_group_link ='https://www.facebook.com/groups/'.$group_id.'/';
+
+
 //URL to get page info
 $url1 = 'https://graph.facebook.com/'.$group_id.'?access_token='.$access_token.'';
 $des = json_decode(file_get_contents($url1));
+
 
 //URL to get Feeds
 $url2 = 'https://graph.facebook.com/'.$group_id.'/feed?access_token='.$access_token.'';
@@ -61,7 +65,6 @@ break;
 $FBtype = $d->type;
 $FBmessage = $d->message;	
 $FBpicture = $d->picture;
-$FBlink = $d->link;
 $FBname = $d->name;
 $FBcaption = $d->caption;
 $FBdescription = $d->description;
@@ -90,7 +93,7 @@ $FBpost_id = $d->id;
 		  if ( $FBpicture == '' ) {
 		  }
 		  else {
-			  print '<a href="'.$FBlink.'" target="_blank" class="fts-jal-fb-picture"><img border="0" alt="' .$d->from->name.'" src="'.$d->picture.'"/></a>';
+			  print '<a href="'.$view_group_link.'" target="_blank" class="fts-jal-fb-picture"><img border="0" alt="' .$d->from->name.'" src="'.$d->picture.'"/></a>';
 		  };
 		  
 		print '<div class="fts-jal-fb-description-wrap">';
@@ -98,7 +101,7 @@ $FBpost_id = $d->id;
 		  if ( $FBname  == '' ) {
 		  }
 		  else {
-			  print '<a href="'.$FBlink.'" target="_blank" class="fts-jal-fb-name">'.$FBname.'</a>';
+			  print '<a href="'.$view_group_link.'" target="_blank" class="fts-jal-fb-name">'.$FBname.'</a>';
 		  };
 		  //Output Link Caption
 		  if ( $FBcaption  == 'Attachment Unavailable. This attachment may have been removed or the person who shared it may not have permission to share it with you.' ) {
@@ -125,7 +128,7 @@ $FBpost_id = $d->id;
 		  if ( $FBpicture == '' ) {
 		  }
 		  else {
-			  print '<a href="'.$FBlink.'" target="_blank" class="fts-jal-fb-picture"><img border="0" alt="' .$d->from->name.'" src="'.$d->picture.'"/></a>';
+			  print '<a href="'.$view_group_link.'" target="_blank" class="fts-jal-fb-picture"><img border="0" alt="' .$d->from->name.'" src="'.$d->picture.'"/></a>';
 		  };
 		  
 		print '<div class="fts-jal-fb-description-wrap">';
@@ -133,7 +136,7 @@ $FBpost_id = $d->id;
 		  if ( $FBname  == '' ) {
 		  }
 		  else {
-			  print '<a href="'.$FBlink.'" target="_blank" class="fts-jal-fb-name">'.$FBname.'</a>';
+			  print '<a href="'.$view_group_link.'" target="_blank" class="fts-jal-fb-name">'.$FBname.'</a>';
 		  };
 		  //Output Link Caption
 		  if ( $FBcaption  == '' ) {
@@ -228,7 +231,7 @@ $FBpost_id = $d->id;
 		  if ( $FBname  == '' ) {
 		  }
 		  else {
-			  print '<a href="'.$FBlink.'" target="_blank" class="fts-jal-fb-name fb-id'.$FBpost_id.'">'.$FBname.'</a>';
+			  print '<a href="'.$view_group_link.'" target="_blank" class="fts-jal-fb-name fb-id'.$FBpost_id.'">'.$FBname.'</a>';
 		  };
 		  //Output Video Caption
 		  if ( $FBcaption  == '' ) {
@@ -256,7 +259,7 @@ $FBpost_id = $d->id;
 		  if ( $FBpicture == '' ) {
 		  }
 		  else {
-			  print '<a href="'.$FBlink.'" target="_blank" class="fts-jal-fb-picture"><img border="0" alt="' .$d->from->name.'" src="'.$d->picture.'"/></a>';
+			  print '<a href="'.$view_group_link.'" target="_blank" class="fts-jal-fb-picture"><img border="0" alt="' .$d->from->name.'" src="'.$d->picture.'"/></a>';
 		  };
 		  
 		print '<div class="fts-jal-fb-description-wrap">';
@@ -264,7 +267,7 @@ $FBpost_id = $d->id;
 		  if ( $FBname  == '' ) {
 		  }
 		  else {
-			  print '<a href="'.$FBlink.'" target="_blank" class="fts-jal-fb-name">'.$FBname.'</a>';
+			  print '<a href="'.$view_group_link.'" target="_blank" class="fts-jal-fb-name">'.$FBname.'</a>';
 		  };
 		  //Output Photo Caption
 		  if ( $FBcaption  == '' ) {
@@ -277,7 +280,7 @@ $FBpost_id = $d->id;
 		  }
 		  else {
 			  print '<div class="fts-jal-fb-description">'.$FBdescription.'</div>';
-			  print '<div>By: <a href="'.$FBbylink.'">'.$FBby.'<a/></div>';
+			  print '<div>By: <a href="'.$view_group_link.'">'.$FBby.'<a/></div>';
 		  };
 		print '</div>';
 		
@@ -287,7 +290,7 @@ $FBpost_id = $d->id;
   print '<div class="clear"></div>';
 	print '</div>';
 	
-	print '<a href="http://www.facebook.com/home.php?sk=group_'.$group_id.'&ap=1" target="_blank" class="fts-jal-fb-see-more">See More</a>';
+	print '<a href="'.$view_group_link.'" target="_blank" class="fts-jal-fb-see-more">See More</a>';
 print '<div class="clear"></div>';
 print '</div>';
 
