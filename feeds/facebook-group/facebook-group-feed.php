@@ -65,6 +65,7 @@ break;
 $FBtype = $d->type;
 $FBmessage = $d->message;	
 $FBpicture = $d->picture;
+$FBlink = $d->link;
 $FBname = $d->name;
 $FBcaption = $d->caption;
 $FBdescription = $d->description;

@@ -3,7 +3,7 @@ Contributors: slickremix
 Tags:  social, social plugin, facebook, facebook plugin, facebook group, twitter, twitter plugin, instagram, instagram plugin, feed me social, feed, feeds, shortcode, slickremix, plugin, pages, posts, images, page, post, image, youtube, youtube feed, youtube channel, youtube video, youtube videos, videos, youtube embed, embed, video iframe, admin, comments, Posts
 Requires at least: 3.4.0
 Tested up to: 3.5.1
-Stable tag: 1.1.9
+Stable tag: 1.2.0
 License: GPLv2 or later
 
 
@@ -56,6 +56,9 @@ More Social Feeds coming soon like Facebook Pages, Vimeo, and Pinterest. [Sugges
   * Extract the zip file and drop the contents in the wp-content/plugins/ directory of your WordPress installation and then activate the Plugin from Plugins page. 
 
 == Changelog ==
+
+= Version 1.2.0 June 4rd, 2013 =
+ * Fixed: video links broken from 1.1.9 update now fixed to work again.
 
 = Version 1.1.9 June 3rd, 2013 =
  * Updated: Facebook Feed updated to have proper links for "See More" buttons and images.
