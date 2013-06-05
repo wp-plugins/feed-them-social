@@ -116,6 +116,6 @@ Yes. Currently we have [1 Premium Extension](http://www.slickremix.com/product/f
 7. Example "Instagram" feed. Show up to 20 Pictures per feed!
 8. Add your generated shortcode to your post or page!
 9. System Info page. To easily generate a debugging report for us!
-10. Our premium version also offers the YouTube-Feed.
-11. Example of YouTube Feed Video Popup.
-12. Example of YouTube + Instagram Feed on one page.
+10. Our premium version also offers the YouTube Feed.
+11. Example of YouTube Video Popup.
+12. Another YouTube Example with other feeds on Page.
