@@ -2,7 +2,7 @@
 /*
 Plugin Name: Feed Them Social
 Plugin URI: http://slickremix.com/
-Description: This Plugin can create and display feeds for Facebook, Twitter & Instagram.
+Description: This Plugin can create and display feeds for Facebook Groups, Twitter, Instagram and YouTube.
 Version: 1.2.1
 Author: SlickRemix
 Author URI: http://slickremix.com/
