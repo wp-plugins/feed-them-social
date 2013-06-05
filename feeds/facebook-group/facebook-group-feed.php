@@ -254,7 +254,7 @@ $FBpost_id = $d->id;
 	//Output Photo
 	elseif ( $FBtype == 'photo' ) {
 		
-		print '<div class="jal-fb-link-wrap">';
+		print '<div class="fts-jal-fb-link-wrap">';
 		  
 		  //Output Photo Picture
 		  if ( $FBpicture == '' ) {
