@@ -13,7 +13,7 @@ Feed Them Social allows you to easily add Instagram Feeds, Facebook Group Feeds,
 
 With our plugin you can make social feeds of all your celebrities, friends, family, yourself, and/or businesses. Looks great on Desktops, Tablets, and Mobile Devices.
 
-**GIVE AWAY!:** Premium Version of our plugin to the next 5 people that give a review. 
+**GIVE AWAY!:** Premium Version of our plugin to the next 5 people that give a [review](http://wordpress.org/support/view/plugin-reviews/feed-them-social#postform). 
 
 = Features include the following: =
   * Add as many social feeds as you want!
