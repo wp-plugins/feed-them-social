@@ -7,7 +7,7 @@ Stable tag: 1.2.1
 License: GPLv2 or later
 
 
-Feed Them Social allows you to easily add Instagram Feeds, Facebook Group Feeds, Twitter Feeds, and now YouTube Videos Feeds to any page, post or widget. 
+Easily add Instagram Feeds, Facebook Group Feeds, Twitter Feeds, and now YouTube Videos Feeds to any page, post or widget. 
 
 == Description ==
 
