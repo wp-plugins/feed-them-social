@@ -3,17 +3,17 @@ Contributors: slickremix
 Tags:  social, social plugin, facebook, facebook plugin, facebook group, twitter, twitter plugin, instagram, instagram plugin, feed me social, feed, feeds, shortcode, slickremix, plugin, pages, posts, images, page, post, image, youtube, youtube feed, youtube channel, youtube video, youtube videos, videos, youtube embed, embed, video iframe, admin, comments, Posts
 Requires at least: 3.4.0
 Tested up to: 3.5.1
-Stable tag: 1.2.0
+Stable tag: 1.2.1
 License: GPLv2 or later
 
 
-Feed Them Social allows you to easily add Instagram Feeds, Facebook Group Feeds, Twitter Feeds, and now YouTube Videos Feeds to any page or post. 
+Feed Them Social allows you to easily add Instagram Feeds, Facebook Group Feeds, Twitter Feeds, and now YouTube Videos Feeds to any page, post or widget. 
 
 == Description ==
 
 With our plugin you can make social feeds of all your celebrities, friends, family, yourself, and/or businesses. Looks great on Desktops, Tablets, and Mobile Devices.
 
-**SPECIAL NOTE:** Widget support available and Twitter Feed now updated to API 1.1! (Authenticated)
+**GIVE AWAY!:** Premium Version of our plugin to the next 5 people that give a review. 
 
 = Features include the following: =
   * Add as many social feeds as you want!
@@ -56,6 +56,9 @@ More Social Feeds coming soon like Facebook Pages, Vimeo, and Pinterest. [Sugges
   * Extract the zip file and drop the contents in the wp-content/plugins/ directory of your WordPress installation and then activate the Plugin from Plugins page. 
 
 == Changelog ==
+
+= Version 1.2.1 June 5rd, 2013 =
+ * Fixed: CSS updates for compatibility with Firefox and Chrome on Facebook Group CSS, and Instagram CSS.
 
 = Version 1.2.0 June 4rd, 2013 =
  * Fixed: video links broken from 1.1.9 update now fixed to work again.
@@ -108,11 +111,14 @@ Yes. Currently we have [1 Premium Extension](http://www.slickremix.com/product/f
 == Screenshots ==
 
 1. This is the settings area for the Feed Them Social. Generate shortcodes in seconds!
-2. Facebook Group Shortcode Generator! Just add your Group ID and with the [Premium Extension](http://www.slickremix.com/product/feed-them-social-premium-extension/) change the number of Posts to show.
+2. Facebook Group Shortcode Generator! Just add your Group ID and with the [Premium Extension](http://www.slickremix.com/product/feed-them-social-premium-extension/) change the number of Posts beyond 5.
 3. Example "Facebook Group" feed. Show up to 24 Posts per feed!
-4. Twitter Shortcode Generator! Just add your Twitter name and with the [Premium Extension](http://www.slickremix.com/product/feed-them-social-premium-extension/) change the number of Tweets to show.
+4. Twitter Shortcode Generator! Just add your Twitter name and with the [Premium Extension](http://www.slickremix.com/product/feed-them-social-premium-extension/) change the number of Tweets Posts beyond 5.
 5. Example "Twitter" feed. Show up to 20 Tweets per feed!
-6. Convert Instagram Name to ID and Instagram Shortcode Generator! Just convert your Instagram name and with the [Premium Extension](http://www.slickremix.com/product/feed-them-social-premium-extension/) change the number of Pictures to show.
+6. Convert Instagram Name to ID and Instagram Shortcode Generator! Just convert your Instagram name and with the [Premium Extension](http://www.slickremix.com/product/feed-them-social-premium-extension/) change the number of Pictures beyond 5
 7. Example "Instagram" feed. Show up to 20 Pictures per feed!
 8. Add your generated shortcode to your post or page!
 9. System Info page. To easily generate a debugging report for us!
+10. Our premium version also offers the YouTube-Feed.
+11. Example of YouTube Feed Video Popup.
+12. Example of YouTube + Instagram Feed on one page.
