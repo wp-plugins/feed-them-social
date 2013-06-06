@@ -54,10 +54,10 @@ More Social Feeds coming soon like Facebook Pages, Vimeo, and Pinterest. [Sugges
 
 == Changelog ==
 
-= Version 1.2.1 June 5rd, 2013 =
+= Version 1.2.1 June 5th, 2013 =
  * Fixed: CSS updates for compatibility with Firefox and Chrome on Facebook Group CSS, and Instagram CSS.
 
-= Version 1.2.0 June 4rd, 2013 =
+= Version 1.2.0 June 4th, 2013 =
  * Fixed: video links broken from 1.1.9 update now fixed to work again.
 
 = Version 1.1.9 June 3rd, 2013 =
