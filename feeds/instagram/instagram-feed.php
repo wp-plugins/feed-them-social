@@ -24,7 +24,7 @@ else 	{
 <?php
 ob_start(); 
 //URL to get Feeds
-$insta_url = 'https://api.instagram.com/v1/users/'.$instagram_id.'/media/recent/?access_token=267791236.f78cc02.bea846f3144a40acbf0e56b002c112f8';
+$insta_url = 'https://api.instagram.com/v1/users/'.$instagram_id.'/media/recent/?access_token=267791236.14c1243.a5268d6ed4cf4d2187b0e98b365443af';
 $insta_data = json_decode(file_get_contents($insta_url));
 ?>
 <div class="fts-instagram">

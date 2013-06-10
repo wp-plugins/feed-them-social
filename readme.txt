@@ -3,7 +3,7 @@ Contributors: slickremix
 Tags:  social, social plugin, facebook, facebook plugin, facebook group, twitter, twitter plugin, instagram, instagram plugin, feed me social, feed, feeds, shortcode, slickremix, plugin, pages, posts, images, page, post, image, youtube, youtube feed, youtube channel, youtube video, youtube videos, videos, youtube embed, embed, video iframe, admin, comments, Posts
 Requires at least: 3.4.0
 Tested up to: 3.5.1
-Stable tag: 1.2.1
+Stable tag: 1.2.2
 License: GPLv2 or later
 
 
@@ -53,6 +53,9 @@ More Social Feeds coming soon like Facebook Pages, Vimeo, and Pinterest. [Sugges
   * Extract the zip file and drop the contents in the wp-content/plugins/ directory of your WordPress installation and then activate the Plugin from Plugins page. 
 
 == Changelog ==
+
+= Version 1.2.2 June 10th, 2013 =
+ * Update: Instagram API access token.
 
 = Version 1.2.1 June 5th, 2013 =
  * Fixed: CSS updates for compatibility with Firefox and Chrome on Facebook Group CSS, and Instagram CSS.
