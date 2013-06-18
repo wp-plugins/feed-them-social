@@ -42,7 +42,7 @@ More Social Feeds coming soon like Facebook Pages, Vimeo, and Pinterest. [Sugges
   
 **NOTE:** FTS Premium Plugin users receive FREE updates of Premium plugin. 
   
-**DISClAIMER:** SlickRemix **DOES NOT** code for IE. If it works awesome, if not we highly suggest one of the following modern browsers: [Google Chrome](https://www.google.com/intl/en/chrome/browser/), [Safari](http://www.apple.com/safari/) or [Firefox](http://www.mozilla.org/en-US/firefox/).
+**DISCLAIMER:** SlickRemix **DOES NOT** code for IE. If it works awesome, if not we highly suggest one of the following modern browsers: [Google Chrome](https://www.google.com/intl/en/chrome/browser/), [Safari](http://www.apple.com/safari/) or [Firefox](http://www.mozilla.org/en-US/firefox/).
 
 == Installation ==
 
