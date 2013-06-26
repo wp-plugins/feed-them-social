@@ -38,7 +38,7 @@ With our plugin you can make social feeds of all your celebrities, family, frien
   
 More Social Feeds coming soon like Facebook Pages, Vimeo, and Pinterest. [Suggest another Feed](http://www.slickremix.com/support-forum).
   
-**NOTE:** FTS Premium Plugin users receive FREE updates of Premium plugin. 
+**NOTE:** FTS Premium Plugin users receive FREE updates of our Premium plugin. 
   
 **DISCLAIMER:** SlickRemix **DOES NOT** code for IE. If it works awesome, if not we highly suggest one of the following modern browsers: [Google Chrome](https://www.google.com/intl/en/chrome/browser/), [Safari](http://www.apple.com/safari/) or [Firefox](http://www.mozilla.org/en-US/firefox/).
 
