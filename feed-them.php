@@ -17,7 +17,7 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
  * @author     		    SlickRemix
  * @copyright  			Copyright (c) 2012-2013 SlickRemix
 
-If you need support or want to tell us thanks please contact us at info@slickremix.com or use our support forum on slickremix.com
+If you need support or want to tell us thanks please contact us at info@slickremix.com or use our support forum on slickremix.com.
 
 This is the main file for building the plugin into wordpress
 */
