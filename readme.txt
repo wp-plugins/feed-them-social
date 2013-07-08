@@ -45,7 +45,7 @@ More Social Feeds coming soon like Facebook Pages, Vimeo, and Pinterest. [Sugges
 == Installation ==
 
 = Install from WordPress Dashboard =
-  * Log into WordPress dashboard then click **Plugins** > **Add new** > Then under the title "Install Plugins" click **Upload** > **choose the zip** > **Activate the plugin!**
+  * Log into your WordPress dashboard then click **Plugins** > **Add new** > Then under the title "Install Plugins" click **Upload** > **choose the zip** > **Activate the plugin!**
 
 = Install from FTP =
   * Extract the zip file and drop the contents in the wp-content/plugins/ directory of your WordPress installation and then activate the Plugin from Plugins page. 
