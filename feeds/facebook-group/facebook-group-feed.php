@@ -80,30 +80,39 @@ $FBpost_id = $d->id;
 $FBpost_like_count = $d->likes->count;
 $FBpost_comments_count_array = $d->comments->data;
 
-$FBpost_comments_count = 0;
-if (!empty($FBpost_comments_count_array))	{		
+echo $FBpost_like_count;
+
+
+if (!empty($FBpost_comments_count_array))	{	
+			$FBpost_comments_count = 0;	
 			foreach	($d->comments->data as $comments_count){
 				$FBpost_comments_count++;
 			}		
 }
-
-if ($FBpost_comments_count == 1)	{
-	$final_FBpost_comments_count = "1 Comment -";
+else	{
+	$FBpost_comments_count = 0;
 }
-if ($FBpost_comments_count == 0)	{
+
+
+if ($FBpost_comments_count == '0')	{
 	$final_FBpost_comments_count = "";
 }
-else	{
+if ($FBpost_comments_count == '1')	{
+	$final_FBpost_comments_count = "1 Comment -";
+}
+
+if ($FBpost_comments_count > '1')	{
 	$final_FBpost_comments_count = $FBpost_comments_count." Comments -";
 }
 
-if ($FBpost_like_count == 1)	{
-	$final_FBpost_comments_count = "1 Like -";
+if ($FBpost_like_count == '0')	{
+	$final_FBpost_like_count = "";
 }
-if ($FBpost_like_count == 0)	{
-	$final_FBpost_comments_count = "";
+if ($FBpost_like_count == '1')	{
+	$final_FBpost_like_count = "1 Like -";
 }
-else	{
+
+if ($FBpost_like_count > '1')	{
 	$final_FBpost_like_count = $FBpost_like_count." Likes -";
 }
 
