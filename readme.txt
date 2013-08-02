@@ -53,7 +53,7 @@ More Social Feeds coming soon like Facebook Pages and Vimeo. [Suggest another Fe
   * Extract the zip file and drop the contents in the wp-content/plugins/ directory of your WordPress installation and then activate the Plugin from Plugins page. 
 
 == Changelog ==
-= Version 1.2.3 August 2nd, 2013 =
+= Version 1.2.4 August 2nd, 2013 =
  * Fixed: Facebook Groups Likes and Comments grammar issues!
 
 = Version 1.2.3 August 1st, 2013 =
