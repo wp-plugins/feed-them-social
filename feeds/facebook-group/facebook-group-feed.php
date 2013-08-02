@@ -38,10 +38,6 @@ $des = json_decode(file_get_contents($url1));
 $url2 = 'https://graph.facebook.com/'.$group_id.'/feed?access_token='.$access_token.'';
 $data = json_decode(file_get_contents($url2));
 
-//echo '<pre>';
-//print_r($data);
-//echo '</pre>';
-
 print '<div class="fts-jal-fb-group-display">';
   print '<div class="fts-jal-fb-header">';
     print '<h1><a href="http://www.facebook.com/home.php?sk=group_'.$group_id.'&ap=1">'.$des->name.'</a></h1>';
@@ -79,9 +75,6 @@ $FBbylink = $d->properties->href;
 $FBpost_id = $d->id;
 $FBpost_like_count = $d->likes->count;
 $FBpost_comments_count_array = $d->comments->data;
-
-echo $FBpost_like_count;
-
 
 if (!empty($FBpost_comments_count_array))	{	
 			$FBpost_comments_count = 0;	

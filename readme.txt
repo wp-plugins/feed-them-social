@@ -3,7 +3,7 @@ Contributors: slickremix
 Tags:  social, social plugin, pinterest, pinterest boards, pinterest feeds, pinterest photos, facebook, facebook plugin, facebook group, twitter, twitter plugin, instagram, instagram plugin, feed me social, feed, feeds, shortcode, slickremix, plugin, pages, posts, images, page, post, image, youtube, youtube feed, youtube channel, youtube video, youtube videos, videos, youtube embed, embed, video iframe, admin, comments, Posts, widgets
 Requires at least: 3.4.0
 Tested up to: 3.6
-Stable tag: 1.2.4
+Stable tag: 1.2.5
 License: GPLv2 or later
 
 
@@ -53,8 +53,11 @@ More Social Feeds coming soon like Facebook Pages and Vimeo. [Suggest another Fe
   * Extract the zip file and drop the contents in the wp-content/plugins/ directory of your WordPress installation and then activate the Plugin from Plugins page. 
 
 == Changelog ==
+= Version 1.2.5 August 2nd, 2013 =
+ * Fixed: Facebook Group Feed Number before post error!
+
 = Version 1.2.4 August 2nd, 2013 =
- * Fixed: Facebook Groups Likes and Comments grammar issues!
+ * Fixed: Facebook Group Feed Likes and Comments grammar issues!
 
 = Version 1.2.3 August 1st, 2013 =
  * Update: Facebook Groups now display the number of likes and comments, if any. Also the see more links the the group and now scrolls to that post. No more searching, thank goodness!
