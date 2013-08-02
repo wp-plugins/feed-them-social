@@ -38,6 +38,10 @@ $des = json_decode(file_get_contents($url1));
 $url2 = 'https://graph.facebook.com/'.$group_id.'/feed?access_token='.$access_token.'';
 $data = json_decode(file_get_contents($url2));
 
+//echo '<pre>';
+//print_r($data);
+//echo '</pre>';
+
 print '<div class="fts-jal-fb-group-display">';
   print '<div class="fts-jal-fb-header">';
     print '<h1><a href="http://www.facebook.com/home.php?sk=group_'.$group_id.'&ap=1">'.$des->name.'</a></h1>';
@@ -73,7 +77,39 @@ $FBicon = $d->icon;
 $FBby = $d->properties->text;
 $FBbylink = $d->properties->href;
 $FBpost_id = $d->id;
-    
+$FBpost_like_count = $d->likes->count;
+$FBpost_comments_count_array = $d->comments->data;
+
+$FBpost_comments_count = 0;
+if (!empty($FBpost_comments_count_array))	{		
+			foreach	($d->comments->data as $comments_count){
+				$FBpost_comments_count++;
+			}		
+}
+
+if ($FBpost_comments_count == 1)	{
+	$final_FBpost_comments_count = "1 Comment -";
+}
+if ($FBpost_comments_count == 0)	{
+	$final_FBpost_comments_count = "";
+}
+else	{
+	$final_FBpost_comments_count = $FBpost_comments_count." Comments -";
+}
+
+if ($FBpost_like_count == 1)	{
+	$final_FBpost_comments_count = "1 Like -";
+}
+if ($FBpost_like_count == 0)	{
+	$final_FBpost_comments_count = "";
+}
+else	{
+	$final_FBpost_like_count = $FBpost_like_count." Likes -";
+}
+
+	$FBpost_id_final = substr($FBpost_id, strpos($FBpost_id, "_") + 1);
+
+
 	
 	//Output Message  
 	if ( $FBmessage == '' ) {
@@ -291,7 +327,7 @@ $FBpost_id = $d->id;
   print '<div class="clear"></div>';
 	print '</div>';
 	
-	print '<a href="'.$view_group_link.'" target="_blank" class="fts-jal-fb-see-more">See More</a>';
+	print '<a href="'.$view_group_link.'#mall_post_'.$FBpost_id_final.'" target="_blank" class="fts-jal-fb-see-more"> '.$final_FBpost_like_count.' '.$final_FBpost_comments_count.' See More</a>';
 print '<div class="clear"></div>';
 print '</div>';
 

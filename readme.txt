@@ -1,13 +1,13 @@
 === Feed Them Social ===
 Contributors: slickremix
-Tags:  social, social plugin, facebook, facebook plugin, facebook group, twitter, twitter plugin, instagram, instagram plugin, feed me social, feed, feeds, shortcode, slickremix, plugin, pages, posts, images, page, post, image, youtube, youtube feed, youtube channel, youtube video, youtube videos, videos, youtube embed, embed, video iframe, admin, comments, Posts
+Tags:  social, social plugin, pinterest, pinterest boards, pinterest feeds, pinterest photos, facebook, facebook plugin, facebook group, twitter, twitter plugin, instagram, instagram plugin, feed me social, feed, feeds, shortcode, slickremix, plugin, pages, posts, images, page, post, image, youtube, youtube feed, youtube channel, youtube video, youtube videos, videos, youtube embed, embed, video iframe, admin, comments, Posts, widgets
 Requires at least: 3.4.0
-Tested up to: 3.5.1
-Stable tag: 1.2.2
+Tested up to: 3.6
+Stable tag: 1.2.3
 License: GPLv2 or later
 
 
-Easily add Instagram Feeds, Facebook Group Feeds, Twitter Feeds, and now YouTube Videos Feeds to any page, post or widget. 
+Easily add Instagram, Pinterest, Facebook Group, Twitter, and now YouTube Videos Feeds to any page, post or widget. 
 
 == Description ==
 
@@ -25,16 +25,18 @@ With our plugin you can make social feeds of all your celebrities, family, frien
 	
 = Example SINGLE Feed Demos (1 feed per post/page) =
   * [Instagram Feed Demo](http://www.slickremix.com/testblog/instagram-feed-demo/)
-  * [Facebook Group Feeds Demo](http://www.slickremix.com/testblog/facebook-group-feed-demo/)
+  * [Facebook Group Feed Demo](http://www.slickremix.com/testblog/facebook-group-feed-demo/)
   * [Twitter Feed Demo](http://www.slickremix.com/testblog/twitter-feed-demo/)
 
 = Example MULTIPLE Feed Demos (2 or more feeds per post/page) =
   * [2 (or more) Instagram Feeds Demo](http://www.slickremix.com/testblog/multiple-instagram-feeds-demo/)
   * [2 (or more) Facebook Group Feeds Demo](http://www.slickremix.com/testblog/multiple-facebook-group-feeds-demo/)
   * [2 (or more) Twitter Feeds Demo](http://www.slickremix.com/testblog/multiple-twitter-feeds-demo/)
-
+  
 = Example PREMIUM Feed Demos =
- * [YouTube Feeds Demos](http://www.slickremix.com/testblog/2013/01/youtube-feed-demo-1-large-with-3-video-per-row/) 
+ * [YouTube Feed Demo](http://www.slickremix.com/testblog/2013/01/youtube-feed-demo-1-large-with-3-video-per-row/)
+ * [Pinterest Feed Demo](http://www.slickremix.com/testblog/pinterest/)
+ * [Youtube + Instagram + Pinterest Feeds Demo](http://www.slickremix.com/testblog/youtube-instagram/)
   
 More Social Feeds coming soon like Facebook Pages, Vimeo, and Pinterest. [Suggest another Feed](http://www.slickremix.com/support-forum).
   
@@ -45,13 +47,17 @@ More Social Feeds coming soon like Facebook Pages, Vimeo, and Pinterest. [Sugges
 == Installation ==
 
 = Install from WordPress Dashboard =
-  * Log into your WordPress dashboard then click **Plugins** > **Add new** > Then under the title "Install Plugins" click **Upload** > **choose the zip** > **Activate the plugin!**
+  * Log into WordPress dashboard then click **Plugins** > **Add new** > Then under the title "Install Plugins" click **Upload** > **choose the zip** > **Activate the plugin!**
 
 = Install from FTP =
   * Extract the zip file and drop the contents in the wp-content/plugins/ directory of your WordPress installation and then activate the Plugin from Plugins page. 
 
 == Changelog ==
 
+= Version 1.2.3 August 1st, 2013 =
+ * Update: Facebook Groups now display the number of likes and comments, if any. Also the see more links the the group and now scrolls to that post. No more searching, thank goodness!
+ * Update: Pinterest is now apart of Feed Them Social! Available with the premium version only.
+ 
 = Version 1.2.2 June 10th, 2013 =
  * Update: Instagram API access token.
 
@@ -120,3 +126,5 @@ Yes. Currently we have [1 Premium Extension](http://www.slickremix.com/product/f
 10. Our premium version also offers the YouTube Feed.
 11. Example of YouTube Video Popup.
 12. Another YouTube Example with other feeds on Page.
+13. Example of Premium Pinterest Feed on a Full Page.
+14. Widget Style Pinterest Feed Example.

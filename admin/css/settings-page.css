@@ -240,6 +240,9 @@
 .feed-them-icon-wrap a.youtube-icon {
 	background: url(../images/youtube-icon.png) no-repeat top right;
 }
+.feed-them-icon-wrap a.pinterest-icon {
+	background: url(../images/pinterest-icon.png) no-repeat top right;
+}
 a.icon-animate-small {
 	background-position: top right !important;
 	background-size: 34px !important;

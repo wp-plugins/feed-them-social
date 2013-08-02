@@ -9,13 +9,14 @@ add_action( 'wp_enqueue_style', 'feed_them_admin_css' );
 <link href='http://fonts.googleapis.com/css?family=Rambla:400,700' rel='stylesheet' type='text/css'>				
 <div class="feed-them-social-admin-wrap">
   <h1>Feed Them Social</h1>
-  <div class="use-of-plugin">To get started please select what type of feed you would like to generate a shortcode for using the select option below. Then you'll copy that shortcode to a page or post.</div>
+  <div class="use-of-plugin">Select what type of feed you would like to generate a shortcode for using the select option below. Then you'll copy that shortcode to a page or post.</div>
   
   <div class="feed-them-icon-wrap">
     <a href="#" class="youtube-icon"></a>
     <a href="#" class="twitter-icon"></a>
     <a href="#" class="facebook-icon"></a>
   	<a href="#" class="instagram-icon"></a>
+  	<a href="#" class="pinterest-icon"></a>
   </div>
 
 	<form class="feed-them-social-admin-form"> 
@@ -25,6 +26,7 @@ add_action( 'wp_enqueue_style', 'feed_them_admin_css' );
             <option value="twitter-shortcode-form">Twitter Feed</option>
             <option value="instagram-shortcode-form">Instagram Feed</option>
             <option value="youtube-shortcode-form">YouTube Feed</option>
+            <option value="pinterest-shortcode-form">Pinterest Feed</option>
         </select>
     </form><!--/feed-them-social-admin-form-->
 
@@ -165,7 +167,7 @@ else 	{
 <div class="fts-youtube-shortcode-form">
     <form class="feed-them-social-admin-form shortcode-generator-form youtube-shortcode-form">
     <h2>YouTube Shortcode Generator</h2>
-    <div class="instructional-text">You must copy your <a href="http://www.slickremix.com/2012/12/18/how-to-get-your-youtube-name/" target="_blank">YouTube Name</a> and paste it in the first input below.</div>
+    <div class="instructional-text">You must copy your <a href="http://www.slickremix.com/2013/08/01/how-to-get-your-youtube-name/" target="_blank">YouTube Name</a> and paste it in the first input below.</div>
       
 <?php
 if(is_plugin_active('feed-them-premium/feed-them-premium.php')) {
@@ -204,6 +206,42 @@ else 	{
 ?>
     </form>
 </div><!--/fts-youtube-shortcode-form-->
+
+
+
+
+
+<div class="fts-pinterest-shortcode-form">
+    <form class="feed-them-social-admin-form shortcode-generator-form pinterest-shortcode-form">
+    <h2>Pinterest Shortcode Generator</h2>
+    <div class="instructional-text">You must copy your <a href="http://www.slickremix.com/2013/08/01/how-to-get-your-pinterest-name/" target="_blank">Pinterest Name</a> and paste it in the first input below.</div>
+      
+<?php
+if(is_plugin_active('feed-them-premium/feed-them-premium.php')) {
+   include('../wp-content/plugins/feed-them-premium/admin/pinterest-settings-fields.php');
+}
+else 	{
+?>
+<div class="feed-them-social-admin-input-wrap">
+  <div class="feed-them-social-admin-input-label">Pinterest Name (required)</div>
+  <div class="feed-them-social-admin-input-default">Must have <a target="_blank" href="http://www.slickremix.com/product/feed-them-social-premium-extension/">premium version</a> to edit.</div>
+<div class="clear"></div>
+</div><!--/feed-them-social-admin-input-wrap-->
+
+<div class="feed-them-social-admin-input-wrap">
+  <div class="feed-them-social-admin-input-label"># of Boards (required)</div>
+  <div class="feed-them-social-admin-input-default">Must have <a target="_blank" href="http://www.slickremix.com/product/feed-them-social-premium-extension/">premium version</a> to edit.</div>
+<div class="clear"></div>
+</div><!--/feed-them-social-admin-input-wrap-->
+
+ <a href="http://www.slickremix.com/product/feed-them-social-premium-extension/" class="feed-them-social-admin-submit-btn" style="margin-right:1em; margin-top: 15px; display:block; max-width:192px; text-decoration:none !important;">Click here for Premium Plugin</a>
+
+<?php
+}
+?>
+    </form>
+</div><!--/fts-pinterest-shortcode-form-->
+
 
 
       
@@ -350,10 +388,16 @@ function converter_instagram_username() {
 
 <?php
 	if(is_plugin_active('feed-them-premium/feed-them-premium.php')) {
-	   include('../wp-content/plugins/feed-them-premium/admin/js/youtube-settings-js.js');
+	   include('../wp-content/plugins/feed-them-premium/admin/js/youtube-settings-js.js'); 
 	}
 ?>
 
+
+<?php
+	if(is_plugin_active('feed-them-premium/feed-them-premium.php')) { 
+	    include('../wp-content/plugins/feed-them-premium/admin/js/pinterest-settings-js.js');
+	}
+?>
 //select all 
 jQuery(".copyme").focus(function() {
     var jQuerythis = jQuery(this);
