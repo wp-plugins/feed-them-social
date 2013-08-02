@@ -54,10 +54,10 @@ More Social Feeds coming soon like Facebook Pages and Vimeo. [Suggest another Fe
 
 == Changelog ==
 = Version 1.2.5 August 2nd, 2013 =
- * Fixed: Facebook Group Feed Number before post error!
+ * Fixed: Facebook Group Feed Number before post error.
 
 = Version 1.2.4 August 2nd, 2013 =
- * Fixed: Facebook Group Feed Likes and Comments grammar issues!
+ * Fixed: Facebook Group Feed Likes and Comments grammar issues.
 
 = Version 1.2.3 August 1st, 2013 =
  * Update: Facebook Groups now display the number of likes and comments, if any. Also the see more links the the group and now scrolls to that post. No more searching, thank goodness!
