@@ -38,7 +38,7 @@ With our plugin you can make social feeds of all your celebrities, family, frien
  * [Pinterest Feed Demo](http://www.slickremix.com/testblog/pinterest/)
  * [Youtube + Instagram + Pinterest Feeds Demo](http://www.slickremix.com/testblog/youtube-instagram/)
   
-More Social Feeds coming soon like Facebook Pages and Vimeo. [Suggest another Feed](http://www.slickremix.com/support-forum).
+More Social Feeds coming soon like, Facebook Pages and Vimeo. [Suggest another Feed](http://www.slickremix.com/support-forum).
   
 **NOTE:** FTS Premium Plugin users receive FREE updates of our Premium plugin. 
   
