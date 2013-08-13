@@ -2,7 +2,7 @@
 /*
 Plugin Name: Feed Them Social
 Plugin URI: http://slickremix.com/
-Description: Display feeds for Facebook Groups, Twitter, Pinterest, Instagram and YouTube. Fastest, Easiest Social Plugin in the World to use, Hands Down!
+Description: Display feeds for Facebook Groups, Twitter, Pinterest, Instagram and YouTube. Fastest, easiest social plugin in the world to use, hands down!
 Version: 1.2.6
 Author: SlickRemix
 Author URI: http://slickremix.com/
