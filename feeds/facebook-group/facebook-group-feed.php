@@ -39,10 +39,15 @@ $url2 = 'https://graph.facebook.com/'.$group_id.'/feed?access_token='.$access_to
 $data = json_decode(file_get_contents($url2));
 
 print '<div class="fts-jal-fb-group-display">';
-  print '<div class="fts-jal-fb-header">';
-    print '<h1><a href="http://www.facebook.com/home.php?sk=group_'.$group_id.'&ap=1">'.$des->name.'</a></h1>';
-    	print '<div class="fts-jal-fb-group-header-desc" style="">'.$des->description.'</div>';
-  print '</div>';
+if(is_plugin_active('feed-them-premium/feed-them-premium.php')) {
+   include('wp-content/plugins/feed-them-premium/feeds/facebook-group/facebook-group-feed-title-description-options.php');
+}
+  else {
+	  print '<div class="fts-jal-fb-header"><h1><a href="http://www.facebook.com/home.php?sk=group_'.$group_id.'&ap=1">'.$des->name.'</a></h1>';
+	  print '<div class="fts-jal-fb-group-header-desc" style="">'.$des->description.'</div>';
+      print '</div>';
+  }
+print '</div>'; 
  	
 $set_zero = 0;
 foreach($data->data as $d) {
@@ -52,14 +57,14 @@ break;
   print '<div class="fts-jal-single-fb-post">';
   
       print '<div class="fts-jal-fb-user-thumb">';
-      	print '<a href="http://facebook.com/profile.php?id='.$d->from->id.'"><img border="0" alt="'.$d->from->name.'" src="https://graph.facebook.com/'.$d->from->id.'/picture"/></a>'; 
+      print '<a href="http://facebook.com/profile.php?id='.$d->from->id.'"><img border="0" alt="'.$d->from->name.'" src="https://graph.facebook.com/'.$d->from->id.'/picture"/></a>'; 
       print '</div>';
       
       print '<div class="fts-jal-fb-right-wrap">';
-      	print '<div class="fts-jal-fb-top-wrap">';
-          print '<span class="fts-jal-fb-user-name" style=""><a href="http://facebook.com/profile.php?id='.$d->from->id.'">'.$d->from->name.'</a></span>';
-          print '<span class="fts-jal-fb-post-time">on '.date('F j, Y H:i',strtotime($d->created_time)).'</span><div class="clear"></div>';
-        print '</div>';
+      print '<div class="fts-jal-fb-top-wrap">';
+      print '<span class="fts-jal-fb-user-name" style=""><a href="http://facebook.com/profile.php?id='.$d->from->id.'">'.$d->from->name.'</a></span>';
+      print '<span class="fts-jal-fb-post-time">on '.date('F j, Y H:i',strtotime($d->created_time)).'</span><div class="clear"></div>';
+      print '</div>';
 
 //Create Facebook Variables 
 $FBtype = $d->type;
