@@ -7,7 +7,7 @@ Stable tag: 1.2.6
 License: GPLv2 or later
 
 
-Easily add Instagram, Facebook Group, Twitter, YouTube and now Pinterest Feeds to any page, post or widget. 
+Easily add Instagram, Facebook Group, Twitter, YouTube and now Pinterest Feeds to any page, post or widget! 
 
 == Description ==
 
