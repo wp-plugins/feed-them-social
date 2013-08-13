@@ -3,7 +3,7 @@ Contributors: slickremix
 Tags:  social, social plugin, pinterest, pinterest boards, pinterest feeds, pinterest photos, facebook, facebook plugin, facebook group, twitter, twitter plugin, instagram, instagram plugin, feed me social, feed, feeds, shortcode, slickremix, plugin, pages, posts, images, page, post, image, youtube, youtube feed, youtube channel, youtube video, youtube videos, videos, youtube embed, embed, video iframe, admin, comments, Posts, widgets
 Requires at least: 3.4.0
 Tested up to: 3.6
-Stable tag: 1.2.5
+Stable tag: 1.2.6
 License: GPLv2 or later
 
 
@@ -18,7 +18,7 @@ With our plugin you can make social feeds of any or all your celebrities, family
   * Display social feeds on any post, page, or sidebar!
   * Easily generate all the shortcodes you need for any feed!
   * Responsive social feeds!
-  * With our [Premium Extension](http://www.slickremix.com/product/feed-them-social-premium-extension/) you can set how many posts, pictures, tweets, or videos for each individual social feed! We now have simple widgets available for all the feeds. This premium edition also allows our basic shortcode to work with text widgets. [See Example Demo](http://www.slickremix.com/testblog/)
+  * With our [Premium Extension](http://www.slickremix.com/product/feed-them-social-premium-extension/) you can set how many posts, pictures, tweets, or videos for each individual social feed! We now have simple widgets available for all the feeds. This premium edition also allows our basic shortcode to work with text widgets. Facebook Groups now has the option to hide the Title or Description too! [See Example Demo](http://www.slickremix.com/testblog/)
 
 = Example Widget Feed Demo =
   * [Social Page with Widgets](http://www.slickremix.com/testblog/)
@@ -53,6 +53,9 @@ More Social Feeds coming soon like, Facebook Pages and Vimeo. [Suggest another F
   * Extract the zip file and drop the contents in the wp-content/plugins/ directory of your WordPress installation and then activate the Plugin from Plugins page. 
 
 == Changelog ==
+= Version 1.2.6 Monday, August 12th, 2013 =
+ * Added: Added functionality for Facebook Group premium version. Now you can choose to hide the title or description of your Facebook Group.
+ 
 = Version 1.2.5 August 2nd, 2013 =
  * Fixed: Facebook Group Feed Number before post error.
 

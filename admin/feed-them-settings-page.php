@@ -52,6 +52,19 @@ else 	{
   <div class="feed-them-social-admin-input-default">Must have <a target="_blank" href="http://www.slickremix.com/product/feed-them-social-premium-extension/">premium version</a> to edit. Default is 5.</div>
 <div class="clear"></div>
 </div><!--/feed-them-social-admin-input-wrap-->
+
+<div class="feed-them-social-admin-input-wrap">
+  <div class="feed-them-social-admin-input-label">Show the Group Title?</div>
+  <div class="feed-them-social-admin-input-default">Must have <a target="_blank" href="http://www.slickremix.com/product/feed-them-social-premium-extension/">premium version</a> to edit. </div>
+<div class="clear"></div>
+</div><!--/feed-them-social-admin-input-wrap-->
+
+<div class="feed-them-social-admin-input-wrap">
+  <div class="feed-them-social-admin-input-label">Show the Group Description?</div>
+  <div class="feed-them-social-admin-input-default">Must have <a target="_blank" href="http://www.slickremix.com/product/feed-them-social-premium-extension/">premium version</a> to edit.</div>
+<div class="clear"></div>
+</div><!--/feed-them-social-admin-input-wrap-->
+
 <?php
 }
 ?>
@@ -64,6 +77,7 @@ else 	{
         <div class="feed-them-social-admin-input-label">Facebook Feed Shortcode</div>
         
         <input class="copyme facebook-group-final-shortcode feed-them-social-admin-input" value="" />
+        
     <div class="clear"></div>
       </div><!--/feed-them-social-admin-input-wrap-->
     
