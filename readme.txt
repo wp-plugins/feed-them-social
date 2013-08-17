@@ -11,7 +11,7 @@ Easily add Instagram, Facebook Group, Twitter, YouTube and now Pinterest Feeds t
 
 == Description ==
 
-With our plugin you can make social feeds of any or all your celebrities, family, friends, yourself, and/or businesses. Looks great on Desktops, Tablets, and Mobile Devices.
+With our plugin you can create social feeds of any or all your celebrities, family, friends, yourself, and/or businesses. Looks great on Desktops, Tablets, and Mobile Devices.
 
 = Features include the following: =
   * Add as many social feeds as you want!
