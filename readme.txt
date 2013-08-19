@@ -16,7 +16,7 @@ With our plugin you can create social feeds of any or all your celebrities, fami
 = Features include the following: =
   * Add as many social feeds as you want!
   * Display social feeds on any post, page, or sidebar!
-  * Easily generate all the shortcodes you need for any feed!
+  * Easily generate all the shortcodes you need for any feed with our SUPER simple shortcode generator!
   * Responsive social feeds!
   * With our [Premium Extension](http://www.slickremix.com/product/feed-them-social-premium-extension/) you can set how many posts, pictures, tweets, or videos for each individual social feed! We now have simple widgets available for all the feeds. This premium edition also allows our basic shortcode to work with text widgets. Facebook Groups now has the option to hide the Title or Description too! [See Example Demo](http://www.slickremix.com/testblog/)
 
