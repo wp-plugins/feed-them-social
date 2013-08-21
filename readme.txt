@@ -38,7 +38,7 @@ With our plugin you can create social feeds of any or all your celebrities, fami
  * NEW! [Youtube + Instagram + Pinterest Feeds Demo](http://www.slickremix.com/testblog/youtube-instagram/)
  * [YouTube Feed Demo](http://www.slickremix.com/testblog/2013/01/youtube-feed-demo-1-large-with-3-video-per-row/)
   
-More Social Feeds coming soon like, Facebook Pages and Vimeo. [Suggest another Feed](http://www.slickremix.com/support-forum).
+More Social Feeds coming soon like Facebook Pages and Vimeo. [Suggest another Feed](http://www.slickremix.com/support-forum).
   
 **NOTE:** FTS Premium Plugin users receive FREE updates of our Premium plugin. 
   
