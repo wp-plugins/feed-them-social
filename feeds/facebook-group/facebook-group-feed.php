@@ -44,10 +44,9 @@ if(is_plugin_active('feed-them-premium/feed-them-premium.php')) {
 }
   else {
 	  print '<div class="fts-jal-fb-header"><h1><a href="http://www.facebook.com/home.php?sk=group_'.$group_id.'&ap=1">'.$des->name.'</a></h1>';
-	  print '<div class="fts-jal-fb-group-header-desc" style="">'.$des->description.'</div>';
+	  print '<div class="fts-jal-fb-group-header-desc">'.$des->description.'</div>';
       print '</div>';
   }
-print '</div>'; 
  	
 $set_zero = 0;
 foreach($data->data as $d) {
