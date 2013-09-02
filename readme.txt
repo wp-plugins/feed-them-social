@@ -56,7 +56,7 @@ More Social Feeds coming soon like Facebook Pages and Vimeo. [Suggest another Fe
 
 == Changelog ==
 = Version 1.2.7 Sunday September 1st, 2013 =
- * MAJOR FIX: Extra div removed that was causing formatting issues added in 1.2.6 version. This should fix the widget areas as well.
+ * MAJOR FIX: Extra div element removed that was causing formatting issues added in 1.2.6 version. This should fix the widget areas as well for the premium version.
  
 = Version 1.2.6 Monday, August 12th, 2013 =
  * Added: Added functionality for Facebook Group premium version. Now you can choose to hide the title or description of your Facebook Group.
