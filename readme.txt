@@ -3,7 +3,7 @@ Contributors: slickremix
 Tags:  social, social plugin, pinterest, pinterest boards, pinterest feeds, pinterest photos, pinterest widget, pinterest widgets, facebook, facebook plugin, facebook group, twitter, twitter plugin, instagram, instagram plugin, feed me social, feed, feeds, shortcode, slickremix, plugin, pages, posts, images, page, post, image, youtube, youtube feed, youtube channel, youtube video, youtube videos, videos, youtube embed, embed, video iframe, admin, comments, Posts, widgets
 Requires at least: 3.4.0
 Tested up to: 3.6
-Stable tag: 1.2.7
+Stable tag: 1.2.8
 License: GPLv2 or later
 
 
@@ -55,6 +55,9 @@ More Social Feeds coming soon like Facebook Pages and Vimeo. [Suggest another Fe
   * Extract the zip file and drop the contents in the wp-content/plugins/ directory of your WordPress installation and then activate the Plugin from Plugins page. 
 
 == Changelog ==
+= Version 1.2.8 Sunday September 3rd, 2013 =
+ * MAJOR FIX: Instagram Feed now caches api for 15 minutes. This keeps api key from overloading. NOTE** If for any reason you need to clear the cache please see the plugin's [FAQ documentation](http://wordpress.org/plugins/feed-them-social/faq/).
+
 = Version 1.2.7 Sunday September 1st, 2013 =
  * MAJOR FIX: Extra div element removed that was causing formatting issues added in 1.2.6 version. This should fix the widget areas as well for the premium version.
  
@@ -124,6 +127,16 @@ You can find answers to your questions, suggest a feed, or just drop us a line a
 = Are there Extensions for this plugin? =
 
 Yes. Currently we have [1 Premium Extension](http://www.slickremix.com/product/feed-them-social-premium-extension/). 
+
+= How Do I clear an Instagram feed's cache? =
+	1. Go to you WordPress plugin's folder. (wp-content > plugins) 
+	2. Click the folder "feed-them-social". (NOT PREMIUM)
+	3. Click the "feeds" folder.
+	4. Click the "instagram" folder.
+	5. Click the "cache" folder
+	6. Delete the file "instagram-cache-[USERS ID]". (There is a cache file for each user whos feed has been loaded.)
+	
+	That's It! 
 
 == Screenshots ==
 

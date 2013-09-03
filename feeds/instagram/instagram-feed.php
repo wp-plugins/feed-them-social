@@ -23,10 +23,24 @@ else 	{
 ?>
 <?php
 ob_start(); 
+
 //URL to get Feeds
-$insta_url = 'https://api.instagram.com/v1/users/'.$instagram_id.'/media/recent/?access_token=267791236.14c1243.a5268d6ed4cf4d2187b0e98b365443af';
-$insta_data = json_decode(file_get_contents($insta_url));
+$insta_url = 'https://api.instagram.com/v1/users/'.$instagram_id.'/media/recent/?access_token=267791236.ee1814c.8a6ac09f714241809f7fad3941201f76';
+$cache = 'wp-content/plugins/feed-them-social/feeds/instagram/cache/instagram-cache-'.$instagram_id.'.json';
+ 
+if(file_exists($cache) && !filesize($cache) == 0 && filemtime($cache) > time() - 900){
+	$insta_data = json_decode(file_get_contents($cache));
+} 
+else {
+	$insta_data = json_decode((file_get_contents($insta_url)));
+	if (!file_exists($cache)) {
+		touch($cache);
+	}
+	file_put_contents($cache,json_encode($insta_data));
+}
+
 ?>
+
 <div class="fts-instagram">
 <?php 	
 $set_zero = 0;
