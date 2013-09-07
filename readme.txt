@@ -20,25 +20,25 @@ If you enjoy using this plugin please take a second and tell others! [Click here
   * Display social feeds on any post, page, or sidebar!
   * Easily generate all the shortcodes you need for any feed with our SUPER simple shortcode generator!
   * Responsive social feeds!
-  * With our [Premium Extension](http://www.slickremix.com/product/feed-them-social-premium-extension/) you can set how many posts, pictures, tweets, or videos for each individual social feed! We now have simple widgets available for all the feeds. This premium edition also allows our basic shortcode to work with text widgets. Facebook Groups now has the option to hide the Title or Description too! [See Example Demo](http://www.slickremix.com/testblog/)
+  * With our [Premium Extension](http://www.slickremix.com/product/feed-them-social-premium-extension/) you can set how many posts, pictures, tweets, or videos for each individual social feed! We now have simple widgets available for all the feeds. This premium edition also allows our basic shortcode to work with text widgets. Facebook Groups now has the option to hide the Title or Description too! [See Example Demo](http://feedthemsocial.com/)
 
 = Example Widget Feed Demo =
-  * [Social Page with Widgets](http://www.slickremix.com/testblog/)
+  * [Social Page with Widgets](http://feedthemsocial.com/)
 	
 = Example SINGLE Feed Demos (1 feed per post/page) =
-  * [Instagram Feed Demo](http://www.slickremix.com/testblog/instagram-feed-demo/)
-  * [Facebook Group Feed Demo](http://www.slickremix.com/testblog/facebook-group-feed-demo/)
-  * [Twitter Feed Demo](http://www.slickremix.com/testblog/twitter-feed-demo/)
+  * [Instagram Feed Demo](http://feedthemsocial.com/instagram-feed-demo/)
+  * [Facebook Group Feed Demo](http://feedthemsocial.com/facebook-group-feed-demo/)
+  * [Twitter Feed Demo](http://feedthemsocial.com/twitter-feed-demo/)
 
 = Example MULTIPLE Feed Demos (2 or more feeds per post/page) =
-  * [2 (or more) Instagram Feeds Demo](http://www.slickremix.com/testblog/multiple-instagram-feeds-demo/)
-  * [2 (or more) Facebook Group Feeds Demo](http://www.slickremix.com/testblog/multiple-facebook-group-feeds-demo/)
-  * [2 (or more) Twitter Feeds Demo](http://www.slickremix.com/testblog/multiple-twitter-feeds-demo/)
+  * [2 (or more) Instagram Feeds Demo](http://feedthemsocial.com/multiple-instagram-feeds-demo/)
+  * [2 (or more) Facebook Group Feeds Demo](http://feedthemsocial.com/multiple-facebook-group-feeds-demo/)
+  * [2 (or more) Twitter Feeds Demo](http://feedthemsocial.com/multiple-twitter-feeds-demo/)
   
 = Example PREMIUM Feed Demos =
- * NEW! [Pinterest Feed Demo](http://www.slickremix.com/testblog/pinterest/)
- * NEW! [Youtube + Instagram + Pinterest Feeds Demo](http://www.slickremix.com/testblog/youtube-instagram/)
- * [YouTube Feed Demo](http://www.slickremix.com/testblog/2013/01/youtube-feed-demo-1-large-with-3-video-per-row/)
+ * NEW! [Pinterest Feed Demo](http://feedthemsocial.com/pinterest/)
+ * NEW! [Youtube + Instagram + Pinterest Feeds Demo](http://feedthemsocial.com/youtube-instagram/)
+ * [YouTube Feed Demo](http://feedthemsocial.com/2013/01/youtube-feed-demo-1-large-with-3-video-per-row/)
   
 More Social Feeds coming soon like Facebook Pages and Vimeo. [Suggest another Feed](http://www.slickremix.com/support-forum).
   
