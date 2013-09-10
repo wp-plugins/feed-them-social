@@ -56,10 +56,10 @@ More Social Feeds coming soon like Facebook Pages and Vimeo. [Suggest another Fe
 
 == Changelog ==
 = Version 1.2.9 Monday, September 9th, 2013 =
- *NEW FEED: Facebook PAGES have been added to the list of awesome FTS feeds you can now display a facebook page feed on your site!
- *Updated: Facebook groups feed code to have less code.
- *Fixed: Facebook groups feed code to now filter Events in the feed properly.
- *Removed: Empty boxes from facebook feeds to that are "status" types. 
+ * NEW FEED: Facebook PAGES have been added to the list of awesome FTS feeds you can now display a facebook page feed on your site!
+ * Updated: Facebook groups feed code to have less code.
+ * Fixed: Facebook groups feed code to now filter Events in the feed properly.
+ * Removed: Empty boxes from facebook feeds to that are "status" types. 
 
 = Version 1.2.8 Sunday, September 3rd, 2013 =
  * MAJOR FIX: Instagram Feed now caches api for 15 minutes. This keeps api key from overloading. NOTE** If for any reason you need to clear the cache please see the plugin's [FAQ documentation](http://wordpress.org/plugins/feed-them-social/faq/).
