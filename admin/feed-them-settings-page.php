@@ -22,6 +22,7 @@ add_action( 'wp_enqueue_style', 'feed_them_admin_css' );
 	<form class="feed-them-social-admin-form"> 
     	<select id="shortcode-form-selector">
         	<option value="">Please Select Feed Type </option>
+            <option value="fb-page-shortcode-form">Facebook Page Feed</option>
         	<option value="fb-group-shortcode-form">Facebook Group Feed</option>
             <option value="twitter-shortcode-form">Twitter Feed</option>
             <option value="instagram-shortcode-form">Instagram Feed</option>
@@ -65,6 +66,9 @@ else 	{
 <div class="clear"></div>
 </div><!--/feed-them-social-admin-input-wrap-->
 
+
+
+
 <?php
 }
 ?>
@@ -74,7 +78,7 @@ else 	{
       
       	<h4>Copy the ShortCode below and paste it on a page or post that you want to display your feed.</h4>
       
-        <div class="feed-them-social-admin-input-label">Facebook Feed Shortcode</div>
+        <div class="feed-them-social-admin-input-label">Facebook Group Feed Shortcode</div>
         
         <input class="copyme facebook-group-final-shortcode feed-them-social-admin-input" value="" />
         
@@ -83,6 +87,64 @@ else 	{
     
     </form>
 </div><!--/fts-facebook_group-shortcode-form-->
+
+
+<div class="fts-facebook_page-shortcode-form">
+    <form class="feed-them-social-admin-form shortcode-generator-form fb-page-shortcode-form">
+    <h2>Facebook Page Shortcode Generator</h2>
+    <div class="instructional-text">You must copy your <a href="http://www.slickremix.com/2013/09/09/how-to-get-your-facebook-page-vanity-url/" target="_blank">Facebook Page ID</a> and paste it in the first input below.</div>
+      <div class="feed-them-social-admin-input-wrap fb_page_id">
+        <div class="feed-them-social-admin-input-label">Facebook Page ID (required)</div>
+        <input type="text" id="fb_page_id" class="feed-them-social-admin-input" value="" />
+    <div class="clear"></div>
+      </div><!--/feed-them-social-admin-input-wrap-->
+     
+<?php
+if(is_plugin_active('feed-them-premium/feed-them-premium.php')) {
+   include('../wp-content/plugins/feed-them-premium/admin/facebook-page-settings-fields.php');
+}
+else 	{
+?>
+
+<div class="feed-them-social-admin-input-wrap">
+  <div class="feed-them-social-admin-input-label"># of Posts (optional)</div>
+  <div class="feed-them-social-admin-input-default">Must have <a target="_blank" href="http://www.slickremix.com/product/feed-them-social-premium-extension/">premium version</a> to edit. Default is 5.</div>
+<div class="clear"></div>
+</div><!--/feed-them-social-admin-input-wrap-->
+
+<div class="feed-them-social-admin-input-wrap">
+  <div class="feed-them-social-admin-input-label">Show the Page Title?</div>
+  <div class="feed-them-social-admin-input-default">Must have <a target="_blank" href="http://www.slickremix.com/product/feed-them-social-premium-extension/">premium version</a> to edit. </div>
+<div class="clear"></div>
+</div><!--/feed-them-social-admin-input-wrap-->
+
+<div class="feed-them-social-admin-input-wrap">
+  <div class="feed-them-social-admin-input-label">Show the Page Description?</div>
+  <div class="feed-them-social-admin-input-default">Must have <a target="_blank" href="http://www.slickremix.com/product/feed-them-social-premium-extension/">premium version</a> to edit.</div>
+<div class="clear"></div>
+</div><!--/feed-them-social-admin-input-wrap-->
+
+
+<?php
+}
+?>
+      
+      <input type="button" class="feed-them-social-admin-submit-btn" value="Generate Facebook Page Shortcode" onclick="updateTextArea_fb_page();" tabindex="4" style="margin-right:1em;" />
+      <div class="feed-them-social-admin-input-wrap final-shortcode-textarea">
+      
+      	<h4>Copy the ShortCode below and paste it on a page or post that you want to display your feed.</h4>
+      
+        <div class="feed-them-social-admin-input-label">Facebook Page Feed Shortcode</div>
+        
+        <input class="copyme facebook-page-final-shortcode feed-them-social-admin-input" value="" />
+        
+    <div class="clear"></div>
+      </div><!--/feed-them-social-admin-input-wrap-->
+    
+    </form>
+</div><!--/fts-facebook_page-shortcode-form-->
+
+
 
 <div class="fts-twitter-shortcode-form">
     <form class="feed-them-social-admin-form shortcode-generator-form twitter-shortcode-form">
@@ -302,6 +364,38 @@ function updateTextArea_fb_group() {
 jQuery('.facebook-group-final-shortcode').val(final_fb_group_shorcode);
 	
 	jQuery('.fb-group-shortcode-form .final-shortcode-textarea').slideDown();
+	
+}
+//END Facebook Group//
+
+//START Page Group//
+function updateTextArea_fb_page() {
+
+	var fb_page_id = ' id=' + jQuery("input#fb_page_id").val(); 
+	
+	if (fb_page_id == " id=") {
+	  	 jQuery(".fb_page_id").addClass('fts-empty-error');  
+      	 jQuery("input#fb_page_id").focus();
+		 return false;
+	}
+	if (fb_page_id != " id=") {
+	  	 jQuery(".fb_page_id").removeClass('fts-empty-error');  
+	}
+	
+	<?php
+	if(is_plugin_active('feed-them-premium/feed-them-premium.php')) {
+	   include('../wp-content/plugins/feed-them-premium/admin/js/facebook-page-settings-js.js');
+	}
+	else 	{
+	?>
+		var final_fb_page_shorcode = '[fts facebook page' + fb_page_id + ']'
+	<?php
+	}
+	?>
+
+jQuery('.facebook-page-final-shortcode').val(final_fb_page_shorcode);
+	
+	jQuery('.fb-page-shortcode-form .final-shortcode-textarea').slideDown();
 	
 }
 //END Facebook Group//

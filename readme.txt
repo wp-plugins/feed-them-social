@@ -1,13 +1,13 @@
 === Feed Them Social ===
 Contributors: slickremix
-Tags:  social, social plugin, pinterest, pinterest boards, pinterest feeds, pinterest photos, pinterest widget, pinterest widgets, facebook, facebook plugin, facebook group, twitter, twitter plugin, instagram, instagram plugin, feed me social, feed, feeds, shortcode, slickremix, plugin, pages, posts, images, page, post, image, youtube, youtube feed, youtube channel, youtube video, youtube videos, videos, youtube embed, embed, video iframe, admin, comments, Posts, widgets
+Tags:  social, social plugin, pinterest, pinterest boards, pinterest feeds, pinterest photos, pinterest widget, pinterest widgets, facebook, facebook plugin, facebook group, facebook groups, facebook page, facebook pages, twitter, twitter plugin, instagram, instagram plugin, feed me social, feed, feeds, shortcode, slickremix, plugin, pages, posts, images, page, post, image, youtube, youtube feed, youtube channel, youtube video, youtube videos, videos, youtube embed, embed, video iframe, admin, comments, Posts, widgets
 Requires at least: 3.4.0
 Tested up to: 3.6
-Stable tag: 1.2.8
+Stable tag: 1.2.9
 License: GPLv2 or later
 
 
-Easily add Instagram, Facebook Group, Twitter, YouTube and now Pinterest Feeds to any page, post or widget! 
+Easily add Instagram, Facebook Group, Facebook Page, Twitter, YouTube and now Pinterest Feeds to any page, post or widget! 
 
 == Description ==
 
@@ -55,10 +55,16 @@ More Social Feeds coming soon like Facebook Pages and Vimeo. [Suggest another Fe
   * Extract the zip file and drop the contents in the wp-content/plugins/ directory of your WordPress installation and then activate the Plugin from Plugins page. 
 
 == Changelog ==
-= Version 1.2.8 Sunday September 3rd, 2013 =
+= Version 1.2.9 Monday, September 9th, 2013 =
+ *NEW FEED: Facebook PAGES have been added to the list of awesome FTS feeds you can now display a facebook page feed on your site!
+ *Updated: Facebook groups feed code to have less code.
+ *Fixed: Facebook groups feed code to now filter Events in the feed properly.
+ *Removed: Empty boxes from facebook feeds to that are "status" types. 
+
+= Version 1.2.8 Sunday, September 3rd, 2013 =
  * MAJOR FIX: Instagram Feed now caches api for 15 minutes. This keeps api key from overloading. NOTE** If for any reason you need to clear the cache please see the plugin's [FAQ documentation](http://wordpress.org/plugins/feed-them-social/faq/).
 
-= Version 1.2.7 Sunday September 1st, 2013 =
+= Version 1.2.7 Sunday, September 1st, 2013 =
  * MAJOR FIX: Extra div element removed that was causing formatting issues added in 1.2.6 version. This should fix the widget areas as well for the premium version.
  
 = Version 1.2.6 Monday, August 12th, 2013 =
