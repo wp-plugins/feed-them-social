@@ -26,8 +26,9 @@ If you enjoy using this plugin please take a second and tell others! [Click here
   * [Social Page with Widgets](http://feedthemsocial.com/)
 	
 = Example SINGLE Feed Demos (1 feed per post/page) =
-  * [Instagram Feed Demo](http://feedthemsocial.com/instagram-feed-demo/)
+  * [Facebook Page Feed Demo](http://feedthemsocial.com/facebook-page-feed-demo/)
   * [Facebook Group Feed Demo](http://feedthemsocial.com/facebook-group-feed-demo/)
+  * [Instagram Feed Demo](http://feedthemsocial.com/instagram-feed-demo/)
   * [Twitter Feed Demo](http://feedthemsocial.com/twitter-feed-demo/)
 
 = Example MULTIPLE Feed Demos (2 or more feeds per post/page) =
@@ -56,7 +57,7 @@ More Social Feeds coming soon like Facebook Pages and Vimeo. [Suggest another Fe
 
 == Changelog ==
 = Version 1.2.9 Monday, September 9th, 2013 =
- * NEW FEED: Facebook PAGES have been added to the list of awesome FTS feeds you can now display a facebook page feed on your site!
+ * NEW FEED: Facebook PAGES have been added to the list of awesome FTS feeds you can now display on your site!
  * Updated: Facebook groups feed code to have less code.
  * Fixed: Facebook groups feed code to now filter Events in the feed properly.
  * Removed: Empty boxes from facebook feeds to that are "status" types. 
