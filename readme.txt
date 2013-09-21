@@ -57,7 +57,7 @@ More Social Feeds coming soon like Facebook Pages and Vimeo. [Suggest another Fe
 
 == Changelog ==
 = Version 1.2.9 Monday, September 9th, 2013 =
- * NEW FEED: Facebook PAGES have been added to the list of awesome FTS feeds you can now display on your site!
+ * NEW FEED: Facebook PAGES have been added to the list of awesome feeds you can now display on your site!
  * Updated: Facebook groups feed code to have less code.
  * Fixed: Facebook groups feed code to now filter Events in the feed properly.
  * Removed: Empty boxes from facebook feeds to that are "status" types. 
