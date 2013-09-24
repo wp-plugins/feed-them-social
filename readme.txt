@@ -13,12 +13,12 @@ Easily add Instagram, Facebook Group, Facebook Page, Twitter, YouTube and now Pi
 
 With our plugin you can create social feeds of any or all your celebrities, family, friends, yourself, or businesses. Looks great on Desktops, Tablets, and Mobile Devices.
 
-If you enjoy using this plugin please take a second and tell others! [Click here to share.]( http://www.facebook.com/sharer.php?u=http://wordpress.org/plugins/feed-them-social/&t=FeedThemSocial)
+If you enjoy using this plugin please take a second to tell others! [Click here to share.](http://www.facebook.com/sharer.php?u=http://wordpress.org/plugins/feed-them-social/&t=FeedThemSocial)
 
 = Features include the following: =
   * Add as many social feeds as you want!
   * Display social feeds on any post, page, or sidebar!
-  * Easily generate all the shortcodes you need for any feed with our SUPER simple shortcode generator!
+  * Easily generate all the shortcodes you need for any feed with our SUPER SIMPLE shortcode generator!
   * Responsive social feeds!
   * With our [Premium Extension](http://www.slickremix.com/product/feed-them-social-premium-extension/) you can set how many posts, pictures, tweets, or videos for each individual social feed! We now have simple widgets available for all the feeds. This premium edition also allows our basic shortcode to work with text widgets. Facebook Groups now has the option to hide the Title or Description too! [See Example Demo](http://feedthemsocial.com/)
 
