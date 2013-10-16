@@ -148,7 +148,7 @@ Yes. Currently we have [1 Premium Extension](http://www.slickremix.com/product/f
 == Screenshots ==
 
 1. This is the settings area for the Feed Them Social. Generate shortcodes in seconds!
-2. Facebook Group Shortcode Generator! Just add your Group ID and with the [Premium Extension](http://www.slickremix.com/product/feed-them-social-premium-extension/) change the number of Posts beyond 5.
+2. Facebook Page Shortcode Generator (The group shortcode generator looks the same)! Just add your Page ID and with the [Premium Extension](http://www.slickremix.com/product/feed-them-social-premium-extension/) change the number of Posts beyond 5.
 3. Example "Facebook Group" feed. Show up to 24 Posts per feed!
 4. Twitter Shortcode Generator! Just add your Twitter name and with the [Premium Extension](http://www.slickremix.com/product/feed-them-social-premium-extension/) change the number of Tweets Posts beyond 5.
 5. Example "Twitter" feed. Show up to 20 Tweets per feed!

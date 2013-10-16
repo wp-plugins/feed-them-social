@@ -72,11 +72,9 @@
 	-webkit-border-radius: 6px;
 	opacity: .90;
 }
-.twitter-shortcode-form .final-shortcode-textarea .feed-them-social-admin-input-label {
+.final-shortcode-textarea .feed-them-social-admin-input-label {
 	color: #0361B8;
-}
-.fb-group-shortcode-form .final-shortcode-textarea .feed-them-social-admin-input-label {
-	color: #0361B8;
+	width:auto;
 }
 .instagram-shortcode-form .final-shortcode-textarea .feed-them-social-admin-input-label {
 	color: #0361B8;
@@ -136,6 +134,7 @@
 	box-shadow: 0 1px 4px #000;
 	border: none;
 	letter-spacing: 1px;
+	outline:none;
 }
 .feed-them-social-admin-submit-btn:hover {
 	background-color: #F11E2E !important;
@@ -146,6 +145,7 @@
 	-moz-transition: all 0.30s ease-in-out;
 	-o-transition: all 0.30s ease-in-out;
 	transition: all 0.30s ease-in-out;
+	outline:none;
 }
 .feed-them-social-admin-slick-logo {
 	background: url(../images/footer-logo.png) center no-repeat;
@@ -270,26 +270,4 @@ a.icon-animate-small {
 	-moz-transition: all 0.30s ease-in-out;
 	-o-transition: all 0.30s ease-in-out;
 	transition: all 0.30s ease-in-out;
-}
- @keyframes fade {
- from {
-opacity: 1.0;
-}
- 50% {
-opacity: 0.5;
-}
-to {
-	opacity: 1.0;
-}
-}
- @-webkit-keyframes fade {
- from {
-opacity: 1.0;
-}
- 50% {
-opacity: 0.5;
-}
-to {
-	opacity: 1.0;
-}
 }
