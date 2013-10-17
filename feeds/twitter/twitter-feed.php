@@ -76,8 +76,8 @@ if(false === ($tweets = get_transient($transName) ) ) :
       $image = $tweet->user->profile_image_url;
  
       // Message. Convert links to real links.
-      $pattern = '/http:(\S)+/';
-      $replace = '<a href="${0}" target="_blank" rel="nofollow">${0}</a>';
+      $pattern = array('/http:(\S)+/', '/https:(\S)+/', '/([^a-zA-Z0-9-_&])@([0-9a-zA-Z_]+)/', '/([^a-zA-Z0-9-_&])#([0-9a-zA-Z_]+)/');
+      $replace = array('<a href="${0}" target="_blank" rel="nofollow">${0}</a>', '<a href="${0}" target="_blank" rel="nofollow">${0}</a>', '<a href="http://twitter.com/$2" target="_blank" rel="nofollow">@$2</a>', '<a href="http://twitter.com/search?q=%23$2&src=hash" target="_blank" rel="nofollow">#$2</a>');
       $text = preg_replace($pattern, $replace, $tweet->text);
  
       // Need to get time in Unix format.
