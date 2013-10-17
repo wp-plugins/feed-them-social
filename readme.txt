@@ -61,7 +61,7 @@ More Social Feeds coming soon like Facebook Pages and Vimeo. [Suggest another Fe
  * Added: Facebook feeds now caches for 15 minutes. Dramatically increases load time.
  * Fixed: Pintrest feed to not conflict with NextGen Gallery plugin.
  * Fixed: Cleaned up some admin styling.
- * Added: Twitter feed now shows links for https, @twittername and #twittertags. Thanks to Cricket
+ * Added: Twitter feed now shows links for https, @twittername and #twittertags. Thanks to Cricket Wilson-Harris for the lead on this one.
 
 = Version 1.2.9 Monday, September 9th, 2013 =
  * NEW FEED: Facebook PAGES have been added to the list of awesome feeds you can now display on your site!
