@@ -38,22 +38,60 @@ if ($type == 'page')	{
 	$fts_view_fb_link ='https://www.facebook.com/'.$fts_fb_id.'/';
 }
 
-
-
-
-//URL to get page info
+	//URL to get page info
 	$url1 = 'https://graph.facebook.com/'.$fts_fb_id.'?access_token='.$access_token.'';
-	$des = json_decode(file_get_contents($url1));
+	$des_cache = 'wp-content/plugins/feed-them-social/feeds/facebook/cache/FB_des_cache-'.$fts_fb_id.'-num'.$fts_limiter.'.json';
+	  //Check Cache
+	  if(file_exists($des_cache) && !filesize($des_cache) == 0 && filemtime($des_cache) > time() - 900 && false !== strpos($des_cache,'-num'.$fts_limiter.'')){
+		$des = json_decode(file_get_contents($des_cache));
+	  } 
+	  else {
+		$des = json_decode((file_get_contents($url1)));
+		if (!file_exists($des_cache)) {
+			touch($des_cache);
+		}
+		file_put_contents($des_cache,json_encode($des));
+	  }
 	
 	//URL to get Feeds
 	$url2 = 'https://graph.facebook.com/'.$fts_fb_id.'/feed?access_token='.$access_token.'';
-	$data = json_decode(file_get_contents($url2));
+	$data_cache = 'wp-content/plugins/feed-them-social/feeds/facebook/cache/FB_data_cache-'.$fts_fb_id.'-num'.$fts_limiter.'.json';
+	  //Check Cache
+	  if(file_exists($data_cache) && !filesize($data_cache) == 0 && filemtime($data_cache) > time() - 900 && false !== strpos($data_cache,'-num'.$fts_limiter.'')){
+		$data = json_decode(file_get_contents($data_cache));
+	  } 
+	  else {
+		$data = json_decode((file_get_contents($url2)));
+		if (!file_exists($data_cache)) {
+			touch($data_cache);
+		}
+		file_put_contents($data_cache,json_encode($data));
+	  }
+	
 
+	//URL to get comments count
+	$url3 = 'https://graph.facebook.com/'.$fts_fb_id.'/feed?access_token='.$access_token.'&fields=comments.summary(true)';
+	$comment_count_data_cache = 'wp-content/plugins/feed-them-social/feeds/facebook/cache/FB_cc_cache-'.$fts_fb_id.'-num'.$fts_limiter.'.json';
+	  //Check Cache
+	  if(file_exists($comment_count_data_cache) && !filesize($comment_count_data_cache) == 0 && filemtime($comment_count_data_cache) > time() - 900 && false !== strpos($comment_count_data_cache,'-num'.$fts_limiter.'')){
+		$FBpost_comment_counted  = json_decode(file_get_contents($comment_count_data_cache));
+	  } 
+	  else {
+		$comment_count_data  = json_decode((file_get_contents($url3)));
+		
+		//Create comments count array
+		$FBpost_comment_counted = array();
+		foreach($comment_count_data ->data as $com_dat){
+				$FBpost_comment_counted[] = $com_dat->comments->summary->total_count;
+		}
+		
+		if (!file_exists($comment_count_data_cache)) {
+			touch($comment_count_data_cache);
+		}
+		file_put_contents($comment_count_data_cache,json_encode($FBpost_comment_counted));
+	  }	
 
-//echo '<pre>';
-//print_r($data);
-//echo '</pre>';
-
+		
 print '<div class="fts-jal-fb-group-display">';
 if(is_plugin_active('feed-them-premium/feed-them-premium.php'))  {
 	  print '<div class="fts-jal-fb-header">';
@@ -120,10 +158,7 @@ if (!empty($FBstory)) {
 
 
 if (!empty($FBpost_comments_count_array))	{	
-			$FBpost_comments_count = 0;	
-			foreach	($d->comments->data as $comments_count){
-				$FBpost_comments_count++;
-			}		
+			$FBpost_comments_count = $FBpost_comment_counted[$set_zero];	
 }
 else	{
 	$FBpost_comments_count = 0;

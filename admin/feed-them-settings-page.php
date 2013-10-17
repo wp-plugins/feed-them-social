@@ -356,7 +356,7 @@ function updateTextArea_fb_group() {
 	}
 	else 	{
 	?>
-		var final_fb_group_shorcode = '[fts facebook group' + fb_group_id + ']'
+		var final_fb_group_shorcode = '[fts facebook group' + fb_group_id + ' type=group]'
 	<?php
 	}
 	?>
@@ -388,7 +388,7 @@ function updateTextArea_fb_page() {
 	}
 	else 	{
 	?>
-		var final_fb_page_shorcode = '[fts facebook page' + fb_page_id + ']'
+		var final_fb_page_shorcode = '[fts facebook page' + fb_page_id + ' type=page]'
 	<?php
 	}
 	?>
