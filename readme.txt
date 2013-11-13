@@ -2,8 +2,8 @@
 Contributors: slickremix
 Tags:  social, social plugin, social networking, networking, pinterest, pinterest boards, pinterest feeds, pinterest photos, pinterest widget, pinterest widgets, facebook, facebook plugin, facebook group, facebook groups, facebook page, facebook pages, twitter, twitter plugin, instagram, instagram plugin, feed me social, feed, feeds, shortcode, slickremix, plugin, pages, posts, images, page, post, image, youtube, youtube feed, youtube channel, youtube video, youtube videos, videos, youtube embed, embed, video iframe, admin, comments, Posts, widgets
 Requires at least: 3.4.0
-Tested up to: 3.7
-Stable tag: 1.3.0
+Tested up to: 3.7.1
+Stable tag: 1.3.1
 License: GPLv2 or later
 
 
@@ -56,6 +56,9 @@ More Social Feeds coming soon like Facebook Pages and Vimeo. [Suggest another Fe
   * Extract the zip file and drop the contents in the wp-content/plugins/ directory of your WordPress installation and then activate the Plugin from Plugins page. 
 
 == Changelog ==
+= Version 1.3.1 Wednesday, November 13th, 2013 =
+ * Added: Clear All FTS Feeds Cache button to Settings Page. (This helps when you are generating shortcodes with NEW options!)
+ 
 = Version 1.3.0 Wednesday, October 16th, 2013 =
  * Fixed: Facebook feeds to show proper comment count on each post.
  * Added: Facebook feeds now caches for 15 minutes. Dramatically increases load time.

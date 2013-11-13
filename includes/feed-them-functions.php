@@ -46,4 +46,24 @@ if (isset($_GET['page']) && $_GET['page'] == 'feed-them-settings-page') {
 	  wp_enqueue_script( 'feed_them_settings_js', plugins_url( 'admin/js/admin.js',  dirname(__FILE__) ) ); 
   }
 }
+
+function feed_them_clear_cache() {
+	
+   $plugins = array (
+	 1 => 'facebook',
+	 2 => 'instagram',
+   );
+  
+   foreach($plugins as $key => $value){
+	$files = glob('../wp-content/plugins/feed-them-social/feeds/'.$value.'/cache/*'); // get all file names
+	  if($files){
+		foreach($files as $file){ // iterate files
+		  if(is_file($file))
+			unlink($file); // delete file
+		}//end foreach $files
+	  }// end if($files)
+   }//end foreach $plugins
+   
+  return 'Cache for all FTS Feeds cleared!';
+}
 ?>

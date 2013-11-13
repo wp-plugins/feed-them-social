@@ -271,3 +271,18 @@ a.icon-animate-small {
 	-o-transition: all 0.30s ease-in-out;
 	transition: all 0.30s ease-in-out;
 }
+.feed-them-clear-cache	{
+	padding-top:25px;
+}
+.feed-them-clear-cache-text	{
+	color: #F11E2E !important;
+	font-weight:bold;
+	background-color: #f6f4f4;
+	padding: 10px 16px;
+	margin-bottom: 10px;
+	border: 1px solid #666;
+	-webkit-border-radius: 4px;
+	border-radius: 4px;
+	-webkit-border-radius: 6px;
+	opacity: .90;
+}
