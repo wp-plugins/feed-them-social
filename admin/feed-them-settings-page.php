@@ -319,7 +319,20 @@ else 	{
 </div><!--/fts-pinterest-shortcode-form-->
 
 
+<div class="clear"></div>
+ <div class="feed-them-clear-cache">
+ <h2>Clear All Cache Option</h2>
+    <div class="use-of-plugin">Please Clear Cache if you have changed a FTS Shortcode. This will Allow you to see the NEW feed's options you just set!</div>
+    
+<?php if($_GET['cache']=='clearcache'){ 
+ 	echo '<div class="feed-them-clear-cache-text">'.feed_them_clear_cache().'</div>';
+}
+?>
 
+    <form method="post" action="?page=feed-them-settings-page&cache=clearcache">
+      <input class="feed-them-social-admin-submit-btn" type="submit" value="Clear All FTS Feeds Cache" />	
+    </form>
+  </div><!--/feed-them-clear-cache-->
       
   	<a class="feed-them-social-admin-slick-logo" href="http://www.slickremix.com" target="_blank"></a>
   
