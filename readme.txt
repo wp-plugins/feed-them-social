@@ -43,7 +43,7 @@ If you enjoy using our plugin please tell others. [Click here to share.](http://
   
 More Social Feeds coming soon like Facebook Pages and Vimeo. [Suggest another Feed](http://www.slickremix.com/support-forum).
   
-**NOTE:** FTS Premium Plugin users receive FREE updates of our Premium plugin. 
+**SPECIAL NOTE:** FTS Premium Plugin users receive unlimited FREE updates of our Premium plugin, no monthly or anual fees here! 
   
 **DISCLAIMER:** SlickRemix **DOES NOT** code for IE. If it works awesome, if not we highly suggest one of the following modern browsers: [Google Chrome](https://www.google.com/intl/en/chrome/browser/), [Safari](http://www.apple.com/safari/) or [Firefox](http://www.mozilla.org/en-US/firefox/).
 
