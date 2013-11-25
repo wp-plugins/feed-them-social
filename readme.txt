@@ -16,7 +16,7 @@ With our plugin you can create social feeds of any or all your celebrities, fami
 If you enjoy using our plugin please tell others. [Click here to share.](http://www.facebook.com/sharer.php?u=http://wordpress.org/plugins/feed-them-social/&t=FeedThemSocial)
 
 = Features include the following: =
-  * Add as many social feeds as you want!
+  * Add as many social feeds as you need!
   * Display social feeds on any post, page, or sidebar!
   * Easily generate all the shortcodes you need for any feed with our SUPER SIMPLE shortcode generator!
   * Responsive social Feeds!
