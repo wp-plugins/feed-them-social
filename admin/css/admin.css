@@ -1,37 +1,65 @@
-#toplevel_page_feed-them-settings-page .wp-submenu a, #toplevel_page_feed-them-settings-page .wp-submenu a {
-	-webkit-transition: background 2s !important;
-	-webkit-transition: all 0.30s ease-in-out !important;
-	-moz-transition: all 0.30s ease-in-out !important;
-	-o-transition: all 0.30s ease-in-out !important;
-	transition: all 0.30s ease-in-out !important;
+#toplevel_page_feed-them-settings-page .wp-not-current-submenu div.wp-menu-image {
+	background-image: url('../images/slickremix-icon-sprite.png');
+	background-position: 9px -17px;
+	background-size: 22px;
+	background-repeat: no-repeat;
 }
-#toplevel_page_feed-them-settings-page .wp-not-current-submenu {
+#adminmenu #toplevel_page_feed-them-settings-page .wp-not-current-submenu:hover div.wp-menu-image {
+	background-position: 9px 9px;
+	background-size: 22px;
+}
+#adminmenu #toplevel_page_feed-them-settings-page .wp-menu-open div.wp-menu-image {
 	background-image: url('../images/slickremix-icon-sprite.png') !important;
-	background-position: 4px -21px !important;
+	background-position: 9px 9px !important;
 	background-size: 22px !important;
 	background-repeat: no-repeat !important;
 }
-#toplevel_page_feed-them-settings-page .wp-not-current-submenu:hover {
-	background-position: 4px 5px !important;
-	background-size: 22px !important;
-}
-#toplevel_page_feed-them-settings-page .wp-menu-open {
-	background-image: url('../images/slickremix-icon-sprite.png') !important;
-	background-position: 4px 5px !important;
-	background-size: 22px !important;
-	background-repeat: no-repeat !important;
-}
-
 /* Retina Display Size */
 @media only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (min--moz-device-pixel-ratio: 2), only screen and (-o-min-device-pixel-ratio: 2/1), only screen and (min-device-pixel-ratio: 2) {
- #toplevel_page_feed-them-settings-page .wp-not-current-submenu {
-	background-image: url('../images/slickremix-icon-sprite.png') !important;
-	background-position: 4px -21px !important;
-	background-size: 22px !important;
-	background-repeat: no-repeat !important;
+#toplevel_page_feed-them-settings-page .wp-not-current-submenu {
+	 background-image: url('../images/slickremix-icon-sprite.png');
+	 background-position: 9px -17px;
+	 background-size: 22px;
+	 background-repeat: no-repeat;
 }
 #toplevel_page_feed-them-settings-page .wp-not-current-submenu:hover {
-	background-position: 4px 5px !important;
-	background-size: 22px !important;
+	 background-position: 9px 9px;
+	 background-size: 22px;
+}
+}
+@media only screen and (max-width: 900px) {
+#toplevel_page_feed-them-settings-page .wp-not-current-submenu div.wp-menu-image {
+	background-position: 7px -17px !important;
+}
+#toplevel_page_feed-them-settings-page .wp-not-current-submenu:hover div.wp-menu-image {
+	background-position: 7px 9px !important;
+}
+#toplevel_page_feed-them-settings-page .wp-not-current-submenu:hover div.wp-menu-image {
+	background-position: 7px 9px !important;
+}
+#adminmenu #toplevel_page_feed-them-settings-page .wp-menu-open div.wp-menu-image {
+	background-position: 7px 9px !important;
+}
+#adminmenu #toplevel_page_feed-them-settings-page:hover div.wp-menu-image {
+	background-position: 7px 9px !important;
+}
+}
+@media only screen and (max-width: 782px) {
+#adminmenu #toplevel_page_feed-them-settings-page div.wp-menu-image {
+	height: 27px !important;
+	width: 35px !important;
+	position: absolute;
+	z-index: 25;
+	background: url('../images/slickremix-icon-sprite.png') bottom no-repeat;
+	background-size: 22px;
+}
+#adminmenu #toplevel_page_feed-them-settings-page .wp-not-current-submenu:hover div.wp-menu-image {
+	background-position: 7px 9px !important;
+}
+#adminmenu #toplevel_page_feed-them-settings-page .wp-menu-open div.wp-menu-image {
+	background-position: 7px 9px !important;
+}
+#adminmenu #toplevel_page_feed-them-settings-page:hover div.wp-menu-image {
+	background-position: 7px 9px !important;
 }
 }

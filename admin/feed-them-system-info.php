@@ -3,37 +3,33 @@
 function feed_them_system_info_page(){
 ?>
 
-<div class="fts-help-admin-wrap"> 
-<a class="buy-extensions-btn" href="http://www.slickremix.com/product-category/wordpress-plugins/" target="_blank">Get Extensions Here!</a>
-<h2>System Info </h2>
-<div class="fts-admin-help-wrap">
-<div class="use-of-plugin">Can't figure out how to do something and need help? Use our <a href="http://www.slickremix.com/support-forum/" target="_blank">Support Forum</a> and someone will respond to your request asap. Usually we will respond the same day, the latest the following day. You may also find some of the existing posts to be helpfull too, so take a look around first. If you do submit a question please <a href="#" class="fts-debug-report">generate a report</a> and copy the info, ask your question in our <a href="http://www.slickremix.com/support-forum/" target="_blank">Support Forum</a> then paste the info you just copied. That will help speed things along for sure. </div>
-  </h3>
-  
-  <h3>Plugin &amp; System Info</h3>
-  <p>Please 
-<a href="#" class="fts-debug-report">click here to generate a report</a>  You will need to paste this information along with your question in our <a href="http://www.slickremix.com/support-forum/" target="_blank">Support Forum</a>. Ask your question then paste the copied text below it.
-  </p>
-		<textarea id="fts-debug-report" readonly="readonly"></textarea>
-		<table class="wc_status_table widefat" cellspacing="0">
-			<thead>
-				<tr>
-					<th colspan="2"><?php _e( 'Versions', 'ftsystem' ); ?></th>
-				</tr>
-			</thead>
-
-			<tbody>
-                <tr>
-                    <td><?php _e('Feed Them Social Plugin version','ftsystem')?></td>
-                  <td><?php echo ftsystem_version(); ?></td>
-                </tr>
-                <tr>
-                    <td><?php _e('WordPress version','ftsystem')?></td>
-                    <td><?php if ( is_multisite() ) echo 'WPMU'; else echo 'WP'; ?> <?php echo bloginfo('version'); ?></td>
-                </tr>
-             	<tr>
-             		<td><?php _e('Installed plugins','ftsystem')?></td>
-             		<td><?php
+<div class="fts-help-admin-wrap"> <a class="buy-extensions-btn" href="http://www.slickremix.com/product-category/wordpress-plugins/" target="_blank">Get Extensions Here!</a>
+  <h2>System Info </h2>
+  <div class="fts-admin-help-wrap">
+    <div class="use-of-plugin">Can't figure out how to do something and need help? Use our <a href="http://www.slickremix.com/support-forum/" target="_blank">Support Forum</a> and someone will respond to your request asap. Usually we will respond the same day, the latest the following day. You may also find some of the existing posts to be helpfull too, so take a look around first. If you do submit a question please <a href="#" class="fts-debug-report">generate a report</a> and copy the info, ask your question in our <a href="http://www.slickremix.com/support-forum/" target="_blank">Support Forum</a> then paste the info you just copied. That will help speed things along for sure. </div>
+    </h3>
+    <h3>Plugin &amp; System Info</h3>
+    <p>Please <a href="#" class="fts-debug-report">click here to generate a report</a> You will need to paste this information along with your question in our <a href="http://www.slickremix.com/support-forum/" target="_blank">Support Forum</a>. Ask your question then paste the copied text below it. </p>
+    <textarea id="fts-debug-report" readonly="readonly"></textarea>
+    <table class="wc_status_table widefat" cellspacing="0">
+      <thead>
+        <tr>
+          <th colspan="2"><?php _e( 'Versions', 'ftsystem' ); ?></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><?php _e('Feed Them Social Plugin version','ftsystem')?></td>
+          <td><?php echo ftsystem_version(); ?></td>
+        </tr>
+        <tr>
+          <td><?php _e('WordPress version','ftsystem')?></td>
+          <td><?php if ( is_multisite() ) echo 'WPMU'; else echo 'WP'; ?>
+            <?php echo bloginfo('version'); ?></td>
+        </tr>
+        <tr>
+          <td><?php _e('Installed plugins','ftsystem')?></td>
+          <td><?php
              			$active_plugins = (array) get_option( 'active_plugins', array() );
 
              			if ( is_multisite() )
@@ -59,48 +55,55 @@ function feed_them_system_info_page(){
 						if ( sizeof( $wc_plugins ) == 0 ) echo '-'; else echo '<ul><li>' . implode( ', </li><li>', $wc_plugins ) . '</li></ul>';
 
              		?></td>
-             	</tr>
-			</tbody>
-
-
-			<thead>
-				<tr>
-					<th colspan="2"><?php _e( 'Server Environment', 'ftsystem' ); ?></th>
-				</tr>
-			</thead>
-
-			<tbody>
-                <tr>
-                    <td><?php _e('PHP Version','ftsystem')?></td>
-                    <td><?php
+        </tr>
+      </tbody>
+      <thead>
+        <tr>
+          <th colspan="2"><?php _e( 'Server Environment', 'ftsystem' ); ?></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><?php _e('PHP Version','ftsystem')?></td>
+          <td><?php
                     	if ( function_exists( 'phpversion' ) ) echo phpversion();
                     ?></td>
-                </tr>
-                <tr>
-                    <td><?php _e('Server Software','ftsystem')?></td>
-                    <td><?php
+        </tr>
+        <tr>
+          <td><?php _e('Server Software','ftsystem')?></td>
+          <td><?php
                     	echo $_SERVER['SERVER_SOFTWARE'];
                     ?></td>
-                </tr>
-				<tr>
-                    <td><?php _e('WP Max Upload Size','ftsystem'); ?></td>
-                    <td><?php
-                    	echo wp_convert_bytes_to_hr( wp_max_upload_size() );
+        </tr>
+        <tr>
+          <td><?php _e('WP Max Upload Size','ftsystem'); ?></td>
+          <td><?php
+                    	echo size_format( wp_max_upload_size() );
                     ?></td>
-                </tr>
-                
-                <tr>
-                    <td><?php _e('WP Debug Mode','ftsystem')?></td>
-                    <td><?php if ( defined('WP_DEBUG') && WP_DEBUG ) echo '<mark class="yes">' . __('Yes', 'ftsystem') . '</mark>'; else echo '<mark class="no">' . __('No', 'ftsystem') . '</mark>'; ?></td>
-                </tr>
-                
-            </tbody>
-		</table> 
-  </div><!--/fts-admin-help-faqs-wrap-->   
-        
-  <a class="fts-settings-admin-slick-logo" href="http://www.slickremix.com" target="_blank"></a>      
-</div><!--/fts-help-admin-wrap-->	
-  <script type="text/javascript">
+        </tr>
+        <tr>
+          <td><?php _e('WP Debug Mode','ftsystem')?></td>
+          <td><?php if ( defined('WP_DEBUG') && WP_DEBUG ) echo '<mark class="yes">' . __('Yes', 'ftsystem') . '</mark>'; else echo '<mark class="no">' . __('No', 'ftsystem') . '</mark>'; ?></td>
+        </tr>
+        <tr>
+          <td><?php _e('fsockopen','ftsystem')?></td>
+          <td><?php
+ if(function_exists('fsockopen')) {
+      echo "fsockopen is ON";
+ }
+ else {
+      echo "fsockopen is not enabled and must be set to ON for our plugin to work properly with all feeds.";
+ }
+ ?></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <!--/fts-admin-help-faqs-wrap--> 
+  
+  <a class="fts-settings-admin-slick-logo" href="http://www.slickremix.com" target="_blank"></a> </div>
+<!--/fts-help-admin-wrap--> 
+<script type="text/javascript">
 		jQuery('a.fts-debug-report').click(function(){
 
 			if ( ! jQuery('#fts-debug-report').val() ) {
@@ -139,7 +142,7 @@ function feed_them_system_info_page(){
       		return false;
 		});
 
-	</script> 
+	</script>
 <?php
 }
 ?>

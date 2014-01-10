@@ -3,8 +3,8 @@
 }
 
 .buy-extensions-btn {
-	margin-top: 15px;
-	padding: 12px 25px;
+	margin-top: 23px;
+	padding: 9px 25px 11px 25px;
 	background-color: #CE1212 !important;
 	border: none !important;
 	color: #fff !important;
@@ -13,14 +13,8 @@
 	filter: dropshadow(color=#000000, offx=1, offy=1);
 	cursor: pointer !important;
 	position: absolute;
-	right: 1px;
-	top: -14px;
-	-webkit-border-top-right-radius: 4px;
-	-webkit-border-bottom-left-radius: 4px;
-	-moz-border-radius-topright: 4px;
-	-moz-border-radius-bottomleft: 4px;
-	border-top-right-radius: 4px;
-	border-bottom-left-radius: 4px;
+	right: 21px;
+	top: 0px;
 	text-decoration: none;
 	-webkit-transition: background 2s;
 	-webkit-transition: all 0.30s ease-in-out;
@@ -182,14 +176,14 @@
 	cursor: pointer !important;
 }
 .fts-settings-admin-slick-logo {
-	background:url(../images/footer-logo.png) center no-repeat;
-	width: 124px;
+	background:url(../images/footer-logo.png) left no-repeat;
+	width: 108px;
 	height: 20px;
-	padding: 8px 12px;
+	padding: 8px 2px;
 	display: block;
 	position: absolute;
-	bottom: 12px;
-	right: 12px;
+	bottom: 20px;
+	right: 18px;
 	-webkit-border-radius: 3px;
 	border-radius: 3px;
 }
@@ -292,21 +286,15 @@ a.im-done:hover, .upload_image_button:hover, .fts-settings-admin-submit-btn:hove
 	Design Approval System admin HELP PAGE
 =================================================*/
 .fts-admin-help-wrap {
-	padding:0 25px 10px 0;	
+	padding:0 20px 10px 0;	
 }
 .fts-help-admin-wrap {
 	width: auto;
 	background:none;
-	background-color: #F3F3F3;
-	padding: 15px 0 45px 25px;
-	-webkit-box-shadow: 0px 3px 5px #FFF;
-	box-shadow: 0px 3px 0px #FFF;
-	-webkit-border-radius: 6px;
-	border-radius: 5px;
+	padding: 10px 0 45px 0px;
 	position: relative;
-	border:1px solid #aeaeae;
-	margin-top: 20px;
-	margin-right:20px;
+	margin-top: 5px;
+	margin-right:0px;
 	min-width:673px;
 }
 .fts-help-admin-wrap .use-of-plugin {
@@ -318,7 +306,6 @@ a.im-done:hover, .upload_image_button:hover, .fts-settings-admin-submit-btn:hove
 	line-height:18px;
 	margin:10px 0 25px 0;
 	padding:15px 20px 15px 17px;
-	border-radius:5px;
 	border:1px solid #DFDFDF;
 	
 }
@@ -330,12 +317,12 @@ a.im-done:hover, .upload_image_button:hover, .fts-settings-admin-submit-btn:hove
 .fts-help-admin-wrap h2 {
 	color: #CC0303;
 	font-size: 30px;
-	margin: 5px 25px 15px 0;
+	margin: 0px 25px 15px 0;
 	letter-spacing:-1px;
 	height:30px;
     text-shadow:0 0px 0px #222;
 	padding:15px 0 5px 68px;
-	background:url(../images/fts-help-icon.png) 0 7px no-repeat;
+	background:url(../images/fts-help-icon.png) 0 9px no-repeat;
 	border-bottom: 1px solid #DBDBDB;
 }
 .fts-help-admin-wrap h3 {
@@ -366,9 +353,8 @@ a.im-done:hover, .upload_image_button:hover, .fts-settings-admin-submit-btn:hove
 	height: 200px;
 }
 a.fts-debug-report {
-	padding:4px 7px;
+	padding:1px 7px 2px 7px;
 	background: #E6E6E6;
-	border-radius:5px;	
 }
 .fts-admin-help-faqs-wrap {
 	line-height: 21px;	
