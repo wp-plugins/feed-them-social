@@ -199,7 +199,7 @@ else 	{
 </div> <!--/feed-them-social-admin-input-wrap-->
 
 <div class="feed-them-social-admin-input-wrap">
-  <div class="feed-them-social-admin-input-label">Shorten amount of words per post?</div>
+  <div class="feed-them-social-admin-input-label">Amount of words per post?</div>
   <div class="feed-them-social-admin-input-default">Must have <a target="_blank" href="http://www.slickremix.com/product/feed-them-social-premium-extension/">premium version</a> to edit.</div>
 <div class="clear"></div>
 </div><!--/feed-them-social-admin-input-wrap-->
