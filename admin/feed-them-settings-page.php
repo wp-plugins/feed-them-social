@@ -440,6 +440,9 @@ jQuery(function() {
         jQuery('.' + jQuery(this).val()).fadeIn('fast');
     });
 	
+	<?php 
+	//Rotate Plugin
+	if(is_plugin_active('fts-rotate/fts-rotate.php')) {?>
 	jQuery(".fts-rotate-settings-wrap").hide();
 	
 	 jQuery('input.fts_rotate_feed').change(function(){
@@ -451,6 +454,7 @@ jQuery(function() {
 	   	jQuery("#"+this_id +" .fts-rotate-settings-wrap").fadeOut();
 	   }
     });
+	<?php } ?>
 	
 });
 
@@ -484,14 +488,14 @@ function updateTextArea_fb_group() {
 	}
 	else 	{
 	?>
-	
-			if (final_fts_rotate_shortcode && jQuery("#"+ rotate_form_id + " input.fts_rotate_feed").is(':checked')){
-					var final_fb_group_shorcode = '[fts facebook group' + fb_group_id + ' type=group' + final_fts_rotate_shortcode + ']';
-				}
-			else	{
-					var final_fb_group_shorcode = '[fts facebook group' + fb_group_id + ' type=group]';
-			}	
 		
+		//	if (final_fts_rotate_shortcode && jQuery("#"+ rotate_form_id + " input.fts_rotate_feed").is(':checked')){
+//					var final_fb_group_shorcode = '[fts facebook group' + fb_group_id + ' type=group' + final_fts_rotate_shortcode + ']';
+//			}
+//			else	{
+					var final_fb_group_shorcode = '[fts facebook group' + fb_group_id + ' type=group]';
+			//}	
+	
 <?php } ?>
 
 jQuery('.facebook-group-final-shortcode').val(final_fb_group_shorcode);
@@ -528,14 +532,14 @@ function updateTextArea_fb_page() {
 	if(is_plugin_active('feed-them-premium/feed-them-premium.php')) {
 	   include('../wp-content/plugins/feed-them-premium/admin/js/facebook-page-settings-js.js');
 	}
-	else 	{
-	?>
-		if (final_fts_rotate_shortcode && jQuery("#"+ rotate_form_id + " input.fts_rotate_feed").is(':checked')){
-				var final_fb_page_shorcode = '[fts facebook page' + fb_page_id + ' type=page' + final_fts_rotate_shortcode + ']';
-			}
-		else	{
+	else 	{ ?>
+	
+		//if (final_fts_rotate_shortcode && jQuery("#"+ rotate_form_id + " input.fts_rotate_feed").is(':checked')){
+//				var final_fb_page_shorcode = '[fts facebook page' + fb_page_id + ' type=page' + final_fts_rotate_shortcode + ']';
+//			}
+//		else	{
 				var final_fb_page_shorcode = '[fts facebook page' + fb_page_id + ' type=page]';
-		}		
+	//	}
 		
 <?php } ?>
 
@@ -575,12 +579,12 @@ function updateTextArea_fb_event() {
 	}
 	else 	{
 	?>
-		if (final_fts_rotate_shortcode && jQuery("#"+ rotate_form_id + " input.fts_rotate_feed").is(':checked')){
-				var final_fb_event_shorcode = '[fts facebook event' + fb_page_id + ' type=event' + final_fts_rotate_shortcode + ']';
-			}
-		else	{
+		//if (final_fts_rotate_shortcode && jQuery("#"+ rotate_form_id + " input.fts_rotate_feed").is(':checked')){
+//				var final_fb_event_shorcode = '[fts facebook event' + fb_page_id + ' type=event' + final_fts_rotate_shortcode + ']';
+//			}
+//		else	{
 				var final_fb_event_shorcode = '[fts facebook event' + fb_page_id + ' type=event]';
-		}		
+	//	}		
 		
 <?php } ?>
 
@@ -623,12 +627,12 @@ function updateTextArea_twitter() {
 	
 	else 	{ ?>
 	
-		if (final_fts_rotate_shortcode && jQuery("#"+ rotate_form_id + " input.fts_rotate_feed").is(':checked')){
-			var final_twitter_shorcode = '[fts twitter' + twitter_name + final_fts_rotate_shortcode + ']';
-		}
-		else	{
+	//	if (final_fts_rotate_shortcode && jQuery("#"+ rotate_form_id + " input.fts_rotate_feed").is(':checked')){
+//			var final_twitter_shorcode = '[fts twitter' + twitter_name + final_fts_rotate_shortcode + ']';
+//		}
+//		else	{
 			var final_twitter_shorcode = '[fts twitter' + twitter_name + ']';
-		}		
+		//}		
 	
 <?php } ?>
 
@@ -666,12 +670,12 @@ function updateTextArea_instagram() {
 	   include('../wp-content/plugins/feed-them-premium/admin/js/instagram-settings-js.js');
 	}//end if Premium version
 	else 	{ ?>
-		if (final_fts_rotate_shortcode && jQuery("#"+ rotate_form_id + " input.fts_rotate_feed").is(':checked')){
-				var final_instagram_shorcode = '[fts instagram' + instagram_id + final_fts_rotate_shortcode +']'
-		}
-		else	{
+		//if (final_fts_rotate_shortcode && jQuery("#"+ rotate_form_id + " input.fts_rotate_feed").is(':checked')){
+//				var final_instagram_shorcode = '[fts instagram' + instagram_id + final_fts_rotate_shortcode +']'
+//		}
+//		else	{
 				var final_instagram_shorcode = '[fts instagram' + instagram_id + ']';
-		}		
+		//}		
 		
 <?php } ?>
 
