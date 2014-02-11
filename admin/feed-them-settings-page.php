@@ -583,7 +583,7 @@ function updateTextArea_fb_event() {
 //				var final_fb_event_shorcode = '[fts facebook event' + fb_page_id + ' type=event' + final_fts_rotate_shortcode + ']';
 //			}
 //		else	{
-				var final_fb_event_shorcode = '[fts facebook event' + fb_page_id + ' type=event]';
+				var final_fb_event_shorcode = '[fts facebook event' + fb_event_id + ' type=event]';
 	//	}		
 		
 <?php } ?>
