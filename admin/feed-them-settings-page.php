@@ -24,6 +24,7 @@ add_action( 'wp_enqueue_style', 'feed_them_admin_css' );
         	<option value="">Please Select Feed Type </option>
             <option value="fb-page-shortcode-form">Facebook Page Feed</option>
         	<option value="fb-group-shortcode-form">Facebook Group Feed</option>
+        	<option value="fb-event-shortcode-form">Facebook Event Feed</option>
             <option value="twitter-shortcode-form">Twitter Feed</option>
             <option value="instagram-shortcode-form">Instagram Feed</option>
             <option value="youtube-shortcode-form">YouTube Feed</option>
@@ -32,7 +33,7 @@ add_action( 'wp_enqueue_style', 'feed_them_admin_css' );
     </form><!--/feed-them-social-admin-form-->
 
 <div class="fts-facebook_group-shortcode-form">
-    <form class="feed-them-social-admin-form shortcode-generator-form fb-group-shortcode-form">
+<form class="feed-them-social-admin-form shortcode-generator-form fb-group-shortcode-form" id="fts-fb-group-form">
     <h2>Facebook Group Shortcode Generator</h2>
     <div class="instructional-text">You must copy your <a href="http://www.slickremix.com/2012/12/14/how-to-get-your-facebook-group-id/" target="_blank">Facebook ID</a> and paste it in the first input below.</div>
       <div class="feed-them-social-admin-input-wrap fb_group_id">
@@ -66,12 +67,21 @@ else 	{
 <div class="clear"></div>
 </div><!--/feed-them-social-admin-input-wrap-->
 
-
-
+<div class="feed-them-social-admin-input-wrap">
+  <div class="feed-them-social-admin-input-label">Shorten amount of words per post?</div>
+  <div class="feed-them-social-admin-input-default">Must have <a target="_blank" href="http://www.slickremix.com/product/feed-them-social-premium-extension/">premium version</a> to edit.</div>
+<div class="clear"></div>
+</div><!--/feed-them-social-admin-input-wrap-->
 
 <?php
 }
 ?>
+    
+<?php 
+if(is_plugin_active('fts-rotate/fts-rotate.php')) {
+	include('../wp-content/plugins/fts-rotate/admin/fts-rotate-settings-fields.php');
+}
+?> 
       
       <input type="button" class="feed-them-social-admin-submit-btn" value="Generate Facebook Group Shortcode" onclick="updateTextArea_fb_group();" tabindex="4" style="margin-right:1em;" />
       <div class="feed-them-social-admin-input-wrap final-shortcode-textarea">
@@ -90,7 +100,7 @@ else 	{
 
 
 <div class="fts-facebook_page-shortcode-form">
-    <form class="feed-them-social-admin-form shortcode-generator-form fb-page-shortcode-form">
+    <form class="feed-them-social-admin-form shortcode-generator-form fb-page-shortcode-form" id="fts-fb-page-form">
     <h2>Facebook Page Shortcode Generator</h2>
     <div class="instructional-text">You must copy your <a href="http://www.slickremix.com/2013/09/09/how-to-get-your-facebook-page-vanity-url/" target="_blank">Facebook Page ID</a> and paste it in the first input below.</div>
       <div class="feed-them-social-admin-input-wrap fb_page_id">
@@ -124,11 +134,19 @@ else 	{
 <div class="clear"></div>
 </div><!--/feed-them-social-admin-input-wrap-->
 
+<div class="feed-them-social-admin-input-wrap">
+  <div class="feed-them-social-admin-input-label">Amount of words per post?</div>
+  <div class="feed-them-social-admin-input-default">Must have <a target="_blank" href="http://www.slickremix.com/product/feed-them-social-premium-extension/">premium version</a> to edit.</div>
+<div class="clear"></div>
+</div><!--/feed-them-social-admin-input-wrap-->
 
 <?php
 }
+ 
+if(is_plugin_active('fts-rotate/fts-rotate.php')) {
+	include('../wp-content/plugins/fts-rotate/admin/fts-rotate-settings-fields.php');
+}
 ?>
-      
       <input type="button" class="feed-them-social-admin-submit-btn" value="Generate Facebook Page Shortcode" onclick="updateTextArea_fb_page();" tabindex="4" style="margin-right:1em;" />
       <div class="feed-them-social-admin-input-wrap final-shortcode-textarea">
       
@@ -145,9 +163,78 @@ else 	{
 </div><!--/fts-facebook_page-shortcode-form-->
 
 
+<div class="fts-facebook_event-shortcode-form">
+<form class="feed-them-social-admin-form shortcode-generator-form fb-event-shortcode-form" id="fts-fb-event-form">
+    <h2>Facebook Event Shortcode Generator.</h2>
+    <div class="instructional-text">Copy your <a href="http://www.slickremix.com/2012/12/14/how-to-get-your-facebook-event-id/" target="_blank">Facebook Page Event ID or Group Event ID</a> and paste it in the first input below.</div>
+      <div class="feed-them-social-admin-input-wrap fb_event_id">
+        <div class="feed-them-social-admin-input-label">Facebook Event ID (required)</div>
+        <input type="text" id="fb_event_id" class="feed-them-social-admin-input" value="" />
+    <div class="clear"></div>
+      </div><!--/feed-them-social-admin-input-wrap-->
+     
+<?php
+if(is_plugin_active('feed-them-premium/feed-them-premium.php')) {
+   include('../wp-content/plugins/feed-them-premium/admin/facebook-event-settings-fields.php');
+}
+else 	{
+?>
 
-<div class="fts-twitter-shortcode-form">
-    <form class="feed-them-social-admin-form shortcode-generator-form twitter-shortcode-form">
+<div class="feed-them-social-admin-input-wrap">
+  <div class="feed-them-social-admin-input-label"># of Posts (optional)</div>
+  <div class="feed-them-social-admin-input-default">Must have <a target="_blank" href="http://www.slickremix.com/product/feed-them-social-premium-extension/">premium version</a> to edit. Default is 5.</div>
+<div class="clear"></div>
+</div><!--/feed-them-social-admin-input-wrap-->
+
+<div class="feed-them-social-admin-input-wrap">
+  <div class="feed-them-social-admin-input-label">Show the Event Title?</div>
+  <div class="feed-them-social-admin-input-default">Must have <a target="_blank" href="http://www.slickremix.com/product/feed-them-social-premium-extension/">premium version</a> to edit. </div>
+<div class="clear"></div>
+</div><!--/feed-them-social-admin-input-wrap-->
+
+<div class="feed-them-social-admin-input-wrap">
+  <div class="feed-them-social-admin-input-label">Show the Event Description?</div>
+  <div class="feed-them-social-admin-input-default">Must have <a target="_blank" href="http://www.slickremix.com/product/feed-them-social-premium-extension/">premium version</a> to edit.</div>
+<div class="clear"></div>
+</div> <!--/feed-them-social-admin-input-wrap-->
+
+<div class="feed-them-social-admin-input-wrap">
+  <div class="feed-them-social-admin-input-label">Shorten amount of words per post?</div>
+  <div class="feed-them-social-admin-input-default">Must have <a target="_blank" href="http://www.slickremix.com/product/feed-them-social-premium-extension/">premium version</a> to edit.</div>
+<div class="clear"></div>
+</div><!--/feed-them-social-admin-input-wrap-->
+
+<?php
+}
+
+if(is_plugin_active('fts-rotate/fts-rotate.php')) {
+	include('../wp-content/plugins/fts-rotate/admin/fts-rotate-settings-fields.php');
+}
+?> 
+      
+      <input type="button" class="feed-them-social-admin-submit-btn" value="Generate Facebook Event Shortcode" onclick="updateTextArea_fb_event();" tabindex="4" style="margin-right:1em;" />
+      <div class="feed-them-social-admin-input-wrap final-shortcode-textarea">
+      
+      	<h4>Copy the ShortCode below and paste it on a page or post that you want to display your feed.</h4>
+      
+        <div class="feed-them-social-admin-input-label">Facebook Event Feed Shortcode</div>
+        
+        <input class="copyme facebook-event-final-shortcode feed-them-social-admin-input" value="" />
+        
+    <div class="clear"></div>
+      </div><!--/feed-them-social-admin-input-wrap-->
+    
+    </form>
+</div><!--/fts-facebook_group-shortcode-form-->
+
+
+
+
+
+
+
+<div class="fts-twitter-shortcode-form"> 
+    <form class="feed-them-social-admin-form shortcode-generator-form twitter-shortcode-form" id="fts-twitter-form">
     <h2>Twitter Shortcode Generator</h2>
     <div class="instructional-text">You must copy your <a href="http://www.slickremix.com/2012/12/18/how-to-get-your-twitter-name/" target="_blank">Twitter Name</a> and paste it in the first input below.</div>
     
@@ -156,8 +243,8 @@ else 	{
         <input type="text" id="twitter_name" class="feed-them-social-admin-input" value="" />
     <div class="clear"></div>
       </div><!--/feed-them-social-admin-input-wrap-->
-
-<?php
+      
+      <?php
 if(is_plugin_active('feed-them-premium/feed-them-premium.php')) {
    include('../wp-content/plugins/feed-them-premium/admin/twitter-settings-fields.php');
 }
@@ -170,8 +257,11 @@ else 	{
 </div><!--/feed-them-social-admin-input-wrap-->
 <?php
 }
+ 
+if(is_plugin_active('fts-rotate/fts-rotate.php')) {
+	include('../wp-content/plugins/fts-rotate/admin/fts-rotate-settings-fields.php');
+}
 ?>
-        
       <input type="button" class="feed-them-social-admin-submit-btn" value="Generate Twitter Shortcode" onclick="updateTextArea_twitter();" tabindex="4" style="margin-right:1em;" />
       <div class="feed-them-social-admin-input-wrap final-shortcode-textarea">
       
@@ -188,7 +278,7 @@ else 	{
 
 <div class="fts-instagram-shortcode-form">
 
-	<form class="feed-them-social-admin-form shortcode-generator-form instagram-shortcode-form">
+	<form class="feed-them-social-admin-form shortcode-generator-form instagram-shortcode-form" id="fts-instagram-form">
     <h2>Convert Instagram Name to ID</h2>
      <div class="instructional-text">You must copy your <a href="http://www.slickremix.com/2012/12/18/how-to-get-your-instagram-name-and-convert-to-id/" target="_blank">Instagram Name</a> and paste it in the first input below.</div>
       <div class="feed-them-social-admin-input-wrap convert_instagram_username">
@@ -221,8 +311,12 @@ else 	{
   <div class="feed-them-social-admin-input-default">Must have <a target="_blank" href="http://www.slickremix.com/product/feed-them-social-premium-extension/">premium version</a> to edit. Default is 6.</div>
   <div class="clear"></div>
 </div><!--/feed-them-social-admin-input-wrap-->
-<?php } ?>
- 
+<?php } 
+
+if(is_plugin_active('fts-rotate/fts-rotate.php')) {
+	include('../wp-content/plugins/fts-rotate/admin/fts-rotate-settings-fields.php');
+}
+?> 
      
       <input type="button" class="feed-them-social-admin-submit-btn" value="Generate instagram Shortcode" onclick="updateTextArea_instagram();" tabindex="4" style="margin-right:1em;" />
       
@@ -241,7 +335,7 @@ else 	{
 
 
 <div class="fts-youtube-shortcode-form">
-    <form class="feed-them-social-admin-form shortcode-generator-form youtube-shortcode-form">
+    <form class="feed-them-social-admin-form shortcode-generator-form youtube-shortcode-form" id="fts-youtube-form">
     <h2>YouTube Shortcode Generator</h2>
     <div class="instructional-text">You must copy your <a href="http://www.slickremix.com/2013/08/01/how-to-get-your-youtube-name/" target="_blank">YouTube Name</a> and paste it in the first input below.</div>
       
@@ -288,7 +382,7 @@ else 	{
 
 
 <div class="fts-pinterest-shortcode-form">
-    <form class="feed-them-social-admin-form shortcode-generator-form pinterest-shortcode-form">
+    <form class="feed-them-social-admin-form shortcode-generator-form pinterest-shortcode-form" id="fts-pinterest-form">
     <h2>Pinterest Shortcode Generator</h2>
     <div class="instructional-text">You must copy your <a href="http://www.slickremix.com/2013/08/01/how-to-get-your-pinterest-name/" target="_blank">Pinterest Name</a> and paste it in the first input below.</div>
       
@@ -338,14 +432,26 @@ else 	{
   
 </div><!--/feed-them-social-admin-wrap-->
 
-
 <script>
-
 jQuery(function() {    
+
     jQuery('#shortcode-form-selector').change(function(){
         jQuery('.shortcode-generator-form').hide();
         jQuery('.' + jQuery(this).val()).fadeIn('fast');
     });
+	
+	jQuery(".fts-rotate-settings-wrap").hide();
+	
+	 jQuery('input.fts_rotate_feed').change(function(){
+		 var this_id = jQuery(this).closest('form').attr('id');
+       if(jQuery("#"+this_id + " input.fts_rotate_feed").is(':checked'))	{
+		   jQuery("#"+this_id +" .fts-rotate-settings-wrap").fadeIn();
+	   }
+	   else	{
+	   	jQuery("#"+this_id +" .fts-rotate-settings-wrap").fadeOut();
+	   }
+    });
+	
 });
 
 
@@ -363,16 +469,30 @@ function updateTextArea_fb_group() {
 	  	 jQuery(".fb_group_id").removeClass('fts-empty-error');  
 	}
 	
-	<?php
+	<?php 
+	//Rotate Plugin
+	if(is_plugin_active('fts-rotate/fts-rotate.php')) {?>
+		
+		var rotate_form_id = "fts-fb-group-form";
+		
+		<?php include('../wp-content/plugins/fts-rotate/admin/js/fts-rotate-settings-options.js');
+	}
+	
+	//Premium Plugin
 	if(is_plugin_active('feed-them-premium/feed-them-premium.php')) {
 	   include('../wp-content/plugins/feed-them-premium/admin/js/facebook-group-settings-js.js');
 	}
 	else 	{
 	?>
-		var final_fb_group_shorcode = '[fts facebook group' + fb_group_id + ' type=group]'
-	<?php
-	}
-	?>
+	
+			if (final_fts_rotate_shortcode && jQuery("#"+ rotate_form_id + " input.fts_rotate_feed").is(':checked')){
+					var final_fb_group_shorcode = '[fts facebook group' + fb_group_id + ' type=group' + final_fts_rotate_shortcode + ']';
+				}
+			else	{
+					var final_fb_group_shorcode = '[fts facebook group' + fb_group_id + ' type=group]';
+			}	
+		
+<?php } ?>
 
 jQuery('.facebook-group-final-shortcode').val(final_fb_group_shorcode);
 	
@@ -395,28 +515,88 @@ function updateTextArea_fb_page() {
 	  	 jQuery(".fb_page_id").removeClass('fts-empty-error');  
 	}
 	
-	<?php
+	<?php 
+	//Rotate Plugin
+	if(is_plugin_active('fts-rotate/fts-rotate.php')) {?>
+		
+		var rotate_form_id = "fts-fb-page-form";
+		
+		<?php include('../wp-content/plugins/fts-rotate/admin/js/fts-rotate-settings-options.js');
+	}
+	
+	//Premium Plugin
 	if(is_plugin_active('feed-them-premium/feed-them-premium.php')) {
 	   include('../wp-content/plugins/feed-them-premium/admin/js/facebook-page-settings-js.js');
 	}
 	else 	{
 	?>
-		var final_fb_page_shorcode = '[fts facebook page' + fb_page_id + ' type=page]'
-	<?php
-	}
-	?>
+		if (final_fts_rotate_shortcode && jQuery("#"+ rotate_form_id + " input.fts_rotate_feed").is(':checked')){
+				var final_fb_page_shorcode = '[fts facebook page' + fb_page_id + ' type=page' + final_fts_rotate_shortcode + ']';
+			}
+		else	{
+				var final_fb_page_shorcode = '[fts facebook page' + fb_page_id + ' type=page]';
+		}		
+		
+<?php } ?>
 
 jQuery('.facebook-page-final-shortcode').val(final_fb_page_shorcode);
 	
 	jQuery('.fb-page-shortcode-form .final-shortcode-textarea').slideDown();
 	
 }
-//END Facebook Group//
+//END Facebook Page//
+
+//START Facebook Event//
+function updateTextArea_fb_event() {
+
+	var fb_event_id = ' id=' + jQuery("input#fb_event_id").val(); 
+	
+	if (fb_event_id == " id=") {
+	  	 jQuery(".fb_event_id").addClass('fts-empty-error');  
+      	 jQuery("input#fb_event_id").focus();
+		 return false;
+	}
+	if (fb_event_id != " id=") {
+	  	 jQuery(".fb_event_id").removeClass('fts-empty-error');  
+	}
+	
+	<?php 
+	//Rotate Plugin
+	if(is_plugin_active('fts-rotate/fts-rotate.php')) {?>
+		
+		var rotate_form_id = "fts-fb-event-form";
+		
+		<?php include('../wp-content/plugins/fts-rotate/admin/js/fts-rotate-settings-options.js');
+	}
+	
+	//Premium Plugin
+	if(is_plugin_active('feed-them-premium/feed-them-premium.php')) {
+	   include('../wp-content/plugins/feed-them-premium/admin/js/facebook-event-settings-js.js');
+	}
+	else 	{
+	?>
+		if (final_fts_rotate_shortcode && jQuery("#"+ rotate_form_id + " input.fts_rotate_feed").is(':checked')){
+				var final_fb_event_shorcode = '[fts facebook event' + fb_page_id + ' type=event' + final_fts_rotate_shortcode + ']';
+			}
+		else	{
+				var final_fb_event_shorcode = '[fts facebook event' + fb_page_id + ' type=event]';
+		}		
+		
+<?php } ?>
+
+jQuery('.facebook-event-final-shortcode').val(final_fb_event_shorcode);
+	
+	jQuery('.fb-event-shortcode-form .final-shortcode-textarea').slideDown();
+	
+}
+//END Facebook Event//
 
 //START Twitter//
 function updateTextArea_twitter() {
 
-	var twitter_name = ' twitter_name=' + jQuery("input#twitter_name").val(); 
+	var twitter_name = ' twitter_name=' + jQuery("input#twitter_name").val();
+	
+	
 	
 	if (twitter_name == " twitter_name=") {
 	  	 jQuery(".twitter_name").addClass('fts-empty-error');  
@@ -429,15 +609,28 @@ function updateTextArea_twitter() {
 	}
 	
 	<?php
+	
+	if(is_plugin_active('fts-rotate/fts-rotate.php')) {?>
+		
+		var rotate_form_id = "fts-twitter-form";
+		
+		<?php include('../wp-content/plugins/fts-rotate/admin/js/fts-rotate-settings-options.js');
+	}
+	
 	if(is_plugin_active('feed-them-premium/feed-them-premium.php')) {
 	   include('../wp-content/plugins/feed-them-premium/admin/js/twitter-settings-js.js');
 	}
-	else 	{
-	?>
-		var final_twitter_shorcode = '[fts twitter' + twitter_name + ']'
-	<?php
-	}
-	?>
+	
+	else 	{ ?>
+	
+		if (final_fts_rotate_shortcode && jQuery("#"+ rotate_form_id + " input.fts_rotate_feed").is(':checked')){
+			var final_twitter_shorcode = '[fts twitter' + twitter_name + final_fts_rotate_shortcode + ']';
+		}
+		else	{
+			var final_twitter_shorcode = '[fts twitter' + twitter_name + ']';
+		}		
+	
+<?php } ?>
 
 jQuery('.twitter-final-shortcode').val(final_twitter_shorcode);
 	
@@ -459,16 +652,28 @@ function updateTextArea_instagram() {
 	  	 jQuery(".instagram_id").removeClass('fts-empty-error');  
 	}
 	
-	<?php
+	<?php 
+	//Rotate Plugin
+	if(is_plugin_active('fts-rotate/fts-rotate.php')) {?>
+		
+		var rotate_form_id = "fts-instagram-form";
+		
+		<?php include('../wp-content/plugins/fts-rotate/admin/js/fts-rotate-settings-options.js');
+	}
+	
+	//Premium Plugin
 	if(is_plugin_active('feed-them-premium/feed-them-premium.php')) {
 	   include('../wp-content/plugins/feed-them-premium/admin/js/instagram-settings-js.js');
-	}
-	else 	{
-	?>
-		var final_instagram_shorcode = '[fts instagram' + instagram_id + ']'
-	<?php
-	}
-	?>
+	}//end if Premium version
+	else 	{ ?>
+		if (final_fts_rotate_shortcode && jQuery("#"+ rotate_form_id + " input.fts_rotate_feed").is(':checked')){
+				var final_instagram_shorcode = '[fts instagram' + instagram_id + final_fts_rotate_shortcode +']'
+		}
+		else	{
+				var final_instagram_shorcode = '[fts instagram' + instagram_id + ']';
+		}		
+		
+<?php } ?>
 
 jQuery('.instagram-final-shortcode').val(final_instagram_shorcode);
 	
@@ -507,18 +712,6 @@ function converter_instagram_username() {
 	}
 }
 
-<?php
-	if(is_plugin_active('feed-them-premium/feed-them-premium.php')) {
-	   include('../wp-content/plugins/feed-them-premium/admin/js/youtube-settings-js.js'); 
-	}
-?>
-
-
-<?php
-	if(is_plugin_active('feed-them-premium/feed-them-premium.php')) { 
-	    include('../wp-content/plugins/feed-them-premium/admin/js/pinterest-settings-js.js');
-	}
-?>
 //select all 
 jQuery(".copyme").focus(function() {
     var jQuerythis = jQuery(this);
@@ -532,7 +725,10 @@ jQuery(".copyme").focus(function() {
     });
 });
 </script>
-
 <?php
-}
+	//Premium JS
+	if(is_plugin_active('feed-them-premium/feed-them-premium.php')) {
+	   include('../wp-content/plugins/feed-them-premium/admin/js/premium-js.php'); 
+		}
+	}
 ?>

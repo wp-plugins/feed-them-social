@@ -9,6 +9,8 @@ add_shortcode( 'fts facebook group', 'fts_fb_func' );
 
 add_shortcode( 'fts facebook page', 'fts_fb_func' );
 
+add_shortcode( 'fts facebook event', 'fts_fb_func' );
+
 //Main Funtion
 function fts_fb_func($atts){
 
@@ -21,7 +23,12 @@ if(is_plugin_active('feed-them-premium/feed-them-premium.php')) {
 else 	{
 	extract( shortcode_atts( array(
 		'id' => '',
-		'type' => ''
+		'type' => '',
+		'fts_rotate_feed' => 'no',
+		'fts_rotate_poh' =>'true',
+		'fts_rotate_speed' =>'200',
+		'fts_rotate_fx' =>'fade',
+		'fts_rotate_random' => 'no'
 	), $atts ) );
 	
 	$fts_limiter = '5';
@@ -30,7 +37,8 @@ else 	{
 }
 ob_start(); 
 
-if ($type !== 'page' or $type == 'group')	{
+
+if ($type !== 'page' or $type !== 'event' or $type == 'group')	{
 		$fts_view_fb_link ='https://www.facebook.com/groups/'.$fts_fb_id.'/';	
 }
 
@@ -38,6 +46,9 @@ if ($type == 'page')	{
 	$fts_view_fb_link ='https://www.facebook.com/'.$fts_fb_id.'/';
 }
 
+if ($type == 'event')	{
+		$fts_view_fb_link ='https://www.facebook.com/events/'.$fts_fb_id.'/';	
+}
 	//URL to get page info
 	$url1 = 'https://graph.facebook.com/'.$fts_fb_id.'?access_token='.$access_token.'';
 	$des_cache = 'wp-content/plugins/feed-them-social/feeds/facebook/cache/FB_des_cache-'.$fts_fb_id.'-num'.$fts_limiter.'.json';
@@ -93,25 +104,34 @@ if ($type == 'page')	{
 
 		
 print '<div class="fts-jal-fb-group-display">';
-if(is_plugin_active('feed-them-premium/feed-them-premium.php'))  {
-	  print '<div class="fts-jal-fb-header">';
-	 // Print our Facebook Page Title or About Text. Commented out the group description becuase in the future we will be adding the about description.
-	  if ($title == 'yes' or $title == '') {
-		print '<h1><a href="'.$fts_view_fb_link.'">'.$des->name.'</a></h1>';
-	  }
-	 if ($description == 'yes' || $description == '') {
-		print '<div class="fts-jal-fb-group-header-desc">'.$des->description.'</div>';	
-	  }
-	  
-	   print '</div>';
 
+if(is_plugin_active('fts-rotate/fts-rotate.php') && $fts_rotate_feed == 'yes') {
+	// FTS Rotate Head
+	include( 'wp-content/plugins/fts-rotate/includes/fts-rotate-head.php' );
+	$fts_rotate_on = 'yes';
 }
-  else {
-	  print '<div class="fts-jal-fb-header"><h1><a href="'.$fts_view_fb_link.'">'.$des->name.'</a></h1>';
-	  print '<div class="fts-jal-fb-group-header-desc">'.$des->description.'</div>';
-      print '</div>';
-  }
+else	{
+	$fts_rotate_on = 'no';
 
+	if(is_plugin_active('feed-them-premium/feed-them-premium.php'))  {
+		print '<div class="fts-jal-fb-header">';
+	   // Print our Facebook Page Title or About Text. Commented out the group description because in the future we will be adding the about description.
+		if ($title == 'yes' or $title == '') {
+		  print '<h1><a href="'.$fts_view_fb_link.'">'.$des->name.'</a></h1>';
+		}
+	   if ($description == 'yes' || $description == '') {
+		  print '<div class="fts-jal-fb-group-header-desc">'.$des->description.'</div>';	
+		}
+		
+		 print '</div>';
+	
+	}
+	else {
+		print '<div class="fts-jal-fb-header"><h1><a href="'.$fts_view_fb_link.'">'.$des->name.'</a></h1>';
+		print '<div class="fts-jal-fb-group-header-desc">'.$des->description.'</div>';
+		print '</div>';
+	}
+}
 
 $set_zero = 0;
 foreach($data->data as $d) {
@@ -142,6 +162,10 @@ $FBstory = $d->story;
 
 if (!empty($FBstory)) {
 	$FBfinalstory  = preg_replace('/'.$FBfromName.'/', '', $FBstory, 1);
+}
+
+if($fts_rotate_on == 'yes' && $fts_rotate_feed == 'yes'){
+		echo '<div class="fts-rotate-slide">';
 }
 
   print '<div class="fts-jal-single-fb-post">';
@@ -195,8 +219,23 @@ if ($FBpost_like_count > '1')	{
 	
 	//Output Message  
 	if (!empty($FBmessage)) {
-		print '<div class="fts-jal-fb-message">'.nl2br($FB_final_message).'</div><div class="clear"></div> ';
-	}
+		 
+	   if(is_plugin_active('feed-them-premium/feed-them-premium.php'))  {
+	  		   // here we trim the words for the premium version. The $words string actually comes from the javascript	
+			   $fts_custom_number = trim($words);
+			   
+			   $content = $FB_final_message;
+			   $trimmed_content = wp_trim_words( $content, $fts_custom_number, '...' );
+				if (!empty($words)) {
+					 print '<div class="fts-jal-fb-message">'.nl2br($trimmed_content).'</div><div class="clear"></div> ';
+			 
+				}
+				  else {
+					 print '<div class="fts-jal-fb-message">'.nl2br($FB_final_message).'</div><div class="clear"></div> ';
+				  }
+		} //END is_plugin_active
+		
+	}//END Output Message 
     
 	//Output Link    
 	if ( $FBtype == '' ) {
@@ -211,7 +250,7 @@ if ($FBpost_like_count > '1')	{
 		  
 		 
 		
-				//Output Link Pricture
+				//Output Link Picture
 				if (!empty($FBpicture)) {
 					print '<a href="'.$fts_view_fb_link.'" target="_blank" class="fts-jal-fb-picture"><img border="0" alt="' .$d->from->name.'" src="'.$d->picture.'"/></a>';
 				};
@@ -288,7 +327,7 @@ if ($FBpost_like_count > '1')	{
 				
 			}//end if event
 			
-		  //Output Link Pricture
+		  //Output Link Picture
 		  if (!empty($FBpicture)) {
 			  print '<a href="'.$fts_view_fb_link.'" target="_blank" class="fts-jal-fb-picture"><img border="0" alt="' .$d->from->name.'" src="'.$d->picture.'"/></a>';
 		  };
@@ -441,8 +480,17 @@ if ($type == 'page')	{
 print '<div class="clear"></div>';
 print '</div>';
 
+//FTS Rotate Slide end
+if($fts_rotate_on == 'yes' && $fts_rotate_feed == 'yes'){
+		echo '</div>';
+}
 	 $set_zero++;
 	 }	
+
+if($fts_rotate_on == 'yes' && $fts_rotate_feed == 'yes'){
+		// FTS Rotate Foot
+		include( 'wp-content/plugins/fts-rotate/includes/fts-rotate-foot.php' ); 
+}
 
   print '</div>';
   print '<div class="clear"></div>'; 

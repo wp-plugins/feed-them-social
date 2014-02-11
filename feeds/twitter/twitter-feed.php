@@ -13,12 +13,19 @@ if(is_plugin_active('feed-them-premium/feed-them-premium.php')) {
 }
 else 	{
 	extract( shortcode_atts( array(
-		'twitter_name' => ''
+		'twitter_name' => '',
+		'fts_rotate_feed' => 'no',
+		'fts_rotate_poh' =>'true',
+		'fts_rotate_speed' =>'200',
+		'fts_rotate_fx' =>'fade',
+		'fts_rotate_random' => 'no'
+		
 	), $atts ) );
 	$tweets_count ='5';
 }
 ob_start();  
- 
+
+$type = 'twitter';
 $numTweets      = $tweets_count;
 $name           = $twitter_name;  
 $excludeReplies = true;            
@@ -33,7 +40,7 @@ if(false === ($tweets = get_transient($transName) ) ) :
   // Get the tweets from Twitter.
   include 'twitteroauth/twitteroauth.php';
   
-  $connection = new TwitterOAuth(
+  $connection = new TwitterFTSAuth(
     'dOIIcGrhWgooKquMWWXg',
     'qzAE4t4xXbsDyGIcJxabUz3n6fgqWlg8N02B6zM',
     '1184502104-Cjef1xpCPwPobP5X8bvgOTbwblsmeGGsmkBzwdB',  
@@ -105,12 +112,48 @@ endif;
  
 // Now display the tweets.
 ?>
-<div id="twitter-feed-<?php print $twitter_name?>" class="fts-twitter-div">
-  <?php foreach($tweets as $t) : ?>
-    <p><?php print $t['text'];?></p><div class="tweeter-info"><div class="fts-twitter-image"><img class="twitter-image" src="<?php print $t['image'];?>" /></div><div class="uppercase bold"><a href="<?php print $t['user_permalink'];?>" target="_blank" class="black">@<?php print $t['name'];?></a></div><div class="right"><a href="<?php print $t['permalink']?>"><?php print $t['time'];?></a></div></div>
-  <?php endforeach; ?>
-<div class="clear"></div>
-</div> 
+
+
+    <div id="twitter-feed-<?php print $twitter_name?>" class="fts-twitter-div">
+    
+    
+<?php 
+if(is_plugin_active('fts-rotate/fts-rotate.php') && $fts_rotate_feed == 'yes') {
+	// FTS Rotate Head
+	include( 'wp-content/plugins/fts-rotate/includes/fts-rotate-head.php' );
+	$fts_rotate_on = 'yes';
+}
+else	{
+	$fts_rotate_on = 'no';
+}
+	
+	//start tweet loop
+	foreach($tweets as $t) : 
+	  
+	  if($fts_rotate_on == 'yes' && $fts_rotate_feed == 'yes'){
+		echo '<div class="fts-rotate-slide">';
+	  }
+	  ?>
+      
+        <p><?php print $t['text'];?></p><div class="tweeter-info"><div class="fts-twitter-image"><img class="twitter-image" src="<?php print $t['image'];?>" /></div><div class="uppercase bold"><a href="<?php print $t['user_permalink'];?>" target="_blank" class="black">@<?php print $t['name'];?></a></div><div class="right"><a href="<?php print $t['permalink']?>"><?php print $t['time'];?></a></div></div>
+      
+      <?php 
+	  if($fts_rotate_on == 'yes' && $fts_rotate_feed == 'yes'){
+		echo '</div>';
+	  }
+	  
+   endforeach; ?>
+      
+<?php 
+ if($fts_rotate_on == 'yes' && $fts_rotate_feed == 'yes'){
+	// FTS Rotate Foot
+	include( 'wp-content/plugins/fts-rotate/includes/fts-rotate-foot.php' ); 
+}?> 
+    <div class="clear"></div>
+    </div> 
+    
+    
+
 
 <?php 
 return ob_get_clean(); 

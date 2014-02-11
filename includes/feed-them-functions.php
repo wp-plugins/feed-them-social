@@ -2,6 +2,7 @@
 /************************************************
  	Function file for Feed Them Social plugin
 ************************************************/
+
 add_action('admin_menu', 'Feed_Them_Main_Menu');
 
 function Feed_Them_Main_Menu() {
