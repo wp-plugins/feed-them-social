@@ -43,8 +43,6 @@ If you enjoy using our plugin please tell others. [Click here to share.](http://
   
 More Social Feeds coming soon like Facebook Pages and Vimeo. [Suggest another Feed](http://www.slickremix.com/support-forum).
   
-**SPECIAL NOTE:** FTS Premium Plugin users receive unlimited FREE updates of our Premium plugin, no monthly or anual fees here! 
-  
 **DISCLAIMER:** SlickRemix **DOES NOT** code for IE. If it works awesome, if not we highly suggest one of the following modern browsers: [Google Chrome](https://www.google.com/intl/en/chrome/browser/), [Safari](http://www.apple.com/safari/) or [Firefox](http://www.mozilla.org/en-US/firefox/).
 
 == Installation ==
@@ -56,7 +54,7 @@ More Social Feeds coming soon like Facebook Pages and Vimeo. [Suggest another Fe
   * Extract the zip file and drop the contents in the wp-content/plugins/ directory of your WordPress installation and then activate the Plugin from Plugins page. 
 
 == Changelog ==
-= Version 1.3.4 Friday, February 11th, 2014 =
+= Version 1.3.4 Tuesday, February 11th, 2014 =
  * NEW FEED: Facebook Event Feed. Now you can take your group or page Event ID and enter it on our settings page to create a FB event feed. Promote those events now!
  * Fixed: Twitter function error with multiple feeds on a page.
  * NEW: Facebook feeds now have a wordcount limit.
