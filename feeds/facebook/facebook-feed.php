@@ -65,7 +65,13 @@ if ($type == 'event')	{
 	  }
 	
 	//URL to get Feeds
-	$url2 = 'https://graph.facebook.com/'.$fts_fb_id.'/feed?access_token='.$access_token.'';
+	if ($type == 'page')	{
+		$url2 = 'https://graph.facebook.com/'.$fts_fb_id.'/posts?access_token='.$access_token.'';
+	}
+	else	{
+		$url2 = 'https://graph.facebook.com/'.$fts_fb_id.'/feed?access_token='.$access_token.'';
+	}
+	
 	$data_cache = 'wp-content/plugins/feed-them-social/feeds/facebook/cache/FB_data_cache-'.$fts_fb_id.'-num'.$fts_limiter.'.json';
 	  //Check Cache
 	  if(file_exists($data_cache) && !filesize($data_cache) == 0 && filemtime($data_cache) > time() - 900 && false !== strpos($data_cache,'-num'.$fts_limiter.'')){
@@ -235,6 +241,10 @@ if ($FBpost_like_count > '1')	{
 				  }
 		} //END is_plugin_active
 		
+		// if the premium plugin is not active we will just show the regular full description
+		else {
+					 print '<div class="fts-jal-fb-message">'.nl2br($FB_final_message).'</div><div class="clear"></div> ';
+				  }
 	}//END Output Message 
     
 	//Output Link    

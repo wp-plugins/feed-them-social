@@ -3,7 +3,7 @@ Contributors: slickremix
 Tags:  social, social plugin, social networking, networking, pinterest, pinterest boards, pinterest feeds, pinterest photos, pinterest widget, pinterest widgets, facebook, facebook plugin, facebook group, facebook groups, events, facebook events, facebook page events, facebook group events, facebook page, facebook pages, twitter, twitter plugin, instagram, instagram plugin, feed me social, feed, feeds, shortcode, slickremix, plugin, pages, posts, images, page, post, image, youtube, youtube feed, youtube channel, youtube video, youtube videos, videos, youtube embed, embed, video iframe, admin, comments, Posts, widgets
 Requires at least: 3.4.0
 Tested up to: 3.8.1
-Stable tag: 1.3.4
+Stable tag: 1.3.5
 License: GPLv2 or later
 
 
@@ -56,6 +56,10 @@ More Social Feeds coming soon like Facebook Pages and Vimeo. [Suggest another Fe
   * Extract the zip file and drop the contents in the wp-content/plugins/ directory of your WordPress installation and then activate the Plugin from Plugins page. 
 
 == Changelog ==
+
+= Version 1.3.5 Tuesday, February 11th, 2014 =
+ * MAJOR FIX: Facebook Feeds now are getting the full description text.
+ 
 = Version 1.3.4 Tuesday, February 11th, 2014 =
  * NEW FEED: Facebook Event Feed. Now you can take your group or page Event ID and enter it on our settings page to create a FB event feed. Promote those events now!
  * Fixed: Twitter function error with multiple feeds on a page.
