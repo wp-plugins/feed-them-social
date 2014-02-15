@@ -4,7 +4,7 @@
 /* Images */
 .fts-jal-fb-group-display img {
 	 /* Fluid images for posts, comments, and widgets */
-	border-radius: 3px !important;
+	border-radius: 0px !important;
     box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2) !important;
 }
 .clear	{
@@ -89,7 +89,7 @@
 	background:#F6F7F9;
 	margin-top:10px;
 	margin-right:3px;
-	border-radius:2px;
+	border-radius:0px;
 	padding: 2px 9px 7px 5px;
 	-webkit-transition: background 2s;
 	-webkit-transition: all 0.30s ease-in-out;
@@ -104,7 +104,7 @@
 .fts-jal-fb-link-wrap:hover {
 	background:#FFF;
 	border:1px solid #FFF;
-	box-shadow:0px 0px 5px #999;
+	box-shadow:0px 0px 1px #999;
 	-webkit-transition: background 2s;
 	-webkit-transition: all 0.30s ease-in-out;
 	-moz-transition: all 0.30s ease-in-out;
@@ -201,6 +201,7 @@
 	float:left;
 	color: #999;
 	padding-right:15px;
+	font-size:12px;
 }
 .fts-jal-fb-name	{
 	font-weight:bold;

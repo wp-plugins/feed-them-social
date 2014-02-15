@@ -67,4 +67,31 @@ function feed_them_clear_cache() {
    
   return 'Cache for all FTS Feeds cleared!';
 }
+
+//Settings option. Add Custom CSS to the header of FTS pages only
+$fts_include_custom_css_checked_css =  get_option( 'fts-color-options-settings-custom-css' );
+	if ($fts_include_custom_css_checked_css == '1') { 
+	
+	add_action('wp_enqueue_scripts', 'fts_color_options_head_css');
+function  fts_color_options_head_css() {
+		?>
+<style type="text/css"><?php echo get_option('fts-color-options-main-wrapper-css-input');?></style>
+		<?php
+	}
+ }
+ //Settings option. Custom Powered by Feed Them Social Option
+$fts_powered_text_options_settings =  get_option( 'fts-powered-text-options-settings' );
+	if ($fts_powered_text_options_settings == '1') { 
+	
+	add_action('wp_enqueue_scripts', 'fts_powered_by_js');
+function  fts_powered_by_js() {
+	
+	  wp_register_style( 'fts_powered_by_css', plugins_url( 'css/powered-by.css',  dirname(__FILE__) ) );
+	  wp_enqueue_style('fts_powered_by_css'); 
+	  
+	  wp_enqueue_script( 'fts_powered_by_js', plugins_url( 'js/powered-by.js',  dirname(__FILE__) ),
+	  array( 'jquery' )
+	 ); 
+	}
+ }
 ?>

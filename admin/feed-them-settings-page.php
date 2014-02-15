@@ -41,7 +41,19 @@ add_action( 'wp_enqueue_style', 'feed_them_admin_css' );
         <input type="text" id="fb_group_id" class="feed-them-social-admin-input" value="" />
     <div class="clear"></div>
       </div><!--/feed-them-social-admin-input-wrap-->
-     
+    
+    
+<!-- Using this for a future update <div class="feed-them-social-admin-input-wrap">
+  <div class="feed-them-social-admin-input-label">Customized Group Name</div>
+  <select id="fb_group_custom_name" class="feed-them-social-admin-input">
+    <option selected="selected" value="yes">My group name is custom</option>
+    <option value="no">My group name is number based</option>
+  </select>
+  <div class="clear"></div>
+</div>
+/feed-them-social-admin-input-wrap-->
+
+ 
 <?php
 if(is_plugin_active('feed-them-premium/feed-them-premium.php')) {
    include('../wp-content/plugins/feed-them-premium/admin/facebook-group-settings-fields.php');
@@ -50,7 +62,7 @@ else 	{
 ?>
 
 <div class="feed-them-social-admin-input-wrap">
-  <div class="feed-them-social-admin-input-label"># of Posts (optional)</div>
+  <div class="feed-them-social-admin-input-label"># of Posts</div>
   <div class="feed-them-social-admin-input-default">Must have <a target="_blank" href="http://www.slickremix.com/product/feed-them-social-premium-extension/">premium version</a> to edit. Default is 5.</div>
 <div class="clear"></div>
 </div><!--/feed-them-social-admin-input-wrap-->
@@ -109,6 +121,16 @@ if(is_plugin_active('fts-rotate/fts-rotate.php')) {
     <div class="clear"></div>
       </div><!--/feed-them-social-admin-input-wrap-->
      
+<div class="feed-them-social-admin-input-wrap">
+  <div class="feed-them-social-admin-input-label">Post Type Visible</div>
+  <select id="fb_page_posts_displayed" class="feed-them-social-admin-input">
+    <option selected="selected" value="page_only">Display Posts made by Page only</option>
+    <option value="everyone">Display Posts made by Everyone</option>
+  </select>
+  <div class="clear"></div>
+</div>
+<!--/feed-them-social-admin-input-wrap-->
+
 <?php
 if(is_plugin_active('feed-them-premium/feed-them-premium.php')) {
    include('../wp-content/plugins/feed-them-premium/admin/facebook-page-settings-fields.php');
@@ -117,7 +139,7 @@ else 	{
 ?>
 
 <div class="feed-them-social-admin-input-wrap">
-  <div class="feed-them-social-admin-input-label"># of Posts (optional)</div>
+  <div class="feed-them-social-admin-input-label"># of Posts</div>
   <div class="feed-them-social-admin-input-default">Must have <a target="_blank" href="http://www.slickremix.com/product/feed-them-social-premium-extension/">premium version</a> to edit. Default is 5.</div>
 <div class="clear"></div>
 </div><!--/feed-them-social-admin-input-wrap-->
@@ -181,7 +203,7 @@ else 	{
 ?>
 
 <div class="feed-them-social-admin-input-wrap">
-  <div class="feed-them-social-admin-input-label"># of Posts (optional)</div>
+  <div class="feed-them-social-admin-input-label"># of Posts</div>
   <div class="feed-them-social-admin-input-default">Must have <a target="_blank" href="http://www.slickremix.com/product/feed-them-social-premium-extension/">premium version</a> to edit. Default is 5.</div>
 <div class="clear"></div>
 </div><!--/feed-them-social-admin-input-wrap-->
@@ -251,7 +273,7 @@ if(is_plugin_active('feed-them-premium/feed-them-premium.php')) {
 else 	{
 ?>
 <div class="feed-them-social-admin-input-wrap">
-  <div class="feed-them-social-admin-input-label"># of Tweets (optional)</div>
+  <div class="feed-them-social-admin-input-label"># of Tweets</div>
   <div class="feed-them-social-admin-input-default">Must have <a target="_blank" href="http://www.slickremix.com/product/feed-them-social-premium-extension/">premium version</a> to edit. Default is 5.</div>
 <div class="clear"></div>
 </div><!--/feed-them-social-admin-input-wrap-->
@@ -307,7 +329,7 @@ if(is_plugin_active('fts-rotate/fts-rotate.php')) {
   else 	{
 ?>
 <div class="feed-them-social-admin-input-wrap">
-  <div class="feed-them-social-admin-input-label"># of Pics (optional)</div>
+  <div class="feed-them-social-admin-input-label"># of Pics</div>
   <div class="feed-them-social-admin-input-default">Must have <a target="_blank" href="http://www.slickremix.com/product/feed-them-social-premium-extension/">premium version</a> to edit. Default is 6.</div>
   <div class="clear"></div>
 </div><!--/feed-them-social-admin-input-wrap-->
@@ -346,30 +368,30 @@ if(is_plugin_active('feed-them-premium/feed-them-premium.php')) {
 else 	{
 ?>
 <div class="feed-them-social-admin-input-wrap">
-  <div class="feed-them-social-admin-input-label">YouTube Name (required)</div>
+  <div class="feed-them-social-admin-input-label">YouTube Name</div>
   <div class="feed-them-social-admin-input-default">Must have <a target="_blank" href="http://www.slickremix.com/product/feed-them-social-premium-extension/">premium version</a> to edit.</div>
 <div class="clear"></div>
 </div><!--/feed-them-social-admin-input-wrap-->
 
 <div class="feed-them-social-admin-input-wrap">
-  <div class="feed-them-social-admin-input-label"># of videos (required)</div>
+  <div class="feed-them-social-admin-input-label"># of videos</div>
   <div class="feed-them-social-admin-input-default">Must have <a target="_blank" href="http://www.slickremix.com/product/feed-them-social-premium-extension/">premium version</a> to edit.</div>
 <div class="clear"></div>
 </div><!--/feed-them-social-admin-input-wrap-->
 
 <div class="feed-them-social-admin-input-wrap">
-  <div class="feed-them-social-admin-input-label"># of videos in each row?</div>
+  <div class="feed-them-social-admin-input-label"># of videos in each row</div>
   <div class="feed-them-social-admin-input-default">Must have <a target="_blank" href="http://www.slickremix.com/product/feed-them-social-premium-extension/">premium version</a> to edit. </div>
 <div class="clear"></div>
 </div><!--/feed-them-social-admin-input-wrap-->
 
 <div class="feed-them-social-admin-input-wrap">
-  <div class="feed-them-social-admin-input-label">Display First video full size?</div>
+  <div class="feed-them-social-admin-input-label">Display First video full size</div>
   <div class="feed-them-social-admin-input-default">Must have <a target="_blank" href="http://www.slickremix.com/product/feed-them-social-premium-extension/">premium version</a> to edit.</div>
 <div class="clear"></div>
 </div><!--/feed-them-social-admin-input-wrap-->
 
- <a href="http://www.slickremix.com/product/feed-them-social-premium-extension/" class="feed-them-social-admin-submit-btn" style="margin-right:1em; margin-top: 15px; display:block; max-width:192px; text-decoration:none !important;">Click here for Premium Plugin</a>
+ <a href="http://www.slickremix.com/product/feed-them-social-premium-extension/" target="_blank" class="feed-them-social-admin-submit-btn" style="margin-right:1em; margin-top: 15px; display:block; float:left; text-decoration:none !important;">Click to see Premium Version</a>
 
 <?php
 }
@@ -393,18 +415,19 @@ if(is_plugin_active('feed-them-premium/feed-them-premium.php')) {
 else 	{
 ?>
 <div class="feed-them-social-admin-input-wrap">
-  <div class="feed-them-social-admin-input-label">Pinterest Name (required)</div>
+  <div class="feed-them-social-admin-input-label">Pinterest Name</div>
   <div class="feed-them-social-admin-input-default">Must have <a target="_blank" href="http://www.slickremix.com/product/feed-them-social-premium-extension/">premium version</a> to edit.</div>
 <div class="clear"></div>
 </div><!--/feed-them-social-admin-input-wrap-->
 
 <div class="feed-them-social-admin-input-wrap">
-  <div class="feed-them-social-admin-input-label"># of Boards (required)</div>
+  <div class="feed-them-social-admin-input-label"># of Boards</div>
   <div class="feed-them-social-admin-input-default">Must have <a target="_blank" href="http://www.slickremix.com/product/feed-them-social-premium-extension/">premium version</a> to edit.</div>
 <div class="clear"></div>
-</div><!--/feed-them-social-admin-input-wrap-->
+</div>
+<!--/feed-them-social-admin-input-wrap-->
 
- <a href="http://www.slickremix.com/product/feed-them-social-premium-extension/" class="feed-them-social-admin-submit-btn" style="margin-right:1em; margin-top: 15px; display:block; max-width:192px; text-decoration:none !important;">Click here for Premium Plugin</a>
+ <a href="http://www.slickremix.com/product/feed-them-social-premium-extension/" class="feed-them-social-admin-submit-btn" style="margin-right:1em; margin-top: 15px; display:block; float:left; text-decoration:none !important;" target="_blank" >Click to see Premium Version</a>
 
 <?php
 }
@@ -427,6 +450,78 @@ else 	{
       <input class="feed-them-social-admin-submit-btn" type="submit" value="Clear All FTS Feeds Cache" />	
     </form>
   </div><!--/feed-them-clear-cache-->
+  
+  
+  
+   <div class="feed-them-custom-css">
+   <h2>Custom CSS Option</h2>
+     
+    
+  <!-- custom option for padding -->
+  <form method="post" class="fts-color-settings-admin-form" action="options.php">
+    <?php wp_nonce_field('update-options'); ?>
+  
+     <p>
+        <input name="fts-color-options-settings-custom-css" class="fts-color-settings-admin-input" type="checkbox"  id="fts-color-options-settings-custom-css" value="1" <?php echo checked( '1', get_option( 'fts-color-options-settings-custom-css' ) ); ?>/>
+        <?php  
+                        if (get_option( 'fts-color-options-settings-custom-css' ) == '1') {
+                           echo "<strong>Checked:</strong> Custom CSS option is being used now.";
+                        }
+                        else	{
+                          echo "<strong>Not Checked:</strong> You are using the default CSS.";
+                        }
+                           ?>
+       </p>
+     
+         <label class="toggle-custom-textarea-show"><span>Show</span><span class="toggle-custom-textarea-hide">Hide</span> custom CSS</label>
+          <input type="submit" class="feed-them-social-admin-submit-btn" value="<?php _e('Save Changes') ?>" />
+          <div class="clear"></div>
+       <div class="fts-custom-css-text">Thanks for using our plugin :) Add your custom CSS additions or overrides below.</div>
+      <textarea name="fts-color-options-main-wrapper-css-input" class="fts-color-settings-admin-input" id="fts-color-options-main-wrapper-css-input"><?php echo get_option('fts-color-options-main-wrapper-css-input'); ?></textarea>
+    
+      
+      <input type="hidden" name="action" value="update" />
+    <input type="hidden" name="page_options" value="fts-color-options-settings-custom-css, fts-color-options-main-wrapper-css-input" />
+   
+    
+    
+      </form>
+      </div><!--/feed-them-custom-css--> 
+      
+ 
+ 
+ 
+ 
+    <div class="feed-them-custom-logo-css">
+   <h2>Powered by Text</h2>
+     
+    
+  <!-- custom option for padding -->
+  <form method="post" class="fts-powered-by-settings-admin-form" action="options.php">
+    <?php wp_nonce_field('update-options'); ?>
+  
+     <p>
+        <input name="fts-powered-text-options-settings" class="fts-powered-by-settings-admin-input" type="checkbox"  id="fts-powered-text-options-settings" value="1" <?php echo checked( '1', get_option( 'fts-powered-text-options-settings' ) ); ?>/>
+        <?php  
+                        if (get_option( 'fts-powered-text-options-settings' ) == '1') {
+                           echo "<strong>Checked:</strong> The Powered by text will appear in the site. Awesome! Thanks so much for sharing.";
+                        }
+                        else	{
+                          echo "<strong>Not Checked:</strong> You are not showing the Powered by Logo.";
+                        }
+                           ?>
+      </p>
+     
+          <input type="submit" class="feed-them-social-admin-submit-btn" value="<?php _e('Save Changes') ?>" />
+      <div class="clear"></div>
+      <input type="hidden" name="action" value="update" />
+    <input type="hidden" name="page_options" value="fts-powered-text-options-settings" />
+   
+    
+    
+      </form>
+      </div><!--/feed-them-custom-logo-css--> 
+ 
       
   	<a class="feed-them-social-admin-slick-logo" href="http://www.slickremix.com" target="_blank"></a>
   
@@ -463,6 +558,7 @@ jQuery(function() {
 function updateTextArea_fb_group() {
 
 	var fb_group_id = ' id=' + jQuery("input#fb_group_id").val(); 
+	// var fb_group_custom_name = ' custom_name=' + jQuery("select#fb_group_custom_name").val();
 	
 	if (fb_group_id == " id=") {
 	  	 jQuery(".fb_group_id").addClass('fts-empty-error');  
@@ -493,6 +589,7 @@ function updateTextArea_fb_group() {
 //					var final_fb_group_shorcode = '[fts facebook group' + fb_group_id + ' type=group' + final_fts_rotate_shortcode + ']';
 //			}
 //			else	{
+					// var final_fb_group_shorcode = '[fts facebook group' + fb_group_id + fb_group_custom_name + ' type=group]';
 					var final_fb_group_shorcode = '[fts facebook group' + fb_group_id + ' type=group]';
 			//}	
 	
@@ -509,6 +606,8 @@ jQuery('.facebook-group-final-shortcode').val(final_fb_group_shorcode);
 function updateTextArea_fb_page() {
 
 	var fb_page_id = ' id=' + jQuery("input#fb_page_id").val(); 
+	var fb_page_posts_displayed = ' posts_displayed=' + jQuery("select#fb_page_posts_displayed").val();
+
 	
 	if (fb_page_id == " id=") {
 	  	 jQuery(".fb_page_id").addClass('fts-empty-error');  
@@ -538,7 +637,7 @@ function updateTextArea_fb_page() {
 //				var final_fb_page_shorcode = '[fts facebook page' + fb_page_id + ' type=page' + final_fts_rotate_shortcode + ']';
 //			}
 //		else	{
-				var final_fb_page_shorcode = '[fts facebook page' + fb_page_id + ' type=page]';
+				var final_fb_page_shorcode = '[fts facebook page' + fb_page_id + fb_page_posts_displayed + ' type=page]';
 	//	}
 		
 <?php } ?>
@@ -728,6 +827,16 @@ jQuery(".copyme").focus(function() {
         return false;
     });
 });
+
+
+jQuery( document ).ready(function() {
+  jQuery( ".toggle-custom-textarea-show" ).click(function() {  
+		 jQuery('textarea#fts-color-options-main-wrapper-css-input').slideToggle();
+		  jQuery('.toggle-custom-textarea-show span').toggle();
+		  jQuery('.fts-custom-css-text').toggle();
+		  
+}); 
+  });
 </script>
 <?php
 	//Premium JS

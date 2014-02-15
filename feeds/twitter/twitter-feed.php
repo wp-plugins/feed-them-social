@@ -13,35 +13,22 @@ if(is_plugin_active('feed-them-premium/feed-them-premium.php')) {
 }
 else 	{
 	extract( shortcode_atts( array(
-		'twitter_name' => '',
-		'fts_rotate_feed' => 'no',
-		'fts_rotate_poh' =>'true',
-		'fts_rotate_speed' =>'200',
-		'fts_rotate_fx' =>'fade',
-		'fts_rotate_random' => 'no'
-		
+		'twitter_name' => ''
 	), $atts ) );
 	$tweets_count ='5';
 }
 ob_start();  
-
-$type = 'twitter';
+ 
 $numTweets      = $tweets_count;
 $name           = $twitter_name;  
 $excludeReplies = true;            
-$transName      = 'list-of-tweets-'.$twitter_name;
-$cacheTime      = 15;               
 
-$backupName = $transName . '-backup';
- 
-// Do we already have saved tweet data? If not, lets get it.
-if(false === ($tweets = get_transient($transName) ) ) :	
- 
   // Get the tweets from Twitter.
-  include 'twitteroauth/twitteroauth.php';
+  include_once 'twitteroauth/twitteroauth.php';
   
-  $connection = new TwitterFTSAuth(
-    'dOIIcGrhWgooKquMWWXg',
+  
+  $connection = new TwitterOAuth(
+   	'dOIIcGrhWgooKquMWWXg',
     'qzAE4t4xXbsDyGIcJxabUz3n6fgqWlg8N02B6zM',
     '1184502104-Cjef1xpCPwPobP5X8bvgOTbwblsmeGGsmkBzwdB',  
     'd789TWA8uwwfBDjkU0iJNPDz1UenRPTeJXbmZZ4xjY'
@@ -60,9 +47,21 @@ if(false === ($tweets = get_transient($transName) ) ) :
     )
   );
   
+  $data_cache = 'wp-content/plugins/feed-them-social/feeds/twitter/cache/twitter_data_cache-'.$name.'-num'.$totalToFetch.'.json';
+	  //Check Cache
+	  if(file_exists($data_cache) && !filesize($data_cache) == 0 && filemtime($data_cache) > time() - 900 && false !== strpos($data_cache,'-num'.$totalToFetch.'')){
+		$fetchedTweets = json_decode(file_get_contents($data_cache));
+	  } 
+	  else {
+		if (!file_exists($data_cache)) {
+			touch($data_cache);
+		}
+		file_put_contents($data_cache,json_encode($fetchedTweets));
+	  }
+  
   // Did the fetch fail?
   if($connection->http_code != 200) :
-    $tweets = get_option($backupName); // False if there has never been data saved.
+   
     
   else :
     // Fetch succeeded.
@@ -103,57 +102,17 @@ if(false === ($tweets = get_transient($transName) ) ) :
 			  'id' => $twitter_id
               );
     endfor;
- 
-    // Save our new transient, and update the backup.
-    set_transient($transName, $tweets, 60 * $cacheTime);
-    update_option($backupName, $tweets);
   endif;
-endif; 
+
  
 // Now display the tweets.
 ?>
-
-
-    <div id="twitter-feed-<?php print $twitter_name?>" class="fts-twitter-div">
-    
-    
-<?php 
-if(is_plugin_active('fts-rotate/fts-rotate.php') && $fts_rotate_feed == 'yes') {
-	// FTS Rotate Head
-	include( 'wp-content/plugins/fts-rotate/includes/fts-rotate-head.php' );
-	$fts_rotate_on = 'yes';
-}
-else	{
-	$fts_rotate_on = 'no';
-}
-	
-	//start tweet loop
-	foreach($tweets as $t) : 
-	  
-	  if($fts_rotate_on == 'yes' && $fts_rotate_feed == 'yes'){
-		echo '<div class="fts-rotate-slide">';
-	  }
-	  ?>
-      
-        <p><?php print $t['text'];?></p><div class="tweeter-info"><div class="fts-twitter-image"><img class="twitter-image" src="<?php print $t['image'];?>" /></div><div class="uppercase bold"><a href="<?php print $t['user_permalink'];?>" target="_blank" class="black">@<?php print $t['name'];?></a></div><div class="right"><a href="<?php print $t['permalink']?>"><?php print $t['time'];?></a></div></div>
-      
-      <?php 
-	  if($fts_rotate_on == 'yes' && $fts_rotate_feed == 'yes'){
-		echo '</div>';
-	  }
-	  
-   endforeach; ?>
-      
-<?php 
- if($fts_rotate_on == 'yes' && $fts_rotate_feed == 'yes'){
-	// FTS Rotate Foot
-	include( 'wp-content/plugins/fts-rotate/includes/fts-rotate-foot.php' ); 
-}?> 
-    <div class="clear"></div>
-    </div> 
-    
-    
-
+<div id="twitter-feed-<?php print $twitter_name?>" class="fts-twitter-div">
+  <?php foreach($tweets as $t) : ?>
+    <p><?php print $t['text'];?></p><div class="tweeter-info"><div class="fts-twitter-image"><img class="twitter-image" src="<?php print $t['image'];?>" /></div><div class="uppercase bold"><a href="<?php print $t['user_permalink'];?>" target="_blank" class="black">@<?php print $t['name'];?></a></div><div class="right"><a href="<?php print $t['permalink']?>"><?php print $t['time'];?></a></div></div>
+  <?php endforeach; ?>
+<div class="clear"></div>
+</div> 
 
 <?php 
 return ob_get_clean(); 

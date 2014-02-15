@@ -3,7 +3,7 @@ Contributors: slickremix
 Tags:  social, social plugin, social networking, networking, pinterest, pinterest boards, pinterest feeds, pinterest photos, pinterest widget, pinterest widgets, facebook, facebook feed, facebook posts,custom feed, custom facebook feed, facebook plugin, facebook group, facebook groups, events, facebook events, facebook page events, facebook group events, facebook page, facebook pages, twitter, twitter plugin, instagram, instagram plugin, feed me social, social plugin, feed, feeds, shortcode, facebook wall  slickremix, plugin, pages, posts, images, page, post, image, youtube, youtube feed, youtube channel, youtube video, youtube videos, videos, youtube embed, embed, video iframe, admin, comments, Posts, widgets
 Requires at least: 3.4.0
 Tested up to: 3.8.1
-Stable tag: 1.3.5
+Stable tag: 1.3.6
 License: GPLv2 or later
 
 
@@ -57,6 +57,20 @@ More Social Feeds coming soon like Facebook Pages and Vimeo. [Suggest another Fe
 
 == Changelog ==
 
+= Version 1.3.5 Tuesday, February 15th, 2014 =
+ * MAJOR FIX: Twitter Feed is now be working. Went down on 1.3.4 update. Sorry to all those we affected.
+ * Fixed: Twitter post count works correctly now, and shows up right away too after updating shortcode.
+ * Fixed: Facebook likes, comments and shares now show up properly. Facebook made API changes, that's why it went down.
+ * Fixed: Links to external sites on facebook feeds are now directed properly.
+ * Fixed: UI adjustments for Facebook Feed.
+ * Fixed: Facebook output of posts on shortcode now shows properly. Should be posts, not post. This was causing any newly generated feeds to always show 5 and no more, or 20+ if the premium version was active.
+ * NEW: Facebook Page Feed now had option to filter posts by everyone or just by the page owner. 
+ * NEW: Caching system for twitter.
+ * NEW: Now you can easily adjust any of our feeds styles using the Custom CSS box on the settings page. 
+ * NEW: Add Powered by option for all those who want to help promote Feed Them Social. Simple text with link will apear at the bottom of your feeds when this is checked on the settings page. 
+ * Fixed, Premium Version: Instagram post count not spitting out correctly.
+ * Fixed, Premium Version: Facebook Event Feed widget has now been created. 
+ 
 = Version 1.3.5 Tuesday, February 11th, 2014 =
  * MAJOR FIX: Facebook Feeds now are getting the full description text.
  

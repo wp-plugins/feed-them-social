@@ -24,13 +24,16 @@ else 	{
 	extract( shortcode_atts( array(
 		'id' => '',
 		'type' => '',
-		'fts_rotate_feed' => 'no',
-		'fts_rotate_poh' =>'true',
-		'fts_rotate_speed' =>'200',
-		'fts_rotate_fx' =>'fade',
-		'fts_rotate_random' => 'no'
+		'posts_displayed' => '',
+		// 'fb_group_custom_name' => '',
+		// 'fts_rotate_feed' => 'no',
+		// 'fts_rotate_poh' =>'true',
+		// 'fts_rotate_speed' =>'200',
+		// 'fts_rotate_fx' =>'fade',
+		// 'fts_rotate_random' => 'no'
 	), $atts ) );
 	
+	$custom_name = $posts_displayed;
 	$fts_limiter = '5';
 	$fts_fb_id = $id;
 	$access_token = '226916994002335|ks3AFvyAOckiTA1u_aDoI4HYuuw';
@@ -65,7 +68,7 @@ if ($type == 'event')	{
 	  }
 	
 	//URL to get Feeds
-	if ($type == 'page')	{
+	if ($type == 'page' && $posts_displayed == 'page_only')	{
 		$url2 = 'https://graph.facebook.com/'.$fts_fb_id.'/posts?access_token='.$access_token.'';
 	}
 	else	{
@@ -87,9 +90,11 @@ if ($type == 'event')	{
 	
 
 	//URL to get comments count
-	$url3 = 'https://graph.facebook.com/'.$fts_fb_id.'/feed?access_token='.$access_token.'&fields=comments.summary(true)';
+	$url3 = 'https://graph.facebook.com/'.$fts_fb_id.'/feed?access_token='.$access_token.'&fields=comments.limit(1).summary(true),likes.limit(1).summary(true)';
 	$comment_count_data_cache = 'wp-content/plugins/feed-them-social/feeds/facebook/cache/FB_cc_cache-'.$fts_fb_id.'-num'.$fts_limiter.'.json';
-	  //Check Cache
+	$like_count_data_cache = 'wp-content/plugins/feed-them-social/feeds/facebook/cache/FB_like_cache-'.$fts_fb_id.'-num'.$fts_limiter.'.json';
+	
+	  //Check Comments Cache
 	  if(file_exists($comment_count_data_cache) && !filesize($comment_count_data_cache) == 0 && filemtime($comment_count_data_cache) > time() - 900 && false !== strpos($comment_count_data_cache,'-num'.$fts_limiter.'')){
 		$FBpost_comment_counted  = json_decode(file_get_contents($comment_count_data_cache));
 	  } 
@@ -106,6 +111,25 @@ if ($type == 'event')	{
 			touch($comment_count_data_cache);
 		}
 		file_put_contents($comment_count_data_cache,json_encode($FBpost_comment_counted));
+	  }
+	  
+	  //Check likes Cache
+	  if(file_exists($like_count_data_cache) && !filesize($like_count_data_cache) == 0 && filemtime($like_count_data_cache) > time() - 900 && false !== strpos($like_count_data_cache,'-num'.$fts_limiter.'')){
+		$FBpost_like_counted  = json_decode(file_get_contents($like_count_data_cache));
+	  } 
+	  else {
+		$like_count_data  = json_decode((file_get_contents($url3)));
+		
+		//Create likes count array
+		$FBpost_like_counted = array();
+		foreach($like_count_data ->data as $com_dat){
+				$FBpost_like_counted[] = $com_dat->likes->summary->total_count;
+		}
+		
+		if (!file_exists($like_count_data_cache)) {
+			touch($like_count_data_cache);
+		}
+		file_put_contents($like_count_data_cache,json_encode($FBpost_like_counted));
 	  }	
 
 		
@@ -139,6 +163,10 @@ else	{
 	}
 }
 
+//echo '<pre>';
+//  print_r($data);
+//  echo '</pre>';
+  
 $set_zero = 0;
 foreach($data->data as $d) {
 if($set_zero==$fts_limiter)
@@ -158,9 +186,9 @@ $FBicon = $d->icon;
 $FBby = $d->properties->text;
 $FBbylink = $d->properties->href;
 $FBpost_id = $d->id;
-$FBpost_like_count = $d->likes->count;
+$FBpost_share_count = $d->shares->count;
+$FBpost_like_count_array = $d->likes->data;
 $FBpost_comments_count_array = $d->comments->data;
-
 
 $FBfromName = $d->from->name;
 $FBstory = $d->story;
@@ -183,10 +211,10 @@ if($fts_rotate_on == 'yes' && $fts_rotate_feed == 'yes'){
       print '<div class="fts-jal-fb-right-wrap">';
       print '<div class="fts-jal-fb-top-wrap">';
       print '<span class="fts-jal-fb-user-name" style=""><a href="http://facebook.com/profile.php?id='.$d->from->id.'">'.$d->from->name.'</a>'.$FBfinalstory.'</span>';
-      print '<span class="fts-jal-fb-post-time">on '.date('F j, Y g:i a',strtotime($d->created_time)).'</span><div class="clear"></div>';
+      print '<span class="fts-jal-fb-post-time">'.date('F j, Y g:i a',strtotime($d->created_time)).'</span><div class="clear"></div>';
       print '</div>';
 
-
+//Comments Count
 if (!empty($FBpost_comments_count_array))	{	
 			$FBpost_comments_count = $FBpost_comment_counted[$set_zero];	
 }
@@ -205,6 +233,13 @@ if ($FBpost_comments_count > '1')	{
 	$final_FBpost_comments_count = $FBpost_comments_count." Comments -";
 }
 
+//Like Count
+if (!empty($FBpost_like_count_array))	{	
+			$FBpost_like_count = $FBpost_like_counted[$set_zero];	
+}
+else	{
+	$FBpost_like_count = 0;
+}
 if ($FBpost_like_count == '0')	{
 	$final_FBpost_like_count = "";
 }
@@ -214,6 +249,17 @@ if ($FBpost_like_count == '1')	{
 
 if ($FBpost_like_count > '1')	{
 	$final_FBpost_like_count = $FBpost_like_count." Likes -";
+}
+//Shares Count
+if ($FBpost_share_count == '0')	{
+	$final_FBpost_share_count = "";
+}
+if ($FBpost_share_count == '1')	{
+	$final_FBpost_share_count = "1 Share -";
+}
+
+if ($FBpost_share_count > '1')	{
+	$final_FBpost_share_count = $FBpost_share_count." Shares -";
 }
 
 	$FBpost_id_final = substr($FBpost_id, strpos($FBpost_id, "_") + 1);
@@ -262,13 +308,13 @@ if ($FBpost_like_count > '1')	{
 		
 				//Output Link Picture
 				if (!empty($FBpicture)) {
-					print '<a href="'.$fts_view_fb_link.'" target="_blank" class="fts-jal-fb-picture"><img border="0" alt="' .$d->from->name.'" src="'.$d->picture.'"/></a>';
+					print '<a href="'.$FBlink.'" target="_blank" class="fts-jal-fb-picture"><img border="0" alt="' .$d->from->name.'" src="'.$d->picture.'"/></a>';
 				};
 				
 			  print '<div class="fts-jal-fb-description-wrap">';
 				//Output Link Name
 				if (!empty($FBname)) {
-					print '<a href="'.$fts_view_fb_link.'" target="_blank" class="fts-jal-fb-name">'.$FBname.'</a>';
+					print '<a href="'.$FBlink.'" target="_blank" class="fts-jal-fb-name">'.$FBname.'</a>';
 				};
 				//Output Link Caption
 				if ($FBcaption  == 'Attachment Unavailable. This attachment may have been removed or the person who shared it may not have permission to share it with you.' ) {
@@ -319,7 +365,7 @@ if ($FBpost_like_count > '1')	{
 				print '<div class="fts-jal-fb-description-wrap">';
 				  //Output Link Name
 				  if (!empty($FB_event_name)) {
-					  print '<a href="'.$fts_view_fb_link.'" target="_blank" class="fts-jal-fb-name">'.$FB_event_name.'</a>';
+					  print '<a href="'.$FBlink.'" target="_blank" class="fts-jal-fb-name">'.$FB_event_name.'</a>';
 				  };
 				  //Output Link Caption
 				  if (!empty($FB_event_start_time)) {
@@ -339,13 +385,13 @@ if ($FBpost_like_count > '1')	{
 			
 		  //Output Link Picture
 		  if (!empty($FBpicture)) {
-			  print '<a href="'.$fts_view_fb_link.'" target="_blank" class="fts-jal-fb-picture"><img border="0" alt="' .$d->from->name.'" src="'.$d->picture.'"/></a>';
+			  print '<a href="'.$FBlink.'" target="_blank" class="fts-jal-fb-picture"><img border="0" alt="' .$d->from->name.'" src="'.$d->picture.'"/></a>';
 		  };
 		  
 		print '<div class="fts-jal-fb-description-wrap">';
 		  //Output Link Name
 		  if (!empty($FBname)) {
-			  print '<a href="'.$fts_view_fb_link.'" target="_blank" class="fts-jal-fb-name">'.$FBname.'</a>';
+			  print '<a href="'.$FBlink.'" target="_blank" class="fts-jal-fb-name">'.$FBname.'</a>';
 		  };
 		  //Output Link Caption
 		  if (!empty($FBcaption)) {
@@ -432,7 +478,7 @@ if ($FBpost_like_count > '1')	{
 		
 		  //Output Video Name
 		  if (!empty($FBname)) {
-			  print '<a href="'.$fts_view_fb_link.'" target="_blank" class="fts-jal-fb-name fb-id'.$FBpost_id.'">'.$FBname.'</a>';
+			  print '<a href="'.$FBlink.'" target="_blank" class="fts-jal-fb-name fb-id'.$FBpost_id.'">'.$FBname.'</a>';
 		  };
 		  //Output Video Caption
 		  if (!empty($FBcaption)) {
@@ -454,13 +500,13 @@ if ($FBpost_like_count > '1')	{
 		  
 		  //Output Photo Picture
 		  if (!empty($FBpicture)) {
-			  print '<a href="'.$fts_view_fb_link.'" target="_blank" class="fts-jal-fb-picture"><img border="0" alt="' .$d->from->name.'" src="'.$d->picture.'"/></a>';
+			  print '<a href="'.$FBlink.'" target="_blank" class="fts-jal-fb-picture"><img border="0" alt="' .$d->from->name.'" src="'.$d->picture.'"/></a>';
 		  };
 		  
 		print '<div class="fts-jal-fb-description-wrap">';
 		  //Output Photo Name
 		  if (!empty($FBname)) {
-			  print '<a href="'.$fts_view_fb_link.'" target="_blank" class="fts-jal-fb-name">'.$FBname.'</a>';
+			  print '<a href="'.$FBlink.'" target="_blank" class="fts-jal-fb-name">'.$FBname.'</a>';
 		  };
 		  //Output Photo Caption
 		  if (!empty($FBcaption)) {
@@ -469,7 +515,7 @@ if ($FBpost_like_count > '1')	{
 		  //Output Photo Description
 		  if (!empty($FBdescription)) {
 			  print '<div class="fts-jal-fb-description">'.$FBdescription.'</div>';
-			  print '<div>By: <a href="'.$fts_view_fb_link.'">'.$FBby.'<a/></div>';
+			  print '<div>By: <a href="'.$FBlink.'">'.$FBby.'<a/></div>';
 		  };
 		print '</div>';
 		
@@ -480,10 +526,10 @@ if ($FBpost_like_count > '1')	{
 	print '</div>';
 	
 if ($type !== 'page' or $type == 'group')	{
-	print '<a href="'.$fts_view_fb_link.'#mall_post_'.$FBpost_id_final.'" target="_blank" class="fts-jal-fb-see-more"> '.$final_FBpost_like_count.' '.$final_FBpost_comments_count.' See More</a>';
+	print '<a href="'.$FBlink.'" target="_blank" class="fts-jal-fb-see-more"> '.$final_FBpost_like_count.' '.$final_FBpost_comments_count.' '.$final_FBpost_share_count.' View</a>';
 }
 if ($type == 'page')	{
-	print '<a href="'.$fts_view_fb_link.'" target="_blank" class="fts-jal-fb-see-more"> '.$final_FBpost_like_count.' '.$final_FBpost_comments_count.' See More</a>';
+	print '<a href="'.$FBlink.'" target="_blank" class="fts-jal-fb-see-more"> '.$final_FBpost_like_count.' '.$final_FBpost_comments_count.' '.$final_FBpost_share_count.' View</a>';
 }
 
 	
