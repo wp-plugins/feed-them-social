@@ -82,7 +82,9 @@ function  fts_color_options_head_css() {
  //Settings option. Custom Powered by Feed Them Social Option
 $fts_powered_text_options_settings =  get_option( 'fts-powered-text-options-settings' );
 	if ($fts_powered_text_options_settings == '1') { 
-	
+	  // do not show the powered by feed them social text
+	}
+	else {
 	add_action('wp_enqueue_scripts', 'fts_powered_by_js');
 function  fts_powered_by_js() {
 	
@@ -91,7 +93,7 @@ function  fts_powered_by_js() {
 	  
 	  wp_enqueue_script( 'fts_powered_by_js', plugins_url( 'js/powered-by.js',  dirname(__FILE__) ),
 	  array( 'jquery' )
-	 ); 
+	 ); 	
 	}
  }
 ?>
