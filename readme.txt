@@ -63,7 +63,6 @@ More Social Feeds coming soon like Facebook Pages and Vimeo. [Suggest another Fe
  * Added: New Facbook icons for like, share and comments on all facebook feeds.
  * Added: Facebook posts with only image show the image larger, not just small thumbnail anymore.
  * Fixed: Powered by text is on by default now.
- * Fixed: View on Facebook, likes, comments and shares link directly to the facebook post.
  
 = Version 1.3.7 Saturday, February 15th, 2014 =
  * Added: Twitter cache folder
