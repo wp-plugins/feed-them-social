@@ -57,7 +57,10 @@ More Social Feeds coming soon like Facebook Pages and Vimeo. [Suggest another Fe
 
 == Changelog ==
 
-= Version 1.3.5 Tuesday, February 15th, 2014 =
+= Version 1.3.7 Tuesday, February 15th, 2014 =
+ * Added: Twitter cache folder
+ 
+= Version 1.3.6 Tuesday, February 15th, 2014 =
  * MAJOR FIX: Twitter Feed is now be working. Went down on 1.3.4 update. Sorry to all those we affected.
  * Fixed: Twitter post count works correctly now, and shows up right away too after updating shortcode.
  * Fixed: Facebook likes, comments and shares now show up properly. Facebook made API changes, that's why it went down.
