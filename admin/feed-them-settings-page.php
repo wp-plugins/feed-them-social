@@ -17,6 +17,17 @@ add_action( 'wp_enqueue_style', 'feed_them_admin_css' );
     <a href="#" class="facebook-icon"></a>
   	<a href="#" class="instagram-icon"></a>
   	<a href="#" class="pinterest-icon"></a>
+    
+    <?php
+	//show the js for the discount option under social icons on the settings page
+	if(is_plugin_active('feed-them-premium/feed-them-premium.php')) {
+				// do not show discount option
+		}
+	else { ?>
+		 <div id="discount-for-review">20% off Premium Version</div>
+    <div class="discount-review-text">Leave us a <a href="http://wordpress.org/support/view/plugin-reviews/feed-them-social" target="_blank">review here</a>, then send us an <a href="mailto:info@slickremix.com">email</a> letting us know and we'll send you a coupon code for 20% ASAP!</div>
+<?php } ?>
+   
   </div>
 
 	<form class="feed-them-social-admin-form"> 
@@ -501,13 +512,13 @@ else 	{
     <?php wp_nonce_field('update-options'); ?>
   
      <p>
-        <input name="fts-powered-text-options-settings" class="fts-powered-by-settings-admin-input" type="checkbox"  id="fts-powered-text-options-settings" value="1" <?php echo checked( '1', get_option( 'fts-powered-text-options-settings' ) ); ?>/>
+        <input name="fts-powered-text-options-settings" class="fts-powered-by-settings-admin-input" type="checkbox" id="fts-powered-text-options-settings" value="1" <?php echo checked( '1', get_option( 'fts-powered-text-options-settings' ) ); ?>/>
         <?php  
                         if (get_option( 'fts-powered-text-options-settings' ) == '1') {
-                           echo "<strong>Checked:</strong> The Powered by text will appear in the site. Awesome! Thanks so much for sharing.";
+                           echo "<strong>Checked:</strong> You are not showing the Powered by Logo.";
                         }
                         else	{
-                          echo "<strong>Not Checked:</strong> You are not showing the Powered by Logo.";
+                          echo "<strong>Not Checked:</strong>The Powered by text will appear in the site. Awesome! Thanks so much for sharing.";
                         }
                            ?>
       </p>
@@ -836,7 +847,21 @@ jQuery( document ).ready(function() {
 		  jQuery('.fts-custom-css-text').toggle();
 		  
 }); 
-  });
+
+
+<?php
+	//show the js for the discount option under social icons on the settings page
+	if(is_plugin_active('feed-them-premium/feed-them-premium.php')) {
+				// do not show the js below
+		}
+	else { ?>
+		jQuery( "#discount-for-review" ).click(function() {  
+			 jQuery('.discount-review-text').slideToggle();
+		});
+<?php } ?>
+  }); //end document ready
+  
+
 </script>
 <?php
 	//Premium JS

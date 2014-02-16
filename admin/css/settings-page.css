@@ -199,7 +199,7 @@
 	position: absolute;
 	right: 27px;
 	top: 25px;
-	width: 250px;
+	width: 195px;
 	height: 50px;
 }
 .fts-facebook_group-shortcode-form:hover .feed-them-icon-wrap a.facebook-icon {
@@ -213,6 +213,7 @@
 	opacity:1;
 	float: right;
 	margin-left: 1px;
+	margin-bottom: 1px;
 	display: block;
 	height: 38px;
 	width: 38px;
@@ -361,4 +362,38 @@ label.toggle-custom-textarea-show {
 }
 .feed-them-custom-logo-css {
 	margin-top:25px;
+}
+#discount-for-review {
+	clear:both;
+	margin-bottom:1px;
+	text-align:center;
+	font-weight:bold;
+	color: #000;
+	background: rgba(255, 255, 255, 0.53);
+	float:right;
+	width:194px;
+	line-height:40px;
+	cursor:pointer;
+}
+.discount-review-text {
+	clear:both;
+	color:#333;
+	background: rgba(255, 255, 255, 0.9);
+	width:154px;
+	float:right;
+	padding:20px;
+	text-align:left;
+	display:none;
+}
+
+.discount-review-text a {
+	display:inline-block;
+	width:auto;
+	height:auto;
+	margin:0;
+	padding:0;
+	border:none;
+	box-shadow:none;
+	float:none;
+	cursor:pointer;
 }

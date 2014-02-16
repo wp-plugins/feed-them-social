@@ -3,11 +3,12 @@ Contributors: slickremix
 Tags:  social, social plugin, social networking, networking, pinterest, pinterest boards, pinterest feeds, pinterest photos, pinterest widget, pinterest widgets, facebook, facebook feed, facebook posts,custom feed, custom facebook feed, facebook plugin, facebook group, facebook groups, events, facebook events, facebook page events, facebook group events, facebook page, facebook pages, twitter, twitter plugin, instagram, instagram plugin, feed me social, social plugin, feed, feeds, shortcode, facebook wall  slickremix, plugin, pages, posts, images, page, post, image, youtube, youtube feed, youtube channel, youtube video, youtube videos, videos, youtube embed, embed, video iframe, admin, comments, Posts, widgets, seo, wordpress, events
 Requires at least: 3.4.0
 Tested up to: 3.8.1
-Stable tag: 1.3.7
+Stable tag: 1.3.8
 License: GPLv2 or later
 
 
-This WordPress plugin will allow you to easily add a Facebook Feed for a Facebook Group, Facebook Page, Facebook Event, Instagram, Twitter, YouTube and now Pinterest Feeds to any page, post or widget on your website! 
+
+Create and display feeds for Facebook Groups, Facebook Pages, Facebook Events, Twitter, Instagram, Pinterest and YouTube on pages or posts.
 
 == Description ==
 
@@ -57,10 +58,17 @@ More Social Feeds coming soon like Facebook Pages and Vimeo. [Suggest another Fe
 
 == Changelog ==
 
-= Version 1.3.7 Tuesday, February 15th, 2014 =
+= Version 1.3.8 Sunday, February 16th, 2014 =
+ * Added: 20% off coupon option in the settings page for users who wanted to upgrade to the premium version. Limited Time only!
+ * Added: New Facbook icons for like, share and comments on all facebook feeds.
+ * Added: Facebook posts with only image show the image larger, not just small thumbnail anymore.
+ * Fixed: Powered by text is on by default now.
+ * Fixed: View on Facebook, likes, comments and shares link directly to the facebook post.
+ 
+= Version 1.3.7 Saturday, February 15th, 2014 =
  * Added: Twitter cache folder
  
-= Version 1.3.6 Tuesday, February 15th, 2014 =
+= Version 1.3.6 Saturday, February 15th, 2014 =
  * MAJOR FIX: Twitter Feed is now be working. Went down on 1.3.4 update. Sorry to all those we affected.
  * Fixed: Twitter post count works correctly now, and shows up right away too after updating shortcode.
  * Fixed: Facebook likes, comments and shares now show up properly. Facebook made API changes, that's why it went down.
