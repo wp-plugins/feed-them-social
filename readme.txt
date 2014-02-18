@@ -27,6 +27,7 @@ If you enjoy using our plugin please tell others. [Click here to share.](http://
   * [Social Page with Widgets](http://feedthemsocial.com/)
 	
 = Example SINGLE Feed Demos (1 feed per post/page) =
+  * NEW! [Facebook Event Feed Demo](http://feedthemsocial.com/facebook-event-feed-demo/)
   * [Facebook Page Feed Demo](http://feedthemsocial.com/facebook-page-feed-demo/)
   * [Facebook Group Feed Demo](http://feedthemsocial.com/facebook-group-feed-demo/)
   * [Instagram Feed Demo](http://feedthemsocial.com/instagram-feed-demo/)
