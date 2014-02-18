@@ -8,7 +8,7 @@ License: GPLv2 or later
 
 
 
-Create and display feeds for Facebook Groups, Facebook Pages, Facebook Events, Twitter, Instagram, Pinterest and YouTube on pages or posts.
+Custom feeds for  Facebook Pages, Facebook Groups, Facebook Events, Twitter, Instagram, Pinterest and YouTube on pages or posts.
 
 == Description ==
 
