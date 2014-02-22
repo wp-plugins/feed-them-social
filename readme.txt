@@ -3,7 +3,7 @@ Contributors: slickremix
 Tags:  social, social plugin, social networking, networking, pinterest, pinterest boards, pinterest feeds, pinterest photos, pinterest widget, pinterest widgets, facebook, facebook feed, facebook posts,custom feed, custom facebook feed, facebook plugin, facebook group, facebook groups, events, facebook events, facebook page events, facebook group events, facebook page, facebook pages, twitter, twitter plugin, instagram, instagram plugin, feed me social, social plugin, feed, feeds, shortcode, facebook wall  slickremix, plugin, pages, posts, images, page, post, image, youtube, youtube feed, youtube channel, youtube video, youtube videos, videos, youtube embed, embed, video iframe, admin, comments, Posts, widgets, seo, wordpress, events
 Requires at least: 3.4.0
 Tested up to: 3.8.1
-Stable tag: 1.3.8
+Stable tag: 1.3.9
 License: GPLv2 or later
 
 
@@ -58,6 +58,12 @@ More Social Feeds coming soon like Facebook Pages and Vimeo. [Suggest another Fe
   * Extract the zip file and drop the contents in the wp-content/plugins/ directory of your WordPress installation and then activate the Plugin from Plugins page. 
 
 == Changelog ==
+= Version 1.3.9 Saturday, February 22nd, 2014 =
+ * Added: New Facebook feeds UI, hope ya'll like it. No more bulky borders or backgrounds, so it looks better on any color site. The Facebook feed looks great on mobile devices too! 
+ * Added: Facebook feed can now play soundcloud music. Example link on your facebook post for a song... https://soundcloud.com/operator-srl/burning-spear-jungle-remix ...or the full album... https://soundcloud.com/operator-srl
+ * Fixed: View on Facebook, like, share and comments links now go to proper facebook post, and not external site link.
+ * Fixed: CSS issue for the large Facebook image in firefox and IE.
+ * Fixed: CSS issue for twitter min-height in smaller containers.
 
 = Version 1.3.8 Sunday, February 16th, 2014 =
  * Added: 20% off coupon option in the settings page for users who wanted to upgrade to the premium version. Limited Time only!

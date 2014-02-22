@@ -358,7 +358,7 @@ if ($FBpost_share_count > '1')	{
 				$FB_event_state = $event_data->venue->state;
 				$FB_event_start_time = date('l, F j, Y g:i a',strtotime($event_data->start_time));
 				
-				echo '<img class="fts-fb-event-photo" src="http://graph.facebook.com/'.$event_id_number.'/picture"></img>';
+				echo '<a href="'.$FBlink.'" target="_blank" class="fts-jal-fb-picture"><img class="fts-fb-event-photo" src="http://graph.facebook.com/'.$event_id_number.'/picture"></img></a>';
 				
 				print '<div class="fts-jal-fb-description-wrap">';
 				  //Output Link Name
@@ -469,6 +469,25 @@ if ($FBpost_share_count > '1')	{
 				print '});';		
 				print '});';	
 				print '</script>';
+			}
+			
+			
+			else if (strpos($FBlink, 'soundcloud') > 0) {
+				
+				// $pattern = '^https://soundcloud.com\.com/foo(?:/.*)?$';
+        		// preg_match($pattern, $FBlink, $matches);
+				$soundcloudURLfinal = parse_url($FBlink, PHP_URL_PATH);
+				
+				print '<script>';
+				print 'jQuery(document).ready(function() {';
+				print 'jQuery(".vid-btn'.$FBpost_id.'").click(function() {';
+					print 'jQuery(".fb-id'.$FBpost_id.'").hide();';
+					print 'jQuery("#video'.$FBpost_id.'").show();';
+					print 'jQuery("#video'.$FBpost_id.'").prepend(\'<iframe width="100%" height="450" scrolling="no" frameborder="no" class="video" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com'.$soundcloudURLfinal.'&amp;auto_play=true&amp;hide_related=false&amp;visual=true"></iframe>\');';
+					print 'jQuery(".video'.$FBpost_id.'").show();';
+				print '});';		
+				print '});';	
+				print '</script>';
 			} 
 		}
 						 
@@ -498,7 +517,7 @@ if ($FBpost_share_count > '1')	{
 		  
 		  //Output Photo Picture
 		  if (empty($FBname) && empty($FBdescription) && !empty($FBpicture))	{
-			 print '<a href="'.$FBlink.'" target="_blank" class="fts-jal-fb-picture"><img border="0" alt="' .$d->from->name.'" src="https://graph.facebook.com/'.$FBpost_object_id.'/picture"/></a>';
+			 print '<a href="'.$FBlink.'" target="_blank" class="fts-jal-fb-picture fts-fb-large-photo"><img border="0" alt="' .$d->from->name.'" src="https://graph.facebook.com/'.$FBpost_object_id.'/picture"/></a>';
 		  }	
 		  elseif (!empty($FBpicture)) {
 			  print '<a href="'.$FBlink.'" target="_blank" class="fts-jal-fb-picture"><img border="0" alt="' .$d->from->name.'" src="'.$d->picture.'"/></a>';
@@ -526,16 +545,19 @@ if ($FBpost_share_count > '1')	{
   print '<div class="clear"></div>';
 	print '</div>';
 	
-if ($type !== 'page' or $type == 'group')	{
-	print '<a href="'.$FBlink.'" target="_blank" class="fts-jal-fb-see-more">'.$final_FBpost_like_count.' '.$final_FBpost_comments_count.' '.$final_FBpost_share_count.' &nbsp;&nbsp;View on Facebook</a>';
-}
-if ($type == 'page')	{
+
+if ($FBtype == 'photo' )	{
 	print '
 	<a href="'.$FBlink.'" target="_blank" class="fts-jal-fb-see-more">'.$final_FBpost_like_count.' '.$final_FBpost_comments_count.' '.$final_FBpost_share_count.' &nbsp;&nbsp;View on Facebook</a>';
 }
 
+if ($FBtype == 'link' or $FBtype == 'status' or $FBtype == 'video')	{
+	print '
+	<a href="https://www.facebook.com/'.$FBpost_id.'" target="_blank" class="fts-jal-fb-see-more">'.$final_FBpost_like_count.' '.$final_FBpost_comments_count.' '.$final_FBpost_share_count.' &nbsp;&nbsp;View on Facebook</a>';
+}
+
 	
-print '<div class="clear"></div>';
+print '<div class="clear"></div>'; 
 print '</div>';
 
 //FTS Rotate Slide end

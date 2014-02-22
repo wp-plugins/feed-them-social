@@ -27,7 +27,8 @@
 .fts-jal-fb-group-display img {
 	 /* Fluid images for posts, comments, and widgets */
 	border-radius: 0px !important;
-    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2) !important;
+    max-width: 100%; */
+	 /* box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2) !important; */
 }
 .clear	{
 	clear:both;
@@ -52,6 +53,9 @@
 	transition: all 0.30s ease-in-out;
     color:#313131; 
 }
+.fts-jal-fb-user-thumb a {
+	display:block;
+}
 .fts-jal-single-fb-post a, .fts-jal-fb-header a {
     -webkit-transition: all 0.30s ease-in-out;
 	-moz-transition: all 0.30s ease-in-out;
@@ -70,10 +74,12 @@
 }	
 .fts-jal-single-fb-post {
 	width:100%;
-	padding:17px 0 !important;
-	border-bottom: 1px solid rgb(233, 233, 233);
+	padding:15px 0 6px 0 !important;
+	margin-bottom:0;
+	border-bottom: 1px solid rgba(184, 184, 184, 0.3);
     position:relative;
     line-height:17px;
+	overflow:hidden;
 }
 .widget .fts-jal-single-fb-post {
 	width:100%;
@@ -84,7 +90,7 @@
 }
 .fts-jal-fb-user-thumb	{
 	position:absolute;
-	top:19px;
+	top:0px
 	left:0px;
 	width:50px;
 	height:50px;
@@ -107,12 +113,12 @@
 	word-wrap: break-word;
 }
 .fts-jal-fb-link-wrap	{
-	border: 1px solid #D3DAE8;
-	background:#F6F7F9;
+	/* border: 1px solid #D3DAE8; */
+	/* background:#F6F7F9; */
 	margin-top:10px;
-	margin-right:3px;
+	/* margin-right:3px; */
 	border-radius:0px;
-	padding: 2px 14px 8px 5px;
+	/* padding: 2px 14px 8px 5px; */
 	-webkit-transition: background 2s;
 	-webkit-transition: all 0.30s ease-in-out;
 	-moz-transition: all 0.30s ease-in-out;
@@ -123,7 +129,7 @@
 .jal-fb-description	{
     word-wrap: break-word !important;   
 }
-.fts-jal-fb-link-wrap:hover {
+/* .fts-jal-fb-link-wrap:hover {
 	background:#FFF;
 	border:1px solid #FFF;
 	box-shadow:0px 0px 1px #999;
@@ -132,15 +138,15 @@
 	-moz-transition: all 0.30s ease-in-out;
 	-o-transition: all 0.30s ease-in-out;
 	transition: all 0.30s ease-in-out;
-}
+} */
 .fts-jal-fb-vid-wrap	{
-	border: 1px solid #D3DAE8;
-	background:#F6F7F9;
+	/* border: 1px solid #D3DAE8; */
+	/* background:#F6F7F9; */
 	min-height:84px;
 	margin-top:10px;
-	margin-right:3px;
-	padding:5px !important;
-	border-radius:2px;
+	/* margin-right:3px; */
+	/* padding:5px 5px 4px 5px !important; */
+	border-radius:0px;
 	-webkit-transition: background 2s;
 	-webkit-transition: all 0.30s ease-in-out;
 	-moz-transition: all 0.30s ease-in-out;
@@ -158,7 +164,7 @@
      margin:0 !important;
      padding:0 !important;  
 }
-.fts-jal-fb-vid-wrap:hover {
+/* .fts-jal-fb-vid-wrap:hover {
 	background:#FFF;
 	border:1px solid #FFF;
 	box-shadow:0px 0px 5px #999;
@@ -167,35 +173,39 @@
 	-moz-transition: all 0.30s ease-in-out;
 	-o-transition: all 0.30s ease-in-out;
 	transition: all 0.30s ease-in-out;
-}
+} */
 .fts-jal-fb-picture	{
 	float:left;
+	display:block;
+	margin:10px 10px 2px 0;
+	/* padding: 7px 5px 0px 5px; */
 }
 .fts-jal-fb-picture	img { 
-	margin:10px 4px 0px 0px;
+	/* margin:10px 0px 0px 0px; */
 }
 .fts-jal-fb-link-wrap img {
-     margin:7px 4px 0px 5px;   
+     margin:0;   
 }
 .fts-jal-fb-vid-picture	{
 	position:relative;
 	float:left;
 	width:130px;
-	margin: 5px 4px 3px 5px;
+    margin: 5px 10px 5px 0;
 }
 .fts-jal-fb-description-wrap	{
 	float:left;
-	padding:7px 10px 6px 10px;
-	overflow:hidden;
-	max-width:300px;
+	 padding:8px 0 0; 
+	 max-width:300px;
 	line-height:19px !important; 
 	color: #999;
 	font-size:12px !important;
 	font-weight:normal;
 }
+.fts-jal-single-fb-post .fts-jal-fb-vid-wrap .fts-jal-fb-description-wrap {
+	padding: 2px 10px 6px 0px !important;
+}
 .widget .fts-jal-fb-description-wrap	{
 	float:left;
-	padding:7px 10px 6px 10px;
 	overflow:hidden;
 	max-width:90%;
 	line-height:19px !important; 
@@ -211,7 +221,7 @@
 	color:#919191;
 }
 .fts-jal-fb-top-wrap {
-     margin-bottom:7px;   
+     margin-bottom:10px;   
 }
 .fts-jal-fb-user-name	{
 	float:left;
@@ -228,15 +238,16 @@
 .fts-jal-fb-name	{
 	font-weight:bold;
 	color: #C00;
-	padding-bottom:2px ;
+	padding-bottom:5px ;
 	font-size:15px;
 	display:block;
+	line-height:18px;
 }
 .fts-jal-fb-vid-play-btn	{
 	background:url(../images/video-play-btn.png) no-repeat 0 0;
-	bottom: 8px;
+	bottom: 6px;
 	height: 26px;
-	left: 6px;
+	left: 7px;
 	position: absolute;
 	width: 35px;
 }
@@ -246,13 +257,23 @@
 }
 .fts-jal-fb-see-more	{
 	float:right;
-	margin:10px 3px 0;
+	margin:10px 0 0;
 	font-size:12px;
 }
 
 .fts-fb-event-photo {
     float:left;
 }
+.fts-jal-fb-picture img {
+    width: 100%;
+}
+.entry-content .fts-jal-fb-picture img, .widget .fts-jal-fb-picture img {
+    max-width: 100%;
+}
+.fts-fb-large-photo {
+	margin-right:0px !important;	
+}
+
 @keyframes fade {
     from { opacity: 1.0; }
     50% { opacity: 0.5; }
