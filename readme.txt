@@ -191,16 +191,6 @@ You can find answers to your questions, suggest a feed, or just drop us a line a
 
 Yes. Currently we have [1 Premium Extension](http://www.slickremix.com/product/feed-them-social-premium-extension/). 
 
-= How Do I clear an Instagram feed's cache? =
-	1. Go to you WordPress plugin's folder. (wp-content > plugins) 
-	2. Click the folder "feed-them-social". (NOT PREMIUM)
-	3. Click the "feeds" folder.
-	4. Click the "instagram" folder.
-	5. Click the "cache" folder
-	6. Delete the file "instagram-cache-[USERS ID]". (There is a cache file for each user whos feed has been loaded.)
-	
-	That's It! 
-
 == Screenshots ==
 
 1. This is the settings area for the Feed Them Social. Generate shortcodes in seconds!
