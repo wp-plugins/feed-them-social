@@ -192,14 +192,17 @@ Yes. Currently we have [1 Premium Extension](http://www.slickremix.com/product/f
 1. This is the settings area for the Feed Them Social. Generate shortcodes in seconds!
 2. Facebook Page Shortcode Generator (The group shortcode generator looks the same)! Just add your Page ID and with the [Premium Extension](http://www.slickremix.com/product/feed-them-social-premium-extension/) change the number of Posts beyond 5.
 3. Example "Facebook Group" feed. Show up to 24 Posts per feed!
-4. Twitter Shortcode Generator! Just add your Twitter name and with the [Premium Extension](http://www.slickremix.com/product/feed-them-social-premium-extension/) change the number of Tweets Posts beyond 5.
-5. Example "Twitter" feed. Show up to 20 Tweets per feed!
-6. Convert Instagram Name to ID and Instagram Shortcode Generator! Just convert your Instagram name and with the [Premium Extension](http://www.slickremix.com/product/feed-them-social-premium-extension/) change the number of Pictures beyond 5
-7. Example "Instagram" feed. Show up to 20 Pictures per feed!
-8. Add your generated shortcode to your post or page!
-9. System Info page. To easily generate a debugging report for us!
-10. Our premium version also offers the YouTube Feed.
-11. Example of YouTube Video Popup.
-12. Another YouTube Example with other feeds on Page.
-13. Example of Premium Pinterest Feed on a Full Page.
-14. Widget Style Pinterest Feed Example.
+4. Facebook Feed view on a desktop computer
+5. Facebook Feed view on a tablet
+6. Facebook Feed view on an iphone
+7. Twitter Shortcode Generator! Just add your Twitter name and with the [Premium Extension](http://www.slickremix.com/product/feed-them-social-premium-extension/) change the number of Tweets Posts beyond 5.
+8. Example "Twitter" feed. Show up to 20 Tweets per feed!
+9. Convert Instagram Name to ID and Instagram Shortcode Generator! Just convert your Instagram name and with the [Premium Extension](http://www.slickremix.com/product/feed-them-social-premium-extension/) change the number of Pictures beyond 5
+10. Example "Instagram" feed. Show up to 20 Pictures per feed!
+11. Add your generated shortcode to your post or page!
+12. System Info page. To easily generate a debugging report for us!
+13. Our premium version also offers the YouTube Feed.
+14. Example of YouTube Video Popup.
+15. Another YouTube Example with other feeds on Page.
+16. Example of Premium Pinterest Feed on a Full Page.
+17. Widget Style Pinterest Feed Example.
