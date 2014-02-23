@@ -12,8 +12,6 @@ Custom feeds for Facebook Pages, Facebook Groups, Facebook Events, Twitter, Inst
 
 With our plugin you can create social feeds of any or all your celebrities, family, friends, yourself, or businesses. Looks great on Desktops, Tablets, and Mobile Devices.
 
-If you enjoy using our plugin please tell others. [Click here to share.](http://www.facebook.com/sharer.php?u=http://wordpress.org/plugins/feed-them-social/&t=FeedThemSocial)
-
 = Features include the following: =
   * Add as many social feeds as you need!
   * Display social feeds on any post, page, or sidebar!
@@ -44,7 +42,9 @@ If you enjoy using our plugin please tell others. [Click here to share.](http://
 More Social Feeds coming soon like Facebook Pages and Vimeo. [Suggest another Feed](http://www.slickremix.com/support-forum).
   
 SPECIAL NOTE: FTS Premium Plugin users receive unlimited FREE updates of our Premium plugin for each site activation licence purchased. NO monthly or annual fees here! 
- 
+
+If you enjoy using our plugin please tell others. [Click here to share.](http://www.facebook.com/sharer.php?u=http://wordpress.org/plugins/feed-them-social/&t=FeedThemSocial)
+
 == Installation ==
 
 = Install from WordPress Dashboard =
