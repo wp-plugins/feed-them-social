@@ -41,7 +41,7 @@ With our plugin you can create social feeds of any or all your celebrities, fami
   
 More Social Feeds coming soon like Facebook Pages and Vimeo. [Suggest another Feed](http://www.slickremix.com/support-forum).
   
-SPECIAL NOTE: FTS Premium Plugin users receive unlimited FREE updates of our Premium plugin for each site activation licence purchased. NO monthly or annual fees here! 
+SPECIAL NOTE: FTS Premium Plugin users receive unlimited FREE updates of our Premium plugin for each site activation licence purchased. NO monthly or annual fees! 
 
 If you enjoy using our plugin please tell others. [Click here to share.](http://www.facebook.com/sharer.php?u=http://wordpress.org/plugins/feed-them-social/&t=FeedThemSocial)
 
