@@ -23,53 +23,65 @@ $numTweets      = $tweets_count;
 $name           = $twitter_name;  
 $excludeReplies = true;            
 
-  // Get the tweets from Twitter.
-  include_once 'twitteroauth/twitteroauth.php';
-  
-  
-  $connection = new TwitterOAuth(
-   	'dOIIcGrhWgooKquMWWXg',
-    'qzAE4t4xXbsDyGIcJxabUz3n6fgqWlg8N02B6zM',
-    '1184502104-Cjef1xpCPwPobP5X8bvgOTbwblsmeGGsmkBzwdB',  
-    'd789TWA8uwwfBDjkU0iJNPDz1UenRPTeJXbmZZ4xjY'
-  );
-  
-  // If excluding replies, we need to fetch more than requested as the
-  // total is fetched first, and then replies removed.
-  $totalToFetch = ($excludeReplies) ? max(50, $numTweets * 3) : $numTweets;
-  
-  $fetchedTweets = $connection->get(
-    'statuses/user_timeline',
-    array(
-      'screen_name'     => $name,
-      'count'           => $totalToFetch,
-      'exclude_replies' => $excludeReplies
-    )
-  );
-  
-  $data_cache = 'wp-content/plugins/feed-them-social/feeds/twitter/cache/twitter_data_cache-'.$name.'-num'.$totalToFetch.'.json';
+ 	  $data_cache = 'wp-content/plugins/feed-them-social/feeds/twitter/cache/twitter_data_cache-'.$name.'-num'.$totalToFetch.'.json';
 	  //Check Cache
-	  if(file_exists($data_cache) && !filesize($data_cache) == 0 && filemtime($data_cache) > time() - 900 && false !== strpos($data_cache,'-num'.$totalToFetch.'')){
+	  if(file_exists($data_cache) && !filesize($data_cache) == 0 && filemtime($data_cache) > time() - 1800 && false !== strpos($data_cache,'-num'.$totalToFetch.'')){
 		$fetchedTweets = json_decode(file_get_contents($data_cache));
+		
+		$connection_check = true;
 	  } 
 	  else {
+			// Get the tweets from Twitter.
+			include_once 'twitteroauth/twitteroauth.php';
+			//Authenticate connection
+			$connection = new TwitterOAuth(
+			'dOIIcGrhWgooKquMWWXg',
+			'qzAE4t4xXbsDyGIcJxabUz3n6fgqWlg8N02B6zM',
+			'1184502104-Cjef1xpCPwPobP5X8bvgOTbwblsmeGGsmkBzwdB',  
+			'd789TWA8uwwfBDjkU0iJNPDz1UenRPTeJXbmZZ4xjY'
+			);
+			
+			// If excluding replies, we need to fetch more than requested as the
+			// total is fetched first, and then replies removed.
+			$totalToFetch = ($excludeReplies) ? max(50, $numTweets * 3) : $numTweets;
+			
+			$fetchedTweets = $connection->get(
+			'statuses/user_timeline',
+			  array(
+				'screen_name'     => $name,
+				'count'           => $totalToFetch,
+				'exclude_replies' => $excludeReplies
+			  )
+			);
+		  
 		if (!file_exists($data_cache)) {
 			touch($data_cache);
 		}
 		file_put_contents($data_cache,json_encode($fetchedTweets));
+		
+		if($connection->http_code != 200) {
+			$connection_check = false;
+		}
+		else	{
+			$connection_check = true;
+		}
 	  }
   
   // Did the fetch fail?
-  if($connection->http_code != 200) :
-   
-    
-  else :
+  if($connection_check == false) {
+  
+    if(file_exists($data_cache) && !filesize($data_cache) == 0 && false !== strpos($data_cache,'-num'.$totalToFetch.'')){
+		$fetchedTweets = json_decode(file_get_contents($data_cache));
+	  }//END IF
+	  
+  }//END IF
+  else {
     // Fetch succeeded.
     // Now update the array to store just what we need.
     // (Done here instead of PHP doing this for every page load)
     $limitToDisplay = min($numTweets, count($fetchedTweets));
     
-    for($i = 0; $i < $limitToDisplay; $i++) :
+    for($i = 0; $i < $limitToDisplay; $i++) {
       $tweet = $fetchedTweets[$i];
     
       // Core info.
@@ -101,8 +113,8 @@ $excludeReplies = true;
               'time' => $uTime,
 			  'id' => $twitter_id
               );
-    endfor;
-  endif;
+  }//End FOR
+}//END ELSE
 
  
 // Now display the tweets.
