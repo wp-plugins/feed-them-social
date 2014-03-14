@@ -53,6 +53,7 @@ function feed_them_clear_cache() {
    $plugins = array (
 	 1 => 'facebook',
 	 2 => 'instagram',
+	 3 => 'twitter',
    );
   
    foreach($plugins as $key => $value){
