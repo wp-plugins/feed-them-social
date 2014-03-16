@@ -27,8 +27,8 @@
 .fts-jal-fb-group-display img {
 	 /* Fluid images for posts, comments, and widgets */
 	border-radius: 0px !important;
-    max-width: 100%; */
-	 /* box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2) !important; */
+    /* max-width: 100%; */
+	box-shadow: 0 0px 0px rgba(0, 0, 0, 0) !important;
 }
 .clear	{
 	clear:both;
@@ -90,7 +90,7 @@
 }
 .fts-jal-fb-user-thumb	{
 	position:absolute;
-	top:0px
+	top:18px;
 	left:0px;
 	width:50px;
 	height:50px;
@@ -191,6 +191,7 @@
 	float:left;
 	width:130px;
     margin: 5px 10px 5px 0;
+	line-height:normal !important;
 }
 .fts-jal-fb-description-wrap	{
 	float:left;
@@ -245,9 +246,9 @@
 }
 .fts-jal-fb-vid-play-btn	{
 	background:url(../images/video-play-btn.png) no-repeat 0 0;
-	bottom: 6px;
+	bottom: 12px;
 	height: 26px;
-	left: 7px;
+	left: 9px;
 	position: absolute;
 	width: 35px;
 }

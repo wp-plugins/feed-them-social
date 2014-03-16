@@ -473,21 +473,28 @@ if ($FBpost_share_count > '1')	{
 			
 			
 			else if (strpos($FBlink, 'soundcloud') > 0) {
-				
-				// $pattern = '^https://soundcloud.com\.com/foo(?:/.*)?$';
-        		// preg_match($pattern, $FBlink, $matches);
-				$soundcloudURLfinal = parse_url($FBlink, PHP_URL_PATH);
-				
-				print '<script>';
-				print 'jQuery(document).ready(function() {';
-				print 'jQuery(".vid-btn'.$FBpost_id.'").click(function() {';
-					print 'jQuery(".fb-id'.$FBpost_id.'").hide();';
-					print 'jQuery("#video'.$FBpost_id.'").show();';
-					print 'jQuery("#video'.$FBpost_id.'").prepend(\'<iframe width="100%" height="450" scrolling="no" frameborder="no" class="video" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com'.$soundcloudURLfinal.'&amp;auto_play=true&amp;hide_related=false&amp;visual=true"></iframe>\');';
-					print 'jQuery(".video'.$FBpost_id.'").show();';
-				print '});';		
-				print '});';	
-				print '</script>';
+			 	//Get the SoundCloud URL
+				$url = $FBlink;
+				//Get the JSON data of song details with embed code from SoundCloud oEmbed
+				$getValues=file_get_contents('http://soundcloud.com/oembed?format=js&url='.$url.'&auto_play=true&iframe=true');
+				//Clean the Json to decode
+				$decodeiFrame=substr($getValues, 1, -2);
+				//json decode to convert it as an array
+				$jsonObj = json_decode($decodeiFrame);
+				//Change the height of the embed player if you want else uncomment below line
+				// echo str_replace('height="400"', 'height="140"', $jsonObj->html);
+				?>
+				<script>
+				jQuery(document).ready(function() {
+				   jQuery(".vid-btn<?php echo $FBpost_id ?>").click(function() {
+					jQuery(".fb-id<?php echo $FBpost_id ?>").hide();
+					jQuery("#video<?php echo $FBpost_id ?>").show();
+					jQuery("#video<?php echo $FBpost_id ?>").prepend('<?php echo $jsonObj->html ?>');
+					jQuery(".video<?php echo $FBpost_id ?>").show();
+					});
+				});
+				</script>
+                <?php
 			} 
 		}
 						 
