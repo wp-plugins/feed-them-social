@@ -2,8 +2,8 @@
 Contributors: slickremix
 Tags:  social, social plugin, social networking, networking, pinterest, pinterest boards, pinterest feeds, pinterest photos, pinterest widget, pinterest widgets, facebook, facebook feed, facebook posts,custom feed, custom facebook feed, facebook plugin, facebook group, facebook groups, events, facebook events, facebook page events, facebook group events, facebook page, facebook pages, twitter, twitter plugin, instagram, instagram plugin, feed me social, social plugin, feed, feeds, shortcode, facebook wall  slickremix, plugin, pages, posts, images, page, post, image, youtube, youtube feed, youtube channel, youtube video, youtube videos, videos, youtube embed, embed, video iframe, admin, comments, Posts, widgets, seo, wordpress, events
 Requires at least: 3.4.0
-Tested up to: 3.8.1
-Stable tag: 1.4.2
+Tested up to: 3.9.1
+Stable tag: 1.4.3
 License: GPLv2 or later
 
 Custom feeds for Facebook Pages, Facebook Groups, Facebook Events, Twitter, Instagram, Pinterest and YouTube on pages or posts.
@@ -54,6 +54,9 @@ If you enjoy using our plugin please tell others. [Click here to share.](http://
   * Extract the zip file and drop the contents in the wp-content/plugins/ directory of your WordPress installation and then activate the Plugin from Plugins page. 
 
 == Changelog ==
+= Version 1.4.3 March 20th, 2014 =
+ * FIXED: License Manager. If you don't have a premium version for this plugin then you don't need to worry about updating to this version.
+ 
 = Version 1.4.2 Sunday, March 16th, 2014 =
  * Fixed: Soundcloud url retrieval method for Facebook Feeds. 
  * Fixed: Misc. CSS adjustments for Facebook Feeds.
