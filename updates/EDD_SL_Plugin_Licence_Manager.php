@@ -1,5 +1,5 @@
 <?php
-/***
+/**
  * Plugins Activation Manager
  *
  * @author SlickRemix
