@@ -20,7 +20,7 @@ include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
 
 //Eventually add premium page file
 if(is_plugin_active('feed-them-premium/feed-them-premium.php')) {
-   include('wp-content/plugins/feed-them-premium/feeds/facebook/facebook-premium-feed.php'); 
+   include(WP_CONTENT_DIR.'/plugins/feed-them-premium/feeds/facebook/facebook-premium-feed.php'); 
 }
 else 	{
 	extract( shortcode_atts( array(
@@ -56,7 +56,7 @@ if ($type == 'event')	{
 }
 	//URL to get page info
 	$url1 = 'https://graph.facebook.com/'.$fts_fb_id.'?access_token='.$access_token.'';
-	$des_cache = 'wp-content/plugins/feed-them-social/feeds/facebook/cache/FB_des_cache-'.$fts_fb_id.'-num'.$fts_limiter.'.json';
+	$des_cache = WP_CONTENT_DIR.'/plugins/feed-them-social/feeds/facebook/cache/FB_des_cache-'.$fts_fb_id.'-num'.$fts_limiter.'.json';
 	  //Check Cache
 	  if(file_exists($des_cache) && !filesize($des_cache) == 0 && filemtime($des_cache) > time() - 900 && false !== strpos($des_cache,'-num'.$fts_limiter.'')){
 		$des = json_decode(file_get_contents($des_cache));
@@ -77,7 +77,7 @@ if ($type == 'event')	{
 		$url2 = 'https://graph.facebook.com/'.$fts_fb_id.'/feed?access_token='.$access_token.'';
 	}
 	
-	$data_cache = 'wp-content/plugins/feed-them-social/feeds/facebook/cache/FB_data_cache-'.$fts_fb_id.'-num'.$fts_limiter.'.json';
+	$data_cache = WP_CONTENT_DIR.'/plugins/feed-them-social/feeds/facebook/cache/FB_data_cache-'.$fts_fb_id.'-num'.$fts_limiter.'.json';
 	  //Check Cache
 	  if(file_exists($data_cache) && !filesize($data_cache) == 0 && filemtime($data_cache) > time() - 900 && false !== strpos($data_cache,'-num'.$fts_limiter.'')){
 		$data = json_decode(file_get_contents($data_cache));
@@ -93,8 +93,8 @@ if ($type == 'event')	{
 
 	//URL to get comments count
 	$url3 = 'https://graph.facebook.com/'.$fts_fb_id.'/feed?access_token='.$access_token.'&fields=comments.limit(1).summary(true),likes.limit(1).summary(true)';
-	$comment_count_data_cache = 'wp-content/plugins/feed-them-social/feeds/facebook/cache/FB_cc_cache-'.$fts_fb_id.'-num'.$fts_limiter.'.json';
-	$like_count_data_cache = 'wp-content/plugins/feed-them-social/feeds/facebook/cache/FB_like_cache-'.$fts_fb_id.'-num'.$fts_limiter.'.json';
+	$comment_count_data_cache = WP_CONTENT_DIR.'/plugins/feed-them-social/feeds/facebook/cache/FB_cc_cache-'.$fts_fb_id.'-num'.$fts_limiter.'.json';
+	$like_count_data_cache = WP_CONTENT_DIR.'/plugins/feed-them-social/feeds/facebook/cache/FB_like_cache-'.$fts_fb_id.'-num'.$fts_limiter.'.json';
 	
 	  //Check Comments Cache
 	  if(file_exists($comment_count_data_cache) && !filesize($comment_count_data_cache) == 0 && filemtime($comment_count_data_cache) > time() - 900 && false !== strpos($comment_count_data_cache,'-num'.$fts_limiter.'')){
@@ -139,7 +139,7 @@ print '<div class="fts-jal-fb-group-display">';
 
 if(is_plugin_active('fts-rotate/fts-rotate.php') && $fts_rotate_feed == 'yes') {
 	// FTS Rotate Head
-	include( 'wp-content/plugins/fts-rotate/includes/fts-rotate-head.php' );
+	include(WP_CONTENT_DIR.'/plugins/fts-rotate/includes/fts-rotate-head.php' );
 	$fts_rotate_on = 'yes';
 }
 else	{
@@ -576,7 +576,7 @@ if($fts_rotate_on == 'yes' && $fts_rotate_feed == 'yes'){
 
 if($fts_rotate_on == 'yes' && $fts_rotate_feed == 'yes'){
 		// FTS Rotate Foot
-		include( 'wp-content/plugins/fts-rotate/includes/fts-rotate-foot.php' ); 
+		include(WP_CONTENT_DIR.'/plugins/fts-rotate/includes/fts-rotate-foot.php' ); 
 }
 
   print '</div>';

@@ -57,7 +57,7 @@ function feed_them_clear_cache() {
    );
   
    foreach($plugins as $key => $value){
-	$files = glob('../wp-content/plugins/feed-them-social/feeds/'.$value.'/cache/*'); // get all file names
+	$files = glob(WP_CONTENT_DIR.'/plugins/feed-them-social/feeds/'.$value.'/cache/*'); // get all file names
 	  if($files){
 		foreach($files as $file){ // iterate files
 		  if(is_file($file))

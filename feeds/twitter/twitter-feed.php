@@ -9,7 +9,7 @@ function fts_twitter_func($atts){
 include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
 
 if(is_plugin_active('feed-them-premium/feed-them-premium.php')) {
-   include('wp-content/plugins/feed-them-premium/feeds/twitter/twitter-feed.php');
+   include(WP_CONTENT_DIR.'/plugins/feed-them-premium/feeds/twitter/twitter-feed.php');
 }
 else 	{
 	extract( shortcode_atts( array(
@@ -23,8 +23,8 @@ $numTweets      = $tweets_count;
 $name           = $twitter_name;  
 $excludeReplies = true;            
 
- 	  $data_cache = 'wp-content/plugins/feed-them-social/feeds/twitter/cache/twitter_data_cache-'.$name.'-num'.$totalToFetch.'.json';
-	  $data_cache_folder = 'wp-content/plugins/feed-them-social/feeds/twitter/cache';
+ 	  $data_cache = WP_CONTENT_DIR.'/plugins/feed-them-social/feeds/twitter/cache/twitter_data_cache-'.$name.'-num'.$totalToFetch.'.json';
+	  $data_cache_folder = WP_CONTENT_DIR.'/plugins/feed-them-social/feeds/twitter/cache';
 	  //Check Cache
 	  if(file_exists($data_cache) && !filesize($data_cache) == 0 && filemtime($data_cache) > time() - 1800 && false !== strpos($data_cache,'-num'.$totalToFetch.'')){
 		$fetchedTweets = json_decode(file_get_contents($data_cache));

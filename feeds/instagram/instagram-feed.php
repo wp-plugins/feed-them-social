@@ -12,7 +12,7 @@ function fts_instagram_func($atts){
 include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
 
 if(is_plugin_active('feed-them-premium/feed-them-premium.php')) {
-   include('wp-content/plugins/feed-them-premium/feeds/instagram/instagram-feed.php');
+   include(WP_CONTENT_DIR.'/plugins/feed-them-premium/feeds/instagram/instagram-feed.php');
 }
 else 	{
 	extract( shortcode_atts( array(
@@ -26,7 +26,7 @@ ob_start();
 
 //URL to get Feeds
 $insta_url = 'https://api.instagram.com/v1/users/'.$instagram_id.'/media/recent/?access_token=267791236.ee1814c.8a6ac09f714241809f7fad3941201f76';
-$cache = 'wp-content/plugins/feed-them-social/feeds/instagram/cache/instagram-cache-'.$instagram_id.'.json';
+$cache = WP_CONTENT_DIR.'/plugins/feed-them-social/feeds/instagram/cache/instagram-cache-'.$instagram_id.'.json';
  
 if(file_exists($cache) && !filesize($cache) == 0 && filemtime($cache) > time() - 900){
 	$insta_data = json_decode(file_get_contents($cache));
