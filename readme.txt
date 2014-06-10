@@ -54,10 +54,10 @@ If you enjoy using our plugin please tell others. [Click here to share.](http://
   * Extract the zip file and drop the contents in the wp-content/plugins/ directory of your WordPress installation and then activate the Plugin from Plugins page. 
 
 == Changelog ==
-= Version 1.4.4 June 8th, 2014 =
- * FIXED: Feed Them Social With now work with non-root installs.
+= Version 1.4.4 Sunday, June 8th, 2014 =
+ * FIXED: Feed Them Social will now work with non-root installs.
 
-= Version 1.4.3 March 20th, 2014 =
+= Version 1.4.3 Tuesday, March 20th, 2014 =
  * FIXED: License Manager. If you don't have a premium version for this plugin then you don't need to worry about updating to this version.
  
 = Version 1.4.2 Sunday, March 16th, 2014 =
