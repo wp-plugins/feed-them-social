@@ -25,7 +25,7 @@ add_action( 'wp_enqueue_style', 'feed_them_admin_css' );
 		}
 	else { ?>
 		 <div id="discount-for-review">20% off Premium Version</div>
-    <div class="discount-review-text">Leave us a <a href="http://wordpress.org/support/view/plugin-reviews/feed-them-social" target="_blank">review here</a>, then send us an <a href="mailto:info@slickremix.com">email</a> letting us know and we'll send you a coupon code for 20% ASAP!</div>
+    <div class="discount-review-text"><a href="http://www.slickremix.com/downloads/feed-them-social-premium-extension/" target="_blank">Share here</a> and receive 20% OFF your total order.</div>
 <?php } ?>
    
   </div>
