@@ -60,7 +60,10 @@ if ($type == 'event')	{
 	//Get Data
 	$ch = curl_init($url1);
 	curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-	curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
+	//is safe_mode or open_basedir on if not follow location
+	if ( !ini_get('safe_mode') && !ini_get('open_basedir')){
+		curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
+	}
 	curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
 	curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
 	$response = curl_exec($ch);
@@ -91,7 +94,10 @@ if ($type == 'event')	{
 	//Get Data
 	$ch = curl_init($url2);
 	curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-	curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
+	//is safe_mode or open_basedir on if not follow location
+	if ( !ini_get('safe_mode') && !ini_get('open_basedir')){
+		curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
+	}
 	curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
 	curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
 	$response2 = curl_exec($ch);
@@ -118,7 +124,10 @@ if ($type == 'event')	{
 	//Get Data
 	$ch = curl_init($url3);
 	curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-	curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
+	//is safe_mode or open_basedir on if not follow location
+	if ( !ini_get('safe_mode') && !ini_get('open_basedir')){
+		curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
+	}
 	curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
 	curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
 	$response3 = curl_exec($ch);

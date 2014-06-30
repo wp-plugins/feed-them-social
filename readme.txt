@@ -3,7 +3,7 @@ Contributors: slickremix
 Tags:  social, social plugin, social networking, networking, pinterest, pinterest boards, pinterest feeds, pinterest photos, pinterest widget, pinterest widgets, facebook, facebook feed, facebook posts,custom feed, custom facebook feed, facebook plugin, facebook group, facebook groups, events, facebook events, facebook page events, facebook group events, facebook page, facebook pages, twitter, twitter plugin, instagram, instagram plugin, feed me social, social plugin, feed, feeds, shortcode, facebook wall, slickremix, plugin, pages, posts, images, page, post, image, youtube, youtube feed, youtube channel, youtube video, youtube videos, videos, youtube embed, embed, video iframe, admin, comments, Posts, widgets, seo, wordpress
 Requires at least: 3.4.0
 Tested up to: 3.9.1
-Stable tag: 1.4.5
+Stable tag: 1.4.6
 License: GPLv2 or later
 
 Custom feeds for Facebook Pages, Facebook Groups, Facebook Events, Twitter, Instagram, Pinterest and YouTube on pages or posts.
@@ -54,6 +54,9 @@ If you enjoy using our plugin please tell others. [Click here to share.](http://
   * Extract the zip file and drop the contents in the wp-content/plugins/ directory of your WordPress installation and then activate the Plugin from Plugins page. 
 
 == Changelog ==
+= Version 1.4.6 Monday, June 30th, 2014 =
+ * FIXED: Check if users hosting has Safe_mode or open_base url on.
+
 = Version 1.4.5 Monday, June 30th, 2014 =
  * FIXED: Facebook and Instagram now use CURL methods to get feed information from APIs. This gets rid of the conflict FTS users were having with their hosting provider's firewalls blocking FTS feeds from getting information.
 

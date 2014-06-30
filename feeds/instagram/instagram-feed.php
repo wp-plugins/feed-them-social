@@ -31,7 +31,10 @@ $cache = WP_CONTENT_DIR.'/plugins/feed-them-social/feeds/instagram/cache/instagr
 	//Get Data for Instagram
 	$ch = curl_init($insta_url);
 	curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-	curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
+	//is safe_mode or open_basedir on if not follow location
+	if ( !ini_get('safe_mode') && !ini_get('open_basedir')){
+		curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
+	}
 	curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
 	curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
 	$response = curl_exec($ch);
