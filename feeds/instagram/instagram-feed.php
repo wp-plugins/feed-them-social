@@ -27,12 +27,21 @@ ob_start();
 //URL to get Feeds
 $insta_url = 'https://api.instagram.com/v1/users/'.$instagram_id.'/media/recent/?access_token=267791236.ee1814c.8a6ac09f714241809f7fad3941201f76';
 $cache = WP_CONTENT_DIR.'/plugins/feed-them-social/feeds/instagram/cache/instagram-cache-'.$instagram_id.'.json';
+
+	//Get Data for Instagram
+	$ch = curl_init($insta_url);
+	curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+	curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
+	curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
+	curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
+	$response = curl_exec($ch);
+	curl_close($ch);
  
 if(file_exists($cache) && !filesize($cache) == 0 && filemtime($cache) > time() - 900){
 	$insta_data = json_decode(file_get_contents($cache));
 } 
 else {
-	$insta_data = json_decode((file_get_contents($insta_url)));
+	$insta_data = json_decode($response);
 	if (!file_exists($cache)) {
 		touch($cache);
 	}

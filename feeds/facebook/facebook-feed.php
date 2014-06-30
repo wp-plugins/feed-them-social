@@ -1,5 +1,4 @@
 <?php
-
 add_action('wp_enqueue_scripts', 'fts_fb_head');
 function  fts_fb_head() {
     wp_enqueue_style( 'fts_fb_css', plugins_url( 'facebook/css/styles.css',  dirname(__FILE__ ) ) );
@@ -57,12 +56,22 @@ if ($type == 'event')	{
 	//URL to get page info
 	$url1 = 'https://graph.facebook.com/'.$fts_fb_id.'?access_token='.$access_token.'';
 	$des_cache = WP_CONTENT_DIR.'/plugins/feed-them-social/feeds/facebook/cache/FB_des_cache-'.$fts_fb_id.'-num'.$fts_limiter.'.json';
+	
+	//Get Data
+	$ch = curl_init($url1);
+	curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+	curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
+	curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
+	curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
+	$response = curl_exec($ch);
+	curl_close($ch);
+	
 	  //Check Cache
 	  if(file_exists($des_cache) && !filesize($des_cache) == 0 && filemtime($des_cache) > time() - 900 && false !== strpos($des_cache,'-num'.$fts_limiter.'')){
 		$des = json_decode(file_get_contents($des_cache));
 	  } 
 	  else {
-		$des = json_decode((file_get_contents($url1)));
+		$des = json_decode($response);
 		if (!file_exists($des_cache)) {
 			touch($des_cache);
 		}
@@ -78,12 +87,22 @@ if ($type == 'event')	{
 	}
 	
 	$data_cache = WP_CONTENT_DIR.'/plugins/feed-them-social/feeds/facebook/cache/FB_data_cache-'.$fts_fb_id.'-num'.$fts_limiter.'.json';
+	
+	//Get Data
+	$ch = curl_init($url2);
+	curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+	curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
+	curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
+	curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
+	$response2 = curl_exec($ch);
+	curl_close($ch);
+	
 	  //Check Cache
 	  if(file_exists($data_cache) && !filesize($data_cache) == 0 && filemtime($data_cache) > time() - 900 && false !== strpos($data_cache,'-num'.$fts_limiter.'')){
-		$data = json_decode(file_get_contents($data_cache));
+		$data = json_decode($response2);
 	  } 
 	  else {
-		$data = json_decode((file_get_contents($url2)));
+		$data = json_decode($response2);
 		if (!file_exists($data_cache)) {
 			touch($data_cache);
 		}
@@ -96,12 +115,21 @@ if ($type == 'event')	{
 	$comment_count_data_cache = WP_CONTENT_DIR.'/plugins/feed-them-social/feeds/facebook/cache/FB_cc_cache-'.$fts_fb_id.'-num'.$fts_limiter.'.json';
 	$like_count_data_cache = WP_CONTENT_DIR.'/plugins/feed-them-social/feeds/facebook/cache/FB_like_cache-'.$fts_fb_id.'-num'.$fts_limiter.'.json';
 	
+	//Get Data
+	$ch = curl_init($url3);
+	curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+	curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
+	curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
+	curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
+	$response3 = curl_exec($ch);
+	curl_close($ch);
+	
 	  //Check Comments Cache
 	  if(file_exists($comment_count_data_cache) && !filesize($comment_count_data_cache) == 0 && filemtime($comment_count_data_cache) > time() - 900 && false !== strpos($comment_count_data_cache,'-num'.$fts_limiter.'')){
 		$FBpost_comment_counted  = json_decode(file_get_contents($comment_count_data_cache));
 	  } 
 	  else {
-		$comment_count_data  = json_decode((file_get_contents($url3)));
+		$comment_count_data  = json_decode($response3);
 		
 		//Create comments count array
 		$FBpost_comment_counted = array();
@@ -120,7 +148,7 @@ if ($type == 'event')	{
 		$FBpost_like_counted  = json_decode(file_get_contents($like_count_data_cache));
 	  } 
 	  else {
-		$like_count_data  = json_decode((file_get_contents($url3)));
+		$like_count_data  = json_decode($response3);
 		
 		//Create likes count array
 		$FBpost_like_counted = array();
