@@ -55,7 +55,7 @@ If you enjoy using our plugin please tell others. [Click here to share.](http://
 
 == Changelog ==
 = Version 1.4.5 Monday, June 30th, 2014 =
- * FIXED: Facebook and Instagram now use CURL methods to get feed information from APIs. This gets rid of the conflict FTS users were having with thier hosting provider's firewalls blocking FTS feeds from getting information.
+ * FIXED: Facebook and Instagram now use CURL methods to get feed information from APIs. This gets rid of the conflict FTS users were having with their hosting provider's firewalls blocking FTS feeds from getting information.
 
 = Version 1.4.4 Sunday, June 8th, 2014 =
  * FIXED: Feed Them Social will now work with non-root installs.
