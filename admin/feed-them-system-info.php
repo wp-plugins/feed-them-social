@@ -66,7 +66,20 @@ function feed_them_system_info_page(){
         <tr>
           <td><?php _e('PHP Version','ftsystem')?></td>
           <td><?php
-                    	if ( function_exists( 'phpversion' ) ) echo phpversion();
+                    	if ( function_exists( 'phpversion' ) )
+						
+						$phpversion = phpversion();
+						$phpcheck = '5.2.9';
+						
+						if($phpversion > $phpcheck) {
+							 echo phpversion();
+						}
+						else {
+						    echo phpversion();
+							echo "<br/><mark class='no'>WARNING:</mark> Your version of php must be 5.3 or greater to use this plugin. Please upgrade the php by contacting your host provider. Some host providers will allow you to change this yourself in the hosting control panel too.";
+						}
+						
+						
                     ?></td>
         </tr>
         <tr>
