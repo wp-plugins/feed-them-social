@@ -55,7 +55,7 @@ If you enjoy using our plugin please tell others. [Click here to share.](http://
 
 == Changelog ==
 = Version 1.4.7 Thursday, July 3rd, 2014 =
- * ADDED: PHP 5.3 check on the system info page so users can verify they are using the proper php version. YOU MUST BE RUNNING PHP 5.3 TO USE OUR PREMIUM PLUGIN.
+ * ADDED: PHP 5.3 check on the system info page so users can verify they are using the proper php version. YOU MUST BE RUNNING PHP 5.3 OR ABOVE TO USE OUR PREMIUM PLUGIN.
  
 = Version 1.4.6 Monday, June 30th, 2014 =
  * FIXED: Check if users hosting has Safe_mode or open_base url on.
