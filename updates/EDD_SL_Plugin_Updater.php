@@ -1,7 +1,7 @@
 <?php
 
 // uncomment this line for testing
-//set_site_transient( 'update_plugins', null );
+set_site_transient( 'update_plugins', null );
 
 /***
  * Allows plugins to use their own update API.
@@ -28,15 +28,32 @@ class EDD_SL_Plugin_Updater {
 	 * @return void
 	 */
 	function __construct( $_api_url, $_plugin_file, $_api_data = null ) {
+		
 		$this->api_url  = trailingslashit( $_api_url );
 		$this->api_data = urlencode_deep( $_api_data );
-		$this->name     = plugin_basename( $_plugin_file );
+		$this->name     = plugin_basename($this->get_plugin_file_name($_plugin_file));
 		$this->slug     = basename( $_plugin_file, '.php');
 		$this->version  = $_api_data['version'];
 
 		// Set up hooks.
 		$this->hook();
 	}
+
+function get_plugin_file_name($_plugin_file) {
+    $plugs = plugin_basename($_plugin_file);
+	$plugin_folder_name = explode('/', $plugs);  
+
+ require_once( ABSPATH . '/wp-admin/includes/plugin.php' );
+    $plugins = get_plugins();
+    foreach( $plugins as $plugin_file => $plugin_info ) {
+		if (strpos($plugin_file, $plugin_folder_name[0]) !== false){
+			$plug_name = $plugin_file;
+		}
+    }
+	
+	return $plug_name;
+}
+
 
 	/**
 	 * Set up WordPress filters to hook into WP's update process.
@@ -77,13 +94,20 @@ class EDD_SL_Plugin_Updater {
 		$to_send = array( 'slug' => $this->slug );
 
 		$api_response = $this->api_request( 'plugin_latest_version', $to_send );
-
+		
+		
+		
 		if( false !== $api_response && is_object( $api_response ) && isset( $api_response->new_version ) ) {
 
 			if( version_compare( $this->version, $api_response->new_version, '<' ) ) {
 				$_transient_data->response[$this->name] = $api_response;
 			}
 		}
+		
+		//echo "<pre>";
+//print_r ($_transient_data);
+//echo "</pre>";
+		
 		return $_transient_data;
 	}
 
@@ -104,6 +128,8 @@ class EDD_SL_Plugin_Updater {
 		$to_send = array( 'slug' => $this->slug );
 
 		$api_response = $this->api_request( 'plugin_information', $to_send );
+		
+		
 		if ( false !== $api_response ) $_data = $api_response;
 
 		return $_data;
@@ -157,7 +183,7 @@ class EDD_SL_Plugin_Updater {
 			'url'        => home_url()
 		);
 		$request = wp_remote_post( $this->api_url, array( 'timeout' => 15, 'sslverify' => false, 'body' => $api_params ) );
-		
+
 
 		if ( ! is_wp_error( $request ) ):
 			$request = json_decode( wp_remote_retrieve_body( $request ) );
