@@ -25,7 +25,7 @@ else 	{
 ob_start(); 
 
 //URL to get Feeds
-$insta_url = 'https://api.instagram.com/v1/users/'.$instagram_id.'/media/recent/?access_token=267791236.ee1814c.8a6ac09f714241809f7fad3941201f76';
+$insta_url = 'https://api.instagram.com/v1/users/'.$instagram_id.'/media/recent/?access_token=267791236.df31d88.30e266dda9f84e9f97d9e603f41aaf9e';
 $cache = WP_CONTENT_DIR.'/plugins/feed-them-social/feeds/instagram/cache/instagram-cache-'.$instagram_id.'.json';
 
 	//Get Data for Instagram
