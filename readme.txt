@@ -54,7 +54,7 @@ If you enjoy using our plugin please tell others. [Click here to share.](http://
   * Extract the zip file and drop the contents in the wp-content/plugins/ directory of your WordPress installation and then activate the Plugin from Plugins page. 
 
 == Changelog ==
-= Version 1.4.9 Monday, July 28th, 2014 =
+= Version 1.4.9 Thursday, July 31th, 2014 =
  * NEW: New Instagram access token. 
 
 = Version 1.4.8 Monday, July 28th, 2014 =
