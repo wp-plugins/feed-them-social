@@ -434,7 +434,27 @@ if ($FBpost_share_count > '1')	{
 		  };
 		  //Output Link Description
 		  if (!empty($FBdescription)) {
-			  print '<div class="jal-fb-description">'.$FBdescription.'</div>';
+			 
+			 if(is_plugin_active('feed-them-premium/feed-them-premium.php'))  {
+	  		   // here we trim the words for the links description text... for the premium version. The $words string actually comes from the javascript	
+			   $fts_custom_number = trim($words);
+			   
+			   $content = $FBdescription;
+			   $trimmed_content = wp_trim_words( $content, $fts_custom_number, '...' );
+				if (!empty($words)) {
+					 print '<div class="jal-fb-description">'.nl2br($trimmed_content).'</div>';
+			 
+				}
+				  else {
+					 print '<div class="jal-fb-description">'.nl2br($FBdescription).'</div>';
+				  }
+		} //END is_plugin_active
+		
+		// if the premium plugin is not active we will just show the regular full description
+		else {
+					 print '<div class="jal-fb-description">'.$FBdescription.'</div>';
+				  }
+			 
 		  };
 		print '<div class="clear"></div></div>';
 		
