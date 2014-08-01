@@ -355,11 +355,53 @@ if ($FBpost_share_count > '1')	{
 					  print '<div class="fts-jal-fb-caption" style="width:100% !important">This user\'s permissions are keeping you from seeing this post. Please Click "See More" to view this post on this group\'s facebook wall.</div>';
 				}
 				else {
-					print '<div class="fts-jal-fb-caption">'.$FBcaption.'</div>';
+					
+					if(is_plugin_active('feed-them-premium/feed-them-premium.php'))  {
+	  		   // here we trim the words for the links description text... for the premium version. The $words string actually comes from the javascript	
+			   $fts_custom_number = trim($words);
+			   
+			   $content = $FBcaption;
+			   $trimmed_content = wp_trim_words( $content, $fts_custom_number, '...' );
+				if (!empty($words)) {
+					 print '<div class="fts-jal-fb-caption">'.nl2br($trimmed_content).'</div>';
+			 
+				}
+				  else {
+					 print '<div class="fts-jal-fb-caption">'.nl2br($FBcaption).'</div>';
+				  }
+		} //END is_plugin_active
+		
+		// if the premium plugin is not active we will just show the regular full description
+		else {
+					 print '<div class="fts-jal-fb-caption">'.$FBcaption.'</div>';
+				  }
+				  
+				  
+					//print '<div class="fts-jal-fb-caption">'.$FBcaption.'</div>';
 				};
 				//Output Link Description
 				if(!empty($FBdescription)) {
-					print '<div class="fts-jal-fb-description">'.$FBdescription.'</div>';
+					
+					if(is_plugin_active('feed-them-premium/feed-them-premium.php'))  {
+	  		   // here we trim the words for the links description text... for the premium version. The $words string actually comes from the javascript	
+			   $fts_custom_number = trim($words);
+			   
+			   $content = $FBdescription;
+			   $trimmed_content = wp_trim_words( $content, $fts_custom_number, '...' );
+				if (!empty($words)) {
+					 print '<div class="fts-jal-fb-description">'.nl2br($trimmed_content).'</div>';
+			 
+				}
+				  else {
+					 print '<div class="fts-jal-fb-description">'.nl2br($FBdescription).'</div>';
+				  }
+		} //END is_plugin_active
+		
+		// if the premium plugin is not active we will just show the regular full description
+		else {
+					 print '<div class="fts-jal-fb-description">'.$FBdescription.'</div>';
+				  }
+				  
 				};
 			  print '<div class="clear"></div></div>';
 			}
@@ -430,12 +472,37 @@ if ($FBpost_share_count > '1')	{
 		  };
 		  //Output Link Caption
 		  if (!empty($FBcaption)) {
-			  print '<div class="fts-jal-fb-caption">'.$FBcaption.'</div>';
+			 
+			 if(is_plugin_active('feed-them-premium/feed-them-premium.php'))  {
+	  		   // here we trim the words for the links description text... for the premium version. The $words string actually comes from the javascript	
+			   $fts_custom_number = trim($words);
+			   
+			   $content = $FBcaption;
+			   $trimmed_content = wp_trim_words( $content, $fts_custom_number, '...' );
+				if (!empty($words)) {
+					 print '<div class="jal-fb-caption">'.nl2br($trimmed_content).'</div>';
+			 
+				}
+				  else {
+					 print '<div class="jal-fb-caption">'.nl2br($FBcaption).'</div>';
+				  }
+		} //END is_plugin_active
+		
+		// if the premium plugin is not active we will just show the regular full description
+		else {
+					 print '<div class="jal-fb-caption">'.$FBcaption.'</div>';
+				  }
+				  
+				  
+			 
+			 // print '<div class="fts-jal-fb-caption">'.$FBcaption.'</div>';
 		  };
 		  //Output Link Description
 		  if (!empty($FBdescription)) {
-			 
-			 if(is_plugin_active('feed-them-premium/feed-them-premium.php'))  {
+			  
+			  	
+				
+			if(is_plugin_active('feed-them-premium/feed-them-premium.php'))  {
 	  		   // here we trim the words for the links description text... for the premium version. The $words string actually comes from the javascript	
 			   $fts_custom_number = trim($words);
 			   
@@ -454,7 +521,9 @@ if ($FBpost_share_count > '1')	{
 		else {
 					 print '<div class="jal-fb-description">'.$FBdescription.'</div>';
 				  }
-			 
+				  
+			  
+			 // print '<div class="jal-fb-description">'.$FBdescription.'</div>';
 		  };
 		print '<div class="clear"></div></div>';
 		
@@ -594,7 +663,31 @@ if ($FBpost_share_count > '1')	{
 		  };
 		  //Output Photo Caption
 		  if (!empty($FBcaption)) {
-			  print '<div class="fts-jal-fb-caption">'.$FBcaption.'</div>';
+			  
+			  
+			  if(is_plugin_active('feed-them-premium/feed-them-premium.php'))  {
+	  		   // here we trim the words for the links description text... for the premium version. The $words string actually comes from the javascript	
+			   $fts_custom_number = trim($words);
+			   
+			   $content = $FBcaption;
+			   $trimmed_content = wp_trim_words( $content, $fts_custom_number, '...' );
+				if (!empty($words)) {
+					 print '<div class="fts-jal-fb-description">'.nl2br($trimmed_content).'</div>';
+			 
+				}
+				  else {
+					 print '<div class="fts-jal-fb-description">'.nl2br($FBcaption).'</div>';
+				  }
+		} //END is_plugin_active
+		
+		// if the premium plugin is not active we will just show the regular full description
+		else {
+					  print '<div class="fts-jal-fb-caption">'.$FBcaption.'</div>';
+				  }
+				  
+				  
+			  
+			 
 		  };
 		  //Output Photo Description
 		  if (!empty($FBdescription)) {
@@ -611,13 +704,11 @@ if ($FBpost_share_count > '1')	{
 	
 
 if ($FBtype == 'photo' )	{
-	print '
-	<a href="'.$FBlink.'" target="_blank" class="fts-jal-fb-see-more">'.$final_FBpost_like_count.' '.$final_FBpost_comments_count.' '.$final_FBpost_share_count.' &nbsp;&nbsp;View on Facebook</a>';
+	_e( '<a href="'.$FBlink.'" target="_blank" class="fts-jal-fb-see-more">'.$final_FBpost_like_count.' '.$final_FBpost_comments_count.' '.$final_FBpost_share_count.' &nbsp;&nbsp;View on Facebook</a>', 'feed-them-social' );
 }
 
 if ($FBtype == 'link' or $FBtype == 'status' or $FBtype == 'video')	{
-	print '
-	<a href="https://www.facebook.com/'.$FBpost_id.'" target="_blank" class="fts-jal-fb-see-more">'.$final_FBpost_like_count.' '.$final_FBpost_comments_count.' '.$final_FBpost_share_count.' &nbsp;&nbsp;View on Facebook</a>';
+	_e( '<a href="https://www.facebook.com/'.$FBpost_id.'" target="_blank" class="fts-jal-fb-see-more">'.$final_FBpost_like_count.' '.$final_FBpost_comments_count.' '.$final_FBpost_share_count.' &nbsp;&nbsp;View on Facebook</a>', 'feed-them-social' );
 }
 
 	
