@@ -3,7 +3,7 @@
 Plugin Name: Feed Them Social
 Plugin URI: http://slickremix.com/
 Description: Create and display custom feeds for Facebook Groups, Facebook Pages, Facebook Events, Twitter, Instagram, Pinterest and YouTube.
-Version: 1.4.9
+Version: 1.5.0
 Author: SlickRemix
 Author URI: http://slickremix.com/
 Requires at least: wordpress 3.4.0
