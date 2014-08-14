@@ -4,6 +4,8 @@
 .instagram-placeholder ul, .instagram-placeholder li	{
 	padding: 0 !important;
 	margin: 0 !important;
+	line-height:1.3em !important;
+	border:none !important;
 	
 }
 .widget .instagram-placeholder ul, .widget .instagram-placeholder li	{
@@ -114,6 +116,7 @@ a.instaG-backg-link {
 	font-size:11px;
 	height:15px;
 	line-height:20px;
+	font-weight:normal !important;
 }
 .instagram-placeholder .heart-comments-wrap ul {
 	height:20px;
@@ -133,7 +136,7 @@ a.instaG-backg-link {
 	padding:0 0 0 16px !important;
 	line-height:10px !important;
 	font-size:12px !important;
-	font-weight:bold;
+	font-weight:normal !important;
 	color:#888888;
 	position:relative;
 	z-index:1;

@@ -1,3 +1,8 @@
+.fts-twitter-div * {
+	-webkit-box-sizing: content-box;
+	-moz-box-sizing: content-box;
+	box-sizing: content-box;
+}
 .fts-twitter-div a:hover	{
     color:#444;
 	-webkit-transition: all 0.30s ease-in-out;
@@ -115,8 +120,9 @@
      
 }
 .tweeter-info img {
-     border-radius:5px;
-     border:1px solid #aaa
+     border-radius:0px;
+	 box-shadow:0 !important;
+     border:1px solid #eee
 }
 .fts-twitter-link	{
 	position:absolute;

@@ -1,7 +1,7 @@
 /*=================================================
 	Font Awesome icons for facebook feeds 
 =================================================*/
-.fts-jal-single-fb-post [class^="icon-"],[class*=" icon-"] {
+.fts-jal-single-fb-post [class^="icon-"] {
 	margin:0 !important;
 	display:block;
 	padding:0 !important;
@@ -15,11 +15,13 @@
 	background-repeat: repeat !important;
 	background: transparent !important;
 }
-.fts-jal-single-fb-post [class^="icon-thumbs-up"], .fts-jal-single-fb-post [class*=" icon--thumbs-up"], .fts-jal-single-fb-post [class^="icon-comments"],[class*=" icon-comments"], .fts-jal-single-fb-post [class^="icon-file"],[class*=" icon-file"] {
+.fts-jal-single-fb-post [class^="icon-thumbs-up"], .fts-jal-single-fb-post [class*=" icon--thumbs-up"], .fts-jal-single-fb-post [class^="icon-comments"], .fts-jal-single-fb-post [class*=" icon--file"], .fts-jal-single-fb-post [class^="icon-file"] {
 	display:inline-block !important;
 	margin-left:7px !important;
 }
-
+.fts-jal-single-fb-post [class^="icon-"]:before {
+	font-family: 'fontawesome' !important;
+}
 /*=================================================
 	fts-jal Facebook Group Header 
 =================================================*/
