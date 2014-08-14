@@ -19,9 +19,6 @@ With our plugin you can create social feeds of any or all your celebrities, fami
   * Responsive social Feeds!
   * With our [Premium Extension](http://www.slickremix.com/product/feed-them-social-premium-extension/) you can set how many posts, pictures, tweets, or videos for each individual social feed! We now have simple widgets available for all the feeds. This premium edition also allows our basic shortcode to work with text widgets. Facebook Groups now has the option to hide the Title or Description too! [See Example Demo](http://feedthemsocial.com/)
 
-= Example Widget Feed Demo =
-  * [Social Page with Widgets](http://feedthemsocial.com/)
-	
 = Example SINGLE Feed Demos (1 feed per post/page) =
   * NEW! [Facebook Event Feed Demo](http://feedthemsocial.com/facebook-event-feed-demo/)
   * [Facebook Page Feed Demo](http://feedthemsocial.com/facebook-page-feed-demo/)
@@ -38,10 +35,10 @@ With our plugin you can create social feeds of any or all your celebrities, fami
  * NEW! [Pinterest Feed Demo](http://feedthemsocial.com/pinterest/)
  * NEW! [Youtube + Instagram + Pinterest Feeds Demo](http://feedthemsocial.com/youtube-instagram/)
  * [YouTube Feed Demo](http://feedthemsocial.com/2013/01/youtube-feed-demo-1-large-with-3-video-per-row/)
-  
-More Social Feeds coming soon like Facebook Pages and Vimeo. [Suggest another Feed](http://www.slickremix.com/support-forum).
-  
-SPECIAL NOTE: FTS Premium Plugin users receive unlimited FREE updates of our Premium plugin for each site activation licence purchased. NO monthly or annual fees! 
+
+= Example PREMIUM Widget Feed Demo =
+  * [Social Page with Widgets](http://feedthemsocial.com/)
+	
 
 If you enjoy using our plugin please tell others. [Click here to share.](http://www.facebook.com/sharer.php?u=http://wordpress.org/plugins/feed-them-social/&t=FeedThemSocial)
 
