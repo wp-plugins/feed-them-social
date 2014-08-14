@@ -29,8 +29,16 @@ $insta_url = 'https://api.instagram.com/v1/users/'.$instagram_id.'/media/recent/
 $cache = WP_CONTENT_DIR.'/plugins/feed-them-social/feeds/instagram/cache/instagram-cache-'.$instagram_id.'.json';
 
 	//Get Data for Instagram
-	$request1 =  wp_remote_get($insta_url);
-	$response = wp_remote_retrieve_body( $request1 );
+	$ch = curl_init($insta_url);
+	curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+	//is safe_mode or open_basedir on if not follow location
+	if ( !ini_get('safe_mode') && !ini_get('open_basedir')){
+		curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
+	}
+	curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
+	curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
+	$response = curl_exec($ch);
+	curl_close($ch);
  
 if(file_exists($cache) && !filesize($cache) == 0 && filemtime($cache) > time() - 900){
 	$insta_data = json_decode(file_get_contents($cache));
