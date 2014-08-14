@@ -58,16 +58,8 @@ if ($type == 'event')	{
 	$des_cache = WP_CONTENT_DIR.'/plugins/feed-them-social/feeds/facebook/cache/FB_des_cache-'.$fts_fb_id.'-num'.$fts_limiter.'.json';
 	
 	//Get Data
-	$ch = curl_init($url1);
-	curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-	//is safe_mode or open_basedir on if not follow location
-	if ( !ini_get('safe_mode') && !ini_get('open_basedir')){
-		curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
-	}
-	curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
-	curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
-	$response = curl_exec($ch);
-	curl_close($ch);
+	$request1 =  wp_remote_get($url1);
+	$response = wp_remote_retrieve_body( $request1 );
 	
 	  //Check Cache
 	  if(file_exists($des_cache) && !filesize($des_cache) == 0 && filemtime($des_cache) > time() - 900 && false !== strpos($des_cache,'-num'.$fts_limiter.'')){
@@ -92,16 +84,8 @@ if ($type == 'event')	{
 	$data_cache = WP_CONTENT_DIR.'/plugins/feed-them-social/feeds/facebook/cache/FB_data_cache-'.$fts_fb_id.'-num'.$fts_limiter.'.json';
 	
 	//Get Data
-	$ch = curl_init($url2);
-	curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-	//is safe_mode or open_basedir on if not follow location
-	if ( !ini_get('safe_mode') && !ini_get('open_basedir')){
-		curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
-	}
-	curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
-	curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
-	$response2 = curl_exec($ch);
-	curl_close($ch);
+	$request2 =  wp_remote_get($url2);
+	$response2 = wp_remote_retrieve_body($request2);
 	
 	  //Check Cache
 	  if(file_exists($data_cache) && !filesize($data_cache) == 0 && filemtime($data_cache) > time() - 900 && false !== strpos($data_cache,'-num'.$fts_limiter.'')){
@@ -122,16 +106,8 @@ if ($type == 'event')	{
 	$like_count_data_cache = WP_CONTENT_DIR.'/plugins/feed-them-social/feeds/facebook/cache/FB_like_cache-'.$fts_fb_id.'-num'.$fts_limiter.'.json';
 	
 	//Get Data
-	$ch = curl_init($url3);
-	curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-	//is safe_mode or open_basedir on if not follow location
-	if ( !ini_get('safe_mode') && !ini_get('open_basedir')){
-		curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
-	}
-	curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
-	curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
-	$response3 = curl_exec($ch);
-	curl_close($ch);
+	$request3 =  wp_remote_get($url3);
+	$response3 = wp_remote_retrieve_body($request3);
 	
 	  //Check Comments Cache
 	  if(file_exists($comment_count_data_cache) && !filesize($comment_count_data_cache) == 0 && filemtime($comment_count_data_cache) > time() - 900 && false !== strpos($comment_count_data_cache,'-num'.$fts_limiter.'')){
@@ -429,7 +405,9 @@ if ($FBpost_share_count > '1')	{
 		  
 		  	if($host == 'www.facebook.com' and $first_dir == 'events')	{
 				$event_url = 'https://graph.facebook.com/'.$event_id_number.'/?access_token='.$access_token.'';
-				$event_data = json_decode(file_get_contents($event_url));
+				//$event_data =  json_decode(wp_remote_get($event_url));
+				$event_data_request =  wp_remote_get($event_url);
+				$event_data =json_decode( wp_remote_retrieve_body($event_data_request));
 				
 				$FB_event_name = $event_data->name;
 				$FB_event_location = $event_data->location;
