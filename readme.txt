@@ -55,6 +55,7 @@ If you enjoy using our plugin please tell others. [Click here to share.](http://
  * NEW: Settings page now includes a select option of date and time formats for Facebook and Twitter.
  * NEW: Settings page now looks and works great on mobile and tablets.
  * NEW: FTS is now translation ready. Please visit [http://glotpress.slickremix.com/projects/feed-them-social/feed-them-premium](http://glotpress.slickremix.com/projects/feed-them-social/feed-them-premium) to help translate.
+ * FIXED: Register settings options properly.
  
 = Version 1.5.1 Thursday, August 14th, 2014 =
  * UPDATED: Curl Method Facebook to batch get information. Super Load Time Increase!
