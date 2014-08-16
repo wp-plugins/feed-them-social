@@ -245,6 +245,16 @@ $FBfromName = $d->from->name;
 $FBstory = $d->story;
 
 
+ $CustomDateCheck = get_option('fts-date-and-time-format');
+	  if($CustomDateCheck) {
+	  	$CustomDateFormat = get_option('fts-date-and-time-format');
+	  }
+	  else {
+		$CustomDateFormat = 'F jS, Y \a\t g:ia'; 
+	  }
+
+$CustomTimeFormat = strtotime($d->created_time);
+
 if (!empty($FBstory)) {
 	$FBfinalstory  = preg_replace('/'.$FBfromName.'/', '', $FBstory, 1);
 }
@@ -262,7 +272,7 @@ if($fts_rotate_on == 'yes' && $fts_rotate_feed == 'yes'){
       print '<div class="fts-jal-fb-right-wrap">';
       print '<div class="fts-jal-fb-top-wrap">';
       print '<span class="fts-jal-fb-user-name" style=""><a href="http://facebook.com/profile.php?id='.$d->from->id.'">'.$d->from->name.'</a>'.$FBfinalstory.'</span>';
-      print '<span class="fts-jal-fb-post-time">'.date('F j, Y g:i a',strtotime($d->created_time)).'</span><div class="clear"></div>';
+      print '<span class="fts-jal-fb-post-time">'.date($CustomDateFormat, $CustomTimeFormat).'</span><div class="clear"></div>';
       print '</div>';
 
 //Comments Count
@@ -368,7 +378,9 @@ if ($FBpost_share_count > '1')	{
 				};
 				//Output Link Caption
 				if ($FBcaption  == 'Attachment Unavailable. This attachment may have been removed or the person who shared it may not have permission to share it with you.' ) {
-					  print '<div class="fts-jal-fb-caption" style="width:100% !important">This user\'s permissions are keeping you from seeing this post. Please Click "See More" to view this post on this group\'s facebook wall.</div>';
+					  print '<div class="fts-jal-fb-caption" style="width:100% !important">';
+					  _e('This user\'s permissions are keeping you from seeing this post. Please Click "View on Facebook" to view this post on this group\'s facebook wall.', 'feed-them-social');
+					  print '</div>';
 				}
 				else {
 					
@@ -720,11 +732,15 @@ if ($FBpost_share_count > '1')	{
 	
 
 if ($FBtype == 'photo' )	{
-	_e( '<a href="'.$FBlink.'" target="_blank" class="fts-jal-fb-see-more">'.$final_FBpost_like_count.' '.$final_FBpost_comments_count.' '.$final_FBpost_share_count.' &nbsp;&nbsp;View on Facebook</a>', 'feed-them-social' );
+	print '<a href="'.$FBlink.'" target="_blank" class="fts-jal-fb-see-more">'.$final_FBpost_like_count.' '.$final_FBpost_comments_count.' '.$final_FBpost_share_count.' &nbsp;&nbsp;';
+	_e( 'View on Facebook', 'feed-them-social' );
+	print '</a>';
 }
 
 if ($FBtype == 'link' or $FBtype == 'status' or $FBtype == 'video')	{
-	_e( '<a href="https://www.facebook.com/'.$FBpost_id.'" target="_blank" class="fts-jal-fb-see-more">'.$final_FBpost_like_count.' '.$final_FBpost_comments_count.' '.$final_FBpost_share_count.' &nbsp;&nbsp;View on Facebook</a>', 'feed-them-social' );
+	print '<a href="https://www.facebook.com/'.$FBpost_id.'" target="_blank" class="fts-jal-fb-see-more">'.$final_FBpost_like_count.' '.$final_FBpost_comments_count.' '.$final_FBpost_share_count.' &nbsp;&nbsp;';
+	_e( 'View on Facebook', 'feed-them-social' );
+	print '</a>';
 }
 
 	

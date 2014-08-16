@@ -23,6 +23,15 @@ This is the main file for building the plugin into wordpress
 */
 define( 'FEED_THEM_PLUGIN_PATH', plugins_url());
 
+function fts_action_init()
+{
+// Localization
+load_plugin_textdomain('feed-them-social', false, basename( dirname( __FILE__ ) ) . '/languages' );
+}
+// Add actions
+add_action('init', 'fts_action_init');
+
+
 // Include admin
 include( 'updates/update-functions.php' );
 include( 'admin/feed-them-system-info.php' );

@@ -3,24 +3,38 @@
  	Function file for Feed Them Social plugin
 ************************************************/
 
-add_action('admin_menu', 'Feed_Them_Main_Menu');
 
+
+
+
+
+if ( is_admin() ){
+//Adds setting page to FTS menu
+	add_action( 'admin_init', 'fts_settings_page_register_settings' );
+	add_action('admin_menu', 'Feed_Them_Main_Menu');
+	add_action('admin_menu', 'Feed_Them_Submenu_Pages');
+}
 function Feed_Them_Main_Menu() {
    add_menu_page('Feed Them Social', 'Feed Them', 'edit_plugins', 'feed-them-settings-page', 'feed_them_settings_page', 'div', 99);
 }
-
-add_action('admin_menu', 'Feed_Them_Submenu_Pages');
-
 function Feed_Them_Submenu_Pages() {   
 	add_submenu_page( 
-          'feed-them-settings-page'
-        , 'System Info' 
-        , 'System Info'
-        , 'manage_options'
-        , 'fts-system-info-submenu-page'
-        , 'feed_them_system_info_page'
+        'feed-them-settings-page',
+        'System Info' ,
+        'System Info',
+        'manage_options',
+        'fts-system-info-submenu-page',
+        'feed_them_system_info_page'
     );
 }
+function fts_settings_page_register_settings() { 
+  register_setting( 'feed-them-social-settings', 'fts-date-and-time-format' );
+  register_setting( 'feed-them-social-settings', 'fts-color-options-settings-custom-css' );
+  register_setting( 'feed-them-social-settings', 'fts-color-options-main-wrapper-css-input' );
+  register_setting( 'feed-them-social-settings', 'fts-powered-text-options-settings' );
+}
+
+
 
 add_action('admin_enqueue_scripts', 'feed_them_admin_css');
 // THIS GIVES US SOME OPTIONS FOR STYLING THE ADMIN AREA

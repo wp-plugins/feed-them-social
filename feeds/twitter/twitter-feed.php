@@ -135,7 +135,15 @@ $excludeReplies = true;
  
       // Need to get time in Unix format.
 	  $times = $tweet->created_at;
-      $uTime = date('F j, Y, \a\t g:i a',strtotime($times));
+	  
+	  $CustomDateCheck = get_option('fts-date-and-time-format');
+	  if($CustomDateCheck) {
+	  	$CustomDateFormatTwitter = get_option('fts-date-and-time-format');
+	  }
+	  else {
+		$CustomDateFormatTwitter = 'F jS, Y \a\t g:ia'; 
+	  }
+      $uTime = date($CustomDateFormatTwitter ,strtotime($times));
 	  $twitter_id = $tweet->id_str;
  
       // Now make the new array.

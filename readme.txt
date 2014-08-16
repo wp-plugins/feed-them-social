@@ -3,7 +3,7 @@ Contributors: slickremix
 Tags:  social, social plugin, social networking, networking, pinterest, pinterest boards, pinterest feeds, pinterest photos, pinterest widget, pinterest widgets, facebook, facebook feed, facebook posts,custom feed, custom facebook feed, facebook plugin, facebook group, facebook groups, events, facebook events, facebook page events, facebook group events, facebook page, facebook pages, twitter, twitter plugin, instagram, instagram plugin, feed me social, social plugin, feed, feeds, shortcode, facebook wall, slickremix, plugin, pages, posts, images, page, post, image, youtube, youtube feed, youtube channel, youtube video, youtube videos, videos, youtube embed, embed, video iframe, admin, comments, Posts, widgets, seo, wordpress
 Requires at least: 3.4.0
 Tested up to: 3.9.2
-Stable tag: 1.5.1
+Stable tag: 1.5.2
 License: GPLv2 or later
 
 Custom feeds for Facebook Pages, Facebook Groups, Facebook Events, Twitter, Instagram, Pinterest and YouTube on pages or posts.
@@ -20,7 +20,7 @@ With our plugin you can create social feeds of any or all your celebrities, fami
   * With our [Premium Extension](http://www.slickremix.com/product/feed-them-social-premium-extension/) you can set how many posts, pictures, tweets, or videos for each individual social feed! We now have simple widgets available for all the feeds. This premium edition also allows our basic shortcode to work with text widgets. Facebook Groups now has the option to hide the Title or Description too! [See Example Demo](http://feedthemsocial.com/)
 
 = Example SINGLE Feed Demos (1 feed per post/page) =
-  * NEW! [Facebook Event Feed Demo](http://feedthemsocial.com/facebook-event-feed-demo/)
+  * [Facebook Event Feed Demo](http://feedthemsocial.com/facebook-event-feed-demo/)
   * [Facebook Page Feed Demo](http://feedthemsocial.com/facebook-page-feed-demo/)
   * [Facebook Group Feed Demo](http://feedthemsocial.com/facebook-group-feed-demo/)
   * [Instagram Feed Demo](http://feedthemsocial.com/instagram-feed-demo/)
@@ -32,8 +32,8 @@ With our plugin you can create social feeds of any or all your celebrities, fami
   * [2 (or more) Twitter Feeds Demo](http://feedthemsocial.com/multiple-twitter-feeds-demo/)
   
 = Example PREMIUM Feed Demos =
- * NEW! [Pinterest Feed Demo](http://feedthemsocial.com/pinterest/)
- * NEW! [Youtube + Instagram + Pinterest Feeds Demo](http://feedthemsocial.com/youtube-instagram/)
+ * [Pinterest Feed Demo](http://feedthemsocial.com/pinterest/)
+ * [Youtube + Instagram + Pinterest Feeds Demo](http://feedthemsocial.com/youtube-instagram/)
  * [YouTube Feed Demo](http://feedthemsocial.com/2013/01/youtube-feed-demo-1-large-with-3-video-per-row/)
 
 = Example PREMIUM Widget Feed Demo =
@@ -51,15 +51,18 @@ If you enjoy using our plugin please tell others. [Click here to share.](http://
   * Extract the zip file and drop the contents in the wp-content/plugins/ directory of your WordPress installation and then activate the Plugin from Plugins page. 
 
 == Changelog ==
+= Version 1.5.2 Saturday, August 16th, 2014 =
+ * NEW: Settings page now includes a select option of date and time formats for Facebook and Twitter.
+ * NEW: Settings page now looks and works great on mobile and tablets.
+ * NEW: FTS is now translation ready. Please visit [http://glotpress.slickremix.com/projects/feed-them-social/feed-them-premium](http://glotpress.slickremix.com/projects/feed-them-social/feed-them-premium) to help translate.
+ 
 = Version 1.5.1 Thursday, August 14th, 2014 =
  * UPDATED: Curl Method Facebook to batch get information. Super Load Time Increase!
-
 
 = Version 1.5.0 Thursday, August 14th, 2014 =
  * FIXED: CSS tweaks for facebook, instagram and twitter feeds.
  * FIXED: Now a space will be between twitter @names and #names.
 
- 
 = Version 1.4.9 Thursday, July 31th, 2014 =
  * NEW: New Instagram access token. 
 
