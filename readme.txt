@@ -10,7 +10,7 @@ Custom feeds for Facebook Pages, Facebook Groups, Facebook Events, Twitter, Inst
 
 == Description ==
 
-With our plugin you can create social feeds of any or all your celebrities, family, friends, yourself, or businesses. Looks great on Desktops, Tablets, and Mobile Devices.
+View [Full Documentation](http://www.slickremix.com/feed-them-social/). With our plugin you can create social feeds of any or all your celebrities, family, friends, yourself, or businesses. Looks great on Desktops, Tablets, and Mobile Devices.
 
 = Features include the following: =
   * Add as many social feeds as you need!
