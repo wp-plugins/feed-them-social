@@ -3,12 +3,12 @@
 Plugin Name: Feed Them Social
 Plugin URI: http://slickremix.com/
 Description: Create and display custom feeds for Facebook Groups, Facebook Pages, Facebook Events, Twitter, Instagram, Pinterest and YouTube.
-Version: 1.5.2
+Version: 1.5.3
 Author: SlickRemix
 Author URI: http://slickremix.com/
 Requires at least: wordpress 3.4.0
 Tested up to: WordPress 3.9.2
-Stable tag: 1.5.2
+Stable tag: 1.5.3
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -39,6 +39,15 @@ include( 'admin/feed-them-settings-page.php' );
 
 // Include core files and classes
 include( 'includes/feed-them-functions.php' );
+
+$load_fts = new feed_them_social_functions();
+
+//Check Premium Version.
+$load_fts->fts_get_check_plugin_version('feed-them-premium.php', '1.3.0');
+
+$load_fts->init();
+
+
 
 // Include feeds
 include( 'feeds/facebook/facebook-feed.php' );

@@ -35,7 +35,7 @@ $excludeReplies = true;
 			// Get the tweets from Twitter.
 			include_once 'twitteroauth/twitteroauth.php';
 			//Authenticate connection
-			$connection = new TwitterOAuth(
+			$connection = new TwitterOAuthFTS(
 			'dOIIcGrhWgooKquMWWXg',
 			'qzAE4t4xXbsDyGIcJxabUz3n6fgqWlg8N02B6zM',
 			'1184502104-Cjef1xpCPwPobP5X8bvgOTbwblsmeGGsmkBzwdB',  

@@ -37,7 +37,7 @@
 	text-decoration:none !important;
 }
 .fts-twitter-div .uppercase {
-	width:70%;
+	
 }
 .widget .fts-twitter-div .uppercase {
 	width:auto;
@@ -57,7 +57,7 @@
 	margin:0 15px 0 0;
 }
 .fts-twitter-div .uppercase {
-     margin:0 15px 0;
+     margin:2px 5px 4px 0;
 }
 .widget .fts-twitter-div img {
      width:40px; 
@@ -70,10 +70,10 @@
      font-weight:normal !important;
 }
 .tweeter-info .right {
-     margin:0 15px; 
-     width:100%;
+     margin:0 15px;  
      float:none !important; 
-	 padding:0;     
+	 padding:0; 
+	 line-height:15px !important;
 }
 .fts-twitter-fade	{
 	display:none;
@@ -98,6 +98,7 @@
      box-shadow:0 1px 2px #555; 
      clear:both;  
      min-height:51px;
+	 line-height:13px;
 	-webkit-transition: background 2s;
 	-webkit-transition: all 0.30s ease-in-out;
 	-moz-transition: all 0.30s ease-in-out;

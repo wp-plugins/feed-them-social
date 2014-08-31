@@ -29,16 +29,16 @@ $insta_url = 'https://api.instagram.com/v1/users/'.$instagram_id.'/media/recent/
 $cache = WP_CONTENT_DIR.'/plugins/feed-them-social/feeds/instagram/cache/instagram-cache-'.$instagram_id.'.json';
 
 	//Get Data for Instagram
-	$ch = curl_init($insta_url);
-	curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-	//is safe_mode or open_basedir on if not follow location
-	if ( !ini_get('safe_mode') && !ini_get('open_basedir')){
-		curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
+	$response = wp_remote_fopen($insta_url);
+	
+	
+
+	//Error Check
+	$error_check = json_decode($response);
+	if($error_check->meta->error_message){
+		return $error_check->meta->error_message;
 	}
-	curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
-	curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
-	$response = curl_exec($ch);
-	curl_close($ch);
+
  
 if(file_exists($cache) && !filesize($cache) == 0 && filemtime($cache) > time() - 900){
 	$insta_data = json_decode(file_get_contents($cache));
@@ -50,12 +50,13 @@ else {
 	}
 	file_put_contents($cache,json_encode($insta_data));
 }
-
 ?>
-
 <div class="fts-instagram">
 <?php 	
 $set_zero = 0;
+if (!$insta_data->data) {
+	return 'Looks like instagram\'s API down. Please try clearing cache and reloading this page in near future.';
+}
 foreach($insta_data->data as $insta_d) {
 if($set_zero==$pics_count)
 break;

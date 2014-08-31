@@ -26,12 +26,6 @@ else 	{
 		'id' => '',
 		'type' => '',
 		'posts_displayed' => '',
-		// 'fb_group_custom_name' => '',
-		// 'fts_rotate_feed' => 'no',
-		// 'fts_rotate_poh' =>'true',
-		// 'fts_rotate_speed' =>'200',
-		// 'fts_rotate_fx' =>'fade',
-		// 'fts_rotate_random' => 'no'
 	), $atts ) );
 	
 	$custom_name = $posts_displayed;
@@ -39,9 +33,16 @@ else 	{
 	$fts_fb_id = $id;
 	$access_token = '226916994002335|ks3AFvyAOckiTA1u_aDoI4HYuuw';
 }
+
+//Error Check
+if (!$fts_fb_id){
+	return 'Please enter a username for this feed.';
+}
+if (!$fts_limiter){
+	$fts_limiter = '5';
+}
+
 ob_start(); 
-
-
 if ($type !== 'page' or $type !== 'event' or $type == 'group')	{
 		$fts_view_fb_link ='https://www.facebook.com/groups/'.$fts_fb_id.'/';	
 }
@@ -53,7 +54,6 @@ if ($type == 'page')	{
 if ($type == 'event')	{
 		$fts_view_fb_link ='https://www.facebook.com/events/'.$fts_fb_id.'/';	
 }
-
 
 
 //URL to get page info
@@ -145,6 +145,9 @@ else{
 		curl_multi_close($mh);
 	   
 	   
+	  
+	  
+	   
 	  //Cache
 	  $des = json_decode($response['page_data']);
 	  if (!file_exists($des_cache)) {
@@ -187,37 +190,33 @@ else{
 	  file_put_contents($like_count_data_cache,json_encode($FBpost_like_counted));
 }
 
+if ($type == 'page' && !$data->data)	{
+			return 'No Posts Found. Are you sure this is a Facebook Page ID and not a  Facebook Group or Event ID?';
+}
 		
 print '<div class="fts-jal-fb-group-display">';
 
-if(is_plugin_active('fts-rotate/fts-rotate.php') && $fts_rotate_feed == 'yes') {
-	// FTS Rotate Head
-	include(WP_CONTENT_DIR.'/plugins/fts-rotate/includes/fts-rotate-head.php' );
-	$fts_rotate_on = 'yes';
-}
-else	{
-	$fts_rotate_on = 'no';
-
-	if(is_plugin_active('feed-them-premium/feed-them-premium.php'))  {
-		print '<div class="fts-jal-fb-header">';
-	   // Print our Facebook Page Title or About Text. Commented out the group description because in the future we will be adding the about description.
-		if ($title == 'yes' or $title == '') {
-		  print '<h1><a href="'.$fts_view_fb_link.'">'.$des->name.'</a></h1>';
-		}
-	   if ($description == 'yes' || $description == '') {
-		  print '<div class="fts-jal-fb-group-header-desc">'.$des->description.'</div>';	
-		}
-		
-		 print '</div>';
+if(is_plugin_active('feed-them-premium/feed-them-premium.php'))  {
+	print '<div class="fts-jal-fb-header">';
+   // Print our Facebook Page Title or About Text. Commented out the group description because in the future we will be adding the about description.
+	if ($title == 'yes' or $title == '') {
+	  print '<h1><a href="'.$fts_view_fb_link.'">'.$des->name.'</a></h1>';
+	}
+   if ($description == 'yes' || $description == '') {
+	  print '<div class="fts-jal-fb-group-header-desc">'.$des->description.'</div>';	
+	}
 	
-	}
-	else {
-		print '<div class="fts-jal-fb-header"><h1><a href="'.$fts_view_fb_link.'">'.$des->name.'</a></h1>';
-		print '<div class="fts-jal-fb-group-header-desc">'.$des->description.'</div>';
-		print '</div>';
-	}
-}  
+	 print '</div>';
+
+}
+else {
+	print '<div class="fts-jal-fb-header"><h1><a href="'.$fts_view_fb_link.'">'.$des->name.'</a></h1>';
+	print '<div class="fts-jal-fb-group-header-desc">'.$des->description.'</div>';
+	print '</div>';
+}
+
 $set_zero = 0;
+
 foreach($data->data as $d) {
 if($set_zero==$fts_limiter)
 break;

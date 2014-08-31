@@ -2,8 +2,8 @@
 
 //Main setting page function
 function feed_them_settings_page() {
-	
-add_action( 'wp_enqueue_style', 'feed_them_admin_css' );
+
+$fts_functions = new feed_them_social_functions();
 
 ?>
 <link href='http://fonts.googleapis.com/css?family=Rambla:400,700' rel='stylesheet' type='text/css'>				
@@ -20,10 +20,7 @@ add_action( 'wp_enqueue_style', 'feed_them_admin_css' );
     
     <?php
 	//show the js for the discount option under social icons on the settings page
-	if(is_plugin_active('feed-them-premium/feed-them-premium.php')) {
-				// do not show discount option
-		}
-	else { ?>
+	if(!is_plugin_active('feed-them-premium/feed-them-premium.php')) { ?>
 		 <div id="discount-for-review"><?php _e('20% off Premium Version', 'feed-them-social'); ?></div>
     <div class="discount-review-text"><a href="http://www.slickremix.com/downloads/feed-them-social-premium-extension/" target="_blank"><?php _e('Share here', 'feed-them-social'); ?></a> <?php _e('and receive 20% OFF your total order.', 'feed-them-social'); ?></div>
 <?php } ?>
@@ -43,409 +40,30 @@ add_action( 'wp_enqueue_style', 'feed_them_admin_css' );
         </select>
     </form><!--/feed-them-social-admin-form-->
 
-<div class="fts-facebook_group-shortcode-form">
-<form class="feed-them-social-admin-form shortcode-generator-form fb-group-shortcode-form" id="fts-fb-group-form">
-    <h2><?php _e('Facebook Group Shortcode Generator', 'feed-them-social'); ?></h2>
-    <div class="instructional-text"><?php _e('You must copy your <a href="http://www.slickremix.com/2012/12/14/how-to-get-your-facebook-group-id/" target="_blank">Facebook ID</a> and paste it in the first input below.', 'feed-them-social'); ?></div>
-      <div class="feed-them-social-admin-input-wrap fb_group_id">
-        <div class="feed-them-social-admin-input-label"><?php _e('Facebook Group ID (required)', 'feed-them-social'); ?></div>
-        <input type="text" id="fb_group_id" class="feed-them-social-admin-input" value="" />
-    <div class="clear"></div>
-      </div><!--/feed-them-social-admin-input-wrap-->
+
+
+	 <?php
+     //Add Facebook Event Form
+     echo $fts_functions->fts_facebook_group_form(false); 
+	 
+	 //Add Facebook Page Form
+     echo $fts_functions->fts_facebook_page_form(false); 
     
-    
-<!-- Using this for a future update <div class="feed-them-social-admin-input-wrap">
-  <div class="feed-them-social-admin-input-label">Customized Group Name</div>
-  <select id="fb_group_custom_name" class="feed-them-social-admin-input">
-    <option selected="selected" value="yes">My group name is custom</option>
-    <option value="no">My group name is number based</option>
-  </select>
-  <div class="clear"></div>
-</div>
-/feed-them-social-admin-input-wrap-->
-
- 
-<?php
-if(is_plugin_active('feed-them-premium/feed-them-premium.php')) {
-   include('../wp-content/plugins/feed-them-premium/admin/facebook-group-settings-fields.php');
-}
-else 	{
-?>
-
-<div class="feed-them-social-admin-input-wrap">
-  <div class="feed-them-social-admin-input-label"><?php _e('# of Posts', 'feed-them-social'); ?></div>
-  <div class="feed-them-social-admin-input-default"><?php _e('Must have <a target="_blank" href="http://www.slickremix.com/downloads/feed-them-social-premium-extension/">premium version</a> to edit. Default is 5.', 'feed-them-social'); ?></div>
-<div class="clear"></div>
-</div><!--/feed-them-social-admin-input-wrap-->
-
-<div class="feed-them-social-admin-input-wrap">
-  <div class="feed-them-social-admin-input-label"><?php _e('Show the Group Title?', 'feed-them-social'); ?></div>
-  <div class="feed-them-social-admin-input-default"><?php _e('Must have <a target="_blank" href="http://www.slickremix.com/downloads/feed-them-social-premium-extension/">premium version</a> to edit.', 'feed-them-social'); ?></div>
-<div class="clear"></div>
-</div><!--/feed-them-social-admin-input-wrap-->
-
-<div class="feed-them-social-admin-input-wrap">
-  <div class="feed-them-social-admin-input-label"><?php _e('Show the Group Description?', 'feed-them-social'); ?></div>
-  <div class="feed-them-social-admin-input-default"><?php _e('Must have <a target="_blank" href="http://www.slickremix.com/downloads/feed-them-social-premium-extension/">premium version</a> to edit.', 'feed-them-social'); ?></div>
-<div class="clear"></div>
-</div><!--/feed-them-social-admin-input-wrap-->
-
-<div class="feed-them-social-admin-input-wrap">
-  <div class="feed-them-social-admin-input-label"><?php _e('Amount of words per post?', 'feed-them-social'); ?></div>
-  <div class="feed-them-social-admin-input-default"><?php _e('Must have <a target="_blank" href="http://www.slickremix.com/downloads/feed-them-social-premium-extension/">premium version</a> to edit.', 'feed-them-social'); ?></div>
-<div class="clear"></div>
-</div><!--/feed-them-social-admin-input-wrap-->
-
-<?php
-}
-?>
-    
-<?php 
-if(is_plugin_active('fts-rotate/fts-rotate.php')) {
-	include('../wp-content/plugins/fts-rotate/admin/fts-rotate-settings-fields.php');
-}
-?> 
-      
-      <input type="button" class="feed-them-social-admin-submit-btn" value="<?php _e('Generate Shortcode', 'feed-them-social'); ?>" onclick="updateTextArea_fb_group();" tabindex="4" style="margin-right:1em;" />
-      <div class="feed-them-social-admin-input-wrap final-shortcode-textarea">
-      
-      	<h4><?php _e('Copy the ShortCode below and paste it on a page or post that you want to display your feed.', 'feed-them-social'); ?></h4>
-      
-        <div class="feed-them-social-admin-input-label"><?php _e('Facebook Group Feed Shortcode', 'feed-them-social'); ?></div>
-        
-        <input class="copyme facebook-group-final-shortcode feed-them-social-admin-input" value="" />
-        
-    <div class="clear"></div>
-      </div><!--/feed-them-social-admin-input-wrap-->
-    
-    </form>
-</div><!--/fts-facebook_group-shortcode-form-->
-
-
-<div class="fts-facebook_page-shortcode-form">
-    <form class="feed-them-social-admin-form shortcode-generator-form fb-page-shortcode-form" id="fts-fb-page-form">
-    <h2><?php _e('Facebook Page Shortcode Generator', 'feed-them-social'); ?></h2>
-    <div class="instructional-text"><?php _e('You must copy your <a href="http://www.slickremix.com/2013/09/09/how-to-get-your-facebook-page-vanity-url/" target="_blank">Facebook Page ID</a> and paste it in the first input below.', 'feed-them-social'); ?></div>
-      <div class="feed-them-social-admin-input-wrap fb_page_id">
-        <div class="feed-them-social-admin-input-label"><?php _e('Facebook Page ID (required)', 'feed-them-social'); ?></div>
-        <input type="text" id="fb_page_id" class="feed-them-social-admin-input" value="" />
-    <div class="clear"></div>
-      </div><!--/feed-them-social-admin-input-wrap-->
-     
-<div class="feed-them-social-admin-input-wrap">
-  <div class="feed-them-social-admin-input-label"><?php _e('Post Type Visible', 'feed-them-social'); ?></div>
-  <select id="fb_page_posts_displayed" class="feed-them-social-admin-input">
-    <option selected="selected" value="page_only"><?php _e('Display Posts made by Page only', 'feed-them-social'); ?></option>
-    <option value="everyone"><?php _e('Display Posts made by Everyone', 'feed-them-social'); ?></option>
-  </select>
-  <div class="clear"></div>
-</div>
-<!--/feed-them-social-admin-input-wrap-->
-
-<?php
-if(is_plugin_active('feed-them-premium/feed-them-premium.php')) {
-   include('../wp-content/plugins/feed-them-premium/admin/facebook-page-settings-fields.php');
-}
-else 	{
-?>
-
-<div class="feed-them-social-admin-input-wrap">
-  <div class="feed-them-social-admin-input-label"><?php _e('# of Posts', 'feed-them-social'); ?></div>
-  <div class="feed-them-social-admin-input-default"><?php _e('Must have <a target="_blank" href="http://www.slickremix.com/downloads/feed-them-social-premium-extension/">premium version</a> to edit. Default is 5.', 'feed-them-social'); ?></div>
-<div class="clear"></div>
-</div><!--/feed-them-social-admin-input-wrap-->
-
-<div class="feed-them-social-admin-input-wrap">
-  <div class="feed-them-social-admin-input-label"><?php _e('Show the Page Title?', 'feed-them-social'); ?></div>
-  <div class="feed-them-social-admin-input-default"><?php _e('Must have <a target="_blank" href="http://www.slickremix.com/downloads/feed-them-social-premium-extension/">premium version</a> to edit.', 'feed-them-social'); ?></div>
-<div class="clear"></div>
-</div><!--/feed-them-social-admin-input-wrap-->
-
-<div class="feed-them-social-admin-input-wrap">
-  <div class="feed-them-social-admin-input-label"><?php _e('Show the Page Description?', 'feed-them-social'); ?></div>
-  <div class="feed-them-social-admin-input-default"><?php _e('Must have <a target="_blank" href="http://www.slickremix.com/downloads/feed-them-social-premium-extension/">premium version</a> to edit.', 'feed-them-social'); ?></div>
-<div class="clear"></div>
-</div><!--/feed-them-social-admin-input-wrap-->
-
-<div class="feed-them-social-admin-input-wrap">
-  <div class="feed-them-social-admin-input-label"><?php _e('Amount of words per post?', 'feed-them-social'); ?></div>
-  <div class="feed-them-social-admin-input-default"><?php _e('Must have <a target="_blank" href="http://www.slickremix.com/downloads/feed-them-social-premium-extension/">premium version</a> to edit.', 'feed-them-social'); ?></div>
-<div class="clear"></div>
-</div><!--/feed-them-social-admin-input-wrap-->
-
-<?php
-}
- 
-if(is_plugin_active('fts-rotate/fts-rotate.php')) {
-	include('../wp-content/plugins/fts-rotate/admin/fts-rotate-settings-fields.php');
-}
-?>
-      <input type="button" class="feed-them-social-admin-submit-btn" value="<?php _e('Generate Shortcode', 'feed-them-social'); ?>" onclick="updateTextArea_fb_page();" tabindex="4" style="margin-right:1em;" />
-      <div class="feed-them-social-admin-input-wrap final-shortcode-textarea">
-      
-      	<h4><?php _e('Copy the ShortCode below and paste it on a page or post that you want to display your feed.', 'feed-them-social'); ?></h4>
-      
-        <div class="feed-them-social-admin-input-label"><?php _e('Facebook Page Feed Shortcode', 'feed-them-social'); ?></div>
-        
-        <input class="copyme facebook-page-final-shortcode feed-them-social-admin-input" value="" />
-        
-    <div class="clear"></div>
-      </div><!--/feed-them-social-admin-input-wrap-->
-    
-    </form>
-</div><!--/fts-facebook_page-shortcode-form-->
-
-
-<div class="fts-facebook_event-shortcode-form">
-<form class="feed-them-social-admin-form shortcode-generator-form fb-event-shortcode-form" id="fts-fb-event-form">
-    <h2><?php _e('Facebook Event Shortcode Generator.', 'feed-them-social'); ?></h2>
-    <div class="instructional-text"><?php _e('Copy your <a href="http://www.slickremix.com/2012/12/14/how-to-get-your-facebook-event-id/" target="_blank">Facebook Page Event ID or Group Event ID</a> and paste it in the first input below.', 'feed-them-social'); ?></div>
-      <div class="feed-them-social-admin-input-wrap fb_event_id">
-        <div class="feed-them-social-admin-input-label"><?php _e('Facebook Event ID (required)', 'feed-them-social'); ?></div>
-        <input type="text" id="fb_event_id" class="feed-them-social-admin-input" value="" />
-    <div class="clear"></div>
-      </div><!--/feed-them-social-admin-input-wrap-->
-     
-<?php
-if(is_plugin_active('feed-them-premium/feed-them-premium.php')) {
-   include('../wp-content/plugins/feed-them-premium/admin/facebook-event-settings-fields.php');
-}
-else 	{
-?>
-
-<div class="feed-them-social-admin-input-wrap">
-  <div class="feed-them-social-admin-input-label"><?php _e('# of Posts', 'feed-them-social'); ?></div>
-  <div class="feed-them-social-admin-input-default"><?php _e('Must have <a target="_blank" href="http://www.slickremix.com/downloads/feed-them-social-premium-extension/">premium version</a> to edit. Default is 5.', 'feed-them-social'); ?></div>
-<div class="clear"></div>
-</div><!--/feed-them-social-admin-input-wrap-->
-
-<div class="feed-them-social-admin-input-wrap">
-  <div class="feed-them-social-admin-input-label"><?php _e('Show the Event Title?', 'feed-them-social'); ?></div>
-  <div class="feed-them-social-admin-input-default"><?php _e('Must have <a target="_blank" href="http://www.slickremix.com/downloads/feed-them-social-premium-extension/">premium version</a> to edit.', 'feed-them-social'); ?></div>
-<div class="clear"></div>
-</div><!--/feed-them-social-admin-input-wrap-->
-
-<div class="feed-them-social-admin-input-wrap">
-  <div class="feed-them-social-admin-input-label"><?php _e('Show the Event Description?', 'feed-them-social'); ?></div>
-  <div class="feed-them-social-admin-input-default"><?php _e('Must have <a target="_blank" href="http://www.slickremix.com/downloads/feed-them-social-premium-extension/">premium version</a> to edit.', 'feed-them-social'); ?></div>
-<div class="clear"></div>
-</div> <!--/feed-them-social-admin-input-wrap-->
-
-<div class="feed-them-social-admin-input-wrap">
-  <div class="feed-them-social-admin-input-label"><?php _e('Amount of words per post?', 'feed-them-social'); ?></div>
-  <div class="feed-them-social-admin-input-default"><?php _e('Must have <a target="_blank" href="http://www.slickremix.com/downloads/feed-them-social-premium-extension/">premium version</a> to edit.', 'feed-them-social'); ?></div>
-<div class="clear"></div>
-</div><!--/feed-them-social-admin-input-wrap-->
-
-<?php
-}
-
-if(is_plugin_active('fts-rotate/fts-rotate.php')) {
-	include('../wp-content/plugins/fts-rotate/admin/fts-rotate-settings-fields.php');
-}
-?> 
-      
-      <input type="button" class="feed-them-social-admin-submit-btn" value="<?php _e('Generate Shortcode', 'feed-them-social'); ?>" onclick="updateTextArea_fb_event();" tabindex="4" style="margin-right:1em;" />
-      <div class="feed-them-social-admin-input-wrap final-shortcode-textarea">
-      
-      	<h4><?php _e('Copy the ShortCode below and paste it on a page or post that you want to display your feed.', 'feed-them-social'); ?></h4>
-      
-        <div class="feed-them-social-admin-input-label"><?php _e('Facebook Event Feed Shortcode', 'feed-them-social'); ?></div>
-        
-        <input class="copyme facebook-event-final-shortcode feed-them-social-admin-input" value="" />
-        
-    <div class="clear"></div>
-      </div><!--/feed-them-social-admin-input-wrap-->
-    
-    </form>
-</div><!--/fts-facebook_group-shortcode-form-->
-
-
-
-
-
-
-
-<div class="fts-twitter-shortcode-form"> 
-    <form class="feed-them-social-admin-form shortcode-generator-form twitter-shortcode-form" id="fts-twitter-form">
-    <h2><?php _e('Twitter Shortcode Generator', 'feed-them-social'); ?></h2>
-    <div class="instructional-text"><?php _e('You must copy your <a href="http://www.slickremix.com/2012/12/18/how-to-get-your-twitter-name/" target="_blank">Twitter Name</a> and paste it in the first input below.', 'feed-them-social'); ?></div>
-    
-      <div class="feed-them-social-admin-input-wrap twitter_name">
-        <div class="feed-them-social-admin-input-label"><?php _e('Twitter Name (required)', 'feed-them-social'); ?></div>
-        <input type="text" id="twitter_name" class="feed-them-social-admin-input" value="" />
-    <div class="clear"></div>
-      </div><!--/feed-them-social-admin-input-wrap-->
-      
-      <?php
-if(is_plugin_active('feed-them-premium/feed-them-premium.php')) {
-   include('../wp-content/plugins/feed-them-premium/admin/twitter-settings-fields.php');
-}
-else 	{
-?>
-<div class="feed-them-social-admin-input-wrap">
-  <div class="feed-them-social-admin-input-label"><?php _e('# of Tweets', 'feed-them-social'); ?></div>
-  <div class="feed-them-social-admin-input-default"><?php _e('Must have <a target="_blank" href="http://www.slickremix.com/downloads/feed-them-social-premium-extension/">premium version</a> to edit. Default is 5.', 'feed-them-social'); ?></div>
-<div class="clear"></div>
-</div><!--/feed-them-social-admin-input-wrap-->
-<?php
-}
- 
-if(is_plugin_active('fts-rotate/fts-rotate.php')) {
-	include('../wp-content/plugins/fts-rotate/admin/fts-rotate-settings-fields.php');
-}
-?>
-      <input type="button" class="feed-them-social-admin-submit-btn" value="<?php _e('Generate Shortcode', 'feed-them-social'); ?>" onclick="updateTextArea_twitter();" tabindex="4" style="margin-right:1em;" />
-      <div class="feed-them-social-admin-input-wrap final-shortcode-textarea">
-      
-      	<h4><?php _e('Copy the ShortCode below and paste it on a page or post that you want to display your feed.', 'feed-them-social'); ?></h4>
-      
-        <div class="feed-them-social-admin-input-label"><?php _e('Twitter Feed Shortcode', 'feed-them-social'); ?></div>
-        <input class="copyme twitter-final-shortcode feed-them-social-admin-input" value="" />
-    <div class="clear"></div>
-      </div><!--/feed-them-social-admin-input-wrap-->
-    
-    </form>
-</div><!--/fts-twitter-shortcode-form-->
-
-
-<div class="fts-instagram-shortcode-form">
-
-	<form class="feed-them-social-admin-form shortcode-generator-form instagram-shortcode-form" id="fts-instagram-form">
-    <h2><?php _e('Convert Instagram Name to ID', 'feed-them-social'); ?></h2>
-     <div class="instructional-text"><?php _e('You must copy your <a href="http://www.slickremix.com/2012/12/18/how-to-get-your-instagram-name-and-convert-to-id/" target="_blank">Instagram Name</a> and paste it in the first input below', 'feed-them-social'); ?>.</div>
-      <div class="feed-them-social-admin-input-wrap convert_instagram_username">
-        <div class="feed-them-social-admin-input-label"><?php _e('Instagram Name (required)', 'feed-them-social'); ?></div>
-        <input type="text" id="convert_instagram_username" class="feed-them-social-admin-input" value="" />
-    <div class="clear"></div>
-      </div><!--/feed-them-social-admin-input-wrap-->
-     
-      <input type="button" class="feed-them-social-admin-submit-btn" value="<?php _e('Convert Instagram Username', 'feed-them-social'); ?>" onclick="converter_instagram_username();" tabindex="4" style="margin-right:1em;" />
-      
-    </form>
-
-    <form class="feed-them-social-admin-form shortcode-generator-form instagram-shortcode-form">
-    <h2><?php _e('Instagram Shortcode Generator', 'feed-them-social'); ?></h2>
-     <div class="instructional-text"><?php _e('If you added your ID above and clicked convert, a number should appear in the input below, now continue.', 'feed-them-social'); ?></div>
-     
-      <div class="feed-them-social-admin-input-wrap instagram_name">
-        <div class="feed-them-social-admin-input-label"><?php _e('Instagram ID # (required)', 'feed-them-social'); ?></div>
-        <input type="text" id="instagram_id" class="feed-them-social-admin-input" value="" />
-    <div class="clear"></div>
-      </div><!--/feed-them-social-admin-input-wrap-->
-<?php
-  if(is_plugin_active('feed-them-premium/feed-them-premium.php')) {
-	 include('../wp-content/plugins/feed-them-premium/admin/instagram-settings-fields.php');
-  }
-  else 	{
-?>
-<div class="feed-them-social-admin-input-wrap">
-  <div class="feed-them-social-admin-input-label"><?php _e('# of Pics', 'feed-them-social'); ?></div>
-  <div class="feed-them-social-admin-input-default"><?php _e('Must have <a target="_blank" href="http://www.slickremix.com/downloads/feed-them-social-premium-extension/">premium version</a> to edit. Default is 6.', 'feed-them-social'); ?></div>
-  <div class="clear"></div>
-</div><!--/feed-them-social-admin-input-wrap-->
-<?php } 
-
-if(is_plugin_active('fts-rotate/fts-rotate.php')) {
-	include('../wp-content/plugins/fts-rotate/admin/fts-rotate-settings-fields.php');
-}
-?> 
-     
-      <input type="button" class="feed-them-social-admin-submit-btn" value="<?php _e('Generate Shortcode', 'feed-them-social'); ?>" onclick="updateTextArea_instagram();" tabindex="4" style="margin-right:1em;" />
-      
-      <div class="feed-them-social-admin-input-wrap final-shortcode-textarea">
-      
-      	<h4><?php _e('Copy the ShortCode below and paste it on a page or post that you want to display your feed.', 'feed-them-social'); ?></h4>
-      
-        <div class="feed-them-social-admin-input-label"><?php _e('Instagram Feed Shortcode', 'feed-them-social'); ?></div>
-        <input class="copyme instagram-final-shortcode feed-them-social-admin-input" value="" />
-    <div class="clear"></div>
-      </div><!--/feed-them-social-admin-input-wrap-->
-    
-    </form>
-    
-</div><!--/fts-instagram-shortcode-form-->
-
-
-<div class="fts-youtube-shortcode-form">
-    <form class="feed-them-social-admin-form shortcode-generator-form youtube-shortcode-form" id="fts-youtube-form">
-    <h2><?php _e('YouTube Shortcode Generator', 'feed-them-social'); ?></h2>
-    <div class="instructional-text"><?php _e('You must copy your <a href="http://www.slickremix.com/2013/08/01/how-to-get-your-youtube-name/" target="_blank">YouTube Name</a> and paste it in the first input below.', 'feed-them-social'); ?></div>
-      
-<?php
-if(is_plugin_active('feed-them-premium/feed-them-premium.php')) {
-   include('../wp-content/plugins/feed-them-premium/admin/youtube-settings-fields.php');
-}
-else 	{
-?>
-<div class="feed-them-social-admin-input-wrap">
-  <div class="feed-them-social-admin-input-label"><?php _e('YouTube Name', 'feed-them-social'); ?></div>
-  <div class="feed-them-social-admin-input-default"><?php _e('Must have <a target="_blank" href="http://www.slickremix.com/downloads/feed-them-social-premium-extension/">premium version</a> to edit.', 'feed-them-social'); ?></div>
-<div class="clear"></div>
-</div><!--/feed-them-social-admin-input-wrap-->
-
-<div class="feed-them-social-admin-input-wrap">
-  <div class="feed-them-social-admin-input-label"><?php _e('# of videos', 'feed-them-social'); ?></div>
-  <div class="feed-them-social-admin-input-default"><?php _e('Must have <a target="_blank" href="http://www.slickremix.com/downloads/feed-them-social-premium-extension/">premium version</a> to edit.', 'feed-them-social'); ?></div>
-<div class="clear"></div>
-</div><!--/feed-them-social-admin-input-wrap-->
-
-<div class="feed-them-social-admin-input-wrap">
-  <div class="feed-them-social-admin-input-label"><?php _e('# of videos in each row', 'feed-them-social'); ?></div>
-  <div class="feed-them-social-admin-input-default"><?php _e('Must have <a target="_blank" href="http://www.slickremix.com/downloads/feed-them-social-premium-extension/">premium version</a> to edit.', 'feed-them-social'); ?></div>
-<div class="clear"></div>
-</div><!--/feed-them-social-admin-input-wrap-->
-
-<div class="feed-them-social-admin-input-wrap">
-  <div class="feed-them-social-admin-input-label"><?php _e('Display First video full size', 'feed-them-social'); ?></div>
-  <div class="feed-them-social-admin-input-default"><?php _e('Must have <a target="_blank" href="http://www.slickremix.com/downloads/feed-them-social-premium-extension/">premium version</a> to edit.', 'feed-them-social'); ?></div>
-<div class="clear"></div>
-</div><!--/feed-them-social-admin-input-wrap-->
-
- <a href="http://www.slickremix.com/downloads/feed-them-social-premium-extension/" target="_blank" class="feed-them-social-admin-submit-btn" style="margin-right:1em; margin-top: 15px; display:block; float:left; text-decoration:none !important;"><?php _e('Click to see Premium Version', 'feed-them-social'); ?></a>
-
-<?php
-}
-?>
-    </form>
-</div><!--/fts-youtube-shortcode-form-->
-
-
-
-
-
-<div class="fts-pinterest-shortcode-form">
-    <form class="feed-them-social-admin-form shortcode-generator-form pinterest-shortcode-form" id="fts-pinterest-form">
-    <h2><?php _e('Pinterest Shortcode Generator', 'feed-them-social'); ?></h2>
-    <div class="instructional-text"><?php _e('You must copy your <a href="http://www.slickremix.com/2013/08/01/how-to-get-your-pinterest-name/" target="_blank">Pinterest Name</a> and paste it in the first input below', 'feed-them-social'); ?>.</div>
-      
-<?php
-if(is_plugin_active('feed-them-premium/feed-them-premium.php')) {
-   include('../wp-content/plugins/feed-them-premium/admin/pinterest-settings-fields.php');
-}
-else 	{
-?>
-<div class="feed-them-social-admin-input-wrap">
-  <div class="feed-them-social-admin-input-label"><?php _e('Pinterest Name', 'feed-them-social'); ?></div>
-  <div class="feed-them-social-admin-input-default"><?php _e('Must have <a target="_blank" href="http://www.slickremix.com/downloads/feed-them-social-premium-extension/">premium version</a> to edit.', 'feed-them-social'); ?></div>
-<div class="clear"></div>
-</div><!--/feed-them-social-admin-input-wrap-->
-
-<div class="feed-them-social-admin-input-wrap">
-  <div class="feed-them-social-admin-input-label"><?php _e('# of Boards', 'feed-them-social'); ?></div>
-  <div class="feed-them-social-admin-input-default"><?php _e('Must have <a target="_blank" href="http://www.slickremix.com/downloads/feed-them-social-premium-extension/">premium version</a> to edit.', 'feed-them-social'); ?></div>
-<div class="clear"></div>
-</div>
-<!--/feed-them-social-admin-input-wrap-->
-
- <a href="http://www.slickremix.com/downloads/feed-them-social-premium-extension/" class="feed-them-social-admin-submit-btn" style="margin-right:1em; margin-top: 15px; display:block; float:left; text-decoration:none !important;" target="_blank" ><?php _e('Click to see Premium Version', 'feed-them-social'); ?></a>
-
-<?php
-}
-?>
-    </form>
-</div><!--/fts-pinterest-shortcode-form-->
-
+	 //Add Facebook Event Form
+	 echo $fts_functions->fts_facebook_event_form(false); 
+	
+	 //Add Twitter Form
+	 echo $fts_functions->fts_twitter_form(false); 
+	 
+	 //Add Instagram Form
+	 echo $fts_functions->fts_instagram_form(false);
+	
+	 //Add Youtube Form
+	 echo $fts_functions->fts_youtube_form(false);
+	 
+	 //Add Pinterest Form
+	 echo $fts_functions->fts_pinterest_form(false);
+	 ?>
 	
 <div class="clear"></div>
  <div class="feed-them-clear-cache">
@@ -453,7 +71,7 @@ else 	{
     <div class="use-of-plugin"><?php _e('Please Clear Cache if you have changed a FTS Shortcode. This will Allow you to see the NEW feed\'s options you just set!', 'feed-them-social'); ?></div>
     
 <?php if($_GET['cache']=='clearcache'){ 
- 	echo '<div class="feed-them-clear-cache-text">'.feed_them_clear_cache().'</div>';
+ 	echo '<div class="feed-them-clear-cache-text">'.$fts_functions->feed_them_clear_cache().'</div>';
 }
 ?>
 
@@ -559,23 +177,6 @@ jQuery(function() {
         jQuery('.shortcode-generator-form').hide();
         jQuery('.' + jQuery(this).val()).fadeIn('fast');
     });
-	
-	<?php 
-	//Rotate Plugin
-	if(is_plugin_active('fts-rotate/fts-rotate.php')) {?>
-	jQuery(".fts-rotate-settings-wrap").hide();
-	
-	 jQuery('input.fts_rotate_feed').change(function(){
-		 var this_id = jQuery(this).closest('form').attr('id');
-       if(jQuery("#"+this_id + " input.fts_rotate_feed").is(':checked'))	{
-		   jQuery("#"+this_id +" .fts-rotate-settings-wrap").fadeIn();
-	   }
-	   else	{
-	   	jQuery("#"+this_id +" .fts-rotate-settings-wrap").fadeOut();
-	   }
-    });
-	<?php } ?>
-	
 });
 
 
@@ -595,13 +196,6 @@ function updateTextArea_fb_group() {
 	}
 	
 	<?php 
-	//Rotate Plugin
-	if(is_plugin_active('fts-rotate/fts-rotate.php')) {?>
-		
-		var rotate_form_id = "fts-fb-group-form";
-		
-		<?php include('../wp-content/plugins/fts-rotate/admin/js/fts-rotate-settings-options.js');
-	}
 	
 	//Premium Plugin
 	if(is_plugin_active('feed-them-premium/feed-them-premium.php')) {
@@ -644,14 +238,6 @@ function updateTextArea_fb_page() {
 	}
 	
 	<?php 
-	//Rotate Plugin
-	if(is_plugin_active('fts-rotate/fts-rotate.php')) {?>
-		
-		var rotate_form_id = "fts-fb-page-form";
-		
-		<?php include('../wp-content/plugins/fts-rotate/admin/js/fts-rotate-settings-options.js');
-	}
-	
 	//Premium Plugin
 	if(is_plugin_active('feed-them-premium/feed-them-premium.php')) {
 	   include('../wp-content/plugins/feed-them-premium/admin/js/facebook-page-settings-js.js');
@@ -689,14 +275,6 @@ function updateTextArea_fb_event() {
 	}
 	
 	<?php 
-	//Rotate Plugin
-	if(is_plugin_active('fts-rotate/fts-rotate.php')) {?>
-		
-		var rotate_form_id = "fts-fb-event-form";
-		
-		<?php include('../wp-content/plugins/fts-rotate/admin/js/fts-rotate-settings-options.js');
-	}
-	
 	//Premium Plugin
 	if(is_plugin_active('feed-them-premium/feed-them-premium.php')) {
 	   include('../wp-content/plugins/feed-them-premium/admin/js/facebook-event-settings-js.js');
@@ -737,14 +315,6 @@ function updateTextArea_twitter() {
 	}
 	
 	<?php
-	
-	if(is_plugin_active('fts-rotate/fts-rotate.php')) {?>
-		
-		var rotate_form_id = "fts-twitter-form";
-		
-		<?php include('../wp-content/plugins/fts-rotate/admin/js/fts-rotate-settings-options.js');
-	}
-	
 	if(is_plugin_active('feed-them-premium/feed-them-premium.php')) {
 	   include('../wp-content/plugins/feed-them-premium/admin/js/twitter-settings-js.js');
 	}
@@ -781,14 +351,6 @@ function updateTextArea_instagram() {
 	}
 	
 	<?php 
-	//Rotate Plugin
-	if(is_plugin_active('fts-rotate/fts-rotate.php')) {?>
-		
-		var rotate_form_id = "fts-instagram-form";
-		
-		<?php include('../wp-content/plugins/fts-rotate/admin/js/fts-rotate-settings-options.js');
-	}
-	
 	//Premium Plugin
 	if(is_plugin_active('feed-them-premium/feed-them-premium.php')) {
 	   include('../wp-content/plugins/feed-them-premium/admin/js/instagram-settings-js.js');

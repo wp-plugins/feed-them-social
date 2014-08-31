@@ -13,7 +13,7 @@ require_once('OAuth.php');
  * Twitter OAuth class
  */
 
-	class TwitterOAuth {
+	class TwitterOAuthFTS {
 	  /* Contains the last HTTP status code returned. */
 	  public $http_code;
 	  /* Contains the last API call. */
@@ -33,7 +33,7 @@ require_once('OAuth.php');
 	  /* Contains the last HTTP headers returned. */
 	  public $http_info;
 	  /* Set the useragnet. */
-	  public $useragent = 'TwitterOAuth v0.2.0-beta2';
+	  public $useragent = 'TwitterOAuthFTS v0.2.0-beta2';
 	  /* Immediately retry the API call if the response was not successful. */
 	  //public $retry = TRUE;
 	
@@ -55,13 +55,13 @@ require_once('OAuth.php');
 	  function lastAPICall() { return $this->last_api_call; }
 	
 	  /**
-	   * construct TwitterOAuth object
+	   * construct TwitterOAuthFTS object
 	   */
 	  function __construct($consumer_key, $consumer_secret, $oauth_token = NULL, $oauth_token_secret = NULL) {
-		$this->sha1_method = new OAuthSignatureMethod_HMAC_SHA1();
-		$this->consumer = new OAuthConsumer($consumer_key, $consumer_secret);
+		$this->sha1_method = new OAuthSignatureMethodFTS_HMAC_SHA1();
+		$this->consumer = new OAuthConsumerFTS($consumer_key, $consumer_secret);
 		if (!empty($oauth_token) && !empty($oauth_token_secret)) {
-		  $this->token = new OAuthConsumer($oauth_token, $oauth_token_secret);
+		  $this->token = new OAuthConsumerFTS($oauth_token, $oauth_token_secret);
 		} else {
 		  $this->token = NULL;
 		}
@@ -79,8 +79,8 @@ require_once('OAuth.php');
 		  $parameters['oauth_callback'] = $oauth_callback;
 		} 
 		$request = $this->oAuthRequest($this->requestTokenURL(), 'GET', $parameters);
-		$token = OAuthUtil::parse_parameters($request);
-		$this->token = new OAuthConsumer($token['oauth_token'], $token['oauth_token_secret']);
+		$token = OAuthUtilFTS::parse_parameters($request);
+		$this->token = new OAuthConsumerFTS($token['oauth_token'], $token['oauth_token_secret']);
 		return $token;
 	  }
 	
@@ -115,8 +115,8 @@ require_once('OAuth.php');
 		  $parameters['oauth_verifier'] = $oauth_verifier;
 		}
 		$request = $this->oAuthRequest($this->accessTokenURL(), 'GET', $parameters);
-		$token = OAuthUtil::parse_parameters($request);
-		$this->token = new OAuthConsumer($token['oauth_token'], $token['oauth_token_secret']);
+		$token = OAuthUtilFTS::parse_parameters($request);
+		$this->token = new OAuthConsumerFTS($token['oauth_token'], $token['oauth_token_secret']);
 		return $token;
 	  }
 	
@@ -135,8 +135,8 @@ require_once('OAuth.php');
 		$parameters['x_auth_password'] = $password;
 		$parameters['x_auth_mode'] = 'client_auth';
 		$request = $this->oAuthRequest($this->accessTokenURL(), 'POST', $parameters);
-		$token = OAuthUtil::parse_parameters($request);
-		$this->token = new OAuthConsumer($token['oauth_token'], $token['oauth_token_secret']);
+		$token = OAuthUtilFTS::parse_parameters($request);
+		$this->token = new OAuthConsumerFTS($token['oauth_token'], $token['oauth_token_secret']);
 		return $token;
 	  }
 	
@@ -180,7 +180,7 @@ require_once('OAuth.php');
 		if (strrpos($url, 'https://') !== 0 && strrpos($url, 'http://') !== 0) {
 		  $url = "{$this->host}{$url}.{$this->format}";
 		}
-		$request = OAuthRequest::from_consumer_and_token($this->consumer, $this->token, $method, $url, $parameters);
+		$request = OAuthRequestFTS::from_consumer_and_token($this->consumer, $this->token, $method, $url, $parameters);
 		$request->sign_request($this->sha1_method, $this->consumer, $this->token);
 		switch ($method) {
 		case 'GET':
