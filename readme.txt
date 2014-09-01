@@ -38,6 +38,9 @@ With our plugin you can create social feeds of any or all your celebrities, fami
 
 = Example PREMIUM Widget Feed Demo =
   * [Social Page with Widgets](http://feedthemsocial.com/)
+
+= Example PREMIUM FTS Bar =
+  * [NEW! Social Bar](http://feedthemsocial.com/fts-bar/)
 	
 
 If you enjoy using our plugin please tell others. [Click here to share.](http://www.facebook.com/sharer.php?u=http://wordpress.org/plugins/feed-them-social/&t=FeedThemSocial)
@@ -51,8 +54,8 @@ If you enjoy using our plugin please tell others. [Click here to share.](http://
   * Extract the zip file and drop the contents in the wp-content/plugins/ directory of your WordPress installation and then activate the Plugin from Plugins page. 
 
 == Changelog ==
-= Version 1.5.3 Saturday, August 29th, 2014 =
- * NEW: functionality for brand new [FTS Bar Extension.](http://www.slickremix.com/)downloads/fts-bar/
+= Version 1.5.3 Sunday, August 31st, 2014 =
+ * NEW: functionality for brand new [FTS Bar Extension.](http://www.slickremix.com/downloads/fts-bar/)
  * ADDED: New warning/error messages for Instagram and Facebook feeds.
  * UPDATED: FTS framework now using classes in functions file for easier extending.
  * FIXED: Pinterest cache issue.
