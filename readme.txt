@@ -246,7 +246,7 @@ You can find answers to your questions, suggest a feed, or just drop us a line a
 
 = Are there Extensions for this plugin? =
 
-Yes. Currently we have [1 Premium Extension](http://www.slickremix.com/product/feed-them-social-premium-extension/). 
+Yes. Currently we have [2 Premium Extensions and 1 Bundle](https://www.slickremix.com/downloads/category/feed-them-social/)
 
 == Screenshots ==
 
