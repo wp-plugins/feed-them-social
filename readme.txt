@@ -57,7 +57,7 @@ If you enjoy using our plugin please tell others. [Click here to share.](http://
 = Version 1.5.4 Wednesday, September 3rd, 2014 =
  * UPDATED: FTS framework to now work on non root installs. **note** Feed Them Premium and FTS Bar will also be getting this update
  * UPDATED: Instagram CSS adjustments
- * UPDATED: Reduced the screenshots for wordpress preview so now zip is on 2.3mb
+ * UPDATED: Reduced the screenshot images for wordpress preview so now the zip is only 2.3mb
 
 = Version 1.5.3 Sunday, August 31st, 2014 =
  * NEW: functionality for brand new [FTS Bar Extension.](http://www.slickremix.com/downloads/fts-bar/)
