@@ -191,7 +191,7 @@ else{
 }
 
 if ($type == 'page' && !$data->data)	{
-			return 'No Posts Found. Are you sure this is a Facebook Page ID and not a  Facebook Group or Event ID?';
+			return 'No Posts Found. Are you sure this is a Facebook Page ID and not a Facebook Group or Event ID?';
 }
 		
 print '<div class="fts-jal-fb-group-display">';

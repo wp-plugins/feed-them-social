@@ -2,15 +2,16 @@
      clear:both;   
 }
 .instagram-placeholder ul, .instagram-placeholder li	{
-	padding: 0 !important;
-	margin: 0 !important;
-	line-height:1.3em !important;
-	border:none !important;
+	/* padding: 0 !important; */
+	/* margin: 0 !important; */
+	/* line-height:1.3em !important; */
+	/* border:none !important; */
 	
 }
 .widget .instagram-placeholder ul, .widget .instagram-placeholder li	{
 	padding: 0 !important;
 	margin: 0 !important;
+	height:auto !important;
 	
 }
 .instagram-placeholder p {
@@ -32,7 +33,7 @@ box-sizing: content-box;
 	
 }
 .widget .instagram-placeholder	{
-	margin: -10px 9px 0px 10px;
+	margin: -10px 9px 0px 10px !important;
 	
 }
 .instagram-image {
@@ -154,6 +155,7 @@ a.instaG-backg-link {
 	padding:0 0 0 15px !important;
 	line-height:10px !important;
 	font-size:11px !important;
+	border:none !important;
 }
 .widget  .instagram-placeholder .heart-comments-wrap .instagram-image-likes {
      margin-right:4px !important;   

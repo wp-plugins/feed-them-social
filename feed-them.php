@@ -3,12 +3,12 @@
 Plugin Name: Feed Them Social
 Plugin URI: http://slickremix.com/
 Description: Create and display custom feeds for Facebook Groups, Facebook Pages, Facebook Events, Twitter, Instagram, Pinterest and YouTube.
-Version: 1.5.3
+Version: 1.5.4
 Author: SlickRemix
 Author URI: http://slickremix.com/
 Requires at least: wordpress 3.4.0
 Tested up to: WordPress 3.9.2
-Stable tag: 1.5.3
+Stable tag: 1.5.4
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -31,14 +31,15 @@ load_plugin_textdomain('feed-them-social', false, basename( dirname( __FILE__ ) 
 // Add actions
 add_action('init', 'fts_action_init');
 
+$fts_plugin_rel_url = plugin_dir_path( __FILE__ );
 
 // Include admin
-include( 'updates/update-functions.php' );
-include( 'admin/feed-them-system-info.php' );
-include( 'admin/feed-them-settings-page.php' );
+include( $fts_plugin_rel_urlx.'updates/update-functions.php' );
+include( $fts_plugin_rel_url.'admin/feed-them-system-info.php' );
+include( $fts_plugin_rel_url.'admin/feed-them-settings-page.php' );
 
 // Include core files and classes
-include( 'includes/feed-them-functions.php' );
+include( $fts_plugin_rel_url.'includes/feed-them-functions.php' );
 
 $load_fts = new feed_them_social_functions();
 
@@ -50,9 +51,9 @@ $load_fts->init();
 
 
 // Include feeds
-include( 'feeds/facebook/facebook-feed.php' );
-include( 'feeds/twitter/twitter-feed.php' );
-include( 'feeds/instagram/instagram-feed.php' );
+include( $fts_plugin_rel_url.'feeds/facebook/facebook-feed.php' );
+include( $fts_plugin_rel_url.'feeds/twitter/twitter-feed.php' );
+include( $fts_plugin_rel_url.'feeds/instagram/instagram-feed.php' );
 
 /**
  * Returns current plugin version. SRL added

@@ -4,10 +4,17 @@
 ************************************************/
 
 class feed_them_social_functions {
+	
+	function __construct() {
+	  $root_file = plugin_dir_path(dirname( __FILE__));
+	  $this->premium = str_replace('feed-them-social/','feed-them-premium/', $root_file);
+	}
+	
 	/*
      * For Loading in the Admin.
      */ 
      function init(){
+		 
 	  if ( is_admin() ){
 		//Adds setting page to FTS menu
 		add_action('admin_init', array( $this,'fts_settings_page_register_settings' ));
@@ -204,7 +211,8 @@ class feed_them_social_functions {
          
         
         if(is_plugin_active('feed-them-premium/feed-them-premium.php')) {
-        	include('../wp-content/plugins/feed-them-premium/admin/facebook-event-settings-fields.php');
+			
+        	include($this->premium.'admin/facebook-event-settings-fields.php');
         }
         else 	{
 		  $fields = array(
@@ -265,7 +273,7 @@ class feed_them_social_functions {
          
         
         if(is_plugin_active('feed-them-premium/feed-them-premium.php')) {
-           include('../wp-content/plugins/feed-them-premium/admin/facebook-group-settings-fields.php');
+           include($this->premium.'admin/facebook-group-settings-fields.php');
         }
         else 	{
             //Create Need Premium Fields
@@ -325,7 +333,7 @@ class feed_them_social_functions {
         $output .= '</div><!--/feed-them-social-admin-input-wrap-->';
         
         if(is_plugin_active('feed-them-premium/feed-them-premium.php')) {
-        	include('../wp-content/plugins/feed-them-premium/admin/facebook-page-settings-fields.php');
+        	include($this->premium.'admin/facebook-page-settings-fields.php');
         }
         else 	{
         //Create Need Premium Fields
@@ -378,7 +386,7 @@ class feed_them_social_functions {
         
         
         if(is_plugin_active('feed-them-premium/feed-them-premium.php')) {
-        	include('../wp-content/plugins/feed-them-premium/admin/twitter-settings-fields.php');
+        	include($this->premium.'admin/twitter-settings-fields.php');
         }
         else 	{
         //Create Need Premium Fields
@@ -442,7 +450,7 @@ class feed_them_social_functions {
         
 		
         if(is_plugin_active('feed-them-premium/feed-them-premium.php')) {
-       		include('../wp-content/plugins/feed-them-premium/admin/instagram-settings-fields.php');
+       		include($this->premium.'admin/instagram-settings-fields.php');
         }
         else 	{
         
@@ -484,7 +492,7 @@ class feed_them_social_functions {
           
       
         if(is_plugin_active('feed-them-premium/feed-them-premium.php')) {
-        	include('../wp-content/plugins/feed-them-premium/admin/youtube-settings-fields.php');
+        	include($this->premium.'admin/youtube-settings-fields.php');
         }
         else 	{
         //Create Need Premium Fields
@@ -523,7 +531,7 @@ class feed_them_social_functions {
 		$output .= '<div class="instructional-text">You must copy your <a href="http://www.slickremix.com/2013/08/01/how-to-get-your-pinterest-name/" target="_blank">Pinterest Name</a> and paste it in the first input below.</div>';
 		
 		if(is_plugin_active('feed-them-premium/feed-them-premium.php')) {
-			include('../wp-content/plugins/feed-them-premium/admin/pinterest-settings-fields.php');
+			include($this->premium.'admin/pinterest-settings-fields.php');
 		}
 		else 	{
 		
