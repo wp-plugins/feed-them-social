@@ -199,7 +199,7 @@ function updateTextArea_fb_group() {
 	
 	//Premium Plugin
 	if(is_plugin_active('feed-them-premium/feed-them-premium.php')) {
-	   include('../wp-content/plugins/feed-them-premium/admin/js/facebook-group-settings-js.js');
+	   include(WP_CONTENT_DIR.'/plugins/feed-them-premium/admin/js/facebook-group-settings-js.js');
 	}
 	else 	{
 	?>
@@ -240,7 +240,7 @@ function updateTextArea_fb_page() {
 	<?php 
 	//Premium Plugin
 	if(is_plugin_active('feed-them-premium/feed-them-premium.php')) {
-	   include('../wp-content/plugins/feed-them-premium/admin/js/facebook-page-settings-js.js');
+	   include(WP_CONTENT_DIR.'/plugins/feed-them-premium/admin/js/facebook-page-settings-js.js');
 	}
 	else 	{ ?>
 	
@@ -277,7 +277,7 @@ function updateTextArea_fb_event() {
 	<?php 
 	//Premium Plugin
 	if(is_plugin_active('feed-them-premium/feed-them-premium.php')) {
-	   include('../wp-content/plugins/feed-them-premium/admin/js/facebook-event-settings-js.js');
+	   include(WP_CONTENT_DIR.'/plugins/feed-them-premium/admin/js/facebook-event-settings-js.js');
 	}
 	else 	{
 	?>
@@ -316,7 +316,7 @@ function updateTextArea_twitter() {
 	
 	<?php
 	if(is_plugin_active('feed-them-premium/feed-them-premium.php')) {
-	   include('../wp-content/plugins/feed-them-premium/admin/js/twitter-settings-js.js');
+	   include(WP_CONTENT_DIR.'/plugins/feed-them-premium/admin/js/twitter-settings-js.js');
 	}
 	
 	else 	{ ?>
@@ -353,7 +353,7 @@ function updateTextArea_instagram() {
 	<?php 
 	//Premium Plugin
 	if(is_plugin_active('feed-them-premium/feed-them-premium.php')) {
-	   include('../wp-content/plugins/feed-them-premium/admin/js/instagram-settings-js.js');
+	   include(WP_CONTENT_DIR.'/plugins/feed-them-premium/admin/js/instagram-settings-js.js');
 	}//end if Premium version
 	else 	{ ?>
 		//if (final_fts_rotate_shortcode && jQuery("#"+ rotate_form_id + " input.fts_rotate_feed").is(':checked')){
@@ -442,7 +442,7 @@ jQuery( document ).ready(function() {
 <?php
 	//Premium JS
 	if(is_plugin_active('feed-them-premium/feed-them-premium.php')) {
-	   include('../wp-content/plugins/feed-them-premium/admin/js/premium-js.php'); 
+	   include(WP_CONTENT_DIR.'/plugins/feed-them-premium/admin/js/premium-js.php'); 
 		}
 	}
 ?>
