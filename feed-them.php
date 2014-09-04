@@ -34,7 +34,7 @@ add_action('init', 'fts_action_init');
 $fts_plugin_rel_url = plugin_dir_path( __FILE__ );
 
 // Include admin
-include( $fts_plugin_rel_urlx.'updates/update-functions.php' );
+include( $fts_plugin_rel_url.'updates/update-functions.php' );
 include( $fts_plugin_rel_url.'admin/feed-them-system-info.php' );
 include( $fts_plugin_rel_url.'admin/feed-them-settings-page.php' );
 

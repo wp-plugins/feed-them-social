@@ -5,7 +5,6 @@ function  fts_fb_head() {
 	wp_register_style( 'fts-font-aweseom-min', plugins_url( 'css/font-awesome.min.css', dirname(__FILE__) ) );  
 	wp_enqueue_style('fts-font-aweseom-min'); 
 }
-
 add_shortcode( 'fts facebook group', 'fts_fb_func' );
 
 add_shortcode( 'fts facebook page', 'fts_fb_func' );
