@@ -161,7 +161,8 @@ $excludeReplies = true;
 ?>
 <div id="twitter-feed-<?php print $twitter_name?>" class="fts-twitter-div">
   <?php foreach($tweets as $t) : ?>
-    <p><?php print $t['text'];?></p><div class="tweeter-info"><div class="fts-twitter-image"><img class="twitter-image" src="<?php print $t['image'];?>" /></div><div class="uppercase bold"><a href="<?php print $t['user_permalink'];?>" target="_blank" class="black">@<?php print $t['name'];?></a></div><div class="right"><a href="<?php print $t['permalink']?>"><?php print $t['time'];?></a></div></div>
+  <div class="fts-tweeter-wrap">
+    <p><?php print $t['text'];?></p><div class="tweeter-info"><div class="fts-twitter-image"><img class="twitter-image" src="<?php print $t['image'];?>" /></div><div class="uppercase bold"><a href="<?php print $t['user_permalink'];?>" target="_blank" class="black">@<?php print $t['name'];?></a></div><div class="right"><a href="<?php print $t['permalink']?>"><?php print $t['time'];?></a></div></div></div>
   <?php endforeach; ?>
 <div class="clear"></div>
 </div> 
