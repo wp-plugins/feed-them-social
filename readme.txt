@@ -2,7 +2,7 @@
 Contributors: slickremix
 Tags:  social, social plugin, social networking, networking, pinterest, pinterest boards, pinterest feeds, pinterest photos, pinterest widget, pinterest widgets, facebook, facebook feed, facebook posts,custom feed, custom facebook feed, facebook plugin, facebook group, facebook groups, events, facebook events, facebook page events, facebook group events, facebook page, facebook pages, twitter, twitter plugin, instagram, instagram plugin, feed me social, social plugin, feed, feeds, shortcode, facebook wall, slickremix, plugin, pages, posts, images, page, post, image, youtube, youtube feed, youtube channel, youtube video, youtube videos, videos, youtube embed, embed, video iframe, admin, comments, Posts, widgets, seo, wordpress
 Requires at least: 3.4.0
-Tested up to: 3.9.2
+Tested up to: 4.0.0
 Stable tag: 1.5.4
 License: GPLv2 or later
 
@@ -19,17 +19,12 @@ With our plugin you can create social feeds of any or all your celebrities, fami
   * Responsive social Feeds!
   * With our [Premium Extension](http://www.slickremix.com/product/feed-them-social-premium-extension/) you can set how many posts, pictures, tweets, or videos for each individual social feed! We now have simple widgets available for all the feeds. This premium edition also allows our basic shortcode to work with text widgets. Facebook Groups now has the option to hide the Title or Description too! [See Example Demo](http://feedthemsocial.com/)
 
-= Example SINGLE Feed Demos (1 feed per post/page) =
+= Example SINGLE Feed Demos (post/page . multiple feeds allowed) =
   * [Facebook Event Feed Demo](http://feedthemsocial.com/facebook-event-feed-demo/)
   * [Facebook Page Feed Demo](http://feedthemsocial.com/facebook-page-feed-demo/)
   * [Facebook Group Feed Demo](http://feedthemsocial.com/facebook-group-feed-demo/)
   * [Instagram Feed Demo](http://feedthemsocial.com/instagram-feed-demo/)
   * [Twitter Feed Demo](http://feedthemsocial.com/twitter-feed-demo/)
-
-= Example MULTIPLE Feed Demos (2 or more feeds per post/page) =
-  * [2 (or more) Instagram Feeds Demo](http://feedthemsocial.com/multiple-instagram-feeds-demo/)
-  * [2 (or more) Facebook Group Feeds Demo](http://feedthemsocial.com/multiple-facebook-group-feeds-demo/)
-  * [2 (or more) Twitter Feeds Demo](http://feedthemsocial.com/multiple-twitter-feeds-demo/)
   
 = Example PREMIUM Feed Demos =
  * [Pinterest Feed Demo](http://feedthemsocial.com/pinterest/)
@@ -54,6 +49,7 @@ If you enjoy using our plugin please tell others. [Click here to share.](http://
   * Extract the zip file and drop the contents in the wp-content/plugins/ directory of your WordPress installation and then activate the Plugin from Plugins page. 
 
 == Changelog ==
+
 = Version 1.5.4 Wednesday, September 3rd, 2014 =
  * UPDATED: FTS framework to now work on non root installs. **note** Feed Them Premium and FTS Bar will also be getting this update
  * UPDATED: Instagram CSS adjustments
