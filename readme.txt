@@ -19,25 +19,21 @@ With our plugin you can create social feeds of any or all your celebrities, fami
   * Responsive social Feeds!
   * With our [Premium Extension](http://www.slickremix.com/product/feed-them-social-premium-extension/) you can set how many posts, pictures, tweets, or videos for each individual social feed! We now have simple widgets available for all the feeds. This premium edition also allows our basic shortcode to work with text widgets. Facebook Groups now has the option to hide the Title or Description too! [See Example Demo](http://feedthemsocial.com/)
 
-= Demos (post/page . multiple feeds allowed) =
+= Demos =
   * [Facebook Event Feed Demo](http://feedthemsocial.com/facebook-event-feed-demo/)
   * [Facebook Page Feed Demo](http://feedthemsocial.com/facebook-page-feed-demo/)
   * [Facebook Group Feed Demo](http://feedthemsocial.com/facebook-group-feed-demo/)
   * [Instagram Feed Demo](http://feedthemsocial.com/instagram-feed-demo/)
   * [Twitter Feed Demo](http://feedthemsocial.com/twitter-feed-demo/)
   
-= Example PREMIUM Feed Demos =
+= PREMIUM Demos =
  * [Pinterest Feed Demo](http://feedthemsocial.com/pinterest/)
  * [Youtube + Instagram + Pinterest Feeds Demo](http://feedthemsocial.com/youtube-instagram/)
  * [YouTube Feed Demo](http://feedthemsocial.com/2013/01/youtube-feed-demo-1-large-with-3-video-per-row/)
 
-= Example PREMIUM Widget Feed Demo =
-  * [Social Page with Widgets](http://feedthemsocial.com/)
-
-= Example PREMIUM FTS Bar =
+= PREMIUM FTS Bar =
   * [NEW! Social Bar](http://feedthemsocial.com/fts-bar/)
 	
-
 If you enjoy using our plugin please tell others. [Click here to share.](http://www.facebook.com/sharer.php?u=http://wordpress.org/plugins/feed-them-social/&t=FeedThemSocial)
 
 == Installation ==
@@ -49,7 +45,7 @@ If you enjoy using our plugin please tell others. [Click here to share.](http://
   * Extract the zip file and drop the contents in the wp-content/plugins/ directory of your WordPress installation and then activate the Plugin from Plugins page. 
 
 == Changelog ==
-
+ 
 = Version 1.5.4 Wednesday, September 3rd, 2014 =
  * UPDATED: FTS framework to now work on non root installs. **note** Feed Them Premium and FTS Bar will also be getting this update
  * UPDATED: Instagram CSS adjustments
