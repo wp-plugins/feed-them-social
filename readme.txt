@@ -29,7 +29,7 @@ With our plugin you can create social feeds of any or all your celebrities, fami
 = PREMIUM Demos =
  * [Pinterest Feed Demo](http://feedthemsocial.com/pinterest/)
  * [Youtube + Instagram + Pinterest Feeds Demo](http://feedthemsocial.com/youtube-instagram/)
- * [YouTube Feed Demo](http://feedthemsocial.com/2013/01/youtube-feed-demo-1-large-with-3-video-per-row/)
+ * [YouTube Feed Demo](http://feedthemsocial.com/youtube-demo-1-large-with-4-video-per-row/)
 
 = PREMIUM FTS Bar =
   * [NEW! Social Bar](http://feedthemsocial.com/fts-bar/)
