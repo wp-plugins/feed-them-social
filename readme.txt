@@ -19,7 +19,7 @@ With our plugin you can create social feeds of any or all your celebrities, fami
   * Responsive social Feeds!
   * With our [Premium Extension](http://www.slickremix.com/product/feed-them-social-premium-extension/) you can set how many posts, pictures, tweets, or videos for each individual social feed! We now have simple widgets available for all the feeds. This premium edition also allows our basic shortcode to work with text widgets. Facebook Groups now has the option to hide the Title or Description too! [See Example Demo](http://feedthemsocial.com/)
 
-= Example SINGLE Feed Demos (post/page . multiple feeds allowed) =
+= Demos (post/page . multiple feeds allowed) =
   * [Facebook Event Feed Demo](http://feedthemsocial.com/facebook-event-feed-demo/)
   * [Facebook Page Feed Demo](http://feedthemsocial.com/facebook-page-feed-demo/)
   * [Facebook Group Feed Demo](http://feedthemsocial.com/facebook-group-feed-demo/)
