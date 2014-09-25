@@ -367,7 +367,7 @@ function  fts_facebook_page_form($save_options = false) {
         $output .= '<option value="event">Facebook Event</option>';
         $output .= '<option value="album_photos">Facebook Album Photos</option>';
         $output .= '<option value="albums">Facebook Album Covers</option>';
-        $output .= '<option value="hashtag">Facebook Hashtag</option>';
+        //$output .= '<option value="hashtag">Facebook Hashtag</option>';
         $output .= '</select>';
         $output .= '<div class="clear"></div>';
         $output .= '</div><!--/feed-them-social-admin-input-wrap-->';

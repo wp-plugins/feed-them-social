@@ -47,7 +47,6 @@ If you enjoy using our plugin please tell others. [Click here to share.](http://
 == Changelog ==
 
 = Version 1.5.5 Thursday, September 18th, 2014 =
- * NEW: Facebook Hash Tag Feed
  * NEW: Set Height for Twitter Feeds
  * NEW: Set Height for Facebook Feeds
  * NEW: Facebook Albums Photos...adjust width, height and more. Multiple Feeds Allowed.
