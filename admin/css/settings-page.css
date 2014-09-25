@@ -11,8 +11,11 @@
 	line-height: 20px;
 	width: 65%
 }
-.final-shortcode-textarea, .shortcode-generator-form, .final-instagram-user-id-textarea, instagram-shortcode-form {
+.final-shortcode-textarea, .shortcode-generator-form, .final-instagram-user-id-textarea, instagram-shortcode-form, .fts-super-instagram-options-wrap {
 	display: none;
+}
+.fts-super-instagram-options-wrap {
+	padding-top:0px;
 }
 .fts-empty-error {
 	background-color: #F5F5AE !important;
@@ -52,7 +55,9 @@
 	margin: 20px 20px 0 0px;
 	-webkit-text-size-adjust: none;
 }
-
+.facebook-message-generator {
+	display:none;
+}
 .feed-them-social-admin-wrap h2 {
 	color: #fff;
 	font-size: 23px;

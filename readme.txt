@@ -3,7 +3,7 @@ Contributors: slickremix
 Tags:  social, social plugin, social networking, networking, pinterest, pinterest boards, pinterest feeds, pinterest photos, pinterest widget, pinterest widgets, facebook, facebook feed, facebook posts,custom feed, custom facebook feed, facebook plugin, facebook group, facebook groups, events, facebook events, facebook page events, facebook group events, facebook page, facebook pages, twitter, twitter plugin, instagram, instagram plugin, feed me social, social plugin, feed, feeds, shortcode, facebook wall, slickremix, plugin, pages, posts, images, page, post, image, youtube, youtube feed, youtube channel, youtube video, youtube videos, videos, youtube embed, embed, video iframe, admin, comments, Posts, widgets, seo, wordpress
 Requires at least: 3.4.0
 Tested up to: 4.0.0
-Stable tag: 1.5.4
+Stable tag: 1.5.5
 License: GPLv2 or later
 
 Custom feeds for Facebook Pages, Facebook Groups, Facebook Events, Twitter, Instagram, Pinterest and YouTube on pages or posts.
@@ -46,6 +46,20 @@ If you enjoy using our plugin please tell others. [Click here to share.](http://
 
 == Changelog ==
 
+= Version 1.5.5 Thursday, September 18th, 2014 =
+ * NEW: Facebook Hash Tag Feed
+ * NEW: Set Height for Twitter Feeds
+ * NEW: Set Height for Facebook Feeds
+ * NEW: Facebook Albums Photos...adjust width, height and more. Multiple Feeds Allowed.
+ * NEW: Facebook Album Cover...adjust width, height and more. Multiple Feeds Allowed.
+ * NEW: Twitter Layout
+ * NEW: Twitter Photos are now in the feed
+ * NEW: Super Instagram Gallery Option...adjust image size and more. Multiple Feeds Allowed.
+ * NEW: You can now add Shortcodes to Text Widgets in the FREE Version
+ * FIXED: View on Facebook link works on post made from Twitter
+ * IMPROVED: Faster loading time on all Feeds
+ * NOTE/WARNING: Our custom facebook, twitter and instagram widgets will be removed in the next update because it's just as simple to generate the shortcode from our settings page and paste to a text widget and adjust the options. These 'NEW' options in this update are not available in our widgets. If you would like to use the latest features you will need to generate a new shortcode and paste that into a text widget. The nice thing is each option for the shortcode is cleary named so you can change the option very quickly.
+ 
 = Version 1.5.4 Wednesday, September 3rd, 2014 =
  * UPDATED: FTS framework to now work on non root installs. **note** Feed Them Premium and FTS Bar will also be getting this update
  * UPDATED: Instagram CSS adjustments

@@ -13,7 +13,8 @@ if(is_plugin_active('feed-them-premium/feed-them-premium.php')) {
 }
 else 	{
 	extract( shortcode_atts( array(
-		'twitter_name' => ''
+		'twitter_name' => '',
+		'twitter_height' => '',
 	), $atts ) );
 	$tweets_count ='5';
 }
@@ -52,7 +53,8 @@ $excludeReplies = true;
 			  array(
 				'screen_name'     => $name,
 				'count'           => $totalToFetch,
-				'exclude_replies' => $excludeReplies
+				'exclude_replies' => $excludeReplies,
+				'images'		  => $description_image
 			  )
 			);
 			
@@ -124,7 +126,9 @@ $excludeReplies = true;
 	  $screen_name = $tweet->user->screen_name;
       $permalink = 'http://twitter.com/'. $screen_name .'/status/'. $tweet->id_str;
 	  $user_permalink = 'https://twitter.com/#!/'. $screen_name;
- 
+ 	  $media_url = $tweet->entities->media[0]->media_url;
+	  // leaving this for another update, trying to get videos, and I know this ain't right! $url = $tweet->entities->media[0]->expanded_url;
+	  
       /* Alternative image sizes method: http://dev.twitter.com/doc/get/users/profile_image/:screen_name */
       $image = $tweet->user->profile_image_url;
  
@@ -154,19 +158,38 @@ $excludeReplies = true;
               'permalink' => $permalink,
               'image' => $image,
               'time' => $uTime,
-			  'id' => $twitter_id
+			  'media_url' => $media_url,
+			  'id' => $twitter_id,
+			 // 'url' => $url,
+			  
               );
-  }//End FOR 
-// Now display the tweets.
+  }//End FOR  
+
 ?>
-<div id="twitter-feed-<?php print $twitter_name?>" class="fts-twitter-div">
+
+<div id="twitter-feed-<?php print $twitter_name?>" class="fts-twitter-div" <?php if ($twitter_height) {?>style="height:<?php echo $twitter_height;  }?>">
   <?php foreach($tweets as $t) : ?>
   <div class="fts-tweeter-wrap">
-    <p><?php print $t['text'];?></p><div class="tweeter-info"><div class="fts-twitter-image"><img class="twitter-image" src="<?php print $t['image'];?>" /></div><div class="uppercase bold"><a href="<?php print $t['user_permalink'];?>" target="_blank" class="black">@<?php print $t['name'];?></a></div><div class="right"><a href="<?php print $t['permalink']?>"><?php print $t['time'];?></a></div></div></div>
+    <div class="tweeter-info">
+      <div class="fts-twitter-image"><img class="twitter-image" src="<?php print $t['image'];?>" /></div>
+      <div class="right">
+        <div class="uppercase bold"><a href="<?php print $t['user_permalink'];?>" target="_blank" class="black">@<?php print $t['name'];?></a></div>
+        <span class="time"><a href="<?php print $t['permalink']?>"><?php print $t['time'];?></a></span><br/>
+        <span class="fts-twitter-text"><?php print $t['text'];?></span>
+        <?php if ($t['media_url']) { ?>
+        <a href="<?php print $t['permalink']?>" target="_blank"><img class="fts-twitter-description-image" src="<?php print $t['media_url'];?>" /></a>
+		<?php } ?>
+        </div>
+      <div class="fts-twitter-reply-wrap">
+      <a href="<?php print $t['permalink']?>">
+      <div class="fts-twitter-reply"></div>
+      </a></div> 
+      <div class="clear"></div>
+    </div>
+  </div>
   <?php endforeach; ?>
-<div class="clear"></div>
-</div> 
-
+  <div class="clear"></div>
+</div>
 <?php  
 	}// END IF $fetchedTweets
 }//END ELSE

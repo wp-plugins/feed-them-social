@@ -30,9 +30,7 @@ $fts_functions = new feed_them_social_functions();
 	<form class="feed-them-social-admin-form"> 
     	<select id="shortcode-form-selector">
         	<option value=""><?php _e('Please Select Feed Type', 'feed-them-social'); ?> </option>
-            <option value="fb-page-shortcode-form"><?php _e('Facebook Page Feed', 'feed-them-social'); ?></option>
-        	<option value="fb-group-shortcode-form"><?php _e('Facebook Group Feed', 'feed-them-social'); ?></option>
-        	<option value="fb-event-shortcode-form"><?php _e('Facebook Event Feed', 'feed-them-social'); ?></option>
+            <option value="fb-page-shortcode-form"><?php _e('Facebook Feed', 'feed-them-social'); ?></option>
             <option value="twitter-shortcode-form"><?php _e('Twitter Feed', 'feed-them-social'); ?></option>
             <option value="instagram-shortcode-form"><?php _e('Instagram Feed', 'feed-them-social'); ?></option>
             <option value="youtube-shortcode-form"><?php _e('YouTube Feed'); ?></option>
@@ -65,7 +63,8 @@ $fts_functions = new feed_them_social_functions();
 	 echo $fts_functions->fts_pinterest_form(false);
 	 ?>
 	
-<div class="clear"></div>
+
+    <div class="clear"></div>
  <div class="feed-them-clear-cache">
  <h2><?php _e('Clear All Cache Option', 'feed-them-social'); ?></h2>
     <div class="use-of-plugin"><?php _e('Please Clear Cache if you have changed a FTS Shortcode. This will Allow you to see the NEW feed\'s options you just set!', 'feed-them-social'); ?></div>
@@ -80,15 +79,14 @@ $fts_functions = new feed_them_social_functions();
     </form>
   </div><!--/feed-them-clear-cache-->
   
-  
   <!-- custom option for padding -->
   <form method="post" class="fts-color-settings-admin-form" action="options.php">
   
+	
+       
    <div class="feed-them-custom-css">
    
-   
-  
-  <?php // get our registered settings from the gq theme functions 
+  <?php // get our registered settings from the fts functions 
 	 	   settings_fields('feed-them-social-settings'); ?> 
            
            
@@ -159,13 +157,15 @@ $fts_functions = new feed_them_social_functions();
                            ?>
       </p>
      <br/>
-          <input type="submit" class="feed-them-social-admin-submit-btn" value="<?php _e('Save Changes') ?>" />
+          <input type="submit" class="feed-them-social-admin-submit-btn" value="<?php _e('Save All Changes') ?>" />
       <div class="clear"></div>
     
      
       </div><!--/feed-them-custom-logo-css--> 
  
        </form>
+       
+     
   	<a class="feed-them-social-admin-slick-logo" href="http://www.slickremix.com" target="_blank"></a>
   
 </div><!--/feed-them-social-admin-wrap-->
@@ -173,18 +173,191 @@ $fts_functions = new feed_them_social_functions();
 <script>
 jQuery(function() {    
 
+	// Master feed selector
     jQuery('#shortcode-form-selector').change(function(){
         jQuery('.shortcode-generator-form').hide();
         jQuery('.' + jQuery(this).val()).fadeIn('fast');
     });
+	
+	 // change the feed type 'how to' message when a feed type is selected
+	jQuery('#facebook-messages-selector').change(function(){
+        jQuery('.facebook-message-generator').hide();
+        jQuery('.' + jQuery(this).val()).fadeIn('fast');
+		
+		// if the facebook type select is changed we hide the shortcode code so not to confuse people
+		jQuery('.final-shortcode-textarea').hide();
+		
+		
+	// only show the Super Gallery Options if the facebook ablum or album covers feed type is selected	
+	 var facebooktype = jQuery("select#facebook-messages-selector").val();
+		 if (facebooktype == 'albums' || facebooktype == 'album_photos') {
+       		 jQuery('.fts-super-facebook-options-wrap').show();
+				jQuery('.fixed_height_option').hide();
+ 		 }
+		 else {
+       		 jQuery('.fts-super-facebook-options-wrap').hide();
+			 jQuery('.fixed_height_option').show();
+		 }
+		 
+		 // only show the post type visible if the facebook page feed type is selected
+		 jQuery('.facebook-post-type-visible').hide();
+		  if (facebooktype == 'page' ) {
+ 		 	jQuery('.facebook-post-type-visible').show();
+		 }
+		 
+	var fb_feed_type_option = jQuery("select#facebook-messages-selector").val();  
+		if (fb_feed_type_option == 'album_photos') {
+				jQuery('.fb_album_photos_id').show();
+				
+			}
+			else {
+				jQuery('.fb_album_photos_id').hide();
+			}
+		  
+    });
+	
+	// Instagram Super Gallery option
+   jQuery('#instagram-custom-gallery').bind('change', function (e) { 
+    if( jQuery('#instagram-custom-gallery').val() == 'yes') {
+      jQuery('.fts-super-instagram-options-wrap').show();
+    }
+    else{
+      jQuery('.fts-super-instagram-options-wrap').hide();
+    }         
+  });
+  
+  // facebook Super Gallery option
+  jQuery('#facebook-custom-gallery').bind('change', function (e) { 
+    if( jQuery('#facebook-custom-gallery').val() == 'yes') {
+      jQuery('.fts-super-facebook-options-wrap').show();
+    }
+    else{
+      jQuery('.fts-super-facebook-options-wrap').hide();
+    }         
+  });
+  
 });
 
+
+
+//START Page JS/
+function updateTextArea_fb_page() {
+	
+	
+	var fb_feed_type = ' type=' + jQuery("select#facebook-messages-selector").val();
+	var fb_page_id = ' id=' + jQuery("input#fb_page_id").val(); 
+	var fb_album_id = ' album_id=' + jQuery("input#fb_album_id").val(); 
+	var fb_page_posts_displayed = ' posts_displayed=' + jQuery("select#fb_page_posts_displayed").val();
+	var facebook_height = jQuery("input#facebook_page_height").val();
+	
+	// var super_gallery = ' super_gallery=' + jQuery("select#facebook-custom-gallery").val();
+	var image_width = ' image_width=' + jQuery("input#fts-slicker-facebook-container-image-width").val();  
+	var image_height = ' image_height=' + jQuery("input#fts-slicker-facebook-container-image-height").val();  
+	var space_between_photos = ' space_between_photos=' + jQuery("input#fts-slicker-facebook-container-margin").val();  
+	var hide_date_likes_comments = ' hide_date_likes_comments=' + jQuery("select#fts-slicker-facebook-container-hide-date-likes-comments").val();  
+	var center_container = ' center_container=' + jQuery("select#fts-slicker-facebook-container-position").val();  
+	var image_stack_animation = ' image_stack_animation=' + jQuery("select#fts-slicker-facebook-container-animation").val();  
+	var position_lr = ' image_position_lr=' + jQuery("input#fts-slicker-facebook-image-position-lr").val();  
+	var position_top = ' image_position_top=' + jQuery("input#fts-slicker-facebook-image-position-top").val();  
+	
+	if (fb_page_id == " id=") {
+	  	 jQuery(".fb_page_id").addClass('fts-empty-error');  
+      	 jQuery("input#fb_page_id").focus();
+		 return false;
+	}
+	if (fb_page_id != " id=") {
+	  	 jQuery(".fb_page_id").removeClass('fts-empty-error');  
+	}
+	
+	if (fb_album_id == " album_id=" && fb_feed_type == " type=album_photos") {
+	  	 jQuery(".fb_album_photos_id").addClass('fts-empty-error');  
+      	 jQuery("input#fb_album_id").focus();
+		 return false;
+	}
+	if (fb_album_id != " album_id=") {
+	  	 jQuery(".fb_album_photos_id").removeClass('fts-empty-error');  
+	}
+	
+	if (facebook_height)	{
+		var facebook_height_final = ' height=' + jQuery("input#facebook_page_height").val();
+	}
+	else {
+		var facebook_height_final = '';
+	}
+	
+	
+	var super_gallery_option = jQuery("select#facebook-custom-gallery").val();
+		var albums_photos_option = jQuery("select#facebook-messages-selector").val();
+	<?php 
+	//Premium Plugin
+	if(is_plugin_active('feed-them-premium/feed-them-premium.php')) {
+	   include(WP_CONTENT_DIR.'/plugins/feed-them-premium/admin/js/facebook-page-settings-js.js');
+	}
+	else 	{ ?>
+	
+				if (albums_photos_option == "album_photos") {
+	  				var final_fb_page_shortcode = '[fts facebook' + fb_page_id + fb_album_id + fb_feed_type + image_width + image_height + space_between_photos + hide_date_likes_comments + center_container + image_stack_animation + position_lr + position_top +']';
+				}
+				else if (albums_photos_option == "albums") {
+	  				var final_fb_page_shortcode = '[fts facebook' + fb_page_id + fb_feed_type + image_width + image_height + space_between_photos + hide_date_likes_comments + center_container + image_stack_animation + position_lr + position_top +']';
+				}
+				else if (albums_photos_option == "page") {
+					var final_fb_page_shortcode = '[fts facebook' + fb_page_id + fb_page_posts_displayed + facebook_height_final + fb_feed_type + ']';
+				}
+				else {
+					var final_fb_page_shortcode = '[fts facebook' + fb_page_id + facebook_height_final + fb_feed_type + ']';
+				} 	 	
+
+		
+<?php } ?>
+
+	jQuery('.facebook-page-final-shortcode').val(final_fb_page_shortcode);
+	
+	jQuery('.fb-page-shortcode-form .final-shortcode-textarea').slideDown();
+	
+}
+//END Facebook Page//
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// NEED TO STRIP OUT WHATEVER FACEBOOK STUFF NOT NEEDED BELOW THIS LINE FOR NEWEST UPDATE
 
 //START Facebook Group//
 function updateTextArea_fb_group() {
 
 	var fb_group_id = ' id=' + jQuery("input#fb_group_id").val(); 
 	// var fb_group_custom_name = ' custom_name=' + jQuery("select#fb_group_custom_name").val();
+	var facebook_height = jQuery("input#facebook_group_height").val();
+	
 	
 	if (fb_group_id == " id=") {
 	  	 jQuery(".fb_group_id").addClass('fts-empty-error');  
@@ -195,6 +368,12 @@ function updateTextArea_fb_group() {
 	  	 jQuery(".fb_group_id").removeClass('fts-empty-error');  
 	}
 	
+	if (facebook_height)	{
+		var facebook_height_final = ' height=' + jQuery("input#facebook_group_height").val();
+	}
+	else {
+		var facebook_height_final = '';
+	}
 	<?php 
 	
 	//Premium Plugin
@@ -209,7 +388,7 @@ function updateTextArea_fb_group() {
 //			}
 //			else	{
 					// var final_fb_group_shorcode = '[fts facebook group' + fb_group_id + fb_group_custom_name + ' type=group]';
-					var final_fb_group_shorcode = '[fts facebook group' + fb_group_id + ' type=group]';
+					var final_fb_group_shorcode = '[fts facebook group' + fb_group_id + facebook_height_final + ' type=group]';
 			//}	
 	
 <?php } ?>
@@ -221,49 +400,15 @@ jQuery('.facebook-group-final-shortcode').val(final_fb_group_shorcode);
 }
 //END Facebook Group//
 
-//START Page Group//
-function updateTextArea_fb_page() {
 
-	var fb_page_id = ' id=' + jQuery("input#fb_page_id").val(); 
-	var fb_page_posts_displayed = ' posts_displayed=' + jQuery("select#fb_page_posts_displayed").val();
 
-	
-	if (fb_page_id == " id=") {
-	  	 jQuery(".fb_page_id").addClass('fts-empty-error');  
-      	 jQuery("input#fb_page_id").focus();
-		 return false;
-	}
-	if (fb_page_id != " id=") {
-	  	 jQuery(".fb_page_id").removeClass('fts-empty-error');  
-	}
-	
-	<?php 
-	//Premium Plugin
-	if(is_plugin_active('feed-them-premium/feed-them-premium.php')) {
-	   include(WP_CONTENT_DIR.'/plugins/feed-them-premium/admin/js/facebook-page-settings-js.js');
-	}
-	else 	{ ?>
-	
-		//if (final_fts_rotate_shortcode && jQuery("#"+ rotate_form_id + " input.fts_rotate_feed").is(':checked')){
-//				var final_fb_page_shorcode = '[fts facebook page' + fb_page_id + ' type=page' + final_fts_rotate_shortcode + ']';
-//			}
-//		else	{
-				var final_fb_page_shorcode = '[fts facebook page' + fb_page_id + fb_page_posts_displayed + ' type=page]';
-	//	}
-		
-<?php } ?>
 
-jQuery('.facebook-page-final-shortcode').val(final_fb_page_shorcode);
-	
-	jQuery('.fb-page-shortcode-form .final-shortcode-textarea').slideDown();
-	
-}
-//END Facebook Page//
 
 //START Facebook Event//
 function updateTextArea_fb_event() {
 
 	var fb_event_id = ' id=' + jQuery("input#fb_event_id").val(); 
+	var facebook_height = jQuery("input#facebook_event_height").val();
 	
 	if (fb_event_id == " id=") {
 	  	 jQuery(".fb_event_id").addClass('fts-empty-error');  
@@ -274,6 +419,12 @@ function updateTextArea_fb_event() {
 	  	 jQuery(".fb_event_id").removeClass('fts-empty-error');  
 	}
 	
+	if (facebook_height)	{
+		var facebook_height_final = ' height=' + jQuery("input#facebook_event_height").val();
+	}
+	else {
+		var facebook_height_final = '';
+	}
 	<?php 
 	//Premium Plugin
 	if(is_plugin_active('feed-them-premium/feed-them-premium.php')) {
@@ -285,7 +436,7 @@ function updateTextArea_fb_event() {
 //				var final_fb_event_shorcode = '[fts facebook event' + fb_page_id + ' type=event' + final_fts_rotate_shortcode + ']';
 //			}
 //		else	{
-				var final_fb_event_shorcode = '[fts facebook event' + fb_event_id + ' type=event]';
+				var final_fb_event_shorcode = '[fts facebook event' + fb_event_id + facebook_height_final + ' type=event]';
 	//	}		
 		
 <?php } ?>
@@ -302,6 +453,7 @@ function updateTextArea_twitter() {
 
 	var twitter_name = ' twitter_name=' + jQuery("input#twitter_name").val();
 	
+	var twitter_height = jQuery("input#twitter_height").val();
 	
 	
 	if (twitter_name == " twitter_name=") {
@@ -314,6 +466,13 @@ function updateTextArea_twitter() {
 	  	 jQuery(".twitter_name").removeClass('fts-empty-error');  
 	}
 	
+	
+	if (twitter_height)	{
+		var twitter_height_final = ' twitter_height=' + jQuery("input#twitter_height").val();
+	}
+	else {
+		var twitter_height_final = ''; 
+	}
 	<?php
 	if(is_plugin_active('feed-them-premium/feed-them-premium.php')) {
 	   include(WP_CONTENT_DIR.'/plugins/feed-them-premium/admin/js/twitter-settings-js.js');
@@ -321,12 +480,8 @@ function updateTextArea_twitter() {
 	
 	else 	{ ?>
 	
-	//	if (final_fts_rotate_shortcode && jQuery("#"+ rotate_form_id + " input.fts_rotate_feed").is(':checked')){
-//			var final_twitter_shorcode = '[fts twitter' + twitter_name + final_fts_rotate_shortcode + ']';
-//		}
-//		else	{
-			var final_twitter_shorcode = '[fts twitter' + twitter_name + ']';
-		//}		
+			var final_twitter_shorcode = '[fts twitter' + twitter_name + twitter_height_final + ']';
+
 	
 <?php } ?>
 
@@ -339,8 +494,15 @@ jQuery('.twitter-final-shortcode').val(final_twitter_shorcode);
 //START Instagram//
 function updateTextArea_instagram() {
 
-	var instagram_id = ' instagram_id=' + jQuery("input#instagram_id").val(); 
-	
+	var instagram_id = ' instagram_id=' + jQuery("input#instagram_id").val();
+	var super_gallery = ' super_gallery=' + jQuery("select#instagram-custom-gallery").val();
+	var image_size = ' image_size=' + jQuery("input#fts-slicker-instagram-container-image-size").val();  
+	var icon_size = ' icon_size=' + jQuery("input#fts-slicker-instagram-icon-center").val();  
+	var space_between_photos = ' space_between_photos=' + jQuery("input#fts-slicker-instagram-container-margin").val();  
+	var hide_date_likes_comments = ' hide_date_likes_comments=' + jQuery("select#fts-slicker-instagram-container-hide-date-likes-comments").val();  
+	var center_container = ' center_container=' + jQuery("select#fts-slicker-instagram-container-position").val();  
+	var image_stack_animation = ' image_stack_animation=' + jQuery("select#fts-slicker-instagram-container-animation").val();  
+	 
 	if (instagram_id == " instagram_id=") {
 	  	 jQuery(".instagram_id").addClass('fts-empty-error');  
       	 jQuery("input#instagram_id").focus();
@@ -356,12 +518,13 @@ function updateTextArea_instagram() {
 	   include(WP_CONTENT_DIR.'/plugins/feed-them-premium/admin/js/instagram-settings-js.js');
 	}//end if Premium version
 	else 	{ ?>
-		//if (final_fts_rotate_shortcode && jQuery("#"+ rotate_form_id + " input.fts_rotate_feed").is(':checked')){
-//				var final_instagram_shorcode = '[fts instagram' + instagram_id + final_fts_rotate_shortcode +']'
-//		}
-//		else	{
-				var final_instagram_shorcode = '[fts instagram' + instagram_id + ']';
-		//}		
+	
+			if (jQuery("select#instagram-custom-gallery").val() == "no") {
+	  			var final_instagram_shorcode = '[fts instagram' + instagram_id +']';
+			}
+			else {
+				var final_instagram_shorcode = '[fts instagram' + instagram_id + super_gallery + image_size + icon_size + space_between_photos + hide_date_likes_comments + center_container + image_stack_animation +']';
+			} 	
 		
 <?php } ?>
 
