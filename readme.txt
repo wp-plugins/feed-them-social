@@ -21,6 +21,8 @@ With our plugin you can create social feeds of any or all your celebrities, fami
 
 = Demos =
   * [Facebook Page Feed Demo](http://feedthemsocial.com/)
+  * [Facebook Album Photos Feed Demo](http://feedthemsocial.com/facebook-album-photos-demo/)
+  * [Facebook Album Covers Feed Demo](http://feedthemsocial.com/facebook-album-covers/)
   * [Facebook Group Feed Demo](http://feedthemsocial.com/facebook-group-feed-demo/)
   * [Facebook Event Feed Demo](http://feedthemsocial.com/facebook-event-feed-demo/)
   * [Instagram Feed Demo](http://feedthemsocial.com/instagram-feed-demo/)
