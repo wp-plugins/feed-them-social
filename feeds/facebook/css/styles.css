@@ -45,6 +45,7 @@
 }
 .fts-jal-fb-group-display {
 	overflow:auto;
+	clear: both;
 }
 /*=================================================
 	fts-jal Facebook Group Feed 
