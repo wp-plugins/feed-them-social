@@ -23,6 +23,19 @@ This is the main file for building the plugin into wordpress
 */
 define( 'FEED_THEM_PLUGIN_PATH', plugins_url());
 
+if ( ! function_exists( 'is_plugin_active' ) )
+    require_once( ABSPATH . '/wp-admin/includes/plugin.php' );
+    // Makes sure the plugin is defined before trying to use it
+
+// Make sure php version is greater than 5.3
+if ( function_exists( 'phpversion' ) )
+					
+					$phpversion = phpversion();
+					$phpcheck = '5.2.9';
+
+if ($phpversion > $phpcheck) {
+						
+
 function fts_action_init()
 {
 // Localization
@@ -66,4 +79,23 @@ function ftsystem_version() {
 	$plugin_version = $plugin_data['Version'];
 	return $plugin_version;
 }
+
+
+} // end if php version check
+
+else  {
+	
+	
+	// if the php version is not at least 5.3 do action
+	deactivate_plugins( 'feed-them-social/feed-them.php' ); 
+	
+	
+    	if ($phpversion < $phpcheck) {
+		
+	add_action( 'admin_notices', 'fts_required_php_check1' );	
+	function fts_required_php_check1() {
+			echo '<div class="error"><p>' . __( 'Warning: Your version of php must be 5.3 or greater to use this plugin. Please upgrade the php by contacting your host provider. Some host providers will allow you to change this yourself in the hosting control panel too.', 'my-theme' ) . '</p></div>';
+	}
+	}
+} // end fts_required_php_check	
 ?>
