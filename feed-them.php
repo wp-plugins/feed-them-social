@@ -30,7 +30,7 @@ if ( ! function_exists( 'is_plugin_active' ) )
 // Make sure php version is greater than 5.3
 if ( function_exists( 'phpversion' ) )
 					
-					$phpversion = '5.2.8'; //phpversion();
+					$phpversion = phpversion();
 					$phpcheck = '5.2.9';
 
 if ($phpversion > $phpcheck) {
