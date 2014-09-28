@@ -30,7 +30,7 @@ if ( ! function_exists( 'is_plugin_active' ) )
 // Make sure php version is greater than 5.3
 if ( function_exists( 'phpversion' ) )
 					
-					$phpversion = phpversion();
+					$phpversion = '5.2.8'; //phpversion();
 					$phpcheck = '5.2.9';
 
 if ($phpversion > $phpcheck) {
@@ -94,7 +94,7 @@ else  {
 		
 	add_action( 'admin_notices', 'fts_required_php_check1' );	
 	function fts_required_php_check1() {
-			echo '<div class="error"><p>' . __( 'Warning: Your version of php must be 5.3 or greater to use this plugin. Please upgrade the php by contacting your host provider. Some host providers will allow you to change this yourself in the hosting control panel too.', 'my-theme' ) . '</p></div>';
+			echo '<div class="error"><p>' . __( '<strong>Warning:</strong> Your php version is '.phpversion().'. You need to be running at least 5.3 or greater to use this plugin. Please upgrade the php by contacting your host provider. Some host providers will allow you to change this yourself in the hosting control panel too.', 'my-theme' ) . '</p></div>';
 	}
 	}
 } // end fts_required_php_check	
