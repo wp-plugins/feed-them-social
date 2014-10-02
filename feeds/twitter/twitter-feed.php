@@ -167,7 +167,7 @@ $excludeReplies = true;
 
 ?>
 
-<div id="twitter-feed-<?php print $twitter_name?>" class="fts-twitter-div" <?php if ($twitter_height) {?>style="height:<?php echo $twitter_height;  }?>">
+<div id="twitter-feed-<?php print $twitter_name?>" class="fts-twitter-div" <?php if ($twitter_height) {?>style="height:<?php echo $twitter_height; ?>"<?php }?>>
   <?php foreach($tweets as $t) : ?>
   <div class="fts-tweeter-wrap">
     <div class="tweeter-info">

@@ -194,7 +194,7 @@ class FTS_Facebook_Feed extends feed_them_social_functions {
 		<div class="fts-slicker-facebook-photos fts-slicker-facebook-albums masonry js-masonry" style="margin:auto" data-masonry-options='{ "isFitWidth": <?php if ($center_container == 'no') { ?>false<?php } else {?>true<?php } if ($image_stack_animation == 'no') { ?>, "transitionDuration": 0<?php } ?> }'>
 			
 	<?php	}
-		else { ?> <div class="fts-jal-fb-group-display" <?php if ($height) {?>style="height:<?php echo $height;  } ?>"> <?php }
+		else { ?> <div class="fts-jal-fb-group-display" <?php if ($height) {?>style="height:<?php echo $height; ?>"<?php } ?>> <?php }
 		
 		
 		$fb_post_data_cache = WP_CONTENT_DIR.'/plugins/feed-them-social/feeds/facebook/cache/fb-'.$type.'-post-'.$fts_fb_id.'-num'.$fts_limiter.'.cache';
