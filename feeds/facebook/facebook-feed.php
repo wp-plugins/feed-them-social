@@ -1050,26 +1050,15 @@ if($type == 'album_photos' && $hide_date_likes_comments == 'yes' || $type == 'al
 		$split_tag_array = array();
 		$patterns_array = array();
 		foreach($tags[1] as $key => $tag){
-			$split_tag = preg_split('/:/', $tag, -1, PREG_SPLIT_OFFSET_CAPTURE); 
+			  $split_tag = preg_split('/:/', $tag, -1, PREG_SPLIT_OFFSET_CAPTURE); 
 			  $split_tag_array[$key] ='<a target="_blank" href="http://facebook.com/'.$split_tag[0][0].'">'.$split_tag[2][0].'</a>';
 			  $patterns_array[$key] = '/\@\[(['.$tag.'^\]]*)\]/';	  
 		}
 		$FBdescription = preg_replace($patterns_array,$split_tag_array,$FBdescription);
 		
 		//Hash tags
-		preg_match_all('/#([^\s]+)/', $FBdescription, $hash_tags);
-		
-		$hashtag_array = array();
-		$hashtag_patterns_array = array();
-		
-		foreach($hash_tags[1] as $key => $hashtag){
-			$hashtag_array[$key] = '<a target="_blank" href="http://facebook.com/hashtag/'.$hashtag.'">#'.$hashtag.' </a>';
-			$hashtag_patterns_array[$key] = '/#(['.$hashtag.'^\s]+)/';
-		}
-		$FBdescription = preg_replace($hashtag_patterns_array,$hashtag_array,$FBdescription);
-		
-		
-		
+		$FBdescription = preg_replace('/(?<!\S)#([0-9a-zA-Z]+)/', '<a target="_blank" href="http://facebook.com/hashtag/$1">#$1</a>', $FBdescription);
+
 		return $FBdescription;
 	}
 
