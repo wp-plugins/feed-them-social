@@ -51,6 +51,7 @@ If you enjoy using our plugin please tell others. [Click here to share.](http://
 = Version 1.5.6 Saturday, October 4th, 2014 =
  * FIXED: Multiple Facebook hashtags in a row now appear and link properly. Thanks to Steve Walker from [crossfitchamblee](http://crossfitchamblee.com/ ) for bringing this to our attention.
  * FACEBOOK NOTE: Fix has been assigned to the Developers of Facebook for Facebook Groups where ‘Attachment Unavailable’ message keeps appearing on links. Pending follow up. https://developers.facebook.com/bugs/359031327555134
+* NEW: Curl check on system info page
  
 = Version 1.5.5 Thursday, September 27th, 2014 =
  * NEW: Set Height for Twitter Feeds
