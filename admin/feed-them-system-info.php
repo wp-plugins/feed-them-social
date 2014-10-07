@@ -109,6 +109,30 @@ function feed_them_system_info_page(){
  }
  ?></td>
         </tr>
+        
+        <tr>
+        <td><?php _e('cURL','ftsystem')?></td>
+        <td><?php
+		// Script to test if the CURL extension is installed on this server
+
+// Define function to test
+function _fts_is_curl_installed() {
+    if  (in_array  ('curl', get_loaded_extensions())) {
+        return true;
+    }
+    else {
+        return false;
+    }
+}
+
+// Ouput text to user based on test
+if (_fts_is_curl_installed()) {
+  echo "cURL is <span style=\"color:blue\">installed</span> on this server";
+} else {
+  echo "cURL is NOT <span style=\"color:red\">installed</span> on this server";
+}
+?></td>
+        </tr>
       </tbody>
     </table>
   </div>
