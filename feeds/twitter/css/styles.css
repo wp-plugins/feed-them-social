@@ -181,14 +181,12 @@ img.fts-twitter-description-image {
 .tweeter-info .time {
 	font-size:12px;
 }
-.tweeter-info .time {
-	white-space: nowrap
-}
 .fts-tweeter-wrap .tweeter-info {
 	padding: 14px 0 7px;
 	background: none;
 	box-shadow: 0 0px 0px #555;
 	border-bottom:1px solid #eee;
+	word-wrap: break-word;
 	clear: both;
 	font-size:14px;
 	line-height: 13px;
