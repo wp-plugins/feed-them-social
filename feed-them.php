@@ -1,6 +1,6 @@
 <?php
 /*
-Plugin Name: Feed Them Social
+Plugin Name: Feed Them Social (Facebook, Instagram, Twitter, etc)
 Plugin URI: http://slickremix.com/
 Description: Create and display custom feeds for Facebook Groups, Facebook Pages, Facebook Events, Facebook Photos, Facebook Album Covers, Twitter, Instagram, Pinterest and YouTube.
 Version: 1.5.7
