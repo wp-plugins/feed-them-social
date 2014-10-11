@@ -6,7 +6,7 @@ Tested up to: 4.0.0
 Stable tag: 1.5.7
 License: GPLv2 or later
 
-Custom feeds for Facebook Pages, Facebook Groups, Facebook Events, Twitter, Instagram, Pinterest and YouTube on pages or posts.
+Custom feeds for Facebook Pages, Groups, Events, Album Photos, Album Covers - Twitter, Instagram, Pinterest and YouTube on pages or posts.
 
 == Description ==
 
