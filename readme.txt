@@ -1,4 +1,4 @@
-=== Feed Them Social ===
+=== Feed Them Social (Facebook, Instagram, Twitter, etc) ===
 Contributors: slickremix
 Tags:  hastags, social, social plugin, social networking, networking, facebook photos, facebook albums, albums, photos facebook, photo, facebook feed, facebook posts, custom feed, custom facebook feed, facebook plugin, facebook group, facebook groups, events, facebook events, facebook page events, facebook group events, facebook page, facebook pages, twitter, twitter plugin, instagram, instagram plugin, feed me social, social plugin, feed, feeds, shortcode, facebook wall, slickremix, plugin, pages, posts, images, page, post, image, youtube, youtube feed, youtube channel, youtube video, youtube videos, videos, youtube embed, embed, video iframe, admin, comments, widgets, seo, wordpress, pinterest, pinterest boards, pinterest feeds, pinterest photos, pinterest widget, pinterest widgets,
 Requires at least: 3.4.0
