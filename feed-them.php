@@ -2,13 +2,13 @@
 /*
 Plugin Name: Feed Them Social
 Plugin URI: http://slickremix.com/
-Description: Create and display custom feeds for Facebook Groups, Facebook Pages, Facebook Events, Twitter, Instagram, Pinterest and YouTube.
-Version: 1.5.6
+Description: Create and display custom feeds for Facebook Groups, Facebook Pages, Facebook Events, Facebook Photos, Facebook Album Covers, Twitter, Instagram, Pinterest and YouTube.
+Version: 1.5.7
 Author: SlickRemix
 Author URI: http://slickremix.com/
 Requires at least: wordpress 3.4.0
 Tested up to: WordPress 4.0.0
-Stable tag: 1.5.6
+Stable tag: 1.5.7
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -62,7 +62,6 @@ $load_fts->fts_get_check_plugin_version('feed-them-premium.php', '1.3.0');
 $load_fts->init();
 
 
-
 // Include feeds
 include( $fts_plugin_rel_url.'feeds/facebook/facebook-feed.php' );
 new FTS_Facebook_Feed();
@@ -97,5 +96,5 @@ else  {
 			echo '<div class="error"><p>' . __( '<strong>Warning:</strong> Your php version is '.phpversion().'. You need to be running at least 5.3 or greater to use this plugin. Please upgrade the php by contacting your host provider. Some host providers will allow you to change this yourself in the hosting control panel too.', 'my-theme' ) . '</p></div>';
 	}
 	}
-} // end fts_required_php_check	
+} // end fts_required_php_check
 ?>
