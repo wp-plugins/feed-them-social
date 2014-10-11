@@ -804,7 +804,7 @@ function  fts_facebook_page_form($save_options = false) {
 	 function fts_get_feed_json($feeds_mulit_data) {
 			// data to be returned
 			$response = array();
-			
+			$curl_success = true;
 			if(is_callable('curl_init')){
 				// array of curl handles
 				$curly = array();
@@ -821,6 +821,8 @@ function  fts_facebook_page_form($save_options = false) {
 				  curl_setopt($curly[$id], CURLOPT_URL,            $url);
 				  curl_setopt($curly[$id], CURLOPT_HEADER,         0);
 				  curl_setopt($curly[$id], CURLOPT_RETURNTRANSFER, 1);
+				  curl_setopt($curly[$id], CURLOPT_SSL_VERIFYPEER, false);
+				  curl_setopt($curly[$id], CURLOPT_SSL_VERIFYHOST, 0);
 			   
 				  // post?
 				  if (is_array($d)) {
@@ -841,7 +843,19 @@ function  fts_facebook_page_form($save_options = false) {
 				// execute the handles
 				$running = null;
 				do {
-				  curl_multi_exec($mh, $running);
+				  $curl_status = curl_multi_exec($mh, $running);
+				  // Check for errors
+				  $info = curl_multi_info_read($mh);
+					if (false !== $info) {
+						// Add connection info to info array:
+						if (!$info['result']) {
+							//$multi_info[(integer) $info['handle']]['error'] = 'OK';
+						} else {
+							$multi_info[(integer) $info['handle']]['error'] = curl_error($info['handle']);
+							$curl_success = false;
+						}
+					}
+				  
 				} while($running > 0);
 			   
 				// get content and remove handles
@@ -849,17 +863,26 @@ function  fts_facebook_page_form($save_options = false) {
 				  $response[$id] = curl_multi_getcontent($c);
 				  curl_multi_remove_handle($mh, $c);
 				}
-				// all done
+				
+				// Display result messages:
+				//if($multi_info){
+//				  foreach ($multi_info as $each) {
+//					  echo $each['url'] . ' => ' . $each['error'] . "\n";
+//				  }
+//				}
+
+				// All Done With Curl Call
 				curl_multi_close($mh);
+			
+			} 
 			//File_Get_Contents if Curl doesn't work
-			} elseif (ini_get('allow_url_fopen') == 1 || ini_get('allow_url_fopen') === TRUE ) {
+			if (!$curl_success && ini_get('allow_url_fopen') == 1 || ini_get('allow_url_fopen') === TRUE) {
 				foreach ($feeds_mulit_data as $id => $d) {
 				  $response[$id] = @file_get_contents($d);
 				}
-					
-			//If nothing else use wordpress http API
 			} else {
-			  if(!class_exists( 'WP_Http' )) {
+			  //If nothing else use wordpress http API
+			  if(!$curl_success && !class_exists( 'WP_Http' )) {
 				include_once( ABSPATH . WPINC. '/class-http.php' );
 				$wp_http_class = new WP_Http;
 				foreach ($feeds_mulit_data as $id => $d) {
@@ -867,6 +890,7 @@ function  fts_facebook_page_form($save_options = false) {
 					$response[$id] = $wp_http_result['body'];
 				} 
 			  }
+			  //Do nothing if Curl was Successful 
 			}
 			
 			return $response;
