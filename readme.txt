@@ -13,7 +13,7 @@ Custom feeds for Facebook Pages, Groups, Events, Album Photos, Album Covers - Tw
 With our plugin you can create social feeds of any or all your celebrities, family, friends, yourself, or businesses. Looks great on Desktops, Tablets, and Mobile Devices.
 
 = Features include the following: =
-  * View photos and videos from your Facebook Page, Group or Event in our FREE version!
+  * View photos and videos from your Facebook Page, Group, Album Photos, Album Covers or Event in our FREE version!
   * Add as many social feeds as you need!
   * Display social feeds on any post, page, or sidebar!
   * Easily generate all the shortcodes you need for any feed with our SUPER SIMPLE shortcode generator!
