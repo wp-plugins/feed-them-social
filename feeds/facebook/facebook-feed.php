@@ -254,7 +254,7 @@ if(!$_GET['load_more_ajaxing']){
             });
         </script>	           
 	
-        <div class="fts-slicker-facebook-photos fts-slicker-facebook-albums masonry js-masonry fts_fb_<?php echo $fts_dynamic_name ?>" style="margin:auto" data-masonry-options='{ "isFitWidth": <?php if ($center_container == 'no') { ?>false<?php } else {?>true<?php } if ($image_stack_animation == 'no') { ?>, "transitionDuration": 0<?php } ?> }'>
+        <div class="fts-slicker-facebook-photos fts-slicker-facebook-albums masonry js-masonry <?php echo $fts_dynamic_class_name ?>" style="margin:auto" data-masonry-options='{ "isFitWidth": <?php if ($center_container == 'no') { ?>false<?php } else {?>true<?php } if ($image_stack_animation == 'no') { ?>, "transitionDuration": 0<?php } ?> }'>
 			
 	<?php	}
 		else { ?> 
