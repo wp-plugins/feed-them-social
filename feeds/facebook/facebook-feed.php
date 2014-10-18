@@ -975,7 +975,7 @@ if($type == 'album_photos' && $hide_date_likes_comments == 'yes' || $type == 'al
 		</script>
 <?php	
 //Make sure it's not ajaxing
-if(!$_GET['load_more_ajaxing'] && !$_REQUEST['fts_no_more_posts']){ 
+if(!$_GET['load_more_ajaxing'] && !$_REQUEST['fts_no_more_posts'] && !empty($loadmore)){ 
 	
 	$fts_dynamic_name = $_REQUEST['fts_dynamic_name'];
 	
