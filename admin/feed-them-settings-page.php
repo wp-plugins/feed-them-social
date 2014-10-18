@@ -135,12 +135,55 @@ $fts_functions = new feed_them_social_functions();
     
       
       </div><!--/feed-them-custom-css--> 
-      
  
- 
- 
+ 	  <div class="feed-them-custom-access-tokens">
+         <h2><?php _e('Custom API Tokens', 'feed-them-social'); ?></h2>  
+         <p>
+         <?php
+         $test_app_token_id = get_option('fts_facebook_custom_api_token');
+		 if (!empty($test_app_token_id)){
+		   $fts_fb_access_token = '226916994002335|ks3AFvyAOckiTA1u_aDoI4HYuuw';
+		   $test_app_token_URL = array(
+					'app_token_id' => 'https://graph.facebook.com/debug_token?input_token='.$test_app_token_id.'&access_token='.$test_app_token_id
+			);
+		  
+		  //Test App ID
+		  // Leave these for reference: 
+		  // App token for FTS APP2: 358962200939086|lyXQ5-zqXjvYSIgEf8mEhE9gZ_M
+		  // App token for FTS APP3: 705020102908771|rdaGxW9NK2caHCtFrulCZwJNPyY
+	 	  $test_app_token_response = $fts_functions->fts_get_feed_json($test_app_token_URL);
+		  $test_app_token_response = json_decode($test_app_token_response['app_token_id']);
+		  echo'<print>';
+		 	 print_r($test_app_token_response);
+		  echo'</print>';
+		 }
+	 	
+	 
+	  ?>
+         <label class="fts-facebook-custom-api-token-label"><?php _e('Facebook App ID or User Token (for all facebook feeds). Not required to make the feed work. A User Token however will allow you to see certain post types that may be returning the message, Undefined Attachment. See how to <a href="http://www.slickremix.com/docs/create-facebook-app-id-or-user-token" target="_blank">GET APP ID or USER TOKEN</a>.', 'feed-them-social'); ?></label><br/>
+         <input type="text" name="fts_facebook_custom_api_token" class="feed-them-social-admin-input"  id="fts_facebook_custom_api_token" placeholder="APP ID or Token optional" value="<?php echo get_option('fts_facebook_custom_api_token');?>"/>
+        <?php if (!empty($test_app_token_response)){	 
+			 	if($test_app_token_response->data->is_valid){
+					echo'<div class="fts-successful-api-token">Your access token is working!</div>';
+				}
+				if($test_app_token_response->data->error->message || $test_app_token_response->error->message){
+					if($test_app_token_response->data->error->message){
+						echo'<div class="fts-failed-api-token">Oh No something\'s wrong! '.$test_app_token_response->data->error->message.'</div>';
+					}
+					if($test_app_token_response->error->message){
+						echo'<div class="fts-failed-api-token">Oh No something\'s wrong! '.$test_app_token_response->error->message.'</div>';
+					}
+					
+				}
+		}?>
+         </p>
+         <div class="clear"></div>
+ 	  </div>	
  
     <div class="feed-them-custom-logo-css">
+    
+    
+    
    <h2><?php _e('Powered by Text', 'feed-them-social'); ?></h2>
      
     
@@ -226,6 +269,22 @@ jQuery(function() {
     }         
   });
   
+ 
+   jQuery('#instagram-messages-selector').bind('change', function (e) { 
+    if( jQuery('#instagram-messages-selector').val() == 'hashtag') {
+      jQuery(".instagram-id-option-wrap").hide(); 
+      jQuery(".instagram-hashtag-option-text").show(); 
+      jQuery(".instagram-user-option-text").hide(); 
+	  
+    }
+	 else{
+      jQuery(".instagram-id-option-wrap").show(); 
+      jQuery(".instagram-hashtag-option-text").hide(); 
+      jQuery(".instagram-user-option-text").show(); 
+    } 
+   
+  });
+  
   // facebook Super Gallery option
   jQuery('#facebook-custom-gallery').bind('change', function (e) { 
     if( jQuery('#facebook-custom-gallery').val() == 'yes') {
@@ -235,6 +294,19 @@ jQuery(function() {
       jQuery('.fts-super-facebook-options-wrap').hide();
     }         
   });
+  
+  
+  
+   // facebook show load more options
+  jQuery('#fb_load_more_option').bind('change', function (e) { 
+    if( jQuery('#fb_load_more_option').val() == 'yes') {
+      jQuery('.fts-facebook-load-more-options-wrap').show();
+    }
+    else{
+      jQuery('.fts-facebook-load-more-options-wrap').hide();
+    }         
+  });
+  
   
 });
 
@@ -294,7 +366,7 @@ function updateTextArea_fb_page() {
 	   include(WP_CONTENT_DIR.'/plugins/feed-them-premium/admin/js/facebook-page-settings-js.js');
 	}
 	else 	{ ?>
-	
+				
 				if (albums_photos_option == "album_photos") {
 	  				var final_fb_page_shortcode = '[fts facebook' + fb_page_id + fb_album_id + fb_feed_type + image_width + image_height + space_between_photos + hide_date_likes_comments + center_container + image_stack_animation + position_lr + position_top +']';
 				}
@@ -491,9 +563,11 @@ jQuery('.twitter-final-shortcode').val(final_twitter_shorcode);
 }
 //END Twitter//
 
+
+	
 //START Instagram//
 function updateTextArea_instagram() {
-
+	
 	var instagram_id = ' instagram_id=' + jQuery("input#instagram_id").val();
 	var super_gallery = ' super_gallery=' + jQuery("select#instagram-custom-gallery").val();
 	var image_size = ' image_size=' + jQuery("input#fts-slicker-instagram-container-image-size").val();  
@@ -502,29 +576,35 @@ function updateTextArea_instagram() {
 	var hide_date_likes_comments = ' hide_date_likes_comments=' + jQuery("select#fts-slicker-instagram-container-hide-date-likes-comments").val();  
 	var center_container = ' center_container=' + jQuery("select#fts-slicker-instagram-container-position").val();  
 	var image_stack_animation = ' image_stack_animation=' + jQuery("select#fts-slicker-instagram-container-animation").val();  
+	var instagram_feed_type = ' type=' + jQuery("select#instagram-messages-selector").val();
 	 
 	if (instagram_id == " instagram_id=") {
-	  	 jQuery(".instagram_id").addClass('fts-empty-error');  
+	  	 jQuery(".instagram_name").addClass('fts-empty-error');  
       	 jQuery("input#instagram_id").focus();
 		 return false;
 	}
 	if (instagram_id != " instagram_id=") {
-	  	 jQuery(".instagram_id").removeClass('fts-empty-error');  
+	  	 jQuery(".instagram_name").removeClass('fts-empty-error');  
 	}
+	
+	
 	
 	<?php 
 	//Premium Plugin
 	if(is_plugin_active('feed-them-premium/feed-them-premium.php')) {
 	   include(WP_CONTENT_DIR.'/plugins/feed-them-premium/admin/js/instagram-settings-js.js');
+	   
 	}//end if Premium version
 	else 	{ ?>
 	
 			if (jQuery("select#instagram-custom-gallery").val() == "no") {
-	  			var final_instagram_shorcode = '[fts instagram' + instagram_id +']';
+	  			var final_instagram_shorcode = '[fts instagram' + instagram_id + instagram_feed_type +']';
 			}
 			else {
-				var final_instagram_shorcode = '[fts instagram' + instagram_id + super_gallery + image_size + icon_size + space_between_photos + hide_date_likes_comments + center_container + image_stack_animation +']';
-			} 	
+				var final_instagram_shorcode = '[fts instagram' + instagram_id + super_gallery + image_size + icon_size + space_between_photos + hide_date_likes_comments + center_container + image_stack_animation + instagram_feed_type +']';
+			}
+			 	
+		
 		
 <?php } ?>
 

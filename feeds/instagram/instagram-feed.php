@@ -20,6 +20,7 @@ if(is_plugin_active('feed-them-premium/feed-them-premium.php')) {
 else 	{
 	extract( shortcode_atts( array(
 		'instagram_id' => '',
+		'type' => '',
 		'super_gallery' => '',
 		'image_size' => '',
 		'icon_size' => '',
@@ -36,8 +37,14 @@ else 	{
 ob_start(); 
 
 //URL to get Feeds
-$insta_url = 'https://api.instagram.com/v1/users/'.$instagram_id.'/media/recent/?access_token=267791236.df31d88.30e266dda9f84e9f97d9e603f41aaf9e';
+ if ($type == 'hashtag') {  
+	$insta_url = 'https://api.instagram.com/v1/tags/'.$instagram_id.'/media/recent/?access_token=267791236.df31d88.30e266dda9f84e9f97d9e603f41aaf9e';
+  } 
+	else {
+ 	$insta_url = 'https://api.instagram.com/v1/users/'.$instagram_id.'/media/recent/?access_token=267791236.df31d88.30e266dda9f84e9f97d9e603f41aaf9e';
+	}
 $cache = WP_CONTENT_DIR.'/plugins/feed-them-social/feeds/instagram/cache/instagram-cache-'.$instagram_id.'.json';
+// https://api.instagram.com/v1/tags/snow/media/recent?access_token=ACCESS-TOKEN
 
 	//Get Data for Instagram
 	$response = wp_remote_fopen($insta_url);

@@ -3,7 +3,7 @@ Contributors: slickremix
 Tags:  facebook photos, facebook albums, albums, photos facebook, photo, facebook feed, facebook posts, hastags, social, social plugin, social networking, networking, custom feed, custom facebook feed, facebook plugin, facebook group, facebook groups, events, facebook events, facebook page events, facebook group events, facebook page, facebook pages, twitter, twitter plugin, instagram, instagram plugin, feed me social, social plugin, feed, feeds, shortcode, facebook wall, slickremix, plugin, pages, posts, images, page, post, image, youtube, youtube feed, youtube channel, youtube video, youtube videos, videos, youtube embed, embed, video iframe, admin, comments, widgets, seo, wordpress, pinterest, pinterest boards, pinterest feeds, pinterest photos, pinterest widget, pinterest widgets,
 Requires at least: 3.4.0
 Tested up to: 4.0.0
-Stable tag: 1.5.7
+Stable tag: 1.5.8
 License: GPLv2 or later
 
 Custom feeds for Facebook Pages, Groups, Events, Album Photos and Covers - Twitter, Instagram, Pinterest and YouTube on pages, posts or widgets.
@@ -48,6 +48,18 @@ If you enjoy using our plugin please tell others. [Click here to share.](http://
   * Extract the zip file and drop the contents in the wp-content/plugins/ directory of your WordPress installation and then activate the Plugin from Plugins page. 
 
 == Changelog ==
+= Version 1.5.8 Saturday, October 18th, 2014 =
+ * NEW: Facebook Load More posts option with a button or autoscroll option in premium version. (Twitter and Instagram will be getting this feature soon also)
+ * NEW: Facebook Hash Tag Feed
+ * NEW: Option to add your own App ID or User Access Token for Facebook. (You can still use the default tokens we have created if you don't want to add custom token.
+ * NEW: Instagram Hash Tag Feed
+ * FIXED: Facebook line-breaks being removed in premium version
+ * FIXED: Twitter max-width:100% defined so now horizontal scroll bars are not created in widgets
+ * FIXED: Closed div wrapper when error message shows for instagram feed
+ * ADDED: cURL check on system settings page
+ * UPDATED: Facebook Videos now loads with HTML5 player instead of flash player. This makes videos more compatiable with Apple and mobile devices.  
+ * UPDATED: Facebook Video's preview image can now be clicked to play/pause video.
+ 
 = Version 1.5.7 Saturday, October 11th, 2014 =
  * FIXED: Facebook feed not loading on some servers. Additional cURL checks in place. Thanks to all the users that brought this to our attention.
  * TWEAKS: Twitter CSS. Force wrap date so horizontal scroll bars do not appear with fixed height twitter feeds.

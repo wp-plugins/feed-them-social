@@ -125,6 +125,7 @@ $excludeReplies = true;
       $name = $tweet->user->name;
 	  $screen_name = $tweet->user->screen_name;
       $permalink = 'http://twitter.com/'. $screen_name .'/status/'. $tweet->id_str;
+	  
 	  $user_permalink = 'https://twitter.com/#!/'. $screen_name;
  	  $media_url = $tweet->entities->media[0]->media_url;
 	  // leaving this for another update, trying to get videos, and I know this ain't right! $url = $tweet->entities->media[0]->expanded_url;
@@ -166,8 +167,8 @@ $excludeReplies = true;
   }//End FOR  
 
 ?>
-
-<div id="twitter-feed-<?php print $twitter_name?>" class="fts-twitter-div" <?php if ($twitter_height) {?>style="height:<?php echo $twitter_height; ?>"<?php }?>>
+     
+<div id="twitter-feed-<?php print $twitter_name?>" class="fts-twitter-div <?php if ($twitter_height) {?>fts-twitter-scrollable<?php }?>" <?php if ($twitter_height) {?>style="height:<?php echo $twitter_height; ?>"<?php }?>>
   <?php foreach($tweets as $t) : ?>
   <div class="fts-tweeter-wrap">
     <div class="tweeter-info">
@@ -190,6 +191,24 @@ $excludeReplies = true;
   <?php endforeach; ?>
   <div class="clear"></div>
 </div>
+<?php if ($twitter_height) {?>
+<script>
+			// this makes it so the page does not scroll if you reach the end of scroll bar or go back to top
+			jQuery.fn.isolatedScrollTwitter = function() {
+				this.bind('mousewheel DOMMouseScroll', function (e) {
+				var delta = e.wheelDelta || (e.originalEvent && e.originalEvent.wheelDelta) || -e.detail,
+					bottomOverflow = this.scrollTop + jQuery(this).outerHeight() - this.scrollHeight >= 0,
+					topOverflow = this.scrollTop <= 0;
+		
+				if ((delta < 0 && bottomOverflow) || (delta > 0 && topOverflow)) {
+					e.preventDefault();
+				}
+			});
+			return this;
+		};
+		jQuery('.fts-twitter-scrollable').isolatedScrollTwitter();
+		</script>
+<?php }?>  
 <?php  
 	}// END IF $fetchedTweets
 }//END ELSE

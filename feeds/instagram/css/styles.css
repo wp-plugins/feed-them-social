@@ -301,7 +301,6 @@ a.instaG-backg-link {
 	padding 0 !important;
 	border: none !important;
 	width: 100%;
-	vertical-align: middle;
 }
 .slicker-instaG-photoshadow {
 	/* background-color: rgba(0, 0, 0, 0.1); */
@@ -425,7 +424,6 @@ a.fts-slicker-backg {
 }
 .fts-slicker-instagram {
 	margin: auto;
-	clear:both;
 }
 .slicker-instagram-placeholder:hover .slicker-date, .slicker-instagram-placeholder:hover .slicker-instagram-image-likes, .slicker-instagram-placeholder:hover .slicker-instagram-image-comments, .slicker-instagram-placeholder:hover .fts-slicker-backg {
 	opacity: 1;

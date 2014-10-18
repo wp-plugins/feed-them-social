@@ -77,13 +77,13 @@ img.fts-twitter-description-image {
      margin:0 5px 0 0;
 	 font-size:13px;
 	 font-weight:bold;
+	  text-align:left;
 }
 .widget .twitter-image {
-    
       margin-right:10px !important; 
 }
 .widget .fts-twitter-div .uppercase, .widget .tweeter-info .right {
-    
+     text-align:left;
      font-size:11px;
      line-height:14px;
      font-weight:normal !important;
@@ -202,6 +202,7 @@ img.fts-twitter-description-image {
 }
 .fts-tweeter-wrap .tweeter-info img {
 border-radius: 0px;
+max-width:100%;
 box-shadow: 0 !important;
 /* border: 1px solid #eee; */
 }

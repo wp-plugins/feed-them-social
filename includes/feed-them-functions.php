@@ -5,6 +5,38 @@
 if (!is_admin())
   add_filter('widget_text', 'do_shortcode', 11);
 
+  
+if(is_plugin_active('feed-them-premium/feed-them-premium.php')) {
+	
+// Added Scripts to allow loadmore but only if premium is active. Additional code in premium too.
+function my_fts_fb_script_enqueuer() {
+	
+	$ftsFBfileJS = dirname(dirname(__FILE__)) . '/feed-them-social.php';
+	$FTS_plugin_url = plugin_dir_url($ftsFBfileJS);
+
+
+   wp_enqueue_script( 'my-fts-ajax-handle', $FTS_plugin_url . '/feeds/facebook/js/ajax.js', array( 'jquery' ) );
+   wp_localize_script( 'my-fts-ajax-handle', 'myAjax', array( 'ajaxurl' => admin_url( 'admin-ajax.php' ) ) );     
+	
+}
+ add_action( 'init', 'my_fts_fb_script_enqueuer' );
+
+
+// enqueue and localise scripts
+ // THE AJAX ADD ACTIONS
+// this function is being called from the fb feed... it calls the ajax in this case. 
+function my_fts_fb_load_more() {
+  
+   $object = do_shortcode($_REQUEST['rebuilt_shortcode']);
+  
+    echo $object;
+    die();
+}
+add_action( 'wp_ajax_my_fts_fb_load_more', 'my_fts_fb_load_more' );
+add_action( 'wp_ajax_nopriv_my_fts_fb_load_more', 'my_fts_fb_load_more' );
+
+} // end is_plugin_active premium
+
 class feed_them_social_functions {
 	
 	function __construct() {
@@ -139,6 +171,7 @@ class feed_them_social_functions {
 	*/
 	function fts_settings_page_register_settings() { 
 		$settings = array(
+					'fts_facebook_custom_api_token',
 					'fts-date-and-time-format',
 					'fts-color-options-settings-custom-css',
 					'fts-color-options-main-wrapper-css-input',
@@ -367,7 +400,7 @@ function  fts_facebook_page_form($save_options = false) {
         $output .= '<option value="event">Facebook Event</option>';
         $output .= '<option value="album_photos">Facebook Album Photos</option>';
         $output .= '<option value="albums">Facebook Album Covers</option>';
-        //$output .= '<option value="hashtag">Facebook Hashtag</option>';
+        $output .= '<option value="hashtag">Facebook Hashtag</option>';
         $output .= '</select>';
         $output .= '<div class="clear"></div>';
         $output .= '</div><!--/feed-them-social-admin-input-wrap-->';
@@ -387,7 +420,7 @@ function  fts_facebook_page_form($save_options = false) {
 		<div class="instructional-text facebook-message-generator hashtag inst-text-facebook-hashtag">Copy your <a href="http://www.slickremix.com/docs/how-to-get-your-facebook-photo-gallery-id/" target="_blank">Facebook Hashtag</a> and paste it in the first input below.</div>';
 		
 		// FACEBOOK PAGE ID
-        $output .= '<div class="feed-them-social-admin-input-wrap fb_page_id">';
+        $output .= '<div class="feed-them-social-admin-input-wrap fb_page_id ">';
         $output .= '<div class="feed-them-social-admin-input-label">Facebook ID (required)</div>';
         $output .= '<input type="text" name="fb_page_id" id="fb_page_id" class="feed-them-social-admin-input" value="'.$fb_page_id_option.'" />';
         $output .= '<div class="clear"></div>';
@@ -437,12 +470,15 @@ function  fts_facebook_page_form($save_options = false) {
 		
 		
 		
-		// FACEBOOK HEIGHT OPTIONS
+		// FACEBOOK HEIGHT OPTION
 		$output .= '<div class="feed-them-social-admin-input-wrap twitter_name fixed_height_option">';
         $output .= '<div class="feed-them-social-admin-input-label">Facebook Fixed Height<br/><small>Leave blank for auto height</small></div>';
         $output .= '<input type="text" name="facebook_page_height" id="facebook_page_height" class="feed-them-social-admin-input" value="" placeholder="450px for example" />';
         $output .= '<div class="clear"></div>';
         $output .= '</div><!--/feed-them-social-admin-input-wrap-->';
+		
+		
+	
 		
 		// FACEBOOK super gallery	
 	//	$output .= '<div class="feed-them-social-admin-input-wrap facebook_name" style="display:none">';
@@ -492,10 +528,18 @@ function  fts_facebook_page_form($save_options = false) {
 			 
       	$output .= '</div><!--fts-super-facebook-options-wrap-->';
         
-		
+	
+	
+	 if(is_plugin_active('feed-them-premium/feed-them-premium.php')) {
+		 	//PREMIUM LOAD MORE SETTINGS
+        	include($this->premium.'admin/facebook-loadmore-settings-fields.php');
+        }	
+	
      }   
 	 
-	 
+	 	
+	
+		
 	 
 	   if($save_options == false){
 			 $output .= $this->generate_shortcode('updateTextArea_fb_page();','Facebook Page Feed Shortcode','facebook-page-final-shortcode');
@@ -610,10 +654,33 @@ function  fts_facebook_page_form($save_options = false) {
 			$pics_count_option = get_option('pics_count');
 		}
         $output .= '<div class="fts-instagram-shortcode-form">';
-        if($save_options == false){
+        
+		
+	
+	
+		
+		if($save_options == false){
 		  $output .= '<form class="feed-them-social-admin-form shortcode-generator-form instagram-shortcode-form" id="fts-instagram-form">';
-		  $output .= '<h2>Convert Instagram Name to ID</h2>';
+		  
+		  	// ONLY SHOW SUPER GALLERY OPTIONS ON FTS SETTINGS PAGE FOR NOW, NOT FTS BAR
+		if (isset($_GET['page']) && $_GET['page'] == 'feed-them-settings-page'){
+			
+			// FACEBOOK FEED TYPE
+			$output .= '<h2>Instagram Feed</h2><div class="feed-them-social-admin-input-wrap instagram-gen-selection">';
+			$output .= '<div class="feed-them-social-admin-input-label">Feed Type</div>';
+			$output .= '<select name="instagram-messages-selector" id="instagram-messages-selector" class="feed-them-social-admin-input">';
+			$output .= '<option value="user">User Feed</option>';
+			$output .= '<option value="hashtag">Hashtag Feed</option>';
+			//$output .= '<option value="hashtag">Facebook Hashtag</option>';
+			$output .= '</select>';
+			$output .= '<div class="clear"></div>';
+			$output .= '</div><!--/feed-them-social-admin-input-wrap-->';
+		};
+		
+			$output .= '<div class="instagram-id-option-wrap">';
+		    $output .= '<h2>Convert Instagram Name to ID</h2>';
 		}
+		
         $output .= '<div class="instructional-text">You must copy your <a href="http://www.slickremix.com/2012/12/18/how-to-get-your-instagram-name-and-convert-to-id/" target="_blank">Instagram Name</a> and paste it in the first input below</div>';
         $output .= '<div class="feed-them-social-admin-input-wrap convert_instagram_username">';
         $output .= '<div class="feed-them-social-admin-input-label">Instagram Name (required)</div>';
@@ -622,7 +689,7 @@ function  fts_facebook_page_form($save_options = false) {
         $output .= '</div><!--/feed-them-social-admin-input-wrap-->';
         
         $output .= '<input type="button" class="feed-them-social-admin-submit-btn" value="Convert Instagram Username" onclick="converter_instagram_username();" tabindex="4" style="margin-right:1em;" />';
-        
+        $output .= '</div><!--instagram-id-option-wrap-->';
 		if($save_options == false){
        	  $output .= '</form>';
 		}
@@ -631,10 +698,14 @@ function  fts_facebook_page_form($save_options = false) {
 		  $output .= '<form class="feed-them-social-admin-form shortcode-generator-form instagram-shortcode-form">';
 		  $output .= '<h2>Instagram Shortcode Generator</h2>';
 		}
-        $output .= '<div class="instructional-text">If you added your ID above and clicked convert, a number should appear in the input below, now continue.</div>';
         
+		$output .= '<div class="instructional-text instagram-user-option-text">If you added your ID above and clicked convert, a number should appear in the input below, now continue.</div>';
+        $output .= '<div class="instructional-text instagram-hashtag-option-text" style="display:none;">Add your Hashtag below. Do not add the #, just the name.</div>';
+		
+		
         $output .= '<div class="feed-them-social-admin-input-wrap instagram_name">';
-        $output .= '<div class="feed-them-social-admin-input-label">Instagram ID # (required)</div>';
+        $output .= '<div class="feed-them-social-admin-input-label instagram-user-option-text">Instagram ID # (required)</div>';
+        $output .= '<div class="feed-them-social-admin-input-label instagram-hashtag-option-text" style="display:none;">Hashtag (required)</div>';
         $output .= '<input type="text" name="instagram_id" id="instagram_id" class="feed-them-social-admin-input" value="'.$instagram_id_option.'" />';
         $output .= '<div class="clear"></div>';
         $output .= '</div><!--/feed-them-social-admin-input-wrap-->';
@@ -642,7 +713,7 @@ function  fts_facebook_page_form($save_options = false) {
 		// Super Instagram Options
 		if (isset($_GET['page']) && $_GET['page'] == 'feed-them-settings-page'){
 			
-		$output .= '<div class="feed-them-social-admin-input-wrap instagram_name">';
+		$output .= '<div class="feed-them-social-admin-input-wrap">';
 		$output .= '<div class="feed-them-social-admin-input-label">Super Instagram Gallery</div>';
 		$output .= '<select id="instagram-custom-gallery" name="instagram-custom-gallery" class="feed-them-social-admin-input"><option value="no" >No</option><option value="yes" >Yes</option></select>';
 		$output .= '<div class="clear"></div>';
@@ -650,22 +721,22 @@ function  fts_facebook_page_form($save_options = false) {
 			
 		$output .= '<div class="fts-super-instagram-options-wrap"><h2>Super Instagram Gallery Options</h2><div class="instructional-text">View demos and <a href="#">read more</a> on setup instructions.</div>';
 			
-		$output .= '<div class="feed-them-social-admin-input-wrap instagram_name"><div class="feed-them-social-admin-input-label">Instagram Image Size<br/><small>Max is 640px. You can use % too.</small></div>
+		$output .= '<div class="feed-them-social-admin-input-wrap"><div class="feed-them-social-admin-input-label">Instagram Image Size<br/><small>Max is 640px. You can use % too.</small></div>
            <input type="text" name="fts-slicker-instagram-container-image-size" id="fts-slicker-instagram-container-image-size" class="feed-them-social-admin-input" value="250px" placeholder="">
            <div class="clear"></div> </div>';
-        $output .= '<div class="feed-them-social-admin-input-wrap instagram_name"><div class="feed-them-social-admin-input-label">Size of the Instagram Icon<br/><small>Visible when you hover over photo</small></div>
+        $output .= '<div class="feed-them-social-admin-input-wrap"><div class="feed-them-social-admin-input-label">Size of the Instagram Icon<br/><small>Visible when you hover over photo</small></div>
            <input type="text" name="fts-slicker-instagram-icon-center" id="fts-slicker-instagram-icon-center" class="feed-them-social-admin-input" value="65px" placeholder="">
            <div class="clear"></div></div>';
-   	    $output .= '<div class="feed-them-social-admin-input-wrap instagram_name"><div class="feed-them-social-admin-input-label">The space between photos</div>
+   	    $output .= '<div class="feed-them-social-admin-input-wrap"><div class="feed-them-social-admin-input-label">The space between photos</div>
            <input type="text" name="fts-slicker-instagram-container-margin" id="fts-slicker-instagram-container-margin" class="feed-them-social-admin-input" value="1px" placeholder="">
            <div class="clear"></div></div>';
-        $output .= '<div class="feed-them-social-admin-input-wrap instagram_name"><div class="feed-them-social-admin-input-label">Hide Date, Likes and comments<br/><small>Good for image sizes under 120px</small></div>
+        $output .= '<div class="feed-them-social-admin-input-wrap"><div class="feed-them-social-admin-input-label">Hide Date, Likes and comments<br/><small>Good for image sizes under 120px</small></div>
        		 <select id="fts-slicker-instagram-container-hide-date-likes-comments" name="fts-slicker-instagram-container-hide-date-likes-comments" class="feed-them-social-admin-input">
         	  <option value="no">No</option><option value="yes">Yes</option></select><div class="clear"></div></div>';
         $output .= '<div class="feed-them-social-admin-input-wrap instagram_name"><div class="feed-them-social-admin-input-label">Center Instagram Container?</div>
         	<select id="fts-slicker-instagram-container-position" name="fts-slicker-instagram-container-position" class="feed-them-social-admin-input"><option value="no">No</option><option value="yes">Yes</option></select>
            <div class="clear"></div></div>';
-     	$output .= ' <div class="feed-them-social-admin-input-wrap instagram_name"><div class="feed-them-social-admin-input-label">Image Stacking Animation On?<br/><small>This happens when resizing browser</small></div>
+     	$output .= ' <div class="feed-them-social-admin-input-wrap"><div class="feed-them-social-admin-input-label">Image Stacking Animation On?<br/><small>This happens when resizing browser</small></div>
         	 <select id="fts-slicker-instagram-container-animation" name="fts-slicker-instagram-container-animation" class="feed-them-social-admin-input"><option value="no">No</option><option value="yes">Yes</option></select><div class="clear"></div></div>';
       	$output .= '</div><!--fts-super-instagram-options-wrap-->';
         
@@ -873,7 +944,6 @@ function  fts_facebook_page_form($save_options = false) {
 
 				// All Done With Curl Call
 				curl_multi_close($mh);
-			
 			} 
 			//File_Get_Contents if Curl doesn't work
 			if (!$curl_success && ini_get('allow_url_fopen') == 1 || ini_get('allow_url_fopen') === TRUE) {

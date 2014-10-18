@@ -22,6 +22,124 @@
 .fts-jal-single-fb-post [class^="icon-"]:before {
 	font-family: 'fontawesome' !important;
 }
+.fts-fb-load-more {
+	border-radius:1px;
+	padding:0 25px;
+	line-height:37px !important;
+	width:100%;
+	min-height:37px !important;
+	font-size:13px !important;
+	text-align:center;
+	background: rgba(240, 240, 240, 0.45);
+	cursor: pointer;
+	color: #111;
+	display:inline-block;
+	-webkit-transition: all 0.30s ease-in-out;
+	-moz-transition: all 0.30s ease-in-out;
+	-o-transition: all 0.30s ease-in-out;
+	transition: all 0.30s ease-in-out;
+}
+.fts-fb-load-more:hover {
+	background: rgba(240, 240, 240, 0.85);
+}
+ 
+.flip360-fts-load-more { 
+  -moz-animation: spinY 0.5s linear;
+  -ms-animation: spinY 0.5s linear;
+  -o-animation: spinY 0.5s linear;
+  animation: spinY 0.5s linear;
+  
+-webkit-animation-name: spinY;
+-webkit-animation-duration: 0.5s; 
+-webkit-animation-timing-function: linear;
+-webkit-animation-fill-mode: both;
+
+
+ -webkit-transform-style: preserve-3d;
+    -moz-transform-style: preserve-3d;
+    -ms-transform-style: preserve-3d;
+    transform-style: preserve-3d;
+	
+	
+  -moz-animation-fill-mode: both;
+  -ms-animation-fill-mode: both;
+  -o-animation-fill-mode: both;
+  animation-fill-mode: both;
+  
+  
+  -moz-animation-timing-function: cubic-bezier(0.75, 0, 0.175, 1);
+  -ms-animation-timing-function: cubic-bezier(0.75, 0, 0.175, 1);
+  -o-animation-timing-function: cubic-bezier(0.75, 0, 0.175, 1);
+  animation-timing-function: cubic-bezier(0.75, 0, 0.175, 1);	
+	
+}
+@-moz-keyframes spinY {
+  0% {
+    -moz-transform: rotateY(0);
+    transform: rotateY(0);
+  }
+
+  100% {
+    -moz-transform: rotateY(360deg);
+    transform: rotateY(360deg);
+  }
+}
+
+@-webkit-keyframes spinY {
+  0% {
+    -webkit-transform: rotateY(0deg);
+    transform: rotateY(0deg);
+	 -webkit-transform-style: preserve-3d;
+  }
+
+  100% {
+    -webkit-transform: rotateY(360deg);
+    transform: rotateY(360deg); 
+	-webkit-transform-style: preserve-3d;
+  }
+}
+
+@-o-keyframes spinY {
+  0% {
+    -o-transform: rotateY(0);
+    transform: rotateY(0);
+  }
+
+  100% {
+    -o-transform: rotateY(360deg);
+    transform: rotateY(360deg);
+  }
+}
+
+@-ms-keyframes spinY {
+  0% {
+    -ms-transform: rotateY(0);
+    transform: rotateY(0);
+  }
+
+  100% {
+    -ms-transform: rotateY(360deg);
+    transform: rotateY(360deg);
+  }
+}
+
+@keyframes spinY {
+  0% {
+    -webkit-transform: rotateY(0);
+    -moz-transform: rotateY(0);
+    -ms-transform: rotateY(0);
+    -o-transform: rotateY(0);
+    transform: rotateY(0);
+  }
+
+  100% {
+    -webkit-transform: rotateY(360deg);
+    -moz-transform: rotateY(360deg);
+    -ms-transform: rotateY(360deg);
+    -o-transform: rotateY(360deg);
+    transform: rotateY(360deg);
+  }
+}
 /*=================================================
 	fts-jal Facebook Group Header 
 =================================================*/
@@ -46,6 +164,9 @@
 .fts-jal-fb-group-display {
 	overflow:auto;
 	clear: both;
+}
+.no-more-posts-fts-fb {
+	cursor:auto;
 }
 /*=================================================
 	fts-jal Facebook Group Feed 
@@ -95,7 +216,7 @@
 	padding:17px 0 10px 0 !important;
 }
 .fts-jal-single-fb-post:last-child	{
-	border-bottom: none !important;
+	/* border-bottom: none !important; */
 }
 .fts-jal-fb-user-thumb	{
 	position:absolute;
@@ -149,6 +270,9 @@
 	transition: all 0.30s ease-in-out;
 } */
 
+.fts-fluid-videoWrapper-html5 {
+	
+}
 .fts-fluid-videoWrapper {
 	position: relative;
 	padding-bottom: 56.25%; /* 16:9 */
@@ -162,12 +286,16 @@
 	width: 100%;
 	height: 100%;
 	min-height:100%;
+	background:#000;
+}
+ .fts-fluid-videoWrapper video {
+	background:#000;
 }
 
 .fts-jal-fb-vid-wrap	{
 	/* border: 1px solid #D3DAE8; */
 	/* background:#F6F7F9; */
-	min-height:84px;
+	/* min-height:84px; */
 	margin-top:10px;
 	/* margin-right:3px; */
 	/* padding:5px 5px 4px 5px !important; */
@@ -545,4 +673,58 @@ div.fts-fb-location {
 .fts-jal-fb-vid-wrap iframe {
     height:130px;   
 }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+.fts-fb-spinner {
+  text-align: center;
+}
+
+.fts-fb-spinner > div {
+  width: 10px;
+  height: 10px;
+  background-color: #999;
+  border-radius: 100%;
+  display: inline-block;
+  -webkit-animation: fts-fb-bouncedelay 1.4s infinite ease-in-out;
+  animation: fts-fb-bouncedelay 1.4s infinite ease-in-out;
+  /* Prevent first frame from flickering when animation starts */
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+}
+
+.fts-fb-spinner .bounce1 {
+  -webkit-animation-delay: -0.32s;
+  animation-delay: -0.32s;
+}
+
+.fts-fb-spinner .bounce2 {
+  -webkit-animation-delay: -0.16s;
+  animation-delay: -0.16s;
+}
+
+@-webkit-keyframes fts-fb-bouncedelay {
+  0%, 80%, 100% { -webkit-transform: scale(0.0) }
+  40% { -webkit-transform: scale(1.0) }
+}
+
+@keyframes fts-fb-bouncedelay {
+  0%, 80%, 100% { 
+    transform: scale(0.0);
+    -webkit-transform: scale(0.0);
+  } 40% { 
+    transform: scale(1.0);
+    -webkit-transform: scale(1.0);
+  }
 }
