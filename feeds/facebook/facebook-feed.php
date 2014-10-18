@@ -1014,9 +1014,9 @@ if(!$_GET['load_more_ajaxing'] && !$_REQUEST['fts_no_more_posts'] && !empty($loa
 							console.log('Well Done and got this from sever: ' + data);
 						
 				 <?php if ($FBtype && $type == 'albums' || $FBtype && $type == 'album_photos') {  ?>
-					 	jQuery('.fts-slicker-facebook-photos').append(data).filter('.fts-slicker-facebook-photos').html(); 
-						jQuery('.fts-slicker-facebook-photos').masonry( 'reloadItems' );
-						jQuery('.fts-slicker-facebook-photos').masonry( 'layout' );
+					 	jQuery('.<?php echo $fts_dynamic_class_name ?>').append(data).filter('.<?php echo $fts_dynamic_class_name ?>').html(); 
+						jQuery('.<?php echo $fts_dynamic_class_name ?>').masonry( 'reloadItems' );
+						jQuery('.<?php echo $fts_dynamic_class_name ?>').masonry( 'layout' );
 						
 						if(!nextURL_<?php echo $_REQUEST['fts_dynamic_name']; ?>){
 						  jQuery('#loadMore_<?php echo $fts_dynamic_name ?>').replaceWith('<div class="fts-fb-load-more no-more-posts-fts-fb">No More Photos</div>');
