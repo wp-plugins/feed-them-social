@@ -153,9 +153,6 @@ $fts_functions = new feed_them_social_functions();
 		  // App token for FTS APP3: 705020102908771|rdaGxW9NK2caHCtFrulCZwJNPyY
 	 	  $test_app_token_response = $fts_functions->fts_get_feed_json($test_app_token_URL);
 		  $test_app_token_response = json_decode($test_app_token_response['app_token_id']);
-		  echo'<print>';
-		 	 print_r($test_app_token_response);
-		  echo'</print>';
 		 }
 	 	
 	 
