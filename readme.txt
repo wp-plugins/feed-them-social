@@ -12,6 +12,8 @@ Custom feeds for Facebook Pages, Groups, Events, Album Photos and Covers - Twitt
 
 With our plugin you can create social feeds of any or all your celebrities, family, friends, yourself, or businesses. Looks great on Desktops, Tablets, and Mobile Devices.
 
+**NOTE** Load More Button and Infinite Scroll features now available in Premium Version and they are mobile friendly!
+
 = Features include the following: =
   * View photos and videos from your Facebook Page, Group, Album Photos, Album Covers or Event in our FREE version!
   * Add as many social feeds as you need!
