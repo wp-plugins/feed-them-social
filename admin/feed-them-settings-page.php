@@ -22,7 +22,7 @@ $fts_functions = new feed_them_social_functions();
 	//show the js for the discount option under social icons on the settings page
 	if(!is_plugin_active('feed-them-premium/feed-them-premium.php')) { ?>
 		 <div id="discount-for-review"><?php _e('20% off Premium Version', 'feed-them-social'); ?></div>
-    <div class="discount-review-text"><a href="http://www.slickremix.com/downloads/feed-them-social-premium-extension/" target="_blank"><?php _e('Share here', 'feed-them-social'); ?></a> <?php _e('and receive 20% OFF your total order.', 'feed-them-social'); ?></div>
+    <div class="discount-review-text"><a href="http://www.slickremix.com/downloads/feed-them-social-premium-extension/" target="_blank"><?php _e('Share here', 'feed-them-social'); ?></a> <?php _e('and receive 15% OFF your total order.', 'feed-them-social'); ?></div>
 <?php } ?>
    
   </div>
