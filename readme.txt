@@ -6,13 +6,13 @@ Tested up to: 4.0.0
 Stable tag: 1.5.8
 License: GPLv2 or later
 
-Custom feeds for Facebook Pages, Groups, Events, Album Photos and Covers - Twitter, Instagram, Pinterest and YouTube on pages, posts or widgets.
+Display customizable feeds for Facebook Pages, Groups, Events, Album Photos and Covers - Twitter, Instagram, Pinterest and YouTube on pages, posts or widgets.
 
 == Description ==
 
 With our plugin you can create social feeds of any or all your celebrities, family, friends, yourself, or businesses. Looks great on Desktops, Tablets, and Mobile Devices.
 
-**NOTE** Load More Button and Infinite Scroll features now available in Premium Version and they are mobile friendly!
+**NOTE** Facebook feeds now have Load More Button and Infinite Scroll features now available in Premium Version and they are mobile friendly!
 
 = Features include the following: =
   * View photos and videos from your Facebook Page, Group, Album Photos, Album Covers or Event in our FREE version!
