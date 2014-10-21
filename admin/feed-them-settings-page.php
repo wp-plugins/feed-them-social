@@ -21,7 +21,7 @@ $fts_functions = new feed_them_social_functions();
     <?php
 	//show the js for the discount option under social icons on the settings page
 	if(!is_plugin_active('feed-them-premium/feed-them-premium.php')) { ?>
-		 <div id="discount-for-review"><?php _e('20% off Premium Version', 'feed-them-social'); ?></div>
+		 <div id="discount-for-review"><?php _e('15% off Premium Version', 'feed-them-social'); ?></div>
     <div class="discount-review-text"><a href="http://www.slickremix.com/downloads/feed-them-social-premium-extension/" target="_blank"><?php _e('Share here', 'feed-them-social'); ?></a> <?php _e('and receive 15% OFF your total order.', 'feed-them-social'); ?></div>
 <?php } ?>
    
@@ -145,6 +145,7 @@ $fts_functions = new feed_them_social_functions();
 		   $fts_fb_access_token = '226916994002335|ks3AFvyAOckiTA1u_aDoI4HYuuw';
 		   $test_app_token_URL = array(
 					'app_token_id' => 'https://graph.facebook.com/debug_token?input_token='.$test_app_token_id.'&access_token='.$test_app_token_id
+				//	'app_token_id' => 'https://graph.facebook.com/oauth/access_token?client_id=705020102908771&client_secret=70166128c6a7b5424856282a5358f47b&grant_type=fb_exchange_token&fb_exchange_token=CAAKBNkjLG2MBAK5jVUp1ZBCYCiLB8ZAdALWTEI4CesM8h3DeI4Jotngv4TKUsQZBwnbw9jiZCgyg0eEmlpiVauTsReKJWBgHe31xWCsbug1Tv3JhXZBEZBOdOIaz8iSZC6JVs4uc9RVjmyUq5H52w7IJVnxzcMuZBx4PThN3CfgKC5E4acJ9RnblrbKB37TBa1yumiPXDt72yiISKci7sqds0WFR3XsnkwQZD'
 			);
 		  
 		  //Test App ID
