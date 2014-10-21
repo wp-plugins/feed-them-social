@@ -737,7 +737,7 @@ function  fts_facebook_page_form($save_options = false) {
         $output .= '<div class="feed-them-social-admin-input-wrap"><div class="feed-them-social-admin-input-label">Hide Date, Likes and comments<br/><small>Good for image sizes under 120px</small></div>
        		 <select id="fts-slicker-instagram-container-hide-date-likes-comments" name="fts-slicker-instagram-container-hide-date-likes-comments" class="feed-them-social-admin-input">
         	  <option value="no">No</option><option value="yes">Yes</option></select><div class="clear"></div></div>';
-        $output .= '<div class="feed-them-social-admin-input-wrap instagram_name"><div class="feed-them-social-admin-input-label">Center Instagram Container?</div>
+        $output .= '<div class="feed-them-social-admin-input-wrap"><div class="feed-them-social-admin-input-label">Center Instagram Container?</div>
         	<select id="fts-slicker-instagram-container-position" name="fts-slicker-instagram-container-position" class="feed-them-social-admin-input"><option value="no">No</option><option value="yes">Yes</option></select>
            <div class="clear"></div></div>';
      	$output .= ' <div class="feed-them-social-admin-input-wrap"><div class="feed-them-social-admin-input-label">Image Stacking Animation On?<br/><small>This happens when resizing browser</small></div>
