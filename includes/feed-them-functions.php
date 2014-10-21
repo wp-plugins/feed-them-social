@@ -662,24 +662,25 @@ function  fts_facebook_page_form($save_options = false) {
 		if($save_options == false){
 		  $output .= '<form class="feed-them-social-admin-form shortcode-generator-form instagram-shortcode-form" id="fts-instagram-form">';
 		  
-		  	// ONLY SHOW SUPER GALLERY OPTIONS ON FTS SETTINGS PAGE FOR NOW, NOT FTS BAR
-		if (isset($_GET['page']) && $_GET['page'] == 'feed-them-settings-page'){
+				// ONLY SHOW SUPER GALLERY OPTIONS ON FTS SETTINGS PAGE FOR NOW, NOT FTS BAR
+			if (isset($_GET['page']) && $_GET['page'] == 'feed-them-settings-page'){
+				
+				// INSTAGRAM FEED TYPE
+				$output .= '<h2>Instagram Feed</h2><div class="feed-them-social-admin-input-wrap instagram-gen-selection">';
+				$output .= '<div class="feed-them-social-admin-input-label">Feed Type</div>';
+				$output .= '<select name="instagram-messages-selector" id="instagram-messages-selector" class="feed-them-social-admin-input">';
+				$output .= '<option value="user">User Feed</option>';
+				$output .= '<option value="hashtag">Hashtag Feed</option>';
+				//$output .= '<option value="hashtag">Facebook Hashtag</option>';
+				$output .= '</select>';
+				$output .= '<div class="clear"></div>';
+				$output .= '</div><!--/feed-them-social-admin-input-wrap-->';
+			};
 			
-			// FACEBOOK FEED TYPE
-			$output .= '<h2>Instagram Feed</h2><div class="feed-them-social-admin-input-wrap instagram-gen-selection">';
-			$output .= '<div class="feed-them-social-admin-input-label">Feed Type</div>';
-			$output .= '<select name="instagram-messages-selector" id="instagram-messages-selector" class="feed-them-social-admin-input">';
-			$output .= '<option value="user">User Feed</option>';
-			$output .= '<option value="hashtag">Hashtag Feed</option>';
-			//$output .= '<option value="hashtag">Facebook Hashtag</option>';
-			$output .= '</select>';
-			$output .= '<div class="clear"></div>';
-			$output .= '</div><!--/feed-them-social-admin-input-wrap-->';
-		};
-		
-			$output .= '<div class="instagram-id-option-wrap">';
-		    $output .= '<h2>Convert Instagram Name to ID</h2>';
+				$output .= '<div class="instagram-id-option-wrap">';
+				$output .= '<h2>Convert Instagram Name to ID</h2>';
 		}
+		
 		
         $output .= '<div class="instructional-text">You must copy your <a href="http://www.slickremix.com/2012/12/18/how-to-get-your-instagram-name-and-convert-to-id/" target="_blank">Instagram Name</a> and paste it in the first input below</div>';
         $output .= '<div class="feed-them-social-admin-input-wrap convert_instagram_username">';
@@ -689,7 +690,10 @@ function  fts_facebook_page_form($save_options = false) {
         $output .= '</div><!--/feed-them-social-admin-input-wrap-->';
         
         $output .= '<input type="button" class="feed-them-social-admin-submit-btn" value="Convert Instagram Username" onclick="converter_instagram_username();" tabindex="4" style="margin-right:1em;" />';
-        $output .= '</div><!--instagram-id-option-wrap-->';
+       		// ONLY THIS DIV IF ON OUR SETTINGS PAGE
+			if (isset($_GET['page']) && $_GET['page'] == 'feed-them-settings-page'){
+	   			 $output .= '</div><!--instagram-id-option-wrap-->';
+			};	 
 		if($save_options == false){
        	  $output .= '</form>';
 		}
