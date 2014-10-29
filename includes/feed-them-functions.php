@@ -2,9 +2,8 @@
 /************************************************
  	Function file for Feed Them Social plugin
 ************************************************/
-if (!is_admin())
-  add_filter('widget_text', 'do_shortcode', 11);
-
+ 
+ add_filter('widget_text', 'do_shortcode');
   
 if(is_plugin_active('feed-them-premium/feed-them-premium.php')) {
 	
@@ -19,11 +18,11 @@ function my_fts_fb_script_enqueuer() {
    wp_localize_script( 'my-fts-ajax-handle', 'myAjax', array( 'ajaxurl' => admin_url( 'admin-ajax.php' ) ) );     
 	
 }
- add_action( 'init', 'my_fts_fb_script_enqueuer' );
+add_action( 'init', 'my_fts_fb_script_enqueuer' );
 
 
 // enqueue and localise scripts
- // THE AJAX ADD ACTIONS
+// THE AJAX ADD ACTIONS
 // this function is being called from the fb feed... it calls the ajax in this case. 
 function my_fts_fb_load_more() {
   
