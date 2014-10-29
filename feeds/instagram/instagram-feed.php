@@ -36,12 +36,15 @@ else 	{
 <?php
 ob_start(); 
 
+	$fts_instagram_tokens_array = array('267791236.df31d88.30e266dda9f84e9f97d9e603f41aaf9e','267791236.14c1243.a5268d6ed4cf4d2187b0e98b365443af','267791236.f78cc02.bea846f3144a40acbf0e56b002c112f8','258559306.502d2c4.c5ff817f173547d89477a2bd2e6047f9');
+	$fts_instagram_access_token = $fts_instagram_tokens_array[array_rand($fts_instagram_tokens_array,1)];
+
 //URL to get Feeds
  if ($type == 'hashtag') {  
-	$insta_url = 'https://api.instagram.com/v1/tags/'.$instagram_id.'/media/recent/?access_token=258559306.502d2c4.c5ff817f173547d89477a2bd2e6047f9';
+	$insta_url = 'https://api.instagram.com/v1/tags/'.$instagram_id.'/media/recent/?access_token='.$fts_instagram_access_token;
   } 
 	else {
- 	$insta_url = 'https://api.instagram.com/v1/users/'.$instagram_id.'/media/recent/?access_token=258559306.502d2c4.c5ff817f173547d89477a2bd2e6047f9';
+ 	$insta_url = 'https://api.instagram.com/v1/users/'.$instagram_id.'/media/recent/?access_token='.$fts_instagram_access_token;
 	}
 $cache = WP_CONTENT_DIR.'/plugins/feed-them-social/feeds/instagram/cache/instagram-cache-'.$instagram_id.'.json';
 // https://api.instagram.com/v1/tags/snow/media/recent?access_token=ACCESS-TOKEN
