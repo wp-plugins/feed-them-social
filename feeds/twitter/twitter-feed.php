@@ -51,7 +51,7 @@ $excludeReplies = true;
 			$fetchedTweets = $connection->get(
 			'statuses/user_timeline',
 			  array(
-				'screen_name'     => $name,
+				'screen_name'     => $screen_name,
 				'count'           => $totalToFetch,
 				'exclude_replies' => $excludeReplies,
 				'images'		  => $description_image
@@ -154,7 +154,7 @@ $excludeReplies = true;
       // Now make the new array.
       $tweets[] = array(
               'text' => $text,
-              'name' => $name,
+              'screen_name' => $screen_name,
 			  'user_permalink' => $user_permalink,
               'permalink' => $permalink,
               'image' => $image,
@@ -172,9 +172,9 @@ $excludeReplies = true;
   <?php foreach($tweets as $t) : ?>
   <div class="fts-tweeter-wrap">
     <div class="tweeter-info">
-      <div class="fts-twitter-image"><img class="twitter-image" src="<?php print $t['image'];?>" /></div>
+      <div class="fts-twitter-image"><a href="<?php print $t['user_permalink'];?>" target="_blank" class="black"><img class="twitter-image" src="<?php print $t['image'];?>" /></a></div>
       <div class="right">
-        <div class="uppercase bold"><a href="<?php print $t['user_permalink'];?>" target="_blank" class="black">@<?php print $t['name'];?></a></div>
+        <div class="uppercase bold"><a href="<?php print $t['user_permalink'];?>" target="_blank" class="black">@<?php print $t['screen_name'];?></a></div>
         <span class="time"><a href="<?php print $t['permalink']?>"><?php print $t['time'];?></a></span><br/>
         <span class="fts-twitter-text"><?php print $t['text'];?></span>
         <?php if ($t['media_url']) { ?>
