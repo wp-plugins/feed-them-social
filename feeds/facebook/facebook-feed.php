@@ -245,6 +245,7 @@ if(!$_GET['load_more_ajaxing']){
 		if (!$FBtype && $type == 'albums' || !$FBtype && $type == 'album_photos') {  
 		wp_enqueue_script( 'fts_instagram_masonry_pkgd_js', plugins_url( 'instagram/js/masonry.pkgd.min.js',  dirname(__FILE__) ) ); ?>
 		<script>
+		jQuery(window).load(function(){ 
             // This is only for the slicker instagram feed
             jQuery('.fts-slicker-facebook-albums').masonry({
               // strangely keeping transitionDuration: 0 always stacks blocks perfect.    , "transitionDuration": 0
@@ -252,6 +253,7 @@ if(!$_GET['load_more_ajaxing']){
               // select the items we want to mason
               itemSelector: '.fts-jal-single-fb-post'
             });
+		});
         </script>	           
 	
         <div class="fts-slicker-facebook-photos fts-slicker-facebook-albums masonry js-masonry <?php echo $fts_dynamic_class_name ?>" style="margin:auto" data-masonry-options='{ "isFitWidth": <?php if ($center_container == 'no') { ?>false<?php } else {?>true<?php } if ($image_stack_animation == 'no') { ?>, "transitionDuration": 0<?php } ?> }'>

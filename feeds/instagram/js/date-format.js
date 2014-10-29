@@ -1,10 +1,12 @@
 // This is only for the slicker instagram feed
+jQuery(window).load(function(){ 
 	jQuery('.fts-slicker-instagram').masonry({
 	  // strangely keeping transitionDuration: 0 always stacks blocks perfect.
 	   transitionDuration: 0,
 	  // select the items we want to manson
 	  itemSelector: '.slicker-instagram-placeholder'
 	});
+});
 	
 	
 var dateFormat = function () {

@@ -38,13 +38,14 @@ ob_start();
 
 //URL to get Feeds
  if ($type == 'hashtag') {  
-	$insta_url = 'https://api.instagram.com/v1/tags/'.$instagram_id.'/media/recent/?access_token=267791236.df31d88.30e266dda9f84e9f97d9e603f41aaf9e';
+	$insta_url = 'https://api.instagram.com/v1/tags/'.$instagram_id.'/media/recent/?access_token=258559306.502d2c4.c5ff817f173547d89477a2bd2e6047f9';
   } 
 	else {
- 	$insta_url = 'https://api.instagram.com/v1/users/'.$instagram_id.'/media/recent/?access_token=267791236.df31d88.30e266dda9f84e9f97d9e603f41aaf9e';
+ 	$insta_url = 'https://api.instagram.com/v1/users/'.$instagram_id.'/media/recent/?access_token=258559306.502d2c4.c5ff817f173547d89477a2bd2e6047f9';
 	}
 $cache = WP_CONTENT_DIR.'/plugins/feed-them-social/feeds/instagram/cache/instagram-cache-'.$instagram_id.'.json';
 // https://api.instagram.com/v1/tags/snow/media/recent?access_token=ACCESS-TOKEN
+// https://instagram.com/oauth/authorize/?client_id=[CLIENT_ID_HERE]&redirect_uri=http://localhost&response_type=token
 
 	//Get Data for Instagram
 	$response = wp_remote_fopen($insta_url);
