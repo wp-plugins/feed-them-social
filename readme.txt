@@ -38,6 +38,8 @@ With our plugin you can create social feeds of any or all your celebrities, fami
 
 = PREMIUM FTS Bar =
   * [NEW! Social Bar](http://feedthemsocial.com/fts-bar/)
+
+ALL SlickRemix plugins come with FREE Support! If you need help or have questions we are here to help just post on our [Support Forum](http://www.slickremix.com/support-forum/) and we’ll get to you as quickly as we can! (usually within 48hrs)
 	
 If you enjoy using our plugin please tell others. [Click here to share.](http://www.facebook.com/sharer.php?u=http://wordpress.org/plugins/feed-them-social/&t=FeedThemSocial)
 
