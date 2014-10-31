@@ -467,7 +467,11 @@ label.toggle-custom-textarea-show {
 }
 .fts-facebook-custom-api-token-label {
 	display:block;
-	margin:0 0 -7px;
+	margin:0 40px -4px 0;
 	font-size:14px;
+}
+.fts-facebook-custom-api-token-label a {
+	font-weight:bold;
+	color: #D5D5D5;
 
 }

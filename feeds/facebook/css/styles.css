@@ -24,7 +24,7 @@
 }
 .fts-fb-load-more {
 	border-radius:1px;
-	padding:0 25px;
+	padding:0;
 	line-height:37px !important;
 	width:100%;
 	min-height:37px !important;
@@ -409,7 +409,14 @@
 }
 .fts-vid-div {
 	width:100%;
+	margin-bottom:15px;
+}
+.fts-vid-div img, .fts-vid-div .fts-jal-fb-vid-play-btn {
 	display:none;
+}
+.fts-vid-div iframe {
+	position:absolute;
+	z-index:500;
 }
 .fts-jal-fb-see-more	{
 	float:right;

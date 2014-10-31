@@ -125,6 +125,7 @@ $excludeReplies = true;
       $name = $tweet->user->name;
 	  $screen_name = $tweet->user->screen_name;
       $permalink = 'http://twitter.com/'. $screen_name .'/status/'. $tweet->id_str;
+	  
 	  $user_permalink = 'https://twitter.com/#!/'. $screen_name;
  	  $media_url = $tweet->entities->media[0]->media_url;
 	  // leaving this for another update, trying to get videos, and I know this ain't right! $url = $tweet->entities->media[0]->expanded_url;
@@ -154,6 +155,7 @@ $excludeReplies = true;
       $tweets[] = array(
               'text' => $text,
               'name' => $name,
+              'screen_name' => $screen_name,
 			  'user_permalink' => $user_permalink,
               'permalink' => $permalink,
               'image' => $image,
@@ -164,16 +166,14 @@ $excludeReplies = true;
 			  
               );
   }//End FOR  
-
-?>
-
-<div id="twitter-feed-<?php print $twitter_name?>" class="fts-twitter-div" <?php if ($twitter_height) {?>style="height:<?php echo $twitter_height; ?>"<?php }?>>
+?>   
+<div id="twitter-feed-<?php print $twitter_name?>" class="fts-twitter-div<?php if ($twitter_height !== 'auto' && empty($twitter_height) == NULL) {?> fts-twitter-scrollable<?php }?>" <?php if ($twitter_height !== 'auto' && empty($twitter_height) == NULL) {?>style="height:<?php echo $twitter_height; ?>"<?php }?>>
   <?php foreach($tweets as $t) : ?>
   <div class="fts-tweeter-wrap">
     <div class="tweeter-info">
-      <div class="fts-twitter-image"><img class="twitter-image" src="<?php print $t['image'];?>" /></div>
+      <div class="fts-twitter-image"><a href="<?php print $t['user_permalink'];?>" target="_blank" class="black"><img class="twitter-image" src="<?php print $t['image'];?>" /></a></div>
       <div class="right">
-        <div class="uppercase bold"><a href="<?php print $t['user_permalink'];?>" target="_blank" class="black">@<?php print $t['name'];?></a></div>
+        <div class="uppercase bold"><a href="<?php print $t['user_permalink'];?>" target="_blank" class="black">@<?php print $t['screen_name'];?></a></div>
         <span class="time"><a href="<?php print $t['permalink']?>"><?php print $t['time'];?></a></span><br/>
         <span class="fts-twitter-text"><?php print $t['text'];?></span>
         <?php if ($t['media_url']) { ?>
@@ -190,6 +190,24 @@ $excludeReplies = true;
   <?php endforeach; ?>
   <div class="clear"></div>
 </div>
+<?php if ($twitter_height !== 'auto' && empty($twitter_height) == NULL) {?>
+<script>
+  // this makes it so the page does not scroll if you reach the end of scroll bar or go back to top
+  jQuery.fn.isolatedScrollTwitter = function() {
+		this.bind('mousewheel DOMMouseScroll', function (e) {
+		var delta = e.wheelDelta || (e.originalEvent && e.originalEvent.wheelDelta) || -e.detail,
+			bottomOverflow = this.scrollTop + jQuery(this).outerHeight() - this.scrollHeight >= 0,
+			topOverflow = this.scrollTop <= 0;
+	
+		if ((delta < 0 && bottomOverflow) || (delta > 0 && topOverflow)) {
+			e.preventDefault();
+		}
+	});
+	return this;
+  };
+  jQuery('.fts-twitter-scrollable').isolatedScrollTwitter();
+</script>
+<?php }?>  
 <?php  
 	}// END IF $fetchedTweets
 }//END ELSE

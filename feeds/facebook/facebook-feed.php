@@ -92,9 +92,9 @@ class FTS_Facebook_Feed extends feed_them_social_functions {
 			$fts_view_fb_link ='https://www.facebook.com/hashtag/'.$fts_fb_id.'/';
 			    break;	
 				
-			//case 'videos':
-//			$fts_view_fb_link ='https://www.facebook.com/'.$fts_fb_id.'/videos/';
-//			    break;	
+			//	case 'videos':
+				//	$fts_view_fb_link ='https://www.facebook.com/'.$fts_fb_id.'/videos/';
+				//	break;	
 		}
 		//URL to get page info
 		$fb_data_cache = WP_CONTENT_DIR.'/plugins/feed-them-social/feeds/facebook/cache/fb-'.$type.'-'.$fts_fb_id.'-num'.$fts_limiter.'.cache';
@@ -153,9 +153,11 @@ class FTS_Facebook_Feed extends feed_them_social_functions {
 				 	$mulit_data['feed_data'] = 'https://graph.facebook.com/search?q=%23'.$fts_fb_id.'&limit='.$fts_limiter.'&access_token='.$access_token.'';
 				  }
 			  }
-			  //elseif ($type == 'videos')	{
-//				  $mulit_data['feed_data'] = 'https://graph.facebook.com/'.$fts_fb_id.'/videos/uploaded?access_token='.$access_token.'';
-//			  }
+			  
+			   //	elseif ($type == 'videos')	{
+			  //		$mulit_data['feed_data'] = 'https://graph.facebook.com/'.$fts_fb_id.'/videos/uploaded?access_token='.$access_token.'';
+			 //		}
+			 
 			  elseif ($type == 'group')	{
 				  $mulit_data = array(
 					'page_data' => 'https://graph.facebook.com/'.$fts_fb_id.'?access_token='.$access_token.''
@@ -185,33 +187,36 @@ class FTS_Facebook_Feed extends feed_them_social_functions {
 
 			 $response = $this->fts_get_feed_json($mulit_data);
 			 
-//Make sure it's not ajaxing
-if(!$_GET['load_more_ajaxing']){
-			 //Create Cache
-			 $this->fts_create_feed_cache($fb_data_cache, $response );
-}
-		}			
+			 
+			//Make sure it's not ajaxing
+			if(!$_GET['load_more_ajaxing']){
+						 //Create Cache
+						 $this->fts_create_feed_cache($fb_data_cache, $response );
+				}
+		} // end main else			
 	
-			  //Json decode data and build it from cache or response
-			  $des = json_decode($response['page_data']);
-			  $data = json_decode($response['feed_data']);
+		//Json decode data and build it from cache or response
+		$des = json_decode($response['page_data']);
+		$data = json_decode($response['feed_data']);
 		
+		
+		// return error if no data retreived
 		if ($type == 'page' && !$data->data)	{
-					return 'No Posts Found. Are you sure this is a Facebook Page ID and not a Facebook Group or Event ID?';
+				return 'No Posts Found. Are you sure this is a Facebook Page ID and not a Facebook Group or Event ID?';
 		}
-
-
-
-//Make sure it's not ajaxing
-if(!$_GET['load_more_ajaxing']){
-	
-	$_REQUEST['fts_dynamic_name'] = trim($this->rand_string(10).'_'.$type);
-	
-	//Create Dynamic Class Name
-	$fts_dynamic_class_name =  '';
-	if ($_REQUEST['fts_dynamic_name']){
-		$fts_dynamic_class_name =  'feed_dynamic_class'.$_REQUEST['fts_dynamic_name'];
-	}
+		
+		
+	//Make sure it's not ajaxing
+	if(!$_GET['load_more_ajaxing']){
+		
+		$_REQUEST['fts_dynamic_name'] = trim($this->rand_string(10).'_'.$type);
+		
+		//Create Dynamic Class Name
+		$fts_dynamic_class_name =  '';
+		if ($_REQUEST['fts_dynamic_name']){
+			$fts_dynamic_class_name =  'feed_dynamic_class'.$_REQUEST['fts_dynamic_name'];
+		}
+		
 		
 		// so we can remove the fts-jal-fb-header for our special album view
 		if(is_plugin_active('feed-them-premium/feed-them-premium.php'))  {
@@ -237,7 +242,7 @@ if(!$_GET['load_more_ajaxing']){
 			print '</div><div class="clear"></div>';
 		}
 
-}//End check		
+} //End check		
 
 //Make sure it's not ajaxing
 if(!$_GET['load_more_ajaxing']){
@@ -248,7 +253,7 @@ if(!$_GET['load_more_ajaxing']){
 		jQuery(window).load(function(){ 
             // This is only for the slicker instagram feed
             jQuery('.fts-slicker-facebook-albums').masonry({
-              // strangely keeping transitionDuration: 0 always stacks blocks perfect.    , "transitionDuration": 0
+              // strangely keeping transitionDuration: 0 always stacks blocks perfect.
               transitionDuration: 0,
               // select the items we want to mason
               itemSelector: '.fts-jal-single-fb-post'
@@ -259,25 +264,11 @@ if(!$_GET['load_more_ajaxing']){
         <div class="fts-slicker-facebook-photos fts-slicker-facebook-albums masonry js-masonry <?php echo $fts_dynamic_class_name ?>" style="margin:auto" data-masonry-options='{ "isFitWidth": <?php if ($center_container == 'no') { ?>false<?php } else {?>true<?php } if ($image_stack_animation == 'no') { ?>, "transitionDuration": 0<?php } ?> }'>
 			
 	<?php	}
-		else { ?> 
-		<script>
-			// this makes it so the page does not scroll if you reach the end of scroll bar or go back to top
-			jQuery.fn.isolatedScrollFacebookFTS = function() {
-				this.bind('mousewheel DOMMouseScroll', function (e) {
-				var delta = e.wheelDelta || (e.originalEvent && e.originalEvent.wheelDelta) || -e.detail,
-					bottomOverflow = this.scrollTop + jQuery(this).outerHeight() - this.scrollHeight >= 0,
-					topOverflow = this.scrollTop <= 0;
-		
-				if ((delta < 0 && bottomOverflow) || (delta > 0 && topOverflow)) {
-					e.preventDefault();
-				}
-			});
-			return this;
-		};
-		jQuery('.fts-fb-scrollable').isolatedScrollFacebookFTS();
-		</script>
-        <div class="fts-jal-fb-group-display <?php echo $fts_dynamic_class_name ?> <?php if ($height) {?>fts-fb-scrollable<?php } ?>" <?php if ($height) {?>style="height:<?php echo $height; ?>"<?php } ?>> <?php }
-}//End ajaxing Check	
+		else { 
+       ?>
+        
+        <div class="fts-jal-fb-group-display <?php echo $fts_dynamic_class_name ?><?php if ($height !== 'auto' && empty($height) == NULL) {?> fts-fb-scrollable<?php } ?>" <?php if ($height !== 'auto' && empty($height) == NULL) {?>style="height:<?php echo $height; ?>"<?php } ?>> <?php }
+} //End ajaxing Check	
 		
 		$fb_post_data_cache = WP_CONTENT_DIR.'/plugins/feed-them-social/feeds/facebook/cache/fb-'.$type.'-post-'.$fts_fb_id.'-num'.$fts_limiter.'.cache';
 		
@@ -287,10 +278,11 @@ if(!$_GET['load_more_ajaxing']){
 		else{
 			//Build the big post counter.
 			$fb_post_array = array();
-			//
-//			echo '<pre>';
-//					print_r($data);
-//			echo '</pre>';
+			
+			//			echo '<pre>';
+			//					print_r($data);
+			//			echo '</pre>';
+			
 			$set_zero = 0;
 			foreach($data->data as $counter) {
 				
@@ -313,9 +305,9 @@ if(!$_GET['load_more_ajaxing']){
 				
 				//Video	
 				if($FBtype == 'video') {
-			//		  echo '<pre>';
-			//			  print_r($counter);
-			//		  echo '</pre>';
+				//		  echo '<pre>';
+				//			  print_r($counter);
+				//		  echo '</pre>';
 					$fb_post_array[$post_data_key.'_video'] = 'https://graph.facebook.com/'.$counter->object_id;
 				}
 				
@@ -336,23 +328,25 @@ if(!$_GET['load_more_ajaxing']){
 			//Response
 			$response_post_array = $this->fts_get_feed_json($fb_post_array);
 			
-//Make sure it's not ajaxing
-if(!$_GET['load_more_ajaxing']){		
-			//Create Cache
-			$this->fts_create_feed_cache($fb_post_data_cache, $response_post_array);
-}
-		}
+			//Make sure it's not ajaxing
+			if(!$_GET['load_more_ajaxing']){		
+						//Create Cache
+						$this->fts_create_feed_cache($fb_post_data_cache, $response_post_array);
+			}
+		} //End else
 		
 	$set_zero = 0;
+	
 		//THE MAIN FEED
 		foreach($data->data as $d) {
 		if($set_zero==$fts_limiter)
 		break;
 		
-		//
-//		 echo'<pre>';
-//						 print_r($d);
-//						  echo'</pre>';
+		//		 echo'<pre>';
+		//		  print_r($d);
+		//		 echo'</pre>';
+		
+		
 		//Create Facebook Variables 
 		$FBfinalstory ='';
 		$first_dir ='';
@@ -508,20 +502,17 @@ if(!$_GET['load_more_ajaxing']){
 			  
 			  print '<div class="fts-jal-fb-right-wrap">';
 			  
-if($type == 'album_photos' && $hide_date_likes_comments == 'yes' || $type == 'albums' && $hide_date_likes_comments == 'yes'){ }
+		if($type == 'album_photos' && $hide_date_likes_comments == 'yes' || $type == 'albums' && $hide_date_likes_comments == 'yes'){ }
 				else {
 				
 			  print '<div class="fts-jal-fb-top-wrap">';
 			  print '<span class="fts-jal-fb-user-name" style=""><a href="http://facebook.com/profile.php?id='.$d->from->id.'">'.$d->from->name.'</a>'.$FBfinalstory.'</span>';
 			  print '<span class="fts-jal-fb-post-time">'.date($CustomDateFormat, $CustomTimeFormat).'</span><div class="clear"></div>';
 		
-//Comments Count
-
+		//Comments Count
 		$FBpost_id_final = substr($FBpost_id, strpos($FBpost_id, "_") + 1);
 	
-		//filter messages to have urls
-		
-		
+			//filter messages to have urls
 			//Output Message  
 			if ($FBmessage) {
 				 
@@ -694,13 +685,13 @@ if($type == 'album_photos' && $hide_date_likes_comments == 'yes' || $type == 'al
 				
 						$video_data = json_decode($response_post_array[$post_data_key.'_video']);
 						
-						//echo'<pre>';
-//						print_r($video_data);
-//						echo'</pre>'; 
-//						
-//						echo'<pre>';
-//						print_r($d);
-//						echo'</pre>';
+						//	echo'<pre>';
+						//	print_r($video_data);
+						//	echo'</pre>'; 
+								
+						//	echo'<pre>';
+						//	print_r($d);
+						//	echo'</pre>';
 						
 						
 					print '<div class="fts-jal-fb-vid-wrap">';
@@ -725,11 +716,16 @@ if($type == 'album_photos' && $hide_date_likes_comments == 'yes' || $type == 'al
 								}
 								else{	
 							
-						
-		
-							print '<a href="javascript:;" target="_blank" class="fts-jal-fb-vid-picture fb-id'.$FBpost_id.' vid-btn'.$FBpost_id.'"><img border="0" alt="' .$d->from->name.'" src="'.$d->picture.'"/> <div class="fts-jal-fb-vid-play-btn"></div></a>';
-							 
-							print '<div id="video'.$FBpost_id.'" class="fts-vid-div"></div>';
+							
+							
+							
+							
+							//Create Dynamic Class Name
+							$fts_dynamic_vid_name_string = trim($this->rand_string(10).'_'.$type);
+							$fts_dynamic_vid_name =  'feed_dynamic_video_class'.$fts_dynamic_vid_name_string;
+	
+							print '<div class="fts-jal-fb-vid-picture '.$fts_dynamic_class_name.' '.$fts_dynamic_vid_name.'"><img border="0" alt="' .$d->from->name.'" src="'.$d->picture.'"/> <div class="fts-jal-fb-vid-play-btn"></div></div>';
+							  
 							 
 								//strip Youtube URL then ouput Iframe and script
 								if (strpos($FBlink, 'youtube') > 0) {
@@ -739,11 +735,10 @@ if($type == 'album_photos' && $hide_date_likes_comments == 'yes' || $type == 'al
 							 
 									print '<script>';
 									print 'jQuery(document).ready(function() {';
-									print 'jQuery(".vid-btn'.$FBpost_id.'").click(function() {';
-										print 'jQuery(".fb-id'.$FBpost_id.'").hide();';
-										print 'jQuery("#video'.$FBpost_id.'").show();';
-										print 'jQuery("#video'.$FBpost_id.'").prepend(\'<div class="fts-fluid-videoWrapper"><iframe height="281" class="video'.$FBpost_id.'" style="display:none;" src="http://www.youtube.com/embed/'.$youtubeURLfinal.'?autoplay=1" frameborder="0" allowfullscreen></iframe></div>\');';
-										print 'jQuery(".video'.$FBpost_id.'").show();';
+									print 'jQuery(".'.$fts_dynamic_vid_name.'").click(function() {';
+										print 'jQuery(this).addClass("fts-vid-div");';
+										print 'jQuery(this).removeClass("fts-jal-fb-vid-picture");';
+										print 'jQuery(this).prepend(\'<div class="fts-fluid-videoWrapper"><iframe height="281" class="video'.$FBpost_id.'" src="http://www.youtube.com/embed/'.$youtubeURLfinal.'?autoplay=1" frameborder="0" allowfullscreen></iframe></div>\');';
 									print '});';		
 									print '});';	
 									print '</script>';	
@@ -756,11 +751,10 @@ if($type == 'album_photos' && $hide_date_likes_comments == 'yes' || $type == 'al
 									
 									print '<script>';
 									print 'jQuery(document).ready(function() {';
-									print 'jQuery(".vid-btn'.$FBpost_id.'").click(function() {';
-										print 'jQuery(".fb-id'.$FBpost_id.'").hide();';
-										print 'jQuery("#video'.$FBpost_id.'").show();';
-										print 'jQuery("#video'.$FBpost_id.'").prepend(\'<div class="fts-fluid-videoWrapper"><iframe height="281" class="video'.$FBpost_id.'" style="display:none;" src="http://www.youtube.com/embed/'.$youtubeURLfinal.'?autoplay=1" frameborder="0" allowfullscreen></iframe></div>\');';
-										print 'jQuery(".video'.$FBpost_id.'").show();';
+									print 'jQuery(".'.$fts_dynamic_vid_name.'").click(function() {';
+										print 'jQuery(this).addClass("fts-vid-div");';
+										print 'jQuery(this).removeClass("fts-jal-fb-vid-picture");';
+										print 'jQuery(this).prepend(\'<div class="fts-fluid-videoWrapper"><iframe height="281" class="video'.$FBpost_id.'" src="http://www.youtube.com/embed/'.$youtubeURLfinal.'?autoplay=1" frameborder="0" allowfullscreen></iframe></div>\');';
 									print '});';		
 									print '});';	
 									print '</script>';
@@ -775,11 +769,10 @@ if($type == 'album_photos' && $hide_date_likes_comments == 'yes' || $type == 'al
 									
 									print '<script>';
 									print 'jQuery(document).ready(function() {';
-									print 'jQuery(".vid-btn'.$FBpost_id.'").click(function() {';
-										print 'jQuery(".fb-id'.$FBpost_id.'").hide();';
-										print 'jQuery("#video'.$FBpost_id.'").show();';
-										print 'jQuery("#video'.$FBpost_id.'").prepend(\'<div class="fts-fluid-videoWrapper"><iframe src="http://player.vimeo.com/video/'.$vimeoURLfinal.'?autoplay=1" class="video'.$FBpost_id.'" style="display:none;" height="390" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe></div>\');';
-										print 'jQuery(".video'.$FBpost_id.'").show();';
+									print 'jQuery(".'.$fts_dynamic_vid_name.'").click(function() {';
+										print 'jQuery(this).addClass("fts-vid-div");';
+										print 'jQuery(this).removeClass("fts-jal-fb-vid-picture");';
+										print 'jQuery(this).prepend(\'<div class="fts-fluid-videoWrapper"><iframe src="http://player.vimeo.com/video/'.$vimeoURLfinal.'?autoplay=1" class="video'.$FBpost_id.'" height="390" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe></div>\');';
 									print '});';		
 									print '});';	
 									print '</script>';
@@ -797,18 +790,15 @@ if($type == 'album_photos' && $hide_date_likes_comments == 'yes' || $type == 'al
 									$jsonObj = json_decode($decodeiFrame);
 									//Change the height of the embed player if you want else uncomment below line
 									// echo str_replace('height="400"', 'height="140"', $jsonObj->html);
-									?>
-									<script>
-									jQuery(document).ready(function() {
-									   jQuery(".vid-btn<?php echo $FBpost_id ?>").click(function() {
-										jQuery(".fb-id<?php echo $FBpost_id ?>").hide();
-										jQuery("#video<?php echo $FBpost_id ?>").show();
-										jQuery("#video<?php echo $FBpost_id ?>").prepend('<div class="fts-fluid-videoWrapper"><?php echo $jsonObj->html ?></div>');
-										jQuery(".video<?php echo $FBpost_id ?>").show();
-										});
-									});
-									</script>
-									<?php
+									print '<script>';
+									print 'jQuery(document).ready(function() {';
+									print 'jQuery(".'.$fts_dynamic_vid_name.'").click(function() {';
+									print 'jQuery(this).addClass("fts-vid-div");';
+									print 'jQuery(this).removeClass("fts-jal-fb-vid-picture");';
+									print '	jQuery(this).prepend(\'<div class="fts-fluid-videoWrapper">'.$jsonObj->html.'</div>\');';
+									print '});';		
+									print '});';	
+									print '</script>';
 									} 
 								}
 							}
@@ -924,7 +914,6 @@ if($type == 'album_photos' && $hide_date_likes_comments == 'yes' || $type == 'al
 					
 					}
 					
-					
 					print '<div class="clear"></div></div>';
 				 break;		
 			}
@@ -955,26 +944,24 @@ if($type == 'album_photos' && $hide_date_likes_comments == 'yes' || $type == 'al
 	
 		$_REQUEST['next_url'] = $data->paging->next;
 		?>
-        <script>
-		jQuery(document).ready(function() {
-		  
-		  //Video Clickable
-		  jQuery("video").click(function() {
-			  if (!this.paused) {
-			  	jQuery(this).trigger("pause");
-			  } 
-			  else if (this.paused) {
-			  	jQuery(this).trigger("play");
-			  } 
-			  else{
-			  	jQuery(this).trigger("play");
-			  }
-			
-		  	});
-		  });
-		  
-			var nextURL_<?php echo $_REQUEST['fts_dynamic_name']; ?>= "<?php echo $_REQUEST['next_url']; ?>";
-		</script>
+<script>
+jQuery(document).ready(function() {	
+	//Video Clickable
+	jQuery("video").click(function() {
+		if (!this.paused) {
+		  jQuery(this).trigger("pause");
+		} 
+		else if (this.paused) {
+		  jQuery(this).trigger("play");
+		} 
+		else{
+		  jQuery(this).trigger("play");
+		}
+	  });
+
+});
+	var nextURL_<?php echo $_REQUEST['fts_dynamic_name']; ?>= "<?php echo $_REQUEST['next_url']; ?>";
+</script>
 <?php	
 //Make sure it's not ajaxing
 if(!$_GET['load_more_ajaxing'] && !$_REQUEST['fts_no_more_posts'] && !empty($loadmore)){ 
@@ -984,7 +971,6 @@ if(!$_GET['load_more_ajaxing'] && !$_REQUEST['fts_no_more_posts'] && !empty($loa
 ?>
 <script>
 	 jQuery(document).ready(function() {
-		  
 		  <?php 
 		  // $scrollMore = load_more_posts_style shortcode att
 		  if($scrollMore == 'autoscroll') { ?>
@@ -1040,24 +1026,19 @@ if(!$_GET['load_more_ajaxing'] && !$_REQUEST['fts_no_more_posts'] && !empty($loa
 					 jQuery('#loadMore_<?php echo $fts_dynamic_name ?>').html('Load More');
 					  //	jQuery('#loadMore_< ?php echo $fts_dynamic_name ?>').removeClass('flip360-fts-load-more');
 					 jQuery("#loadMore_<?php echo $fts_dynamic_name ?>").removeClass('fts-fb-spinner');
-						
 							
 						}
 					}); // end of ajax()
 					return false;
 					
-					
 					<?php // string $scrollMore is at top of this js script. acception for scroll option closing tag
 					if($scrollMore == 'autoscroll' ) { ?>
 								} // end of scroll ajax load. 
-					 <?php } ?>	
-					 
-					 
+					 <?php } ?>	   
 		  }); // end of document.ready
 	
 	  }); // end of form.submit
 </script> 
-	
 <?php
  }//End Check	 
 
@@ -1073,8 +1054,32 @@ if(!$_GET['load_more_ajaxing'] && !$_REQUEST['fts_no_more_posts'] && !empty($loa
 			}	
 				
 		 print '</div>'; // closing main div for fb photos, groups etc
+		
+		 ?> 
+		 <?php //only show this script if the height option is set to a number 
+											if($height !== 'auto' && empty($height) == NULL) { ?> 
+										 <script>
+											// this makes it so the page does not scroll if you reach the end of scroll bar or go back to top
+											jQuery.fn.isolatedScrollFacebookFTS = function() {
+													this.bind('mousewheel DOMMouseScroll', function (e) {
+													var delta = e.wheelDelta || (e.originalEvent && e.originalEvent.wheelDelta) || -e.detail,
+														bottomOverflow = this.scrollTop + jQuery(this).outerHeight() - this.scrollHeight >= 0,
+														topOverflow = this.scrollTop <= 0;
+											
+													if ((delta < 0 && bottomOverflow) || (delta > 0 && topOverflow)) {
+														e.preventDefault();
+													}
+												});
+												return this;
+											};
+											jQuery('.fts-fb-scrollable').isolatedScrollFacebookFTS();
+										 </script>	
+									   <?php } //end $height !== 'auto' && empty($height) == NULL ?>
+		 
+		 
+			
 
-
+			<?php
 			//Make sure it's not ajaxing
 			if(!$_GET['load_more_ajaxing']){
 					  print '<div class="clear"></div><div id="fb-root"></div>';
@@ -1285,38 +1290,38 @@ if(!$_GET['load_more_ajaxing'] && !$_REQUEST['fts_no_more_posts'] && !empty($loa
 	}
 	
 	
-function fts_custom_trim_words( $text, $num_words = 45, $more) {
-        $more = __( '...' );
- 
-    $text = nl2br($text);
-	//Filter for Hashtags and Mentions Before returning. 
- 	$text= $this->fts_facebook_tag_filter($text);
-    $text = strip_shortcodes($text);
-    // Add tags that you don't want stripped
-    $text = strip_tags( $text, '<strong><br><em><i><a>' );
- 
-        $words_array = preg_split( "/[\n\r\t ]+/", $text, $num_words + 1, PREG_SPLIT_NO_EMPTY );
-        $sep = ' ';
- 
-    if ( count( $words_array ) > $num_words ) {
-        array_pop( $words_array );
-        $text = implode( $sep, $words_array );
-        $text = $text . $more;
-    } else {
-        $text = implode( $sep, $words_array );
-    }
- 	
-	
- 	
-    return $text;
-}
+	function fts_custom_trim_words( $text, $num_words = 45, $more) {
+			$more = __( '...' );
+	 
+		$text = nl2br($text);
+		//Filter for Hashtags and Mentions Before returning. 
+		$text= $this->fts_facebook_tag_filter($text);
+		$text = strip_shortcodes($text);
+		// Add tags that you don't want stripped
+		$text = strip_tags( $text, '<strong><br><em><i><a>' );
+	 
+			$words_array = preg_split( "/[\n\r\t ]+/", $text, $num_words + 1, PREG_SPLIT_NO_EMPTY );
+			$sep = ' ';
+	 
+		if ( count( $words_array ) > $num_words ) {
+			array_pop( $words_array );
+			$text = implode( $sep, $words_array );
+			$text = $text . $more;
+		} else {
+			$text = implode( $sep, $words_array );
+		}
+		
+		
+		
+		return $text;
+	}
 	
 	function fts_facebook_tag_filter($FBdescription){
 		//Converts URLs to Links
 		$FBdescription = preg_replace('@(?!(?!.*?<a)[^<]*<\/a>)(?:(?:https?|ftp|file)://|www\.|ftp\.)[-A-‌​Z0-9+&#/%=~_|$?!:,.]*[A-Z0-9+&#/%=~_|$]@i', '<a href="\0" target="_blank">\0</a>', $FBdescription);
 		
-		////Mentions
-//		$FBdescription = preg_replace('/(?<!\S)@([0-9a-zA-Z]+)/', '<a target="_blank" href="http://facebook.com/$1">@$1</a>', $FBdescription);
+		//	Mentions
+		//	$FBdescription = preg_replace('/(?<!\S)@([0-9a-zA-Z]+)/', '<a target="_blank" href="http://facebook.com/$1">@$1</a>', $FBdescription);
 		
 		//Hash tags
 		$FBdescription = preg_replace('/(?<!\S)#([0-9a-zA-Z]+)/', '<a target="_blank" href="http://facebook.com/hashtag/$1">#$1</a>', $FBdescription);
@@ -1325,21 +1330,16 @@ function fts_custom_trim_words( $text, $num_words = 45, $more) {
 	}
 
 	
-	
-	
 	function rand_string( $length ) {
 	$chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";	
 
-	$size = strlen( $chars );
-	for( $i = 0; $i < $length; $i++ ) {
-		$str .= $chars[ rand( 0, $size - 1 ) ];
-	}
+		$size = strlen( $chars );
+		for( $i = 0; $i < $length; $i++ ) {
+			$str .= $chars[ rand( 0, $size - 1 ) ];
+		}
 
-	return $str;
-}
-
-
-
+		return $str;
+    }
 
 }// FTS_Facebook_Feed END CLASS
 ?>

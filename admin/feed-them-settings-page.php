@@ -6,6 +6,7 @@ function feed_them_settings_page() {
 $fts_functions = new feed_them_social_functions();
 
 ?>
+
 <link href='http://fonts.googleapis.com/css?family=Rambla:400,700' rel='stylesheet' type='text/css'>				
 <div class="feed-them-social-admin-wrap">
   <h1><?php _e('Feed Them Social', 'feed-them-social'); ?></h1>
@@ -140,6 +141,7 @@ $fts_functions = new feed_them_social_functions();
          <h2><?php _e('Custom API Tokens', 'feed-them-social'); ?></h2>  
          <p>
          <?php
+		 
          $test_app_token_id = get_option('fts_facebook_custom_api_token');
 		 if (!empty($test_app_token_id)){
 		   $fts_fb_access_token = '226916994002335|ks3AFvyAOckiTA1u_aDoI4HYuuw';
@@ -158,6 +160,7 @@ $fts_functions = new feed_them_social_functions();
 	 	
 	 
 	  ?>
+      
          <label class="fts-facebook-custom-api-token-label"><?php _e('Facebook App ID or User Token (for all facebook feeds). Not required to make the feed work. A User Token however will allow you to see certain post types that may be returning the message, Undefined Attachment. See how to <a href="http://www.slickremix.com/docs/create-facebook-app-id-or-user-token" target="_blank">GET APP ID or USER TOKEN</a>.', 'feed-them-social'); ?></label><br/>
          <input type="text" name="fts_facebook_custom_api_token" class="feed-them-social-admin-input"  id="fts_facebook_custom_api_token" placeholder="APP ID or Token optional" value="<?php echo get_option('fts_facebook_custom_api_token');?>"/>
         <?php if (!empty($test_app_token_response)){	 
@@ -183,19 +186,17 @@ $fts_functions = new feed_them_social_functions();
     
     
    <h2><?php _e('Powered by Text', 'feed-them-social'); ?></h2>
-     
-    
   
      <p>
         <input name="fts-powered-text-options-settings" class="fts-powered-by-settings-admin-input" type="checkbox" id="fts-powered-text-options-settings" value="1" <?php echo checked( '1', get_option( 'fts-powered-text-options-settings' ) ); ?>/>
         <?php  
-                        if (get_option( 'fts-powered-text-options-settings' ) == '1') { ?>
-                           <strong><?php _e('Checked:', 'feed-them-social'); ?></strong> <?php _e('You are not showing the Powered by Logo.', 'feed-them-social'); ?> <?php
-                        }
-                        else	{ ?>
-                          <strong><?php _e('Not Checked:', 'feed-them-social'); ?></strong><?php _e('The Powered by text will appear in the site. Awesome! Thanks so much for sharing.', 'feed-them-social'); ?> <?php
-                        }
-                           ?>
+			if (get_option( 'fts-powered-text-options-settings' ) == '1') { ?>
+			   <strong><?php _e('Checked:', 'feed-them-social'); ?></strong> <?php _e('You are not showing the Powered by Logo.', 'feed-them-social'); ?> <?php
+			}
+			else	{ ?>
+			  <strong><?php _e('Not Checked:', 'feed-them-social'); ?></strong><?php _e('The Powered by text will appear in the site. Awesome! Thanks so much for sharing.', 'feed-them-social'); ?> <?php
+			}
+		 ?>
       </p>
      <br/>
           <input type="submit" class="feed-them-social-admin-submit-btn" value="<?php _e('Save All Changes') ?>" />
@@ -309,7 +310,6 @@ jQuery(function() {
 });
 
 
-
 //START Page JS/
 function updateTextArea_fb_page() {
 	
@@ -393,34 +393,6 @@ function updateTextArea_fb_page() {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// NEED TO STRIP OUT WHATEVER FACEBOOK STUFF NOT NEEDED BELOW THIS LINE FOR NEWEST UPDATE
-
 //START Facebook Group//
 function updateTextArea_fb_group() {
 
@@ -453,13 +425,7 @@ function updateTextArea_fb_group() {
 	else 	{
 	?>
 		
-		//	if (final_fts_rotate_shortcode && jQuery("#"+ rotate_form_id + " input.fts_rotate_feed").is(':checked')){
-//					var final_fb_group_shorcode = '[fts facebook group' + fb_group_id + ' type=group' + final_fts_rotate_shortcode + ']';
-//			}
-//			else	{
-					// var final_fb_group_shorcode = '[fts facebook group' + fb_group_id + fb_group_custom_name + ' type=group]';
-					var final_fb_group_shorcode = '[fts facebook group' + fb_group_id + facebook_height_final + ' type=group]';
-			//}	
+	var final_fb_group_shorcode = '[fts facebook group' + fb_group_id + facebook_height_final + ' type=group]';
 	
 <?php } ?>
 
@@ -502,12 +468,7 @@ function updateTextArea_fb_event() {
 	}
 	else 	{
 	?>
-		//if (final_fts_rotate_shortcode && jQuery("#"+ rotate_form_id + " input.fts_rotate_feed").is(':checked')){
-//				var final_fb_event_shorcode = '[fts facebook event' + fb_page_id + ' type=event' + final_fts_rotate_shortcode + ']';
-//			}
-//		else	{
-				var final_fb_event_shorcode = '[fts facebook event' + fb_event_id + facebook_height_final + ' type=event]';
-	//	}		
+		var final_fb_event_shorcode = '[fts facebook event' + fb_event_id + facebook_height_final + ' type=event]';
 		
 <?php } ?>
 

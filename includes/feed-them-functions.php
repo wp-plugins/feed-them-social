@@ -606,15 +606,15 @@ function  fts_facebook_page_form($save_options = false) {
         $output .= '<div class="instructional-text">You must copy your <a href="http://www.slickremix.com/2012/12/18/how-to-get-your-twitter-name/" target="_blank">Twitter Name</a> and paste it in the first input below.</div>';
         
         $output .= '<div class="feed-them-social-admin-input-wrap twitter_name">';
-          $output .= '<div class="feed-them-social-admin-input-label">Twitter Name (required)</div>';
-          $output .= '<input type="text" name="twitter_name" id="twitter_name" class="feed-them-social-admin-input" value="'.$twitter_name_option.'" />';
+        $output .= '<div class="feed-them-social-admin-input-label">Twitter Name (required)</div>';
+        $output .= '<input type="text" name="twitter_name" id="twitter_name" class="feed-them-social-admin-input" value="'.$twitter_name_option.'" />';
         $output .= '<div class="clear"></div>';
         $output .= '</div><!--/feed-them-social-admin-input-wrap-->';
 		
 		
-		  $output .= '<div class="feed-them-social-admin-input-wrap twitter_name">';
-          $output .= '<div class="feed-them-social-admin-input-label">Twitter Fixed Height<br/><small>Leave blank for auto height</small></div>';
-          $output .= '<input type="text" name="twitter_height" id="twitter_height" class="feed-them-social-admin-input" value="" placeholder="450px for example" />';
+		$output .= '<div class="feed-them-social-admin-input-wrap">';
+        $output .= '<div class="feed-them-social-admin-input-label">Twitter Fixed Height<br/><small>Leave blank for auto height</small></div>';
+        $output .= '<input type="text" name="twitter_height" id="twitter_height" class="feed-them-social-admin-input" value="" placeholder="450px for example" />';
         $output .= '<div class="clear"></div>';
         $output .= '</div><!--/feed-them-social-admin-input-wrap-->';
         
