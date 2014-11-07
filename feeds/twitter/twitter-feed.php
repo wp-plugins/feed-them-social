@@ -37,9 +37,13 @@ $excludeReplies = true;
 			include_once 'twitteroauth/twitteroauth.php';
 			//Authenticate connection
 			$connection = new TwitterOAuthFTS(
+			//Consumer Key
 			'dOIIcGrhWgooKquMWWXg',
+			//Consumer Secret
 			'qzAE4t4xXbsDyGIcJxabUz3n6fgqWlg8N02B6zM',
+			//Access Token
 			'1184502104-Cjef1xpCPwPobP5X8bvgOTbwblsmeGGsmkBzwdB',  
+			//Access Token Secret
 			'd789TWA8uwwfBDjkU0iJNPDz1UenRPTeJXbmZZ4xjY'
 			);
 			

@@ -536,6 +536,7 @@ function updateTextArea_instagram() {
 	var center_container = ' center_container=' + jQuery("select#fts-slicker-instagram-container-position").val();  
 	var image_stack_animation = ' image_stack_animation=' + jQuery("select#fts-slicker-instagram-container-animation").val();  
 	var instagram_feed_type = ' type=' + jQuery("select#instagram-messages-selector").val();
+	var instagram_popup_option = ' popup=' + jQuery("select#instagram-popup-option").val();
 	 
 	if (instagram_id == " instagram_id=") {
 	  	 jQuery(".instagram_name").addClass('fts-empty-error');  

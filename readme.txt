@@ -1,9 +1,9 @@
 === Feed Them Social (Facebook, Instagram, Twitter, etc) ===
 Contributors: slickremix
-Tags:  facebook photos, facebook albums, albums, photos facebook, photo, facebook feed, facebook posts, hastags, social, social plugin, social networking, networking, custom feed, custom facebook feed, facebook plugin, facebook group, facebook groups, events, facebook events, facebook page events, facebook group events, facebook page, facebook pages, twitter, twitter plugin, instagram, instagram plugin, feed me social, social plugin, feed, feeds, shortcode, facebook wall, slickremix, plugin, pages, posts, images, page, post, image, youtube, youtube feed, youtube channel, youtube video, youtube videos, videos, youtube embed, embed, video iframe, admin, comments, widgets, seo, wordpress, pinterest, pinterest boards, pinterest feeds, pinterest photos, pinterest widget, pinterest widgets,
+Tags:  facebook photos, facebook albums, albums, photos facebook, photo, facebook feed, facebook posts, hastags, social, social plugin, social networking, networking, custom feed, custom facebook feed, facebook plugin, facebook group, facebook groups, events, facebook events, facebook page events, facebook group events, facebook page, facebook pages, twitter, twitter plugin, instagram, instagram plugin, feed me social, social plugin, feed, feeds, shortcode, facebook wall, slickremix, plugin, pages, posts, images, page, post, image, youtube, youtube feed, youtube channel, youtube video, youtube videos, videos, youtube embed, embed, video iframe, admin, comments, widgets, seo, wordpress, pinterest, pinterest boards, pinterest feeds, pinterest photos, pinterest widget, pinterest widgets, instagram popup
 Requires at least: 3.4.0
 Tested up to: 4.0.0
-Stable tag: 1.5.9
+Stable tag: 1.6.0
 License: GPLv2 or later
 
 Display custom feeds for Facebook Pages, Groups, Events, Album Photos and Covers -Twitter, Instagram, Pinterest and YouTube on pages, posts or widgets.
@@ -52,6 +52,13 @@ If you enjoy using our plugin please tell others. [Click here to share.](http://
   * Extract the zip file and drop the contents in the wp-content/plugins/ directory of your WordPress installation and then activate the Plugin from Plugins page. 
 
 == Changelog ==
+= Version 1.6.0 Friday, November 7th, 2014 =
+ * NEW: Feed Them menu icon in the wp-admin area  
+ * NEW IN PREMIUM: Instagram feed now has option to open photos in pop instead of taking users to Instagram to view large photo.
+ * UPDATED: Premium plugin check now ONLY loads on free plugin activation. Not every Page load in dashboard/admin/frontend. (Thanks to wordpress.org user Texiwill for bring to our attention!)
+ * CLEANED: Uneeded CSS throughout all feeds.
+ * FIXED: Feed them settings page menu not showing with certain other plugins active.
+
 = Version 1.5.9 Friday, October 31st, 2014 =
  * FIXED: Facebook media bugs when having the same feed on one page. ie. fts bar and a page feed. Reduced many lines of code as well.
  * FIXED: Facebook feed scrolling bugs with loadmore posts option enabled in premium version.

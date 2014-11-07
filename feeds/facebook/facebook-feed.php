@@ -6,10 +6,10 @@ class FTS_Facebook_Feed extends feed_them_social_functions {
 		add_shortcode( 'fts facebook event', array( $this,'fts_fb_func'));
 		add_shortcode( 'fts facebook', array( $this,'fts_fb_func'));
 		
-		
-		//Add Scripts
+	
 		add_action('wp_enqueue_scripts', array( $this,'fts_fb_head'));
 	}
+	
 	
 	function  fts_fb_head() {
 		wp_enqueue_style( 'fts_fb_css', plugins_url( 'facebook/css/styles.css',  dirname(__FILE__ ) ) );
@@ -455,6 +455,7 @@ if(!$_GET['load_more_ajaxing']){
 		$FBembed_vid = $d->embed_html;
 		
 		$FBfromName = $d->from->name;
+		$FBfromName = preg_quote($FBfromName, "/");
 		$FBstory = $d->story;
 		
 		
@@ -469,7 +470,7 @@ if(!$_GET['load_more_ajaxing']){
 		$CustomTimeFormat = strtotime($d->created_time);
 		
 		if (!empty($FBstory)) {
-			$FBfinalstory  = preg_replace('/'.$FBfromName.'/', '', $FBstory, 1);
+			$FBfinalstory  = preg_replace('/\b'.$FBfromName.'s*?\b(?=([^"]*"[^"]*")*[^"]*$)/i', '', $FBstory, 1);
 		}
 
 		switch($FBtype)	{
@@ -1321,7 +1322,7 @@ if(!$_GET['load_more_ajaxing'] && !$_REQUEST['fts_no_more_posts'] && !empty($loa
 		$FBdescription = preg_replace('@(?!(?!.*?<a)[^<]*<\/a>)(?:(?:https?|ftp|file)://|www\.|ftp\.)[-A-‌​Z0-9+&#/%=~_|$?!:,.]*[A-Z0-9+&#/%=~_|$]@i', '<a href="\0" target="_blank">\0</a>', $FBdescription);
 		
 		//	Mentions
-		//	$FBdescription = preg_replace('/(?<!\S)@([0-9a-zA-Z]+)/', '<a target="_blank" href="http://facebook.com/$1">@$1</a>', $FBdescription);
+			$FBdescription = preg_replace('/(?<!\S)@([0-9a-zA-Z]+)/', '<a target="_blank" href="http://facebook.com/$1">@$1</a>', $FBdescription);
 		
 		//Hash tags
 		$FBdescription = preg_replace('/(?<!\S)#([0-9a-zA-Z]+)/', '<a target="_blank" href="http://facebook.com/hashtag/$1">#$1</a>', $FBdescription);

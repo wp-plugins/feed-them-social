@@ -41,6 +41,9 @@ class feed_them_social_functions {
 	function __construct() {
 	  $root_file = plugin_dir_path(dirname( __FILE__));
 	  $this->premium = str_replace('feed-them-social/','feed-them-premium/', $root_file);
+
+	  //$load_fts->fts_get_check_plugin_version('feed-them-premium.php', '1.3.0');
+	  	register_deactivation_hook( __FILE__, array( $this, 'fts_get_check_plugin_version' ));
 	}
 	
 	/*
@@ -67,8 +70,7 @@ class feed_them_social_functions {
 		  add_action('admin_enqueue_scripts', array( $this,'feed_them_system_info_css'));
 		}
 		
-		//Check Premium Version.
-		$this->fts_get_check_plugin_version('feed-them-premium.php', '1.3.0');
+		
 	 }//end if admin
 		
 		//Settings option. Add Custom CSS to the header of FTS pages only
@@ -84,36 +86,37 @@ class feed_them_social_functions {
 		}
 	}//end if init
 	
-	function fts_get_check_plugin_version($_plugin_file, $version_needed) {
-   		require_once( ABSPATH . '/wp-admin/includes/plugin.php' );
-	  	$plugins = get_plugins();
-	  
-		foreach($plugins as $plugin_file => $plugin_info) {
-			
-			//Check if plugin is active if not don't bug em
-			if (is_plugin_active($plugin_file)) {
-				  $plugin_file_name = explode('/', $plugin_file);
-				   
-				  if ($plugin_file_name[1] == $_plugin_file && $plugin_info['Version'] < $version_needed){
-					  $download_location = 'If you have not recieved an update notification for this plugin you may re-download the plugin/extension from your <a href="http://slickremix.com/my-account" target="_blank">SlickRemix "My Account" page.</a>';
-					 
-					  $error_msg = '<div class="error"><p>' . __( 'Warning: <strong>'.$plugin_info['Name'].'</strong> needs to be <strong>UPDATED</strong> to <strong>version '.$version_needed.'</strong> to function properly. '.$download_location, 'fts-bar' ) . '</p></div>';
-					
-					 add_action( 'admin_notices', function() use ($error_msg) {
-						  echo $error_msg;
-					 });
-					 
-					 
-					 deactivate_plugins($plugin_file);
-					 
-					 return $error_msg;
-				  }
+	function fts_get_check_plugin_version($_plugin_file = 'feed-them-premium.php', $version_needed = '1.3.0') {
+		if (is_admin() && $_GET['activate'] == 'true') {
+			require_once( ABSPATH . '/wp-admin/includes/plugin.php' );
+			$plugins = get_plugins();
+		  
+			foreach($plugins as $plugin_file => $plugin_info) {
+				
+				//Check if plugin is active if not don't bug em
+				if (is_plugin_active($plugin_file)) {
+					  $plugin_file_name = explode('/', $plugin_file);
+					   
+					  if ($plugin_file_name[1] == $_plugin_file && $plugin_info['Version'] < $version_needed){
+						  $download_location = 'If you have not recieved an update notification for this plugin you may re-download the plugin/extension from your <a href="http://slickremix.com/my-account" target="_blank">SlickRemix "My Account" page.</a>';
+						 
+						  $error_msg = '<div class="error"><p>' . __( 'Warning: <strong>'.$plugin_info['Name'].'</strong> needs to be <strong>UPDATED</strong> to <strong>version '.$version_needed.'</strong> to function properly. '.$download_location, 'fts-bar' ) . '</p></div>';
+						
+						 add_action( 'admin_notices', function() use ($error_msg) {
+							  echo $error_msg;
+						 });
+						 
+						 deactivate_plugins($plugin_file);
+						 
+						 return $error_msg;
+					  }
+				}
 			}
 		}
 	}
 	
 	function Feed_Them_Main_Menu() {
-  	 	add_menu_page('Feed Them Social', 'Feed Them', 'edit_plugins', 'feed-them-settings-page', 'feed_them_settings_page', 'div', 99);
+  	 	add_menu_page('Feed Them Social', 'Feed Them', 'manage_options', 'feed-them-settings-page', 'feed_them_settings_page', '' , 99.6333324);
 	}
 	
 	function Feed_Them_Submenu_Pages() {   
@@ -555,39 +558,6 @@ function  fts_facebook_page_form($save_options = false) {
 	}
 	
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
    /*
 	* Feed Them Social Twitter Form
 	*/
@@ -651,6 +621,7 @@ function  fts_facebook_page_form($save_options = false) {
 			$instagram_name_option = get_option('convert_instagram_username');
 			$instagram_id_option = get_option('instagram_id');
 			$pics_count_option = get_option('pics_count');
+			$instagram_popup_option = get_option('instagram_popup_option');
 		}
         $output .= '<div class="fts-instagram-shortcode-form">';
         
@@ -753,6 +724,7 @@ function  fts_facebook_page_form($save_options = false) {
         //Create Need Premium Fields
         $fields = array(
         '# of Pics (default 5)',
+		'Display Photos in Popup'
         );
         $output .= $this->need_fts_premium_fields($fields);
         } 
@@ -843,7 +815,7 @@ function  fts_facebook_page_form($save_options = false) {
 		
 		$output .= '<a href="http://www.slickremix.com/downloads/feed-them-social-premium-extension/" class="feed-them-social-admin-submit-btn" style="margin-right:1em; margin-top: 15px; display:block; float:left; text-decoration:none !important;" target="_blank" >Click to see Premium Version</a>';
 		$output .= '</form>';
-		
+
 		}
 		
 		$output .= '</div><!--/fts-pinterest-shortcode-form-->';
