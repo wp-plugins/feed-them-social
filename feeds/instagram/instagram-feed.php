@@ -84,7 +84,7 @@ else {
    
 $set_zero = 0;
 if (!$insta_data->data) {
-	return '<div style="padding-right:35px;">Looks like instagram\'s API down. Please try clearing cache and reloading this page in the near future.</div>';
+	return '<div style="padding-right:35px;">Looks like instagram\'s API down. Please try clearing cache and reloading this page in the near future.</div></div>';
 }
 foreach($insta_data->data as $insta_d) {
 if($set_zero==$pics_count)
