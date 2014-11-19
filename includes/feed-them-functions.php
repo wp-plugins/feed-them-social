@@ -116,7 +116,7 @@ class feed_them_social_functions {
 	}
 	
 	function Feed_Them_Main_Menu() {
-  	 	add_menu_page('Feed Them Social', 'Feed Them', 'manage_options', 'feed-them-settings-page', 'feed_them_settings_page', '' , 99.6333324);
+  	 	add_menu_page('Feed Them Social', 'Feed Them', 'manage_options', 'feed-them-settings-page', 'feed_them_settings_page', '');
 	}
 	
 	function Feed_Them_Submenu_Pages() {   
