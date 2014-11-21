@@ -33,7 +33,7 @@
 	background: rgba(240, 240, 240, 0.45);
 	cursor: pointer;
 	color: #111;
-	display: inline-block;
+	/* display: inline-block; */
 	-webkit-transition: all 0.30s ease-in-out;
 	-moz-transition: all 0.30s ease-in-out;
 	-o-transition: all 0.30s ease-in-out;
@@ -177,7 +177,8 @@
 }
 .fts-jal-fb-header h1 {
 	font-size: 1.9em;
-	margin-bottom: 0px !important;
+	margin: 0px !important;
+	line-height:normal !important
 }
 .widget .fts-jal-fb-header h1 {
 	font-size: 1.8em;
@@ -192,6 +193,13 @@
 	line-height: 17px;
 	overflow: hidden;
 }
+.fts-slicker-facebook-posts .fts-jal-single-fb-post  {
+	width:auto;
+	padding: 10px 10px 6px 10px !important;
+	border-bottom: 1px solid rgba(184, 184, 184, 0.3);
+	background: #F4F4F4;
+	line-height: 17px;
+}
 .widget .fts-jal-single-fb-post {
 	width: 100%;
 	padding: 17px 0 10px 0 !important;
@@ -200,26 +208,29 @@
 /* border-bottom: none !important; */
 }
 .fts-jal-fb-user-thumb {
-	position: absolute;
-	top: 18px;
-	left: 0px;
+	/* position: absolute; */
+	/* top: 18px; */
+	/* left: 0px; */
 	width: 50px;
 	height: 50px;
+	float:left;
+	margin-right:15px;
+	margin-bottom:5px;
 }
 .fts-jal-fb-right-wrap {
-	padding-left: 63px;
+	/* padding-left: 63px; */
 }
 .widget .fts-jal-fb-right-wrap {
 	padding-left: 0;
 }
 .widget .fts-jal-fb-top-wrap {
 	padding-bottom: 5px;
-	padding-left: 63px;
+	padding-left:0px;
 	margin-bottom: 5px;
 	min-height: 50px;
 }
 .fts-jal-fb-message {
-	padding-top: 15px;
+	padding-top: 10px;
 	line-height: 21px;
 	word-wrap: break-word;
 }
@@ -288,6 +299,7 @@
 	position: relative;
 	float: left;
 	width: 130px;
+	height:auto !important;
 	margin: 5px 10px 5px 0;
 	line-height: normal !important;
 	cursor: pointer;
@@ -322,19 +334,25 @@
 }
 .fts-jal-fb-top-wrap {
 	margin-bottom: 10px;
+
 }
 .fts-jal-fb-user-name {
-	float: left;
 	font-weight: bold;
 	color: #C00;
+	display:block;
+	padding-top:3px;
 	padding-right: 5px;
+	font-size:16px;
+	line-height:normal;
 }
 .fts-jal-fb-post-time {
-	float: left;
+	/* float: left; */
 	color: #999;
+	display:block;
+	padding-top:4px;
 	padding-right: 15px;
 	font-size: 12px;
-	line-height: 20px;
+	line-height: 10px;
 }
 .fts-jal-fb-name {
 	font-weight: bold;
@@ -654,4 +672,44 @@ to {
  transform: scale(1.0);
  -webkit-transform: scale(1.0);
 }
+}
+.fts-fluid-videoWrapper-html5 video {
+	margin-bottom:0px !important;
+}
+.popup-gallery-fb .fts-fb-caption {
+	display:none;
+}
+.fts-instagram-fade .fts-fb-caption {
+	display:block;
+}
+.fts-fb-caption {
+	display:none;
+}
+.fts-instagram-fade .fts-fb-caption {
+	display:block;
+	margin-bottom:35px;
+}
+
+.fts-view-on-facebook-link:before, .view-on-facebook-albums-link:before, .fts-view-album-photos-large:before  {
+	font-family: "Fontawesome";
+	content: "\f14c ";
+	display: inline-block;
+	margin-right: 6px;
+}
+.fts-instagram-fade .fts-jal-fb-description {
+	color:#fff;
+	padding:0;
+	margin:0;
+}
+.fts-instagram-fade .fts-fb-album-view-link {
+	display:none !important;
+}
+
+
+/* overide for the fts bar */
+#facebook-sidebar .fts-simple-fb-wrapper {
+background: none !important;
+width:auto !important;
+margin:0 !important;
+padding: 0 0 0 10px !important;
 }

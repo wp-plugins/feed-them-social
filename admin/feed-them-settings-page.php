@@ -6,7 +6,6 @@ function feed_them_settings_page() {
 $fts_functions = new feed_them_social_functions();
 
 ?>
-
 <link href='http://fonts.googleapis.com/css?family=Rambla:400,700' rel='stylesheet' type='text/css'>				
 <div class="feed-them-social-admin-wrap">
   <h1><?php _e('Feed Them Social', 'feed-them-social'); ?></h1>
@@ -137,49 +136,7 @@ $fts_functions = new feed_them_social_functions();
       
       </div><!--/feed-them-custom-css--> 
  
- 	  <div class="feed-them-custom-access-tokens">
-         <h2><?php _e('Custom API Tokens', 'feed-them-social'); ?></h2>  
-         <p>
-         <?php
-		 
-         $test_app_token_id = get_option('fts_facebook_custom_api_token');
-		 if (!empty($test_app_token_id)){
-		   $fts_fb_access_token = '226916994002335|ks3AFvyAOckiTA1u_aDoI4HYuuw';
-		   $test_app_token_URL = array(
-					'app_token_id' => 'https://graph.facebook.com/debug_token?input_token='.$test_app_token_id.'&access_token='.$test_app_token_id
-				//	'app_token_id' => 'https://graph.facebook.com/oauth/access_token?client_id=705020102908771&client_secret=70166128c6a7b5424856282a5358f47b&grant_type=fb_exchange_token&fb_exchange_token=CAAKBNkjLG2MBAK5jVUp1ZBCYCiLB8ZAdALWTEI4CesM8h3DeI4Jotngv4TKUsQZBwnbw9jiZCgyg0eEmlpiVauTsReKJWBgHe31xWCsbug1Tv3JhXZBEZBOdOIaz8iSZC6JVs4uc9RVjmyUq5H52w7IJVnxzcMuZBx4PThN3CfgKC5E4acJ9RnblrbKB37TBa1yumiPXDt72yiISKci7sqds0WFR3XsnkwQZD'
-			);
-		  
-		  //Test App ID
-		  // Leave these for reference: 
-		  // App token for FTS APP2: 358962200939086|lyXQ5-zqXjvYSIgEf8mEhE9gZ_M
-		  // App token for FTS APP3: 705020102908771|rdaGxW9NK2caHCtFrulCZwJNPyY
-	 	  $test_app_token_response = $fts_functions->fts_get_feed_json($test_app_token_URL);
-		  $test_app_token_response = json_decode($test_app_token_response['app_token_id']);
-		 }
-	 	
-	 
-	  ?>
-      
-         <label class="fts-facebook-custom-api-token-label"><?php _e('Facebook App ID or User Token (for all facebook feeds). Not required to make the feed work. A User Token however will allow you to see certain post types that may be returning the message, Undefined Attachment. See how to <a href="http://www.slickremix.com/docs/create-facebook-app-id-or-user-token" target="_blank">GET APP ID or USER TOKEN</a>.', 'feed-them-social'); ?></label><br/>
-         <input type="text" name="fts_facebook_custom_api_token" class="feed-them-social-admin-input"  id="fts_facebook_custom_api_token" placeholder="APP ID or Token optional" value="<?php echo get_option('fts_facebook_custom_api_token');?>"/>
-        <?php if (!empty($test_app_token_response)){	 
-			 	if($test_app_token_response->data->is_valid){
-					echo'<div class="fts-successful-api-token">Your access token is working!</div>';
-				}
-				if($test_app_token_response->data->error->message || $test_app_token_response->error->message){
-					if($test_app_token_response->data->error->message){
-						echo'<div class="fts-failed-api-token">Oh No something\'s wrong! '.$test_app_token_response->data->error->message.'</div>';
-					}
-					if($test_app_token_response->error->message){
-						echo'<div class="fts-failed-api-token">Oh No something\'s wrong! '.$test_app_token_response->error->message.'</div>';
-					}
-					
-				}
-		}?>
-         </p>
-         <div class="clear"></div>
- 	  </div>	
+ 	 
  
     <div class="feed-them-custom-logo-css">
     
@@ -211,10 +168,8 @@ $fts_functions = new feed_them_social_functions();
   	<a class="feed-them-social-admin-slick-logo" href="http://www.slickremix.com" target="_blank"></a>
   
 </div><!--/feed-them-social-admin-wrap-->
-
 <script>
 jQuery(function() {    
-
 	// Master feed selector
     jQuery('#shortcode-form-selector').change(function(){
         jQuery('.shortcode-generator-form').hide();
@@ -235,10 +190,15 @@ jQuery(function() {
 		 if (facebooktype == 'albums' || facebooktype == 'album_photos') {
        		 jQuery('.fts-super-facebook-options-wrap').show();
 				jQuery('.fixed_height_option').hide();
+				jQuery('.fb-posts-in-grid-option-wrap').hide();
+				jQuery('.fixed_height_option').hide();
+				jQuery(".feed-them-social-admin-input-label:contains('Display Posts in Grid')").parent('div').hide();
  		 }
 		 else {
        		 jQuery('.fts-super-facebook-options-wrap').hide();
 			 jQuery('.fixed_height_option').show();
+			 jQuery('.fb-posts-in-grid-option-wrap').show();
+			 jQuery(".feed-them-social-admin-input-label:contains('Display Posts in Grid')").parent('div').show();
 		 }
 		 
 		 // only show the post type visible if the facebook page feed type is selected
@@ -250,12 +210,10 @@ jQuery(function() {
 	var fb_feed_type_option = jQuery("select#facebook-messages-selector").val();  
 		if (fb_feed_type_option == 'album_photos') {
 				jQuery('.fb_album_photos_id').show();
-				
 			}
 			else {
 				jQuery('.fb_album_photos_id').hide();
 			}
-		  
     });
 	
 	// Instagram Super Gallery option
@@ -268,7 +226,6 @@ jQuery(function() {
     }         
   });
   
- 
    jQuery('#instagram-messages-selector').bind('change', function (e) { 
     if( jQuery('#instagram-messages-selector').val() == 'hashtag') {
       jQuery(".instagram-id-option-wrap").hide(); 
@@ -283,7 +240,15 @@ jQuery(function() {
     } 
    
   });
-  
+   // facebook show grid options
+  jQuery('#fb-grid-option').bind('change', function (e) { 
+    if( jQuery('#fb-grid-option').val() == 'yes') {
+      jQuery('.fts-facebook-grid-options-wrap').show();
+    }
+    else{
+      jQuery('.fts-facebook-grid-options-wrap').hide();
+    }         
+  });
   // facebook Super Gallery option
   jQuery('#facebook-custom-gallery').bind('change', function (e) { 
     if( jQuery('#facebook-custom-gallery').val() == 'yes') {
@@ -293,9 +258,6 @@ jQuery(function() {
       jQuery('.fts-super-facebook-options-wrap').hide();
     }         
   });
-  
-  
-  
    // facebook show load more options
   jQuery('#fb_load_more_option').bind('change', function (e) { 
     if( jQuery('#fb_load_more_option').val() == 'yes') {
@@ -305,15 +267,9 @@ jQuery(function() {
       jQuery('.fts-facebook-load-more-options-wrap').hide();
     }         
   });
-  
-  
 });
-
-
 //START Page JS/
 function updateTextArea_fb_page() {
-	
-	
 	var fb_feed_type = ' type=' + jQuery("select#facebook-messages-selector").val();
 	var fb_page_id = ' id=' + jQuery("input#fb_page_id").val(); 
 	var fb_album_id = ' album_id=' + jQuery("input#fb_album_id").val(); 
@@ -376,9 +332,7 @@ function updateTextArea_fb_page() {
 				}
 				else {
 					var final_fb_page_shortcode = '[fts facebook' + fb_page_id + facebook_height_final + fb_feed_type + ']';
-				} 	 	
-
-		
+				} 
 <?php } ?>
 
 	jQuery('.facebook-page-final-shortcode').val(final_fb_page_shortcode);
@@ -387,11 +341,6 @@ function updateTextArea_fb_page() {
 	
 }
 //END Facebook Page//
-
-
-
-
-
 
 //START Facebook Group//
 function updateTextArea_fb_group() {
@@ -424,9 +373,7 @@ function updateTextArea_fb_group() {
 	}
 	else 	{
 	?>
-		
 	var final_fb_group_shorcode = '[fts facebook group' + fb_group_id + facebook_height_final + ' type=group]';
-	
 <?php } ?>
 
 jQuery('.facebook-group-final-shortcode').val(final_fb_group_shorcode);
@@ -435,10 +382,6 @@ jQuery('.facebook-group-final-shortcode').val(final_fb_group_shorcode);
 	
 }
 //END Facebook Group//
-
-
-
-
 
 //START Facebook Event//
 function updateTextArea_fb_event() {
@@ -483,20 +426,16 @@ jQuery('.facebook-event-final-shortcode').val(final_fb_event_shorcode);
 function updateTextArea_twitter() {
 
 	var twitter_name = ' twitter_name=' + jQuery("input#twitter_name").val();
-	
 	var twitter_height = jQuery("input#twitter_height").val();
-	
 	
 	if (twitter_name == " twitter_name=") {
 	  	 jQuery(".twitter_name").addClass('fts-empty-error');  
       	 jQuery("input#twitter_name").focus();
 		 return false;
-		 
 	}
 	if (twitter_name != " twitter_name=") {
 	  	 jQuery(".twitter_name").removeClass('fts-empty-error');  
 	}
-	
 	
 	if (twitter_height)	{
 		var twitter_height_final = ' twitter_height=' + jQuery("input#twitter_height").val();
@@ -508,12 +447,8 @@ function updateTextArea_twitter() {
 	if(is_plugin_active('feed-them-premium/feed-them-premium.php')) {
 	   include(WP_CONTENT_DIR.'/plugins/feed-them-premium/admin/js/twitter-settings-js.js');
 	}
-	
 	else 	{ ?>
-	
 			var final_twitter_shorcode = '[fts twitter' + twitter_name + twitter_height_final + ']';
-
-	
 <?php } ?>
 
 jQuery('.twitter-final-shortcode').val(final_twitter_shorcode);
@@ -521,8 +456,6 @@ jQuery('.twitter-final-shortcode').val(final_twitter_shorcode);
 	jQuery('.twitter-shortcode-form .final-shortcode-textarea').slideDown();
 }
 //END Twitter//
-
-
 	
 //START Instagram//
 function updateTextArea_instagram() {
@@ -547,9 +480,7 @@ function updateTextArea_instagram() {
 	  	 jQuery(".instagram_name").removeClass('fts-empty-error');  
 	}
 	
-	
-	
-	<?php 
+<?php 
 	//Premium Plugin
 	if(is_plugin_active('feed-them-premium/feed-them-premium.php')) {
 	   include(WP_CONTENT_DIR.'/plugins/feed-them-premium/admin/js/instagram-settings-js.js');
@@ -563,13 +494,8 @@ function updateTextArea_instagram() {
 			else {
 				var final_instagram_shorcode = '[fts instagram' + instagram_id + super_gallery + image_size + icon_size + space_between_photos + hide_date_likes_comments + center_container + image_stack_animation + instagram_feed_type +']';
 			}
-			 	
-		
-		
 <?php } ?>
-
-jQuery('.instagram-final-shortcode').val(final_instagram_shorcode);
-	
+	jQuery('.instagram-final-shortcode').val(final_instagram_shorcode);
 	jQuery('.instagram-shortcode-form .final-shortcode-textarea').slideDown();
 }
 //END Instagram//
@@ -604,7 +530,6 @@ function converter_instagram_username() {
    			 });
 	}
 }
-
 //select all 
 jQuery(".copyme").focus(function() {
     var jQuerythis = jQuery(this);
@@ -618,7 +543,6 @@ jQuery(".copyme").focus(function() {
     });
 });
 
-
 jQuery( document ).ready(function() {
   jQuery( ".toggle-custom-textarea-show" ).click(function() {  
 		 jQuery('textarea#fts-color-options-main-wrapper-css-input').slideToggle();
@@ -626,8 +550,6 @@ jQuery( document ).ready(function() {
 		  jQuery('.fts-custom-css-text').toggle();
 		  
 }); 
-
-
 <?php
 	//show the js for the discount option under social icons on the settings page
 	if(is_plugin_active('feed-them-premium/feed-them-premium.php')) {
@@ -639,8 +561,6 @@ jQuery( document ).ready(function() {
 		});
 <?php } ?>
   }); //end document ready
-  
-
 </script>
 <?php
 	//Premium JS

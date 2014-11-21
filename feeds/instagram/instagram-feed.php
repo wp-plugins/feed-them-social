@@ -152,6 +152,8 @@ else {  ?>
 <div class="clear"></div>
 </div>
 
+
+
 <?php 
 return ob_get_clean(); 	
 }

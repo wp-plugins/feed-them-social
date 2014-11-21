@@ -3,7 +3,7 @@
  	Function file for Feed Them Social plugin
 ************************************************/
  
- add_filter('widget_text', 'do_shortcode');
+add_filter('widget_text', 'do_shortcode');
   
 if(is_plugin_active('feed-them-premium/feed-them-premium.php')) {
 	
@@ -52,8 +52,10 @@ class feed_them_social_functions {
      function init(){
 		 
 	  if ( is_admin() ){
+		  //Register Settings
+		  add_action('admin_init', array( $this,'fts_settings_page_register_settings' ));
+		  add_action('admin_init', array( $this,'fts_facebook_style_options_page' ));
 		//Adds setting page to FTS menu
-		add_action('admin_init', array( $this,'fts_settings_page_register_settings' ));
 		add_action('admin_menu', array( $this,'Feed_Them_Main_Menu'));
 		add_action('admin_menu', array( $this,'Feed_Them_Submenu_Pages'));
 		
@@ -61,8 +63,9 @@ class feed_them_social_functions {
 		add_action('admin_enqueue_scripts', array( $this,'feed_them_admin_css'));
 		
 		//Main Settings Page
-		if (isset($_GET['page']) && $_GET['page'] == 'feed-them-settings-page') {
-	 	 add_action('admin_enqueue_scripts',  array( $this,'feed_them_settings'));
+		if (isset($_GET['page']) && $_GET['page'] == 'feed-them-settings-page' or isset($_GET['page']) && $_GET['page'] == 'fts-facebook-feed-styles-submenu-page' ) {
+			add_action('admin_enqueue_scripts',  array( $this,'feed_them_settings'));
+			
 		}
 		
 		//System Info Page
@@ -77,6 +80,12 @@ class feed_them_social_functions {
 		$fts_include_custom_css_checked_css =  get_option( 'fts-color-options-settings-custom-css' );
 		if ($fts_include_custom_css_checked_css == '1') { 
 			add_action('wp_enqueue_scripts', array( $this,'fts_color_options_head_css'));	
+		}
+		
+		//Facebook Settings option. Add Custom CSS to the header of FTS pages only
+		$fts_include_fb_custom_css_checked_css =  '1'; //get_option( 'fts-color-options-settings-custom-css' );
+		if ($fts_include_fb_custom_css_checked_css == '1') { 
+			add_action('wp_enqueue_scripts', array( $this,'fts_fb_color_options_head_css'));	
 		}
 		 
 		//Settings option. Custom Powered by Feed Them Social Option
@@ -117,9 +126,23 @@ class feed_them_social_functions {
 	
 	function Feed_Them_Main_Menu() {
   	 	add_menu_page('Feed Them Social', 'Feed Them', 'manage_options', 'feed-them-settings-page', 'feed_them_settings_page', '');
+		add_submenu_page('feed-them-settings-page', 'Settings', 'Settings', 'manage_options', 'feed-them-settings-page' );
+		
 	}
-	
+	// add the word setting in place of the default menu page name 'Feed Them'
 	function Feed_Them_Submenu_Pages() {   
+		
+		//System Info
+		add_submenu_page( 
+			'feed-them-settings-page',
+			'Facebook Options' ,
+			'Facebook Options',
+			'manage_options',
+			'fts-facebook-feed-styles-submenu-page',
+			'feed_them_facebook_options_page'
+		);
+		
+		//System Info
 		add_submenu_page( 
 			'feed-them-settings-page',
 			'System Info' ,
@@ -143,7 +166,13 @@ class feed_them_social_functions {
 	function feed_them_settings() {
 		wp_register_style( 'feed_them_settings_css', plugins_url( 'admin/css/settings-page.css',  dirname(__FILE__) ) );
 		wp_enqueue_style('feed_them_settings_css'); 
-		wp_enqueue_script( 'feed_them_settings_js', plugins_url( 'admin/js/admin.js',  dirname(__FILE__) ) );  
+		wp_enqueue_script( 'feed_them_settings_js', plugins_url( 'admin/js/admin.js',  dirname(__FILE__) ) );
+        
+      	if (isset($_GET['page']) && $_GET['page'] == 'fts-facebook-feed-styles-submenu-page') {
+			wp_enqueue_script( 'feed_them_style_options_color_js', plugins_url( 'admin/js/jscolor/jscolor.js',  dirname(__FILE__) ) );
+			
+        }
+          
 	}
 	
 	function need_fts_premium_fields($fields) {
@@ -169,11 +198,29 @@ class feed_them_social_functions {
 	}
 	
 	/*
+	 * Register Facebook Style Options.
+	*/
+	function fts_facebook_style_options_page() { 
+		$fb_style_options = array(
+					'fb_text_color',
+					'fb_link_color',
+					'fb_link_color_hover',
+					'fb_feed_width',
+					'fb_feed_margin',
+					'fb_feed_padding',
+					'fb_feed_background_color',
+					'fb_grid_posts_background_color',
+					'fb_border_bottom_color',
+					'fts_facebook_custom_api_token',
+					);
+		$this->register_settings('fts-facebook-feed-style-options', $fb_style_options);
+	}
+	
+	/*
 	 * Register Free Version Settings.
 	*/
 	function fts_settings_page_register_settings() { 
 		$settings = array(
-					'fts_facebook_custom_api_token',
 					'fts-date-and-time-format',
 					'fts-color-options-settings-custom-css',
 					'fts-color-options-main-wrapper-css-input',
@@ -212,11 +259,73 @@ class feed_them_social_functions {
 	  return 'Cache for all FTS Feeds cleared!';
 	}
 	
+	// color options for facebook
 	function  fts_color_options_head_css() { ?>
 	<style type="text/css"><?php echo get_option('fts-color-options-main-wrapper-css-input');?></style>
 	<?php 
 	}
 	
+	
+	
+
+	// color options for facebook
+	function  fts_fb_color_options_head_css() { 
+	
+	if(is_plugin_active('feed-them-premium/feed-them-premium.php')) {
+		
+		$fb_text_color = get_option('fb_text_color');
+		$fb_link_color = get_option('fb_link_color');
+		$fb_link_color_hover = get_option('fb_link_color_hover');
+		$fb_feed_width = get_option('fb_feed_width');
+		$fb_feed_margin = get_option('fb_feed_margin');
+		$fb_feed_padding = get_option('fb_feed_padding');
+		$fb_feed_background_color = get_option('fb_feed_background_color');
+		$fb_grid_posts_background_color = get_option('fb_grid_posts_background_color');
+		$fb_border_bottom_color = get_option('fb_border_bottom_color');
+		?>
+        
+<style type="text/css">
+<?php if ($fb_text_color !== '') { ?>
+.fts-simple-fb-wrapper .fts-jal-single-fb-post, 
+.fts-simple-fb-wrapper .fts-jal-fb-description-wrap, 
+.fts-simple-fb-wrapper .fts-jal-fb-post-time,
+.fts-slicker-facebook-posts .fts-jal-single-fb-post, 
+.fts-slicker-facebook-posts .fts-jal-fb-description-wrap, 
+.fts-slicker-facebook-posts .fts-jal-fb-post-time { color:<?php echo $fb_text_color ?>!important; }
+<?php } 
+	 if ($fb_link_color !== '') { ?>	
+.fts-simple-fb-wrapper .fts-jal-single-fb-post a, 
+.fts-fb-load-more-wrapper .fts-fb-load-more, 
+.fts-slicker-facebook-posts .fts-jal-single-fb-post a, 
+.fts-fb-load-more-wrapper .fts-fb-load-more { color:<?php echo $fb_link_color ?>!important; }
+<?php } 
+	 if ($fb_link_color_hover !== '') { ?>
+.fts-simple-fb-wrapper .fts-jal-single-fb-post a:hover, 
+.fts-simple-fb-wrapper .fts-fb-load-more:hover, 
+.fts-slicker-facebook-posts .fts-jal-single-fb-post a:hover, 
+.fts-slicker-facebook-posts .fts-fb-load-more:hover { color:<?php echo $fb_link_color_hover ?>!important; }
+<?php } 
+	 if ($fb_feed_width !== '') { ?>
+.fts-simple-fb-wrapper, .fts-fb-header-wrapper, .fts-fb-load-more-wrapper { max-width:<?php echo $fb_feed_width ?> !important; }
+<?php } 
+	 if ($fb_feed_margin !== '') { ?>	
+.fts-simple-fb-wrapper, .fts-fb-header-wrapper, .fts-fb-load-more-wrapper { margin:<?php echo $fb_feed_margin ?> !important; }
+<?php } 
+	 if ($fb_feed_padding !== '') { ?>
+.fts-simple-fb-wrapper { padding:<?php echo $fb_feed_padding ?>!important; }
+<?php } 
+	 if ($fb_feed_background_color !== '') { ?>
+.fts-simple-fb-wrapper, .fts-fb-load-more-wrapper .fts-fb-load-more { background:<?php echo $fb_feed_background_color ?>!important; }
+<?php } 
+	 if ($fb_grid_posts_background_color !== '') { ?>
+.fts-slicker-facebook-posts .fts-jal-single-fb-post { background:<?php echo $fb_grid_posts_background_color ?>!important; }
+<?php } 
+	 if ($fb_border_bottom_color !== '') { ?>
+.fts-slicker-facebook-posts .fts-jal-single-fb-post { border-bottom:1px solid <?php echo $fb_border_bottom_color ?>!important; }
+<?php } ?>
+</style>
+	<?php } //close if premium active
+	}		
 	function  fts_powered_by_js() {
 		
 		  wp_register_style( 'fts_powered_by_css', plugins_url( 'css/powered-by.css',  dirname(__FILE__) ) );
@@ -237,6 +346,11 @@ class feed_them_social_functions {
 			$fb_event_title_option = get_option('fb_event_title_option');
 			$fb_event_description_option = get_option('fb_event_description_option');
 			$fb_event_word_count_option = get_option('fb_event_word_count_option');
+			
+			$fts_bar_fb_prefix = 'fb_event_';
+			$fb_load_more_option = get_option('fb_event_fb_load_more_option');
+			$fb_load_more_style = get_option('fb_event_fb_load_more_style');
+			$facebook_popup = get_option('fb_event_facebook_popup');
 		}
 		
         $output .= '<div class="fts-facebook_event-shortcode-form">';
@@ -263,6 +377,11 @@ class feed_them_social_functions {
         if(is_plugin_active('feed-them-premium/feed-them-premium.php')) {
 			
         	include($this->premium.'admin/facebook-event-settings-fields.php');
+			
+			if (isset($_GET['page']) && $_GET['page'] == 'fts-bar-settings-page'){
+			  //PREMIUM LOAD MORE SETTINGS & LOADS in FTS BAR
+			  include($this->premium.'admin/facebook-loadmore-settings-fields.php');
+			}
         }
         else 	{
 		  $fields = array(
@@ -270,7 +389,26 @@ class feed_them_social_functions {
 			'Show the Event Title?',
 			'Show the Event Description?',
 			'Amount of words per post?',
+			'Load More Posts',
+			'Display Photos in Popup',
+			'Display Posts in Grid',
+			
 		  );
+		  if (isset($_GET['page']) && $_GET['page'] == 'fts-facebook-feed-styles-submenu-page'){
+		  	 
+			 $FB_style_options = array(
+				'Feed Text Color',
+				'Feed Link Color',
+				'Feed Link Color Hover',
+				'Feed Width',
+				'Feed Margin ',
+				'Feed Padding',
+				'Feed Background Color',
+				'Feed Grid Posts Background Color (Grid stye feeds ONLY)',
+				'Feed Border Bottom Color',
+			 );
+			
+		  }
 		 $output .=  $this->need_fts_premium_fields($fields);
         }
         
@@ -295,6 +433,11 @@ class feed_them_social_functions {
 			$fb_group_title_option = get_option('fb_group_title_option');
 			$fb_group_description_option = get_option('fb_group_description_option');
 			$fb_group_word_count_option = get_option('fb_group_word_count_option');
+			
+			$fts_bar_fb_prefix = 'fb_group_';
+			$fb_load_more_option = get_option('fb_group_fb_load_more_option');
+			$fb_load_more_style = get_option('fb_group_fb_load_more_style');
+			$facebook_popup = get_option('fb_group_facebook_popup');
 		}
 		
         $output .= '<div class="fts-facebook_group-shortcode-form">';
@@ -331,6 +474,11 @@ class feed_them_social_functions {
         
         if(is_plugin_active('feed-them-premium/feed-them-premium.php')) {
            include($this->premium.'admin/facebook-group-settings-fields.php');
+		   
+		   if (isset($_GET['page']) && $_GET['page'] == 'fts-bar-settings-page'){
+			  //PREMIUM LOAD MORE SETTINGS & LOADS in FTS BAR
+			  include($this->premium.'admin/facebook-loadmore-settings-fields.php');
+		   }
         }
         else 	{
             //Create Need Premium Fields
@@ -339,6 +487,9 @@ class feed_them_social_functions {
               'Show the Group Title?',
               'Show the Group Description?',
               'Amount of words per post?',
+			  'Load More Posts',
+			  'Display Photos in Popup',
+			  'Display Posts in Grid',
             );
            $output .= $this->need_fts_premium_fields($fields);
         }
@@ -381,6 +532,11 @@ function  fts_facebook_page_form($save_options = false) {
 			$fb_page_title_option = get_option('fb_page_title_option');
 			$fb_page_description_option = get_option('fb_page_description_option');
 			$fb_page_word_count_option = get_option('fb_page_word_count_option');
+			
+			$fts_bar_fb_prefix = 'fb_page_';
+			$fb_load_more_option = get_option('fb_page_fb_load_more_option');
+			$fb_load_more_style = get_option('fb_page_fb_load_more_style');
+			$facebook_popup = get_option('fb_page_facebook_popup');
 		}
 		
         $output .= '<div class="fts-facebook_page-shortcode-form">';
@@ -452,6 +608,11 @@ function  fts_facebook_page_form($save_options = false) {
 	
         if(is_plugin_active('feed-them-premium/feed-them-premium.php')) {
         	include($this->premium.'admin/facebook-page-settings-fields.php');
+				
+			if (isset($_GET['page']) && $_GET['page'] == 'fts-bar-settings-page'){
+			  //PREMIUM LOAD MORE SETTINGS & LOADS in FTS BAR
+			  include($this->premium.'admin/facebook-loadmore-settings-fields.php');
+			}
         }
         else 	{
         //Create Need Premium Fields
@@ -460,6 +621,9 @@ function  fts_facebook_page_form($save_options = false) {
           'Show the Page Title?',
           'Show the Page Description?',
           'Amount of words per post?',
+		  'Load More Posts',
+		  'Display Photos in Popup',
+		  'Display Posts in Grid',
         );
         $output .= $this->need_fts_premium_fields($fields);
         }
@@ -532,7 +696,7 @@ function  fts_facebook_page_form($save_options = false) {
         
 	
 	
-	 if(is_plugin_active('feed-them-premium/feed-them-premium.php')) {
+	 	if(is_plugin_active('feed-them-premium/feed-them-premium.php')) {
 		 	//PREMIUM LOAD MORE SETTINGS
         	include($this->premium.'admin/facebook-loadmore-settings-fields.php');
         }	
