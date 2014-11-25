@@ -4,7 +4,7 @@
   left: 0;
   width: 100%;
   height: 100%;
-  z-index: 10042;
+  z-index: 10042 !important;
   overflow: hidden;
   position: fixed;
   background: #0b0b0b;
@@ -16,11 +16,11 @@
   left: 0;
   width: 100%;
   height: 100%;
-  z-index: 10043;
+  z-index: 10043 !important;
   position: fixed;
   outline: none !important;
   -webkit-backface-visibility: hidden; }
-
+  
 .mfp-container {
   text-align: center;
   position: absolute;
@@ -367,15 +367,9 @@ img.mfp-img {
   top: 0;
   right: 0;
   padding-top: 0; }
-  
-  
-  
-  
-  
   /* overlay at start */
 .fts-instagram-fade.mfp-bg {
   opacity: 0;
-
   -webkit-transition: all 0.15s ease-out;
   -moz-transition: all 0.15s ease-out;
   transition: all 0.15s ease-out;

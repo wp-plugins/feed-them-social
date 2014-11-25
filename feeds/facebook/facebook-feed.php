@@ -23,7 +23,6 @@ class FTS_Facebook_Feed extends feed_them_social_functions {
 	}
 	
 	
-	
 	//Main Funtion
 	function fts_fb_func($atts){
 	

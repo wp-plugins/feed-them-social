@@ -3,6 +3,12 @@
 	display: block;
 	line-height: 17px;
 }
+.fts-view-on-twitter-link:before  {
+	font-family: "Fontawesome";
+	content: "\f14c ";
+	display: inline-block;
+	margin-right: 6px;
+}
 img.fts-twitter-description-image {
 	margin: 10px 0 0 !important;
 }
@@ -42,7 +48,6 @@ img.fts-twitter-description-image {
 	overflow: auto;
 }
 .tweeter-info:hover a {
-	color: #919191;
 	-webkit-transition: all 0.30s ease-in-out;
 	-moz-transition: all 0.30s ease-in-out;
 	-o-transition: all 0.30s ease-in-out;
@@ -232,7 +237,7 @@ opacity: 1.0;
 opacity: 0.5;
 }
 to {
-	opacity: 1.0;
+opacity: 1.0;
 }
 }
 @media (max-width:767px) {

@@ -62,7 +62,6 @@ $cache = WP_CONTENT_DIR.'/plugins/feed-them-social/feeds/instagram/cache/instagr
 		return $error_check->meta->error_message;
 	}
 
- 
 if(file_exists($cache) && !filesize($cache) == 0 && filemtime($cache) > time() - 900){
 	$insta_data = json_decode(file_get_contents($cache));
 } 
@@ -74,8 +73,7 @@ else {
 	file_put_contents($cache,json_encode($insta_data));
 }
 
-
- if ($super_gallery == 'yes') { ?>
+if ($super_gallery == 'yes') { ?>
 <div class="fts-slicker-instagram masonry js-masonry <?php if ($popup == 'yes') { print 'popup-gallery'; }?>" style="margin:auto" data-masonry-options='{ "isFitWidth": <?php if ($center_container == 'no') { ?>false<?php } else {?>true<?php } if ($image_stack_animation == 'no') { ?>, "transitionDuration": 0<?php } ?> }'>
 	<?php } 
     else { ?>

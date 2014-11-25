@@ -2,6 +2,10 @@
 add_action('wp_enqueue_scripts', 'fts_twitter_head');
 function  fts_twitter_head() {
     wp_enqueue_style( 'fts_twitter_css', plugins_url( 'twitter/css/styles.css',  dirname(__FILE__) ) ); 
+		if(is_plugin_active('feed-them-premium/feed-them-premium.php')) {
+			wp_enqueue_style( 'fts_instagram_css_popup', plugins_url( 'instagram/css/magnific-popup.css',  dirname(__FILE__) ) );
+			wp_enqueue_script( 'fts_instagram_popup_js', plugins_url( 'instagram/js/magnific-popup.js',  dirname(__FILE__) ) );
+		}
 }
 add_shortcode( 'fts twitter', 'fts_twitter_func' );
 //Main Funtion
@@ -10,6 +14,7 @@ include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
 
 if(is_plugin_active('feed-them-premium/feed-them-premium.php')) {
    include(WP_CONTENT_DIR.'/plugins/feed-them-premium/feeds/twitter/twitter-feed.php');
+   
 }
 else 	{
 	extract( shortcode_atts( array(
@@ -167,11 +172,9 @@ $excludeReplies = true;
 			  'media_url' => $media_url,
 			  'id' => $twitter_id,
 			 // 'url' => $url,
-			  
               );
-  }//End FOR  
-?>   
-<div id="twitter-feed-<?php print $twitter_name?>" class="fts-twitter-div<?php if ($twitter_height !== 'auto' && empty($twitter_height) == NULL) {?> fts-twitter-scrollable<?php }?>" <?php if ($twitter_height !== 'auto' && empty($twitter_height) == NULL) {?>style="height:<?php echo $twitter_height; ?>"<?php }?>>
+  }//End FOR ?>   
+<div id="twitter-feed-<?php print $twitter_name?>" class="fts-twitter-div<?php if ($twitter_height !== 'auto' && empty($twitter_height) == NULL) {?> fts-twitter-scrollable<?php } if ($popup == 'yes') { ?> popup-gallery-twitter<?php } ?>" <?php if ($twitter_height !== 'auto' && empty($twitter_height) == NULL) {?>style="height:<?php echo $twitter_height; ?>"<?php }?>>
   <?php foreach($tweets as $t) : ?>
   <div class="fts-tweeter-wrap">
     <div class="tweeter-info">
@@ -179,9 +182,11 @@ $excludeReplies = true;
       <div class="right">
         <div class="uppercase bold"><a href="<?php print $t['user_permalink'];?>" target="_blank" class="black">@<?php print $t['screen_name'];?></a></div>
         <span class="time"><a href="<?php print $t['permalink']?>"><?php print $t['time'];?></a></span><br/>
-        <span class="fts-twitter-text"><?php print $t['text'];?></span>
+        <span class="fts-twitter-text"><?php print $t['text'];?>
+        <div class="fts-fb-caption"><a href="<?php print $t['permalink']?>" class="fts-view-on-twitter-link" target="_blank">View on Twitter</a></div>
+        </span>
         <?php if ($t['media_url']) { ?>
-        <a href="<?php print $t['permalink']?>" target="_blank"><img class="fts-twitter-description-image" src="<?php print $t['media_url'];?>" /></a>
+        <a href="<?php if ($popup == 'yes') { print $t['media_url']; } else { print $t['permalink']; }?>" class="fts-twitter-link-image" target="_blank"><img class="fts-twitter-description-image" src="<?php print $t['media_url'];?>" /></a>
 		<?php } ?>
         </div>
       <div class="fts-twitter-reply-wrap">

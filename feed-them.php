@@ -3,12 +3,12 @@
 Plugin Name: Feed Them Social (Facebook, Instagram, Twitter, etc)
 Plugin URI: http://slickremix.com/
 Description: Create and display custom feeds for Facebook Groups, Facebook Pages, Facebook Events, Facebook Photos, Facebook Album Covers, Twitter, Instagram, Pinterest and YouTube.
-Version: 1.6.1
+Version: 1.6.2
 Author: SlickRemix
 Author URI: http://slickremix.com/
 Requires at least: wordpress 3.4.0
 Tested up to: WordPress 4.0.1
-Stable tag: 1.6.1
+Stable tag: 1.6.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -48,6 +48,7 @@ include( $fts_plugin_rel_url.'updates/update-functions.php' );
 include( $fts_plugin_rel_url.'admin/feed-them-system-info.php' );
 include( $fts_plugin_rel_url.'admin/feed-them-settings-page.php' );
 include( $fts_plugin_rel_url.'admin/feed-them-facebook-style-options-page.php' );
+include( $fts_plugin_rel_url.'admin/feed-them-twitter-style-options-page.php' );
 
 // Include core files and classes
 include( $fts_plugin_rel_url.'includes/feed-them-functions.php' );
@@ -87,6 +88,6 @@ else  {
 	function fts_required_php_check1() {
 			echo '<div class="error"><p>' . __( '<strong>Warning:</strong> Your php version is '.phpversion().'. You need to be running at least 5.3 or greater to use this plugin. Please upgrade the php by contacting your host provider. Some host providers will allow you to change this yourself in the hosting control panel too.<br/><br/>If you are hosting with BlueHost or Godaddy and the php version above is saying you are running 5.2.17 but you are really running something higher please <a href="https://wordpress.org/support/topic/php-version-difference-after-changing-it-at-bluehost-php-config?replies=4" target="_blank">click here for the fix</a>. If you cannot get it to work using the method described in the link please contact your host provider and explain the problem so they can fix it.', 'my-theme' ) . '</p></div>';
 	}
-	}
+   }
 } // end fts_required_php_check
 ?>

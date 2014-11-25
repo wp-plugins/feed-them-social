@@ -38,8 +38,6 @@ $fts_functions = new feed_them_social_functions();
         </select>
     </form><!--/feed-them-social-admin-form-->
 
-
-
 	 <?php
      //Add Facebook Event Form
      echo $fts_functions->fts_facebook_group_form(false); 
@@ -191,14 +189,11 @@ jQuery(function() {
        		 jQuery('.fts-super-facebook-options-wrap').show();
 				jQuery('.fixed_height_option').hide();
 				jQuery('.fb-posts-in-grid-option-wrap').hide();
-				jQuery('.fixed_height_option').hide();
-				jQuery(".feed-them-social-admin-input-label:contains('Display Posts in Grid')").parent('div').hide();
  		 }
 		 else {
        		 jQuery('.fts-super-facebook-options-wrap').hide();
 			 jQuery('.fixed_height_option').show();
 			 jQuery('.fb-posts-in-grid-option-wrap').show();
-			 jQuery(".feed-them-social-admin-input-label:contains('Display Posts in Grid')").parent('div').show();
 		 }
 		 
 		 // only show the post type visible if the facebook page feed type is selected
@@ -258,15 +253,7 @@ jQuery(function() {
       jQuery('.fts-super-facebook-options-wrap').hide();
     }         
   });
-   // facebook show load more options
-  jQuery('#fb_load_more_option').bind('change', function (e) { 
-    if( jQuery('#fb_load_more_option').val() == 'yes') {
-      jQuery('.fts-facebook-load-more-options-wrap').show();
-    }
-    else{
-      jQuery('.fts-facebook-load-more-options-wrap').hide();
-    }         
-  });
+  
 });
 //START Page JS/
 function updateTextArea_fb_page() {

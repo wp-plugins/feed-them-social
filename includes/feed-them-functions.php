@@ -55,6 +55,7 @@ class feed_them_social_functions {
 		  //Register Settings
 		  add_action('admin_init', array( $this,'fts_settings_page_register_settings' ));
 		  add_action('admin_init', array( $this,'fts_facebook_style_options_page' ));
+		  add_action('admin_init', array( $this,'fts_twitter_style_options_page' ));
 		//Adds setting page to FTS menu
 		add_action('admin_menu', array( $this,'Feed_Them_Main_Menu'));
 		add_action('admin_menu', array( $this,'Feed_Them_Submenu_Pages'));
@@ -63,7 +64,7 @@ class feed_them_social_functions {
 		add_action('admin_enqueue_scripts', array( $this,'feed_them_admin_css'));
 		
 		//Main Settings Page
-		if (isset($_GET['page']) && $_GET['page'] == 'feed-them-settings-page' or isset($_GET['page']) && $_GET['page'] == 'fts-facebook-feed-styles-submenu-page' ) {
+		if (isset($_GET['page']) && $_GET['page'] == 'feed-them-settings-page' or isset($_GET['page']) && $_GET['page'] == 'fts-facebook-feed-styles-submenu-page'  or isset($_GET['page']) && $_GET['page'] == 'fts-twitter-feed-styles-submenu-page' ) {
 			add_action('admin_enqueue_scripts',  array( $this,'feed_them_settings'));
 			
 		}
@@ -145,6 +146,16 @@ class feed_them_social_functions {
 		//System Info
 		add_submenu_page( 
 			'feed-them-settings-page',
+			'Twitter Options' ,
+			'Twitter Options',
+			'manage_options',
+			'fts-twitter-feed-styles-submenu-page',
+			'feed_them_twitter_options_page'
+		);
+		
+		//System Info
+		add_submenu_page( 
+			'feed-them-settings-page',
 			'System Info' ,
 			'System Info',
 			'manage_options',
@@ -168,7 +179,7 @@ class feed_them_social_functions {
 		wp_enqueue_style('feed_them_settings_css'); 
 		wp_enqueue_script( 'feed_them_settings_js', plugins_url( 'admin/js/admin.js',  dirname(__FILE__) ) );
         
-      	if (isset($_GET['page']) && $_GET['page'] == 'fts-facebook-feed-styles-submenu-page') {
+      	if (isset($_GET['page']) && $_GET['page'] == 'fts-facebook-feed-styles-submenu-page' or isset($_GET['page']) && $_GET['page'] == 'fts-twitter-feed-styles-submenu-page') {
 			wp_enqueue_script( 'feed_them_style_options_color_js', plugins_url( 'admin/js/jscolor/jscolor.js',  dirname(__FILE__) ) );
 			
         }
@@ -214,6 +225,23 @@ class feed_them_social_functions {
 					'fts_facebook_custom_api_token',
 					);
 		$this->register_settings('fts-facebook-feed-style-options', $fb_style_options);
+	}
+	
+	/*
+	 * Register Twitter Style Options.
+	*/
+	function fts_twitter_style_options_page() { 
+		$twitter_style_options = array(
+					'twitter_text_color',
+					'twitter_link_color',
+					'twitter_link_color_hover',
+					'twitter_feed_width',
+					'twitter_feed_margin',
+					'twitter_feed_padding',
+					'twitter_feed_background_color',
+					'twitter_border_bottom_color',
+					);
+		$this->register_settings('fts-twitter-feed-style-options', $twitter_style_options);
 	}
 	
 	/*
@@ -282,6 +310,15 @@ class feed_them_social_functions {
 		$fb_feed_background_color = get_option('fb_feed_background_color');
 		$fb_grid_posts_background_color = get_option('fb_grid_posts_background_color');
 		$fb_border_bottom_color = get_option('fb_border_bottom_color');
+		
+		$twitter_text_color = get_option('twitter_text_color');
+		$twitter_link_color = get_option('twitter_link_color');
+		$twitter_link_color_hover = get_option('twitter_link_color_hover');
+		$twitter_feed_width = get_option('twitter_feed_width');
+		$twitter_feed_margin = get_option('twitter_feed_margin');
+		$twitter_feed_padding = get_option('twitter_feed_padding');
+		$twitter_feed_background_color = get_option('twitter_feed_background_color');
+		$twitter_border_bottom_color = get_option('twitter_border_bottom_color');
 		?>
         
 <style type="text/css">
@@ -323,7 +360,35 @@ class feed_them_social_functions {
 	 if ($fb_border_bottom_color !== '') { ?>
 .fts-slicker-facebook-posts .fts-jal-single-fb-post { border-bottom:1px solid <?php echo $fb_border_bottom_color ?>!important; }
 <?php } ?>
+
+
+<?php if ($twitter_text_color !== '') { ?>
+.tweeter-info .fts-twitter-text, .fts-twitter-reply-wrap:before { color:<?php echo $twitter_text_color ?>!important; }
+<?php } 
+	 if ($twitter_link_color !== '') { ?>	
+.tweeter-info .fts-twitter-text a, .tweeter-info .fts-twitter-text .time a, .fts-twitter-reply-wrap a, .tweeter-info a   { color:<?php echo $twitter_link_color ?>!important; }
+<?php } 
+	 if ($twitter_link_color_hover !== '') { ?>
+.tweeter-info a:hover, .tweeter-info:hover .fts-twitter-reply { color:<?php echo $twitter_link_color_hover ?>!important; }
+<?php } 
+	 if ($twitter_feed_width !== '') { ?>
+.fts-twitter-div { max-width:<?php echo $twitter_feed_width ?> !important; }
+<?php } 
+	 if ($twitter_feed_margin !== '') { ?>	
+.fts-twitter-div { margin:<?php echo $twitter_feed_margin ?> !important; }
+<?php } 
+	 if ($twitter_feed_padding !== '') { ?>
+.fts-twitter-div { padding:<?php echo $twitter_feed_padding ?>!important; }
+<?php } 
+	 if ($twitter_feed_background_color !== '') { ?>
+.fts-twitter-div { background:<?php echo $twitter_feed_background_color ?>!important; }
+<?php } 
+	 if ($twitter_border_bottom_color !== '') { ?>
+.tweeter-info { border-bottom:1px solid <?php echo $twitter_border_bottom_color ?>!important; }
+<?php } ?>
 </style>
+
+
 	<?php } //close if premium active
 	}		
 	function  fts_powered_by_js() {
@@ -730,6 +795,7 @@ function  fts_facebook_page_form($save_options = false) {
 		if($save_options){
 			$twitter_name_option = get_option('twitter_name');
 			$tweets_count_option = get_option('tweets_count');
+			$twitter_popup_option = get_option('twitter_popup_option');
 		}
 		
         $output .= '<div class="fts-twitter-shortcode-form">'; 
@@ -760,6 +826,7 @@ function  fts_facebook_page_form($save_options = false) {
         //Create Need Premium Fields
         $fields = array(
         '# of Tweets (default 5)',
+		'Display Photos in Popup',
         );
         $output .= $this->need_fts_premium_fields($fields);
         }

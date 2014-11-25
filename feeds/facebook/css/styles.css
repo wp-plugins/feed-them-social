@@ -625,7 +625,6 @@ to {
 	opacity: 1.0;
 }
 }
-
 /* Retina Display Size */
 @media only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (min--moz-device-pixel-ratio: 2), only screen and (-o-min-device-pixel-ratio: 2/1), only screen and (min-device-pixel-ratio: 2) {
 .fts-jal-fb-vid-wrap iframe {
@@ -703,13 +702,4 @@ to {
 }
 .fts-instagram-fade .fts-fb-album-view-link {
 	display:none !important;
-}
-
-
-/* overide for the fts bar */
-#facebook-sidebar .fts-simple-fb-wrapper {
-background: none !important;
-width:auto !important;
-margin:0 !important;
-padding: 0 0 0 10px !important;
 }

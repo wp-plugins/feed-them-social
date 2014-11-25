@@ -26,6 +26,12 @@
 .feed-them_page_fts-facebook-feed-styles-submenu-page .feed-them-social-admin-wrap h1, .feed-them_page_fts-facebook-feed-styles-submenu-page .feed-them-social-admin-wrap h2, .feed-them_page_fts-facebook-feed-styles-submenu-page .use-of-plugin {
 	color: #333;
 }
+.feed-them_page_fts-twitter-feed-styles-submenu-page .feed-them-social-admin-wrap h1, .feed-them_page_fts-twitter-feed-styles-submenu-page .feed-them-social-admin-wrap h2, .feed-them_page_fts-twitter-feed-styles-submenu-page .use-of-plugin {
+	color: #333;
+}
+.feed-them_page_fts-twitter-feed-styles-submenu-page .feed-them-social-admin-wrap h2 {
+	margin-top:45px;
+}
 .feed-them_page_fts-facebook-feed-styles-submenu-page .feed-them-social-admin-wrap h2 {
 	margin-top:45px;
 }
@@ -52,7 +58,7 @@
 	line-height:19px;
 	max-width:100%;
 }
-.feed-them_page_fts-facebook-feed-styles-submenu-page .feed-them-social-admin-wrap {
+.feed-them_page_fts-facebook-feed-styles-submenu-page .feed-them-social-admin-wrap, .feed-them_page_fts-twitter-feed-styles-submenu-page .feed-them-social-admin-wrap {
 	max-width: 100%;
 	width:100%;
 	min-height: auto;
@@ -64,6 +70,9 @@
 	position: relative;
 	margin: 20px 20px 0 0px;
 	-webkit-text-size-adjust: none;
+}
+.feed-them_page_fts-facebook-feed-styles-submenu-page  .feed-them-social-admin-input-wrap, .feed-them_page_fts-twitter-feed-styles-submenu-page  .feed-them-social-admin-input-wrap {
+	background: none;
 }
 .feed-them-social-admin-wrap {
 	max-width: 790px;
@@ -130,7 +139,7 @@
 	text-transform: uppercase;
 	padding-top: 6px;
 }
-.feed-them_page_fts-facebook-feed-styles-submenu-page .feed-them-social-admin-input-label {
+.feed-them_page_fts-facebook-feed-styles-submenu-page .feed-them-social-admin-input-label, .feed-them_page_fts-twitter-feed-styles-submenu-page .feed-them-social-admin-input-label {
 	float: left;
 	width: 230px;
 	margin-right: 10px;
@@ -432,7 +441,6 @@ label.toggle-custom-textarea-show {
 	text-align:center;
 	display:none;
 }
-
 .discount-review-text a {
 	display:inline-block;
 	width:auto;
@@ -444,7 +452,6 @@ label.toggle-custom-textarea-show {
 	float:none;
 	cursor:pointer;
 }
-
 .fts-color-settings-admin-form span, .fts-color-settings-admin-form label{
 	color:#FFF;
 }
@@ -460,8 +467,6 @@ label.toggle-custom-textarea-show {
 	color:#FFF;
 	text-decoration:none;
 }
-
-
 @media (max-width:700px ) {
 	.feed-them-icon-wrap {
 	position: relative;
@@ -502,5 +507,4 @@ label.toggle-custom-textarea-show {
 .fts-facebook-custom-api-token-label a {
 	font-weight:bold;
 	color: #DF1818;
-
 }
