@@ -383,7 +383,7 @@ class feed_them_social_functions {
 	 if ($twitter_feed_background_color !== '') { ?>
 .fts-twitter-div { background:<?php echo $twitter_feed_background_color ?>!important; }
 <?php } 
-	 if ($twitter_border_bottom_color !== '') { ?>
+	if (!get_option($twitter_border_bottom_color)) { ?>
 .tweeter-info { border-bottom:1px solid <?php echo $twitter_border_bottom_color ?>!important; }
 <?php } ?>
 </style>
