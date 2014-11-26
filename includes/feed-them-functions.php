@@ -322,7 +322,7 @@ class feed_them_social_functions {
 		?>
         
 <style type="text/css">
-<?php if ($fb_text_color !== '') { ?>
+<?php if (!empty($fb_text_color)) { ?>
 .fts-simple-fb-wrapper .fts-jal-single-fb-post, 
 .fts-simple-fb-wrapper .fts-jal-fb-description-wrap, 
 .fts-simple-fb-wrapper .fts-jal-fb-post-time,
@@ -330,60 +330,58 @@ class feed_them_social_functions {
 .fts-slicker-facebook-posts .fts-jal-fb-description-wrap, 
 .fts-slicker-facebook-posts .fts-jal-fb-post-time { color:<?php echo $fb_text_color ?>!important; }
 <?php } 
-	 if ($fb_link_color !== '') { ?>	
+	 if (!empty($fb_link_color)) { ?>	
 .fts-simple-fb-wrapper .fts-jal-single-fb-post a, 
 .fts-fb-load-more-wrapper .fts-fb-load-more, 
 .fts-slicker-facebook-posts .fts-jal-single-fb-post a, 
 .fts-fb-load-more-wrapper .fts-fb-load-more { color:<?php echo $fb_link_color ?>!important; }
 <?php } 
-	 if ($fb_link_color_hover !== '') { ?>
+	 if (!empty($fb_link_color_hover)) { ?>
 .fts-simple-fb-wrapper .fts-jal-single-fb-post a:hover, 
 .fts-simple-fb-wrapper .fts-fb-load-more:hover, 
 .fts-slicker-facebook-posts .fts-jal-single-fb-post a:hover, 
 .fts-slicker-facebook-posts .fts-fb-load-more:hover { color:<?php echo $fb_link_color_hover ?>!important; }
 <?php } 
-	 if ($fb_feed_width !== '') { ?>
+	 if (!empty($fb_feed_width)) { ?>
 .fts-simple-fb-wrapper, .fts-fb-header-wrapper, .fts-fb-load-more-wrapper { max-width:<?php echo $fb_feed_width ?> !important; }
 <?php } 
-	 if ($fb_feed_margin !== '') { ?>	
+	 if (!empty($fb_feed_margin)) { ?>	
 .fts-simple-fb-wrapper, .fts-fb-header-wrapper, .fts-fb-load-more-wrapper { margin:<?php echo $fb_feed_margin ?> !important; }
 <?php } 
-	 if ($fb_feed_padding !== '') { ?>
+	 if (!empty($fb_feed_padding)) { ?>
 .fts-simple-fb-wrapper { padding:<?php echo $fb_feed_padding ?>!important; }
 <?php } 
-	 if ($fb_feed_background_color !== '') { ?>
+	 if (!empty($fb_feed_background_color)) { ?>
 .fts-simple-fb-wrapper, .fts-fb-load-more-wrapper .fts-fb-load-more { background:<?php echo $fb_feed_background_color ?>!important; }
 <?php } 
-	 if ($fb_grid_posts_background_color !== '') { ?>
+	 if (!empty($fb_grid_posts_background_color)) { ?>
 .fts-slicker-facebook-posts .fts-jal-single-fb-post { background:<?php echo $fb_grid_posts_background_color ?>!important; }
 <?php } 
-	 if ($fb_border_bottom_color !== '') { ?>
+	 if (!empty($fb_border_bottom_color)) { ?>
 .fts-slicker-facebook-posts .fts-jal-single-fb-post { border-bottom:1px solid <?php echo $fb_border_bottom_color ?>!important; }
 <?php } ?>
-
-
-<?php if ($twitter_text_color !== '') { ?>
+<?php if (!empty($twitter_text_color)) { ?>
 .tweeter-info .fts-twitter-text, .fts-twitter-reply-wrap:before { color:<?php echo $twitter_text_color ?>!important; }
 <?php } 
-	 if ($twitter_link_color !== '') { ?>	
+	 if (!empty($twitter_link_color)) { ?>	
 .tweeter-info .fts-twitter-text a, .tweeter-info .fts-twitter-text .time a, .fts-twitter-reply-wrap a, .tweeter-info a   { color:<?php echo $twitter_link_color ?>!important; }
 <?php } 
-	 if ($twitter_link_color_hover !== '') { ?>
+	 if (!empty($twitter_link_color_hover)) { ?>
 .tweeter-info a:hover, .tweeter-info:hover .fts-twitter-reply { color:<?php echo $twitter_link_color_hover ?>!important; }
 <?php } 
-	 if ($twitter_feed_width !== '') { ?>
+	 if (!empty($twitter_feed_width)) { ?>
 .fts-twitter-div { max-width:<?php echo $twitter_feed_width ?> !important; }
 <?php } 
-	 if ($twitter_feed_margin !== '') { ?>	
+	 if (!empty($twitter_feed_margin)) { ?>	
 .fts-twitter-div { margin:<?php echo $twitter_feed_margin ?> !important; }
 <?php } 
-	 if ($twitter_feed_padding !== '') { ?>
+	 if (!empty($twitter_feed_padding)) { ?>
 .fts-twitter-div { padding:<?php echo $twitter_feed_padding ?>!important; }
 <?php } 
-	 if ($twitter_feed_background_color !== '') { ?>
+	 if (!empty($twitter_feed_background_color)) { ?>
 .fts-twitter-div { background:<?php echo $twitter_feed_background_color ?>!important; }
 <?php } 
-	if (!get_option($twitter_border_bottom_color)) { ?>
+	if (!empty($twitter_border_bottom_color)) { ?>
 .tweeter-info { border-bottom:1px solid <?php echo $twitter_border_bottom_color ?>!important; }
 <?php } ?>
 </style>
