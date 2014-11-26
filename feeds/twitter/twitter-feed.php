@@ -133,18 +133,25 @@ $excludeReplies = true;
       // Core info.
       $name = $tweet->user->name;
 	  $screen_name = $tweet->user->screen_name;
-      $permalink = 'http://twitter.com/'. $screen_name .'/status/'. $tweet->id_str;
 	  
-	  $user_permalink = 'https://twitter.com/#!/'. $screen_name;
+	  $protocol = isset($_SERVER["HTTPS"]) ? 'https://' : 'http://';
+	  $not_protocol = !isset($_SERVER["HTTPS"]) ? 'https://' : 'http://';
+	  
+      $permalink = $protocol.'twitter.com/'. $screen_name .'/status/'. $tweet->id_str;
+	  
+	  $user_permalink = $protocol.'twitter.com/#!/'. $screen_name;
  	  $media_url = $tweet->entities->media[0]->media_url;
+	  $media_url = str_replace($not_protocol, $protocol, $media_url);
+	  
 	  // leaving this for another update, trying to get videos, and I know this ain't right! $url = $tweet->entities->media[0]->expanded_url;
 	  
       /* Alternative image sizes method: http://dev.twitter.com/doc/get/users/profile_image/:screen_name */
       $image = $tweet->user->profile_image_url;
+	  $image = str_replace($not_protocol, $protocol, $image);
  
       // Message. Convert links to real links.
       $pattern = array('/http:(\S)+/', '/https:(\S)+/', '/([^a-zA-Z0-9-_&])@([0-9a-zA-Z_]+)/', '/([^a-zA-Z0-9-_&])#([0-9a-zA-Z_]+)/');
-      $replace = array(' <a href="${0}" target="_blank" rel="nofollow">${0}</a>', ' <a href="${0}" target="_blank" rel="nofollow">${0}</a>', ' <a href="http://twitter.com/$2" target="_blank" rel="nofollow">@$2</a>', ' <a href="http://twitter.com/search?q=%23$2&src=hash" target="_blank" rel="nofollow">#$2</a>');
+      $replace = array(' <a href="${0}" target="_blank" rel="nofollow">${0}</a>', ' <a href="${0}" target="_blank" rel="nofollow">${0}</a>', ' <a href="'.$protocol.'twitter.com/$2" target="_blank" rel="nofollow">@$2</a>', ' <a href="'.$protocol.'twitter.com/search?q=%23$2&src=hash" target="_blank" rel="nofollow">#$2</a>');
       $text = preg_replace($pattern, $replace, $tweet->text);
  
       // Need to get time in Unix format.

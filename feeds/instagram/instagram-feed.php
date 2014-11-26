@@ -92,6 +92,10 @@ $instagram_date=  date('F j, Y',$insta_d->created_time);
 $instagram_link = $insta_d->link;
 $instagram_thumb_url = $insta_d->images->thumbnail->url;
 $instagram_lowRez_url = $insta_d->images->standard_resolution->url;
+if (isset($_SERVER["HTTPS"])) {
+	$instagram_thumb_url = str_replace('http://', 'https://', $instagram_thumb_url );
+	$instagram_lowRez_url = str_replace('http://', 'https://', $instagram_lowRez_url );		
+}
 $instagram_likes = $insta_d->likes->count;
 $instagram_comments = $insta_d->comments->count;
 $instagram_caption_a_title = $insta_d->caption->text;

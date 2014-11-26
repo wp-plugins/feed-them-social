@@ -55,6 +55,7 @@ If you enjoy using our plugin please tell others. [Click here to share.](http://
 = Version 1.6.2 Tuesday, November 25th, 2014 =
  * NEW: Added new Twitter Options page.
  * NEW IN PREMIUM: Twitter Popup for images, Twitter text color options, margins, padding and more.
+ * NEW: If you have an SSL image paths are now secure for Instagram and Twitter via https://
  
 = Version 1.6.1 Friday, November 21st, 2014 =
  * NEW: Renamed Feed Them sub menu to say Settings
