@@ -3,7 +3,7 @@ Contributors: slickremix
 Tags:  facebook photos, facebook albums, albums, photos facebook, photo, facebook feed, facebook posts, hastags, social, social plugin, social networking, networking, custom feed, custom facebook feed, facebook plugin, facebook group, facebook groups, events, facebook events, facebook page events, facebook group events, facebook page, facebook pages, twitter, twitter plugin, instagram, instagram plugin, feed me social, social plugin, feed, feeds, shortcode, facebook wall, slickremix, plugin, pages, posts, images, page, post, image, youtube, youtube feed, youtube channel, youtube video, youtube videos, videos, youtube embed, embed, video iframe, admin, comments, widgets, seo, wordpress, pinterest, pinterest boards, pinterest feeds, pinterest photos, pinterest widget, pinterest widgets, instagram popup
 Requires at least: 3.4.0
 Tested up to: 4.0.1
-Stable tag: 1.6.2
+Stable tag: 1.6.3
 License: GPLv2 or later
 
 Display custom feeds for Facebook Pages, Groups, Events, Album Photos and Covers -Twitter, Instagram, Pinterest and YouTube on pages, posts or widgets.
@@ -41,7 +41,7 @@ With our plugin you can create social feeds of any or all your celebrities, fami
 
 ALL SlickRemix plugins come with FREE Support! If you need help or have questions we are here to help just post on our [Support Forum](http://www.slickremix.com/support-forum/) and we’ll get to you as quickly as we can! (usually within 48hrs)
 	
-If you enjoy using our plugin please tell others. [Click here to share.](http://www.facebook.com/sharer.php?u=http://wordpress.org/plugins/feed-them-social/&t=FeedThemSocial)
+If you enjoy using our plugin please tell others. [Click here to share](http://www.facebook.com/sharer.php?u=http://wordpress.org/plugins/feed-them-social/&t=FeedThemSocial).
 
 == Installation ==
 
@@ -52,6 +52,12 @@ If you enjoy using our plugin please tell others. [Click here to share.](http://
   * Extract the zip file and drop the contents in the wp-content/plugins/ directory of your WordPress installation and then activate the Plugin from Plugins page. 
 
 == Changelog ==
+= Version 1.6.3 Friday, December 5th, 2014 =
+ * FIXED: Now having more than one Facebook photo album on a page works.
+ * UPDATED: Caching systems for Instagram and Twitter to increase speed and eliminate errors.
+ * NEW: Now you can enter your own Twitter API tokens. This is helpful if you keep seeing the twitter is down and will be back shortly message which is caused by the high traffic coming from our default Twitter APP tokens.
+ * NEW IN PREMIUM: Remove the Twitter profile photo on every tweet. Look at the [example on this page's sidebar](http://feedthemsocial.com/twitter-feed-demo/).
+ 
 = Version 1.6.2 Tuesday, November 25th, 2014 =
  * NEW: Added new Twitter Options page.
  * NEW IN PREMIUM: Twitter Popup for images, Twitter text color options, margins, padding and more.

@@ -3,7 +3,7 @@
 function feed_them_system_info_page(){
 ?>
 
-<div class="fts-help-admin-wrap"> <a class="buy-extensions-btn" href="http://www.slickremix.com/product-category/wordpress-plugins/" target="_blank">Get Extensions Here!</a>
+<div class="fts-help-admin-wrap"> <a class="buy-extensions-btn" href="http://www.slickremix.com/downloads/category/feed-them-social/" target="_blank">Get Extensions Here!</a>
   <h2>System Info </h2>
   <div class="fts-admin-help-wrap">
     <div class="use-of-plugin">Can't figure out how to do something and need help? Use our <a href="http://www.slickremix.com/support-forum/" target="_blank">Support Forum</a> and someone will respond to your request asap. Usually we will respond the same day, the latest the following day. You may also find some of the existing posts to be helpfull too, so take a look around first. If you do submit a question please <a href="#" class="fts-debug-report">generate a report</a> and copy the info, ask your question in our <a href="http://www.slickremix.com/support-forum/" target="_blank">Support Forum</a> then paste the info you just copied. That will help speed things along for sure. </div>

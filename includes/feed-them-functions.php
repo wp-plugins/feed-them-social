@@ -56,12 +56,12 @@ class feed_them_social_functions {
 		  add_action('admin_init', array( $this,'fts_settings_page_register_settings' ));
 		  add_action('admin_init', array( $this,'fts_facebook_style_options_page' ));
 		  add_action('admin_init', array( $this,'fts_twitter_style_options_page' ));
-		//Adds setting page to FTS menu
-		add_action('admin_menu', array( $this,'Feed_Them_Main_Menu'));
-		add_action('admin_menu', array( $this,'Feed_Them_Submenu_Pages'));
+		  //Adds setting page to FTS menu
+		  add_action('admin_menu', array( $this,'Feed_Them_Main_Menu'));
+		  add_action('admin_menu', array( $this,'Feed_Them_Submenu_Pages'));
 		
-		// THIS GIVES US SOME OPTIONS FOR STYLING THE ADMIN AREA
-		add_action('admin_enqueue_scripts', array( $this,'feed_them_admin_css'));
+		  // THIS GIVES US SOME OPTIONS FOR STYLING THE ADMIN AREA
+		  add_action('admin_enqueue_scripts', array( $this,'feed_them_admin_css'));
 		
 		//Main Settings Page
 		if (isset($_GET['page']) && $_GET['page'] == 'feed-them-settings-page' or isset($_GET['page']) && $_GET['page'] == 'fts-facebook-feed-styles-submenu-page'  or isset($_GET['page']) && $_GET['page'] == 'fts-twitter-feed-styles-submenu-page' ) {
@@ -232,6 +232,7 @@ class feed_them_social_functions {
 	*/
 	function fts_twitter_style_options_page() { 
 		$twitter_style_options = array(
+					'twitter_full_width',
 					'twitter_text_color',
 					'twitter_link_color',
 					'twitter_link_color_hover',
@@ -240,6 +241,10 @@ class feed_them_social_functions {
 					'twitter_feed_padding',
 					'twitter_feed_background_color',
 					'twitter_border_bottom_color',
+					'fts_twitter_custom_consumer_key',
+					'fts_twitter_custom_consumer_secret',
+					'fts_twitter_custom_access_token',
+					'fts_twitter_custom_access_token_secret',
 					);
 		$this->register_settings('fts-twitter-feed-style-options', $twitter_style_options);
 	}
@@ -311,6 +316,7 @@ class feed_them_social_functions {
 		$fb_grid_posts_background_color = get_option('fb_grid_posts_background_color');
 		$fb_border_bottom_color = get_option('fb_border_bottom_color');
 		
+		$twitter_hide_profile_photo = get_option('twitter_hide_profile_photo');			
 		$twitter_text_color = get_option('twitter_text_color');
 		$twitter_link_color = get_option('twitter_link_color');
 		$twitter_link_color_hover = get_option('twitter_link_color_hover');
@@ -460,6 +466,7 @@ class feed_them_social_functions {
 		  if (isset($_GET['page']) && $_GET['page'] == 'fts-facebook-feed-styles-submenu-page'){
 		  	 
 			 $FB_style_options = array(
+				'Hide Profile Photo',
 				'Feed Text Color',
 				'Feed Link Color',
 				'Feed Link Color Hover',

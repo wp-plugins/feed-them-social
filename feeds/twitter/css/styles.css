@@ -78,24 +78,27 @@ img.fts-twitter-description-image {
 	font-size: 13px;
 	font-weight: bold;
 	text-align: left;
+	display:inline-block;
 }
 .widget .twitter-image {
 	margin-right: 10px !important;
 }
-.widget .fts-twitter-div .uppercase, .widget .tweeter-info .right {
+.widget .fts-twitter-div .uppercase, .widget .tweeter-info .right, .widget .tweeter-info .fts-twitter-full-width {
 	text-align: left;
 	font-size: 11px;
 	line-height: 14px;
 	font-weight: normal !important;
 }
-.right .uppercase {
+.right .uppercase, .fts-twitter-full-width .uppercase  {
 	display: inline-block;
 }
 .tweeter-info .right {
-	margin-left: 71px;
 	float: none !important;
-	padding: 0 7px 7px 0;
+	padding: 0 7px 7px 71px;
 	line-height: 15px !important;
+}
+.tweeter-info .fts-twitter-full-width {
+	padding: 0 7px 7px 7px;
 }
 .fts-twitter-fade {
 	display: none;
@@ -237,7 +240,7 @@ opacity: 1.0;
 opacity: 0.5;
 }
 to {
-opacity: 1.0;
+	opacity: 1.0;
 }
 }
 @media (max-width:767px) {

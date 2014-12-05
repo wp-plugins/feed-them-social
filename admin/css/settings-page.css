@@ -508,3 +508,14 @@ label.toggle-custom-textarea-show {
 	font-weight:bold;
 	color: #DF1818;
 }
+.twitter-api-wrap {
+	margin:20px 0 0;	
+}
+.twitter-api-wrap .feed-them-social-admin-input-wrap {
+	margin:0;	
+}
+.fts-facebook-custom-api-token-label {
+	max-width:700px;
+	line-height:21px;
+	font-size:13px;	
+}

@@ -12,6 +12,8 @@ add_shortcode( 'fts twitter', 'fts_twitter_func' );
 function fts_twitter_func($atts){
 include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
 
+$fts_functions = new feed_them_social_functions;
+
 if(is_plugin_active('feed-them-premium/feed-them-premium.php')) {
    include(WP_CONTENT_DIR.'/plugins/feed-them-premium/feeds/twitter/twitter-feed.php');
    
@@ -29,18 +31,37 @@ $numTweets      = $tweets_count;
 $name           = $twitter_name;  
 $excludeReplies = true;            
 
- 	  $data_cache = WP_CONTENT_DIR.'/plugins/feed-them-social/feeds/twitter/cache/twitter_data_cache-'.$name.'-num'.$totalToFetch.'.json';
-	  $data_cache_folder = WP_CONTENT_DIR.'/plugins/feed-them-social/feeds/twitter/cache';
+ 	  $data_cache = WP_CONTENT_DIR.'/plugins/feed-them-social/feeds/twitter/cache/twitter_data_cache-'.$name.'-num'.$totalToFetch.'.cache';
+	 
 	  //Check Cache
 	  if(file_exists($data_cache) && !filesize($data_cache) == 0 && filemtime($data_cache) > time() - 1800 && false !== strpos($data_cache,'-num'.$totalToFetch.'')){
-		$fetchedTweets = json_decode(file_get_contents($data_cache));
+		$fetchedTweets = $fts_functions->fts_get_feed_cache($data_cache);
 		
 		$connection_check = true;
 	  } 
 	  else {
-			// Get the tweets from Twitter.
-			include_once 'twitteroauth/twitteroauth.php';
-			//Authenticate connection
+		include(WP_CONTENT_DIR.'/plugins/feed-them-social/feeds/twitter/twitteroauth/twitteroauth.php'); 
+		  
+		$fts_twitter_custom_consumer_key = get_option('fts_twitter_custom_consumer_key');
+		$fts_twitter_custom_consumer_secret = get_option('fts_twitter_custom_consumer_secret');
+		$fts_twitter_custom_access_token = get_option('fts_twitter_custom_access_token');
+		$fts_twitter_custom_access_token_secret = get_option('fts_twitter_custom_access_token_secret');
+		
+		//Use custom api info  
+		if (!empty($test_fts_twitter_custom_consumer_key) && !empty($test_fts_twitter_custom_consumer_secret) && !empty($test_fts_twitter_custom_access_token) && !empty($test_fts_twitter_custom_access_token_secret)){
+		 		$connection = new TwitterOAuthFTS(
+				//Consumer Key
+				$fts_twitter_custom_consumer_key,
+				//Consumer Secret
+				$fts_twitter_custom_consumer_secret,
+				//Access Token
+				$fts_twitter_custom_access_token,  
+				//Access Token Secret
+				$fts_twitter_custom_access_token_secret
+				);
+		}
+		//else use default info
+		else {
 			$connection = new TwitterOAuthFTS(
 			//Consumer Key
 			'dOIIcGrhWgooKquMWWXg',
@@ -51,8 +72,7 @@ $excludeReplies = true;
 			//Access Token Secret
 			'd789TWA8uwwfBDjkU0iJNPDz1UenRPTeJXbmZZ4xjY'
 			);
-			
-			
+		}
 			// If excluding replies, we need to fetch more than requested as the
 			// total is fetched first, and then replies removed.
 			$totalToFetch = ($excludeReplies) ? max(50, $numTweets * 3) : $numTweets;
@@ -70,39 +90,21 @@ $excludeReplies = true;
 			
   
 		//Does Cache folder exists? If not make it!
-		$folder_create_check = true;
-		if (!file_exists($data_cache_folder)) {
-			if(mkdir($data_cache_folder, 0755, true)) {
-				mkdir($data_cache_folder, 0755, true);
-			} else {
-				$connection_check = false;
-				$folder_create_check = false;
-				echo '<div>Your server is not allowing FTS to create a cache FOLDER! Please contact your Developer or Hosting Provider for assistance on allowing this file to be created! The Feed Them Social plugin needs to be able to create the folder '.$data_cache_folder.'</div>';
-			}
-		}
-		//Does Cache File exists? If not make it!
-		if (!file_exists($data_cache) && $folder_create_check != false) {
-			if(touch($data_cache)) {
-				touch($data_cache);
-			} else {
-				$connection_check = false;
-				echo '<div>Your server is not allowing FTS to create a cache File! Please contact your Developer or Hosting Provider for assistance on allowing this file to be created! Feed Them Social needs to be able to create a file in '.$data_cache_folder.'</div>';
-			}
-			
-		}
+		
 		
 		//IS RATE LIMIT REACHED?
 		if($fetchedTweets->errors){
 		}
 		else{
-		  file_put_contents($data_cache,json_encode($fetchedTweets));
+		  $fts_functions->fts_create_feed_cache($data_cache, $fetchedTweets);
+		  
 		  $connection_check = true;
 		}
 		
 		//DID CONNECTION FAIL?
 		if($connection->http_code != 200) {
 			 if(file_exists($data_cache) && !filesize($data_cache) == 0 && false !== strpos($data_cache,'-num'.$totalToFetch.'')){
-		 		 $fetchedTweets = json_decode(file_get_contents($data_cache));
+		 		 $fetchedTweets = $fts_functions->fts_get_feed_cache($data_cache);
 				 $connection_check = true;
 			 }//END IF
 			 else{
@@ -166,7 +168,9 @@ $excludeReplies = true;
 	  }
       $uTime = date($CustomDateFormatTwitter ,strtotime($times));
 	  $twitter_id = $tweet->id_str;
- 
+ 		
+		$fts_twitter_full_width = get_option('twitter_full_width');
+	  
       // Now make the new array.
       $tweets[] = array(
               'text' => $text,
@@ -180,13 +184,15 @@ $excludeReplies = true;
 			  'id' => $twitter_id,
 			 // 'url' => $url,
               );
-  }//End FOR ?>   
+  }//End FOR fts-twitter-full-width ?>   
 <div id="twitter-feed-<?php print $twitter_name?>" class="fts-twitter-div<?php if ($twitter_height !== 'auto' && empty($twitter_height) == NULL) {?> fts-twitter-scrollable<?php } if ($popup == 'yes') { ?> popup-gallery-twitter<?php } ?>" <?php if ($twitter_height !== 'auto' && empty($twitter_height) == NULL) {?>style="height:<?php echo $twitter_height; ?>"<?php }?>>
   <?php foreach($tweets as $t) : ?>
   <div class="fts-tweeter-wrap">
     <div class="tweeter-info">
+      <?php if ($fts_twitter_full_width !== 'yes') {?>
       <div class="fts-twitter-image"><a href="<?php print $t['user_permalink'];?>" target="_blank" class="black"><img class="twitter-image" src="<?php print $t['image'];?>" /></a></div>
-      <div class="right">
+      <?php } ?>
+      <div class="<?php if ($fts_twitter_full_width == 'yes') {?>fts-twitter-full-width<?php } else { ?>right<?php } ?>">
         <div class="uppercase bold"><a href="<?php print $t['user_permalink'];?>" target="_blank" class="black">@<?php print $t['screen_name'];?></a></div>
         <span class="time"><a href="<?php print $t['permalink']?>"><?php print $t['time'];?></a></span><br/>
         <span class="fts-twitter-text"><?php print $t['text'];?>

@@ -17,8 +17,8 @@ class FTS_Facebook_Feed extends feed_them_social_functions {
 		wp_enqueue_style('fts-font-aweseom-min'); 
 		
 		
-	 	wp_enqueue_style( 'fts_instagram_css_popup', plugins_url( 'instagram/css/magnific-popup.css',  dirname(__FILE__) ) );
-		wp_enqueue_script( 'fts_instagram_popup_js', plugins_url( 'instagram/js/magnific-popup.js',  dirname(__FILE__) ) );
+	// 	wp_enqueue_style( 'fts_instagram_css_popup', plugins_url( 'instagram/css/magnific-popup.css',  dirname(__FILE__) ) );
+	//	wp_enqueue_script( 'fts_instagram_popup_js', plugins_url( 'instagram/js/magnific-popup.js',  dirname(__FILE__) ) );
 		
 	}
 	
@@ -26,6 +26,7 @@ class FTS_Facebook_Feed extends feed_them_social_functions {
 	//Main Funtion
 	function fts_fb_func($atts){
 	
+		//Make sure everything is reset
 		
 		include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
 		
@@ -111,7 +112,17 @@ class FTS_Facebook_Feed extends feed_them_social_functions {
 				//	break;	
 		}
 		//URL to get page info
-		$fb_data_cache = WP_CONTENT_DIR.'/plugins/feed-them-social/feeds/facebook/cache/fb-'.$type.'-'.$fts_fb_id.'-num'.$fts_limiter.'.cache';
+		switch($type)	{
+			
+			case 'album_photos':
+			$fb_data_cache = WP_CONTENT_DIR.'/plugins/feed-them-social/feeds/facebook/cache/fb-'.$type.'-'.$fts_fb_id.'-'.$album_id.'-num'.$fts_limiter.'.cache';
+			    break;
+			
+			default:	
+			$fb_data_cache = WP_CONTENT_DIR.'/plugins/feed-them-social/feeds/facebook/cache/fb-'.$type.'-'.$fts_fb_id.'-num'.$fts_limiter.'.cache';
+				break;
+		
+		}
 		
 		if(file_exists($fb_data_cache) && !filesize($fb_data_cache) == 0 && filemtime($fb_data_cache) > time() - 900 && false !== strpos($fb_data_cache,'-num'.$fts_limiter.'') and !$_GET['load_more_ajaxing']) {
 			$response = $this->fts_get_feed_cache($fb_data_cache);
@@ -1037,6 +1048,8 @@ if(!$_GET['load_more_ajaxing']){
 		print '</div>';
 		
 			 $set_zero++;
+			 
+			
 			 }	
 		
 		

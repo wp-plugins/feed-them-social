@@ -15,6 +15,8 @@ include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
 
 if(is_plugin_active('feed-them-premium/feed-them-premium.php')) {
    include(WP_CONTENT_DIR.'/plugins/feed-them-premium/feeds/instagram/instagram-feed.php');
+   
+   $fts_functions = new feed_them_social_functions;
 }
 else 	{
 	extract( shortcode_atts( array(
@@ -49,7 +51,7 @@ ob_start();
 	else {
  	$insta_url = 'https://api.instagram.com/v1/users/'.$instagram_id.'/media/recent/?access_token='.$fts_instagram_access_token;
 	}
-$cache = WP_CONTENT_DIR.'/plugins/feed-them-social/feeds/instagram/cache/instagram-cache-'.$instagram_id.'.json';
+$cache = WP_CONTENT_DIR.'/plugins/feed-them-social/feeds/instagram/cache/instagram-cache-'.$instagram_id.'.cache';
 // https://api.instagram.com/v1/tags/snow/media/recent?access_token=ACCESS-TOKEN
 // https://instagram.com/oauth/authorize/?client_id=[CLIENT_ID_HERE]&redirect_uri=http://localhost&response_type=token
 
@@ -63,14 +65,11 @@ $cache = WP_CONTENT_DIR.'/plugins/feed-them-social/feeds/instagram/cache/instagr
 	}
 
 if(file_exists($cache) && !filesize($cache) == 0 && filemtime($cache) > time() - 900){
-	$insta_data = json_decode(file_get_contents($cache));
+	$insta_data = $fts_functions->fts_get_feed_cache($cache);
 } 
 else {
 	$insta_data = json_decode($response);
-	if (!file_exists($cache)) {
-		touch($cache);
-	}
-	file_put_contents($cache,json_encode($insta_data));
+	$fts_functions->fts_create_feed_cache($cache, $insta_data);
 }
 
 if ($super_gallery == 'yes') { ?>
