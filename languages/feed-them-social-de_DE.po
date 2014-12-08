@@ -1,0 +1,441 @@
+# Translation of Feed Them Social in German
+# This file is distributed under the same license as the Feed Them Social package.
+msgid ""
+msgstr ""
+"PO-Revision-Date: 2014-12-08 23:13:34+0000\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: GlotPress/0.1\n"
+"Project-Id-Version: Feed Them Social\n"
+
+#: admin/feed-them-settings-page.php:109 admin/feed-them-settings-page.php:183
+#: admin/feed-them-settings-page.php:248 admin/feed-them-settings-page.php:298
+#: admin/feed-them-settings-page.php:354
+msgid "Generate Shortcode"
+msgstr "Erstelle Shortcode"
+
+#: admin/feed-them-settings-page.php:11
+msgid "Feed Them Social"
+msgstr "Feed Them Social"
+
+#: admin/feed-them-settings-page.php:112 admin/feed-them-settings-page.php:186
+#: admin/feed-them-settings-page.php:251 admin/feed-them-settings-page.php:301
+#: admin/feed-them-settings-page.php:358
+msgid "Copy the ShortCode below and paste it on a page or post that you want to display your feed."
+msgstr "Kopieren Sie den ShortCode unterhalb und fügen Sie diesen auf Ihrer Seite oder Ihrem Eintrag ein um den Feed anzuzeigen."
+
+#: admin/feed-them-settings-page.php:114
+msgid "Facebook Group Feed Shortcode"
+msgstr "Facebook Gruppen Feed Shortcode"
+
+#: admin/feed-them-settings-page.php:12
+msgid "Select what type of feed you would like to generate a shortcode for using the select option below. Then you'll copy that shortcode to a page or post."
+msgstr "Wählen Sie den Typ des Feeds für den Sie ein Shortcode generieren möchten. Danach kopieren Sie den Shortcode in Ihre Seite oder Beitrag"
+
+#: admin/feed-them-settings-page.php:127
+msgid "Facebook Page Shortcode Generator"
+msgstr "Facebook Seite Shortcode Generator"
+
+#: admin/feed-them-settings-page.php:128
+msgid "You must copy your <a href=\"http://www.slickremix.com/2013/09/09/how-to-get-your-facebook-page-vanity-url/\" target=\"_blank\">Facebook Page ID</a> and paste it in the first input below."
+msgstr "Kopieren Sie Ihre <a href=\"http://www.slickremix.com/2013/09/09/how-to-get-your-facebook-page-vanity-url/\" target=\"_blank\">Facebook Seiten ID</a> und fügen Sie diese in das Feld unterhalb ein."
+
+#: admin/feed-them-settings-page.php:130
+msgid "Facebook Page ID (required)"
+msgstr "Facebook Seiten ID (benötigt)"
+
+#: admin/feed-them-settings-page.php:136
+msgid "Post Type Visible"
+msgstr "Eintrags Typ sichtbar"
+
+#: admin/feed-them-settings-page.php:138
+msgid "Display Posts made by Page only"
+msgstr "Zeige nur Einträge welche von der Seite erstellt wurden."
+
+#: admin/feed-them-settings-page.php:139
+msgid "Display Posts made by Everyone"
+msgstr "Zeige alle Einträge"
+
+#: admin/feed-them-settings-page.php:159
+msgid "Show the Page Title?"
+msgstr "Zeige Seiten Titel"
+
+#: admin/feed-them-settings-page.php:165
+msgid "Show the Page Description?"
+msgstr "Zeige die Beschreibung der Facebook Seite"
+
+#: admin/feed-them-settings-page.php:188
+msgid "Facebook Page Feed Shortcode"
+msgstr "Facebook Seite Feed Shortcode"
+
+#: admin/feed-them-settings-page.php:201
+msgid "Facebook Event Shortcode Generator."
+msgstr "Facebook Veranstaltungen Shortcode Generator."
+
+#: admin/feed-them-settings-page.php:202
+msgid "Copy your <a href=\"http://www.slickremix.com/2012/12/14/how-to-get-your-facebook-event-id/\" target=\"_blank\">Facebook Page Event ID or Group Event ID</a> and paste it in the first input below."
+msgstr "Kopieren Sie Ihre <a href=\"http://www.slickremix.com/2012/12/14/how-to-get-your-facebook-event-id/\" target=\"_blank\">Facebook Seite Veranstaltungs ID oder Gruppen Veranstaltungs ID</a> und fügen diese in das Feld unterhalb ein."
+
+#: admin/feed-them-settings-page.php:204
+msgid "Facebook Event ID (required)"
+msgstr "Facebook Veranstaltungs ID"
+
+#: admin/feed-them-settings-page.php:223
+msgid "Show the Event Title?"
+msgstr "Zeigen den Titel der Veranstaltung?"
+
+#: admin/feed-them-settings-page.php:229
+msgid "Show the Event Description?"
+msgstr "Zeige die Veranstaltungsbescheibung?"
+
+#: admin/feed-them-settings-page.php:253
+msgid "Facebook Event Feed Shortcode"
+msgstr "Facebook Veranstaltungs Feed Shortcode"
+
+#: admin/feed-them-settings-page.php:27
+msgid "20% off Premium Version"
+msgstr "20% Rabatt auf Premium Version"
+
+#: admin/feed-them-settings-page.php:271
+msgid "Twitter Shortcode Generator"
+msgstr "Twitter Shortcode Generator"
+
+#: admin/feed-them-settings-page.php:272
+msgid "You must copy your <a href=\"http://www.slickremix.com/2012/12/18/how-to-get-your-twitter-name/\" target=\"_blank\">Twitter Name</a> and paste it in the first input below."
+msgstr "Kopieren Sie Ihren <a href=\"http://www.slickremix.com/2012/12/18/how-to-get-your-twitter-name/\" target=\"_blank\">Twitter Namen</a> und fügen diesen in das Feld unterhalb ein."
+
+#: admin/feed-them-settings-page.php:275
+msgid "Twitter Name (required)"
+msgstr "Twitter Namen (benötigt)"
+
+#: admin/feed-them-settings-page.php:28
+msgid "Share here"
+msgstr "Teilen"
+
+#: admin/feed-them-settings-page.php:28
+msgid "and receive 20% OFF your total order."
+msgstr "und erhalten Sie 20% Rabatt auf Ihre gesamte Bestellung"
+
+#: admin/feed-them-settings-page.php:287
+msgid "# of Tweets"
+msgstr "# Tweets"
+
+#: admin/feed-them-settings-page.php:303
+msgid "Twitter Feed Shortcode"
+msgstr "Twitter Feed Shortcode"
+
+#: admin/feed-them-settings-page.php:315
+msgid "Convert Instagram Name to ID"
+msgstr "Konvertiere Instagram Namen in ID"
+
+#: admin/feed-them-settings-page.php:316
+msgid "You must copy your <a href=\"http://www.slickremix.com/2012/12/18/how-to-get-your-instagram-name-and-convert-to-id/\" target=\"_blank\">Instagram Name</a> and paste it in the first input below"
+msgstr "Kopieren Sie Ihren <a href=\"http://www.slickremix.com/2012/12/18/how-to-get-your-instagram-name-and-convert-to-id/\" target=\"_blank\">Instagram Namen</a> und fügen diesen in das Feld unterhalb ein. "
+
+#: admin/feed-them-settings-page.php:318
+msgid "Instagram Name (required)"
+msgstr "Instagram Namen (benötigt)"
+
+#: admin/feed-them-settings-page.php:323
+msgid "Convert Instagram Username"
+msgstr "Konvertiere Instagram Benutzernamen"
+
+#: admin/feed-them-settings-page.php:328
+msgid "Instagram Shortcode Generator"
+msgstr "Instagram Shortcode Generator"
+
+#: admin/feed-them-settings-page.php:329
+msgid "If you added your ID above and clicked convert, a number should appear in the input below, now continue."
+msgstr "Wenn Sie Ihre ID oberhalb eingefügt und konvertiert haben, sollte im Eingabefeld unterhalb ein Nummer angezeigt werden. Weiter."
+
+#: admin/feed-them-settings-page.php:332
+msgid "Instagram ID # (required)"
+msgstr "Instagram ID # (benötigt)"
+
+#: admin/feed-them-settings-page.php:343
+msgid "# of Pics"
+msgstr "# Bilder"
+
+#: admin/feed-them-settings-page.php:344
+msgid "Must have <a target=\"_blank\" href=\"http://www.slickremix.com/downloads/feed-them-social-premium-extension/\">premium version</a> to edit. Default is 6."
+msgstr "Sie müssen die <a target=\"_blank\" href=\"http://www.slickremix.com/downloads/feed-them-social-premium-extension/\">premium version</a> haben, um Änderungen durchzuführen. Standard ID ist 6."
+
+#: admin/feed-them-settings-page.php:35
+msgid "Please Select Feed Type"
+msgstr "Wählen Sie den Feed Typ"
+
+#: admin/feed-them-settings-page.php:36
+msgid "Facebook Page Feed"
+msgstr "Facebook Page Feed"
+
+#: admin/feed-them-settings-page.php:360
+msgid "Instagram Feed Shortcode"
+msgstr "Instagram Feed Shortcode"
+
+#: admin/feed-them-settings-page.php:37
+msgid "Facebook Group Feed"
+msgstr "Facebook Gruppen Feed"
+
+#: admin/feed-them-settings-page.php:372
+msgid "YouTube Shortcode Generator"
+msgstr "YouTube Shortcode Generator"
+
+#: admin/feed-them-settings-page.php:373
+msgid "You must copy your <a href=\"http://www.slickremix.com/2013/08/01/how-to-get-your-youtube-name/\" target=\"_blank\">YouTube Name</a> and paste it in the first input below."
+msgstr "Kopieren Sie Ihren<a href=\"http://www.slickremix.com/2013/08/01/how-to-get-your-youtube-name/\" target=\"_blank\">YouTube Namen</a> und fügen diesen in das Feld unterhalb ein."
+
+#: admin/feed-them-settings-page.php:38
+msgid "Facebook Event Feed"
+msgstr "Facebook Veranstaltungsfeed"
+
+#: admin/feed-them-settings-page.php:382
+msgid "YouTube Name"
+msgstr "YouTube Namen"
+
+#: admin/feed-them-settings-page.php:388
+msgid "# of videos"
+msgstr "# Videos"
+
+#: admin/feed-them-settings-page.php:39
+msgid "Twitter Feed"
+msgstr "Twitter Feed"
+
+#: admin/feed-them-settings-page.php:394
+msgid "# of videos in each row"
+msgstr "# Videos in einer Reihe"
+
+#: admin/feed-them-settings-page.php:40
+msgid "Instagram Feed"
+msgstr "Instagram Feed"
+
+#: admin/feed-them-settings-page.php:400
+msgid "Display First video full size"
+msgstr "Zeige das erste Video in voller Grösse"
+
+#: admin/feed-them-settings-page.php:405 admin/feed-them-settings-page.php:441
+msgid "Click to see Premium Version"
+msgstr "Klicken Sie um die Premium Version zu sehen."
+
+#: admin/feed-them-settings-page.php:41
+msgid "YouTube Feed"
+msgstr "YouTube Feed"
+
+#: admin/feed-them-settings-page.php:419
+msgid "Pinterest Shortcode Generator"
+msgstr "Pinterest Shortcode Generator"
+
+#: admin/feed-them-settings-page.php:42
+msgid "Pinterest Feed"
+msgstr "Pinterest Feed"
+
+#: admin/feed-them-settings-page.php:420
+msgid "You must copy your <a href=\"http://www.slickremix.com/2013/08/01/how-to-get-your-pinterest-name/\" target=\"_blank\">Pinterest Name</a> and paste it in the first input below"
+msgstr "Kopieren Sie Ihren <a href=\"http://www.slickremix.com/2013/08/01/how-to-get-your-pinterest-name/\" target=\"_blank\">Pinterest Namen</a>  und fügen diesen in das Feld unterhalb ein. "
+
+#: admin/feed-them-settings-page.php:429
+msgid "Pinterest Name"
+msgstr "Pinterest Name"
+
+#: admin/feed-them-settings-page.php:435
+msgid "# of Boards"
+msgstr "# Pinterest Einträge"
+
+#: admin/feed-them-settings-page.php:452
+msgid "Clear All Cache Option"
+msgstr "Leeren Sie den Cache"
+
+#: admin/feed-them-settings-page.php:453
+msgid "Please Clear Cache if you have changed a FTS Shortcode. This will Allow you to see the NEW feed's options you just set!"
+msgstr "Leeren Sie den Cache wenn Sie den FTS Shortcode geändert haben."
+
+#: admin/feed-them-settings-page.php:461
+msgid "Clear All FTS Feeds Cache"
+msgstr "Leere alle FTS Feeds Cache"
+
+#: admin/feed-them-settings-page.php:48
+msgid "Facebook Group Shortcode Generator"
+msgstr "Facebook Gruppe Shortcode Generator"
+
+#: admin/feed-them-settings-page.php:480
+msgid "FaceBook & Twitter Date Format"
+msgstr "FaceBook & Twitter Datums Format"
+
+#: admin/feed-them-settings-page.php:49
+msgid "You must copy your <a href=\"http://www.slickremix.com/2012/12/14/how-to-get-your-facebook-group-id/\" target=\"_blank\">Facebook ID</a> and paste it in the first input below."
+msgstr "Kopieren Sie Ihren <a href=\"http://www.slickremix.com/2012/12/14/how-to-get-your-facebook-group-id/\" target=\"_blank\">Facebook ID</a> und fügen Sie diesen in das Feld unterhalb ein."
+
+#: admin/feed-them-settings-page.php:499
+msgid "Custom CSS Option"
+msgstr "Persönliche CSS Option"
+
+#: admin/feed-them-settings-page.php:506
+msgid "Custom CSS option is being used now."
+msgstr "Sie benutzen nun die persönliche CSS Option"
+
+#: admin/feed-them-settings-page.php:506 admin/feed-them-settings-page.php:536
+msgid "Checked:"
+msgstr "Überprüft:"
+
+#: admin/feed-them-settings-page.php:509
+msgid "You are using the default CSS."
+msgstr "Sie benutzen die Standard CSS"
+
+#: admin/feed-them-settings-page.php:509 admin/feed-them-settings-page.php:539
+msgid "Not Checked:"
+msgstr "Nicht Überprüft:"
+
+#: admin/feed-them-settings-page.php:51
+msgid "Facebook Group ID (required)"
+msgstr "Facebook Gruppen ID (benötigt)"
+
+#: admin/feed-them-settings-page.php:514
+msgid "Show"
+msgstr "Zeige"
+
+#: admin/feed-them-settings-page.php:514
+msgid "Hide"
+msgstr "Verstecke"
+
+#: admin/feed-them-settings-page.php:514
+msgid "custom CSS"
+msgstr "Persönliche CSS"
+
+#: admin/feed-them-settings-page.php:517
+msgid "Thanks for using our plugin :) Add your custom CSS additions or overrides below."
+msgstr "Vielen Dank, dass Sie unser Plugin benutzen :) Fügen Sie Ihre perönlichen CSS Regeln oder Änderungen unterhalb ein."
+
+#: admin/feed-them-settings-page.php:528
+msgid "Powered by Text"
+msgstr "Powered bei Text"
+
+#: admin/feed-them-settings-page.php:536
+msgid "You are not showing the Powered by Logo."
+msgstr "SIe zeigen das \"Powered bei Logo\" nicht."
+
+#: admin/feed-them-settings-page.php:539
+msgid "The Powered by text will appear in the site. Awesome! Thanks so much for sharing."
+msgstr "Der \"Powered bei Text\" wird in der Seite angezeigt. Super! Vielen Dank fürs teilen."
+
+#: admin/feed-them-settings-page.php:544
+msgid "Save Changes"
+msgstr "Speichere Änderungen"
+
+#: admin/feed-them-settings-page.php:76 admin/feed-them-settings-page.php:153
+#: admin/feed-them-settings-page.php:217
+msgid "# of Posts"
+msgstr "# Einträge"
+
+#: admin/feed-them-settings-page.php:77 admin/feed-them-settings-page.php:154
+#: admin/feed-them-settings-page.php:218 admin/feed-them-settings-page.php:288
+msgid "Must have <a target=\"_blank\" href=\"http://www.slickremix.com/downloads/feed-them-social-premium-extension/\">premium version</a> to edit. Default is 5."
+msgstr "Sie müssen die <a target=\"_blank\" href=\"http://www.slickremix.com/downloads/feed-them-social-premium-extension/\">premium version</a> haben um Änderungen durchzuführen. Standard ist 5."
+
+#: admin/feed-them-settings-page.php:82
+msgid "Show the Group Title?"
+msgstr "Zeige den Gruppen Titel"
+
+#: admin/feed-them-settings-page.php:83 admin/feed-them-settings-page.php:89
+#: admin/feed-them-settings-page.php:95 admin/feed-them-settings-page.php:160
+#: admin/feed-them-settings-page.php:166 admin/feed-them-settings-page.php:172
+#: admin/feed-them-settings-page.php:224 admin/feed-them-settings-page.php:230
+#: admin/feed-them-settings-page.php:236 admin/feed-them-settings-page.php:383
+#: admin/feed-them-settings-page.php:389 admin/feed-them-settings-page.php:395
+#: admin/feed-them-settings-page.php:401 admin/feed-them-settings-page.php:430
+#: admin/feed-them-settings-page.php:436
+msgid "Must have <a target=\"_blank\" href=\"http://www.slickremix.com/downloads/feed-them-social-premium-extension/\">premium version</a> to edit."
+msgstr "Sie müssen die <a target=\"_blank\" href=\"http://www.slickremix.com/downloads/feed-them-social-premium-extension/\">premium version</a> haben um Änderungen durchzuführen."
+
+#: admin/feed-them-settings-page.php:88
+msgid "Show the Group Description?"
+msgstr "Zeige die Gruppenbeschreibung"
+
+#: admin/feed-them-settings-page.php:94 admin/feed-them-settings-page.php:171
+#: admin/feed-them-settings-page.php:235
+msgid "Amount of words per post?"
+msgstr "Total Wörter im Eintrag"
+
+#: admin/feed-them-system-info.php:102
+msgid "fsockopen"
+msgstr "fsockopen"
+
+#: admin/feed-them-system-info.php:17
+msgid "Versions"
+msgstr "Versionen"
+
+#: admin/feed-them-system-info.php:22
+msgid "Feed Them Social Plugin version"
+msgstr "Feed Them Social Plugin Version"
+
+#: admin/feed-them-system-info.php:26
+msgid "WordPress version"
+msgstr "WordPress Version"
+
+#: admin/feed-them-system-info.php:31
+msgid "Installed plugins"
+msgstr "Installierte Plugins"
+
+#: admin/feed-them-system-info.php:49
+msgid "by"
+msgstr "bei"
+
+#: admin/feed-them-system-info.php:49
+msgid "version"
+msgstr "Version"
+
+#: admin/feed-them-system-info.php:62
+msgid "Server Environment"
+msgstr "Server Umgebung"
+
+#: admin/feed-them-system-info.php:67
+msgid "PHP Version"
+msgstr "PHP Version"
+
+#: admin/feed-them-system-info.php:86
+msgid "Server Software"
+msgstr "Server Software"
+
+#: admin/feed-them-system-info.php:92
+msgid "WP Max Upload Size"
+msgstr "Wordpress maximale Uploadgrösse (WP Max Upload Size)"
+
+#: admin/feed-them-system-info.php:98
+msgid "WP Debug Mode"
+msgstr "Wordpress Debug Modus"
+
+#: admin/feed-them-system-info.php:99
+msgid "Yes"
+msgstr "Ja"
+
+#: admin/feed-them-system-info.php:99
+msgid "No"
+msgstr "Nein"
+
+#: feeds/facebook/facebook-feed.php:382
+msgid "This user's permissions are keeping you from seeing this post. Please Click \"View on Facebook\" to view this post on this group's facebook wall."
+msgstr "Die Berechtigungen hindern Sie daran diesen Eintrag zu sehen. Klicken Sie auf \"Zeige auf Facebook\" um diesen Eintrag auf der Faceboook Gruppenseite anzuzeigen."
+
+#: feeds/facebook/facebook-feed.php:736 feeds/facebook/facebook-feed.php:742
+msgid "View on Facebook"
+msgstr "Zeige auf Facebook"
+
+#: updates/EDD_SL_Plugin_Licence_Manager.php:36
+msgid "Plugin License Options"
+msgstr "Plugin Lizenz Optionen"
+
+#: updates/EDD_SL_Plugin_Licence_Manager.php:68
+msgid "Enter your license key"
+msgstr "Geben Sie Ihren Lizenzschlüssel ein"
+
+#: updates/EDD_SL_Plugin_Licence_Manager.php:71
+msgid "Deactivate License"
+msgstr "Deaktiviere Lizenz"
+
+#: updates/EDD_SL_Plugin_Licence_Manager.php:72
+msgid "- Active"
+msgstr "- Aktiv"
+
+#: updates/EDD_SL_Plugin_Licence_Manager.php:75
+msgid "Activate License"
+msgstr "Aktiviere Lizenz"
