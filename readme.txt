@@ -54,6 +54,7 @@ If you enjoy using our plugin please tell others. [Click here to share](http://w
 == Changelog ==
 = Version 1.6.4 Monday, December 8th, 2014 =
  * FIXED: Instagram cache error resolved. (Thank you to all the SlickRemixers for letting us know on support forum!)
+ * NEW: Dutch and German languages added.
 
 = Version 1.6.3 Friday, December 5th, 2014 =
  * FIXED: Now having more than one Facebook photo album on a page works.
