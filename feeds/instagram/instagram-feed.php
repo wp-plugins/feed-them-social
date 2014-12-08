@@ -13,10 +13,11 @@ function fts_instagram_func($atts){
 
 include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
 
+//FTS Functions from free version includes. 
+$fts_functions = new feed_them_social_functions;
+
 if(is_plugin_active('feed-them-premium/feed-them-premium.php')) {
    include(WP_CONTENT_DIR.'/plugins/feed-them-premium/feeds/instagram/instagram-feed.php');
-   
-   $fts_functions = new feed_them_social_functions;
 }
 else 	{
 	extract( shortcode_atts( array(
