@@ -1,5 +1,4 @@
- <?php
-
+<?php
 // uncomment this line for testing
 //set_site_transient( 'update_plugins', null );
 
@@ -197,3 +196,4 @@ function get_plugin_file_name($_plugin_file) {
 		
 	}
 }
+?>
