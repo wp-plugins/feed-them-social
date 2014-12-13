@@ -12,16 +12,18 @@ add_shortcode( 'fts twitter', 'fts_twitter_func' );
 function fts_twitter_func($atts){
 include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
 
-//FTS Functions from free version includes. 
 $fts_functions = new feed_them_social_functions;
 
 if(is_plugin_active('feed-them-premium/feed-them-premium.php')) {
-   include(WP_CONTENT_DIR.'/plugins/feed-them-premium/feeds/twitter/twitter-feed.php'); 
+   include(WP_CONTENT_DIR.'/plugins/feed-them-premium/feeds/twitter/twitter-feed.php');
+   
 }
 else 	{
 	extract( shortcode_atts( array(
 		'twitter_name' => '',
 		'twitter_height' => '',
+		'description_image' => '',
+		
 	), $atts ) );
 	$tweets_count ='5';
 }
@@ -31,10 +33,10 @@ $numTweets      = $tweets_count;
 $name           = $twitter_name;  
 $excludeReplies = true;            
 
- 	  $data_cache = WP_CONTENT_DIR.'/plugins/feed-them-social/feeds/twitter/cache/twitter_data_cache-'.$name.'-num'.$totalToFetch.'.cache';
+ 	  $data_cache = WP_CONTENT_DIR.'/plugins/feed-them-social/feeds/twitter/cache/twitter_data_cache-'.$name.'-num'.$numTweets.'.cache';
 	 
 	  //Check Cache
-	  if(file_exists($data_cache) && !filesize($data_cache) == 0 && filemtime($data_cache) > time() - 1800 && false !== strpos($data_cache,'-num'.$totalToFetch.'')){
+	  if(file_exists($data_cache) && !filesize($data_cache) == 0 && filemtime($data_cache) > time() - 1800 && false !== strpos($data_cache,'-num'.$numTweets.'')){
 		$fetchedTweets = $fts_functions->fts_get_feed_cache($data_cache);
 		
 		$connection_check = true;
@@ -93,7 +95,7 @@ $excludeReplies = true;
 		
 		
 		//IS RATE LIMIT REACHED?
-		if($fetchedTweets->errors){
+		if(isset($fetchedTweets->errors)){
 		}
 		else{
 		  $fts_functions->fts_create_feed_cache($data_cache, $fetchedTweets);
@@ -117,7 +119,7 @@ $excludeReplies = true;
 }//END ELSE
   
   // Did the fetch fail?
-  if($connection_check == false or $fetchedTweets->errors) {
+  if(isset($connection_check) && $connection_check == false or isset($fetchedTweets->errors) && $fetchedTweets->errors) {
 	  echo'<div>Twitter may temporarily be down but should be back shortly!</div>';
   }//END IF
   else {
@@ -133,8 +135,9 @@ $excludeReplies = true;
     
 	
       // Core info.
-      $name = $tweet->user->name;
-	  $screen_name = $tweet->user->screen_name;
+	  $name = isset( $tweet->user->name) ? $tweet->user->name : "";
+	  $screen_name = isset($tweet->user->screen_name) ? $tweet->user->screen_name : "";
+	
 	  
 	  $protocol = isset($_SERVER["HTTPS"]) ? 'https://' : 'http://';
 	  $not_protocol = !isset($_SERVER["HTTPS"]) ? 'https://' : 'http://';
@@ -142,13 +145,19 @@ $excludeReplies = true;
       $permalink = $protocol.'twitter.com/'. $screen_name .'/status/'. $tweet->id_str;
 	  
 	  $user_permalink = $protocol.'twitter.com/#!/'. $screen_name;
- 	  $media_url = $tweet->entities->media[0]->media_url;
-	  $media_url = str_replace($not_protocol, $protocol, $media_url);
+	  //Is Media Set
+	  if(isset($tweet->entities->media[0]->media_url)){
+		$media_url = $tweet->entities->media[0]->media_url;
+		$media_url = str_replace($not_protocol, $protocol, $media_url);
+	  }
+	  else{
+	  	$media_url = '';
+	  }
 	  
 	  // leaving this for another update, trying to get videos, and I know this ain't right! $url = $tweet->entities->media[0]->expanded_url;
 	  
       /* Alternative image sizes method: http://dev.twitter.com/doc/get/users/profile_image/:screen_name */
-      $image = $tweet->user->profile_image_url;
+	  $image = isset($tweet->user->profile_image_url) ? $tweet->user->profile_image_url : "";
 	  $image = str_replace($not_protocol, $protocol, $image);
  
       // Message. Convert links to real links.
@@ -157,17 +166,19 @@ $excludeReplies = true;
       $text = preg_replace($pattern, $replace, $tweet->text);
  
       // Need to get time in Unix format.
-	  $times = $tweet->created_at;
+	  $times = isset($tweet->created_at) ? $tweet->created_at : "";
 	  
 	  $CustomDateCheck = get_option('fts-date-and-time-format');
 	  if($CustomDateCheck) {
-	  	$CustomDateFormatTwitter = get_option('fts-date-and-time-format');
+  	   $CustomDateFormatTwitter = get_option('fts-date-and-time-format');
 	  }
 	  else {
 		$CustomDateFormatTwitter = 'F jS, Y \a\t g:ia'; 
 	  }
-      $uTime = date($CustomDateFormatTwitter ,strtotime($times));
-	  $twitter_id = $tweet->id_str;
+	  
+	  date_default_timezone_set(get_option('fts-timezone'));
+      $uTime = date($CustomDateFormatTwitter ,strtotime($times) - 3 * 3600 );
+	  $twitter_id = isset($tweet->id_str) ? $tweet->id_str : "";
  		
 		$fts_twitter_full_width = get_option('twitter_full_width');
 	  
@@ -182,7 +193,7 @@ $excludeReplies = true;
               'time' => $uTime,
 			  'media_url' => $media_url,
 			  'id' => $twitter_id,
-			 // 'url' => $url,
+			   // 'url' => $url,
               );
   }//End FOR fts-twitter-full-width ?>   
 <div id="twitter-feed-<?php print $twitter_name?>" class="fts-twitter-div<?php if ($twitter_height !== 'auto' && empty($twitter_height) == NULL) {?> fts-twitter-scrollable<?php } if ($popup == 'yes') { ?> popup-gallery-twitter<?php } ?>" <?php if ($twitter_height !== 'auto' && empty($twitter_height) == NULL) {?>style="height:<?php echo $twitter_height; ?>"<?php }?>>

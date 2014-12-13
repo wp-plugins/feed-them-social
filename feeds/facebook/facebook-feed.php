@@ -124,7 +124,7 @@ class FTS_Facebook_Feed extends feed_them_social_functions {
 		
 		}
 		
-		if(file_exists($fb_data_cache) && !filesize($fb_data_cache) == 0 && filemtime($fb_data_cache) > time() - 900 && false !== strpos($fb_data_cache,'-num'.$fts_limiter.'') and !$_GET['load_more_ajaxing']) {
+		if(file_exists($fb_data_cache) && !filesize($fb_data_cache) == 0 && filemtime($fb_data_cache) > time() - 900 && false !== strpos($fb_data_cache,'-num'.$fts_limiter.'') and !isset($_GET['load_more_ajaxing'])) {
 			$response = $this->fts_get_feed_cache($fb_data_cache);
 		}
 		else{
@@ -134,7 +134,7 @@ class FTS_Facebook_Feed extends feed_them_social_functions {
 				  $mulit_data = array(
 					'page_data' => 'https://graph.facebook.com/'.$fts_fb_id.'?access_token='.$access_token.''
 				  );  
-				   if ($_REQUEST['next_url']){
+				   if (isset($_REQUEST['next_url'])){
 				  	$mulit_data['feed_data'] = $_REQUEST['next_url'];
 				  }
 				  else{	  
@@ -146,7 +146,7 @@ class FTS_Facebook_Feed extends feed_them_social_functions {
 					'page_data' => 'https://graph.facebook.com/'.$fts_fb_id.'?access_token='.$access_token.''
 				  );
 				  //Check If Ajax next URL needs to be used
-				  if ($_REQUEST['next_url']){
+				  if (isset($_REQUEST['next_url'])){
 				  	$mulit_data['feed_data'] = $_REQUEST['next_url'];
 				  }
 				  else{	  
@@ -158,7 +158,7 @@ class FTS_Facebook_Feed extends feed_them_social_functions {
 					'page_data' => 'https://graph.facebook.com/'.$fts_fb_id.'?access_token='.$access_token.''
 				  );
 				   //Check If Ajax next URL needs to be used
-				  if ($_REQUEST['next_url']){
+				  if (isset($_REQUEST['next_url'])){
 				  	$mulit_data['feed_data'] = $_REQUEST['next_url'];
 				  }
 				  else{	  
@@ -171,7 +171,7 @@ class FTS_Facebook_Feed extends feed_them_social_functions {
 				  );
 				  
 				  //Check If Ajax next URL needs to be used	 
-				  if ($_REQUEST['next_url']){
+				  if (isset($_REQUEST['next_url'])){
 				  	$mulit_data['feed_data'] = $_REQUEST['next_url'];
 				  }
 				  else{
@@ -189,7 +189,7 @@ class FTS_Facebook_Feed extends feed_them_social_functions {
 				  );
 				  
 				   //Check If Ajax next URL needs to be used
-				  if ($_REQUEST['next_url']){
+				  if (isset($_REQUEST['next_url'])){
 				  	$mulit_data['feed_data'] = $_REQUEST['next_url'];
 				  }
 				  else{
@@ -202,7 +202,7 @@ class FTS_Facebook_Feed extends feed_them_social_functions {
 				  );
 				  
 				   //Check If Ajax next URL needs to be used
-				  if ($_REQUEST['next_url']){
+				  if (isset($_REQUEST['next_url'])){
 				  	$mulit_data['feed_data'] = $_REQUEST['next_url'];
 				  }
 				  else{
@@ -214,7 +214,7 @@ class FTS_Facebook_Feed extends feed_them_social_functions {
 			 
 			 
 			//Make sure it's not ajaxing
-			if(!$_GET['load_more_ajaxing']){
+			if(!isset($_GET['load_more_ajaxing'])){
 						 //Create Cache
 						 $this->fts_create_feed_cache($fb_data_cache, $response );
 				}
@@ -232,13 +232,13 @@ class FTS_Facebook_Feed extends feed_them_social_functions {
 		
 		
 	//Make sure it's not ajaxing
-	if(!$_GET['load_more_ajaxing']){
+	if(!isset($_GET['load_more_ajaxing'])){
 		
 		$_REQUEST['fts_dynamic_name'] = trim($this->rand_string(10).'_'.$type);
 		
 		//Create Dynamic Class Name
 		$fts_dynamic_class_name =  '';
-		if ($_REQUEST['fts_dynamic_name']){
+		if (isset($_REQUEST['fts_dynamic_name'])){
 			$fts_dynamic_class_name =  'feed_dynamic_class'.$_REQUEST['fts_dynamic_name'];
 		}
 		
@@ -246,6 +246,7 @@ class FTS_Facebook_Feed extends feed_them_social_functions {
 		// so we can remove the fts-jal-fb-header for our special album view
 		if(is_plugin_active('feed-them-premium/feed-them-premium.php'))  {
 			
+			$des->description = isset($des->description) ? $des->description : "";
 			
 			 // fts-fb-header-wrapper
 			if ($fts_grid !== 'yes' && $type !== 'album_photos' && $type !== 'albums') {  print '<div class="fts-fb-header-wrapper">'; }	
@@ -275,9 +276,9 @@ class FTS_Facebook_Feed extends feed_them_social_functions {
 } //End check		
 
 //Make sure it's not ajaxing
-if(!$_GET['load_more_ajaxing']){
+if(!isset($_GET['load_more_ajaxing'])){
 		
-	if (!$FBtype && $type == 'albums' || !$FBtype && $type == 'album_photos' || $fts_grid == 'yes'  ) {  
+	if (!isset($FBtype) && $type == 'albums' || !isset($FBtype) && $type == 'album_photos' || $fts_grid == 'yes'  ) {  
 		wp_enqueue_script( 'fts_instagram_masonry_pkgd_js', plugins_url( 'instagram/js/masonry.pkgd.min.js',  dirname(__FILE__) ) ); ?>
 		<script>
 		 jQuery(window).load(function(){ 
@@ -287,7 +288,7 @@ if(!$_GET['load_more_ajaxing']){
             });
 		 });
         </script>	           
-	<?php if (!$FBtype && $type == 'albums' || !$FBtype && $type == 'album_photos' ) {  ?>
+	<?php if (!isset($FBtype) && $type == 'albums' || !isset($FBtype) && $type == 'album_photos' ) {  ?>
         <div class="fts-slicker-facebook-photos fts-slicker-facebook-albums masonry js-masonry popup-gallery-fb <?php echo $fts_dynamic_class_name ?>" style="margin:auto" data-masonry-options='{ "isFitWidth": <?php if ($center_container == 'no') { ?>false<?php } else {?>true<?php } if ($image_stack_animation == 'no') { ?>, "transitionDuration": 0<?php } ?> }'>
 	<?php } ?>
     
@@ -306,7 +307,7 @@ if(!$_GET['load_more_ajaxing']){
 		
 		$fb_post_data_cache = WP_CONTENT_DIR.'/plugins/feed-them-social/feeds/facebook/cache/fb-'.$type.'-post-'.$fts_fb_id.'-num'.$fts_limiter.'.cache';
 		
-		if(file_exists($fb_post_data_cache) && !filesize($fb_post_data_cache) == 0 && filemtime($fb_post_data_cache) > time() - 900 && false !== strpos($fb_post_data_cache,'-num'.$fts_limiter.'' ) && !$_GET['load_more_ajaxing']) {
+		if(file_exists($fb_post_data_cache) && !filesize($fb_post_data_cache) == 0 && filemtime($fb_post_data_cache) > time() - 900 && false !== strpos($fb_post_data_cache,'-num'.$fts_limiter.'' ) && !isset($_GET['load_more_ajaxing'])) {
 			$response_post_array = $this->fts_get_feed_cache($fb_post_data_cache);
 		}
 		else{
@@ -324,9 +325,8 @@ if(!$_GET['load_more_ajaxing']){
 				if($set_zero==$fts_limiter)
 				break;
 				
-				$FBtype = $counter->type;
-				
-				if ($counter->object_id){
+				$FBtype = isset($counter->type) ? $counter->type : "";				
+				if (isset($counter->object_id)){
 					$post_data_key = $counter->object_id;
 				}
 				else {
@@ -341,12 +341,12 @@ if(!$_GET['load_more_ajaxing']){
 				if($FBtype == 'video') {
 				//		  echo '<pre>';
 				//			  print_r($counter);
-				//		  echo '</pre>';
-					$fb_post_array[$post_data_key.'_video'] = 'https://graph.facebook.com/'.$counter->object_id;
+				//		  echo '</pre>'
+					$fb_post_array[$post_data_key.'_video'] = 'https://graph.facebook.com/'.$post_data_key;
 				}
 				
 				//Photo
-				$FBalbum_cover = $counter->cover_photo;
+				$FBalbum_cover = isset($counter->cover_photo) ? $counter->cover_photo : "";
 				if ($type == 'albums' && !$FBalbum_cover) {
 					unset($counter);
 					continue;
@@ -363,7 +363,7 @@ if(!$_GET['load_more_ajaxing']){
 			$response_post_array = $this->fts_get_feed_json($fb_post_array);
 			
 			//Make sure it's not ajaxing
-			if(!$_GET['load_more_ajaxing']){		
+			if(!isset($_GET['load_more_ajaxing'])){		
 						//Create Cache
 						$this->fts_create_feed_cache($fb_post_data_cache, $response_post_array);
 			}
@@ -384,41 +384,58 @@ if(!$_GET['load_more_ajaxing']){
 		//Create Facebook Variables 
 		$FBfinalstory ='';
 		$first_dir ='';
-		$FBtype = $d->type;
-		
+		$FBtype = isset($d->type) ? $d->type : "";
 		
 		if (!$FBtype && $type == 'album_photos'){
 			$FBtype = 'photo';
 		}
 		
-		$FBpicture = $d->picture;
-		$FBlink = $d->link;
-		$FBname = $d->name;
-		$FBcaption = $d->caption;
-		$FBmessage = $d->message;	
-		$FBdescription = $d->description;
-		$FBstory = $d->story;
-		$FBicon = $d->icon;
-		$FBby = $d->properties->text;
-		$FBbylink = $d->properties->href;
-		$FBpost_id = $d->id;
-		$FBpost_share_count = $d->shares->count;
-		$FBpost_like_count_array = $d->likes->data;
-		$FBpost_comments_count_array = $d->comments->data;
-		$FBpost_object_id = $d->object_id;
-		$FBalbum_photo_count = $d->count;
-		$FBalbum_cover = $d->cover_photo;
-			if ($type == 'albums' && !$FBalbum_cover) {
+		$FBpicture = isset($d->picture) ? $d->picture : "";
+		$FBlink = isset($d->link) ? $d->link : "";
+		$FBname = isset($d->name) ? $d->name : "";
+		$FBcaption = isset($d->caption) ? $d->caption : "";
+		$FBmessage = isset($d->message) ? $d->message : "";
+		$FBdescription = isset($d->description) ? $d->description : "";
+		$FBstory = isset($d->story) ? $d->story : "";
+		$FBicon = isset($d->icon) ? $d->icon : "";
+		$FBby = isset($d->properties->text) ? $d->properties->text : "";
+		$FBbylink = isset($d->properties->href) ? $d->properties->href : "";
+		$FBpost_share_count = isset($d->shares->count) ? $d->shares->count : "";
+		$FBpost_like_count_array = isset($d->likes->data) ? $d->likes->data : "";
+		$FBpost_comments_count_array = isset($d->comments->data) ? $d->comments->data : "";
+		$FBpost_object_id = isset($d->object_id) ? $d->object_id : "";
+		$FBalbum_photo_count = isset($d->count) ? $d->count : "";
+		$FBalbum_cover = isset($d->cover_photo) ? $d->cover_photo : "";
+		
+		if (isset($d->id)) {
+			$FBpost_id = $d->id;
+			
+			$FBpost_full_ID = explode('_', $FBpost_id);
+		
+			if (isset($FBpost_full_ID[0])) {
+				$FBpost_user_id = $FBpost_full_ID[0];
+			}
+			if (isset($FBpost_full_ID[1])) {
+				$FBpost_single_id = $FBpost_full_ID[1];
+			}
+		}
+		
+		
+		
+		
+		
+		
+		
+		if ($type == 'albums' && !$FBalbum_cover) {
 				unset($d);
 				continue;
-			}
-		$FBpost_full_ID = explode('_', $FBpost_id);
-		$FBpost_user_id = $FBpost_full_ID[0];
-		$FBpost_single_id = $FBpost_full_ID[1];
+		}
+		
+		
 		
 		
 		//Create Post Data Key
-		if ($d->object_id){
+		if (isset($d->object_id)){
 			$post_data_key = $d->object_id;
 			
 		}
@@ -428,7 +445,7 @@ if(!$_GET['load_more_ajaxing']){
 		
 		//Get Likes & Comments
 		if($response_post_array){
-				if($response_post_array[$post_data_key.'_likes']){
+				if(isset($response_post_array[$post_data_key.'_likes'])){
 					$like_count_data  = json_decode($response_post_array[$post_data_key.'_likes']);
 					
 					//Like Count
@@ -449,7 +466,7 @@ if(!$_GET['load_more_ajaxing']){
 						$final_FBpost_like_count = "<i class='icon-thumbs-up'></i> " . $FBpost_like_count;
 					}
 				}
-				if($response_post_array[$post_data_key.'_comments']){
+				if(isset($response_post_array[$post_data_key.'_comments'])){
 					$comment_count_data  = json_decode($response_post_array[$post_data_key.'_comments']);
 					
 					if (!empty($comment_count_data->summary->total_count))	{	
@@ -485,20 +502,20 @@ if(!$_GET['load_more_ajaxing']){
 				}
 
 		
-		$FBlocation = $d->location;
-		$FBembed_vid = $d->embed_html;
 		
-		$FBfromName = $d->from->name;
-		$FBfromName = preg_quote($FBfromName, "/");
-		$FBstory = $d->story;
+		$FBlocation = isset($d->location) ? $d->location : "";
+		$FBembed_vid = isset($d->embed_html) ? $d->embed_html : "";
 		
+		$FBfromName = isset($d->from->name) ? $d->from->name : "";
+		$FBfromName = preg_quote($FBfromName, "/");;
+		$FBstory = isset($d->story) ? $d->story : "";	
 		
 		 $CustomDateCheck = get_option('fts-date-and-time-format');
 			  if($CustomDateCheck) {
 				$CustomDateFormat = get_option('fts-date-and-time-format');
 			  }
 			  else {
-				$CustomDateFormat = 'F jS, Y \a\t g:ia'; 
+			 $CustomDateFormat = 'F jS, Y \a\t g:ia'; 
 			  }
 		
 		$CustomTimeFormat = strtotime($d->created_time);
@@ -558,7 +575,7 @@ if(!$_GET['load_more_ajaxing']){
 		if($type == 'album_photos' && $hide_date_likes_comments == 'yes' || $type == 'albums' && $hide_date_likes_comments == 'yes'){ }
 				else {
 				
-			 
+			  date_default_timezone_set(get_option('fts-timezone'));
 			  print '<span class="fts-jal-fb-user-name"><a href="http://facebook.com/profile.php?id='.$d->from->id.'">'.$d->from->name.'</a>'.$FBfinalstory.'</span>';
 			  print '<span class="fts-jal-fb-post-time">'.date($CustomDateFormat, $CustomTimeFormat).'</span><div class="clear"></div>';
 		
@@ -573,6 +590,7 @@ if(!$_GET['load_more_ajaxing']){
 					  
 					  // here we trim the words for the premium version. The $words string actually comes from the javascript	
 						if ($words) {
+							$more = isset($more) ? $more : "";
 					 		$trimmed_content = $this->fts_custom_trim_words($FBmessage, $words, $more);
 							 print '<div class="fts-jal-fb-message">'.$trimmed_content.'';
 								 if ($fts_fb_popup == 'yes') {
@@ -704,10 +722,11 @@ if(!$_GET['load_more_ajaxing']){
 							  $event_url = 'https://graph.facebook.com/'.$event_id_number.'/?access_token='.$access_token.'';
 							  $event_data = json_decode(file_get_contents($event_url));
 							  
-							  $FB_event_name = $event_data->name;
-							  $FB_event_location = $event_data->location;
-							  $FB_event_city = $event_data->venue->city;
-							  $FB_event_state = $event_data->venue->state;
+							  $FB_event_name = isset($event_data->name) ? $event_data->name : "";
+							  $FB_event_location = isset($event_data->location) ? $event_data->location : "";
+							  $FB_event_city = isset($event_data->venue->city) ? $event_data->venue->city : "";
+							  $FB_event_state = isset($event_data->venue->state) ? $event_data->venue->state : "";
+				
 							  $FB_event_start_time = date('l, F j, Y g:i a',strtotime($event_data->start_time));
 							  
 							  echo '<a href="'.$FBlink.'" target="_blank" class="fts-jal-fb-picture"><img class="fts-fb-event-photo" src="http://graph.facebook.com/'.$event_id_number.'/picture"></img></a>';
@@ -802,7 +821,7 @@ if(!$_GET['load_more_ajaxing']){
 							$fts_dynamic_vid_name_string = trim($this->rand_string(10).'_'.$type);
 							$fts_dynamic_vid_name =  'feed_dynamic_video_class'.$fts_dynamic_vid_name_string;
 	
-							print '<div class="fts-jal-fb-vid-picture '.$fts_dynamic_class_name.' '.$fts_dynamic_vid_name.'"><img border="0" alt="' .$d->from->name.'" src="'.$d->picture.'"/> <div class="fts-jal-fb-vid-play-btn"></div></div>';
+							print '<div class="fts-jal-fb-vid-picture '.$fts_dynamic_vid_name.'"><img border="0" alt="' .$d->from->name.'" src="'.$d->picture.'"/> <div class="fts-jal-fb-vid-play-btn"></div></div>';
 							  
 							 
 								//strip Youtube URL then ouput Iframe and script
@@ -1039,7 +1058,7 @@ if(!$_GET['load_more_ajaxing']){
 		print '<div class="clear"></div>'; 
 		print '</div>';
 			
-			
+		$FBpost_single_id = isset($FBpost_single_id) ? $FBpost_single_id : "";	
 		
 		print $this->fts_facebook_post_see_more($FBlink, $final_FBpost_like_count, $final_FBpost_comments_count, $final_FBpost_share_count, $FBtype, $FBpost_id, $type, $hide_date_likes_comments, $FBpost_user_id, $FBpost_single_id);
 		
@@ -1054,7 +1073,7 @@ if(!$_GET['load_more_ajaxing']){
 		
 		
 		
-		$build_shortcode .= '[fts facebook';
+		$build_shortcode = '[fts facebook';
 	
 		  foreach($atts as $attribute => $value){
 			  $build_shortcode .= ' '.$attribute.'='.$value;
@@ -1062,7 +1081,7 @@ if(!$_GET['load_more_ajaxing']){
 		
 		$build_shortcode .= ']';
 	
-		$_REQUEST['next_url'] = $data->paging->next;
+		$_REQUEST['next_url'] = isset($data->paging->next) ? $data->paging->next : "";
 		?>
 <script>
 jQuery(document).ready(function() {	
@@ -1083,7 +1102,7 @@ var nextURL_<?php echo $_REQUEST['fts_dynamic_name']; ?>= "<?php echo $_REQUEST[
 </script>
 <?php	
 //Make sure it's not ajaxing
-if(!$_GET['load_more_ajaxing'] && !$_REQUEST['fts_no_more_posts'] && !empty($loadmore)){ 
+if(!isset($_GET['load_more_ajaxing']) && !isset($_REQUEST['fts_no_more_posts']) && !empty($loadmore)){ 
 	
 	$fts_dynamic_name = $_REQUEST['fts_dynamic_name'];
 	
@@ -1169,7 +1188,8 @@ if(!$_GET['load_more_ajaxing'] && !$_REQUEST['fts_no_more_posts'] && !empty($loa
 
 			// main closing div not included in ajax check so we can close the wrap at all times
 			//Make sure it's not ajaxing
-			if(!$_GET['load_more_ajaxing']){
+			if(!isset($_GET['load_more_ajaxing'])){
+				$fts_dynamic_name = $_REQUEST['fts_dynamic_name'];
 				// this div returns outputs our ajax request via jquery appenc html from above
 				print '<div id="output_'.$fts_dynamic_name.'"></div>';
 				
@@ -1206,7 +1226,7 @@ if(!$_GET['load_more_ajaxing'] && !$_REQUEST['fts_no_more_posts'] && !empty($loa
 
 			<?php
 			//Make sure it's not ajaxing
-			if(!$_GET['load_more_ajaxing']){
+			if(!isset($_GET['load_more_ajaxing'])){
 					  print '<div class="clear"></div><div id="fb-root"></div>';
 					  
 						if(is_plugin_active('feed-them-premium/feed-them-premium.php') && $scrollMore == 'button') {
@@ -1234,7 +1254,7 @@ if(!$_GET['load_more_ajaxing'] && !$_REQUEST['fts_no_more_posts'] && !empty($loa
 		  case 'wall':
 		  case 'normal':
 		  case 'album':
-			  $output .= '<div class="fts-fb-location">'.$location.'</div>';
+			  $output = '<div class="fts-fb-location">'.$location.'</div>';
 				  return $output;
 		
 		}
@@ -1243,7 +1263,7 @@ if(!$_GET['load_more_ajaxing'] && !$_REQUEST['fts_no_more_posts'] && !empty($loa
 	//Facebook Post Photo
 	function fts_facebook_post_photo($FBlink, $type, $photo_from, $photo_source, $image_position_lr = NULL, $image_position_top = NULL) {
 		 if($type == 'album_photos' || $type == 'albums') {	
-			  $output .=  '<a href="'.$FBlink.'" target="_blank" class="fts-jal-fb-picture album-photo-fts"';
+			  $output =  '<a href="'.$FBlink.'" target="_blank" class="fts-jal-fb-picture album-photo-fts"';
 			   if($image_position_lr !== '-0%' || $image_position_top !== '-0%') {	
 				  	$output .= 'style="right:'.$image_position_lr.';left:'.$image_position_lr.';top:'.$image_position_top.'"';
 				   }
@@ -1251,7 +1271,7 @@ if(!$_GET['load_more_ajaxing'] && !$_REQUEST['fts_no_more_posts'] && !empty($loa
 			  
 		 }
 		 else {
-			 $output .=  '<a href="'.$FBlink.'" target="_blank" class="fts-jal-fb-picture"><img border="0" alt="' .$photo_from.'" src="'.$photo_source.'"/></a>';
+			 $output =  '<a href="'.$FBlink.'" target="_blank" class="fts-jal-fb-picture"><img border="0" alt="' .$photo_from.'" src="'.$photo_source.'"/></a>';
 		 }
 			  return $output;
 	}
@@ -1261,12 +1281,12 @@ if(!$_GET['load_more_ajaxing'] && !$_REQUEST['fts_no_more_posts'] && !empty($loa
 		switch($FBtype)	{	
 			case 'video':
 			$FBname = $this->fts_facebook_tag_filter($FBname);
-			$output .= '<a href="'.$FBlink.'" target="_blank" class="fts-jal-fb-name fb-id'.$FBpost_id.'">'.$FBname.'</a>';
+			$output = '<a href="'.$FBlink.'" target="_blank" class="fts-jal-fb-name fb-id'.$FBpost_id.'">'.$FBname.'</a>';
 				return $output;
 					
 			default:
 			$FBname = $this->fts_facebook_tag_filter($FBname);
-			$output .= '<a href="'.$FBlink.'" target="_blank" class="fts-jal-fb-name">'.$FBname.'</a>';
+			$output = '<a href="'.$FBlink.'" target="_blank" class="fts-jal-fb-name">'.$FBname.'</a>';
 				return $output;	  
 		}
 	}
@@ -1277,20 +1297,21 @@ if(!$_GET['load_more_ajaxing'] && !$_REQUEST['fts_no_more_posts'] && !empty($loa
 		switch($FBtype)	{	
 			case 'video':
 			$FBdescription = $this->fts_facebook_tag_filter($FBdescription);
-			$output .= '<div class="fts-jal-fb-description fb-id'.$FBpost_id.'">'.$FBdescription.'</div>';
+			$output = '<div class="fts-jal-fb-description fb-id'.$FBpost_id.'">'.$FBdescription.'</div>';
 				return $output;
 			    
 				
 			case 'photo':
 			   if($type == 'album_photos'){
 				 if ($words) {
+					 $more = isset($more) ? $more : "";
 					 $trimmed_content = $this->fts_custom_trim_words($FBdescription, $words, $more);
-					  	$output .= '<div class="fts-jal-fb-description">'.$trimmed_content.'</div>';
+					  	$output = '<div class="fts-jal-fb-description">'.$trimmed_content.'</div>';
 						return $output;
 					}
 					else {
 						$FBdescription = $this->fts_facebook_tag_filter($FBdescription);
-						$output .= '<div class="fts-jal-fb-description">'.nl2br($FBdescription).'</div>';
+						$output = '<div class="fts-jal-fb-description">'.nl2br($FBdescription).'</div>';
 					    return $output;  
 					}
 			   }
@@ -1299,13 +1320,14 @@ if(!$_GET['load_more_ajaxing'] && !$_REQUEST['fts_no_more_posts'] && !empty($loa
 			   if($type == 'albums'){
 				   
 				   if ($words) {
+					 $more = isset($more) ? $more : "";
 					 $trimmed_content = $this->fts_custom_trim_words($FBdescription, $words, $more);
-					 $output .= '<div class="fts-jal-fb-description">'.$trimmed_content.'</div>';
+					 $output = '<div class="fts-jal-fb-description">'.$trimmed_content.'</div>';
 						return $output;
 					}
 					else {
 						$FBdescription = $this->fts_facebook_tag_filter($FBdescription);
-						$output .= '<div class="fts-jal-fb-description">'.nl2br($FBdescription).'</div>';
+						$output = '<div class="fts-jal-fb-description">'.nl2br($FBdescription).'</div>';
 					    return $output;  
 					}
 			   }
@@ -1313,7 +1335,7 @@ if(!$_GET['load_more_ajaxing'] && !$_REQUEST['fts_no_more_posts'] && !empty($loa
 			   //Do for Default feeds
 			   else{
 				   $FBdescription = $this->fts_facebook_tag_filter($FBdescription);
-			    	$output .= '<div class="fts-jal-fb-description">'.nl2br($FBdescription).'</div>';
+			    	$output = '<div class="fts-jal-fb-description">'.nl2br($FBdescription).'</div>';
 					$output .= '<div>By: <a href="'.$FBlink.'">'.$FBby.'<a/></div>';
 			   		return $output;
 			   }
@@ -1324,13 +1346,14 @@ if(!$_GET['load_more_ajaxing'] && !$_REQUEST['fts_no_more_posts'] && !empty($loa
 			   // here we trim the words for the links description text... for the premium version. The $words string actually comes from the javascript
 			   
 			   if ($words) {
+				   	 $more = isset($more) ? $more : "";
 					 $trimmed_content = $this->fts_custom_trim_words($FBdescription, $words, $more);
-					 $output .= '<div class="jal-fb-description">'.$trimmed_content.'</div>';
+					 $output = '<div class="jal-fb-description">'.$trimmed_content.'</div>';
 					 return $output;
 				}
 				else {
 				   $FBdescription = $this->fts_facebook_tag_filter($FBdescription);
-				   $output .= '<div class="jal-fb-description">'.nl2br($FBdescription).'</div>';
+				   $output = '<div class="jal-fb-description">'.nl2br($FBdescription).'</div>';
 				   return $output;
 				   
 				}
@@ -1339,7 +1362,7 @@ if(!$_GET['load_more_ajaxing'] && !$_REQUEST['fts_no_more_posts'] && !empty($loa
 			// if the premium plugin is not active we will just show the regular full description
 			else {
 				 $FBdescription = $this->fts_facebook_tag_filter($FBdescription);
-				 $output .= '<div class="jal-fb-description">'.nl2br($FBdescription).'</div>';
+				 $output = '<div class="jal-fb-description">'.nl2br($FBdescription).'</div>';
 				 return $output;
 				 
 			}
@@ -1352,7 +1375,7 @@ if(!$_GET['load_more_ajaxing'] && !$_REQUEST['fts_no_more_posts'] && !empty($loa
 		switch($FBtype)	{	
 			case 'video':
 			$FBcaption = $this->fts_facebook_tag_filter($FBcaption);
-			$output .= '<div class="fts-jal-fb-caption fb-id'.$FBpost_id.'">'.$FBcaption.'</div>';
+			$output = '<div class="fts-jal-fb-caption fb-id'.$FBpost_id.'">'.$FBcaption.'</div>';
 				return $output;
 			    
 						
@@ -1361,19 +1384,20 @@ if(!$_GET['load_more_ajaxing'] && !$_REQUEST['fts_no_more_posts'] && !empty($loa
 			if(is_plugin_active('feed-them-premium/feed-them-premium.php'))  {
 				   // here we trim the words for the links description text... for the premium version. The $words string actually comes from the javascript	
 				   if ($words) {
+					 $more = isset($more) ? $more : "";
 					 $trimmed_content = $this->fts_custom_trim_words($FBcaption, $words, $more);
-					 $output .= '<div class="jal-fb-caption">'.$trimmed_content.'</div>';
+					 $output = '<div class="jal-fb-caption">'.$trimmed_content.'</div>';
 					}
 					else {
 					   $FBcaption = $this->fts_facebook_tag_filter($FBcaption);
-					   $output .= '<div class="jal-fb-caption">'.nl2br($FBcaption).'</div>';
+					   $output = '<div class="jal-fb-caption">'.nl2br($FBcaption).'</div>';
 					}
 			} //END is_plugin_active
 			
 			// if the premium plugin is not active we will just show the regular full description
 			else {
 					$FBcaption = $this->fts_facebook_tag_filter($FBcaption);
-					$output .= '<div class="jal-fb-caption">'.nl2br($FBcaption).'</div>';
+					$output = '<div class="jal-fb-caption">'.nl2br($FBcaption).'</div>';
 			}
 			 return $output;
 			 
@@ -1385,7 +1409,7 @@ if(!$_GET['load_more_ajaxing'] && !$_REQUEST['fts_no_more_posts'] && !empty($loa
 		switch($FBtype)	{
 		
 		  case 'photo':
-		 	    $output .= '<a href="'.$FBlink.'" target="_blank" class="fts-jal-fb-see-more">';
+		 	    $output = '<a href="'.$FBlink.'" target="_blank" class="fts-jal-fb-see-more">';
 		  		
 				if($type == 'album_photos' && $hide_date_likes_comments == 'yes'){ }
 				else {
@@ -1401,7 +1425,7 @@ if(!$_GET['load_more_ajaxing'] && !$_REQUEST['fts_no_more_posts'] && !empty($loa
 		  case 'wall':
 		  case 'normal':
 		  case 'album':
-		  		$output .= '<a href="'.$FBlink.'" target="_blank" class="fts-jal-fb-see-more">';
+		  		$output = '<a href="'.$FBlink.'" target="_blank" class="fts-jal-fb-see-more">';
 		  		 
 				if($type = 'albums' && $hide_date_likes_comments == 'yes'){ }
 				else {
@@ -1411,7 +1435,7 @@ if(!$_GET['load_more_ajaxing'] && !$_REQUEST['fts_no_more_posts'] && !empty($loa
 				return $output;
 			   
 			default:
-				$output .= '<a href="http://facebook.com/'.$FBpost_user_id.'/posts/'.$FBpost_single_id.'" target="_blank" class="fts-jal-fb-see-more">';
+				$output = '<a href="http://facebook.com/'.$FBpost_user_id.'/posts/'.$FBpost_single_id.'" target="_blank" class="fts-jal-fb-see-more">';
 				$output .= ''.$final_FBpost_like_count.' '.$final_FBpost_comments_count.' &nbsp;&nbsp;&nbsp;View on Facebook</a>'; 
 				
 				return $output;
@@ -1466,7 +1490,7 @@ if(!$_GET['load_more_ajaxing'] && !$_REQUEST['fts_no_more_posts'] && !empty($loa
 
 		$size = strlen( $chars );
 		for( $i = 0; $i < $length; $i++ ) {
-			$str .= $chars[ rand( 0, $size - 1 ) ];
+			$str = $chars[ rand( 0, $size - 1 ) ];
 		}
 
 		return $str;

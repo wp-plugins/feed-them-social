@@ -703,3 +703,9 @@ to {
 .fts-instagram-fade .fts-fb-album-view-link {
 	display:none !important;
 }
+#facebook-sidebar .fts-fb-load-more-wrapper {
+max-width: 100% !important;
+margin-top:-1px !important;
+z-index:9999;
+position:relative;
+}

@@ -100,7 +100,7 @@ $fts_functions = new feed_them_social_functions();
     <?php }//END IF PREMIUM ?>   
       
       
-      <h2><?php _e('Custom API Tokens', 'feed-them-social'); ?></h2>  
+      <h2><?php _e('Facebook API Token', 'feed-them-social'); ?></h2>  
          <?php
 		 
          $test_app_token_id = get_option('fts_facebook_custom_api_token');
@@ -132,7 +132,7 @@ $fts_functions = new feed_them_social_functions();
 			 	if($test_app_token_response->data->is_valid){
 					echo'<div class="fts-successful-api-token">Your access token is working!</div>';
 				}
-				if($test_app_token_response->data->error->message || $test_app_token_response->error->message){
+				if(isset($test_app_token_response->data->error->message) || isset($test_app_token_response->error->message)){
 					if($test_app_token_response->data->error->message){
 						echo'<div class="fts-failed-api-token">Oh No something\'s wrong! '.$test_app_token_response->data->error->message.'</div>';
 					}

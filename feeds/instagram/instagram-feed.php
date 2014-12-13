@@ -13,11 +13,10 @@ function fts_instagram_func($atts){
 
 include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
 
-//FTS Functions from free version includes. 
-$fts_functions = new feed_them_social_functions;
-
 if(is_plugin_active('feed-them-premium/feed-them-premium.php')) {
    include(WP_CONTENT_DIR.'/plugins/feed-them-premium/feeds/instagram/instagram-feed.php');
+   
+   $fts_functions = new feed_them_social_functions;
 }
 else 	{
 	extract( shortcode_atts( array(
@@ -61,7 +60,7 @@ $cache = WP_CONTENT_DIR.'/plugins/feed-them-social/feeds/instagram/cache/instagr
 	
 	//Error Check
 	$error_check = json_decode($response);
-	if($error_check->meta->error_message){
+	if(isset($error_check->meta->error_message)){
 		return $error_check->meta->error_message;
 	}
 
@@ -81,28 +80,30 @@ if ($super_gallery == 'yes') { ?>
    <?php } 
    
 $set_zero = 0;
-if (!$insta_data->data) {
+if (!isset($insta_data->data)) {
 	return '<div style="padding-right:35px;">Looks like instagram\'s API down. Please try clearing cache and reloading this page in the near future.</div></div>';
 }
 foreach($insta_data->data as $insta_d) {
 if($set_zero==$pics_count)
 break;
 //Create Instagram Variables 
-$instagram_date=  date('F j, Y',$insta_d->created_time);
-$instagram_link = $insta_d->link;
-$instagram_thumb_url = $insta_d->images->thumbnail->url;
-$instagram_lowRez_url = $insta_d->images->standard_resolution->url;
+$instagram_date = isset($insta_d->created_time) ? date('F j, Y',$insta_d->created_time) : "";
+$instagram_link = isset($insta_d->link) ? $insta_d->link : "";
+$instagram_thumb_url = isset($insta_d->images->thumbnail->url) ? $insta_d->images->thumbnail->url : "";
+$instagram_lowRez_url = isset($insta_d->images->standard_resolution->url) ? $insta_d->images->standard_resolution->url : "";
+
 if (isset($_SERVER["HTTPS"])) {
 	$instagram_thumb_url = str_replace('http://', 'https://', $instagram_thumb_url );
 	$instagram_lowRez_url = str_replace('http://', 'https://', $instagram_lowRez_url );		
 }
-$instagram_likes = $insta_d->likes->count;
-$instagram_comments = $insta_d->comments->count;
-$instagram_caption_a_title = $insta_d->caption->text;
+$instagram_likes = isset($insta_d->likes->count) ? $insta_d->likes->count : "";
+$instagram_comments = isset($insta_d->comments->count) ? $insta_d->comments->count : "";
+$instagram_caption_a_title = isset($insta_d->caption->text) ? $insta_d->caption->text : "";
+
 //Create links from @mentions and regular links.
 $pattern = array('/http:(\S)+/', '/https:(\S)+/', '/([^a-zA-Z0-9-_&])@([0-9a-zA-Z_]+)/');
 $replace = array(' <a href="${0}" target="_blank" rel="nofollow">${0}</a>', ' <a href="${0}" target="_blank" rel="nofollow">${0}</a>', ' <a href="http://instagram.com/$2" target="_blank" rel="nofollow">@$2</a>');
-$instagram_caption = preg_replace($pattern, $replace, $insta_d->caption->text);
+$instagram_caption = preg_replace($pattern, $replace, $instagram_caption_a_title);
  
 // Super Gallery If statement
 if ($super_gallery == 'yes') { ?>

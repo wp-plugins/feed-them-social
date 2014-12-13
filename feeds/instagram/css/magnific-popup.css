@@ -20,7 +20,7 @@
   position: fixed;
   outline: none !important;
   -webkit-backface-visibility: hidden; }
-  
+
 .mfp-container {
   text-align: center;
   position: absolute;
@@ -367,6 +367,7 @@ img.mfp-img {
   top: 0;
   right: 0;
   padding-top: 0; }
+  
   /* overlay at start */
 .fts-instagram-fade.mfp-bg {
   opacity: 0;

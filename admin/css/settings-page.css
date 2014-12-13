@@ -116,6 +116,11 @@
 	border-radius: 2px;
 	-webkit-border-radius: 2px; 
 }
+
+.fts-facebook_group-shortcode-form .twitter_name, .fts-fb-event-option-wrap .twitter_name {
+	display:none;
+}
+
 .final-shortcode-textarea .feed-them-social-admin-input-label {
 	color: #0361B8;
 	width:auto;

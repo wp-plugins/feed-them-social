@@ -38,6 +38,8 @@ $fts_functions = new feed_them_social_functions();
         </select>
     </form><!--/feed-them-social-admin-form-->
 
+
+
 	 <?php
      //Add Facebook Event Form
      echo $fts_functions->fts_facebook_group_form(false); 
@@ -67,7 +69,7 @@ $fts_functions = new feed_them_social_functions();
  <h2><?php _e('Clear All Cache Option', 'feed-them-social'); ?></h2>
     <div class="use-of-plugin"><?php _e('Please Clear Cache if you have changed a FTS Shortcode. This will Allow you to see the NEW feed\'s options you just set!', 'feed-them-social'); ?></div>
     
-<?php if($_GET['cache']=='clearcache'){ 
+<?php if(isset($_GET['cache']) && $_GET['cache']=='clearcache'){ 
  	echo '<div class="feed-them-clear-cache-text">'.$fts_functions->feed_them_clear_cache().'</div>';
 }
 ?>
@@ -90,24 +92,153 @@ $fts_functions = new feed_them_social_functions();
            
   <?php 
   		$ftsDateTimeFormat = get_option('fts-date-and-time-format');
+		$ftsTimezone = get_option('fts-timezone');
+		date_default_timezone_set(get_option('fts-timezone'));
    ?>
-  <h2><?php _e('FaceBook & Twitter Date Format', 'feed-them-social'); ?></h2>
+  <div style="float:left; max-width:330px; margin-right:30px;"><h2><?php _e('FaceBook & Twitter Date Format', 'feed-them-social'); ?></h2>
    <fieldset>
         <select id="fts-date-and-time-format" name="fts-date-and-time-format">
-            <option value="l, F jS, Y \a\t g:ia" <?php if ($ftsDateTimeFormat == 'l, F jS, Y \a\t g:ia' ) echo 'selected="selected"'; ?>><?php echo date_i18n('l, F jS, Y \a\t g:ia'); ?></option>
-            <option value="F j, Y \a\t g:ia" <?php if ($ftsDateTimeFormat == 'F j, Y \a\t g:ia' ) echo 'selected="selected"'; ?>><?php echo date_i18n('F j, Y \a\t g:ia'); ?></option>
-            <option value="F j, Y g:ia" <?php if ($ftsDateTimeFormat == 'F j, Y g:ia' ) echo 'selected="selected"'; ?>><?php echo date_i18n('F j, Y g:ia'); ?></option>
-            <option value="F, Y \a\t g:ia" <?php if ($ftsDateTimeFormat == 'F, Y \a\t g:ia' ) echo 'selected="selected"'; ?>><?php echo date_i18n('F, Y \a\t g:ia'); ?></option>
-            <option value="M j, Y @ g:ia" <?php if ($ftsDateTimeFormat == 'M j, Y @ g:ia' ) echo 'selected="selected"'; ?>><?php echo date_i18n('M j, Y @ g:ia'); ?></option>
-            <option value="M j, Y @ G:i" <?php if ($ftsDateTimeFormat == 'M j, Y @ G:i' ) echo 'selected="selected"'; ?>><?php echo date_i18n('M j, Y @ G:i'); ?></option>
-            <option value="m/d/Y \a\t g:ia" <?php if ($ftsDateTimeFormat == 'm/d/Y \a\t g:ia' ) echo 'selected="selected"'; ?>><?php echo date_i18n('m/d/Y \a\t g:ia'); ?></option>
-            <option value="m/d/Y @ G:i" <?php if ($ftsDateTimeFormat == 'm/d/Y @ G:i' ) echo 'selected="selected"'; ?>><?php echo date_i18n('m/d/Y @ G:i'); ?></option>
-            <option value="d/m/Y \a\t g:ia" <?php if ($ftsDateTimeFormat == 'd/m/Y \a\t g:ia' ) echo 'selected="selected"'; ?>><?php echo date_i18n('d/m/Y \a\t g:ia'); ?></option>
-            <option value="d/m/Y @ G:i" <?php if ($ftsDateTimeFormat == 'd/m/Y @ G:i' ) echo 'selected="selected"'; ?>><?php echo date_i18n('d/m/Y @ G:i'); ?></option>
-            <option value="Y/m/d \a\t g:ia" <?php if ($ftsDateTimeFormat == 'Y/m/d \a\t g:ia' ) echo 'selected="selected"'; ?>><?php echo date_i18n('Y/m/d \a\t g:ia'); ?></option>
-            <option value="Y/m/d @ G:i" <?php if ($ftsDateTimeFormat == 'Y/m/d @ G:i' ) echo 'selected="selected"'; ?>><?php echo date_i18n('Y/m/d @ G:i'); ?></option>
+            <option value="l, F jS, Y \a\t g:ia" <?php if ($ftsDateTimeFormat == 'l, F jS, Y \a\t g:ia' ) echo 'selected="selected"'; ?>><?php echo date('l, F jS, Y \a\t g:ia'); ?></option>
+            <option value="F j, Y \a\t g:ia" <?php if ($ftsDateTimeFormat == 'F j, Y \a\t g:ia' ) echo 'selected="selected"'; ?>><?php echo date('F j, Y \a\t g:ia'); ?></option>
+            <option value="F j, Y g:ia" <?php if ($ftsDateTimeFormat == 'F j, Y g:ia' ) echo 'selected="selected"'; ?>><?php echo date('F j, Y g:ia'); ?></option>
+            <option value="F, Y \a\t g:ia" <?php if ($ftsDateTimeFormat == 'F, Y \a\t g:ia' ) echo 'selected="selected"'; ?>><?php echo date('F, Y \a\t g:ia'); ?></option>
+            <option value="M j, Y @ g:ia" <?php if ($ftsDateTimeFormat == 'M j, Y @ g:ia' ) echo 'selected="selected"'; ?>><?php echo date('M j, Y @ g:ia'); ?></option>
+            <option value="M j, Y @ G:i" <?php if ($ftsDateTimeFormat == 'M j, Y @ G:i' ) echo 'selected="selected"'; ?>><?php echo date('M j, Y @ G:i'); ?></option>
+            <option value="m/d/Y \a\t g:ia" <?php if ($ftsDateTimeFormat == 'm/d/Y \a\t g:ia' ) echo 'selected="selected"'; ?>><?php echo date('m/d/Y \a\t g:ia'); ?></option>
+            <option value="m/d/Y @ G:i" <?php if ($ftsDateTimeFormat == 'm/d/Y @ G:i' ) echo 'selected="selected"'; ?>><?php echo date('m/d/Y @ G:i'); ?></option>
+            <option value="d/m/Y \a\t g:ia" <?php if ($ftsDateTimeFormat == 'd/m/Y \a\t g:ia' ) echo 'selected="selected"'; ?>><?php echo date('d/m/Y \a\t g:ia'); ?></option>
+            <option value="d/m/Y @ G:i" <?php if ($ftsDateTimeFormat == 'd/m/Y @ G:i' ) echo 'selected="selected"'; ?>><?php echo date('d/m/Y @ G:i'); ?></option>
+            <option value="Y/m/d \a\t g:ia" <?php if ($ftsDateTimeFormat == 'Y/m/d \a\t g:ia' ) echo 'selected="selected"'; ?>><?php echo date('Y/m/d \a\t g:ia'); ?></option>
+            <option value="Y/m/d @ G:i" <?php if ($ftsDateTimeFormat == 'Y/m/d @ G:i' ) echo 'selected="selected"'; ?>><?php echo date('Y/m/d @ G:i'); ?></option>
         </select>
 	</fieldset>
+</div>
+<div style="float:left; max-width:330px"> <h2><?php _e('TimeZone', 'feed-them-social'); ?></h2>
+    <fieldset>
+        <select id="fts-timezone" name="fts-timezone">
+          <option value="Pacific/Midway" <?php if($ftsTimezone == "Pacific/Midway") echo 'selected="selected"' ?> >
+          <?php _e('UTC-11:00'); ?>
+          </option>
+          <option value="Etc/UTC+10" <?php if($ftsTimezone == "Etc/UTC+10") echo 'selected="selected"' ?> >
+          <?php _e('UTC-10:00'); ?>
+          </option>
+          <option value="Pacific/Marquesas" <?php if($ftsTimezone == "Pacific/Marquesas") echo 'selected="selected"' ?> >
+          <?php _e('UTC-09:30'); ?>
+          </option>
+          <option value="Pacific/Gambier" <?php if($ftsTimezone == "Pacific/Gambier") echo 'selected="selected"' ?> >
+          <?php _e('UTC-09:00'); ?>
+          </option>
+          <option value="Etc/UTC+8" <?php if($ftsTimezone == "Etc/UTC+8") echo 'selected="selected"' ?> >
+          <?php _e('UTC-08:00'); ?>
+          </option>
+          <option value="America/Denver" <?php if($ftsTimezone == "America/Denver") echo 'selected="selected"' ?> >
+          <?php _e('UTC-07:00'); ?>
+          </option>
+          <option value="America/Chicago" <?php if($ftsTimezone == "America/Chicago") echo 'selected="selected"' ?> >
+          <?php _e('UTC-06:00'); ?>
+          </option>
+          <option value="America/Havana" <?php if($ftsTimezone == "America/Havana") echo 'selected="selected"' ?> >
+          <?php _e('UTC-05:00'); ?>
+          </option>
+          <option value="America/Caracas" <?php if($ftsTimezone == "America/Caracas") echo 'selected="selected"' ?> >
+          <?php _e('UTC-04:30'); ?>
+          </option>
+          <option value="America/Glace_Bay" <?php if($ftsTimezone == "America/Glace_Bay") echo 'selected="selected"' ?> >
+          <?php _e('UTC-04:00'); ?>
+          </option>
+          <option value="America/St_Johns" <?php if($ftsTimezone == "America/St_Johns") echo 'selected="selected"' ?> >
+          <?php _e('UTC-03:30'); ?>
+          </option>
+          <option value="America/Sao_Paulo" <?php if($ftsTimezone == "America/Sao_Paulo") echo 'selected="selected"' ?> >
+          <?php _e('UTC-03:00'); ?>
+          </option>
+          <option value="America/Noronha" <?php if($ftsTimezone == "America/Noronha") echo 'selected="selected"' ?> >
+          <?php _e('UTC-02:00'); ?>
+          </option>
+          <option value="Atlantic/Cape_Verde" <?php if($ftsTimezone == "Atlantic/Cape_Verde") echo 'selected="selected"' ?> >
+          <?php _e('UTC-01:00'); ?>
+          </option>
+          <option value="Europe/Belfast" <?php if($ftsTimezone == "Europe/Belfast") echo 'selected="selected"' ?> >
+          <?php _e('UTC'); ?>
+          <option value="Europe/Amsterdam" <?php if($ftsTimezone == "Europe/Amsterdam") echo 'selected="selected"' ?> >
+          <?php _e('UTC+01:00'); ?>
+          </option>
+          <option value="Asia/Beirut" <?php if($ftsTimezone == "Asia/Beirut") echo 'selected="selected"' ?> >
+          <?php _e('UTC+02:00'); ?>
+          </option>
+          <option value="Europe/Moscow" <?php if($ftsTimezone == "Europe/Moscow") echo 'selected="selected"' ?> >
+          <?php _e('UTC+03:00'); ?>
+          </option>
+          <option value="Asia/Tehran" <?php if($ftsTimezone == "Asia/Tehran") echo 'selected="selected"' ?> >
+          <?php _e('UTC+03:30'); ?>
+          </option>
+          <option value="Asia/Yerevan" <?php if($ftsTimezone == "Asia/Yerevan") echo 'selected="selected"' ?> >
+          <?php _e('UTC+04:00'); ?>
+          </option>
+          <option value="Asia/Kabul" <?php if($ftsTimezone == "Asia/Kabul") echo 'selected="selected"' ?> >
+          <?php _e('UTC+04:30'); ?>
+          </option>
+          <option value="Asia/Tashkent" <?php if($ftsTimezone == "Asia/Tashkent") echo 'selected="selected"' ?> >
+          <?php _e('UTC+05:00'); ?>
+          </option>
+          <option value="Asia/Kolkata" <?php if($ftsTimezone == "Asia/Kolkata") echo 'selected="selected"' ?> >
+          <?php _e('UTC+05:30'); ?>
+          </option>
+          <option value="Asia/Katmandu" <?php if($ftsTimezone == "Asia/Katmandu") echo 'selected="selected"' ?> >
+          <?php _e('UTC+05:45'); ?>
+          </option>
+          <option value="Asia/Dhaka" <?php if($ftsTimezone == "Asia/Dhaka") echo 'selected="selected"' ?> >
+          <?php _e('UTC+06:00'); ?>
+          </option>
+          <option value="Asia/Novosibirsk" <?php if($ftsTimezone == "Asia/Novosibirsk") echo 'selected="selected"' ?> >
+          <?php _e('UTC+06:00'); ?>
+          </option>
+          <option value="Asia/Rangoon" <?php if($ftsTimezone == "Asia/Rangoon") echo 'selected="selected"' ?> >
+          <?php _e('UTC+06:30'); ?>
+          </option>
+          <option value="Asia/Bangkok" <?php if($ftsTimezone == "Asia/Bangkok") echo 'selected="selected"' ?> >
+          <?php _e('UTC+07:00'); ?>
+          </option>
+          <option value="Australia/Perth" <?php if($ftsTimezone == "Australia/Perth") echo 'selected="selected"' ?> >
+          <?php _e('UTC+08:00'); ?>
+          </option>
+          <option value="Australia/Eucla" <?php if($ftsTimezone == "Australia/Eucla") echo 'selected="selected"' ?> >
+          <?php _e('UTC+08:45'); ?>
+          </option>
+          <option value="Asia/Tokyo" <?php if($ftsTimezone == "Asia/Tokyo") echo 'selected="selected"' ?> >
+          <?php _e('UTC+09:00'); ?>
+          </option>
+          <option value="Australia/Adelaide" <?php if($ftsTimezone == "Australia/Adelaide") echo 'selected="selected"' ?> >
+          <?php _e('UTC+09:30'); ?>
+          </option>
+          <option value="Australia/Hobart" <?php if($ftsTimezone == "Australia/Hobart") echo 'selected="selected"' ?> >
+          <?php _e('UTC+10:00'); ?>
+          </option>
+          <option value="Australia/Lord_Howe" <?php if($ftsTimezone == "Australia/Lord_Howe") echo 'selected="selected"' ?> >
+          <?php _e('UTC+10:30'); ?>
+          </option>
+          <option value="Etc/UTC-11" <?php if($ftsTimezone == "Etc/UTC-11") echo 'selected="selected"' ?> >
+          <?php _e('UTC+11:00'); ?>
+          </option>
+          <option value="Pacific/Norfolk" <?php if($ftsTimezone == "Pacific/Norfolk") echo 'selected="selected"' ?> >
+          <?php _e('UTC+11:30'); ?>
+          </option>
+          <option value="Asia/Anadyr" <?php if($ftsTimezone == "Asia/Anadyr") echo 'selected="selected"' ?> >
+          <?php _e('UTC+12:00'); ?>
+          </option>
+          <option value="Pacific/Chatham" <?php if($ftsTimezone == "Pacific/Chatham") echo 'selected="selected"' ?> >
+          <?php _e('UTC+12:45'); ?>
+          </option>
+          <option value="Pacific/Tongatapu" <?php if($ftsTimezone == "Pacific/Tongatapu") echo 'selected="selected"' ?> >
+          <?php _e('UTC+13:00'); ?>
+          </option>
+          <option value="Pacific/Kiritimati" <?php if($ftsTimezone == "Pacific/Kiritimati") echo 'selected="selected"' ?> >
+          <?php _e('UTC+14:00'); ?>
+          </option>
+        </select>
+    </fieldset>
+</div>
+<div class="clear"></div>
 <br/>
 
    <h2><?php _e('Custom CSS Option', 'feed-them-social'); ?></h2>
@@ -189,12 +320,20 @@ jQuery(function() {
        		 jQuery('.fts-super-facebook-options-wrap').show();
 				jQuery('.fixed_height_option').hide();
 				jQuery('.fb-posts-in-grid-option-wrap').hide();
+				jQuery('.fixed_height_option').hide();
+				jQuery(".feed-them-social-admin-input-label:contains('Display Posts in Grid')").parent('div').hide();
  		 }
 		 else {
        		 jQuery('.fts-super-facebook-options-wrap').hide();
 			 jQuery('.fixed_height_option').show();
 			 jQuery('.fb-posts-in-grid-option-wrap').show();
+			 jQuery(".feed-them-social-admin-input-label:contains('Display Posts in Grid')").parent('div').show();
 		 }
+		 
+		 
+
+		 
+		 
 		 
 		 // only show the post type visible if the facebook page feed type is selected
 		 jQuery('.facebook-post-type-visible').hide();
@@ -239,6 +378,7 @@ jQuery(function() {
   jQuery('#fb-grid-option').bind('change', function (e) { 
     if( jQuery('#fb-grid-option').val() == 'yes') {
       jQuery('.fts-facebook-grid-options-wrap').show();
+	  jQuery(".feed-them-social-admin-input-label:contains('Center Facebook Container?')").parent('div').show();
     }
     else{
       jQuery('.fts-facebook-grid-options-wrap').hide();
@@ -253,7 +393,15 @@ jQuery(function() {
       jQuery('.fts-super-facebook-options-wrap').hide();
     }         
   });
-  
+   // facebook show load more options
+  jQuery('#fb_load_more_option').bind('change', function (e) { 
+    if( jQuery('#fb_load_more_option').val() == 'yes') {
+      jQuery('.fts-facebook-load-more-options-wrap').show();
+    }
+    else{
+      jQuery('.fts-facebook-load-more-options-wrap').hide();
+    }         
+  });
 });
 //START Page JS/
 function updateTextArea_fb_page() {
@@ -290,6 +438,9 @@ function updateTextArea_fb_page() {
 	if (fb_album_id != " album_id=") {
 	  	 jQuery(".fb_album_photos_id").removeClass('fts-empty-error');  
 	}
+	
+	
+	
 	
 	if (facebook_height)	{
 		var facebook_height_final = ' height=' + jQuery("input#facebook_page_height").val();
