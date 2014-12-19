@@ -3,32 +3,32 @@
 function feed_them_system_info_page(){
 ?>
 
-<div class="fts-help-admin-wrap"> <a class="buy-extensions-btn" href="http://www.slickremix.com/downloads/category/feed-them-social/" target="_blank">Get Extensions Here!</a>
-  <h2>System Info </h2>
+<div class="fts-help-admin-wrap"> <a class="buy-extensions-btn" href="http://www.slickremix.com/downloads/category/feed-them-social/" target="_blank"><?php _e( 'Get Extensions Here!', 'feed-them-social' ); ?></a>
+  <h2><?php _e( 'System Info', 'feed-them-social' ); ?></h2>
   <div class="fts-admin-help-wrap">
-    <div class="use-of-plugin">Can't figure out how to do something and need help? Use our <a href="http://www.slickremix.com/support-forum/" target="_blank">Support Forum</a> and someone will respond to your request asap. Usually we will respond the same day, the latest the following day. You may also find some of the existing posts to be helpfull too, so take a look around first. If you do submit a question please <a href="#" class="fts-debug-report">generate a report</a> and copy the info, ask your question in our <a href="http://www.slickremix.com/support-forum/" target="_blank">Support Forum</a> then paste the info you just copied. That will help speed things along for sure. </div>
+    <div class="use-of-plugin"><?php _e( "Can't figure out how to do something and need help? Use our", "feed-them-social" ); ?> <a href="http://www.slickremix.com/support-forum/" target="_blank"><?php _e('Support Forum','feed-them-social')?></a> <?php _e('and someone will respond to your request asap. Usually we will respond the same day, the latest the following day. You may also find some of the existing posts to be helpfull too, so take a look around first. If you do submit a question please','feed-them-social')?> <a href="#" class="fts-debug-report"><?php _e('generate a report','feed-them-social')?></a> <?php _e('and copy the info, ask your question in our','feed-them-social')?> <a href="http://www.slickremix.com/support-forum/" target="_blank"><?php _e('Support Forum','feed-them-social')?></a> <?php _e('then paste the info you just copied. That will help speed things along for sure.','feed-them-social')?></div>
     </h3>
-    <h3>Plugin &amp; System Info</h3>
-    <p>Please <a href="#" class="fts-debug-report">click here to generate a report</a> You will need to paste this information along with your question in our <a href="http://www.slickremix.com/support-forum/" target="_blank">Support Forum</a>. Ask your question then paste the copied text below it. </p>
+    <h3><?php _e( 'Plugin &amp; System Info', 'feed-them-social' ); ?></h3>
+    <p><?php _e( 'Please', 'feed-them-social' ); ?> <a href="#" class="fts-debug-report"><?php _e( 'click here to generate a report', 'feed-them-social' ); ?></a> <?php _e( 'You will need to paste this information along with your question in our', 'feed-them-social' ); ?> <a href="http://www.slickremix.com/support-forum/" target="_blank"><?php _e( 'Support Forum', 'feed-them-social' ); ?></a>. <?php _e( 'Ask your question then paste the copied text below it.', 'feed-them-social' ); ?></p>
     <textarea id="fts-debug-report" readonly="readonly"></textarea>
     <table class="wc_status_table widefat" cellspacing="0">
       <thead>
         <tr>
-          <th colspan="2"><?php _e( 'Versions', 'ftsystem' ); ?></th>
+          <th colspan="2"><?php _e( 'Versions', 'feed-them-social' ); ?></th>
         </tr>
       </thead>
       <tbody>
         <tr>
-          <td><?php _e('Feed Them Social Plugin version','ftsystem')?></td>
+          <td><?php _e('Feed Them Social Plugin version','feed-them-social')?></td>
           <td><?php echo ftsystem_version(); ?></td>
         </tr>
         <tr>
-          <td><?php _e('WordPress version','ftsystem')?></td>
+          <td><?php _e('WordPress version','feed-them-social')?></td>
           <td><?php if ( is_multisite() ) echo 'WPMU'; else echo 'WP'; ?>
             <?php echo bloginfo('version'); ?></td>
         </tr>
         <tr>
-          <td><?php _e('Installed plugins','ftsystem')?></td>
+          <td><?php _e('Installed plugins','feed-them-social')?></td>
           <td><?php
              			$active_plugins = (array) get_option( 'active_plugins', array() );
 
@@ -40,13 +40,13 @@ function feed_them_system_info_page(){
 						$wc_plugins = array();
 
 						foreach ( $active_plugins as $plugin ) {
-							//if ( strstr( $plugin, 'ftsystem' ) ) {
+							//if ( strstr( $plugin, 'feed-them-social' ) ) {
 
 								$plugin_data = @get_plugin_data( WP_PLUGIN_DIR . '/' . $plugin );
 
 	    						if ( ! empty( $plugin_data['Name'] ) ) {
 
-	    							$wc_plugins[] = $plugin_data['Name'] . ' ' . __('by', 'ftsystem') . ' ' . $plugin_data['Author'] . ' ' . __('version', 'ftsystem') . ' ' . $plugin_data['Version'];
+	    							$wc_plugins[] = $plugin_data['Name'] . ' ' . __('by', 'feed-them-social') . ' ' . $plugin_data['Author'] . ' ' . __('version', 'feed-them-social') . ' ' . $plugin_data['Version'];
 
 	    						}
     						//}
@@ -59,12 +59,12 @@ function feed_them_system_info_page(){
       </tbody>
       <thead>
         <tr>
-          <th colspan="2"><?php _e( 'Server Environment', 'ftsystem' ); ?></th>
+          <th colspan="2"><?php _e( 'Server Environment', 'feed-them-social' ); ?></th>
         </tr>
       </thead>
       <tbody>
         <tr>
-          <td><?php _e('PHP Version','ftsystem')?></td>
+          <td><?php _e('PHP Version','feed-them-social')?></td>
           <td><?php
                     	if ( function_exists( 'phpversion' ) )
 						
@@ -76,42 +76,45 @@ function feed_them_system_info_page(){
 						}
 						else {
 						    echo phpversion();
-							echo "<br/><mark class='no'>WARNING:</mark> Your version of php must be 5.3 or greater to use this plugin. Please upgrade the php by contacting your host provider. Some host providers will allow you to change this yourself in the hosting control panel too.";
+							echo '<br/><mark class="no">'; 
+							_e('WARNING: ','feed-them-social');
+							echo '</mark>';
+							 _e('Your version of php must be 5.3 or greater to use this plugin. Please upgrade the php by contacting your host provider. Some host providers will allow you to change this yourself in the hosting control panel too.','feed-them-social');
 						}
 						
 						
                     ?></td>
         </tr>
         <tr>
-          <td><?php _e('Server Software','ftsystem')?></td>
+          <td><?php _e('Server Software','feed-them-social')?></td>
           <td><?php
                     	echo $_SERVER['SERVER_SOFTWARE'];
                     ?></td>
         </tr>
         <tr>
-          <td><?php _e('WP Max Upload Size','ftsystem'); ?></td>
+          <td><?php _e('WP Max Upload Size','feed-them-social'); ?></td>
           <td><?php
                     	echo size_format( wp_max_upload_size() );
                     ?></td>
         </tr>
         <tr>
-          <td><?php _e('WP Debug Mode','ftsystem')?></td>
-          <td><?php if ( defined('WP_DEBUG') && WP_DEBUG ) echo '<mark class="yes">' . __('Yes', 'ftsystem') . '</mark>'; else echo '<mark class="no">' . __('No', 'ftsystem') . '</mark>'; ?></td>
+          <td><?php _e('WP Debug Mode','feed-them-social')?></td>
+          <td><?php if ( defined('WP_DEBUG') && WP_DEBUG ) echo '<mark class="yes">' . __('Yes', 'feed-them-social') . '</mark>'; else echo '<mark class="no">' . __('No', 'feed-them-social') . '</mark>'; ?></td>
         </tr>
         <tr>
-          <td><?php _e('fsockopen','ftsystem')?></td>
+          <td><?php _e('fsockopen','feed-them-social')?></td>
           <td><?php
  if(function_exists('fsockopen')) {
-      echo "fsockopen is ON";
+      _e('fsockopen is ON','feed-them-social');
  }
  else {
-      echo "fsockopen is not enabled and must be set to ON for our plugin to work properly with all feeds.";
+	 _e('fsockopen is not enabled and must be set to ON for our plugin to work properly with all feeds.','feed-them-social');
  }
  ?></td>
         </tr>
         
         <tr>
-        <td><?php _e('cURL','ftsystem')?></td>
+        <td><?php _e('cURL','feed-them-social')?></td>
         <td><?php
 		// Script to test if the CURL extension is installed on this server
 
@@ -127,9 +130,19 @@ function _fts_is_curl_installed() {
 
 // Ouput text to user based on test
 if (_fts_is_curl_installed()) {
-  echo "cURL is <span style=\"color:blue\">installed</span> on this server";
+	 _e('cURL is ','feed-them-social');
+	 echo '<span style="color:blue">';
+	 _e('installed','feed-them-social');
+	 echo '</span> ';
+	 _e('on this server','feed-them-social');
+	 
+	 
 } else {
-  echo "cURL is NOT <span style=\"color:red\">installed</span> on this server";
+	 _e('cURL is NOT ','feed-them-social');
+	 echo '<span style="color:red">';
+	 _e('installed','feed-them-social');
+	 echo '</span> ';
+	 _e('on this server','feed-them-social');
 }
 ?></td>
         </tr>

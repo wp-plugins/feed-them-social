@@ -23,17 +23,16 @@ $fts_functions = new feed_them_social_functions();
 	if (!is_plugin_active('feed-them-premium/feed-them-premium.php')){
 		  	 
 			 $twitter_style_options = array(
-				'Hide Profile Photo',
-				'Feed Text Color',
-				'Feed Link Color',
-				'Feed Link Color Hover',
-				'Feed Width',
-				'Feed Margin ',
-				'Feed Padding',
-				'Feed Background Color',
-				'Feed Border Bottom Color',
+				__('Hide Profile Photo', 'feed-them-social'),
+				__('Feed Text Color', 'feed-them-social'),
+				__('Feed Link Color', 'feed-them-social'),
+				__('Feed Link Color Hover', 'feed-them-social'),
+				__('Feed Width', 'feed-them-social'),
+				__('Feed Margin ', 'feed-them-social'),
+				__('Feed Padding', 'feed-them-social'),
+				__('Feed Background Color', 'feed-them-social'),
+				__('Feed Border Bottom Color', 'feed-them-social'),
 			 );
-			 
 			 echo $fts_functions->need_fts_premium_fields($twitter_style_options);
 			
 	 }else { 
@@ -179,18 +178,18 @@ $fts_functions = new feed_them_social_functions();
             
         <?php if (!empty($test_fts_twitter_custom_consumer_key) && !empty($test_fts_twitter_custom_consumer_secret) && !empty($test_fts_twitter_custom_access_token) && !empty($test_fts_twitter_custom_access_token_secret)){	 
 				if($test_connection->http_code != 200 || $fetchedTweets->errors){
-					echo'<div class="fts-failed-api-token">Oh No something\'s wrong! ';
+					echo'<div class="fts-failed-api-token">'. __('Oh No something\'s wrong.', 'feed-them-social').'';
 					 foreach($fetchedTweets->errors as $error){
-					 	echo '<strong>'.$error->message.'. </strong> You may have entered in the Access information incorrectly please re-enter and try again.';
+					 	echo ' <strong>'.$error->message.'. </strong> '. __('You may have entered in the Access information incorrectly please re-enter and try again.', 'feed-them-social').'';
 					 }
 				    echo'</div>';
 				}
 				else{
-					echo'<div class="fts-successful-api-token">Your access token is working!</div>';
+					echo'<div class="fts-successful-api-token">'. __('Your access token is working!', 'feed-them-social').'</div>';
 				}
 			  }
 			  else{
-			  		echo'<div class="fts-successful-api-token">Using <strong>Default</strong> Access Info!</div>';
+			  		echo'<div class="fts-successful-api-token">'. __('You are using our Default Access info.', 'feed-them-social').'</div>';
 			  }
 		
 		

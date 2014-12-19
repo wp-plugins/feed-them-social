@@ -1,5 +1,6 @@
 <?php
 class FTS_Facebook_Feed extends feed_them_social_functions {
+	
 	function __construct() {
 		add_shortcode( 'fts facebook group', array($this,'fts_fb_func'));
 		add_shortcode( 'fts facebook page', array($this,'fts_fb_func'));
@@ -265,6 +266,9 @@ class FTS_Facebook_Feed extends feed_them_social_functions {
 					if ($fts_grid !== 'yes' && $type !== 'album_photos' && $type !== 'albums') {  print '</div>'; }	
 		} 
 		else {
+			
+			$des->description = isset($des->description) ? $des->description : "";
+			
 			print '<div class="fts-jal-fb-header"><h1><a href="'.$fts_view_fb_link.'" target="_blank">'.$des->name.'</a></h1>';
 			print '<div class="fts-jal-fb-group-header-desc">'.$this->fts_facebook_tag_filter($des->description).'</div>';
 			print '</div><div class="clear"></div>';
@@ -277,7 +281,10 @@ class FTS_Facebook_Feed extends feed_them_social_functions {
 
 //Make sure it's not ajaxing
 if(!isset($_GET['load_more_ajaxing'])){
-		
+	
+	
+	$fts_grid = isset($fts_grid) ? $fts_grid : "";
+	
 	if (!isset($FBtype) && $type == 'albums' || !isset($FBtype) && $type == 'album_photos' || $fts_grid == 'yes'  ) {  
 		wp_enqueue_script( 'fts_instagram_masonry_pkgd_js', plugins_url( 'instagram/js/masonry.pkgd.min.js',  dirname(__FILE__) ) ); ?>
 		<script>
@@ -527,6 +534,9 @@ if(!isset($_GET['load_more_ajaxing'])){
 		switch($FBtype)	{
 			case 'video'  :
 		  print '<div class="fts-jal-single-fb-post fts-fb-video-post-wrap" ';
+		  
+		  $fts_grid = isset($fts_grid) ? $fts_grid : "";
+	
 		  if ($fts_grid == 'yes') { 
 		  		print 'style="width:'.$fts_colmn_width.'; margin:'.$space_between_posts.'"'; 
 		  }
@@ -594,7 +604,7 @@ if(!isset($_GET['load_more_ajaxing'])){
 					 		$trimmed_content = $this->fts_custom_trim_words($FBmessage, $words, $more);
 							 print '<div class="fts-jal-fb-message">'.$trimmed_content.'';
 								 if ($fts_fb_popup == 'yes') {
-									print '<div class="fts-fb-caption"><a href="'.$FBlink.'" class="fts-view-on-facebook-link" target="_blank">View on Facebook</a></div> ';
+									print '<div class="fts-fb-caption"><a href="'.$FBlink.'" class="fts-view-on-facebook-link" target="_blank">'.__('View on Facebook', 'feed-them-social').'</a></div> ';
 								 }
 							 print '</div><div class="clear"></div> ';
 						}
@@ -603,7 +613,7 @@ if(!isset($_GET['load_more_ajaxing'])){
 							$FB_final_message = $this->fts_facebook_tag_filter($FBmessage);
 							print '<div class="fts-jal-fb-message">'.nl2br($FB_final_message).'';
 								 if ($fts_fb_popup == 'yes') {
-									print '<div class="fts-fb-caption"><a href="'.$FBlink.'" class="fts-view-on-facebook-link" target="_blank">View on Facebook</a></div> ';
+									print '<div class="fts-fb-caption"><a href="'.$FBlink.'" class="fts-view-on-facebook-link" target="_blank">'.__('View on Facebook', 'feed-them-social').'</a></div> ';
 								 }
 							 print '</div><div class="clear"></div> ';
 						}
@@ -644,7 +654,7 @@ if(!isset($_GET['load_more_ajaxing'])){
 				  if ($fts_fb_popup == 'yes') {
 					  print '<div class="fts-fb-caption fts-fb-album-view-link" style="display:block;">
 					  			<a href="https://graph.facebook.com/'.$FBpost_id.'/picture" class="fts-view-album-photos-large" target="_blank">View Photo</a></div>
-					  		 <div class="fts-fb-caption"><a class="view-on-facebook-albums-link" href="'.$FBlink.'" target="_blank">View on Facebook</a></div>';
+					  		 <div class="fts-fb-caption"><a class="view-on-facebook-albums-link" href="'.$FBlink.'" target="_blank">'.__('View on Facebook', 'feed-them-social').'</a></div>';
 				  };
 				  
 			  print '<div class="clear"></div></div>';						  
@@ -757,6 +767,7 @@ if(!isset($_GET['load_more_ajaxing'])){
 							print $this->fts_facebook_post_photo($FBlink, $FBtype, $d->from->name, $d->picture);
 						  };
 						  
+						  $words = isset($words) ? $words : "";
 						  print '<div class="fts-jal-fb-description-wrap">';
 							//Output Link Name
 							if ($FBname) {
@@ -943,8 +954,10 @@ if(!isset($_GET['load_more_ajaxing'])){
 					print 'style="line-height:'.$image_height.' !important;"';
 				}
 			print '>';
+			
+			$fts_fb_popup = isset($fts_fb_popup) ? $fts_fb_popup : "";
 			if ($fts_fb_popup == 'yes') {
-				print '<div class="fts-fb-caption"><a href="'.$FBlink.'" class="fts-view-on-facebook-link" target="_blank">View on Facebook</a></div> ';
+				print '<div class="fts-fb-caption"><a href="'.$FBlink.'" class="fts-view-on-facebook-link" target="_blank">'.__('View on Facebook', 'feed-them-social').'</a></div> ';
 			}
 				   
 					  
@@ -1415,7 +1428,7 @@ if(!isset($_GET['load_more_ajaxing']) && !isset($_REQUEST['fts_no_more_posts']) 
 				else {
 					$output .= ''.$final_FBpost_like_count.' '.$final_FBpost_comments_count.' '.$final_FBpost_share_count.' &nbsp;&nbsp;'; 
 				}
-				$output .='&nbsp;View on Facebook</a>';
+				$output .='&nbsp;'.__('View on Facebook', 'feed-them-social').'</a>';
 				return $output;
 			
 		  case 'app':
@@ -1431,12 +1444,12 @@ if(!isset($_GET['load_more_ajaxing']) && !isset($_REQUEST['fts_no_more_posts']) 
 				else {
 					$output .= ''.$final_FBpost_like_count.' '.$final_FBpost_comments_count.' &nbsp;&nbsp;'; 
 				}
-				$output .='&nbsp;View on Facebook</a>';
+				$output .='&nbsp;'.__('View on Facebook', 'feed-them-social').'</a>';
 				return $output;
 			   
 			default:
 				$output = '<a href="http://facebook.com/'.$FBpost_user_id.'/posts/'.$FBpost_single_id.'" target="_blank" class="fts-jal-fb-see-more">';
-				$output .= ''.$final_FBpost_like_count.' '.$final_FBpost_comments_count.' &nbsp;&nbsp;&nbsp;View on Facebook</a>'; 
+				$output .= ''.$final_FBpost_like_count.' '.$final_FBpost_comments_count.' &nbsp;&nbsp;&nbsp;'.__('View on Facebook', 'feed-them-social').'</a>'; 
 				
 				return $output;
 				 

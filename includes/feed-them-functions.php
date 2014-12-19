@@ -98,7 +98,7 @@ class feed_them_social_functions {
 		}
 	}//end if init
 	
-	function fts_get_check_plugin_version($_plugin_file = 'feed-them-premium.php', $version_needed = '1.3.0') {
+	function fts_get_check_plugin_version($plugin_file = 'feed-them-premium.php', $version_needed = '1.3.0', $return_version = false) {
 		if (!empty($_GET['activate'])){
 		  if (is_admin() && $_GET['activate'] == 'true') {
 			  require_once( ABSPATH . '/wp-admin/includes/plugin.php' );
@@ -109,20 +109,20 @@ class feed_them_social_functions {
 				  //Check if plugin is active if not don't bug em
 				  if (is_plugin_active($plugin_file)) {
 						$plugin_file_name = explode('/', $plugin_file);
-						 
-						if ($plugin_file_name[1] == $_plugin_file && $plugin_info['Version'] < $version_needed){
-							$download_location = 'If you have not recieved an update notification for this plugin you may re-download the plugin/extension from your <a href="http://slickremix.com/my-account" target="_blank">SlickRemix "My Account" page.</a>';
-						   
-							$error_msg = '<div class="error"><p>' . __( 'Warning: <strong>'.$plugin_info['Name'].'</strong> needs to be <strong>UPDATED</strong> to <strong>version '.$version_needed.'</strong> to function properly. '.$download_location, 'fts-bar' ) . '</p></div>';
-						  
-						   add_action( 'admin_notices', function() use ($error_msg) {
-								echo $error_msg;
-						   });
-						   
-						   deactivate_plugins($plugin_file);
-						   
-						   return $error_msg;
-						}
+						
+							if ($plugin_file_name[1] == $_plugin_file && $plugin_info['Version'] < $version_needed){
+								$download_location = "__( 'If you have not received an update notification for this plugin you may re-download the plugin/extension from your <a href='http://slickremix.com/my-account' target='_blank'>SlickRemix 'My Account' page.</a>, 'fts-bar' ) . ";
+							   
+								$error_msg = '<div class="error"><p>' . __( 'Warning: <strong>'.$plugin_info['Name'].'</strong> needs to be <strong>UPDATED</strong> to <strong>version '.$version_needed.'</strong> to function properly. '.$download_location, 'fts-bar' ) . '</p></div>';
+							  
+							   add_action( 'admin_notices', function() use ($error_msg) {
+									echo $error_msg;
+							   });
+							   
+							   deactivate_plugins($plugin_file);
+							   
+							   return $error_msg;
+							}
 				  }
 			  }
 		  }
@@ -131,7 +131,7 @@ class feed_them_social_functions {
 	
 	function Feed_Them_Main_Menu() {
   	 	add_menu_page('Feed Them Social', 'Feed Them', 'manage_options', 'feed-them-settings-page', 'feed_them_settings_page', '');
-		add_submenu_page('feed-them-settings-page', 'Settings', 'Settings', 'manage_options', 'feed-them-settings-page' );
+		add_submenu_page('feed-them-settings-page', __('Settings', 'feed-them-social'),  __('Settings', 'feed-them-social'), 'manage_options', 'feed-them-settings-page' );
 		
 	}
 	// add the word setting in place of the default menu page name 'Feed Them'
@@ -140,8 +140,8 @@ class feed_them_social_functions {
 		//System Info
 		add_submenu_page( 
 			'feed-them-settings-page',
-			'Facebook Options' ,
-			'Facebook Options',
+			__('Facebook Options', 'feed-them-social'),
+			__('Facebook Options', 'feed-them-social'),
 			'manage_options',
 			'fts-facebook-feed-styles-submenu-page',
 			'feed_them_facebook_options_page'
@@ -150,8 +150,8 @@ class feed_them_social_functions {
 		//System Info
 		add_submenu_page( 
 			'feed-them-settings-page',
-			'Twitter Options' ,
-			'Twitter Options',
+			__('Twitter Options', 'feed-them-social'),
+			__('Twitter Options', 'feed-them-social'),
 			'manage_options',
 			'fts-twitter-feed-styles-submenu-page',
 			'feed_them_twitter_options_page'
@@ -160,8 +160,8 @@ class feed_them_social_functions {
 		//System Info
 		add_submenu_page( 
 			'feed-them-settings-page',
-			'System Info' ,
-			'System Info',
+			__('System Info', 'feed-them-social'),
+			__('System Info', 'feed-them-social'),
 			'manage_options',
 			'fts-system-info-submenu-page',
 			'feed_them_system_info_page'
@@ -191,8 +191,11 @@ class feed_them_social_functions {
 	}
 	
 	function need_fts_premium_fields($fields) {
+		
+		 $output = isset($output) ? $output : "";
+		
 		foreach($fields as $key => $label)	{
-			  $output = '<div class="feed-them-social-admin-input-wrap">';
+			  $output .= '<div class="feed-them-social-admin-input-wrap">';
 				  $output .= '<div class="feed-them-social-admin-input-label">'.$label.'</div>';
 				  $output .= '<div class="feed-them-social-admin-input-default">Must have <a target="_blank" href="http://www.slickremix.com/downloads/feed-them-social-premium-extension/">premium version</a> to edit.</div>';
 				$output .= '<div class="clear"></div>';
@@ -431,20 +434,20 @@ class feed_them_social_functions {
         $output = '<div class="fts-facebook_event-shortcode-form">';
 		if($save_options == false){
       	  $output .= '<form method="post" class="feed-them-social-admin-form shortcode-generator-form fb-event-shortcode-form" id="fts-fb-event-form" action="options.php">';
-		  $output .= '<h2>Facebook Event Shortcode Generator</h2>';
+		  $output .= '<h2>'.__('Facebook Event Shortcode Generator', 'feed-them-social').'</h2>';
 		}
         
-        $output .= '<div class="instructional-text inst-text-facebook-page">Copy your <a href="http://www.slickremix.com/2012/12/14/how-to-get-your-facebook-event-id/" target="_blank">Facebook Page Event ID</a> and paste it in the first input below.</div>';
+        $output .= '<div class="instructional-text inst-text-facebook-page">'.__('Copy your', 'feed-them-social').' <a href="http://www.slickremix.com/2012/12/14/how-to-get-your-facebook-event-id/" target="_blank">'.__('Facebook Page Event ID', 'feed-them-social').'</a> '.__('and paste it in the first input below.', 'feed-them-social').'</div>';
         $output .= '<div class="feed-them-social-admin-input-wrap fb_event_id">';
-        $output .= '<div class="feed-them-social-admin-input-label">Facebook Event ID (required)</div>';
+        $output .= '<div class="feed-them-social-admin-input-label">'.__('Facebook Event ID (required)', 'feed-them-social').'</div>';
         $output .= '<input type="text" name="fb_event_id" id="fb_event_id" class="feed-them-social-admin-input" value="'.$fb_event_id_option.'" />';
         $output .= '<div class="clear"></div>';
         $output .= '</div><!--/feed-them-social-admin-input-wrap-->';
          
         // Facebook Height Option
 		$output .= '<div class="feed-them-social-admin-input-wrap twitter_name">';
-        $output .= '<div class="feed-them-social-admin-input-label">Facebook Fixed Height<br/><small>Leave blank for auto height</small></div>';
-        $output .= '<input type="text" name="facebook_event_height" id="facebook_event_height" class="feed-them-social-admin-input" value="" placeholder="450px for example" />';
+        $output .= '<div class="feed-them-social-admin-input-label">'.__('Facebook Fixed Height', 'feed-them-social').'<br/><small>'.__('Leave blank for auto height', 'feed-them-social').'</small></div>';
+        $output .= '<input type="text" name="facebook_event_height" id="facebook_event_height" class="feed-them-social-admin-input" value="" placeholder="450px '.__('for example', 'feed-them-social').'e" />';
         $output .= '<div class="clear"></div>';
         $output .= '</div><!--/feed-them-social-admin-input-wrap-->';
 		
@@ -460,31 +463,14 @@ class feed_them_social_functions {
         }
         else 	{
 		  $fields = array(
-			'# of Posts (default 5)',
-			'Show the Event Title?',
-			'Show the Event Description?',
-			'Amount of words per post?',
-			'Load More Posts',
-			'Display Photos in Popup',
-			'Display Posts in Grid',
-			
+			__('# of Posts (default 5)', 'feed-them-social'),
+			__('Show the Event Title', 'feed-them-social'),
+			__('Show the Event Description', 'feed-them-social'),
+			__('Amount of words per post', 'feed-them-social'),
+			__('Load More Posts', 'feed-them-social'),
+			__('Display Photos in Popup', 'feed-them-social'),
+			__('Display Posts in Grid', 'feed-them-social'),
 		  );
-		  if (isset($_GET['page']) && $_GET['page'] == 'fts-facebook-feed-styles-submenu-page'){
-		  	 
-			 $FB_style_options = array(
-				'Hide Profile Photo',
-				'Feed Text Color',
-				'Feed Link Color',
-				'Feed Link Color Hover',
-				'Feed Width',
-				'Feed Margin ',
-				'Feed Padding',
-				'Feed Background Color',
-				'Feed Grid Posts Background Color (Grid stye feeds ONLY)',
-				'Feed Border Bottom Color',
-			 );
-			
-		  }
 		 $output .=  $this->need_fts_premium_fields($fields);
         }
         
@@ -493,7 +479,7 @@ class feed_them_social_functions {
 			$output .= '</form>';
 	   }
 	   else{
-       		$output .= '<input type="submit" class="feed-them-social-admin-submit-btn" value="Save Changes" />';
+       		$output .= '<input type="submit" class="feed-them-social-admin-submit-btn" value="'.__('Save Changes', 'feed-them-social').'" />';
 	   }
           
         $output .= '</div><!--/fts-facebook_group-shortcode-form-->';
@@ -520,32 +506,32 @@ class feed_them_social_functions {
         $output = '<div class="fts-facebook_group-shortcode-form">';
 		if($save_options == false){
         	$output .= '<form class="feed-them-social-admin-form shortcode-generator-form fb-group-shortcode-form" id="fts-fb-group-form">';
-            $output .= '<h2>Facebook Group Shortcode Generator</h2>';
+            $output .= '<h2>'.__('Facebook Group Shortcode Generator', 'feed-them-social').'</h2>';
 		}
-            $output .= '<div class="instructional-text">You must copy your <a href="http://www.slickremix.com/2012/12/14/how-to-get-your-facebook-group-id/" target="_blank">Facebook Group ID</a> and paste it in the first input below.</div>';
+            $output .= '<div class="instructional-text">'.__('You must copy your ', 'feed-them-social').' <a href="http://www.slickremix.com/2012/12/14/how-to-get-your-facebook-group-id/" target="_blank">'.__('Facebook Group ID ', 'feed-them-social').'</a> '.__('and paste it in the first input below.', 'feed-them-social').'</div>';
               $output .= '<div class="feed-them-social-admin-input-wrap fb_group_id">';
-                $output .= '<div class="feed-them-social-admin-input-label">Facebook Group ID (required)</div>';
+                $output .= '<div class="feed-them-social-admin-input-label">'.__('Facebook Group ID (required)', 'feed-them-social').'</div>';
                 $output .= '<input type="text" name="fb_group_id" id="fb_group_id" class="feed-them-social-admin-input" value="'.$fb_group_id_option.'" />';
             $output .= '<div class="clear"></div>';
               $output .= '</div><!--/feed-them-social-admin-input-wrap-->';
             
 			// Facebook Height Option
 		$output .= '<div class="feed-them-social-admin-input-wrap twitter_name">';
-        $output .= '<div class="feed-them-social-admin-input-label">Facebook Fixed Height<br/><small>Leave blank for auto height</small></div>';
-        $output .= '<input type="text" name="facebook_group_height" id="facebook_group_height" class="feed-them-social-admin-input" value="" placeholder="450px for example" />';
+        $output .= '<div class="feed-them-social-admin-input-label">'.__('Facebook Fixed Height', 'feed-them-social').'<br/><small>'.__('Leave blank for auto height', 'feed-them-social').'</small></div>';
+        $output .= '<input type="text" name="facebook_group_height" id="facebook_group_height" class="feed-them-social-admin-input" value="" placeholder="450px '.__('for example', 'feed-them-social').'" />';
         $output .= '<div class="clear"></div>';
         $output .= '</div><!--/feed-them-social-admin-input-wrap-->';
 		
             
-        $output .= '<!-- Using this for a future update <div class="feed-them-social-admin-input-wrap">
-          <div class="feed-them-social-admin-input-label">Customized Group Name</div>
-          <select id="fb_group_custom_name" class="feed-them-social-admin-input">
-            <option selected="selected" value="yes">My group name is custom</option>
-            <option value="no">My group name is number based</option>
-          </select>
-          <div class="clear"></div>
-        </div>
-        /feed-them-social-admin-input-wrap-->';
+      //  $output .= '<!-- Using this for a future update <div class="feed-them-social-admin-input-wrap">
+       //   <div class="feed-them-social-admin-input-label">'.__('Customized Group Name', 'feed-them-social').'</div>
+        //  <select id="fb_group_custom_name" class="feed-them-social-admin-input">
+         //   <option selected="selected" value="yes">'.__('My group name is custom', 'feed-them-social').'</option>
+          //  <option value="no">'.__('My group name is number based', 'feed-them-social').'</option>
+          // </select>
+          // <div class="clear"></div>
+        // </div>
+        // /feed-them-social-admin-input-wrap-->';
         
          
         
@@ -560,13 +546,13 @@ class feed_them_social_functions {
         else 	{
             //Create Need Premium Fields
             $fields = array(
-              '# of Posts (default 5)',
-              'Show the Group Title?',
-              'Show the Group Description?',
-              'Amount of words per post?',
-			  'Load More Posts',
-			  'Display Photos in Popup',
-			  'Display Posts in Grid',
+			__('# of Posts (default 5)', 'feed-them-social'),
+			__('Show the Group Title', 'feed-them-social'),
+			__('Show the Group Description', 'feed-them-social'),
+			__('Amount of words per post', 'feed-them-social'),
+			__('Load More Posts', 'feed-them-social'),
+			__('Display Photos in Popup', 'feed-them-social'),
+			__('Display Posts in Grid', 'feed-them-social'),
             );
            $output .= $this->need_fts_premium_fields($fields);
         }
@@ -576,7 +562,7 @@ class feed_them_social_functions {
 			$output .= '</form>';
 	   }
 	   else{
-       		$output .= '<input type="submit" class="feed-them-social-admin-submit-btn" value="Save Changes" />';
+       		$output .= '<input type="submit" class="feed-them-social-admin-submit-btn" value="'.__('Save Changes', 'feed-them-social').'" />';
 	   }
 		
         $output .= '</div><!--/fts-facebook_group-shortcode-form-->';
@@ -620,7 +606,7 @@ function  fts_facebook_page_form($save_options = false) {
 		
 	if($save_options == false){
 		$output .= '<form class="feed-them-social-admin-form shortcode-generator-form fb-page-shortcode-form" id="fts-fb-page-form">';
-		$output .= '<h2>Facebook Page Shortcode Generator</h2>';
+		$output .= '<h2>'.__('Facebook Page Shortcode Generator', 'feed-them-social').'</h2>';
 	 }	
 	 
 	 $fb_page_id_option = isset($fb_page_id_option) ? $fb_page_id_option : "";
@@ -630,35 +616,35 @@ function  fts_facebook_page_form($save_options = false) {
 		
 	 	// FACEBOOK FEED TYPE
 	 	$output .= '<div class="feed-them-social-admin-input-wrap">';
-        $output .= '<div class="feed-them-social-admin-input-label">Feed Type</div>';
+        $output .= '<div class="feed-them-social-admin-input-label">'.__('Feed Type', 'feed-them-social').'</div>';
 		$output .= '<select name="facebook-messages-selector" id="facebook-messages-selector" class="feed-them-social-admin-input">';
-        $output .= '<option value="page">Facebook Page</option>';
-        $output .= '<option value="group">Facebook Group</option>';
-        $output .= '<option value="event">Facebook Event</option>';
-        $output .= '<option value="album_photos">Facebook Album Photos</option>';
-        $output .= '<option value="albums">Facebook Album Covers</option>';
-        $output .= '<option value="hashtag">Facebook Hashtag</option>';
+        $output .= '<option value="page">'.__('Facebook Page', 'feed-them-social').'</option>';
+        $output .= '<option value="group">'.__('Facebook Group', 'feed-them-social').'</option>';
+        $output .= '<option value="event">'.__('Facebook Even', 'feed-them-social').'t</option>';
+        $output .= '<option value="album_photos">'.__('Facebook Album Photos', 'feed-them-social').'</option>';
+        $output .= '<option value="albums">'.__('Facebook Album Covers', 'feed-them-social').'</option>';
+        $output .= '<option value="hashtag">'.__('Facebook Hashtag', 'feed-them-social').'</option>';
         $output .= '</select>';
         $output .= '<div class="clear"></div>';
         $output .= '</div><!--/feed-them-social-admin-input-wrap-->';
 	};
 	
 		// INSTRUCTIONAL TEXT FOR FACEBOOK TYPE SELECTION. PAGE, GROUP, EVENT, ALBUMS, ALBUM COVERS AND HASH TAGS
-		$output .= '<div class="instructional-text facebook-message-generator page inst-text-facebook-page" style="display:block;">Copy your <a href="http://www.slickremix.com/2013/09/09/how-to-get-your-facebook-page-vanity-url/" target="_blank">Facebook Page ID</a> and paste it in the first input below.</div>
+		$output .= '<div class="instructional-text facebook-message-generator page inst-text-facebook-page" style="display:block;">'.__('Copy your', 'feed-them-social').'<a href="http://www.slickremix.com/2013/09/09/how-to-get-your-facebook-page-vanity-url/" target="_blank">'.__('Facebook Page ID', 'feed-them-social').'</a> '.__('and paste it in the first input below.', 'feed-them-social').'</div>
 		
-		<div class="instructional-text facebook-message-generator group inst-text-facebook-group">Copy your <a href="http://www.slickremix.com/2012/12/14/how-to-get-your-facebook-group-id/" target="_blank">Facebook Group ID</a> and paste it in the first input below.</div>
+		<div class="instructional-text facebook-message-generator group inst-text-facebook-group">'.__('Copy your', 'feed-them-social').' <a href="http://www.slickremix.com/2012/12/14/how-to-get-your-facebook-group-id/" target="_blank">'.__('Facebook Group ID', 'feed-them-social').'</a> '.__('and paste it in the first input below.', 'feed-them-social').'</div>
 		
-		<div class="instructional-text facebook-message-generator event inst-text-facebook-event">Copy your <a href="http://www.slickremix.com/2012/12/14/how-to-get-your-facebook-event-id/" target="_blank">Facebook Event ID</a> and paste it in the first input below.</div>
+		<div class="instructional-text facebook-message-generator event inst-text-facebook-event">'.__('Copy your', 'feed-them-social').' <a href="http://www.slickremix.com/2012/12/14/how-to-get-your-facebook-event-id/" target="_blank">'.__('Facebook Event ID', 'feed-them-social').'</a> '.__('and paste it in the first input below.', 'feed-them-social').'</div>
 		
-		<div class="instructional-text facebook-message-generator album_photos inst-text-facebook-album-photos">Copy your <a href="http://www.slickremix.com/docs/how-to-get-your-facebook-photo-gallery-id/" target="_blank">Facebook Album ID</a> and paste it in the first input below.</div>
+		<div class="instructional-text facebook-message-generator album_photos inst-text-facebook-album-photos">'.__('Copy your', 'feed-them-social').' <a href="http://www.slickremix.com/docs/how-to-get-your-facebook-photo-gallery-id/" target="_blank">'.__('Facebook Album ID', 'feed-them-social').'</a> '.__('and paste it in the first input below.', 'feed-them-social').'</div>
 		
-		<div class="instructional-text facebook-message-generator albums inst-text-facebook-albums">Copy your <a href="http://www.slickremix.com/docs/how-to-get-your-facebook-photo-gallery-id/" target="_blank">Facebook Album Covers ID</a> and paste it in the first input below.</div>
+		<div class="instructional-text facebook-message-generator albums inst-text-facebook-albums">'.__('Copy your', 'feed-them-social').' <a href="http://www.slickremix.com/docs/how-to-get-your-facebook-photo-gallery-id/" target="_blank">'.__('Facebook Album Covers ID', 'feed-them-social').'</a> '.__('and paste it in the first input below.', 'feed-them-social').'</div>
 		
-		<div class="instructional-text facebook-message-generator hashtag inst-text-facebook-hashtag">Copy your <a href="http://www.slickremix.com/docs/how-to-get-your-facebook-photo-gallery-id/" target="_blank">Facebook Hashtag</a> and paste it in the first input below.</div>';
+		<div class="instructional-text facebook-message-generator hashtag inst-text-facebook-hashtag">'.__('Copy your', 'feed-them-social').' <a href="http://www.slickremix.com/docs/how-to-get-your-facebook-photo-gallery-id/" target="_blank">'.__('Facebook Hashtag', 'feed-them-social').'</a> '.__('and paste it in the first input below.', 'feed-them-social').'</div>';
 		
 		// FACEBOOK PAGE ID
         $output .= '<div class="feed-them-social-admin-input-wrap fb_page_id ">';
-        $output .= '<div class="feed-them-social-admin-input-label">Facebook ID (required)</div>';
+        $output .= '<div class="feed-them-social-admin-input-label">'.__('Facebook ID (required)', 'feed-them-social').'</div>';
         $output .= '<input type="text" name="fb_page_id" id="fb_page_id" class="feed-them-social-admin-input" value="'.$fb_page_id_option.'" />';
         $output .= '<div class="clear"></div>';
         $output .= '</div><!--/feed-them-social-admin-input-wrap-->';
@@ -666,7 +652,7 @@ function  fts_facebook_page_form($save_options = false) {
 		
 		// FACEBOOK ALBUM PHOTOS ID
         $output .= '<div class="feed-them-social-admin-input-wrap fb_album_photos_id" style="display:none;">';
-        $output .= '<div class="feed-them-social-admin-input-label">Album ID (required)</div>';
+        $output .= '<div class="feed-them-social-admin-input-label">'.__('Album ID (required)', 'feed-them-social').'</div>';
         $output .= '<input type="text" name="fb_album_id" id="fb_album_id" class="feed-them-social-admin-input" value="" />';
         $output .= '<div class="clear"></div>';
         $output .= '</div><!--/feed-them-social-admin-input-wrap-->';
@@ -675,10 +661,10 @@ function  fts_facebook_page_form($save_options = false) {
 		
 		// FACEBOOK PAGE POST TYPE VISIBLE	
         $output .= '<div class="feed-them-social-admin-input-wrap facebook-post-type-visible">';
-        $output .= '<div class="feed-them-social-admin-input-label">Post Type Visible</div>';
+        $output .= '<div class="feed-them-social-admin-input-label">'.__('Post Type Visible', 'feed-them-social').'</div>';
         $output .= '<select name="fb_page_posts_displayed" id="fb_page_posts_displayed" class="feed-them-social-admin-input">';
-        $output .= '<option '.selected($fb_page_posts_displayed_option, 'page_only', false ) .' value="page_only">Display Posts made by Page only</option>';
-        $output .= '<option '.selected($fb_page_posts_displayed_option, 'others_only', false ) .' value="others_only">Display Posts made by Others</option>';
+        $output .= '<option '.selected($fb_page_posts_displayed_option, 'page_only', false ) .' value="page_only">'.__('Display Posts made by Page only', 'feed-them-social').'</option>';
+        $output .= '<option '.selected($fb_page_posts_displayed_option, 'others_only', false ) .' value="others_only">'.__('Display Posts made by Others', 'feed-them-social').'</option>';
         $output .= '</select>';
         $output .= '<div class="clear"></div>';
         $output .= '</div><!--/feed-them-social-admin-input-wrap-->';
@@ -696,15 +682,15 @@ function  fts_facebook_page_form($save_options = false) {
         else 	{
         //Create Need Premium Fields
         $fields = array(
-          '# of Posts (default 5)',
-          'Show the Page Title?',
-          'Show the Page Description?',
-          'Amount of words per post?',
-		  'Load More Posts',
-		  'Display Photos in Popup',
-		  'Display Posts in Grid',
-		  'Center Grid',
-		  'Grid Stack Animation',
+			__('# of Posts (default 5)', 'feed-them-social'),
+			__('Show the Page Title', 'feed-them-social'),
+			__('Show the Page Description', 'feed-them-social'),
+			__('Amount of words per post', 'feed-them-social'),
+			__('Load More Posts', 'feed-them-social'),
+			__('Display Photos in Popup', 'feed-them-social'),
+			__('Display Posts in Grid', 'feed-them-social'),
+			__('Center Grid', 'feed-them-social'),
+			__('Grid Stack Animation', 'feed-them-social'),
         );
         $output .= $this->need_fts_premium_fields($fields);
         }
@@ -719,8 +705,8 @@ function  fts_facebook_page_form($save_options = false) {
 		
 		// FACEBOOK HEIGHT OPTION
 		$output .= '<div class="feed-them-social-admin-input-wrap twitter_name fixed_height_option">';
-        $output .= '<div class="feed-them-social-admin-input-label">Facebook Fixed Height<br/><small>Leave blank for auto height</small></div>';
-        $output .= '<input type="text" name="facebook_page_height" id="facebook_page_height" class="feed-them-social-admin-input" value="" placeholder="450px for example" />';
+        $output .= '<div class="feed-them-social-admin-input-label">'.__('Facebook Fixed Height', 'feed-them-social').'<br/><small>'.__('Leave blank for auto height', 'feed-them-social').'</small></div>';
+        $output .= '<input type="text" name="facebook_page_height" id="facebook_page_height" class="feed-them-social-admin-input" value="" placeholder="450px '.__('for example', 'feed-them-social').'" />';
         $output .= '<div class="clear"></div>';
         $output .= '</div><!--/feed-them-social-admin-input-wrap-->';
 		
@@ -740,40 +726,40 @@ function  fts_facebook_page_form($save_options = false) {
 		$output .= '<div class="fts-super-facebook-options-wrap" style="display:none">';
 		
 		// FACEBOOK IMAGE HEIGHT
-		$output .= '<div class="feed-them-social-admin-input-wrap facebook_name"><div class="feed-them-social-admin-input-label">Facebook Image Width<br/><small>Max is 640px. You can use % too.</small></div>
+		$output .= '<div class="feed-them-social-admin-input-wrap facebook_name"><div class="feed-them-social-admin-input-label">'.__('Facebook Image Width', 'feed-them-social').'<br/><small>'.__('Max is 640px. You can use % too.', 'feed-them-social').'</small></div>
            <input type="text" name="fts-slicker-instagram-container-image-width" id="fts-slicker-facebook-container-image-width" class="feed-them-social-admin-input" value="250px" placeholder="">
            <div class="clear"></div> </div>';
 		 // FACEBOOK IMAGE WIDTH
-		 $output .= '<div class="feed-them-social-admin-input-wrap facebook_name"><div class="feed-them-social-admin-input-label">Facebook Image Height<br/><small>Max is 640px. You can use % too.</small></div>
+		 $output .= '<div class="feed-them-social-admin-input-wrap facebook_name"><div class="feed-them-social-admin-input-label">'.__('Facebook Image Height', 'feed-them-social').'<br/><small>'.__('Max is 640px. You can use % too.', 'feed-them-social').'</small></div>
            <input type="text" name="fts-slicker-instagram-container-image-height" id="fts-slicker-facebook-container-image-height" class="feed-them-social-admin-input" value="250px" placeholder="">
            <div class="clear"></div> </div>';
 		// FACEBOOK SPACE BETWEEN PHOTOS  
-   	    $output .= '<div class="feed-them-social-admin-input-wrap facebook_name"><div class="feed-them-social-admin-input-label">The space between photos</div>
+   	    $output .= '<div class="feed-them-social-admin-input-wrap facebook_name"><div class="feed-them-social-admin-input-label">'.__('The space between photos', 'feed-them-social').'</div>
            <input type="text" name="fts-slicker-facebook-container-margin" id="fts-slicker-facebook-container-margin" class="feed-them-social-admin-input" value="1px" placeholder="">
            <div class="clear"></div></div>';
 		// HIDE DATES, LIKES AND COMMENTS ETC  
-        $output .= '<div class="feed-them-social-admin-input-wrap facebook_name"><div class="feed-them-social-admin-input-label">Hide Date, Likes and Comments<br/><small>Good for image sizes under 120px</small></div>
+        $output .= '<div class="feed-them-social-admin-input-wrap facebook_name"><div class="feed-them-social-admin-input-label">'.__('Hide Date, Likes and Comments', 'feed-them-social').'<br/><small>'.__('Facebook Fixed Height', 'feed-them-social').'Good for image sizes under 120px</small></div>
        		 <select id="fts-slicker-facebook-container-hide-date-likes-comments" name="fts-slicker-facebook-container-hide-date-likes-comments" class="feed-them-social-admin-input">
-        	  <option value="no">No</option><option value="yes">Yes</option></select><div class="clear"></div></div>';
+        	  <option value="no">'.__('No', 'feed-them-social').'</option><option value="yes">'.__('Yes', 'feed-them-social').'</option></select><div class="clear"></div></div>';
 			  
 		// CENTER THE FACEBOOK CONTAINER 
-        $output .= '<div class="feed-them-social-admin-input-wrap facebook_name"><div class="feed-them-social-admin-input-label">Center Facebook Container?</div>
-        	<select id="fts-slicker-facebook-container-position" name="fts-slicker-facebook-container-position" class="feed-them-social-admin-input"><option value="no">No</option><option value="yes">Yes</option></select><div class="clear"></div></div>';
+        $output .= '<div class="feed-them-social-admin-input-wrap facebook_name"><div class="feed-them-social-admin-input-label">'.__('Center Facebook Container', 'feed-them-social').'</div>
+        	<select id="fts-slicker-facebook-container-position" name="fts-slicker-facebook-container-position" class="feed-them-social-admin-input"><option value="no">'.__('No', 'feed-them-social').'</option><option value="yes">'.__('Yes', 'feed-them-social').'</option></select><div class="clear"></div></div>';
 		   
 		// ANIMATE PHOTO POSITIONING   
-     	$output .= ' <div class="feed-them-social-admin-input-wrap facebook_name"><div class="feed-them-social-admin-input-label">Image Stacking Animation On?<br/><small>This happens when resizing browser</small></div>
-        	 <select id="fts-slicker-facebook-container-animation" name="fts-slicker-facebook-container-animation" class="feed-them-social-admin-input"><option value="no">No</option><option value="yes">Yes</option></select><div class="clear"></div></div>';
+     	$output .= ' <div class="feed-them-social-admin-input-wrap facebook_name"><div class="feed-them-social-admin-input-label">'.__('Image Stacking Animation On', 'feed-them-social').'<br/><small>'.__('This happens when resizing browsert', 'feed-them-social').'</small></div>
+        	 <select id="fts-slicker-facebook-container-animation" name="fts-slicker-facebook-container-animation" class="feed-them-social-admin-input"><option value="no">'.__('No', 'feed-them-social').'</option><option value="yes">'.__('Yes', 'feed-them-social').'</option></select><div class="clear"></div></div>';
 			 
 			 		 
 		// POSITION IMAGE LEFT RIGHT 
-        $output .= '<div class="instructional-text" style="display: block;">These options allow you to make the thumbnail larger if you do not want to see black bars above or below your photos. <a href="http://www.slickremix.com/docs/fit-thumbnail-on-facebook-galleries/" target="_blank">View Examples</a> and simple details or leave default options.</div>
+        $output .= '<div class="instructional-text" style="display: block;">'.__('These options allow you to make the thumbnail larger if you do not want to see black bars above or below your photos.', 'feed-them-social').' <a href="http://www.slickremix.com/docs/fit-thumbnail-on-facebook-galleries/" target="_blank">'.__('View Examples', 'feed-them-social').'</a> '.__('and simple details or leave default options.', 'feed-them-social').'</div>
 		
-		<div class="feed-them-social-admin-input-wrap facebook_name"><div class="feed-them-social-admin-input-label">Make photo larger?<br/><small>Helps with blackspace</small></div>
-			<input type="text" id="fts-slicker-facebook-image-position-lr" name="fts-slicker-facebook-image-position-lr" class="feed-them-social-admin-input" value="-0%" placeholder="eg. -50%. -0% is default">
+		<div class="feed-them-social-admin-input-wrap facebook_name"><div class="feed-them-social-admin-input-label">'.__('Make photo larger', 'feed-them-social').'<br/><small>'.__('Helps with blackspace', 'feed-them-social').'</small></div>
+			<input type="text" id="fts-slicker-facebook-image-position-lr" name="fts-slicker-facebook-image-position-lr" class="feed-them-social-admin-input" value="-0%" placeholder="eg. -50%. -0% '.__('is default', 'feed-them-social').'">
            <div class="clear"></div></div>';
 		// POSITION IMAGE TOP
-     	$output .= ' <div class="feed-them-social-admin-input-wrap facebook_name"><div class="feed-them-social-admin-input-label">Image Position Top<br/><small>Helps center image</small></div>
-			<input type="text" id="fts-slicker-facebook-image-position-top" name="fts-slicker-facebook-image-position-top" class="feed-them-social-admin-input" value="-0%" placeholder="eg. -10%. -0% is default">
+     	$output .= ' <div class="feed-them-social-admin-input-wrap facebook_name"><div class="feed-them-social-admin-input-label">'.__('Image Position Top', 'feed-them-social').'<br/><small>'.__('Helps center image', 'feed-them-social').'</small></div>
+			<input type="text" id="fts-slicker-facebook-image-position-top" name="fts-slicker-facebook-image-position-top" class="feed-them-social-admin-input" value="-0%" placeholder="eg. -10%. -0% '.__('is default', 'feed-them-social').'">
 			<div class="clear"></div></div>';
 			 
       	$output .= '</div><!--fts-super-facebook-options-wrap-->';
@@ -822,20 +808,20 @@ function  fts_facebook_page_form($save_options = false) {
         $output = '<div class="fts-twitter-shortcode-form">'; 
 		if($save_options == false){
 		  $output .= '<form class="feed-them-social-admin-form shortcode-generator-form twitter-shortcode-form" id="fts-twitter-form">';
-		  $output .= '<h2>Twitter Shortcode Generator</h2>';
+		  $output .= '<h2>'.__('Twitter Shortcode Generator', 'feed-them-social').'</h2>';
 		}
-        $output .= '<div class="instructional-text">You must copy your <a href="http://www.slickremix.com/2012/12/18/how-to-get-your-twitter-name/" target="_blank">Twitter Name</a> and paste it in the first input below.</div>';
+        $output .= '<div class="instructional-text">'.__('You must copy your', 'feed-them-social').' <a href="http://www.slickremix.com/2012/12/18/how-to-get-your-twitter-name/" target="_blank">'.__('Twitter Name', 'feed-them-social').'</a> '.__('and paste it in the first input below.', 'feed-them-social').'</div>';
         
         $output .= '<div class="feed-them-social-admin-input-wrap twitter_name">';
-        $output .= '<div class="feed-them-social-admin-input-label">Twitter Name (required)</div>';
+        $output .= '<div class="feed-them-social-admin-input-label">'.__('Twitter Name (required)', 'feed-them-social').'</div>';
         $output .= '<input type="text" name="twitter_name" id="twitter_name" class="feed-them-social-admin-input" value="'.$twitter_name_option.'" />';
         $output .= '<div class="clear"></div>';
         $output .= '</div><!--/feed-them-social-admin-input-wrap-->';
 		
 	if (isset($_GET['page']) && $_GET['page'] == 'feed-them-settings-page'){	
 		$output .= '<div class="feed-them-social-admin-input-wrap">';
-        $output .= '<div class="feed-them-social-admin-input-label">Twitter Fixed Height<br/><small>Leave blank for auto height</small></div>';
-        $output .= '<input type="text" name="twitter_height" id="twitter_height" class="feed-them-social-admin-input" value="" placeholder="450px for example" />';
+        $output .= '<div class="feed-them-social-admin-input-label">'.__('Twitter Fixed Height', 'feed-them-social').'<br/><small>'.__('Leave blank for auto height', 'feed-them-social').'</small></div>';
+        $output .= '<input type="text" name="twitter_height" id="twitter_height" class="feed-them-social-admin-input" value="" placeholder="450px '.__('for example', 'feed-them-social').'" />';
         $output .= '<div class="clear"></div>';
         $output .= '</div><!--/feed-them-social-admin-input-wrap-->';
 	}
@@ -846,8 +832,8 @@ function  fts_facebook_page_form($save_options = false) {
         else 	{
         //Create Need Premium Fields
         $fields = array(
-        '# of Tweets (default 5)',
-		'Display Photos in Popup',
+			__('# of Tweets (default 5)', 'feed-them-social'),
+			__('Display Photos in Popup', 'feed-them-social'),
         );
         $output .= $this->need_fts_premium_fields($fields);
         }
@@ -857,7 +843,7 @@ function  fts_facebook_page_form($save_options = false) {
 			$output .= '</form>';
 	   }
 	   else{
-       		$output .= '<input type="submit" class="feed-them-social-admin-submit-btn" value="Save Changes" />';
+       		$output .= '<input type="submit" class="feed-them-social-admin-submit-btn" value="'.__('Save Changes', 'feed-them-social').'" />';
 	   } 
         
         $output .= '</div><!--/fts-twitter-shortcode-form-->';
@@ -888,11 +874,11 @@ function  fts_facebook_page_form($save_options = false) {
 			if (isset($_GET['page']) && $_GET['page'] == 'feed-them-settings-page'){
 				
 				// INSTAGRAM FEED TYPE
-				$output .= '<h2>Instagram Feed</h2><div class="feed-them-social-admin-input-wrap instagram-gen-selection">';
-				$output .= '<div class="feed-them-social-admin-input-label">Feed Type</div>';
+				$output .= '<h2>'.__('Instagram Feed', 'feed-them-social').'</h2><div class="feed-them-social-admin-input-wrap instagram-gen-selection">';
+				$output .= '<div class="feed-them-social-admin-input-label">'.__('Feed Type', 'feed-them-social').'</div>';
 				$output .= '<select name="instagram-messages-selector" id="instagram-messages-selector" class="feed-them-social-admin-input">';
-				$output .= '<option value="user">User Feed</option>';
-				$output .= '<option value="hashtag">Hashtag Feed</option>';
+				$output .= '<option value="user">'.__('User Feed', 'feed-them-social').'</option>';
+				$output .= '<option value="hashtag">'.__('Hashtag Feed', 'feed-them-social').'</option>';
 				//$output .= '<option value="hashtag">Facebook Hashtag</option>';
 				$output .= '</select>';
 				$output .= '<div class="clear"></div>';
@@ -900,20 +886,20 @@ function  fts_facebook_page_form($save_options = false) {
 			};
 			
 				$output .= '<div class="instagram-id-option-wrap">';
-				$output .= '<h2>Convert Instagram Name to ID</h2>';
+				$output .= '<h2>'.__('Instagram Feed', 'feed-them-social').'Convert Instagram Name to ID</h2>';
 		}
 		
 		$instagram_name_option = isset($instagram_name_option) ? $instagram_name_option : "";
 		$instagram_id_option = isset($instagram_id_option) ? $instagram_id_option : "";
 		
-        $output .= '<div class="instructional-text">You must copy your <a href="http://www.slickremix.com/2012/12/18/how-to-get-your-instagram-name-and-convert-to-id/" target="_blank">Instagram Name</a> and paste it in the first input below</div>';
+        $output .= '<div class="instructional-text">'.__('You must copy your', 'feed-them-social').' <a href="http://www.slickremix.com/2012/12/18/how-to-get-your-instagram-name-and-convert-to-id/" target="_blank">'.__('Instagram Name', 'feed-them-social').'</a> '.__('and paste it in the first input below', 'feed-them-social').'</div>';
         $output .= '<div class="feed-them-social-admin-input-wrap convert_instagram_username">';
-        $output .= '<div class="feed-them-social-admin-input-label">Instagram Name (required)</div>';
+        $output .= '<div class="feed-them-social-admin-input-label">'.__('Instagram Name (required)', 'feed-them-social').'</div>';
         $output .= '<input type="text" id="convert_instagram_username" name="convert_instagram_username" class="feed-them-social-admin-input" value="'.$instagram_name_option.'" />';
         $output .= '<div class="clear"></div>';
         $output .= '</div><!--/feed-them-social-admin-input-wrap-->';
         
-        $output .= '<input type="button" class="feed-them-social-admin-submit-btn" value="Convert Instagram Username" onclick="converter_instagram_username();" tabindex="4" style="margin-right:1em;" />';
+        $output .= '<input type="button" class="feed-them-social-admin-submit-btn" value="'.__('Convert Instagram Username', 'feed-them-social').'" onclick="converter_instagram_username();" tabindex="4" style="margin-right:1em;" />';
        		// ONLY THIS DIV IF ON OUR SETTINGS PAGE
 			if (isset($_GET['page']) && $_GET['page'] == 'feed-them-settings-page'){
 	   			 $output .= '</div><!--instagram-id-option-wrap-->';
@@ -924,16 +910,16 @@ function  fts_facebook_page_form($save_options = false) {
         
 		if($save_options == false){
 		  $output .= '<form class="feed-them-social-admin-form shortcode-generator-form instagram-shortcode-form">';
-		  $output .= '<h2>Instagram Shortcode Generator</h2>';
+		  $output .= '<h2>'.__('Instagram Shortcode Generator', 'feed-them-social').'</h2>';
 		}
         
-		$output .= '<div class="instructional-text instagram-user-option-text">If you added your ID above and clicked convert, a number should appear in the input below, now continue.</div>';
-        $output .= '<div class="instructional-text instagram-hashtag-option-text" style="display:none;">Add your Hashtag below. Do not add the #, just the name.</div>';
+		$output .= '<div class="instructional-text instagram-user-option-text">'.__('If you added your ID above and clicked convert, a number should appear in the input below, now continue.', 'feed-them-social').'</div>';
+        $output .= '<div class="instructional-text instagram-hashtag-option-text" style="display:none;">'.__('Add your Hashtag below. Do not add the #, just the name.', 'feed-them-social').'</div>';
 		
 		
         $output .= '<div class="feed-them-social-admin-input-wrap instagram_name">';
-        $output .= '<div class="feed-them-social-admin-input-label instagram-user-option-text">Instagram ID # (required)</div>';
-        $output .= '<div class="feed-them-social-admin-input-label instagram-hashtag-option-text" style="display:none;">Hashtag (required)</div>';
+        $output .= '<div class="feed-them-social-admin-input-label instagram-user-option-text">'.__('Instagram ID # (required)', 'feed-them-social').'</div>';
+        $output .= '<div class="feed-them-social-admin-input-label instagram-hashtag-option-text" style="display:none;">'.__('Hashtag (required)', 'feed-them-social').'</div>';
         $output .= '<input type="text" name="instagram_id" id="instagram_id" class="feed-them-social-admin-input" value="'.$instagram_id_option.'" />';
         $output .= '<div class="clear"></div>';
         $output .= '</div><!--/feed-them-social-admin-input-wrap-->';
@@ -942,30 +928,30 @@ function  fts_facebook_page_form($save_options = false) {
 		if (isset($_GET['page']) && $_GET['page'] == 'feed-them-settings-page'){
 			
 		$output .= '<div class="feed-them-social-admin-input-wrap">';
-		$output .= '<div class="feed-them-social-admin-input-label">Super Instagram Gallery</div>';
-		$output .= '<select id="instagram-custom-gallery" name="instagram-custom-gallery" class="feed-them-social-admin-input"><option value="no" >No</option><option value="yes" >Yes</option></select>';
+		$output .= '<div class="feed-them-social-admin-input-label">'.__('Super Instagram Gallery', 'feed-them-social').'</div>';
+		$output .= '<select id="instagram-custom-gallery" name="instagram-custom-gallery" class="feed-them-social-admin-input"><option value="no">'.__('No', 'feed-them-social').'</option><option value="yes">'.__('Yes', 'feed-them-social').'</option></select>';
 		$output .= '<div class="clear"></div>';
 		$output .= '</div><!--/feed-them-social-admin-input-wrap-->';
 			
-		$output .= '<div class="fts-super-instagram-options-wrap"><h2>Super Instagram Gallery Options</h2><div class="instructional-text">View demos and <a href="#">read more</a> on setup instructions.</div>';
+		$output .= '<div class="fts-super-instagram-options-wrap"><h2>'.__('Super Instagram Gallery Options', 'feed-them-social').'</h2><div class="instructional-text">'.__('View demos and', 'feed-them-social').' <a href="#">read more</a> '.__('on setup instructions.', 'feed-them-social').'</div>';
 			
-		$output .= '<div class="feed-them-social-admin-input-wrap"><div class="feed-them-social-admin-input-label">Instagram Image Size<br/><small>Max is 640px. You can use % too.</small></div>
+		$output .= '<div class="feed-them-social-admin-input-wrap"><div class="feed-them-social-admin-input-label">'.__('Instagram Image Size', 'feed-them-social').'<br/><small>'.__('Max is 640px. You can use % too.', 'feed-them-social').'</small></div>
            <input type="text" name="fts-slicker-instagram-container-image-size" id="fts-slicker-instagram-container-image-size" class="feed-them-social-admin-input" value="250px" placeholder="">
            <div class="clear"></div> </div>';
-        $output .= '<div class="feed-them-social-admin-input-wrap"><div class="feed-them-social-admin-input-label">Size of the Instagram Icon<br/><small>Visible when you hover over photo</small></div>
+        $output .= '<div class="feed-them-social-admin-input-wrap"><div class="feed-them-social-admin-input-label">'.__('Size of the Instagram Icon', 'feed-them-social').'<br/><small>'.__('Visible when you hover over photo', 'feed-them-social').'</small></div>
            <input type="text" name="fts-slicker-instagram-icon-center" id="fts-slicker-instagram-icon-center" class="feed-them-social-admin-input" value="65px" placeholder="">
            <div class="clear"></div></div>';
-   	    $output .= '<div class="feed-them-social-admin-input-wrap"><div class="feed-them-social-admin-input-label">The space between photos</div>
+   	    $output .= '<div class="feed-them-social-admin-input-wrap"><div class="feed-them-social-admin-input-label">'.__('The space between photos', 'feed-them-social').'</div>
            <input type="text" name="fts-slicker-instagram-container-margin" id="fts-slicker-instagram-container-margin" class="feed-them-social-admin-input" value="1px" placeholder="">
            <div class="clear"></div></div>';
-        $output .= '<div class="feed-them-social-admin-input-wrap"><div class="feed-them-social-admin-input-label">Hide Date, Likes and comments<br/><small>Good for image sizes under 120px</small></div>
+        $output .= '<div class="feed-them-social-admin-input-wrap"><div class="feed-them-social-admin-input-label">'.__('Hide Date, Likes and comments', 'feed-them-social').'<br/><small>'.__('Good for image sizes under 120px', 'feed-them-social').'</small></div>
        		 <select id="fts-slicker-instagram-container-hide-date-likes-comments" name="fts-slicker-instagram-container-hide-date-likes-comments" class="feed-them-social-admin-input">
-        	  <option value="no">No</option><option value="yes">Yes</option></select><div class="clear"></div></div>';
-        $output .= '<div class="feed-them-social-admin-input-wrap"><div class="feed-them-social-admin-input-label">Center Instagram Container?</div>
-        	<select id="fts-slicker-instagram-container-position" name="fts-slicker-instagram-container-position" class="feed-them-social-admin-input"><option value="no">No</option><option value="yes">Yes</option></select>
+        	  <option value="no">'.__('No', 'feed-them-social').'</option><option value="yes">'.__('Yes', 'feed-them-social').'</option></select><div class="clear"></div></div>';
+        $output .= '<div class="feed-them-social-admin-input-wrap"><div class="feed-them-social-admin-input-label">'.__('Center Instagram Container', 'feed-them-social').'</div>
+        	<select id="fts-slicker-instagram-container-position" name="fts-slicker-instagram-container-position" class="feed-them-social-admin-input"><option value="no">'.__('No', 'feed-them-social').'</option><option value="yes">'.__('Yes', 'feed-them-social').'</option></select>
            <div class="clear"></div></div>';
-     	$output .= ' <div class="feed-them-social-admin-input-wrap"><div class="feed-them-social-admin-input-label">Image Stacking Animation On?<br/><small>This happens when resizing browser</small></div>
-        	 <select id="fts-slicker-instagram-container-animation" name="fts-slicker-instagram-container-animation" class="feed-them-social-admin-input"><option value="no">No</option><option value="yes">Yes</option></select><div class="clear"></div></div>';
+     	$output .= ' <div class="feed-them-social-admin-input-wrap"><div class="feed-them-social-admin-input-label">'.__('Image Stacking Animation On', 'feed-them-social').'<br/><small>'.__('This happens when resizing browser', 'feed-them-social').'</small></div>
+        	 <select id="fts-slicker-instagram-container-animation" name="fts-slicker-instagram-container-animation" class="feed-them-social-admin-input"><option value="no">'.__('No', 'feed-them-social').'</option><option value="yes">'.__('Yes', 'feed-them-social').'</option></select><div class="clear"></div></div>';
       	$output .= '</div><!--fts-super-instagram-options-wrap-->';
         
 		}
@@ -977,8 +963,8 @@ function  fts_facebook_page_form($save_options = false) {
         
         //Create Need Premium Fields
         $fields = array(
-        '# of Pics (default 5)',
-		'Display Photos in Popup'
+			__('# of Pics (default 5)', 'feed-them-social'),
+			__('Display Photos in Popup', 'feed-them-social'),
         );
         $output .= $this->need_fts_premium_fields($fields);
         } 
@@ -989,7 +975,7 @@ function  fts_facebook_page_form($save_options = false) {
 			
 	   }
 	   else{
-       		$output .= '<input type="submit" class="feed-them-social-admin-submit-btn instagram-submit" value="Save Changes" />';
+       		$output .= '<input type="submit" class="feed-them-social-admin-submit-btn instagram-submit" value="'.__('Save Changes', 'feed-them-social').'" />';
 	   } 
 	   
         $output .= '</div><!--/fts-instagram-shortcode-form-->'; 
@@ -1011,9 +997,9 @@ function  fts_facebook_page_form($save_options = false) {
         $output = '<div class="fts-youtube-shortcode-form">';
 		if($save_options == false){
 			$output .= '<form class="feed-them-social-admin-form shortcode-generator-form youtube-shortcode-form" id="fts-youtube-form">';
-			$output .= '<h2>YouTube Shortcode Generator</h2>';
+			$output .= '<h2>'.__('YouTube Shortcode Generator', 'feed-them-social').'</h2>';
 		}
-        $output .= '<div class="instructional-text">You must copy your <a href="http://www.slickremix.com/2013/08/01/how-to-get-your-youtube-name/" target="_blank">YouTube Name</a> and paste it in the first input below.</div>';
+        $output .= '<div class="instructional-text">'.__('You must copy your', 'feed-them-social').' <a href="http://www.slickremix.com/2013/08/01/how-to-get-your-youtube-name/" target="_blank">'.__('YouTube Name', 'feed-them-social').'</a> '.__('and paste it in the first input below.', 'feed-them-social').'</div>';
           
       
         if(is_plugin_active('feed-them-premium/feed-them-premium.php')) {
@@ -1022,14 +1008,14 @@ function  fts_facebook_page_form($save_options = false) {
         else 	{
         //Create Need Premium Fields
         $fields = array(
-          'YouTube Name',
-          '# of videos',
-          '# of videos in each row',
-          'Display First video full size',
+			__('YouTube Name', 'feed-them-social'),
+			__('# of videos', 'feed-them-social'),
+			__('# of videos in each row', 'feed-them-social'),
+			__('Display First video full size', 'feed-them-social'),
         );
        $output .= $this->need_fts_premium_fields($fields);
       
-       $output .= '<a href="http://www.slickremix.com/downloads/feed-them-social-premium-extension/" target="_blank" class="feed-them-social-admin-submit-btn" style="margin-right:1em; margin-top: 15px; display:block; float:left; text-decoration:none !important;">Click to see Premium Version</a>';
+       $output .= '<a href="http://www.slickremix.com/downloads/feed-them-social-premium-extension/" target="_blank" class="feed-them-social-admin-submit-btn" style="margin-right:1em; margin-top: 15px; display:block; float:left; text-decoration:none !important;">'.__('Click to see Premium Version', 'feed-them-social').'</a>';
 	   $output .= '</form>';
 		
         }
@@ -1052,9 +1038,9 @@ function  fts_facebook_page_form($save_options = false) {
 		$output = '<div class="fts-pinterest-shortcode-form">';
 		if($save_options == false){
 			$output .= '<form class="feed-them-social-admin-form shortcode-generator-form pinterest-shortcode-form" id="fts-pinterest-form">';
-			$output .= '<h2>Pinterest Shortcode Generator</h2>';
+			$output .= '<h2>'.__('Pinterest Shortcode Generator', 'feed-them-social').'</h2>';
 		}
-		$output .= '<div class="instructional-text">You must copy your <a href="http://www.slickremix.com/2013/08/01/how-to-get-your-pinterest-name/" target="_blank">Pinterest Name</a> and paste it in the first input below.</div>';
+		$output .= '<div class="instructional-text">'.__('You must copy your', 'feed-them-social').' <a href="http://www.slickremix.com/2013/08/01/how-to-get-your-pinterest-name/" target="_blank">'.__('Pinterest Namen', 'feed-them-social').'</a> '.__('and paste it in the first input below.', 'feed-them-social').'</div>';
 		
 		if(is_plugin_active('feed-them-premium/feed-them-premium.php')) {
 			include($this->premium.'admin/pinterest-settings-fields.php');
@@ -1063,12 +1049,12 @@ function  fts_facebook_page_form($save_options = false) {
 		
 		//Create Need Premium Fields
 		$fields = array(
-		  'Pinterest Name',
-		  '# of boards',
+			__('Pinterest Name', 'feed-them-social'),
+			__('# of boards', 'feed-them-social'),
 		);
 		$output .= $this->need_fts_premium_fields($fields);
 		
-		$output .= '<a href="http://www.slickremix.com/downloads/feed-them-social-premium-extension/" class="feed-them-social-admin-submit-btn" style="margin-right:1em; margin-top: 15px; display:block; float:left; text-decoration:none !important;" target="_blank" >Click to see Premium Version</a>';
+		$output .= '<a href="http://www.slickremix.com/downloads/feed-them-social-premium-extension/" class="feed-them-social-admin-submit-btn" style="margin-right:1em; margin-top: 15px; display:block; float:left; text-decoration:none !important;" target="_blank" >'.__('Click to see Premium Version', 'feed-them-social').'</a>';
 		$output .= '</form>';
 
 		}
@@ -1082,10 +1068,10 @@ function  fts_facebook_page_form($save_options = false) {
 	//Generate Shorecode Button and I<?phpnput for FTS settings Page
 	function  generate_shortcode($onclick, $label, $input_class) {
 	
-      $output = '<input type="button" class="feed-them-social-admin-submit-btn" value="Generate Shortcode" onclick="'.$onclick.'" tabindex="4" style="margin-right:1em;" />';
+      $output = '<input type="button" class="feed-them-social-admin-submit-btn" value="'.__('Generate Shortcode', 'feed-them-social').'" onclick="'.$onclick.'" tabindex="4" style="margin-right:1em;" />';
       $output .= '<div class="feed-them-social-admin-input-wrap final-shortcode-textarea">';
       
-     	 $output .= '<h4>Copy the ShortCode below and paste it on a page or post that you want to display your feed.</h4>';
+     	 $output .= '<h4>'.__('Copy the ShortCode below and paste it on a page or post that you want to display your feed.', 'feed-them-social').'</h4>';
       
         $output .= '<div class="feed-them-social-admin-input-label">'.$label.'></div>';
         

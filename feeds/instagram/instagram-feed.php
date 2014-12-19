@@ -33,6 +33,9 @@ else 	{
 	$pics_count = '6';
 }
 
+
+$popup = isset($popup) ? $popup : "";
+
 if ($popup == 'yes') {
 		// it's ok if these styles & scripts load at the bottom of the page because they are just for the popup
 	 	wp_enqueue_style( 'fts_instagram_css_popup', plugins_url( 'instagram/css/magnific-popup.css',  dirname(__FILE__) ) );

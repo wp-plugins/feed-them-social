@@ -1,8 +1,7 @@
 <?php
 //Functions for the 
 function feed_them_facebook_options_page() {
-
-$fts_functions = new feed_them_social_functions();
+	$fts_functions = new feed_them_social_functions();
 ?>
 
 <link href='http://fonts.googleapis.com/css?family=Rambla:400,700' rel='stylesheet' type='text/css'>				
@@ -19,21 +18,20 @@ $fts_functions = new feed_them_social_functions();
    <?php 
    
 	if (!is_plugin_active('feed-them-premium/feed-them-premium.php')){
-		  	 
+		  	
 			 $FB_style_options = array(
-				'Feed Text Color',
-				'Feed Link Color',
-				'Feed Link Color Hover',
-				'Feed Width',
-				'Feed Margin ',
-				'Feed Padding',
-				'Feed Background Color',
-				'Feed Grid Posts Background Color (Grid style feeds ONLY)',
-				'Feed Border Bottom Color',
+				__('Feed Text Color', 'feed-them-social'),
+				__('Feed Link Color', 'feed-them-social'),
+				__('Feed Link Color Hover', 'feed-them-social'),
+				__('Feed Width', 'feed-them-social'),
+				__('Feed Margin ', 'feed-them-social'),
+				__('Feed Padding', 'feed-them-social'),
+				__('Feed Background Color', 'feed-them-social'),
+				__('Feed Grid Posts Background Color (Grid style feeds ONLY)', 'feed-them-social'),
+				__('Feed Border Bottom Color', 'feed-them-social'),
 			 );
 			 
 			 echo $fts_functions->need_fts_premium_fields($FB_style_options);
-			
 	 }else { ?>        
  	  <div class="feed-them-social-admin-input-wrap">
            <div class="feed-them-social-admin-input-label fts-fb-text-color-label"><?php _e('Feed Text Color', 'feed-them-social'); ?></div>
@@ -85,7 +83,7 @@ $fts_functions = new feed_them_social_functions();
       
       
       <div class="feed-them-social-admin-input-wrap"> 
-           <div class="feed-them-social-admin-input-label fts-fb-grid-posts-background-color-label"><?php _e('Feed Grid Posts Background Color (Grid stye feeds ONLY)', 'feed-them-social'); ?></div>
+           <div class="feed-them-social-admin-input-label fts-fb-grid-posts-background-color-label"><?php _e('Feed Grid Posts Background Color (Grid style feeds ONLY)', 'feed-them-social'); ?></div>
            <input type="text" name="fb_grid_posts_background_color" class="feed-them-social-admin-input fb-grid-posts-background-color-input color {hash:true,caps:false,required:false,adjust:false,pickerFaceColor:'#eee',pickerFace:3,pickerBorder:0,pickerInsetColor:'white'}"  id="fb-grid-posts-background-color-input" placeholder="#ddd" value="<?php echo get_option('fb_grid_posts_background_color');?>"/>
       <div class="clear"></div>
  	  </div><!--/fts-facebook-feed-styles-input-wrap-->
@@ -124,28 +122,33 @@ $fts_functions = new feed_them_social_functions();
       
          <div class="fts-facebook-custom-api-token-label"><?php _e('Facebook App ID or User Token (for all facebook feeds). Not required to make the feed work. A User Token however will allow you to see certain post types that may be returning the message, Undefined Attachment. See how to <a href="http://www.slickremix.com/docs/create-facebook-app-id-or-user-token" target="_blank">GET APP ID or USER TOKEN</a>.', 'feed-them-social'); ?></div>
       
+      <div class="feed-them-social-admin-input-wrap" style="margin-bottom:0px;"> 
+           <div class="feed-them-social-admin-input-label fts-twitter-border-bottom-color-label"><?php _e('APP ID or Token optional', 'feed-them-social'); ?></div>
+         <input type="text" name="fts_facebook_custom_api_token" class="feed-them-social-admin-input"  id="fts_facebook_custom_api_token" value="<?php echo get_option('fts_facebook_custom_api_token');?>"/>
+      <div class="clear"></div>
+ 	  </div>
       
-       <div class="feed-them-social-admin-input-wrap"> 
-         
-         <input type="text" name="fts_facebook_custom_api_token" class="feed-them-social-admin-input"  id="fts_facebook_custom_api_token" placeholder="APP ID or Token optional" value="<?php echo get_option('fts_facebook_custom_api_token');?>"/>
+      
         <?php if (!empty($test_app_token_response)){	 
-			 	if($test_app_token_response->data->is_valid){
-					echo'<div class="fts-successful-api-token">Your access token is working!</div>';
+			 	if(isset($test_app_token_response->data->is_valid)){
+					echo'<div class="fts-successful-api-token">'. __('Your access token is working!', 'feed-them-social').'</div>';
 				}
 				if(isset($test_app_token_response->data->error->message) || isset($test_app_token_response->error->message)){
-					if($test_app_token_response->data->error->message){
-						echo'<div class="fts-failed-api-token">Oh No something\'s wrong! '.$test_app_token_response->data->error->message.'</div>';
+					if(isset($test_app_token_response->data->error->message)){
+						echo'<div class="fts-failed-api-token">'. __('Oh No something\'s wrong.', 'feed-them-social').' '.$test_app_token_response->data->error->message.'</div>';
 					}
-					if($test_app_token_response->error->message){
-						echo'<div class="fts-failed-api-token">Oh No something\'s wrong! '.$test_app_token_response->error->message.'</div>';
+					if(isset($test_app_token_response->error->message)){
+						echo'<div class="fts-failed-api-token">'. __('Oh No something\'s wrong.', 'feed-them-social').' '.$test_app_token_response->error->message.'</div>';
 					}
 					
 				}
-		}?>
-         <div class="clear"></div>
- 	  </div>	
+				
+		} else{
+			  		echo'<div class="fts-successful-api-token">'. __('You are using our Default Access Token.', 'feed-them-social').'</div>';
+			  }
+			  ?>
       
-   
+   <div class="clear"></div>
    
    <input type="submit" class="feed-them-social-admin-submit-btn" value="<?php _e('Save All Changes') ?>" />
    

@@ -385,7 +385,7 @@ label.toggle-custom-textarea-show:hover {
 	background:#999;
 }
 label.toggle-custom-textarea-show {
-	width: 135px;
+	max-width: 435px;
 	display:block;
 	color:#FFF;
 	height:37px;

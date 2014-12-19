@@ -95,7 +95,7 @@ $fts_functions = new feed_them_social_functions();
 		$ftsTimezone = get_option('fts-timezone');
 		date_default_timezone_set(get_option('fts-timezone'));
    ?>
-  <div style="float:left; max-width:330px; margin-right:30px;"><h2><?php _e('FaceBook & Twitter Date Format', 'feed-them-social'); ?></h2>
+  <div style="float:left; max-width:400px; margin-right:30px;"><h2><?php _e('FaceBook & Twitter Date Format', 'feed-them-social'); ?></h2>
    <fieldset>
         <select id="fts-date-and-time-format" name="fts-date-and-time-format">
             <option value="l, F jS, Y \a\t g:ia" <?php if ($ftsDateTimeFormat == 'l, F jS, Y \a\t g:ia' ) echo 'selected="selected"'; ?>><?php echo date('l, F jS, Y \a\t g:ia'); ?></option>
@@ -285,7 +285,7 @@ $fts_functions = new feed_them_social_functions();
 		 ?>
       </p>
      <br/>
-          <input type="submit" class="feed-them-social-admin-submit-btn" value="<?php _e('Save All Changes') ?>" />
+          <input type="submit" class="feed-them-social-admin-submit-btn" value="<?php _e('Save All Changes', 'feed-them-social') ?>" />
       <div class="clear"></div>
     
      
@@ -321,13 +321,13 @@ jQuery(function() {
 				jQuery('.fixed_height_option').hide();
 				jQuery('.fb-posts-in-grid-option-wrap').hide();
 				jQuery('.fixed_height_option').hide();
-				jQuery(".feed-them-social-admin-input-label:contains('Display Posts in Grid')").parent('div').hide();
+				jQuery(".feed-them-social-admin-input-label:contains('<?php _e('Display Posts in Grid', 'feed-them-social'); ?>')").parent('div').hide();
  		 }
 		 else {
        		 jQuery('.fts-super-facebook-options-wrap').hide();
 			 jQuery('.fixed_height_option').show();
 			 jQuery('.fb-posts-in-grid-option-wrap').show();
-			 jQuery(".feed-them-social-admin-input-label:contains('Display Posts in Grid')").parent('div').show();
+			 jQuery(".feed-them-social-admin-input-label:contains('<?php _e('Display Posts in Grid', 'feed-them-social'); ?>')").parent('div').show();
 		 }
 		 
 		 
@@ -378,7 +378,7 @@ jQuery(function() {
   jQuery('#fb-grid-option').bind('change', function (e) { 
     if( jQuery('#fb-grid-option').val() == 'yes') {
       jQuery('.fts-facebook-grid-options-wrap').show();
-	  jQuery(".feed-them-social-admin-input-label:contains('Center Facebook Container?')").parent('div').show();
+	  jQuery(".feed-them-social-admin-input-label:contains('<?php _e('Center Facebook Container?', 'feed-them-social'); ?>')").parent('div').show();
     }
     else{
       jQuery('.fts-facebook-grid-options-wrap').hide();
