@@ -55,7 +55,9 @@ If you enjoy using our plugin please tell others. [Click here to share](http://w
 = Version 1.6.6 Thursday, December 18th, 2014 =
  * NEW: Additional words and phrases that need translation. [Feed Them Social and Premium](http://glotpress.slickremix.com/projects) 
  * FIXED: Removed a few more php notices.
- * UPDATE: ALL USERS WITH THIS VERSION NEED TO UPDATE TO THE PREMIUM VERSION TO 1.4.0. If you have purchased the plugin you can re-download it here. [http://www.slickremix.com/my-account/](http://www.slickremix.com/my-account/)
+ * UPDATED: Licensing System
+ * NOTICE: Tested everything in wordpress 4.1 update
+ * Happy Holidays from all of us at SlickRemix!
  
 = Version 1.6.5 Saturday, December 13th, 2014 =
  * NEW: Timezone option for Facebook and Twitter feeds.
