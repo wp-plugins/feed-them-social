@@ -31,7 +31,7 @@ class EDD_SL_Plugin_Updater {
         $this->api_url  = trailingslashit($_api_url);
         $this->api_data = $_api_data;
         $this->name     = plugin_basename($this->get_plugin_file_name($_plugin_file));
-        $this->slug     = basename( $_plugin_file, '.php' );
+        $this->slug     = basename($this->get_plugin_file_name($_plugin_file), '.php');
         $this->version  = $_api_data['version'];
 
         // Set up hooks.

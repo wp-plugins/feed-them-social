@@ -215,7 +215,7 @@ class FTS_Facebook_Feed extends feed_them_social_functions {
 			 
 			 
 			//Make sure it's not ajaxing
-			if(!isset($_GET['load_more_ajaxing'])){
+			if(!isset($_GET['load_more_ajaxing']) && !empty($response['feed_data'])){
 						 //Create Cache
 						 $this->fts_create_feed_cache($fb_data_cache, $response );
 				}
@@ -223,14 +223,24 @@ class FTS_Facebook_Feed extends feed_them_social_functions {
 	
 		//Json decode data and build it from cache or response
 		$des = json_decode($response['page_data']);
-		$data = json_decode($response['feed_data']);
-		
+		$data = json_decode($response['feed_data']);	
 		
 		// return error if no data retreived
-		if ($type == 'page' && !$data->data)	{
-				return '<div style="clear:both; padding:15px 0;">No Posts Found. Are you sure this is a Facebook Page ID and not a Facebook Group or Event ID?</div>';
+		if (!isset($data->data) || empty($data->data))	{
+			//If Error msg.
+			if(isset($data->error->message)) $output = 'Error: '.$data->error->message;
+            if(isset($data->error->type)) $output .= '<br />Type: '.$data->error->type;
+            if(isset($data->error->code)) $output .= '<br />Code: '.$data->error->code;
+            if(isset($data->error->error_subcode)) $output .= '<br />Subcode:'.$data->error->error_subcode;
+			
+			//If just code.
+            if(isset($data->error_msg)) $output = 'Error: '.$data->error_msg;
+            if(isset($data->error_code) ) $output .= '<br />Code: '.$data->error_code;
+			
+			if(!$output) $output = 'No Posts Found. Are you sure this is a Facebook Page ID and not a Facebook Group or Event ID?';
+			
+			return '<div style="clear:both; padding:15px 0;">'.$output.'</div>';
 		}
-		
 		
 	//Make sure it's not ajaxing
 	if(!isset($_GET['load_more_ajaxing'])){
@@ -413,6 +423,9 @@ if(!isset($_GET['load_more_ajaxing'])){
 		$FBpost_object_id = isset($d->object_id) ? $d->object_id : "";
 		$FBalbum_photo_count = isset($d->count) ? $d->count : "";
 		$FBalbum_cover = isset($d->cover_photo) ? $d->cover_photo : "";
+		if ($FBalbum_cover) {
+			$photo_data = json_decode($response_post_array[$FBalbum_cover.'_photo']);
+		}
 		
 		if (isset($d->id)) {
 			$FBpost_id = $d->id;
@@ -645,16 +658,19 @@ if(!isset($_GET['load_more_ajaxing'])){
 				  if ($FBdescription) {
 					  print $this->fts_facebook_post_desc($FBdescription, $words, $FBtype, NULL, $FBby);
 				  };
-				   //Output Photo Description
-				  if ($FBdescription) {
-					  print $this->fts_facebook_post_desc($FBdescription, $words, $FBtype, NULL, $FBby);
-				  };
 				  
 				  //Output Photo Description
 				  if ($fts_fb_popup == 'yes') {
-					  print '<div class="fts-fb-caption fts-fb-album-view-link" style="display:block;">
-					  			<a href="https://graph.facebook.com/'.$FBpost_id.'/picture" class="fts-view-album-photos-large" target="_blank">View Photo</a></div>
-					  		 <div class="fts-fb-caption"><a class="view-on-facebook-albums-link" href="'.$FBlink.'" target="_blank">'.__('View on Facebook', 'feed-them-social').'</a></div>';
+					  print '<div class="fts-fb-caption fts-fb-album-view-link" style="display:block;">';
+					  
+					 
+					   			if ($FBalbum_cover) {
+					  				print '<a href="'.$photo_data->images[0]->source.'" class="fts-view-album-photos-large" target="_blank">View Photo</a></div>';
+								}
+								else{
+									print '<a href="https://graph.facebook.com/'.$FBpost_id.'/picture" class="fts-view-album-photos-large" target="_blank">View Photo</a></div>';
+								}
+					  		print '<div class="fts-fb-caption"><a class="view-on-facebook-albums-link" href="'.$FBlink.'" target="_blank">'.__('View on Facebook', 'feed-them-social').'</a></div>';
 				  };
 				  
 			  print '<div class="clear"></div></div>';						  
@@ -1039,7 +1055,7 @@ if(!isset($_GET['load_more_ajaxing'])){
 					  
 					  //Output Photo Picture
 					  if ($FBalbum_cover) {
-						 $photo_data = json_decode($response_post_array[$FBalbum_cover.'_photo']);
+						 
 						 
 						  print $this->fts_facebook_post_photo($FBlink, $type, $d->from->name, $photo_data->images[0]->source, $image_position_lr, $image_position_top);
 					  };
