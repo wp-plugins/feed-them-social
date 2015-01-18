@@ -71,8 +71,8 @@ class FTS_Facebook_Feed extends feed_them_social_functions {
 			$access_token = get_option('fts_facebook_custom_api_token');
 		}
 		else{
-			//Randomizer (Custom Facebook Feed guy aka SmashBallon hahaha)
-			$values = array('226916994002335|ks3AFvyAOckiTA1u_aDoI4HYuuw','358962200939086|lyXQ5-zqXjvYSIgEf8mEhE9gZ_M','705020102908771|rdaGxW9NK2caHCtFrulCZwJNPyY');
+			//Randomizer APPS used in order. SPR Weather, IPDgraphics Blog Feed, Spartan Systems. no name app
+			$values = array('226916994002335|ks3AFvyAOckiTA1u_aDoI4HYuuw','157070301029638|Cc1bXOkF7jyPQwg8HIOWR15ZaJY','215358261843316|0sqSnTNO3NwSfBMfan-FPuG-Eq4');
 			$access_token = $values[array_rand($values,1)];
 		}
 		
@@ -84,7 +84,7 @@ class FTS_Facebook_Feed extends feed_them_social_functions {
 		ob_start();
 		
 		switch($type)	{
-			case 'group' :
+			case 'group':
 			$fts_view_fb_link ='https://www.facebook.com/groups/'.$fts_fb_id.'/';
 			    break;
 			
@@ -92,10 +92,10 @@ class FTS_Facebook_Feed extends feed_them_social_functions {
 			$fts_view_fb_link ='https://www.facebook.com/'.$fts_fb_id.'/';
 			    break;
 			
-			case 'event' :
+			case 'event':
 			$fts_view_fb_link ='https://www.facebook.com/events/'.$fts_fb_id.'/';
-			    break;	
-				
+				break;
+			
 			case 'albums':
 			$fts_view_fb_link ='https://www.facebook.com/'.$fts_fb_id.'/photos_stream?tab=photos_albums';
 			    break;	
@@ -107,7 +107,13 @@ class FTS_Facebook_Feed extends feed_them_social_functions {
 			case 'hashtag':
 			$fts_view_fb_link ='https://www.facebook.com/hashtag/'.$fts_fb_id.'/';
 			    break;	
-				
+
+			default:
+			$type =	'page';
+			$fts_view_fb_link ='https://www.facebook.com/'.$fts_fb_id.'/';
+				break;
+		
+			
 			//	case 'videos':
 				//	$fts_view_fb_link ='https://www.facebook.com/'.$fts_fb_id.'/videos/';
 				//	break;	
@@ -127,6 +133,8 @@ class FTS_Facebook_Feed extends feed_them_social_functions {
 		
 		if(file_exists($fb_data_cache) && !filesize($fb_data_cache) == 0 && filemtime($fb_data_cache) > time() - 900 && false !== strpos($fb_data_cache,'-num'.$fts_limiter.'') and !isset($_GET['load_more_ajaxing'])) {
 			$response = $this->fts_get_feed_cache($fb_data_cache);
+			
+			$cache_used = true;
 		}
 		else{
 			  
@@ -213,12 +221,6 @@ class FTS_Facebook_Feed extends feed_them_social_functions {
 
 			 $response = $this->fts_get_feed_json($mulit_data);
 			 
-			 
-			//Make sure it's not ajaxing
-			if(!isset($_GET['load_more_ajaxing']) && !empty($response['feed_data'])){
-						 //Create Cache
-						 $this->fts_create_feed_cache($fb_data_cache, $response );
-				}
 		} // end main else			
 	
 		//Json decode data and build it from cache or response
@@ -241,7 +243,13 @@ class FTS_Facebook_Feed extends feed_them_social_functions {
 			
 			return '<div style="clear:both; padding:15px 0;">'.$output.'</div>';
 		}
-		
+		else{
+			//Make sure it's not ajaxing
+			if(!isset($_GET['load_more_ajaxing']) && !empty($response['feed_data']) && !isset($cache_used)){
+				 //Create Cache
+				 $this->fts_create_feed_cache($fb_data_cache, $response );
+			}
+		}
 	//Make sure it's not ajaxing
 	if(!isset($_GET['load_more_ajaxing'])){
 		
@@ -319,7 +327,7 @@ if(!isset($_GET['load_more_ajaxing'])){
 		else { 
        ?>
         
-        <div class="fts-jal-fb-group-display fts-simple-fb-wrapper <?php if ($fts_fb_popup == 'yes') { ?>popup-gallery-fb-posts <?php } echo $fts_dynamic_class_name ?><?php if ($height !== 'auto' && empty($height) == NULL) {?> fts-fb-scrollable<?php } ?>" <?php if ($height !== 'auto' && empty($height) == NULL) {?>style="height:<?php echo $height; ?>"<?php } ?>> <?php }
+        <div class="fts-jal-fb-group-display fts-simple-fb-wrapper <?php if(is_plugin_active('feed-them-premium/feed-them-premium.php') && $fts_fb_popup == 'yes') { ?>popup-gallery-fb-posts <?php }  echo $fts_dynamic_class_name ?><?php if ($height !== 'auto' && empty($height) == NULL) {?> fts-fb-scrollable<?php }?>" <?php if ($height !== 'auto' && empty($height) == NULL) {?>style="height:<?php echo $height; ?>"<?php } ?>> <?php }
 } //End ajaxing Check	
 		
 		$fb_post_data_cache = WP_CONTENT_DIR.'/plugins/feed-them-social/feeds/facebook/cache/fb-'.$type.'-post-'.$fts_fb_id.'-num'.$fts_limiter.'.cache';
@@ -330,16 +338,12 @@ if(!isset($_GET['load_more_ajaxing'])){
 		else{
 			//Build the big post counter.
 			$fb_post_array = array();
-			
-			//			echo '<pre>';
-			//					print_r($data);
-			//			echo '</pre>';
-			
-			$set_zero = 0;
+					
+			$set_zero_likes = 0;
 			foreach($data->data as $counter) {
 				
 				 
-				if($set_zero==$fts_limiter)
+				if($set_zero_likes==$fts_limiter)
 				break;
 				
 				$FBtype = isset($counter->type) ? $counter->type : "";				
@@ -374,6 +378,8 @@ if(!isset($_GET['load_more_ajaxing'])){
 				if($type == 'hashtag'){
 					  $fb_post_array[$post_data_key.'_photo'] = 'https://graph.facebook.com/'.$counter->source;
 				}
+				
+			
 			}
 			
 			//Response
@@ -384,20 +390,17 @@ if(!isset($_GET['load_more_ajaxing'])){
 						//Create Cache
 						$this->fts_create_feed_cache($fb_post_data_cache, $response_post_array);
 			}
+			
+			$set_zero_likes++;
 		} //End else
 		
 	$set_zero = 0;
-	
+		
 		//THE MAIN FEED
 		foreach($data->data as $d) {
 		if($set_zero==$fts_limiter)
 		break;
-		
-		//		 echo'<pre>';
-		//		  print_r($d);
-		//		 echo'</pre>';
-		
-		
+
 		//Create Facebook Variables 
 		$FBfinalstory ='';
 		$first_dir ='';
@@ -531,8 +534,9 @@ if(!isset($_GET['load_more_ajaxing'])){
 		$FBstory = isset($d->story) ? $d->story : "";	
 		
 		 $CustomDateCheck = get_option('fts-date-and-time-format');
-			  if($CustomDateCheck) {
-				$CustomDateFormat = get_option('fts-date-and-time-format');
+			  if($CustomDateCheck !== " ") {
+				  
+				$CustomDateFormat = isset($CustomDateCheck) ? $CustomDateCheck : "";
 			  }
 			  else {
 			 $CustomDateFormat = 'F jS, Y \a\t g:ia'; 
@@ -597,8 +601,9 @@ if(!isset($_GET['load_more_ajaxing'])){
 			  
 		if($type == 'album_photos' && $hide_date_likes_comments == 'yes' || $type == 'albums' && $hide_date_likes_comments == 'yes'){ }
 				else {
-				
+			 $CustomDateFormat = isset($CustomDateCheck) ? $CustomDateCheck : "";
 			  date_default_timezone_set(get_option('fts-timezone'));
+			  
 			  print '<span class="fts-jal-fb-user-name"><a href="http://facebook.com/profile.php?id='.$d->from->id.'">'.$d->from->name.'</a>'.$FBfinalstory.'</span>';
 			  print '<span class="fts-jal-fb-post-time">'.date($CustomDateFormat, $CustomTimeFormat).'</span><div class="clear"></div>';
 		
@@ -1096,11 +1101,7 @@ if(!isset($_GET['load_more_ajaxing'])){
 		print '</div>';
 		
 			 $set_zero++;
-			 
-			
 			 }	
-		
-		
 		
 		$build_shortcode = '[fts facebook';
 	
@@ -1477,16 +1478,14 @@ if(!isset($_GET['load_more_ajaxing']) && !isset($_REQUEST['fts_no_more_posts']) 
 	function fts_custom_trim_words( $text, $num_words = 45, $more) {
 			$more = __( '...' );
 	 
-		$text = nl2br($text);
 		//Filter for Hashtags and Mentions Before returning. 
 		$text= $this->fts_facebook_tag_filter($text);
 		$text = strip_shortcodes($text);
-		// Add tags that you don't want stripped
-		$text = strip_tags( $text, '<strong><br><em><i><a>' );
-	 
+		$text = str_replace("\n", "<br/>", $text);
+		
 			$words_array = preg_split( "/[\n\r\t ]+/", $text, $num_words + 1, PREG_SPLIT_NO_EMPTY );
 			$sep = ' ';
-	 
+	 			
 		if ( count( $words_array ) > $num_words ) {
 			array_pop( $words_array );
 			$text = implode( $sep, $words_array );
@@ -1494,9 +1493,10 @@ if(!isset($_GET['load_more_ajaxing']) && !isset($_REQUEST['fts_no_more_posts']) 
 		} else {
 			$text = implode( $sep, $words_array );
 		}
-		
-		
-		
+		// We have this here just before the return to solve the anomally(breaks elements on the page which kills most themes) that happens when the words are cut near a br or a.tag. Adding the line below after all the above fixes that problem
+		// Add tags that you don't want stripped
+		$text = strip_tags( $text, '<strong>,<em>,<i>,<p>,<div>,<span>,<a>,<br>' );
+	
 		return $text;
 	}
 	
@@ -1524,6 +1524,8 @@ if(!isset($_GET['load_more_ajaxing']) && !isset($_REQUEST['fts_no_more_posts']) 
 
 		return $str;
     }
+	
+	
 
 }// FTS_Facebook_Feed END CLASS
 ?>

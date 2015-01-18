@@ -38,8 +38,7 @@ $excludeReplies = true;
 	  //Check Cache
 	  if(file_exists($data_cache) && !filesize($data_cache) == 0 && filemtime($data_cache) > time() - 1800 && false !== strpos($data_cache,'-num'.$numTweets.'')){
 		$fetchedTweets = $fts_functions->fts_get_feed_cache($data_cache);
-		
-		$connection_check = true;
+		$cache_used = true;
 	  } 
 	  else {
 		include(WP_CONTENT_DIR.'/plugins/feed-them-social/feeds/twitter/twitteroauth/twitteroauth.php'); 
@@ -50,7 +49,7 @@ $excludeReplies = true;
 		$fts_twitter_custom_access_token_secret = get_option('fts_twitter_custom_access_token_secret');
 		
 		//Use custom api info  
-		if (!empty($test_fts_twitter_custom_consumer_key) && !empty($test_fts_twitter_custom_consumer_secret) && !empty($test_fts_twitter_custom_access_token) && !empty($test_fts_twitter_custom_access_token_secret)){
+		if (!empty($fts_twitter_custom_consumer_key) && !empty($fts_twitter_custom_consumer_secret) && !empty($fts_twitter_custom_access_token) && !empty($fts_twitter_custom_access_token_secret)){
 		 		$connection = new TwitterOAuthFTS(
 				//Consumer Key
 				$fts_twitter_custom_consumer_key,
@@ -89,45 +88,49 @@ $excludeReplies = true;
 			  )
 			);
 			
-			
+		}//END ELSE		
+  
+  
+  //Error Check
+  if(isset($fetchedTweets->errors)){
+  	$error_check = '<div>Oops, Somethings wrong. '.$fetchedTweets->errors[0]->message.'.</div>';
+		if($fetchedTweets->errors[0]->code == 32){
+			$error_check .= ' Please check that you have entered your Twitter API token information correctly.';
+		}
+		if($fetchedTweets->errors[0]->code == 34){
+			$error_check .= ' Please check the Twitter Username you have entered is correct.';
+		}
+  }
+  elseif(empty($fetchedTweets) && !isset($fetchedTweets->errors)){
+  	$error_check = '<div>This account has no tweets. Please Tweet to see this feed.</div>';
+  }
+  
   
 		//Does Cache folder exists? If not make it!
 		
-		
 		//IS RATE LIMIT REACHED?
 		if(isset($fetchedTweets->errors)){
+			echo '<pre>';
+			print_r($fetchedTweets->errors);
+			echo '</pre>';
 		}
-		else{
-		  $fts_functions->fts_create_feed_cache($data_cache, $fetchedTweets);
-		  
-		  $connection_check = true;
-		}
-		
-		//DID CONNECTION FAIL?
-		if($connection->http_code != 200) {
-			 if(file_exists($data_cache) && !filesize($data_cache) == 0 && false !== strpos($data_cache,'-num'.$totalToFetch.'')){
-		 		 $fetchedTweets = $fts_functions->fts_get_feed_cache($data_cache);
-				 $connection_check = true;
-			 }//END IF
-			 else{
-			 	$connection_check = false;
-			 }//END ELSE
-		}//END IF
-		else	{
-			$connection_check = true;
-		}//END ELSE
-}//END ELSE
-  
+
   // Did the fetch fail?
-  if(isset($connection_check) && $connection_check == false or isset($fetchedTweets->errors) && $fetchedTweets->errors) {
-	  echo'<div>Twitter may temporarily be down but should be back shortly!</div>';
+  if(isset($error_check)) {
+	  echo $error_check;
   }//END IF
+  
   else {
+	if (!empty($fetchedTweets)){
+	  //Cache It
+	  if (!isset($cache_used)){
+		  	$fts_functions->fts_create_feed_cache($data_cache, $fetchedTweets);
+	  }
 	 
     // Fetch succeeded.
     // Now update the array to store just what we need.
     // (Done here instead of PHP doing this for every page load)
-	if (!empty($fetchedTweets)){
+
     $limitToDisplay = min($numTweets, count($fetchedTweets));
     
     for($i = 0; $i < $limitToDisplay; $i++) {

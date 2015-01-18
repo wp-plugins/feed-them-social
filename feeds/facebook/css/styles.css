@@ -168,6 +168,7 @@
 .fts-jal-fb-user-thumb a {
 	display: block;
 }
+
 .fts-jal-single-fb-post a, .fts-jal-fb-header a {
 	-webkit-transition: all 0.30s ease-in-out;
 	-moz-transition: all 0.30s ease-in-out;
@@ -344,6 +345,9 @@
 	padding-right: 5px;
 	font-size:16px;
 	line-height:normal;
+}
+.fts-slicker-facebook-albums .fts-jal-fb-user-name a {
+	color: #FFF;
 }
 .fts-jal-fb-post-time {
 	/* float: left; */

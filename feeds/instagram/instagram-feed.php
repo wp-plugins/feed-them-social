@@ -72,7 +72,10 @@ if(file_exists($cache) && !filesize($cache) == 0 && filemtime($cache) > time() -
 } 
 else {
 	$insta_data = json_decode($response);
-	$fts_functions->fts_create_feed_cache($cache, $insta_data);
+	//if Error DON'T Cache
+	if(!isset($error_check->meta->error_message)){
+		$fts_functions->fts_create_feed_cache($cache, $insta_data);
+	}
 }
 
 if ($super_gallery == 'yes') { ?>

@@ -91,6 +91,9 @@ $fts_functions = new feed_them_social_functions();
            
            
   <?php 
+  		isset($ftsDateTimeFormat) ? $ftsDateTimeFormat : "";
+  		isset($ftsTimezone) ? $ftsTimezone : "";
+		
   		$ftsDateTimeFormat = get_option('fts-date-and-time-format');
 		$ftsTimezone = get_option('fts-timezone');
 		date_default_timezone_set(get_option('fts-timezone'));
