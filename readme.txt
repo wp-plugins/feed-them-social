@@ -53,6 +53,7 @@ If you enjoy using our plugin please tell others. [Click here to share](http://w
 
 == Changelog ==
 = Version 1.6.8 Sunday, January 18th, 2015 =
+ * FIXED: Twitter feed now uses your custom API token to make the connection where as before it was still using the default Tokens even if you had entered custom ones.
  * FIXED: Feeds from Cacheing if errors for Facebook, Twitter, Instagram.
  * FIXED: Trim words= for Facebook feed breaking themes if a url or br tag is the last element.
  * FIXED: Default App Tokens for randamizer fixed so no more error from like or comment posts in feed. With our default tokens you should not see those posts in the feed anymore either.
