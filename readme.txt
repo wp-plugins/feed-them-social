@@ -59,7 +59,7 @@ If you enjoy using our plugin please tell others. [Click here to share](http://w
  * FIXED: Default App Tokens for randamizer fixed so no more error from like or comment posts in feed. With our default tokens you should not see those posts in the feed anymore either.
  * UPDATED: Facebook Styles.
  * FIXED: Notices for date and time for Facebook.
- * FIXED: End braket issue in Facebook Feed.
+ * FIXED: End bracket issue in Facebook Feed.
  
 = Version 1.6.7 Monday, December 29th, 2014 =
   FIXED: Facebook Feed photo album covers having double descriptions.
