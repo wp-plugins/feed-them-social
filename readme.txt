@@ -52,7 +52,7 @@ If you enjoy using our plugin please tell others. [Click here to share](http://w
   * Extract the zip file and drop the contents in the wp-content/plugins/ directory of your WordPress installation and then activate the Plugin from Plugins page. 
 
 == Changelog ==
-= Version 1.6.9 Sunday, January 18th, 2015 =
+= Version 1.6.9 Monday, January 26th, 2015 =
  * FIXED: Loadmore button showing extra code and not working when Nextgen Gallery Active.
  * FIXED: Notice: Undefined variable: _plugin_file
  
