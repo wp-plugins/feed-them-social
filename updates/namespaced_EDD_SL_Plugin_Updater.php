@@ -56,7 +56,7 @@ class EDD_SL_Plugin_Updater {
 				$plug_name = $plugin_file;
 			}
 		}
-		return $plug_name;
+		return !empty($plug_name) ? $plug_name : '';
 	}
 
     /**
