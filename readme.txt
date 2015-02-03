@@ -54,7 +54,7 @@ If you enjoy using our plugin please tell others. [Click here to share](http://w
 == Changelog ==
 
 = Version 1.7.0 Monday, February 2nd, 2015 =
- * FIXED: XSS vulnerability with the loadmore button on our premium version. Thanks to James Hooker at [g0blinResearch](https://research.g0blin.co.uk/) for pointing out this problem. Check out his [twitter here](https://twitter.com/g0blinResearch).
+ * FIXED: Reflected XSS vulnerability with the load more button on our premium version. Thanks to James Hooker at [g0blinResearch](https://research.g0blin.co.uk/) for pointing out this problem. Check out his [twitter here](https://twitter.com/g0blinResearch).
 
 = Version 1.6.9 Monday, January 26th, 2015 =
  * FIXED: Loadmore button showing extra code and not working when Nextgen Gallery Active.
