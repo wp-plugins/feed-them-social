@@ -1135,7 +1135,10 @@ if(!isset($_GET['load_more_ajaxing']) && !isset($_REQUEST['fts_no_more_posts']) 
 	
 	$fts_dynamic_name = $_REQUEST['fts_dynamic_name'];
 	
-?>
+	$time = time();
+	$nonce = wp_create_nonce($time."load-more-nonce");
+	
+  ?>
 <script>
 	 jQuery(document).ready(function() {
 		  <?php 
@@ -1160,9 +1163,11 @@ if(!isset($_GET['load_more_ajaxing']) && !isset($_REQUEST['fts_no_more_posts']) 
 						var build_shortcode = '<?php if(is_plugin_active('nextgen-gallery/nggallery.php')) { ?>[<?php print $build_shortcode;?>]<?php } else { print $build_shortcode; } ?>';
 						var yes_ajax = "yes";
 						var fts_d_name = "<?php echo $fts_dynamic_name;?>";
-					
+						var fts_security = "<?php echo $nonce;?>";
+						var fts_time = "<?php echo $time;?>";		
+						
 					jQuery.ajax({
-						data: {action: "my_fts_fb_load_more", next_url: nextURL_<?php echo $fts_dynamic_name ?>, fts_dynamic_name: fts_d_name, rebuilt_shortcode: build_shortcode, load_more_ajaxing: yes_ajax},
+						data: {action: "my_fts_fb_load_more", next_url: nextURL_<?php echo $fts_dynamic_name ?>, fts_dynamic_name: fts_d_name, rebuilt_shortcode: build_shortcode, load_more_ajaxing: yes_ajax, fts_security: fts_security, fts_time: fts_time}, 
 						type: 'GET',
 						url: myAjax.ajaxurl,
 						success: function( data ) { 
