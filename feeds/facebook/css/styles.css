@@ -692,7 +692,15 @@ to {
 	display:block;
 	margin-bottom:35px;
 }
-
+.fts-instagram-fade .mfp-title p {
+	color: #fff !important; 
+}
+.fts-instagram-fade .mfp-title .fts-fb-caption a {
+  color: #FFF; 
+}
+.fts-instagram-fade .mfp-title .fts-fb-caption a:hover {
+  color: #eee; 
+}
 .fts-view-on-facebook-link:before, .view-on-facebook-albums-link:before, .fts-view-album-photos-large:before  {
 	font-family: "Fontawesome";
 	content: "\f14c ";

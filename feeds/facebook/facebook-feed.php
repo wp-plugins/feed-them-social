@@ -978,7 +978,7 @@ if(!isset($_GET['load_more_ajaxing'])){
 				   
 					  
 					  //Output Photo Picture
-					  if (!$FBname && !$FBdescription && $FBpicture)	{
+					  if ($FBpost_object_id)	{
 						  if ($FBpost_object_id)	{
 							 print '<a href="';
 								 if ($fts_fb_popup == 'yes') { 
@@ -1201,7 +1201,7 @@ if(!isset($_GET['load_more_ajaxing']) && !isset($_REQUEST['fts_no_more_posts']) 
 						}
 					<?php } ?>
 						
-					 jQuery('#loadMore_<?php echo $fts_dynamic_name ?>').html('Load More');
+					 jQuery('#loadMore_<?php echo $fts_dynamic_name ?>').html('<?php _e('Load More', 'feed-them-social') ?>');
 					  //	jQuery('#loadMore_< ?php echo $fts_dynamic_name ?>').removeClass('flip360-fts-load-more');
 					 jQuery("#loadMore_<?php echo $fts_dynamic_name ?>").removeClass('fts-fb-spinner');
 							
@@ -1267,7 +1267,7 @@ if(!isset($_GET['load_more_ajaxing']) && !isset($_REQUEST['fts_no_more_posts']) 
 							
 					// fts-fb-header-wrapper 
 					if ($fts_grid !== 'yes' && $type !== 'album_photos' && $type !== 'albums') {  print '<div class="fts-fb-load-more-wrapper">'; }	
-							 print '<div id="loadMore_'.$fts_dynamic_name.'" class="fts-fb-load-more">Load More</div>';
+							 print '<div id="loadMore_'.$fts_dynamic_name.'" class="fts-fb-load-more">'.__('Load More', 'feed-them-social').'</div>';
 					if ($fts_grid !== 'yes' && $type !== 'album_photos' && $type !== 'albums') {  print '</div>'; }	
 					
 						}
