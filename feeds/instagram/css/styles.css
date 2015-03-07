@@ -1,6 +1,9 @@
 .clear {
 	clear: both;
 }
+.fts-instagram {
+	text-align:center;
+}
 .instagram-placeholder ul, .instagram-placeholder li {
 	padding: 0 !important;
 	margin: 0 !important;
@@ -23,11 +26,11 @@
 }
 .instagram-placeholder {
 	position: relative;
-	float: left;
 	z-index: 0;
-	display: inline;
+	text-align: left;
+	display: inline-block;
 	margin: 0px 20px 20px 20px;
- 	font-family:'proxima-nova', 'Helvetica Neue', Arial, Helvetica, sans-serif !importatnt;
+	font-family: 'proxima-nova', 'Helvetica Neue', Arial, Helvetica, sans-serif !importatnt;
 }
 .widget .instagram-placeholder {
 	margin: -10px 9px 0px 10px !important;
