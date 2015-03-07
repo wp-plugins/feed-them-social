@@ -682,23 +682,25 @@ to {
 .popup-gallery-fb .fts-fb-caption {
 	display:none;
 }
+.fts-fb-album-view-link a {
+	color:#FFF;
+}
+.fts-fb-album-view-link a:hover {
+	color:#eee;
+}
 .fts-instagram-fade .fts-fb-caption {
 	display:block;
 }
 .fts-fb-caption {
 	display:none;
 }
-.fts-instagram-fade .fts-fb-caption {
-	display:block;
-	margin-bottom:35px;
-}
 .fts-instagram-fade .mfp-title p {
 	color: #fff !important; 
 }
-.fts-instagram-fade .mfp-title .fts-fb-caption a {
+.fts-instagram-fade .mfp-title  a {
   color: #FFF; 
 }
-.fts-instagram-fade .mfp-title .fts-fb-caption a:hover {
+.fts-instagram-fade .mfp-title a:hover {
   color: #eee; 
 }
 .fts-view-on-facebook-link:before, .view-on-facebook-albums-link:before, .fts-view-album-photos-large:before  {

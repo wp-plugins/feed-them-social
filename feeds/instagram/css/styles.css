@@ -494,3 +494,13 @@ to {
 	opacity: 1.0;
 }
 }
+
+.fts-instagram-fade .mfp-title p {
+	color: #fff !important; 
+}
+.fts-instagram-fade .mfp-title  a {
+  color: #FFF; 
+}
+.fts-instagram-fade .mfp-title a:hover {
+  color: #eee; 
+}
