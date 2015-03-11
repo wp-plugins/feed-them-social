@@ -405,8 +405,118 @@ jQuery(function() {
       jQuery('.fts-facebook-load-more-options-wrap').hide();
     }         
   });
+  
+  
+  
+  
+  
+  
+   // Pinterest options
+  	// hide this div till needed for free version
+	  jQuery(".feed-them-social-admin-input-label:contains('<?php _e('# of Pins', 'feed-them-social'); ?>')").parent('div').hide();
+	  
+   jQuery('#pinterest-messages-selector').bind('change', function (e) { 
+    if( jQuery('#pinterest-messages-selector').val() == 'boards_list') {
+      jQuery('.number-of-boards, .pinterest-name-text').show(); 
+	   jQuery('.board-name, .show-pins-amount, .pinterest-board-and-name-text').hide();
+	  jQuery(".feed-them-social-admin-input-label:contains('<?php _e('# of Boards', 'feed-them-social'); ?>')").parent('div').show();
+	  jQuery(".feed-them-social-admin-input-label:contains('<?php _e('# of Pins', 'feed-them-social'); ?>')").parent('div').hide();
+    }   
+  });
+   // Pinterest options
+   jQuery('#pinterest-messages-selector').bind('change', function (e) { 
+    if( jQuery('#pinterest-messages-selector').val() == 'single_board_pins') {
+      jQuery('.board-name, .show-pins-amount, .pinterest-board-and-name-text').show(); 
+	  jQuery('.number-of-boards, .pinterest-name-text').hide();
+	  jQuery(".feed-them-social-admin-input-label:contains('<?php _e('# of Boards', 'feed-them-social'); ?>')").parent('div').hide();
+	  jQuery(".feed-them-social-admin-input-label:contains('<?php _e('# of Pins', 'feed-them-social'); ?>')").parent('div').show();
+    }   
+  })
+  // Pinterest options
+   jQuery('#pinterest-messages-selector').bind('change', function (e) { 
+    if( jQuery('#pinterest-messages-selector').val() == 'pins_from_user') {
+      jQuery('.show-pins-amount, .pinterest-name-text').show(); 
+	  jQuery('.number-of-boards, .board-name, .pinterest-board-and-name-text').hide();
+	  jQuery(".feed-them-social-admin-input-label:contains('<?php _e('# of Boards', 'feed-them-social'); ?>')").parent('div').hide();
+	  jQuery(".feed-them-social-admin-input-label:contains('<?php _e('# of Pins', 'feed-them-social'); ?>')").parent('div').show();
+    }   
+  });
+  
 });
-//START Page JS/
+// JS
+
+function updateTextArea_pinterest() {
+
+	var pinterest_name = ' pinterest_name=' + jQuery("input#pinterest_name").val(); 
+	
+	if (pinterest_name == " pinterest_name=") {
+	  	 jQuery(".pinterest_name").addClass('fts-empty-error');  
+      	 jQuery("input#pinterest_name").focus();
+		 return false;
+		 
+	}
+	if (pinterest_name != " pinterest_name=") {
+	  	 jQuery(".pinterest_name").removeClass('fts-empty-error');  
+	}
+	
+	
+	var pinterest_board_name = ' board_id=' + jQuery("input#pinterest_board_name").val();
+	
+	if (pinterest_board_name == " board_id=" && jQuery("select#pinterest-messages-selector").val() == "single_board_pins") {
+	  	 jQuery(".board-name").addClass('fts-empty-error');  
+      	 jQuery("input#pinterest_board_name").focus();
+		 return false;
+		 
+	}
+	if (pinterest_board_name != " board_id=") {
+	  	 jQuery(".board-name").removeClass('fts-empty-error');  
+	}
+	
+	if (pinterest_board_name == " board_id=") {
+	  var pinterest_board_name_final='';
+	}
+	if (pinterest_board_name != " board_id="){
+	 var pinterest_board_name_final = pinterest_board_name;
+	}
+	
+	var type = ' type=' + jQuery("select#pinterest-messages-selector").val();
+
+	if (type == " type=") {
+	  var type_final='';
+	}
+	if (type != " type="){
+	 var type_final = type;
+	}
+
+<?php 
+	//Premium Plugin
+	if(is_plugin_active('feed-them-premium/feed-them-premium.php')) {
+	   include(WP_CONTENT_DIR.'/plugins/feed-them-premium/admin/js/pinterest-settings-js.js');
+	}
+	else 	{ ?>
+		   //Generate Pinterest Shortcode
+		  if (jQuery("select#pinterest-messages-selector").val() == "pins_from_user"){
+				  var final_pinterest_shorcode = '[fts pinterest' + pinterest_name + type_final +']';
+		  }
+		  else if (jQuery("select#pinterest-messages-selector").val() == "single_board_pins"){
+				  var final_pinterest_shorcode = '[fts pinterest' + pinterest_name + pinterest_board_name_final + type_final +']';
+		  }
+		  
+		  else	{
+			  var final_pinterest_shorcode = '[fts pinterest' + pinterest_name + type_final + ']';		
+		  }
+<?php } ?>
+ 
+
+	jQuery('.pinterest-final-shortcode').val(final_pinterest_shorcode);
+	
+	jQuery('.pinterest-shortcode-form .final-shortcode-textarea').slideDown();
+}
+//End Pinterest
+
+
+
+
 function updateTextArea_fb_page() {
 	var fb_feed_type = ' type=' + jQuery("select#facebook-messages-selector").val();
 	var fb_page_id = ' id=' + jQuery("input#fb_page_id").val(); 

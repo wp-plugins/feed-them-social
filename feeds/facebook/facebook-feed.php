@@ -301,7 +301,7 @@ if(!isset($_GET['load_more_ajaxing'])){
 		 jQuery(window).load(function(){ 
 			 jQuery('.<?php echo $fts_dynamic_class_name ?>').masonry({
               // select the items we want to mason
-             itemSelector: '.fts-jal-single-fb-post'
+             itemSelector: '.fts-jal-single-fb-post';
             });
 		 });
         </script>	           

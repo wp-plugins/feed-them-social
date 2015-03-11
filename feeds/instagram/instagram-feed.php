@@ -33,7 +33,6 @@ else 	{
 	$pics_count = '6';
 }
 
-
 $popup = isset($popup) ? $popup : "";
 
 if ($popup == 'yes') {
@@ -44,19 +43,24 @@ if ($popup == 'yes') {
 
 ob_start(); 
 
+	$fts_instagram_access_token = get_option('fts_instagram_custom_api_token');
+
+	if (empty($fts_instagram_access_token)) {
 	$fts_instagram_tokens_array = array('267791236.df31d88.30e266dda9f84e9f97d9e603f41aaf9e','267791236.14c1243.a5268d6ed4cf4d2187b0e98b365443af','267791236.f78cc02.bea846f3144a40acbf0e56b002c112f8','258559306.502d2c4.c5ff817f173547d89477a2bd2e6047f9');
 	$fts_instagram_access_token = $fts_instagram_tokens_array[array_rand($fts_instagram_tokens_array,1)];
-
-//URL to get Feeds
- if ($type == 'hashtag') {  
-	$insta_url = 'https://api.instagram.com/v1/tags/'.$instagram_id.'/media/recent/?access_token='.$fts_instagram_access_token;
-  } 
+	}
+	else {
+		$fts_instagram_access_token = $fts_instagram_access_token;
+	}
+	
+	//URL to get Feeds
+	 if ($type == 'hashtag') {  
+		$insta_url = 'https://api.instagram.com/v1/tags/'.$instagram_id.'/media/recent/?access_token='.$fts_instagram_access_token;
+	 } 
 	else {
  	$insta_url = 'https://api.instagram.com/v1/users/'.$instagram_id.'/media/recent/?access_token='.$fts_instagram_access_token;
 	}
-$cache = WP_CONTENT_DIR.'/plugins/feed-them-social/feeds/instagram/cache/instagram-cache-'.$instagram_id.'.cache';
-// https://api.instagram.com/v1/tags/snow/media/recent?access_token=ACCESS-TOKEN
-// https://instagram.com/oauth/authorize/?client_id=[CLIENT_ID_HERE]&redirect_uri=http://localhost&response_type=token
+	$cache = WP_CONTENT_DIR.'/plugins/feed-them-social/feeds/instagram/cache/instagram-cache-'.$instagram_id.'.cache';
 
 	//Get Data for Instagram
 	$response = wp_remote_fopen($insta_url);
@@ -116,7 +120,7 @@ if ($super_gallery == 'yes') { ?>
 <div class='slicker-instagram-placeholder fts-instagram-wrapper' style="width:<?php print $image_size ?>; margin:<?php print $space_between_photos ?>;">
 
 <?php if ($popup == 'yes') {  ?>
-<div class="fts-instagram-caption"><?php if (!$instagram_caption == '') { print ''.$instagram_caption.'<br/>';} ?><a href='<?php print $instagram_link ?>' class="fts-view-on-instagram-link" target="_blank">View on Instagram</a></div>
+<div class="fts-instagram-caption"><?php if (!$instagram_caption == '') { print ''.$instagram_caption.'<br/>';} ?><a href='<?php print $instagram_link ?>' class="fts-view-on-instagram-link" target="_blank"><?php _e('View on Instagram','feed-them-social');?></a></div>
  <?php } ?>
 
 <a href='<?php if ($popup == 'yes') { print $instagram_lowRez_url; } else { print $instagram_link; } ?>' title='<?php print $instagram_caption_a_title ?>' target="_blank" class='fts-slicker-backg fts-instagram-img-link' style="height:<?php print $icon_size ?> !important; width:<?php print $icon_size ?>; line-height:<?php print $icon_size ?>; font-size:<?php print $icon_size ?>;"><span class="fts-instagram-icon" style="height:<?php print $icon_size ?>; width:<?php print $icon_size ?>; line-height:<?php print $icon_size ?>; font-size:<?php print $icon_size ?>;"></span></a>
@@ -143,7 +147,7 @@ else {  ?>
 <div class='instagram-placeholder fts-instagram-wrapper'><?php if ($popup == 'yes') { print '<div class="fts-backg"></div>'; } else { ?>  <a class='fts-backg' target='_blank' href='<?php print $instagram_link ?>'></a>  <?php  };?>
   <div class='date'><?php print $instagram_date ?></div>
  <?php if ($popup == 'yes') {  ?>
-<div class="fts-instagram-caption"><?php if (!$instagram_caption == '') { print ''.$instagram_caption.'<br/>';} ?><a href='<?php print $instagram_link ?>' class="fts-view-on-instagram-link" target="_blank">View on Instagram</a></div>
+<div class="fts-instagram-caption"><?php if (!$instagram_caption == '') { print ''.$instagram_caption.'<br/>';} ?><a href='<?php print $instagram_link ?>' class="fts-view-on-instagram-link" target="_blank"><?php _e('View on Instagram','feed-them-social');?></a></div>
  <?php } ?>
   <a href="<?php if ($popup == 'yes') { print $instagram_lowRez_url; } else { print $instagram_link; } ?>" class='instaG-backg-link fts-instagram-img-link' target='_blank' title="<?php print $instagram_caption_a_title ?>">
     <img src="<?php print $instagram_thumb_url ?>" class="instagram-image" />
@@ -160,9 +164,6 @@ else {  ?>
 ?>
 <div class="clear"></div>
 </div>
-
-
-
 <?php 
 return ob_get_clean(); 	
 }

@@ -35,6 +35,12 @@
 .feed-them_page_fts-facebook-feed-styles-submenu-page .feed-them-social-admin-wrap h2 {
 	margin-top:45px;
 }
+.feed-them_page_fts-instagram-feed-styles-submenu-page .feed-them-social-admin-wrap h1, .feed-them_page_fts-instagram-feed-styles-submenu-page .feed-them-social-admin-wrap h2, .feed-them_page_fts-instagram-feed-styles-submenu-page .use-of-plugin {
+	color: #333;
+}
+.feed-them_page_fts-instagram-feed-styles-submenu-page .feed-them-social-admin-wrap h2 {
+	margin-top:0px;
+}
 
 .feed-them-social-admin-wrap h1 {
 	font-size: 32px;
@@ -58,7 +64,7 @@
 	line-height:19px;
 	max-width:100%;
 }
-.feed-them_page_fts-facebook-feed-styles-submenu-page .feed-them-social-admin-wrap, .feed-them_page_fts-twitter-feed-styles-submenu-page .feed-them-social-admin-wrap {
+.feed-them_page_fts-facebook-feed-styles-submenu-page .feed-them-social-admin-wrap, .feed-them_page_fts-twitter-feed-styles-submenu-page .feed-them-social-admin-wrap, .feed-them_page_fts-instagram-feed-styles-submenu-page .feed-them-social-admin-wrap {
 	max-width: 100%;
 	width:100%;
 	min-height: auto;
@@ -116,7 +122,9 @@
 	border-radius: 2px;
 	-webkit-border-radius: 2px; 
 }
-
+.pinterest-gen-selection {
+	margin-bottom:30px;
+}
 .fts-facebook_group-shortcode-form .twitter_name, .fts-fb-event-option-wrap .twitter_name {
 	display:none;
 }
@@ -144,7 +152,7 @@
 	text-transform: uppercase;
 	padding-top: 6px;
 }
-.feed-them_page_fts-facebook-feed-styles-submenu-page .feed-them-social-admin-input-label, .feed-them_page_fts-twitter-feed-styles-submenu-page .feed-them-social-admin-input-label {
+.feed-them_page_fts-facebook-feed-styles-submenu-page .feed-them-social-admin-input-label, .feed-them_page_fts-twitter-feed-styles-submenu-page .feed-them-social-admin-input-label, .feed-them_page_fts-instagram-feed-styles-submenu-page .feed-them-social-admin-input-label {
 	float: left;
 	width: 230px;
 	margin-right: 10px;
@@ -519,7 +527,7 @@ label.toggle-custom-textarea-show {
 .twitter-api-wrap .feed-them-social-admin-input-wrap {
 	margin:0;	
 }
-.fts-facebook-custom-api-token-label {
+.fts-facebook-custom-api-token-label, .fts-instagram-custom-api-token-label {
 	max-width:700px;
 	line-height:21px;
 	font-size:13px;	

@@ -6,7 +6,18 @@
 	  // select the items we want to manson
 	  itemSelector: '.slicker-instagram-placeholder'
 	});
+ 
+  // or with jQuery
+			var $container = jQuery(".fts-pins-wrapper");
+			// initialize Masonry after all images have loaded  
+			$container.imagesLoaded( function() {
+			  $container.masonry();
+			});
+				 
+ 
  });
+ 
+ 
 	
 	
 var dateFormat = function () {

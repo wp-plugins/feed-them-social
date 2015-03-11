@@ -177,7 +177,7 @@ $fts_functions = new feed_them_social_functions();
     </div><!--twitter-api-wrap-->
             
         <?php if (!empty($test_fts_twitter_custom_consumer_key) && !empty($test_fts_twitter_custom_consumer_secret) && !empty($test_fts_twitter_custom_access_token) && !empty($test_fts_twitter_custom_access_token_secret)){	 
-				if($test_connection->http_code != 200 || $fetchedTweets->errors){
+				if($test_connection->http_code != 200 || isset($fetchedTweets->errors)){
 					echo'<div class="fts-failed-api-token">'. __('Oh No something\'s wrong.', 'feed-them-social').'';
 					 foreach($fetchedTweets->errors as $error){
 					 	echo ' <strong>'.$error->message.'. </strong> '. __('You may have entered in the Access information incorrectly please re-enter and try again.', 'feed-them-social').'';

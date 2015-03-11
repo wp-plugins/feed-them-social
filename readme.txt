@@ -3,7 +3,7 @@ Contributors: slickremix
 Tags:  facebook photos, facebook albums, albums, photos facebook, photo, facebook feed, facebook posts, hastags, social, social plugin, social networking, networking, custom feed, custom facebook feed, facebook plugin, facebook group, facebook groups, events, facebook events, facebook page events, facebook group events, facebook page, facebook pages, twitter, twitter plugin, instagram, instagram plugin, feed me social, social plugin, feed, feeds, shortcode, facebook wall, slickremix, plugin, pages, posts, images, page, post, image, youtube, youtube feed, youtube channel, youtube video, youtube videos, videos, youtube embed, embed, video iframe, admin, comments, widgets, seo, wordpress, pinterest, pinterest boards, pinterest feeds, pinterest photos, pinterest widget, pinterest widgets, instagram popup
 Requires at least: 3.4.0
 Tested up to: 4.1.0
-Stable tag: 1.7.0
+Stable tag: 1.7.1
 License: GPLv2 or later
 
 Display custom feeds for Facebook Pages, Groups, Events, Album Photos and Covers -Twitter, Instagram, Pinterest and YouTube on pages, posts or widgets.
@@ -30,9 +30,9 @@ With our plugin you can create social feeds of any or all your celebrities, fami
   * [Facebook Event Feed Demo](http://feedthemsocial.com/facebook-event-feed-demo/)
   * [Instagram Feed Demo](http://feedthemsocial.com/instagram-feed-demo/)
   * [Twitter Feed Demo](http://feedthemsocial.com/twitter-feed-demo/)
+  * [Pinterest Feed Demo](http://feedthemsocial.com/pinterest/)
   
 = PREMIUM Demos =
- * [Pinterest Feed Demo](http://feedthemsocial.com/pinterest/)
  * [Youtube + Instagram + Pinterest Feeds Demo](http://feedthemsocial.com/youtube-instagram/)
  * [YouTube Feed Demo](http://feedthemsocial.com/youtube-demo-1-large-with-4-video-per-row/)
 
@@ -52,7 +52,14 @@ If you enjoy using our plugin please tell others. [Click here to share](http://w
   * Extract the zip file and drop the contents in the wp-content/plugins/ directory of your WordPress installation and then activate the Plugin from Plugins page. 
 
 == Changelog ==
-
+= Version 1.7.1 Tuesday, March 10th, 2015 =
+ * NEW: Pinterest Feed. Show Boards, Pins from a Board or your most recent Pins!
+ * FIXED: Facebook: Language option made for Load More text.
+ * FIXED: Facebook: Album photos not displaying correctly if no description.
+ * FIXED: Classic Instagram: Images are centered on page now.
+ * FIXED: Misc CSS edits for popup.
+ * FIXED: Notice: Undefined variable: _plugin_file (not sure why this did not push in vs 1.6.9)
+ 
 = Version 1.7.0 Monday, February 2nd, 2015 =
  * FIXED: Reflected XSS vulnerability and possibly an arbitrary shortcode execution vulnerability with the load more button for the Facebook Feeds. Thanks to James Hooker at [g0blinResearch](https://research.g0blin.co.uk/) for pointing out this problem. Check out his [twitter here](https://twitter.com/g0blinResearch).
 
@@ -70,9 +77,9 @@ If you enjoy using our plugin please tell others. [Click here to share](http://w
  * FIXED: End bracket issue in Facebook Feed.
  
 = Version 1.6.7 Monday, December 29th, 2014 =
-  FIXED: Facebook Feed photo album covers having double descriptions.
-  ADDED: Facebook Feeds to display error messages when feed is not working.
-  NEW: Year! HAPPY NEW YEARS to all of you SlickRemix users! See you next year with tons of new updates and products!
+ * FIXED: Facebook Feed photo album covers having double descriptions.
+ * ADDED: Facebook Feeds to display error messages when feed is not working.
+ * NEW: Year! HAPPY NEW YEARS to all of you SlickRemix users! See you next year with tons of new updates and products!
 
 = Version 1.6.6 Thursday, December 18th, 2014 =
  * NEW: Additional words and phrases that need translation. [Feed Them Social and Premium](http://glotpress.slickremix.com/projects) 
