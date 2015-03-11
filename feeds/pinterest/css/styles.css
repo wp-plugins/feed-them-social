@@ -143,6 +143,7 @@ div.pinterest-single-thumb-wrap {
 	font-family: "Helvetica Neue", arial, sans-serif !important;
 	font-size: 12px !important;
 	font-weight: bold;
+	line-height:21px;
 }
 .fts-pin-board-pin-count:before {
 	content: '';
