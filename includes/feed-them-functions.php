@@ -3,6 +3,7 @@
  	Function file for Feed Them Social plugin
 ************************************************/
 add_filter('widget_text', 'do_shortcode');
+
 if(is_plugin_active('feed-them-premium/feed-them-premium.php')) {
 // Added Scripts to allow loadmore but only if premium is active. Additional code in premium too.
 function my_fts_fb_script_enqueuer() {
@@ -12,6 +13,40 @@ function my_fts_fb_script_enqueuer() {
    wp_localize_script( 'my-fts-ajax-handle', 'myAjax', array( 'ajaxurl' => admin_url( 'admin-ajax.php' ) ) );     
 }
 add_action( 'init', 'my_fts_fb_script_enqueuer' );
+
+// This is for the fts_clear_cache_ajax submission
+function fts_clear_cache_script() {
+    wp_register_script( "fts_clear_cache_script", WP_PLUGIN_URL.'/feed-them-social/admin/js/admin.js', array('jquery') );
+	wp_localize_script( 'fts_clear_cache_script', 'ftsAjax', array( 'ajaxurl' => admin_url( 'admin-ajax.php' )));        
+	
+	wp_enqueue_script( 'jquery' );
+	wp_enqueue_script( 'fts_clear_cache_script' );
+}
+add_action( 'init', 'fts_clear_cache_script' );
+		
+// This is for the fts_clear_cache_ajax submission
+add_action( 'wp_ajax_fts_clear_cache_ajax', 'fts_clear_cache_ajax' );
+// this function is being called from admin.js... it calls the ajax in this case. 
+function fts_clear_cache_ajax() {
+      $plugins = array (
+		 1 => 'facebook',
+		 2 => 'instagram',
+		 3 => 'twitter',
+		 4 => 'pinterest',
+	   );
+	   foreach($plugins as $key => $value){
+		$files = glob(WP_CONTENT_DIR.'/plugins/feed-them-social/feeds/'.$value.'/cache/*'); // get all file names
+		  if($files){
+			foreach($files as $file){ // iterate files
+			  if(is_file($file))
+				unlink($file); // delete file
+			}//end foreach $files
+		  }// end if($files)
+	   }//end foreach $plugins
+	  return 'Cache for all FTS Feeds cleared!';
+    die();
+} // end of my_ajax_callback()
+
 // enqueue and localise scripts
 // THE AJAX ADD ACTIONS
 // this function is being called from the fb feed... it calls the ajax in this case. 
@@ -66,9 +101,8 @@ class feed_them_social_functions {
 		  add_action('admin_enqueue_scripts', array( $this,'feed_them_system_info_css'));
 		}
 		
-		
-		
 	 }//end if admin
+	 
 	     //FTS Admin Bar
 		 add_action('wp_before_admin_bar_render', array( $this,'fts_admin_bar_menu'), 999);
 	 
@@ -165,7 +199,6 @@ class feed_them_social_functions {
 	function feed_them_settings() {
 		wp_register_style( 'feed_them_settings_css', plugins_url( 'admin/css/settings-page.css',  dirname(__FILE__) ) );
 		wp_enqueue_style('feed_them_settings_css'); 
-		wp_enqueue_script( 'feed_them_settings_js', plugins_url( 'admin/js/admin.js',  dirname(__FILE__) ) );
       	if (isset($_GET['page']) && $_GET['page'] == 'fts-facebook-feed-styles-submenu-page' or isset($_GET['page']) && $_GET['page'] == 'fts-twitter-feed-styles-submenu-page') {
 			wp_enqueue_script( 'feed_them_style_options_color_js', plugins_url( 'admin/js/jscolor/jscolor.js',  dirname(__FILE__) ) );
         }
@@ -1012,7 +1045,7 @@ else{
 			$returned_cache_data = unserialize(file_get_contents($url_to_cache));
 			return $returned_cache_data;
 		}
-		
+		// Create our custom menu in the admin bar.
 		function fts_admin_bar_menu() {
 			global $wp_admin_bar;
 			if ( !is_super_admin() || !is_admin_bar_showing() )
@@ -1021,11 +1054,11 @@ else{
 			'id' => 'feed_them_social_admin_bar',
 			'title' => __( 'Feed Them Social', 'feed-them-social'),
 			'href' => FALSE ) );
-			//$wp_admin_bar->add_menu( array(
-			//'id' => 'feed_them_social_admin_bar_clear_cache',
-			//'parent' => 'feed_them_social_admin_bar',
-			//'title' => __( 'Clear ALL FTS Cache', 'feed-them-social'),
-			//'href' => '#' ) );
+			$wp_admin_bar->add_menu( array(
+			'id' => 'feed_them_social_admin_bar_clear_cache',
+			'parent' => 'feed_them_social_admin_bar',
+			'title' => __( 'Clear Cache', 'feed-them-social'),
+			'href' => '#' ) );
 			$wp_admin_bar->add_menu( array(
 			'id' => 'feed_them_social_admin_bar_settings',
 			'parent' => 'feed_them_social_admin_bar',

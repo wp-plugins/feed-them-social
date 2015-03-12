@@ -3,7 +3,7 @@ Contributors: slickremix
 Tags:  facebook photos, facebook albums, albums, photos facebook, photo, facebook feed, facebook posts, hastags, social, social plugin, social networking, networking, custom feed, custom facebook feed, facebook plugin, facebook group, facebook groups, events, facebook events, facebook page events, facebook group events, facebook page, facebook pages, twitter, twitter plugin, instagram, instagram plugin, feed me social, social plugin, feed, feeds, shortcode, facebook wall, slickremix, plugin, pages, posts, images, page, post, image, youtube, youtube feed, youtube channel, youtube video, youtube videos, videos, youtube embed, embed, video iframe, admin, comments, widgets, seo, wordpress, pinterest, pinterest boards, pinterest feeds, pinterest photos, pinterest widget, pinterest widgets, instagram popup
 Requires at least: 3.4.0
 Tested up to: 4.1.1
-Stable tag: 1.7.1
+Stable tag: 1.7.2
 License: GPLv2 or later
 
 Display custom feeds for Facebook Pages, Groups, Events, Album Photos and Covers -Twitter, Instagram, Pinterest and YouTube on pages, posts or widgets.
@@ -30,7 +30,9 @@ With our plugin you can create social feeds of any or all your celebrities, fami
   * [Facebook Event Feed Demo](http://feedthemsocial.com/facebook-event-feed-demo/)
   * [Instagram Feed Demo](http://feedthemsocial.com/instagram-feed-demo/)
   * [Twitter Feed Demo](http://feedthemsocial.com/twitter-feed-demo/)
-  * [Pinterest Feed Demo](http://feedthemsocial.com/pinterest/)
+  * [Pinterest Boards Demo](http://feedthemsocial.com/pinterest/)
+  * [Pinterest Pins from a single Board](http://feedthemsocial.com/pinterest-pins-from-a-single-board/)
+  * [Pinterest Latest Pins from a User](http://feedthemsocial.com/pinterest-demo-pins-from-user/)
   
 = PREMIUM Demos =
  * [Youtube + Instagram + Pinterest Feeds Demo](http://feedthemsocial.com/youtube-instagram/)
@@ -52,6 +54,13 @@ If you enjoy using our plugin please tell others. [Click here to share](http://w
   * Extract the zip file and drop the contents in the wp-content/plugins/ directory of your WordPress installation and then activate the Plugin from Plugins page. 
 
 == Changelog ==
+= Version 1.7.2 Thursday, March 12th, 2015 =
+ * FIXED: Pinterest: Pins not showing proper amount on List of Boards.
+ * FIXED: Pinterest: Missing js file.
+ * NEW: Menu in admin bar called Feed Them Social. Now you can Empty the cache on the same page or get the settings page quicker.
+ * NEW: Russian Language files added. Big thanks to Anton Sadykov @[http://lioncom.pro/](http://lioncom.pro/) for tranlating the Russian language.
+ * UPDATED: German French, Spanish and Portuguese language files. If you see any words or phrases not translated and would like to help please head on over to [http://glotpress.slickremix.com/projects/feed-them-social](http://glotpress.slickremix.com/projects/feed-them-social). 
+
 = Version 1.7.1 Tuesday, March 10th, 2015 =
  * NEW: Pinterest Feed. Show Boards, Pins from a Board or your most recent Pins!
  * FIXED: Facebook: Language option made for Load More text.
@@ -351,6 +360,8 @@ If you enjoy using our plugin please tell others. [Click here to share](http://w
 
 == Frequently Asked Questions ==
 You can find answers to your questions, suggest a feed, or just drop us a line at our [Support Forum](http://www.slickremix.com/support-forum).
+
+You can see Bugs and Suggested Changes here: [http://www.slickremix.com/feed-them-social-bugs-and-suggested-changes](http://www.slickremix.com/feed-them-social-bugs-and-suggested-changes)
 
 = Are there Extensions for this plugin? =
 

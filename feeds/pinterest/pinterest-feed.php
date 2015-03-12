@@ -79,14 +79,14 @@ class FTS_Pinterest_Feed extends feed_them_social_functions {
 		}
 		
 		$output ='';
-		$count = 1;
+		$count = 0;
 		$output ='<div class="fts-pinterest-wrapper">';
 		//Setup Boards
 		foreach ($boards->body as $key => $board) {
 			if($count <= $boards_count) {
 				$board_pinfo = isset($pinfo[$count.'pins']) ? json_decode($pinfo[$count.'pins']) : '';
 				$pins = isset($board_pinfo->data->pins) ? $board_pinfo->data->pins : array();
-				$board_pins_count = isset($board_pinfo->data->board->pin_count) ? '<div class="fts-pin-board-pin-count">'.$board_pinfo->data->board->pin_count.'</div>': array();
+				$board_pins_count = isset($board_pinfo->data->board->pin_count) ? '<div class="fts-pin-board-pin-count">'.$board_pinfo->data->board->pin_count.'</div>': '';
 				$output .= '<a class="fts-pin-board-wrap" href="http://pinterest.com/'.$board->href.'" target="_blank">';
 				$output .= '<h3 class="fts-pin-board-board_title"><span>'.$board->name.'</span></h3>';
 				$output .= '<div class="fts-pin-board-img-wrap"><span class="hoverMask">'.$board_pins_count.'</span>';
