@@ -57,7 +57,7 @@ If you enjoy using our plugin please tell others. [Click here to share](http://w
 = Version 1.7.2 Thursday, March 12th, 2015 =
  * FIXED: Pinterest: Pins not showing proper amount on List of Boards.
  * FIXED: Pinterest: Missing js file.
- * NEW: Menu in admin bar called Feed Them Social. Now you can Empty the cache on the same page or get the settings page quicker.
+ * NEW: Menu in admin bar called Feed Them Social. Now you can Empty the cache on the same page or get to the settings page quicker.
  * NEW: Russian Language files added. Big thanks to Anton Sadykov @[http://lioncom.pro/](http://lioncom.pro/) for tranlating the Russian language.
  * UPDATED: German French, Spanish and Portuguese language files. If you see any words or phrases not translated and would like to help please head on over to [http://glotpress.slickremix.com/projects/feed-them-social](http://glotpress.slickremix.com/projects/feed-them-social). 
 
