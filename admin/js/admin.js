@@ -1,6 +1,6 @@
 jQuery(document).ready(function() {
-    jQuery("#wp-admin-bar-feed_them_social_admin_bar_clear_cache a").click(function() {
-		
+    jQuery("#wp-admin-bar-feed_them_social_admin_bar-default a").click(function() {
+		//alert('etf');
         console.log('Submit Function');
      
         jQuery.ajax({
