@@ -1,5 +1,5 @@
 jQuery(document).ready(function() {
-    jQuery("#wp-admin-bar-feed_them_social_admin_bar-default a").click(function() {
+    jQuery("#wp-admin-bar-feed_them_social_admin_bar-default li:first-child a").click(function() {
 		//alert('etf');
         console.log('Submit Function');
      
