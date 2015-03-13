@@ -1,0 +1,1172 @@
+# Translation of Feed Them Social in Spanish (Mexico)
+# This file is distributed under the same license as the Feed Them Social package.
+msgid ""
+msgstr ""
+"PO-Revision-Date: 2015-03-11 18:50:37+0000\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: GlotPress/0.1\n"
+"Project-Id-Version: Feed Them Social\n"
+
+#: admin/feed-them-facebook-style-options-page.php:101
+msgid "Facebook API Token"
+msgstr ""
+
+#: admin/feed-them-facebook-style-options-page.php:11
+msgid "Facebook Feed Options"
+msgstr ""
+
+#: admin/feed-them-facebook-style-options-page.php:12
+msgid "Change the color of your facebook feed and more using the options below."
+msgstr ""
+
+#: admin/feed-them-facebook-style-options-page.php:123
+msgid "Facebook App ID or User Token (for all facebook feeds). Not required to make the feed work. A User Token however will allow you to see certain post types that may be returning the message, Undefined Attachment. See how to <a href=\"http://www.slickremix.com/docs/create-facebook-app-id-or-user-token\" target=\"_blank\">GET APP ID or USER TOKEN</a>."
+msgstr ""
+
+#: admin/feed-them-facebook-style-options-page.php:126
+msgid "APP ID or Token optional"
+msgstr ""
+
+#: admin/feed-them-facebook-style-options-page.php:134
+#: admin/feed-them-instagram-style-options-page.php:47
+#: admin/feed-them-twitter-style-options-page.php:188
+msgid "Your access token is working!"
+msgstr ""
+
+#: admin/feed-them-facebook-style-options-page.php:138
+#: admin/feed-them-facebook-style-options-page.php:141
+#: admin/feed-them-instagram-style-options-page.php:50
+#: admin/feed-them-twitter-style-options-page.php:181
+msgid "Oh No something's wrong."
+msgstr ""
+
+#: admin/feed-them-facebook-style-options-page.php:147
+#: admin/feed-them-instagram-style-options-page.php:53
+msgid "You are using our Default Access Token."
+msgstr ""
+
+#: admin/feed-them-facebook-style-options-page.php:153
+#: admin/feed-them-instagram-style-options-page.php:57
+#: admin/feed-them-settings-page.php:291
+#: admin/feed-them-twitter-style-options-page.php:200
+msgid "Save All Changes"
+msgstr ""
+
+#: admin/feed-them-facebook-style-options-page.php:23
+#: admin/feed-them-facebook-style-options-page.php:37
+#: admin/feed-them-twitter-style-options-page.php:27
+#: admin/feed-them-twitter-style-options-page.php:54
+msgid "Feed Text Color"
+msgstr ""
+
+#: admin/feed-them-facebook-style-options-page.php:24
+#: admin/feed-them-facebook-style-options-page.php:44
+#: admin/feed-them-twitter-style-options-page.php:28
+#: admin/feed-them-twitter-style-options-page.php:61
+msgid "Feed Link Color"
+msgstr ""
+
+#: admin/feed-them-facebook-style-options-page.php:25
+#: admin/feed-them-facebook-style-options-page.php:51
+#: admin/feed-them-twitter-style-options-page.php:29
+#: admin/feed-them-twitter-style-options-page.php:68
+msgid "Feed Link Color Hover"
+msgstr ""
+
+#: admin/feed-them-facebook-style-options-page.php:26
+#: admin/feed-them-facebook-style-options-page.php:58
+#: admin/feed-them-twitter-style-options-page.php:30
+#: admin/feed-them-twitter-style-options-page.php:75
+msgid "Feed Width"
+msgstr ""
+
+#: admin/feed-them-facebook-style-options-page.php:27
+#: admin/feed-them-twitter-style-options-page.php:31
+msgid "Feed Margin "
+msgstr ""
+
+#: admin/feed-them-facebook-style-options-page.php:28
+#: admin/feed-them-facebook-style-options-page.php:72
+#: admin/feed-them-twitter-style-options-page.php:32
+#: admin/feed-them-twitter-style-options-page.php:89
+msgid "Feed Padding"
+msgstr ""
+
+#: admin/feed-them-facebook-style-options-page.php:29
+#: admin/feed-them-facebook-style-options-page.php:79
+#: admin/feed-them-twitter-style-options-page.php:33
+#: admin/feed-them-twitter-style-options-page.php:96
+msgid "Feed Background Color"
+msgstr ""
+
+#: admin/feed-them-facebook-style-options-page.php:30
+#: admin/feed-them-facebook-style-options-page.php:86
+msgid "Feed Grid Posts Background Color (Grid style feeds ONLY)"
+msgstr ""
+
+#: admin/feed-them-facebook-style-options-page.php:31
+#: admin/feed-them-facebook-style-options-page.php:93
+#: admin/feed-them-twitter-style-options-page.php:34
+#: admin/feed-them-twitter-style-options-page.php:104
+msgid "Feed Border Bottom Color"
+msgstr ""
+
+#: admin/feed-them-facebook-style-options-page.php:65
+#: admin/feed-them-twitter-style-options-page.php:82
+msgid "Feed Margin <br/><small>To center feed type auto</small>"
+msgstr ""
+
+#: admin/feed-them-instagram-style-options-page.php:12
+msgid "Add your own API Key so your Instagram Feed does not go down."
+msgstr ""
+
+#: admin/feed-them-instagram-style-options-page.php:20
+msgid "Instagram API Token"
+msgstr ""
+
+#: admin/feed-them-instagram-style-options-page.php:35
+msgid "Instagram Access Token (for all Instagram feeds). Not required to make the feed work. An Instagram Access Token however will keep your feed from going down if you are using our default Access Tokens. Read here and see how to <a href=\"http://www.slickremix.com/docs/how-to-create-instagram-access-token\" target=\"_blank\">GET AN ACCESS TOKEN</a>."
+msgstr ""
+
+#: admin/feed-them-instagram-style-options-page.php:39
+msgid "Access Token optional"
+msgstr ""
+
+#: admin/feed-them-instagram-style-options-page.php:9
+msgid "Instagram Feed Options"
+msgstr ""
+
+#: admin/feed-them-settings-page.php:101
+msgid "FaceBook & Twitter Date Format"
+msgstr "Formato de la fecha en Facebook y Twitter"
+
+#: admin/feed-them-settings-page.php:11 includes/feed-them-functions.php:1022
+msgid "Feed Them Social"
+msgstr ""
+
+#: admin/feed-them-settings-page.php:119
+msgid "TimeZone"
+msgstr ""
+
+#: admin/feed-them-settings-page.php:12
+msgid "Select what type of feed you would like to generate a shortcode for using the select option below. Then you'll copy that shortcode to a page or post."
+msgstr "Selecciona para qué tipo de feed deseas generar el shortcode. Luego copia el shortcode para incluirlo en una página o entrada."
+
+#: admin/feed-them-settings-page.php:123
+msgid "UTC-11:00"
+msgstr ""
+
+#: admin/feed-them-settings-page.php:126
+msgid "UTC-10:00"
+msgstr ""
+
+#: admin/feed-them-settings-page.php:129
+msgid "UTC-09:30"
+msgstr ""
+
+#: admin/feed-them-settings-page.php:132
+msgid "UTC-09:00"
+msgstr ""
+
+#: admin/feed-them-settings-page.php:135
+msgid "UTC-08:00"
+msgstr ""
+
+#: admin/feed-them-settings-page.php:138
+msgid "UTC-07:00"
+msgstr ""
+
+#: admin/feed-them-settings-page.php:141
+msgid "UTC-06:00"
+msgstr ""
+
+#: admin/feed-them-settings-page.php:144
+msgid "UTC-05:00"
+msgstr ""
+
+#: admin/feed-them-settings-page.php:147
+msgid "UTC-04:30"
+msgstr ""
+
+#: admin/feed-them-settings-page.php:150
+msgid "UTC-04:00"
+msgstr ""
+
+#: admin/feed-them-settings-page.php:153
+msgid "UTC-03:30"
+msgstr ""
+
+#: admin/feed-them-settings-page.php:156
+msgid "UTC-03:00"
+msgstr ""
+
+#: admin/feed-them-settings-page.php:159
+msgid "UTC-02:00"
+msgstr ""
+
+#: admin/feed-them-settings-page.php:162
+msgid "UTC-01:00"
+msgstr ""
+
+#: admin/feed-them-settings-page.php:165
+msgid "UTC"
+msgstr ""
+
+#: admin/feed-them-settings-page.php:167
+msgid "UTC+01:00"
+msgstr ""
+
+#: admin/feed-them-settings-page.php:170
+msgid "UTC+02:00"
+msgstr ""
+
+#: admin/feed-them-settings-page.php:173
+msgid "UTC+03:00"
+msgstr ""
+
+#: admin/feed-them-settings-page.php:176
+msgid "UTC+03:30"
+msgstr ""
+
+#: admin/feed-them-settings-page.php:179
+msgid "UTC+04:00"
+msgstr ""
+
+#: admin/feed-them-settings-page.php:182
+msgid "UTC+04:30"
+msgstr ""
+
+#: admin/feed-them-settings-page.php:185
+msgid "UTC+05:00"
+msgstr ""
+
+#: admin/feed-them-settings-page.php:188
+msgid "UTC+05:30"
+msgstr ""
+
+#: admin/feed-them-settings-page.php:191
+msgid "UTC+05:45"
+msgstr ""
+
+#: admin/feed-them-settings-page.php:194 admin/feed-them-settings-page.php:197
+msgid "UTC+06:00"
+msgstr ""
+
+#: admin/feed-them-settings-page.php:200
+msgid "UTC+06:30"
+msgstr ""
+
+#: admin/feed-them-settings-page.php:203
+msgid "UTC+07:00"
+msgstr ""
+
+#: admin/feed-them-settings-page.php:206
+msgid "UTC+08:00"
+msgstr ""
+
+#: admin/feed-them-settings-page.php:209
+msgid "UTC+08:45"
+msgstr ""
+
+#: admin/feed-them-settings-page.php:212
+msgid "UTC+09:00"
+msgstr ""
+
+#: admin/feed-them-settings-page.php:215
+msgid "UTC+09:30"
+msgstr ""
+
+#: admin/feed-them-settings-page.php:218
+msgid "UTC+10:00"
+msgstr ""
+
+#: admin/feed-them-settings-page.php:221
+msgid "UTC+10:30"
+msgstr ""
+
+#: admin/feed-them-settings-page.php:224
+msgid "UTC+11:00"
+msgstr ""
+
+#: admin/feed-them-settings-page.php:227
+msgid "UTC+11:30"
+msgstr ""
+
+#: admin/feed-them-settings-page.php:230
+msgid "UTC+12:00"
+msgstr ""
+
+#: admin/feed-them-settings-page.php:233
+msgid "UTC+12:45"
+msgstr ""
+
+#: admin/feed-them-settings-page.php:236
+msgid "UTC+13:00"
+msgstr ""
+
+#: admin/feed-them-settings-page.php:239
+msgid "UTC+14:00"
+msgstr ""
+
+#: admin/feed-them-settings-page.php:24
+msgid "15% off Premium Version"
+msgstr ""
+
+#: admin/feed-them-settings-page.php:247
+msgid "Custom CSS Option"
+msgstr "Opción para poner su propio CSS"
+
+#: admin/feed-them-settings-page.php:25
+msgid "and receive 15% OFF your total order."
+msgstr ""
+
+#: admin/feed-them-settings-page.php:25
+msgid "Share here"
+msgstr "Comparte aquí"
+
+#: admin/feed-them-settings-page.php:254
+msgid "Custom CSS option is being used now."
+msgstr "Esta usando su propia version de CSS ahora."
+
+#: admin/feed-them-settings-page.php:254 admin/feed-them-settings-page.php:283
+msgid "Checked:"
+msgstr "Marcado:"
+
+#: admin/feed-them-settings-page.php:257
+msgid "You are using the default CSS."
+msgstr "Está usando el CSS default."
+
+#: admin/feed-them-settings-page.php:257 admin/feed-them-settings-page.php:286
+msgid "Not Checked:"
+msgstr "No Marcado"
+
+#: admin/feed-them-settings-page.php:262
+msgid "Show"
+msgstr "Mostrar"
+
+#: admin/feed-them-settings-page.php:262
+msgid "Hide"
+msgstr "Ocultar"
+
+#: admin/feed-them-settings-page.php:262
+msgid "custom CSS"
+msgstr "Tu propio CSS"
+
+#: admin/feed-them-settings-page.php:265
+msgid "Thanks for using our plugin :) Add your custom CSS additions or overrides below."
+msgstr "Gracias por utilizar nuestro plugin :-) Agrega tus cambios propios de CSS o código abajo."
+
+#: admin/feed-them-settings-page.php:277
+msgid "Powered by Text"
+msgstr "Motorizado por Text"
+
+#: admin/feed-them-settings-page.php:283
+msgid "You are not showing the Powered by Logo."
+msgstr "No estas mostrando el Logo de Motorizado por."
+
+#: admin/feed-them-settings-page.php:286
+msgid "The Powered by text will appear in the site. Awesome! Thanks so much for sharing."
+msgstr "El texto de Motorizado por aparecerá en el sitio. ¡Fantástico! Muchas gracias por compartir."
+
+#: admin/feed-them-settings-page.php:32
+msgid "Please Select Feed Type"
+msgstr "Por favor selecciona el tipo de Feed"
+
+#: admin/feed-them-settings-page.php:327 admin/feed-them-settings-page.php:333
+#: includes/feed-them-functions.php:428 includes/feed-them-functions.php:497
+#: includes/feed-them-functions.php:594
+msgid "Display Posts in Grid"
+msgstr ""
+
+#: admin/feed-them-settings-page.php:33
+msgid "Facebook Feed"
+msgstr ""
+
+#: admin/feed-them-settings-page.php:34
+msgid "Twitter Feed"
+msgstr "Feed de Twitter"
+
+#: admin/feed-them-settings-page.php:35 includes/feed-them-functions.php:729
+#: includes/feed-them-functions.php:740
+msgid "Instagram Feed"
+msgstr "Feed de Instagram"
+
+#: admin/feed-them-settings-page.php:36
+msgid "YouTube Feed"
+msgstr "Feed de YouTube"
+
+#: admin/feed-them-settings-page.php:37 includes/feed-them-functions.php:865
+msgid "Pinterest Feed"
+msgstr "Feed de Pinterest"
+
+#: admin/feed-them-settings-page.php:384
+msgid "Center Facebook Container?"
+msgstr ""
+
+#: admin/feed-them-settings-page.php:416 admin/feed-them-settings-page.php:423
+#: admin/feed-them-settings-page.php:432 admin/feed-them-settings-page.php:441
+msgid "# of Pins"
+msgstr ""
+
+#: admin/feed-them-settings-page.php:422 admin/feed-them-settings-page.php:431
+#: admin/feed-them-settings-page.php:440
+msgid "# of Boards"
+msgstr "# de Boletines"
+
+#: admin/feed-them-settings-page.php:69
+msgid "Clear All Cache Option"
+msgstr "Opción para limpiar todo el Cache"
+
+#: admin/feed-them-settings-page.php:70
+msgid "Please Clear Cache if you have changed a FTS Shortcode. This will Allow you to see the NEW feed's options you just set!"
+msgstr "Por favor limpie el Cache si ha cambiado algun shortcode del FTS. Esto le permitirá poder ver las opciones NUEVAS que acaba de ajustar del feed."
+
+#: admin/feed-them-settings-page.php:78
+msgid "Clear All FTS Feeds Cache"
+msgstr "Lipiar Todo el Cache de los Feeds del FTS"
+
+#: admin/feed-them-system-info.php:101
+msgid "WP Debug Mode"
+msgstr "Modo de Debug de WordPress"
+
+#: admin/feed-them-system-info.php:102
+#: admin/feed-them-twitter-style-options-page.php:45
+#: includes/feed-them-functions.php:632 includes/feed-them-functions.php:635
+#: includes/feed-them-functions.php:638 includes/feed-them-functions.php:774
+#: includes/feed-them-functions.php:789 includes/feed-them-functions.php:791
+#: includes/feed-them-functions.php:794
+msgid "No"
+msgstr "No"
+
+#: admin/feed-them-system-info.php:102
+#: admin/feed-them-twitter-style-options-page.php:46
+#: includes/feed-them-functions.php:632 includes/feed-them-functions.php:635
+#: includes/feed-them-functions.php:638 includes/feed-them-functions.php:774
+#: includes/feed-them-functions.php:789 includes/feed-them-functions.php:791
+#: includes/feed-them-functions.php:794
+msgid "Yes"
+msgstr "Si"
+
+#: admin/feed-them-system-info.php:105
+msgid "fsockopen"
+msgstr "fsockopen"
+
+#: admin/feed-them-system-info.php:108
+msgid "fsockopen is ON"
+msgstr ""
+
+#: admin/feed-them-system-info.php:11
+msgid "Plugin &amp; System Info"
+msgstr ""
+
+#: admin/feed-them-system-info.php:111
+msgid "fsockopen is not enabled and must be set to ON for our plugin to work properly with all feeds."
+msgstr ""
+
+#: admin/feed-them-system-info.php:117
+msgid "cURL"
+msgstr ""
+
+#: admin/feed-them-system-info.php:12
+msgid "Please"
+msgstr ""
+
+#: admin/feed-them-system-info.php:12
+msgid "click here to generate a report"
+msgstr ""
+
+#: admin/feed-them-system-info.php:12
+msgid "You will need to paste this information along with your question in our"
+msgstr ""
+
+#: admin/feed-them-system-info.php:12
+msgid "Ask your question then paste the copied text below it."
+msgstr ""
+
+#: admin/feed-them-system-info.php:133
+msgid "cURL is "
+msgstr ""
+
+#: admin/feed-them-system-info.php:135 admin/feed-them-system-info.php:143
+msgid "installed"
+msgstr ""
+
+#: admin/feed-them-system-info.php:137 admin/feed-them-system-info.php:145
+msgid "on this server"
+msgstr ""
+
+#: admin/feed-them-system-info.php:141
+msgid "cURL is NOT "
+msgstr ""
+
+#: admin/feed-them-system-info.php:17
+msgid "Versions"
+msgstr "Versiones"
+
+#: admin/feed-them-system-info.php:22
+msgid "Feed Them Social Plugin version"
+msgstr "Versión del Plugin Feed Them Social"
+
+#: admin/feed-them-system-info.php:26
+msgid "WordPress version"
+msgstr "Versión de WordPress"
+
+#: admin/feed-them-system-info.php:31
+msgid "Installed plugins"
+msgstr "Plugins Instalados"
+
+#: admin/feed-them-system-info.php:49
+msgid "by"
+msgstr "por"
+
+#: admin/feed-them-system-info.php:49
+msgid "version"
+msgstr "versión"
+
+#: admin/feed-them-system-info.php:6
+msgid "Get Extensions Here!"
+msgstr ""
+
+#: admin/feed-them-system-info.php:62
+msgid "Server Environment"
+msgstr "Ambiente del Servidor"
+
+#: admin/feed-them-system-info.php:67
+msgid "PHP Version"
+msgstr "Version del PHP"
+
+#: admin/feed-them-system-info.php:7 includes/feed-them-functions.php:150
+#: includes/feed-them-functions.php:151
+msgid "System Info"
+msgstr ""
+
+#: admin/feed-them-system-info.php:80
+msgid "WARNING: "
+msgstr ""
+
+#: admin/feed-them-system-info.php:82
+msgid "Your version of php must be 5.3 or greater to use this plugin. Please upgrade the php by contacting your host provider. Some host providers will allow you to change this yourself in the hosting control panel too."
+msgstr ""
+
+#: admin/feed-them-system-info.php:89
+msgid "Server Software"
+msgstr "Programas en el Servidor"
+
+#: admin/feed-them-system-info.php:9
+msgid "Can't figure out how to do something and need help? Use our"
+msgstr ""
+
+#: admin/feed-them-system-info.php:9
+msgid "and someone will respond to your request asap. Usually we will respond the same day, the latest the following day. You may also find some of the existing posts to be helpfull too, so take a look around first. If you do submit a question please"
+msgstr ""
+
+#: admin/feed-them-system-info.php:9
+msgid "generate a report"
+msgstr ""
+
+#: admin/feed-them-system-info.php:9
+msgid "and copy the info, ask your question in our"
+msgstr ""
+
+#: admin/feed-them-system-info.php:9
+msgid "then paste the info you just copied. That will help speed things along for sure."
+msgstr ""
+
+#: admin/feed-them-system-info.php:9 admin/feed-them-system-info.php:12
+msgid "Support Forum"
+msgstr ""
+
+#: admin/feed-them-system-info.php:95
+msgid "WP Max Upload Size"
+msgstr "Tamaño máximo de archivos que se pueden subir a WordPress"
+
+#: admin/feed-them-twitter-style-options-page.php:113
+msgid "Twitter API Token"
+msgstr ""
+
+#: admin/feed-them-twitter-style-options-page.php:14
+msgid "Twitter Feed Options"
+msgstr ""
+
+#: admin/feed-them-twitter-style-options-page.php:149
+msgid "If you keep seeing the message 'sorry twitter is down and will be right back', it may be a good idea to add your own tokens below. See how to <a href=\"http://www.slickremix.com/docs/how-to-get-api-keys-and-tokens-for-twitter/\" target=\"_blank\">get API Keys and Tokens for Twitter</a>. Leave the fields below empty to use our Default API access tokens. If you do add your own tokens, after Saving all Changes make sure and <a href=\"admin.php?page=feed-them-settings-page&cache=clearcache\">click here to delete cache</a>."
+msgstr ""
+
+#: admin/feed-them-twitter-style-options-page.php:15
+msgid "Change the color of your twitter feed and more using the options below."
+msgstr ""
+
+#: admin/feed-them-twitter-style-options-page.php:153
+msgid "Consumer Key (API Key)"
+msgstr ""
+
+#: admin/feed-them-twitter-style-options-page.php:160
+msgid "Consumer Secret (API Secret)"
+msgstr ""
+
+#: admin/feed-them-twitter-style-options-page.php:167
+msgid "Access Token"
+msgstr ""
+
+#: admin/feed-them-twitter-style-options-page.php:173
+msgid "Access Token Secret"
+msgstr ""
+
+#: admin/feed-them-twitter-style-options-page.php:183
+msgid "You may have entered in the Access information incorrectly please re-enter and try again."
+msgstr ""
+
+#: admin/feed-them-twitter-style-options-page.php:192
+msgid "You are using our Default Access info."
+msgstr ""
+
+#: admin/feed-them-twitter-style-options-page.php:26
+#: admin/feed-them-twitter-style-options-page.php:42
+msgid "Hide Profile Photo"
+msgstr ""
+
+#: feed-them.php:91
+msgid "<strong>Warning:</strong> Your php version is "
+msgstr ""
+
+#: feeds/facebook/facebook-feed.php:1204 feeds/facebook/facebook-feed.php:1270
+msgid "Load More"
+msgstr ""
+
+#: feeds/facebook/facebook-feed.php:1483
+msgid "..."
+msgstr ""
+
+#: feeds/facebook/facebook-feed.php:620 feeds/facebook/facebook-feed.php:629
+#: feeds/facebook/facebook-feed.php:673 feeds/facebook/facebook-feed.php:976
+#: feeds/facebook/facebook-feed.php:1452 feeds/facebook/facebook-feed.php:1468
+#: feeds/facebook/facebook-feed.php:1473
+msgid "View on Facebook"
+msgstr "Ver en Facebook"
+
+#: feeds/facebook/facebook-feed.php:713
+msgid "This user's permissions are keeping you from seeing this post. Please Click \"View on Facebook\" to view this post on this group's facebook wall."
+msgstr "Los permisos de este usuario no permiten que puedas ver este post. Por favor da click en \"Ver en Facebook\" para poder ver este post en la pared de este grupo de facebook."
+
+#: feeds/instagram/instagram-feed.php:123
+#: feeds/instagram/instagram-feed.php:150
+msgid "View on Instagram"
+msgstr ""
+
+#: feeds/twitter-new/twitter-feed.php:263
+msgid "Followers:"
+msgstr ""
+
+#: includes/feed-them-functions.php:102
+msgid "Warning: <strong>"
+msgstr ""
+
+#: includes/feed-them-functions.php:116 includes/feed-them-functions.php:1032
+msgid "Settings"
+msgstr ""
+
+#: includes/feed-them-functions.php:123 includes/feed-them-functions.php:124
+msgid "Facebook Options"
+msgstr ""
+
+#: includes/feed-them-functions.php:132 includes/feed-them-functions.php:133
+msgid "Twitter Options"
+msgstr ""
+
+#: includes/feed-them-functions.php:141 includes/feed-them-functions.php:142
+msgid "Instagram Options"
+msgstr ""
+
+#: includes/feed-them-functions.php:399
+msgid "Facebook Event Shortcode Generator"
+msgstr ""
+
+#: includes/feed-them-functions.php:401
+msgid "Facebook Page Event ID"
+msgstr ""
+
+#: includes/feed-them-functions.php:401 includes/feed-them-functions.php:460
+#: includes/feed-them-functions.php:550 includes/feed-them-functions.php:551
+#: includes/feed-them-functions.php:552 includes/feed-them-functions.php:553
+#: includes/feed-them-functions.php:554 includes/feed-them-functions.php:555
+#: includes/feed-them-functions.php:679 includes/feed-them-functions.php:833
+#: includes/feed-them-functions.php:874
+msgid "and paste it in the first input below."
+msgstr ""
+
+#: includes/feed-them-functions.php:401 includes/feed-them-functions.php:550
+#: includes/feed-them-functions.php:551 includes/feed-them-functions.php:552
+#: includes/feed-them-functions.php:553 includes/feed-them-functions.php:554
+#: includes/feed-them-functions.php:555 includes/feed-them-functions.php:874
+#: includes/feed-them-functions.php:875
+msgid "Copy your"
+msgstr ""
+
+#: includes/feed-them-functions.php:403
+msgid "Facebook Event ID (required)"
+msgstr "ID del Evento de Facebook (requerido)"
+
+#: includes/feed-them-functions.php:409 includes/feed-them-functions.php:468
+#: includes/feed-them-functions.php:604 includes/feed-them-functions.php:630
+msgid "Facebook Fixed Height"
+msgstr ""
+
+#: includes/feed-them-functions.php:409 includes/feed-them-functions.php:468
+#: includes/feed-them-functions.php:604 includes/feed-them-functions.php:687
+msgid "Leave blank for auto height"
+msgstr ""
+
+#: includes/feed-them-functions.php:410 includes/feed-them-functions.php:469
+#: includes/feed-them-functions.php:605 includes/feed-them-functions.php:688
+msgid "for example"
+msgstr ""
+
+#: includes/feed-them-functions.php:422 includes/feed-them-functions.php:491
+#: includes/feed-them-functions.php:588
+msgid "# of Posts (default 5)"
+msgstr ""
+
+#: includes/feed-them-functions.php:423
+msgid "Show the Event Title"
+msgstr ""
+
+#: includes/feed-them-functions.php:424
+msgid "Show the Event Description"
+msgstr ""
+
+#: includes/feed-them-functions.php:425 includes/feed-them-functions.php:494
+#: includes/feed-them-functions.php:591
+msgid "Amount of words per post"
+msgstr ""
+
+#: includes/feed-them-functions.php:426 includes/feed-them-functions.php:495
+#: includes/feed-them-functions.php:592
+msgid "Load More Posts"
+msgstr ""
+
+#: includes/feed-them-functions.php:427 includes/feed-them-functions.php:496
+#: includes/feed-them-functions.php:593 includes/feed-them-functions.php:699
+#: includes/feed-them-functions.php:804
+msgid "Display Photos in Popup"
+msgstr ""
+
+#: includes/feed-them-functions.php:437 includes/feed-them-functions.php:506
+#: includes/feed-them-functions.php:708 includes/feed-them-functions.php:813
+#: includes/feed-them-functions.php:904
+msgid "Save Changes"
+msgstr "Guardar los cambios"
+
+#: includes/feed-them-functions.php:458
+msgid "Facebook Group Shortcode Generator"
+msgstr "Generador de Shortcode para Grupo de Facebook"
+
+#: includes/feed-them-functions.php:460
+msgid "You must copy your "
+msgstr ""
+
+#: includes/feed-them-functions.php:460
+msgid "Facebook Group ID "
+msgstr ""
+
+#: includes/feed-them-functions.php:462
+msgid "Facebook Group ID (required)"
+msgstr "ID del Grupo de Facebook (requerido)"
+
+#: includes/feed-them-functions.php:492
+msgid "Show the Group Title"
+msgstr ""
+
+#: includes/feed-them-functions.php:493
+msgid "Show the Group Description"
+msgstr ""
+
+#: includes/feed-them-functions.php:530
+msgid "Facebook Page Shortcode Generator"
+msgstr "Generador de Shortcode de Página de Facebook"
+
+#: includes/feed-them-functions.php:537 includes/feed-them-functions.php:730
+#: includes/feed-them-functions.php:866
+msgid "Feed Type"
+msgstr ""
+
+#: includes/feed-them-functions.php:539
+msgid "Facebook Page"
+msgstr ""
+
+#: includes/feed-them-functions.php:540
+msgid "Facebook Group"
+msgstr ""
+
+#: includes/feed-them-functions.php:541
+msgid "Facebook Even"
+msgstr ""
+
+#: includes/feed-them-functions.php:542
+msgid "Facebook Album Photos"
+msgstr ""
+
+#: includes/feed-them-functions.php:543
+msgid "Facebook Album Covers"
+msgstr ""
+
+#: includes/feed-them-functions.php:544 includes/feed-them-functions.php:555
+msgid "Facebook Hashtag"
+msgstr ""
+
+#: includes/feed-them-functions.php:550
+msgid "Facebook Page ID"
+msgstr ""
+
+#: includes/feed-them-functions.php:551
+msgid "Facebook Group ID"
+msgstr ""
+
+#: includes/feed-them-functions.php:552
+msgid "Facebook Event ID"
+msgstr ""
+
+#: includes/feed-them-functions.php:553
+msgid "Facebook Album ID"
+msgstr ""
+
+#: includes/feed-them-functions.php:554
+msgid "Facebook Album Covers ID"
+msgstr ""
+
+#: includes/feed-them-functions.php:558
+msgid "Facebook ID (required)"
+msgstr ""
+
+#: includes/feed-them-functions.php:564
+msgid "Album ID (required)"
+msgstr ""
+
+#: includes/feed-them-functions.php:571
+msgid "Post Type Visible"
+msgstr "Tipo de entrada visible"
+
+#: includes/feed-them-functions.php:573
+msgid "Display Posts made by Page only"
+msgstr ""
+
+#: includes/feed-them-functions.php:574
+msgid "Display Posts made by Others"
+msgstr ""
+
+#: includes/feed-them-functions.php:589
+msgid "Show the Page Title"
+msgstr ""
+
+#: includes/feed-them-functions.php:590
+msgid "Show the Page Description"
+msgstr ""
+
+#: includes/feed-them-functions.php:595
+msgid "Center Grid"
+msgstr ""
+
+#: includes/feed-them-functions.php:596
+msgid "Grid Stack Animation"
+msgstr ""
+
+#: includes/feed-them-functions.php:618
+msgid "Facebook Image Width"
+msgstr ""
+
+#: includes/feed-them-functions.php:618 includes/feed-them-functions.php:622
+#: includes/feed-them-functions.php:778
+msgid "Max is 640px. You can use % too."
+msgstr ""
+
+#: includes/feed-them-functions.php:622
+msgid "Facebook Image Height"
+msgstr ""
+
+#: includes/feed-them-functions.php:626 includes/feed-them-functions.php:784
+msgid "The space between photos"
+msgstr ""
+
+#: includes/feed-them-functions.php:630
+msgid "Hide Date, Likes and Comments"
+msgstr ""
+
+#: includes/feed-them-functions.php:634
+msgid "Center Facebook Container"
+msgstr ""
+
+#: includes/feed-them-functions.php:637
+msgid "This happens when resizing browsert"
+msgstr ""
+
+#: includes/feed-them-functions.php:637 includes/feed-them-functions.php:793
+msgid "Image Stacking Animation On"
+msgstr ""
+
+#: includes/feed-them-functions.php:640
+msgid "These options allow you to make the thumbnail larger if you do not want to see black bars above or below your photos."
+msgstr ""
+
+#: includes/feed-them-functions.php:640
+msgid "View Examples"
+msgstr ""
+
+#: includes/feed-them-functions.php:640
+msgid "and simple details or leave default options."
+msgstr ""
+
+#: includes/feed-them-functions.php:641
+msgid "Make photo larger"
+msgstr ""
+
+#: includes/feed-them-functions.php:641
+msgid "Helps with blackspace"
+msgstr ""
+
+#: includes/feed-them-functions.php:642 includes/feed-them-functions.php:646
+msgid "is default"
+msgstr ""
+
+#: includes/feed-them-functions.php:645
+msgid "Image Position Top"
+msgstr ""
+
+#: includes/feed-them-functions.php:645
+msgid "Helps center image"
+msgstr ""
+
+#: includes/feed-them-functions.php:677
+msgid "Twitter Shortcode Generator"
+msgstr "Generador de Shortcode de Twitter"
+
+#: includes/feed-them-functions.php:679
+msgid "Twitter Name"
+msgstr ""
+
+#: includes/feed-them-functions.php:679 includes/feed-them-functions.php:744
+#: includes/feed-them-functions.php:833
+msgid "You must copy your"
+msgstr ""
+
+#: includes/feed-them-functions.php:681
+msgid "Twitter Name (required)"
+msgstr "Nombre en Twitter (requerido)"
+
+#: includes/feed-them-functions.php:687
+msgid "Twitter Fixed Height"
+msgstr ""
+
+#: includes/feed-them-functions.php:698
+msgid "# of Tweets (default 5)"
+msgstr ""
+
+#: includes/feed-them-functions.php:732
+msgid "User Feed"
+msgstr ""
+
+#: includes/feed-them-functions.php:733
+msgid "Hashtag Feed"
+msgstr ""
+
+#: includes/feed-them-functions.php:744
+msgid "Instagram Name"
+msgstr ""
+
+#: includes/feed-them-functions.php:744
+msgid "and paste it in the first input below"
+msgstr ""
+
+#: includes/feed-them-functions.php:746
+msgid "Instagram Name (required)"
+msgstr "Nombre en Instagram (requerido)"
+
+#: includes/feed-them-functions.php:750
+msgid "Convert Instagram Username"
+msgstr "Convertir nombre de usuario de Instagram"
+
+#: includes/feed-them-functions.php:760
+msgid "Instagram Shortcode Generator"
+msgstr "Generador de Shortcode de Instagram"
+
+#: includes/feed-them-functions.php:762
+msgid "If you added your ID above and clicked convert, a number should appear in the input below, now continue."
+msgstr "Si agregaste ti ID arriba y le diste click a convertir, debera aparecer un número en el espacio de abajo, y podrás continuar."
+
+#: includes/feed-them-functions.php:763
+msgid "Add your Hashtag below. Do not add the #, just the name."
+msgstr ""
+
+#: includes/feed-them-functions.php:765
+msgid "Instagram ID # (required)"
+msgstr "ID # de Instagram (requerido)"
+
+#: includes/feed-them-functions.php:766
+msgid "Hashtag (required)"
+msgstr ""
+
+#: includes/feed-them-functions.php:773
+msgid "Super Instagram Gallery"
+msgstr ""
+
+#: includes/feed-them-functions.php:777
+msgid "Super Instagram Gallery Options"
+msgstr ""
+
+#: includes/feed-them-functions.php:777
+msgid "View demos and"
+msgstr ""
+
+#: includes/feed-them-functions.php:777
+msgid "on setup instructions."
+msgstr ""
+
+#: includes/feed-them-functions.php:778
+msgid "Instagram Image Size"
+msgstr ""
+
+#: includes/feed-them-functions.php:781
+msgid "Size of the Instagram Icon"
+msgstr ""
+
+#: includes/feed-them-functions.php:781
+msgid "Visible when you hover over photo"
+msgstr ""
+
+#: includes/feed-them-functions.php:787
+msgid "Hide Date, Likes and comments"
+msgstr ""
+
+#: includes/feed-them-functions.php:787
+msgid "Good for image sizes under 120px"
+msgstr ""
+
+#: includes/feed-them-functions.php:790
+msgid "Center Instagram Container"
+msgstr ""
+
+#: includes/feed-them-functions.php:793
+msgid "This happens when resizing browser"
+msgstr ""
+
+#: includes/feed-them-functions.php:803
+msgid "# of Pics (default 5)"
+msgstr ""
+
+#: includes/feed-them-functions.php:831
+msgid "YouTube Shortcode Generator"
+msgstr "Generador de Shortcode para YouTube"
+
+#: includes/feed-them-functions.php:833 includes/feed-them-functions.php:840
+msgid "YouTube Name"
+msgstr "Nombre en YouTube"
+
+#: includes/feed-them-functions.php:841
+msgid "# of videos"
+msgstr "# de videos"
+
+#: includes/feed-them-functions.php:842
+msgid "# of videos in each row"
+msgstr " # de videos en cada fila"
+
+#: includes/feed-them-functions.php:843
+msgid "Display First video full size"
+msgstr "Mostrar el primer video en tamaño completo"
+
+#: includes/feed-them-functions.php:846
+msgid "Click to see Premium Version"
+msgstr "Has click para ver la Versión Premium"
+
+#: includes/feed-them-functions.php:868
+msgid "Board List"
+msgstr ""
+
+#: includes/feed-them-functions.php:869
+msgid "Pins From a Specific Board"
+msgstr ""
+
+#: includes/feed-them-functions.php:870
+msgid "Latest Pins from a User"
+msgstr ""
+
+#: includes/feed-them-functions.php:874
+msgid "Pinterest Name"
+msgstr "Nombre en Pinterest"
+
+#: includes/feed-them-functions.php:875
+msgid "Pinterest and Board Name"
+msgstr ""
+
+#: includes/feed-them-functions.php:875
+msgid "and paste them below."
+msgstr ""
+
+#: includes/feed-them-functions.php:879
+msgid "Pinterest Username (required)"
+msgstr ""
+
+#: includes/feed-them-functions.php:884
+msgid "Pinterest Board Name (required)"
+msgstr ""
+
+#: includes/feed-them-functions.php:894
+msgid "# of Boards (default 6)"
+msgstr ""
+
+#: includes/feed-them-functions.php:895
+msgid "# of Pins (default 6)"
+msgstr ""
+
+#: includes/feed-them-functions.php:900
+msgid "Pinterest Feed Shortcode"
+msgstr ""
+
+#: includes/feed-them-functions.php:911
+msgid "Generate Shortcode"
+msgstr "Generar Shortcode"
+
+#: includes/feed-them-functions.php:913
+msgid "Copy the ShortCode below and paste it on a page or post that you want to display your feed."
+msgstr "Copia el siguiente Shortcode y pégalo en la página o entrada donde deseas que se muestre el feed."
+
+#: updates/EDD_SL_Plugin_Licence_Manager.php:36
+#: updates/namespaced_EDD_SL_Plugin_Licence_Manager.php:37
+msgid "Plugin License Options"
+msgstr "Opciones para la Licencia del Plugin"
+
+#: updates/EDD_SL_Plugin_Licence_Manager.php:68
+#: updates/namespaced_EDD_SL_Plugin_Licence_Manager.php:69
+msgid "Enter your license key"
+msgstr "Pon aquí tu licencia"
+
+#: updates/EDD_SL_Plugin_Licence_Manager.php:71
+#: updates/namespaced_EDD_SL_Plugin_Licence_Manager.php:72
+msgid "Deactivate License"
+msgstr "Desactivar Licencia"
+
+#: updates/EDD_SL_Plugin_Licence_Manager.php:72
+#: updates/namespaced_EDD_SL_Plugin_Licence_Manager.php:73
+msgid "- Active"
+msgstr "-Activar"
+
+#: updates/EDD_SL_Plugin_Licence_Manager.php:75
+#: updates/namespaced_EDD_SL_Plugin_Licence_Manager.php:76
+msgid "Activate License"
+msgstr "Activar Licencia"
+
+#: updates/namespaced_EDD_SL_Plugin_Updater.php:175
+msgid "There is a new version of %1$s available. <a target=\"_blank\" class=\"thickbox\" href=\"%2$s\">View version %3$s details</a>."
+msgstr ""
+
+#: updates/namespaced_EDD_SL_Plugin_Updater.php:182
+msgid "There is a new version of %1$s available. <a target=\"_blank\" class=\"thickbox\" href=\"%2$s\">View version %3$s details</a> or <a href=\"%4$s\">update now</a>."
+msgstr ""
+
+#: updates/namespaced_EDD_SL_Plugin_Updater.php:322
+msgid "You do not have permission to install plugin updates"
+msgstr ""
+
+#: updates/namespaced_EDD_SL_Plugin_Updater.php:322
+msgid "Error"
+msgstr ""
