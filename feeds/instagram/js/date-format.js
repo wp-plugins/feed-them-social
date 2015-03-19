@@ -15,7 +15,7 @@
 			});
 				 
 			// For Facebook
-			var $container2 = jQuery(".fts-simple-fb-wrapper");
+			var $container2 = jQuery(".fts-slicker-facebook-posts");
 			// initialize Masonry after all images have loaded  
 			$container2.imagesLoaded( function() {
 			  $container2.masonry();
