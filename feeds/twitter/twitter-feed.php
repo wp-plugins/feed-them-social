@@ -41,7 +41,7 @@ $excludeReplies = true;
 		$cache_used = true;
 	  } 
 	  else {
-		include(WP_CONTENT_DIR.'/plugins/feed-them-social/feeds/twitter/twitteroauth/twitteroauth.php'); 
+		include_once(WP_CONTENT_DIR.'/plugins/feed-them-social/feeds/twitter/twitteroauth/twitteroauth.php'); 
 		  
 		$fts_twitter_custom_consumer_key = get_option('fts_twitter_custom_consumer_key');
 		$fts_twitter_custom_consumer_secret = get_option('fts_twitter_custom_consumer_secret');
@@ -77,7 +77,7 @@ $excludeReplies = true;
 			// If excluding replies, we need to fetch more than requested as the
 			// total is fetched first, and then replies removed.
 			$totalToFetch = ($excludeReplies) ? max(50, $numTweets * 3) : $numTweets;
-			
+			$description_image = !empty($description_image) ? $description_image : '' ;
 			$fetchedTweets = $connection->get(
 			'statuses/user_timeline',
 			  array(
