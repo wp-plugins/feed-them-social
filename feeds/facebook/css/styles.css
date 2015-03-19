@@ -1,6 +1,9 @@
 /*=================================================
 	Font Awesome icons for facebook feeds 
 =================================================*/
+.fts-jal-single-fb-post .icon-thumbs-up:before{content:"\f164" !important;}
+.fts-jal-single-fb-post .icon-comments:before{content:"\f086" !important;}
+
 .fts-jal-single-fb-post [class^="icon-"] {
 	margin: 0 !important;
 	display: block;
@@ -339,7 +342,7 @@
 }
 .fts-jal-fb-user-name {
 	font-weight: bold;
-	color: #C00;
+	color: #888;
 	display:block;
 	padding-top:3px;
 	padding-right: 5px;

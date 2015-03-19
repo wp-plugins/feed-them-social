@@ -20,6 +20,7 @@ function feed_them_facebook_options_page() {
 	if (!is_plugin_active('feed-them-premium/feed-them-premium.php')){
 		  	
 			 $FB_style_options = array(
+				__('Feed Header Extra Text Color', 'feed-them-social'),
 				__('Feed Text Color', 'feed-them-social'),
 				__('Feed Link Color', 'feed-them-social'),
 				__('Feed Link Color Hover', 'feed-them-social'),
@@ -34,6 +35,12 @@ function feed_them_facebook_options_page() {
 			 echo $fts_functions->need_fts_premium_fields($FB_style_options);
 	 }else { ?>        
  	  <div class="feed-them-social-admin-input-wrap">
+           <div class="feed-them-social-admin-input-label fts-fb-text-color-label"><?php _e('Feed Header Extra Text Color', 'feed-them-social'); ?></div>
+           <input type="text" name="fb_header_extra_text_color" class="feed-them-social-admin-input fb-text-color-input color {hash:true,caps:false,required:false,adjust:false,pickerFaceColor:'#eee',pickerFace:3,pickerBorder:0,pickerInsetColor:'white'}"  id="fb-text-color-input" placeholder="#222" value="<?php echo get_option('fb_header_extra_text_color');?>"/>
+      <div class="clear"></div>
+ 	  </div><!--/fts-facebook-feed-styles-input-wrap-->	
+      
+      <div class="feed-them-social-admin-input-wrap">
            <div class="feed-them-social-admin-input-label fts-fb-text-color-label"><?php _e('Feed Text Color', 'feed-them-social'); ?></div>
            <input type="text" name="fb_text_color" class="feed-them-social-admin-input fb-text-color-input color {hash:true,caps:false,required:false,adjust:false,pickerFaceColor:'#eee',pickerFace:3,pickerBorder:0,pickerInsetColor:'white'}"  id="fb-text-color-input" placeholder="#222" value="<?php echo get_option('fb_text_color');?>"/>
       <div class="clear"></div>

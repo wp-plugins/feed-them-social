@@ -7,14 +7,19 @@
 	  itemSelector: '.slicker-instagram-placeholder'
 	});
  
-  // or with jQuery
+  			// For Pinterest
 			var $container = jQuery(".fts-pins-wrapper");
 			// initialize Masonry after all images have loaded  
 			$container.imagesLoaded( function() {
 			  $container.masonry();
 			});
 				 
- 
+			// For Facebook
+			var $container2 = jQuery(".fts-simple-fb-wrapper");
+			// initialize Masonry after all images have loaded  
+			$container2.imagesLoaded( function() {
+			  $container2.masonry();
+			});
  });
  
  

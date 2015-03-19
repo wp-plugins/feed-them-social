@@ -228,6 +228,7 @@ class feed_them_social_functions {
 	*/
 	function fts_facebook_style_options_page() { 
 		$fb_style_options = array(
+					'fb_header_extra_text_color',
 					'fb_text_color',
 					'fb_link_color',
 					'fb_link_color_hover',
@@ -319,6 +320,7 @@ class feed_them_social_functions {
 	// color options for facebook
 	function  fts_fb_color_options_head_css() { 
 	if(is_plugin_active('feed-them-premium/feed-them-premium.php')) {
+		$fb_header_extra_text_color = get_option('fb_header_extra_text_color');
 		$fb_text_color = get_option('fb_text_color');
 		$fb_link_color = get_option('fb_link_color');
 		$fb_link_color_hover = get_option('fb_link_color_hover');
@@ -339,7 +341,10 @@ class feed_them_social_functions {
 		$twitter_border_bottom_color = get_option('twitter_border_bottom_color');
 		?>
 <style type="text/css">
-<?php if (!empty($fb_text_color)) { ?>
+<?php if (!empty($fb_header_extra_text_color)) { ?>
+.fts-jal-single-fb-post .fts-jal-fb-user-name { color:<?php echo $fb_header_extra_text_color ?>!important; }
+<?php } 
+	if (!empty($fb_text_color)) { ?>
 .fts-simple-fb-wrapper .fts-jal-single-fb-post, 
 .fts-simple-fb-wrapper .fts-jal-fb-description-wrap, 
 .fts-simple-fb-wrapper .fts-jal-fb-post-time,
