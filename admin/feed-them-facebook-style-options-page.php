@@ -14,26 +14,8 @@ function feed_them_facebook_options_page() {
   <form method="post" class="fts-facebook-feed-options-form" action="options.php"><br/>
   
   <?php // get our registered settings from the fts functions 
-	 	   settings_fields('fts-facebook-feed-style-options'); ?>        
-   <?php 
-   
-	if (!is_plugin_active('feed-them-premium/feed-them-premium.php')){
-		  	
-			 $FB_style_options = array(
-				__('Feed Header Extra Text Color', 'feed-them-social'),
-				__('Feed Text Color', 'feed-them-social'),
-				__('Feed Link Color', 'feed-them-social'),
-				__('Feed Link Color Hover', 'feed-them-social'),
-				__('Feed Width', 'feed-them-social'),
-				__('Feed Margin ', 'feed-them-social'),
-				__('Feed Padding', 'feed-them-social'),
-				__('Feed Background Color', 'feed-them-social'),
-				__('Feed Grid Posts Background Color (Grid style feeds ONLY)', 'feed-them-social'),
-				__('Feed Border Bottom Color', 'feed-them-social'),
-			 );
-			 
-			 echo $fts_functions->need_fts_premium_fields($FB_style_options);
-	 }else { ?>        
+	 	   settings_fields('fts-facebook-feed-style-options'); ?>       
+                   
  	  <div class="feed-them-social-admin-input-wrap">
            <div class="feed-them-social-admin-input-label fts-fb-text-color-label"><?php _e('Feed Header Extra Text Color', 'feed-them-social'); ?></div>
            <input type="text" name="fb_header_extra_text_color" class="feed-them-social-admin-input fb-text-color-input color {hash:true,caps:false,required:false,adjust:false,pickerFaceColor:'#eee',pickerFace:3,pickerBorder:0,pickerInsetColor:'white'}"  id="fb-text-color-input" placeholder="#222" value="<?php echo get_option('fb_header_extra_text_color');?>"/>
@@ -101,8 +83,7 @@ function feed_them_facebook_options_page() {
            <input type="text" name="fb_border_bottom_color" class="feed-them-social-admin-input fb-border-bottom-color-input color {hash:true,caps:false,required:false,adjust:false,pickerFaceColor:'#eee',pickerFace:3,pickerBorder:0,pickerInsetColor:'white'}"  id="fb-border-bottom-color-input" placeholder="#ddd" value="<?php echo get_option('fb_border_bottom_color');?>"/>
       <div class="clear"></div>
  	  </div><!--/fts-facebook-feed-styles-input-wrap-->
-      
-    <?php }//END IF PREMIUM ?>   
+  
       
       
       <h2><?php _e('Facebook API Token', 'feed-them-social'); ?></h2>  

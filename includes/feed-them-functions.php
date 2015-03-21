@@ -319,7 +319,6 @@ class feed_them_social_functions {
 	}
 	// color options for facebook
 	function  fts_fb_color_options_head_css() { 
-	if(is_plugin_active('feed-them-premium/feed-them-premium.php')) {
 		$fb_header_extra_text_color = get_option('fb_header_extra_text_color');
 		$fb_text_color = get_option('fb_text_color');
 		$fb_link_color = get_option('fb_link_color');
@@ -407,7 +406,7 @@ class feed_them_social_functions {
 .tweeter-info { border-bottom:1px solid <?php echo $twitter_border_bottom_color ?>!important; }
 <?php } ?>
 </style>
-	<?php } //close if premium active
+	<?php
 	}		
 	function  fts_powered_by_js() {
 		  wp_register_style( 'fts_powered_by_css', plugins_url( 'css/powered-by.css',  dirname(__FILE__) ) );

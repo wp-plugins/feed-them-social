@@ -17,25 +17,8 @@ $fts_functions = new feed_them_social_functions();
   <form method="post" class="fts-twitter-feed-options-form" action="options.php"><br/>
   
   <?php // get our registered settings from the fts functions 
-	 	   settings_fields('fts-twitter-feed-style-options'); ?>        
-   <?php 
-   
-	if (!is_plugin_active('feed-them-premium/feed-them-premium.php')){
-		  	 
-			 $twitter_style_options = array(
-				__('Hide Profile Photo', 'feed-them-social'),
-				__('Feed Text Color', 'feed-them-social'),
-				__('Feed Link Color', 'feed-them-social'),
-				__('Feed Link Color Hover', 'feed-them-social'),
-				__('Feed Width', 'feed-them-social'),
-				__('Feed Margin ', 'feed-them-social'),
-				__('Feed Padding', 'feed-them-social'),
-				__('Feed Background Color', 'feed-them-social'),
-				__('Feed Border Bottom Color', 'feed-them-social'),
-			 );
-			 echo $fts_functions->need_fts_premium_fields($twitter_style_options);
-			
-	 }else { 
+	 	   settings_fields('fts-twitter-feed-style-options'); 
+		   
 	 $twitter_full_width = get_option('twitter_full_width');
 	 ?>        
  	    <div class="feed-them-social-admin-input-wrap">
@@ -105,10 +88,6 @@ $fts_functions = new feed_them_social_functions();
            <input type="text" name="twitter_border_bottom_color" class="feed-them-social-admin-input twitter-border-bottom-color-input color {hash:true,caps:false,required:false,adjust:false,pickerFaceColor:'#eee',pickerFace:3,pickerBorder:0,pickerInsetColor:'white'}"  id="twitter-border-bottom-color-input" placeholder="#ddd" value="<?php echo get_option('twitter_border_bottom_color');?>"/>
       <div class="clear"></div>
  	  </div><!--/fts-twitter-feed-styles-input-wrap-->
-      
-    <?php }//END IF PREMIUM ?>   
-      
-      
       
           <h2><?php _e('Twitter API Token', 'feed-them-social'); ?></h2> 
           
