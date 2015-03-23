@@ -112,6 +112,7 @@ $excludeReplies = true;
 		if(isset($fetchedTweets->errors)){
 			echo '<pre>';
 			print_r($fetchedTweets->errors);
+			echo 'If you are seeing Rate Limited Exceeded please go to our Twitter Options page and follow the instructions under the header Twitter API Token.';
 			echo '</pre>';
 		}
 
