@@ -64,7 +64,7 @@ include( $fts_plugin_rel_url.'feeds/facebook/facebook-feed.php' );
 new FTS_Facebook_Feed();
 
 include_once( $fts_plugin_rel_url.'feeds/twitter/twitter-feed.php' );
-new FTS_Twitter_Feed();
+// new FTS_Twitter_Feed();
 
 include_once( $fts_plugin_rel_url.'feeds/instagram/instagram-feed.php' );
 include_once( $fts_plugin_rel_url.'feeds/pinterest/pinterest-feed.php' );
