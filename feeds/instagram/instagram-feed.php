@@ -82,7 +82,7 @@ else {
 	}
 }
 
-if ($super_gallery == 'yes') { ?>
+if (isset($super_gallery) && $super_gallery == 'yes') { ?>
 <div class="fts-slicker-instagram masonry js-masonry <?php if ($popup == 'yes') { print 'popup-gallery'; }?>" style="margin:auto" data-masonry-options='{ "isFitWidth": <?php if ($center_container == 'no') { ?>false<?php } else {?>true<?php } if ($image_stack_animation == 'no') { ?>, "transitionDuration": 0<?php } ?> }'>
 	<?php } 
     else { ?>
@@ -116,14 +116,14 @@ $replace = array(' <a href="${0}" target="_blank" rel="nofollow">${0}</a>', ' <a
 $instagram_caption = preg_replace($pattern, $replace, $instagram_caption_a_title);
  
 // Super Gallery If statement
-if ($super_gallery == 'yes') { ?>
+if (isset($super_gallery) && $super_gallery == 'yes') { ?>
 <div class='slicker-instagram-placeholder fts-instagram-wrapper' style="width:<?php print $image_size ?>; margin:<?php print $space_between_photos ?>;">
 
-<?php if ($popup == 'yes') {  ?>
+<?php if (isset($popup) && $popup == 'yes') {  ?>
 <div class="fts-instagram-caption"><?php if (!$instagram_caption == '') { print ''.$instagram_caption.'<br/>';} ?><a href='<?php print $instagram_link ?>' class="fts-view-on-instagram-link" target="_blank"><?php _e('View on Instagram','feed-them-social');?></a></div>
  <?php } ?>
 
-<a href='<?php if ($popup == 'yes') { print $instagram_lowRez_url; } else { print $instagram_link; } ?>' title='<?php print $instagram_caption_a_title ?>' target="_blank" class='fts-slicker-backg fts-instagram-img-link' style="height:<?php print $icon_size ?> !important; width:<?php print $icon_size ?>; line-height:<?php print $icon_size ?>; font-size:<?php print $icon_size ?>;"><span class="fts-instagram-icon" style="height:<?php print $icon_size ?>; width:<?php print $icon_size ?>; line-height:<?php print $icon_size ?>; font-size:<?php print $icon_size ?>;"></span></a>
+<a href='<?php if (isset($popup) && $popup == 'yes') { print $instagram_lowRez_url; } else { print $instagram_link; } ?>' title='<?php print $instagram_caption_a_title ?>' target="_blank" class='fts-slicker-backg fts-instagram-img-link' style="height:<?php print $icon_size ?> !important; width:<?php print $icon_size ?>; line-height:<?php print $icon_size ?>; font-size:<?php print $icon_size ?>;"><span class="fts-instagram-icon" style="height:<?php print $icon_size ?>; width:<?php print $icon_size ?>; line-height:<?php print $icon_size ?>; font-size:<?php print $icon_size ?>;"></span></a>
 
   <?php if ($hide_date_likes_comments == 'no') { ?>
   	<div class='slicker-date'><?php print $instagram_date?></div>
@@ -144,9 +144,9 @@ if ($super_gallery == 'yes') { ?>
 
 // Classic Gallery If statement
 else {  ?>
-<div class='instagram-placeholder fts-instagram-wrapper'><?php if ($popup == 'yes') { print '<div class="fts-backg"></div>'; } else { ?>  <a class='fts-backg' target='_blank' href='<?php print $instagram_link ?>'></a>  <?php  };?>
+<div class='instagram-placeholder fts-instagram-wrapper'><?php if (isset($popup) && $popup == 'yes') { print '<div class="fts-backg"></div>'; } else { ?>  <a class='fts-backg' target='_blank' href='<?php print $instagram_link ?>'></a>  <?php  };?>
   <div class='date'><?php print $instagram_date ?></div>
- <?php if ($popup == 'yes') {  ?>
+ <?php if (isset($popup) && $popup == 'yes') {  ?>
 <div class="fts-instagram-caption"><?php if (!$instagram_caption == '') { print ''.$instagram_caption.'<br/>';} ?><a href='<?php print $instagram_link ?>' class="fts-view-on-instagram-link" target="_blank"><?php _e('View on Instagram','feed-them-social');?></a></div>
  <?php } ?>
   <a href="<?php if ($popup == 'yes') { print $instagram_lowRez_url; } else { print $instagram_link; } ?>" class='instaG-backg-link fts-instagram-img-link' target='_blank' title="<?php print $instagram_caption_a_title ?>">

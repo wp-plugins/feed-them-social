@@ -46,7 +46,7 @@ h3.fts-pin-board-board_title {
 	font-size: 14px !important;
 	font-weight: bold !important;
 	height: 18px !important;
-	margin: 2px 0 5px 5px !important;
+	margin: 2px 0 5px 3px !important;
 	padding: 0 !important;
 	position: relative !important;
 	font-family: "Helvetica Neue", arial, sans-serif !important;
@@ -60,6 +60,7 @@ h3.fts-pin-board-board_title span {
 	-o-text-overflow: ellipsis;
 	text-overflow: ellipsis;
 	display: block !important;
+	text-transform: capitalize;
 }
 div.fts-pin-board-img-wrap {
 	position: relative;

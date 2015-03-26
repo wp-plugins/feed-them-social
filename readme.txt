@@ -3,7 +3,7 @@ Contributors: slickremix
 Tags:  facebook photos, facebook albums, albums, photos facebook, photo, facebook feed, facebook posts, hastags, social, social plugin, social networking, networking, custom feed, custom facebook feed, facebook plugin, facebook group, facebook groups, events, facebook events, facebook page events, facebook group events, facebook page, facebook pages, twitter, twitter plugin, instagram, instagram plugin, feed me social, social plugin, feed, feeds, shortcode, facebook wall, slickremix, plugin, pages, posts, images, page, post, image, youtube, youtube feed, youtube channel, youtube video, youtube videos, videos, youtube embed, embed, video iframe, admin, comments, widgets, seo, wordpress, pinterest, pinterest boards, pinterest feeds, pinterest photos, pinterest widget, pinterest widgets, instagram popup
 Requires at least: 3.4.0
 Tested up to: 4.1.1
-Stable tag: 1.7.3
+Stable tag: 1.7.4
 License: GPLv2 or later
 
 Display custom feeds for Facebook Pages, Groups, Events, Album Photos and Covers -Twitter, Instagram, Pinterest and YouTube on pages, posts or widgets.
@@ -54,6 +54,12 @@ If you enjoy using our plugin please tell others. [Click here to share](http://w
   * Extract the zip file and drop the contents in the wp-content/plugins/ directory of your WordPress installation and then activate the Plugin from Plugins page. 
 
 == Changelog ==
+= Version 1.7.4 Thursday, March 26th, 2015 =
+ * FIXED: Pinterest: Board Name was not appearing to do an API change. We have a temporary fix in place till it comes back up.
+ * FIXED: Pinterest: Board count reflects the amount entered in shortcode. It was showing one more than it should previosuly. 
+ * FIXED: Pinterest: Margin of title for the Pinterest Boards.
+ * FIXED: Instagram: php Notices that needed isset.
+ 
 = Version 1.7.3 Saturday, March 21st, 2015 =
  * NEW: Facebook and Twitter Options page are now open to the FREE version.
  * FIXED: Facebook: Grid format now loads correctly.
