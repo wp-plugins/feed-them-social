@@ -1,7 +1,7 @@
 /*=================================================
 	Font Awesome icons for facebook feeds 
 =================================================*/
-.fts-jal-single-fb-post .icon-thumbs-up:before{content:"\f164" !important;}
+.fts-jal-single-fb-post .icon-thumbs-up:before{content:"\f164" !important ;}
 .fts-jal-single-fb-post .icon-comments:before{content:"\f086" !important;}
 
 .fts-jal-single-fb-post [class^="icon-"] {
@@ -18,11 +18,11 @@
 	background-repeat: repeat !important;
 	background: transparent !important;
 }
-.fts-jal-single-fb-post [class^="icon-thumbs-up"], .fts-jal-single-fb-post [class*=" icon--thumbs-up"], .fts-jal-single-fb-post [class^="icon-comments"], .fts-jal-single-fb-post [class*=" icon--file"], .fts-jal-single-fb-post [class^="icon-file"] {
+.fts-jal-single-fb-post [class^="icon-thumbs-up"], .fts-jal-single-fb-post [class*=" icon--thumbs-up"], .fts-jal-single-fb-post [class^="icon-comments"], .fts-jal-single-fb-post [class*=" icon--file"], .fts-jal-single-fb-post [class^="icon-file"], .fts-events-list-wrap .icon-map-marker [class^="icon-thumbs-up"] {
 	display: inline-block !important;
 	margin-left: 7px !important;
 }
-.fts-jal-single-fb-post [class^="icon-"]:before {
+.fts-jal-single-fb-post [class^="icon-"]:before, .fts-events-list-wrap [class^="icon-"]:before {
 	font-family: 'fontawesome' !important;
 }
 .fts-fb-load-more {
@@ -140,7 +140,7 @@
 }
 .fts-jal-fb-group-header-desc {
 	width: 100%;
-	margin: 15px 0 !important;
+	margin: 7px 0 15px !important;
 	line-height: 20px;
 }
 .fts-jal-fb-header {
@@ -232,6 +232,9 @@
 	padding-left:0px;
 	margin-bottom: 5px;
 	min-height: 50px;
+}
+.fts-events-list-wrap .fts-jal-fb-message {
+	clear:both
 }
 .fts-jal-fb-message {
 	padding-top: 10px;
@@ -368,6 +371,14 @@
 	font-size: 15px;
 	display: block;
 	line-height: 18px;
+}
+.fts-events-list-wrap .fts-jal-fb-name {
+	font-weight: normal;
+	color: rgb(197, 34, 20);
+	padding-bottom: 5px;
+	font-size: 15px;
+	display: block;
+	line-height: 21px;
 }
 .fts-jal-fb-vid-play-btn {
 	background: url(../images/video-play-btn.png) no-repeat 0 0;
@@ -599,10 +610,10 @@
 	width: auto;
 }
 div.fts-fb-location {
-	font-style: italic !important;
-	font-weight: bold;
+	/* font-style: italic !important; */
+	/* font-weight: bold; */
 	letter-spacing: 1px;
-	font-size: 13px;
+	/* background: #F0F0F0; */
 }
 .fts-slicker-facebook-photos .fts-jal-fb-picture {
 	left: 0%;
@@ -711,6 +722,14 @@ to {
 	content: "\f14c ";
 	display: inline-block;
 	margin-right: 6px;
+	-webkit-font-smoothing: antialiased;
+}
+.fts-fb-get-directions:before  {
+	font-family: "Fontawesome";
+	content: "\f041 ";
+	display: inline-block;
+	margin: 0 5px 0 2px;
+	-webkit-font-smoothing: antialiased;
 }
 .fts-instagram-fade .fts-jal-fb-description {
 	color:#fff;
@@ -726,3 +745,63 @@ margin-top:-1px !important;
 z-index:9999;
 position:relative;
 }
+.fb-social-btn-bottom {
+	margin-top:15px;	
+}
+.fb-social-btn-top {
+	/* border:1px solid #999; */
+    width:100% !important;
+	display:inline-block !important;
+	overflow:hidden;
+}
+.fb-social-btn-below-description {
+	margin:5px 0 !important;
+    width:100% !important;
+}
+
+@media only screen and (max-width: 640px) {
+    .fb-like.fb_iframe_widget, .fb-like.fb_iframe_widget > span, .fb-like.fb_iframe_widget > span > iframe {
+    width: 100% !important;
+	position:relative !important;
+}
+}
+
+.fb-social-btn-bottom {
+    width: 100% !important;
+}
+.fts-events-list-wrap .fts-jal-fb-picture {
+  float: left;
+  display: block;
+  margin: 0;
+}
+.fts-events-list-wrap a.fts-jal-fb-name {
+	font-size:17px;
+}
+.fts-events-list-wrap .fts-fb-event-time {
+	font-size:15px;
+}
+
+.fts-events-list-wrap .fts-fb-location {
+	font-size: 15px;
+	display:block:
+	float:left;
+	/* font-style:italic; */
+	/* padding:0px 10px !important; */
+	margin: 10px 0 5px;
+}
+.fts-events-list-wrap .fts-fb-location-title {
+	font-size: 15px;
+	display: block;
+	padding: 0;
+	font-weight:bold;
+	font-style:normal;
+	margin: 12px 0 0px;
+}
+.fts-events-list-wrap .fts-jal-fb-message {
+	font-size:15px;
+}
+.fts-fb-get-directions {
+	font-size:15px;
+	display:block;
+	padding: 0 0 20px 0px;
+	color: rgb(69, 149, 240);}

@@ -3,7 +3,7 @@ Contributors: slickremix
 Tags:  facebook photos, facebook albums, albums, photos facebook, photo, facebook feed, facebook posts, hastags, social, social plugin, social networking, networking, custom feed, custom facebook feed, facebook plugin, facebook group, facebook groups, events, facebook events, facebook page events, facebook group events, facebook page, facebook pages, twitter, twitter plugin, instagram, instagram plugin, feed me social, social plugin, feed, feeds, shortcode, facebook wall, slickremix, plugin, pages, posts, images, page, post, image, youtube, youtube feed, youtube channel, youtube video, youtube videos, videos, youtube embed, embed, video iframe, admin, comments, widgets, seo, wordpress, pinterest, pinterest boards, pinterest feeds, pinterest photos, pinterest widget, pinterest widgets, instagram popup
 Requires at least: 3.4.0
 Tested up to: 4.1.1
-Stable tag: 1.7.4
+Stable tag: 1.7.5
 License: GPLv2 or later
 
 Display custom feeds for Facebook Pages, Groups, Events, Album Photos and Covers -Twitter, Instagram, Pinterest and YouTube on pages, posts or widgets.
@@ -54,9 +54,22 @@ If you enjoy using our plugin please tell others. [Click here to share](http://w
   * Extract the zip file and drop the contents in the wp-content/plugins/ directory of your WordPress installation and then activate the Plugin from Plugins page. 
 
 == Changelog ==
+= Version 1.7.5 Thursday, April 9th, 2015 =
+ * NEW: All Feeds have been classified in php
+ * NEW: Facebook: Now display a Facebook Page's Events Feed with additional styling in Facebook Options page.
+ * NEW: ALL FEEDS (besides Facebook Groups and Events): Show a Follow button for any of the social feeds and choose whether to display it on the top or bottom of the feed.
+ * NEW: Twitter: now includes video. Video types include HTML 5, YouTube, Vimeo, SoundCloud, and Vine.
+ * NEW: Twitter: follow count can be displayed.
+ * ADDED: Pinterest, Youtube: added WordPress Dashboard options pages.  
+ * ADDED Facebook: A bunch of new default access tokens to help with rate limiting issue.
+ * ADDED Developer Mode: Clear cache on every page load. Created a settings on settings page to turn it off in Admin Bar and on every page load.
+ * FIXED: Twitter: missing line breaks.
+ * FIXED: Facebook: "view photo" text in pop-up now translatable.
+ * FIXED: Facebook: Feed Border Bottom Color on Facebook Options page.
+ 
 = Version 1.7.4 Thursday, March 26th, 2015 =
  * FIXED: Pinterest: Board Name was not appearing to do an API change. We have a temporary fix in place till it comes back up.
- * FIXED: Pinterest: Board count reflects the amount entered in shortcode. It was showing one more than it should previosuly. 
+ * FIXED: Pinterest: Board count reflects the amount entered in shortcode. It was showing one more than it should previously. 
  * FIXED: Pinterest: Margin of title for the Pinterest Boards.
  * FIXED: Instagram: php Notices that needed isset.
  
@@ -69,7 +82,7 @@ If you enjoy using our plugin please tell others. [Click here to share](http://w
  * FIXED: Pinterest: Pins not showing proper amount on List of Boards.
  * FIXED: Pinterest: Missing js file.
  * NEW: Menu in admin bar called Feed Them Social. Now you can Empty the cache on the same page or get to the settings page quicker.
- * NEW: Russian Language files added. Big thanks to Anton Sadykov @[http://lioncom.pro/](http://lioncom.pro/) for tranlating the Russian language.
+ * NEW: Russian Language files added. Big thanks to Anton Sadykov @[http://lioncom.pro/](http://lioncom.pro/) for translating the Russian language.
  * UPDATED: German French, Spanish and Portuguese language files. If you see any words or phrases not translated and would like to help please head on over to [http://glotpress.slickremix.com/projects/feed-them-social](http://glotpress.slickremix.com/projects/feed-them-social). 
 
 = Version 1.7.1 Tuesday, March 10th, 2015 =
@@ -91,7 +104,7 @@ If you enjoy using our plugin please tell others. [Click here to share](http://w
  * FIXED: Twitter feed now uses your custom API token to make the connection where as before it was still using the default Tokens even if you had entered custom ones.
  * FIXED: Feeds from Cacheing if errors for Facebook, Twitter, Instagram.
  * FIXED: Trim words= for Facebook feed breaking themes if a url or br tag is the last element.
- * FIXED: Default App Tokens for randamizer fixed so no more error from like or comment posts in feed. With our default tokens you should not see those posts in the feed anymore either.
+ * FIXED: Default App Tokens for randomizer fixed so no more error from like or comment posts in feed. With our default tokens you should not see those posts in the feed anymore either.
  * UPDATED: Facebook Styles.
  * FIXED: Notices for date and time for Facebook.
  * FIXED: End bracket issue in Facebook Feed.
@@ -138,7 +151,7 @@ If you enjoy using our plugin please tell others. [Click here to share](http://w
  * NEW: Feed Them menu icon in the wp-admin area  
  * NEW IN PREMIUM: Instagram feed now has option to open photos in pop instead of taking users to Instagram to view large photo.
  * UPDATED: Premium plugin check now ONLY loads on free plugin activation. Not every Page load in dashboard/admin/frontend. (Thanks to wordpress.org user Texiwill for bring to our attention!)
- * CLEANED: Uneeded CSS throughout all feeds.
+ * CLEANED: Unneeded CSS throughout all feeds.
  * FIXED: Feed them settings page menu not showing with certain other plugins active.
 
 = Version 1.5.9 Friday, October 31st, 2014 =
@@ -157,7 +170,7 @@ If you enjoy using our plugin please tell others. [Click here to share](http://w
  * FIXED: Twitter max-width:100% defined so now horizontal scroll bars are not created in widgets
  * FIXED: Closed div wrapper when error message shows for instagram feed
  * ADDED: cURL check on system settings page
- * UPDATED: Facebook Videos now loads with HTML5 player instead of flash player. This makes videos more compatiable with Apple and mobile devices.  
+ * UPDATED: Facebook Videos now loads with HTML5 player instead of flash player. This makes videos more compatible with Apple and mobile devices.  
  * UPDATED: Facebook Video's preview image can now be clicked to play/pause video.
  
 = Version 1.5.7 Saturday, October 11th, 2014 =
@@ -340,17 +353,17 @@ If you enjoy using our plugin please tell others. [Click here to share](http://w
 = Version 1.1.7 February 15th, 2013 =
  * Updated: Instagram, Facebook Group, YouTube, Twitter Feed, and shortcodes now work with widgets in our [Premium Version](http://www.slickremix.com/product/feed-them-social-premium-extension/). CSS styles for all feeds have had minor tweaks, including new styles for widget feeds.
  * Fixed: Spelling of permissions in facebook group feed.
- * We are still working on a twitter solution to all those faithfull followers. As of March Twitter will be changing the api for feeds, so a [newer limit will be set on calls](http://arstechnica.com/business/2012/08/new-api-severely-restricts-third-party-twitter-applications/). To many calls to the api an hour from one IP address are most likely the cause for your errors, if you have been experienceing them currently. 
+ * We are still working on a twitter solution to all those faithful followers. As of March Twitter will be changing the api for feeds, so a [newer limit will be set on calls](http://arstechnica.com/business/2012/08/new-api-severely-restricts-third-party-twitter-applications/). To many calls to the api an hour from one IP address are most likely the cause for your errors, if you have been experiencing them currently. 
  
 = Version 1.1.6 =
- * Updated: Instagram and Twitter feed no longer JS but now PHP! Should help get rid of any js conflicts! (Including confilct with Google Analytics)
+ * Updated: Instagram and Twitter feed no longer JS but now PHP! Should help get rid of any js conflicts! (Including conflict with Google Analytics)
  * Fixed: Twitter feed's timestamps.
 
 = Version 1.1.5 =
  * Fixed: bracket causing fatal error.
 
 = Version 1.1.4 =
- * Fixed: Last update Instagram feed setting "# of pics" was removed. Field has now been put back in! (We appologize for any problems this may have caused!).
+ * Fixed: Last update Instagram feed setting "# of pics" was removed. Field has now been put back in! (We apologize for any problems this may have caused!).
  * Tested: Works with WordPress 3.5.1.
 
 = Version 1.1.3 =

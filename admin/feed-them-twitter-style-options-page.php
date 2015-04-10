@@ -20,8 +20,77 @@ $fts_functions = new feed_them_social_functions();
 	 	   settings_fields('fts-twitter-feed-style-options'); 
 		   
 	 $twitter_full_width = get_option('twitter_full_width');
-	 ?>        
- 	    <div class="feed-them-social-admin-input-wrap">
+	 $twitter_allow_videos = get_option('twitter_allow_videos');
+	 $twitter_allow_shortlink_conversion = get_option('twitter_allow_shortlink_conversion');
+	 $twitter_show_follow_btn = get_option('twitter_show_follow_btn');
+	 $twitter_show_follow_count = get_option('twitter_show_follow_count');
+	 $twitter_show_follow_btn_where = get_option('twitter_show_follow_btn_where');
+	 
+	 ?>
+     
+      <div class="feed-them-social-admin-input-wrap">
+           <div class="feed-them-social-admin-input-label fts-twitter-text-color-label"><?php _e('Show Follow Count', 'feed-them-social'); ?></div>
+    
+    <select name="twitter_show_follow_count" id="twitter-show-follow-count" class="feed-them-social-admin-input">
+		  <option '<?php echo selected($twitter_show_follow_count, 'no', false ) ?>' value="no"><?php _e('No', 'feed-them-social'); ?></option>
+  		  <option '<?php echo selected($twitter_show_follow_count, 'yes', false ) ?>' value="yes"><?php _e('Yes', 'feed-them-social'); ?></option>
+    </select>
+
+      <div class="clear"></div>
+ 	  </div><!--/fts-twitter-feed-styles-input-wrap-->
+      
+      
+      
+ 	   <div class="feed-them-social-admin-input-wrap">
+           <div class="feed-them-social-admin-input-label fts-twitter-text-color-label"><?php _e('Show Follow Button', 'feed-them-social'); ?></div>
+    
+    <select name="twitter_show_follow_btn" id="twitter-show-follow-btn" class="feed-them-social-admin-input">
+		  <option '<?php echo selected($twitter_show_follow_btn, 'no', false ) ?>' value="no"><?php _e('No', 'feed-them-social'); ?></option>
+  		  <option '<?php echo selected($twitter_show_follow_btn, 'yes', false ) ?>' value="yes"><?php _e('Yes', 'feed-them-social'); ?></option>
+    </select>
+
+      <div class="clear"></div>
+ 	  </div><!--/fts-twitter-feed-styles-input-wrap-->
+      
+     
+      
+       <div class="feed-them-social-admin-input-wrap">
+           <div class="feed-them-social-admin-input-label fts-twitter-text-color-label"><?php _e('Placement of Follow Button', 'feed-them-social'); ?></div>
+    	
+    <select name="twitter_show_follow_btn_where" id="twitter-show-follow-btn-where" class="feed-them-social-admin-input">
+		  <option ><?php _e('Please Select Option', 'feed-them-social'); ?></option>
+		  <option '<?php echo selected($twitter_show_follow_btn_where, 'twitter-follow-above', false ) ?>' value="twitter-follow-above"><?php _e('Show Above Feed', 'feed-them-social'); ?></option>
+  		  <option '<?php echo selected($twitter_show_follow_btn_where, 'twitter-follow-below', false ) ?>' value="twitter-follow-below"><?php _e('Show Below Feed', 'feed-them-social'); ?></option>
+    </select>
+
+      <div class="clear"></div>
+ 	  </div><!--/fts-twitter-feed-styles-input-wrap-->
+      
+       
+        <div class="feed-them-social-admin-input-wrap">
+           <div class="feed-them-social-admin-input-label fts-twitter-text-color-label"><?php _e('Show Media button for videos<br/><small>Video shows upon clicking</small>', 'feed-them-social'); ?></div>
+    
+    <select name="twitter_allow_videos" id="twitter-allow-videos" class="feed-them-social-admin-input">
+		  <option '<?php echo selected($twitter_allow_videos, 'no', false ) ?>' value="no"><?php _e('No', 'feed-them-social'); ?></option>
+  		  <option '<?php echo selected($twitter_allow_videos, 'yes', false ) ?>' value="yes"><?php _e('Yes', 'feed-them-social'); ?></option>
+    </select>
+
+      <div class="clear"></div>
+ 	  </div><!--/fts-twitter-feed-styles-input-wrap-->
+      
+       <div class="feed-them-social-admin-input-wrap">
+           <div class="feed-them-social-admin-input-label fts-twitter-text-color-label"><?php _e('Convert shortlinks for video<br/><small>Like bitly etc. May slow load time slightly</small>', 'feed-them-social'); ?></div>
+    
+    <select name="twitter_allow_shortlink_conversion" id="twitter-allow-shortlink-conversion" class="feed-them-social-admin-input">
+		  <option '<?php echo selected($twitter_allow_shortlink_conversion, 'no', false ) ?>' value="no"><?php _e('No', 'feed-them-social'); ?></option>
+  		  <option '<?php echo selected($twitter_allow_shortlink_conversion, 'yes', false ) ?>' value="yes"><?php _e('Yes', 'feed-them-social'); ?></option>
+    </select>
+
+      <div class="clear"></div>
+ 	  </div><!--/fts-twitter-feed-styles-input-wrap-->
+      
+      
+       <div class="feed-them-social-admin-input-wrap">
            <div class="feed-them-social-admin-input-label fts-twitter-text-color-label"><?php _e('Hide Profile Photo', 'feed-them-social'); ?></div>
     
     <select name="twitter_full_width" id="twitter-full-width" class="feed-them-social-admin-input">

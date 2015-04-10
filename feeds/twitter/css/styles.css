@@ -3,11 +3,21 @@
 	display: block;
 	line-height: 17px;
 }
+.fts-video-show-hide-btns-wrap a:link, .fts-video-show-hide-btns-wrap a:visited, .fts-video-show-hide-btns-wrap a:focus {
+	outline:none !important;
+	border:none !important;
+}
 .fts-view-on-twitter-link:before  {
 	font-family: "Fontawesome";
 	content: "\f14c ";
 	display: inline-block;
 	margin-right: 6px;
+}
+.fts-video-show-hide-btns-wrap a:before {
+	font-family: "Fontawesome";
+	content: '\f16a';
+	display: inline-block;
+	margin-right: 5px;
 }
 img.fts-twitter-description-image {
 	margin: 10px 0 0 !important;
@@ -15,6 +25,9 @@ img.fts-twitter-description-image {
 .fts-twitter-reply:before {
 	font-family: "Fontawesome";
 	content: '\f112';
+}
+blockquote.twitter-video {
+	display:none;
 }
 .fts-twitter-div * {
 	-webkit-box-sizing: content-box;
@@ -157,16 +170,19 @@ img.fts-twitter-description-image {
 	border-top: 1px solid #c1c2c3;
 	color: #000;
 }
+.fts-video-loading-notice {
+	color:#000;
+}
 .fts-twitter-div .fts-powered-by-text {
 	padding-top: 8px !important;
 }
-.fts-twitter-div a {
+.fts-twitter-div a  {
 	-webkit-transition: all 0.30s ease-in-out;
 	-moz-transition: all 0.30s ease-in-out;
 	-o-transition: all 0.30s ease-in-out;
 	transition: all 0.30s ease-in-out;
 	text-decoration: none !important;
-	color: #1982D1;
+	color: #0084b4;
 }
 .fts-twitter-div a:hover {
 	color: #444;
@@ -193,6 +209,13 @@ img.fts-twitter-description-image {
 	-moz-transition: all 0s ease-in-out;
 	-o-transition: all 0s ease-in-out;
 	transition: all 0s ease-in-out;
+}
+.fts-tweeter-wrap .fts-video-wrapper {
+	margin:15px 0 0;
+}
+.fts-video-wrapper-padding {
+	/* margin:15px 0; */
+	display:none;	
 }
 .fts-tweeter-wrap .tweeter-info:hover {
 	background: none !important;
@@ -256,4 +279,26 @@ to {
 }
 .fts-instagram-fade .mfp-title a:hover {
   color: #eee; 
+}
+.fts-video-show-hide-btns-wrap {
+	margin:7px 0 0 !important;
+}
+.fts-video-show-hide-btns-wrap a {
+	font-size:13px !important;	
+}
+a.fts-twitter-load-video-wrapper, .fts-twitter-load-video-wrapper {
+	margin:0 0 !important;
+	padding:0 !important;
+}
+a.fts-close-media, .fts-show-media-text {
+	display:none;
+}
+.fts-video-wrapper iframe {
+	margin:0 !important;
+}
+.fts-twitter-div iframe {
+	margin:0;
+}
+.twitter-social-btn-bottom {
+	margin:15px 0;
 }

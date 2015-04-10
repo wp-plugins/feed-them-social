@@ -23,10 +23,10 @@
 .fts-empty-error {
 	background-color: #F5F5AE !important;
 }
-.feed-them_page_fts-facebook-feed-styles-submenu-page .feed-them-social-admin-wrap h1, .feed-them_page_fts-facebook-feed-styles-submenu-page .feed-them-social-admin-wrap h2, .feed-them_page_fts-facebook-feed-styles-submenu-page .use-of-plugin {
+.feed-them_page_fts-youtube-feed-styles-submenu-page .feed-them-social-admin-wrap h1, .feed-them_page_fts-facebook-feed-styles-submenu-page .feed-them-social-admin-wrap h1, .feed-them_page_fts-facebook-feed-styles-submenu-page .feed-them-social-admin-wrap h2, .feed-them_page_fts-facebook-feed-styles-submenu-page .use-of-plugin {
 	color: #333;
 }
-.feed-them_page_fts-twitter-feed-styles-submenu-page .feed-them-social-admin-wrap h1, .feed-them_page_fts-twitter-feed-styles-submenu-page .feed-them-social-admin-wrap h2, .feed-them_page_fts-twitter-feed-styles-submenu-page .use-of-plugin {
+.feed-them_page_fts-pinterest-feed-styles-submenu-page .feed-them-social-admin-wrap h1, .feed-them_page_fts-twitter-feed-styles-submenu-page .feed-them-social-admin-wrap h1, .feed-them_page_fts-twitter-feed-styles-submenu-page .feed-them-social-admin-wrap h2, .feed-them_page_fts-twitter-feed-styles-submenu-page .use-of-plugin, .feed-them_page_fts-pinterest-feed-styles-submenu-page .use-of-plugin, .feed-them_page_fts-youtube-feed-styles-submenu-page .use-of-plugin {
 	color: #333;
 }
 .feed-them_page_fts-twitter-feed-styles-submenu-page .feed-them-social-admin-wrap h2 {
@@ -39,7 +39,7 @@
 	color: #333;
 }
 .feed-them_page_fts-instagram-feed-styles-submenu-page .feed-them-social-admin-wrap h2 {
-	margin-top:0px;
+	margin-top:45px;
 }
 
 .feed-them-social-admin-wrap h1 {
@@ -64,7 +64,7 @@
 	line-height:19px;
 	max-width:100%;
 }
-.feed-them_page_fts-facebook-feed-styles-submenu-page .feed-them-social-admin-wrap, .feed-them_page_fts-twitter-feed-styles-submenu-page .feed-them-social-admin-wrap, .feed-them_page_fts-instagram-feed-styles-submenu-page .feed-them-social-admin-wrap {
+.feed-them_page_fts-pinterest-feed-styles-submenu-page .feed-them-social-admin-wrap, .feed-them_page_fts-youtube-feed-styles-submenu-page .feed-them-social-admin-wrap, .feed-them_page_fts-facebook-feed-styles-submenu-page .feed-them-social-admin-wrap, .feed-them_page_fts-twitter-feed-styles-submenu-page .feed-them-social-admin-wrap, .feed-them_page_fts-instagram-feed-styles-submenu-page .feed-them-social-admin-wrap {
 	max-width: 100%;
 	width:100%;
 	min-height: auto;
@@ -77,7 +77,7 @@
 	margin: 20px 20px 0 0px;
 	-webkit-text-size-adjust: none;
 }
-.feed-them_page_fts-facebook-feed-styles-submenu-page  .feed-them-social-admin-input-wrap, .feed-them_page_fts-twitter-feed-styles-submenu-page  .feed-them-social-admin-input-wrap {
+.feed-them_page_fts-pinterest-feed-styles-submenu-page  .feed-them-social-admin-input-wrap, .feed-them_page_fts-youtube-feed-styles-submenu-page  .feed-them-social-admin-input-wrap, .feed-them_page_fts-facebook-feed-styles-submenu-page  .feed-them-social-admin-input-wrap, .feed-them_page_fts-twitter-feed-styles-submenu-page  .feed-them-social-admin-input-wrap {
 	background: none;
 }
 .feed-them-social-admin-wrap {

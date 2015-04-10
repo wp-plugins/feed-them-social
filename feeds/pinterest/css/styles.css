@@ -329,3 +329,15 @@ div.fts-single-pin-pinned-to-title {
 	width: 16px;
 	float:left;
 }
+.pinterest-social-btn-top {
+	margin-bottom:0px;
+	text-align:center;
+}
+.widget .pinterest-social-btn-top {
+	margin-bottom:5px;
+	text-align:center;
+}
+.pinterest-social-btn-bottom {
+	margin-top:5px;
+	text-align:center;
+}

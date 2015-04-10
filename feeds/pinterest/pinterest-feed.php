@@ -52,6 +52,10 @@ class FTS_Pinterest_Feed extends feed_them_social_functions {
 	// Get Pinterest Boards
 	//**************************************************
 	function getBoards($pinterest_name,$boards_count, $pins_count=NULL) {
+		
+		$pinterest_show_follow_btn = get_option('pinterest_show_follow_btn');
+		$pinterest_show_follow_btn_where = get_option('pinterest_show_follow_btn_where');
+		
 		//Pinterest Boards Cache Folder
 		$pin_cache_boards_url = WP_CONTENT_DIR.'/plugins/feed-them-social/feeds/pinterest/cache/pin-boards_list-'.$pinterest_name.'-bnum'.$boards_count.'.cache';
 		//Pinterest Boards' Pins Cache Folder
@@ -85,6 +89,14 @@ class FTS_Pinterest_Feed extends feed_them_social_functions {
 		$output ='';
 		$count = 0;
 		$output ='<div class="fts-pinterest-wrapper">';
+		//******************
+		// SOCIAL BUTTON
+		//******************
+		if (isset($pinterest_show_follow_btn) && $pinterest_show_follow_btn == 'yes' && $pinterest_show_follow_btn_where == 'pinterest-follow-above') {
+			$output .= '<div class="pinterest-social-btn-top">';
+				$output .= $this->social_follow_button('pinterest', $pinterest_name);
+			$output .= '</div>';
+		}
 		//Setup Boards
 		foreach ($boards->body as $key => $board) {
 			if($count <= $boards_count - 1) {
@@ -114,7 +126,17 @@ class FTS_Pinterest_Feed extends feed_them_social_functions {
 			$count++;
 		}
 		$output .= '<div class="clear"></div></div>';
-		return  $output;
+		
+		//******************
+		// SOCIAL BUTTON
+		//******************
+		if (isset($pinterest_show_follow_btn) && $pinterest_show_follow_btn == 'yes' && $pinterest_show_follow_btn_where == 'pinterest-follow-below') {
+			$output .= '<div class="pinterest-social-btn-bottom">';
+				$output .= $this->social_follow_button('pinterest', $pinterest_name);
+			$output .= '</div>';
+		}
+		
+		return $output;
 	}
 	//**************************************************
 	// Get Pins from Pinterest Boards
@@ -134,6 +156,9 @@ class FTS_Pinterest_Feed extends feed_them_social_functions {
 	// Get Pins from Users/Single Board
 	//**************************************************
 	function getPins($pinterest_name, $board_id, $pins_count, $type) {
+		$output ='';
+		$pinterest_show_follow_btn = get_option('pinterest_show_follow_btn');
+		$pinterest_show_follow_btn_where = get_option('pinterest_show_follow_btn_where');
 		 //Pinterest Pins Cache Folder
 		$pin_cache_pins_url = WP_CONTENT_DIR.'/plugins/feed-them-social/feeds/pinterest/cache/pin-'.$type.'-'.$pinterest_name.(!empty($board_id) ? '-board'.$board_id : '').($type == 'single_board_pins' || $type == 'pins_from_user' ? '-pnum'.$pins_count : '-unum'.$pins_count).'.cache';
 
@@ -154,12 +179,19 @@ class FTS_Pinterest_Feed extends feed_them_social_functions {
 	//	echo'<pre>';
 	//	 print_r($pins);
 	//	echo'</pre>'; 
-	
-		$output ='';
+		//******************
+		// SOCIAL BUTTON
+		//******************
+		if (isset($pinterest_show_follow_btn) && $pinterest_show_follow_btn == 'yes' && $pinterest_show_follow_btn_where == 'pinterest-follow-above') {
+			$output .= '<div class="pinterest-social-btn-top">';
+			$output .=	$this->social_follow_button('pinterest', $pinterest_name);
+			$output .= '</div>';
+		}
+		
 		$count = 1;
 	//	$pins_count = 5;
 		$fts_dynamic_class_name = "fts-pinterest-wrapper";
-		$output ="<div class='fts-pinterest-wrapper fts-pins-wrapper masonry js-masonry' style='margin:0 auto' data-masonry-options='{\"itemSelector\": \".fts-single-pin-wrap\", \"isFitWidth\": true, \"transitionDuration\": 0 }'>";
+		$output .="<div class='fts-pinterest-wrapper fts-pins-wrapper masonry js-masonry' style='margin:0 auto' data-masonry-options='{\"itemSelector\": \".fts-single-pin-wrap\", \"isFitWidth\": true, \"transitionDuration\": 0 }'>";
 		//Setup Boards  
 		foreach ($pins->data->pins as $key => $pin) {
 			if($count <= $pins_count) {
@@ -193,6 +225,16 @@ class FTS_Pinterest_Feed extends feed_them_social_functions {
 			$count++;
 		}
 		$output .= '</div><div class="clear"></div>';
+		
+		//******************
+		// SOCIAL BUTTON
+		//******************
+		if (isset($pinterest_show_follow_btn) && $pinterest_show_follow_btn == 'yes' && $pinterest_show_follow_btn_where == 'pinterest-follow-below') {
+			$output .= '<div class="pinterest-social-btn-bottom">';
+				$output .= $this->social_follow_button('pinterest', $pinterest_name);
+			$output .= '</div>';
+		}
+		
 		return  $output;
 	}
 }//END FTS_Pinterest_Feed

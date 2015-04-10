@@ -14,8 +14,62 @@ function feed_them_facebook_options_page() {
   <form method="post" class="fts-facebook-feed-options-form" action="options.php"><br/>
   
   <?php // get our registered settings from the fts functions 
-	 	   settings_fields('fts-facebook-feed-style-options'); ?>       
-                   
+	 	   settings_fields('fts-facebook-feed-style-options'); 
+		   
+	 	   $fb_show_follow_btn = get_option('fb_show_follow_btn');
+	 	   $fb_show_follow_btn_where = get_option('fb_show_follow_btn_where');
+		   $fb_show_follow_btn_profile_pic = get_option('fb_show_follow_btn_profile_pic');
+	  ?>       
+      
+       <div class="feed-them-social-admin-input-wrap">
+           <div class="feed-them-social-admin-input-label fts-twitter-text-color-label"><?php _e('Show Follow Button', 'feed-them-social'); ?></div>
+    	
+    <select name="fb_show_follow_btn" id="fb-show-follow-btn" class="feed-them-social-admin-input">
+	    
+		  <option ><?php _e('Please Select Option', 'feed-them-social'); ?></option>
+		  <option '<?php echo selected($fb_show_follow_btn, 'dont-display', false ) ?>' value="dont-display"><?php _e('Don\'t Display a Button', 'feed-them-social'); ?></option>
+		  <optgroup label="Like Box">
+		  	<option '<?php echo selected($fb_show_follow_btn, 'like-box', false ) ?>' value="like-box"><?php _e('Like Box', 'feed-them-social'); ?></option>
+		  	<option '<?php echo selected($fb_show_follow_btn, 'like-box-faces', false ) ?>' value="like-box-faces"><?php _e('Like Box with Faces', 'feed-them-social'); ?></option>
+          </optgroup>
+          <optgroup label="Like Button">
+	  		  <option '<?php echo selected($fb_show_follow_btn, 'like-button', false ) ?>' value="like-button"><?php _e('Like Button', 'feed-them-social'); ?></option>
+	  		  <option '<?php echo selected($fb_show_follow_btn, 'like-button-share', false ) ?>' value="like-button-share"><?php _e('Like Button and Share Button', 'feed-them-social'); ?></option>
+	  		  <option '<?php echo selected($fb_show_follow_btn, 'like-button-faces', false ) ?>' value="like-button-faces"><?php _e('Like Button with Faces', 'feed-them-social'); ?></option>
+	  		  <option '<?php echo selected($fb_show_follow_btn, 'like-button-share-faces', false ) ?>' value="like-button-share-faces"><?php _e('Like Button and Share Button with Faces', 'feed-them-social'); ?></option>
+  		  </optgroup>          
+    </select>
+
+      <div class="clear"></div>
+ 	  </div><!--/fts-twitter-feed-styles-input-wrap-->
+      
+       <div class="feed-them-social-admin-input-wrap" style="display:none">
+           <div class="feed-them-social-admin-input-label fts-twitter-text-color-label"><?php _e('Show Profile Icon next to social option above', 'feed-them-social'); ?></div>
+    	
+    <select name="fb_show_follow_like_box_cover" id="fb-show-follow-like-box-cover" class="feed-them-social-admin-input">
+		  <option ><?php _e('Please Select Option', 'feed-them-social'); ?></option>
+		  <option '<?php echo selected($fb_show_follow_btn_profile_pic, 'fb_like_box_cover-yes', false ) ?>' value="fb_like_box_cover-yes"><?php _e('Display Cover Photo in Like Box', 'feed-them-social'); ?></option>
+  		  <option '<?php echo selected($fb_show_follow_btn_profile_pic, 'fb_like_box_cover-no', false ) ?>' value="fb_like_box_cover-no"><?php _e('Hide Cover Photo in Like Box', 'feed-them-social'); ?></option>
+    </select>
+
+      <div class="clear"></div>
+ 	  </div><!--/fts-twitter-feed-styles-input-wrap-->
+      
+      
+       <div class="feed-them-social-admin-input-wrap">
+           <div class="feed-them-social-admin-input-label fts-twitter-text-color-label"><?php _e('Placement of the Button(s)', 'feed-them-social'); ?></div>
+    	
+    <select name="fb_show_follow_btn_where" id="fb-show-follow-btn-where" class="feed-them-social-admin-input">
+		  <option ><?php _e('Please Select Option', 'feed-them-social'); ?></option>
+		  <option '<?php echo selected($fb_show_follow_btn_where, 'fb-like-top-above-title', false ) ?>' value="fb-like-top-above-title"><?php _e('Show Top of Feed Above Title', 'feed-them-social'); ?></option>
+		  <option '<?php echo selected($fb_show_follow_btn_where, 'fb-like-top-below-title', false ) ?>' value="fb-like-top-below-title"><?php _e('Show Top of Feed Below Title', 'feed-them-social'); ?></option>
+  		  <option '<?php echo selected($fb_show_follow_btn_where, 'fb-like-below', false ) ?>' value="fb-like-below"><?php _e('Show Botton of Feed', 'feed-them-social'); ?></option>
+    </select>
+
+      <div class="clear"></div>
+ 	  </div><!--/fts-twitter-feed-styles-input-wrap-->
+      
+          
  	  <div class="feed-them-social-admin-input-wrap">
            <div class="feed-them-social-admin-input-label fts-fb-text-color-label"><?php _e('Feed Header Extra Text Color', 'feed-them-social'); ?></div>
            <input type="text" name="fb_header_extra_text_color" class="feed-them-social-admin-input fb-text-color-input color {hash:true,caps:false,required:false,adjust:false,pickerFaceColor:'#eee',pickerFace:3,pickerBorder:0,pickerInsetColor:'white'}"  id="fb-text-color-input" placeholder="#222" value="<?php echo get_option('fb_header_extra_text_color');?>"/>
@@ -83,6 +137,30 @@ function feed_them_facebook_options_page() {
            <input type="text" name="fb_border_bottom_color" class="feed-them-social-admin-input fb-border-bottom-color-input color {hash:true,caps:false,required:false,adjust:false,pickerFaceColor:'#eee',pickerFace:3,pickerBorder:0,pickerInsetColor:'white'}"  id="fb-border-bottom-color-input" placeholder="#ddd" value="<?php echo get_option('fb_border_bottom_color');?>"/>
       <div class="clear"></div>
  	  </div><!--/fts-facebook-feed-styles-input-wrap-->
+      
+      
+      <div class="feed-them-social-admin-input-wrap"> 
+           <div class="feed-them-social-admin-input-label fb-events-title-color-label"><?php _e('Events Feed: Title Color', 'feed-them-social'); ?></div>
+           <input type="text" name="fb_events_title_color" class="feed-them-social-admin-input fb-events-title-color color {hash:true,caps:false,required:false,adjust:false,pickerFaceColor:'#eee',pickerFace:3,pickerBorder:0,pickerInsetColor:'white'}"  id="fb-events-title-color-input" placeholder="#ddd" value="<?php echo get_option('fb_events_title_color');?>"/>
+      <div class="clear"></div>
+ 	  </div><!--/fts-facebook-feed-styles-input-wrap-->
+     
+      
+      <div class="feed-them-social-admin-input-wrap"> 
+           <div class="feed-them-social-admin-input-label fb-events-title-size-label"><?php _e('Events Feed: Title Size', 'feed-them-social'); ?></div>
+           <input type="text" name="fb_events_title_size" class="feed-them-social-admin-input fb-events-title-size"  id="fb-events-title-color-input" placeholder="20px" value="<?php echo get_option('fb_events_title_size');?>"/>
+      <div class="clear"></div>
+ 	  </div><!--/fts-facebook-feed-styles-input-wrap-->
+      
+      
+      
+       <div class="feed-them-social-admin-input-wrap"> 
+           <div class="feed-them-social-admin-input-label fb-events-map-link-color-label"><?php _e('Events Feed: Map Link Color', 'feed-them-social'); ?></div>
+           <input type="text" name="fb_events_map_link_color" class="feed-them-social-admin-input fb-events-map-link-color color {hash:true,caps:false,required:false,adjust:false,pickerFaceColor:'#eee',pickerFace:3,pickerBorder:0,pickerInsetColor:'white'}"  id="fb-events-map-link-color-input" placeholder="#ddd" value="<?php echo get_option('fb_events_map_link_color');?>"/>
+      <div class="clear"></div>
+ 	  </div><!--/fts-facebook-feed-styles-input-wrap-->
+      
+      
   
       
       

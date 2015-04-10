@@ -27,7 +27,6 @@
 .instagram-placeholder {
 	position: relative;
 	z-index: 0;
-	text-align: left;
 	display: inline-block;
 	margin: 0px 20px 20px 20px;
 	font-family: 'proxima-nova', 'Helvetica Neue', Arial, Helvetica, sans-serif !importatnt;
@@ -370,6 +369,7 @@ a.fts-slicker-backg {
 	-webkit-transition: all 1s ease-out 0s;
 	-moz-transition: all 1s ease-out 0s;
 	-o-transition: all 1s ease-out 0s;
+	-webkit-font-smoothing: antialiased;
 }
 .slicker-instagram-placeholder a.fts-slicker-backg:hover {
 	opacity: 1;
@@ -384,6 +384,7 @@ a.fts-slicker-backg {
 	font-family: "Fontawesome";
 	content: "\f004";
 	margin-right: 5px;
+	-webkit-font-smoothing: antialiased;
 }
 .fts-slicker-instagram {
 	margin: auto;
@@ -398,6 +399,7 @@ a.fts-slicker-backg {
 .fts-comment-instagram:before {
 	font-family: "Fontawesome" !important;
 	content: "\f075" !important;
+	-webkit-font-smoothing: antialiased;
 	margin-right: 5px;
 	font-size: 13px;
 	display: inline-block;
@@ -503,4 +505,53 @@ to {
 }
 .fts-instagram-fade .mfp-title a:hover {
   color: #eee; 
+}
+.instagram-social-btn-top, .instagram-social-btn-bottom {
+	text-align:center;
+	font-size:14px !important;
+	background:#517fa4 ;
+	border-radius:4px;
+	width:167px;
+	font-family: arial!Important;
+	color:#FFF;
+	line-height:15px;
+	padding:7px 0px !important;
+
+}
+.instagram-social-btn-top {
+	margin:0 auto 15px auto;
+
+}
+.instagram-social-btn-bottom {
+	margin:15px auto 0 auto;
+
+}
+.instagram-social-btn-top:hover, .instagram-social-btn-bottom:hover {
+	opacity:.9
+
+}
+#fts-social-bar-icons-wrap .instagram-social-btn-top a, #fts-social-bar-icons-wrap .instagram-social-btn-bottom a {
+	color:#FFF !important;
+	font-weight:100 !important;
+	display:inline-block;
+
+}
+.instagram-social-btn-top a, .instagram-social-btn-bottom a {
+	color:#FFF !important;
+	font-weight:100 !important;
+	display:inline-block;
+
+}
+.instagram-social-btn-top a:hover, .instagram-social-btn-bottom a:hover {
+	color:#FFF;
+	font-weight:100 !important;
+
+}
+.instagram-social-btn-top:before, .instagram-social-btn-bottom:before {
+	font-family: "Fontawesome";
+	content: "\f16d ";
+	display: inline-block;
+	margin-right: 6px;
+	font-size:16px !important;
+	-webkit-font-smoothing: antialiased;
 }
