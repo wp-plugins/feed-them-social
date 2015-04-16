@@ -676,8 +676,8 @@ class FTS_Facebook_Feed extends feed_them_social_functions {
 					$FB_event_zip = isset($single_event_location->place->location->zip) ? ' '.$single_event_location->place->location->zip : "";
 					$FB_event_latitude = isset($single_event_location->place->location->latitude) ? $single_event_location->place->location->latitude : "";
 					$FB_event_longitude = isset($single_event_location->place->location->longitude) ? $single_event_location->place->location->longitude : "";
-					
-					$FB_event_start_time = date('l, F j, Y g:i a', strtotime($single_event_info->start_time));
+					date_default_timezone_set(get_option('fts-timezone'));
+					$FB_event_start_time = date($CustomDateFormat, strtotime($single_event_info->start_time));
 					
 					//Output Photo Description
 							
@@ -760,7 +760,8 @@ class FTS_Facebook_Feed extends feed_them_social_functions {
 					$FB_event_location = isset($event_data->location) ? $event_data->location : "";
 					$FB_event_city = isset($event_data->venue->city) ? $event_data->venue->city : "";
 					$FB_event_state = isset($event_data->venue->state) ? $event_data->venue->state : "";
-					$FB_event_start_time = date('l, F j, Y g:i a', strtotime($event_data->start_time));
+					date_default_timezone_set(get_option('fts-timezone'));
+					$FB_event_start_time = date($CustomDateFormat, strtotime($event_data->start_time));
 					echo '<a href="'.$FBlink.'" target="_blank" class="fts-jal-fb-picture"><img class="fts-fb-event-photo" src="http://graph.facebook.com/'.$event_id_number.'/picture"></img></a>';
 					print '<div class="fts-jal-fb-description-wrap">';
 					//Output Link Name
