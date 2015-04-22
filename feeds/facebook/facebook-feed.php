@@ -22,11 +22,9 @@ class FTS_Facebook_Feed extends feed_them_social_functions {
 	//**************************************************
 	function fts_fb_func($atts) {
 		$developer_mode = 'on';
-		
 		//Facebook Follow Button Options
 		$fb_show_follow_btn = get_option('fb_show_follow_btn');
 		$fb_show_follow_btn_where = get_option('fb_show_follow_btn_where');
-		
 		//Make sure everything is reset
 		include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
 		//Eventually add premium page file
@@ -140,7 +138,9 @@ class FTS_Facebook_Feed extends feed_them_social_functions {
 					$mulit_data['feed_data'] = $_REQUEST['next_url'];
 				}
 				else {
-					$mulit_data['feed_data'] = 'https://graph.facebook.com/'.$fts_fb_id.'/events?limit='.$fts_limiter.'&access_token='.$access_token.'';
+					date_default_timezone_set(get_option('fts-timezone'));
+					$date = date('Y-m-d');
+					$mulit_data['feed_data'] = 'https://graph.facebook.com/'.$fts_fb_id.'/events?since='.$date.'&access_token='.$access_token.'';
 				}
 			}
 			elseif ($type == 'albums') {
@@ -216,12 +216,12 @@ class FTS_Facebook_Feed extends feed_them_social_functions {
 		//Json decode data and build it from cache or response
 		$des = json_decode($response['page_data']);
 		$data = json_decode($response['feed_data']);
-		
-		//echo'<pre>';
-		//print_r($data);
-		//echo'</pre>';
-
-		
+		//If events array Flip it so it's in proper order
+		if ($type == 'events') {
+				if($data->data){
+					$data->data = array_reverse($data->data);
+				}
+		}
 		// return error if no data retreived
 		if (!isset($data->data) || empty($data->data)) {
 			//If Error msg.
@@ -232,8 +232,8 @@ class FTS_Facebook_Feed extends feed_them_social_functions {
 			//If just code.
 			if (isset($data->error_msg)) $output = 'Error: '.$data->error_msg;
 			if (isset($data->error_code) ) $output .= '<br />Code: '.$data->error_code;
-			if (!$output) $output = 'No Posts Found. Are you sure this is a Facebook Page ID and not a Facebook Group or Event ID?';
-			return '<div style="clear:both; padding:15px 0;">'.$output.'</div>';
+			if (!$output && $type !== 'events') $output = 'No Posts Found. Are you sure this is a Facebook Page ID and not a Facebook Group or Event ID?';
+			return $type == 'events' ? '' : '<div style="clear:both; padding:15px 0;">'.$output.'</div>';
 		}
 		//Make sure it's not ajaxing
 		if (!isset($_GET['load_more_ajaxing'])) {
@@ -251,15 +251,12 @@ class FTS_Facebook_Feed extends feed_them_social_functions {
 						$this->social_follow_button('facebook', $id, $access_token);
 						echo '</div>';
 				}
-				
 			// so we can remove the fts-jal-fb-header for our special album view
 			if (is_plugin_active('feed-them-premium/feed-them-premium.php')) {
 				$des->description = isset($des->description) ? $des->description : "";
 				// fts-fb-header-wrapper
 				if ($fts_grid !== 'yes' && $type !== 'album_photos' && $type !== 'albums') {  print '<div class="fts-fb-header-wrapper">'; }
 				print '<div class="fts-jal-fb-header">';
-				
-				
 				// Print our Facebook Page Title or About Text. Commented out the group description because in the future we will be adding the about description.
 				if ($title == 'yes' or $title == '') {
 					print '<h1><a href="'.$fts_view_fb_link.'" target="_blank">'.$des->name.'</a></h1>';
@@ -275,11 +272,9 @@ class FTS_Facebook_Feed extends feed_them_social_functions {
 				$des->description = isset($des->description) ? $des->description : "";
 				print '<div class="fts-jal-fb-header"><h1><a href="'.$fts_view_fb_link.'" target="_blank">'.$des->name.'</a></h1>';
 				print '<div class="fts-jal-fb-group-header-desc">'.$this->fts_facebook_tag_filter($des->description).'</div>';
-				
 				print '</div><div class="clear"></div>';
 			}
 		} //End check
-		
 				//******************
 				// SOCIAL BUTTON
 				//****************** 
@@ -288,7 +283,6 @@ class FTS_Facebook_Feed extends feed_them_social_functions {
 						$this->social_follow_button('facebook', $id, $access_token);
 						echo '</div>';
 				}
-				
 		//Make sure it's not ajaxing
 		if (!isset($_GET['load_more_ajaxing'])) {
 			$fts_grid = isset($fts_grid) ? $fts_grid : "";
@@ -327,7 +321,6 @@ class FTS_Facebook_Feed extends feed_them_social_functions {
 			foreach ($data->data as $counter) {
 				if ($set_zero==$fts_limiter)
 					break;
-					
 					if ($type == 'events') {
 						$single_event_id = $counter->id;
 						//Event Info
@@ -678,18 +671,13 @@ class FTS_Facebook_Feed extends feed_them_social_functions {
 					$FB_event_longitude = isset($single_event_location->place->location->longitude) ? $single_event_location->place->location->longitude : "";
 					date_default_timezone_set(get_option('fts-timezone'));
 					$FB_event_start_time = date($CustomDateFormat, strtotime($single_event_info->start_time));
-					
 					//Output Photo Description
-							
-					
-					
 					if (isset($fts_fb_popup) && $fts_fb_popup == 'yes' && is_plugin_active('feed-them-premium/feed-them-premium.php')) {
 							print '<a href="'.$event_cover_photo.'" class="fts-jal-fb-picture fts-fb-large-photo" target="_blank"><img class="fts-fb-event-photo" src="'.$event_cover_photo.'"></a>';
 							}
 					else {
 							print '<a href="http://facebook.com/events/'.$single_event_id.'" target="_blank" class="fts-jal-fb-picture fts-fb-large-photo"><img class="fts-fb-event-photo" src="'.$event_cover_photo.'" /></a>';	
 						}
-							
 					print '<div class="fts-jal-fb-message">';
 					//Link Name
 					if ($FB_event_name) {
@@ -716,13 +704,7 @@ class FTS_Facebook_Feed extends feed_them_social_functions {
 					if (!empty($single_event_ticket_info) && !empty($single_event_ticket_info)) {					
 						print '<a target="_blank" class="fts-fb-ticket-info" href="'.$single_event_ticket_info->ticket_uri.'">Ticket Info</a>';
 					}
-					
-					
-					
-					
-					
 					//Output Message
-						 
 							if (!empty($words) && $single_event_info->description && is_plugin_active('feed-them-premium/feed-them-premium.php')) {
 								// here we trim the words for the premium version. The $words string actually comes from the javascript
 									print $this->fts_facebook_post_desc($event_description, $words, $FBtype, NULL, $FBby, $type);
@@ -730,12 +712,8 @@ class FTS_Facebook_Feed extends feed_them_social_functions {
 							// if the premium plugin is not active we will just show the regular full description
 							else {
 								print $this->fts_facebook_post_desc($event_description, $FBtype, NULL, $FBby, $type);
-								
 							}
-						 
-					
 					print '<div class="clear"></div></div>';
-				
 			break;
 			//**************************************************
 			// START LINK POST
@@ -931,7 +909,6 @@ class FTS_Facebook_Feed extends feed_them_social_functions {
 				}
 				print '<div class="clear"></div></div>';
 				break;
-				
 			//**************************************************
 			//START PHOTO POST
 			//**************************************************
@@ -1045,7 +1022,6 @@ class FTS_Facebook_Feed extends feed_them_social_functions {
 			print '</div>';
 			$set_zero++;
 		}
-		
 		//******************
 		//Load More BUTTON Start
 		//****************** 
@@ -1055,6 +1031,19 @@ class FTS_Facebook_Feed extends feed_them_social_functions {
 		}
 		$build_shortcode .= ']';
 		$_REQUEST['next_url'] = isset($data->paging->next) ? $data->paging->next : "";
+		//If events array Flip it so it's in proper order
+		if ($type == 'events') {
+			$key_needed = $set_zero;
+			$single_event_id = $data->data[$key_needed]->id;
+			$single_event_info = json_decode($single_event_array_response['event_single_'.$single_event_id.'_info']);
+			$FB_event_start_time = date('Y-m-d', strtotime($single_event_info->start_time));
+			if($FB_event_start_time !== '1969-12-31'){
+				$_REQUEST['next_url'] = isset($data->paging->next) ? 'https://graph.facebook.com/'.$fts_fb_id.'/events?since='.$FB_event_start_time.'&access_token='.$access_token.'' : "";
+			}
+			else{
+				$_REQUEST['next_url'] = 'no more';
+			}
+		}
 ?>
 <script>
 jQuery(document).ready(function() {
@@ -1101,6 +1090,7 @@ var nextURL_<?php echo $_REQUEST['fts_dynamic_name']; ?>= "<?php echo $_REQUEST[
 						var fts_d_name = "<?php echo $fts_dynamic_name;?>";
 						var fts_security = "<?php echo $nonce;?>";
 						var fts_time = "<?php echo $time;?>";
+						var fts_offset_posts = "<?php echo $_REQUEST['next_offset'];?>";
 					jQuery.ajax({
 						data: {action: "my_fts_fb_load_more", next_url: nextURL_<?php echo $fts_dynamic_name ?>, fts_dynamic_name: fts_d_name, rebuilt_shortcode: build_shortcode, load_more_ajaxing: yes_ajax, fts_security: fts_security, fts_time: fts_time},
 						type: 'GET',
@@ -1115,7 +1105,7 @@ var nextURL_<?php echo $_REQUEST['fts_dynamic_name']; ?>= "<?php echo $_REQUEST[
       // This can be direct code, or call to some other function
 	  jQuery('.<?php echo $fts_dynamic_class_name ?>').masonry( 'layout' );
      }, 500);
-						if(!nextURL_<?php echo $_REQUEST['fts_dynamic_name']; ?>){
+						if(!nextURL_<?php echo $_REQUEST['fts_dynamic_name']; ?> || nextURL_<?php echo $_REQUEST['fts_dynamic_name']; ?> == 'no more'){
 						  jQuery('#loadMore_<?php echo $fts_dynamic_name ?>').replaceWith('<div class="fts-fb-load-more no-more-posts-fts-fb">No More Photos</div>');
 						  jQuery('#loadMore_<?php echo $fts_dynamic_name ?>').removeAttr('id');
 						  jQuery(".<?php echo $fts_dynamic_class_name ?>").unbind('scroll');
@@ -1124,7 +1114,7 @@ var nextURL_<?php echo $_REQUEST['fts_dynamic_name']; ?>= "<?php echo $_REQUEST[
 			else { ?>
 						var result = jQuery('#output_<?php echo $fts_dynamic_name ?>').append(data).filter('#output_<?php echo $fts_dynamic_name ?>').html();
 						jQuery('#output_<?php echo $fts_dynamic_name ?>').html(result);
-						if(!nextURL_<?php echo $_REQUEST['fts_dynamic_name']; ?>){
+						if(!nextURL_<?php echo $_REQUEST['fts_dynamic_name']; ?> || nextURL_<?php echo $_REQUEST['fts_dynamic_name']; ?> == 'no more'){
 						  jQuery('#loadMore_<?php echo $fts_dynamic_name ?>').replaceWith('<div class="fts-fb-load-more no-more-posts-fts-fb">No More Posts</div>');
 						  jQuery('#loadMore_<?php echo $fts_dynamic_name ?>').removeAttr('id');
 						  jQuery(".<?php echo $fts_dynamic_class_name ?>").unbind('scroll');
@@ -1156,7 +1146,6 @@ var nextURL_<?php echo $_REQUEST['fts_dynamic_name']; ?>= "<?php echo $_REQUEST[
 			}
 		}
 		print '</div>'; // closing main div for fb photos, groups etc
-		
 ?>
 		 <?php //only show this script if the height option is set to a number
 		if ($height !== 'auto' && empty($height) == NULL) { ?>
@@ -1188,7 +1177,6 @@ var nextURL_<?php echo $_REQUEST['fts_dynamic_name']; ?>= "<?php echo $_REQUEST[
 			}
 		}//End Check
 		unset($_REQUEST['next_url']);
-		
 		//******************
 		// SOCIAL BUTTON
 		//****************** 
@@ -1197,8 +1185,6 @@ var nextURL_<?php echo $_REQUEST['fts_dynamic_name']; ?>= "<?php echo $_REQUEST[
 					$this->social_follow_button('facebook', $id, $access_token);
 					echo '</div>';
 		}
-		
-		
 		return ob_get_clean();
 	}
 	//**************************************************
@@ -1248,7 +1234,6 @@ var nextURL_<?php echo $_REQUEST['fts_dynamic_name']; ?>= "<?php echo $_REQUEST[
 			return $output;
 		}
 	}
-	
 	//**************************************************
 	// Facebook Post Description
 	//**************************************************
@@ -1356,8 +1341,6 @@ var nextURL_<?php echo $_REQUEST['fts_dynamic_name']; ?>= "<?php echo $_REQUEST[
 		case 'events':	
 			$output = '<a href="http://facebook.com/events/'.$single_event_id.'" target="_blank" class="fts-jal-fb-see-more">'.__('View on Facebook', 'feed-them-social').'</a>';
 			return $output;
-
-		
 		case 'photo':
 			$output = '<a href="'.$FBlink.'" target="_blank" class="fts-jal-fb-see-more">';
 			if ($type == 'album_photos' && $hide_date_likes_comments == 'yes') { }
