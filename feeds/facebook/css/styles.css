@@ -7,13 +7,16 @@
 .fts-jal-single-fb-post .icon-comments:before{
 	content:"\f086" !important;
 	}
+.fts-jal-single-fb-post .icon-file:before{
+	content:"\f15b" !important;
+	}
 .fts-jal-single-fb-post [class^="icon-thumbs-up"], .fts-jal-single-fb-post [class*=" icon--thumbs-up"], .fts-jal-single-fb-post [class^="icon-comments"], .fts-jal-single-fb-post [class*=" icon--file"], .fts-jal-single-fb-post [class^="icon-file"], .fts-events-list-wrap .icon-map-marker [class^="icon-thumbs-up"] {
 	display: inline-block !important;
-	margin-left: 7px !important;
 }
 .fts-jal-single-fb-post [class^="icon-"]:before, .fts-events-list-wrap [class^="icon-"]:before {
 	font-family: 'FontAwesomeSlick' !important;
 	-webkit-font-smoothing: antialiased;
+	margin:0 0 0 7px !important;
 }
 .fts-jal-single-fb-post [class^="icon-"] {
 	margin: 0 !important;
