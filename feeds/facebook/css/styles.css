@@ -1,9 +1,20 @@
 /*=================================================
 	Font Awesome icons for facebook feeds 
 =================================================*/
-.fts-jal-single-fb-post .icon-thumbs-up:before{content:"\f164" !important ;}
-.fts-jal-single-fb-post .icon-comments:before{content:"\f086" !important;}
-
+.fts-jal-single-fb-post .icon-thumbs-up:before{
+	content:"\f164" !important ;
+	}
+.fts-jal-single-fb-post .icon-comments:before{
+	content:"\f086" !important;
+	}
+.fts-jal-single-fb-post [class^="icon-thumbs-up"], .fts-jal-single-fb-post [class*=" icon--thumbs-up"], .fts-jal-single-fb-post [class^="icon-comments"], .fts-jal-single-fb-post [class*=" icon--file"], .fts-jal-single-fb-post [class^="icon-file"], .fts-events-list-wrap .icon-map-marker [class^="icon-thumbs-up"] {
+	display: inline-block !important;
+	margin-left: 7px !important;
+}
+.fts-jal-single-fb-post [class^="icon-"]:before, .fts-events-list-wrap [class^="icon-"]:before {
+	font-family: 'FontAwesomeSlick' !important;
+	-webkit-font-smoothing: antialiased;
+}
 .fts-jal-single-fb-post [class^="icon-"] {
 	margin: 0 !important;
 	display: block;
@@ -17,13 +28,6 @@
 	background-position: 0% 0% !important;
 	background-repeat: repeat !important;
 	background: transparent !important;
-}
-.fts-jal-single-fb-post [class^="icon-thumbs-up"], .fts-jal-single-fb-post [class*=" icon--thumbs-up"], .fts-jal-single-fb-post [class^="icon-comments"], .fts-jal-single-fb-post [class*=" icon--file"], .fts-jal-single-fb-post [class^="icon-file"], .fts-events-list-wrap .icon-map-marker [class^="icon-thumbs-up"] {
-	display: inline-block !important;
-	margin-left: 7px !important;
-}
-.fts-jal-single-fb-post [class^="icon-"]:before, .fts-events-list-wrap [class^="icon-"]:before {
-	font-family: 'fontawesome' !important;
 }
 .fts-fb-load-more {
 	border-radius: 1px;
@@ -718,14 +722,14 @@ to {
   color: #eee; 
 }
 .fts-view-on-facebook-link:before, .view-on-facebook-albums-link:before, .fts-view-album-photos-large:before  {
-	font-family: "Fontawesome";
+	font-family: "FontAwesomeSlick";
 	content: "\f14c ";
 	display: inline-block;
 	margin-right: 6px;
 	-webkit-font-smoothing: antialiased;
 }
 .fts-fb-get-directions:before  {
-	font-family: "Fontawesome";
+	font-family: "FontAwesomeSlick";
 	content: "\f041 ";
 	display: inline-block;
 	margin: 0 5px 0 2px;

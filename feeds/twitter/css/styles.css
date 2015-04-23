@@ -8,13 +8,13 @@
 	border:none !important;
 }
 .fts-view-on-twitter-link:before  {
-	font-family: "Fontawesome";
+	font-family: "FontAwesomeSlick";
 	content: "\f14c ";
 	display: inline-block;
 	margin-right: 6px;
 }
 .fts-video-show-hide-btns-wrap a:before {
-	font-family: "Fontawesome";
+	font-family: "FontAwesomeSlick";
 	content: '\f16a';
 	display: inline-block;
 	margin-right: 5px;
@@ -23,7 +23,7 @@ img.fts-twitter-description-image {
 	margin: 10px 0 0 !important;
 }
 .fts-twitter-reply:before {
-	font-family: "Fontawesome";
+	font-family: "FontAwesomeSlick";
 	content: '\f112';
 }
 blockquote.twitter-video {

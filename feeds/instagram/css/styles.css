@@ -362,7 +362,7 @@ a.fts-slicker-backg {
 	color: rgba(255, 255, 255, 0.27);
 }
 .slicker-instagram-placeholder .fts-instagram-icon:before {
-	font-family: "Fontawesome";
+	font-family: "FontAwesomeSlick";
 	content: "\f16d";
 	font-size: 100%;
 	display: inline-block;
@@ -381,7 +381,7 @@ a.fts-slicker-backg {
 .slicker-instagram-placeholder:hover .fts-slicker-backg {
 }
 .slicker-instagram-image-likes:before {
-	font-family: "Fontawesome";
+	font-family: "FontAwesomeSlick";
 	content: "\f004";
 	margin-right: 5px;
 	-webkit-font-smoothing: antialiased;
@@ -397,7 +397,7 @@ a.fts-slicker-backg {
 	transition-delay: 0.1s;
 }
 .fts-comment-instagram:before {
-	font-family: "Fontawesome" !important;
+	font-family: "FontAwesomeSlick" !important;
 	content: "\f075" !important;
 	-webkit-font-smoothing: antialiased;
 	margin-right: 5px;
@@ -461,12 +461,12 @@ a.fts-slicker-backg {
 	font-size: 14px;
 }
 .fts-see-on-instagram div:before {
-	font-family: "Fontawesome";
+	font-family: "FontAwesomeSlick";
 	content: "\f14c ";
 	display: inline-block;
 }
 .fts-view-on-instagram-link:before {
-	font-family: "Fontawesome";
+	font-family: "FontAwesomeSlick";
 	content: "\f14c ";
 	display: inline-block;
 	margin-right: 6px;
@@ -548,7 +548,7 @@ to {
 
 }
 .instagram-social-btn-top:before, .instagram-social-btn-bottom:before {
-	font-family: "Fontawesome";
+	font-family: "FontAwesomeSlick";
 	content: "\f16d ";
 	display: inline-block;
 	margin-right: 6px;
