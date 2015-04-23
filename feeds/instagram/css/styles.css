@@ -536,6 +536,9 @@ to {
 	display:inline-block;
 
 }
+#fts-social-bar-icons-wrap .instagram-social-btn-top a:hover {
+	color:#FFF !important;
+}
 .instagram-social-btn-top a, .instagram-social-btn-bottom a {
 	color:#FFF !important;
 	font-weight:100 !important;
