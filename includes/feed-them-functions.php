@@ -276,6 +276,7 @@ class feed_them_social_functions {
 			2 => 'instagram',
 			3 => 'twitter',
 			4 => 'pinterest',
+			5 => 'youtube',
 		);
 		foreach ($plugins as $key => $value) {
 			$files = glob(WP_CONTENT_DIR.'/plugins/feed-them-social/feeds/'.$value.'/cache/*'); // get all file names
@@ -485,6 +486,7 @@ class feed_them_social_functions {
 		$youtube_style_options = array(
 			'youtube_show_follow_btn',
 			'youtube_show_follow_btn_where',
+			'youtube_custom_api_token',
 		);
 		$this->register_settings('fts-youtube-feed-style-options', $youtube_style_options);
 	}

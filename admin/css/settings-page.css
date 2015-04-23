@@ -29,8 +29,9 @@
 .feed-them_page_fts-pinterest-feed-styles-submenu-page .feed-them-social-admin-wrap h1, .feed-them_page_fts-twitter-feed-styles-submenu-page .feed-them-social-admin-wrap h1, .feed-them_page_fts-twitter-feed-styles-submenu-page .feed-them-social-admin-wrap h2, .feed-them_page_fts-twitter-feed-styles-submenu-page .use-of-plugin, .feed-them_page_fts-pinterest-feed-styles-submenu-page .use-of-plugin, .feed-them_page_fts-youtube-feed-styles-submenu-page .use-of-plugin {
 	color: #333;
 }
-.feed-them_page_fts-twitter-feed-styles-submenu-page .feed-them-social-admin-wrap h2 {
+.feed-them_page_fts-twitter-feed-styles-submenu-page .feed-them-social-admin-wrap h2, .fts-youtube-feed-styles-submenu-page .feed-them-social-admin-wrap h2 {
 	margin-top:45px;
+	color: #333;
 }
 .feed-them_page_fts-facebook-feed-styles-submenu-page .feed-them-social-admin-wrap h2 {
 	margin-top:45px;
@@ -95,6 +96,10 @@
 }
 .facebook-message-generator {
 	display:none;
+}
+.feed-them_page_fts-youtube-feed-styles-submenu-page h2 {
+	color:#333 !important;
+	margin-top:45px !important;
 }
 .feed-them-social-admin-wrap h2 {
 	color: #fff;
