@@ -3,7 +3,7 @@ Contributors: slickremix
 Tags:  facebook photos, facebook albums, albums, photos facebook, photo, facebook feed, facebook posts, hastags, social, social plugin, social networking, networking, custom feed, custom facebook feed, facebook plugin, facebook group, facebook groups, events, facebook events, facebook page events, facebook group events, facebook page, facebook pages, twitter, twitter plugin, instagram, instagram plugin, feed me social, social plugin, feed, feeds, shortcode, facebook wall, slickremix, plugin, pages, posts, images, page, post, image, youtube, youtube feed, youtube channel, youtube video, youtube videos, videos, youtube embed, embed, video iframe, admin, comments, widgets, seo, wordpress, pinterest, pinterest boards, pinterest feeds, pinterest photos, pinterest widget, pinterest widgets, instagram popup
 Requires at least: 3.4.0
 Tested up to: 4.1.1
-Stable tag: 1.7.5
+Stable tag: 1.7.6
 License: GPLv2 or later
 
 Display custom feeds for Facebook Pages, Groups, Events, Album Photos and Covers -Twitter, Instagram, Pinterest and YouTube on pages, posts or widgets.
@@ -54,6 +54,11 @@ If you enjoy using our plugin please tell others. [Click here to share](http://w
   * Extract the zip file and drop the contents in the wp-content/plugins/ directory of your WordPress installation and then activate the Plugin from Plugins page. 
 
 == Changelog ==
+= Version 1.7.6 Thursday, April 23rd, 2015 =
+ * FIXED: Facebook: Events are now in the proper order.
+ * FIXED: Facebook: Events now show the proper Date and Time based on the UTC setting on our Settings page.
+ * FIXED: FontAweseome conflict with other themes. Now our font name is FontAweseomeSlick!
+ 
 = Version 1.7.5 Thursday, April 9th, 2015 =
  * NEW: All Feeds have been classified in php
  * NEW: Facebook: Now display a Facebook Page's Events Feed with additional styling in Facebook Options page.
