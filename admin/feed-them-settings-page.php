@@ -60,6 +60,10 @@ $fts_functions = new feed_them_social_functions();
 		$ftsDevModeCache = get_option('fts_clear_cache_developer_mode');
 		$ftsAdminBarMenu = get_option('fts_admin_bar_menu');
 ?>
+
+
+
+
     <form method="post" action="?page=feed-them-settings-page&cache=clearcache">
        <p><input class="feed-them-social-admin-submit-btn" type="submit" value="<?php _e('Clear All FTS Feeds Cache', 'feed-them-social'); ?>" /></p>
     </form>
@@ -683,7 +687,11 @@ function converter_instagram_username() {
 	  	 jQuery(".convert_instagram_username").removeClass('fts-empty-error');
 			var username = jQuery("input#convert_instagram_username").val();
 			console.log(username);
-			jQuery.getJSON("https://api.instagram.com/v1/users/search?q="+username+"&access_token=267791236.f78cc02.bea846f3144a40acbf0e56b002c112f8&callback=?",
+			
+			<?php $fts_instagram_tokens_array = array('9844495a8c4c4c51a7c519d0e7e8f293', 'aae62105cc314f62ab9bb3a3e4302dc8');
+			$fts_instagram_access_token = $fts_instagram_tokens_array[array_rand($fts_instagram_tokens_array, 1)];
+			?>
+			jQuery.getJSON("https://api.instagram.com/v1/users/search?q="+username+"&client_id=<?php echo $fts_instagram_access_token ?>&callback=?",
 			  {
 				format: "json"
 			  },
@@ -724,6 +732,9 @@ jQuery( document ).ready(function() {
 <?php } ?>
   }); //end document ready
 </script>
+
+
+
 <?php
 	//Premium JS
 	if(is_plugin_active('feed-them-premium/feed-them-premium.php')) {

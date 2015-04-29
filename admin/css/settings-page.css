@@ -536,3 +536,31 @@ label.toggle-custom-textarea-show {
 	line-height:21px;
 	font-size:13px;	
 }
+.fts-instagram-get-access-token, .fts-instagram-get-access-token:focus {
+	display:block;
+	clear:both;
+	float:left;
+	padding:5px 20px 9px 17px;
+	background:url(../images/instagram-backg.jpg) #517fa4;
+	text-decoration:none;
+	color: #FFF;
+	font-size:15px;
+	margin-bottom:20px;
+	border-radius:4px;
+}
+.fts-instagram-get-access-token:hover {
+	color: #FFF;
+	opacity:.9;
+}
+@font-face{font-family:'FontAwesomeSlick';src:url('../../feeds/css/font/fontawesome-webfont.eot?v=3.2.1');src:url('../../feeds/css/font/fontawesome-webfont.eot?#iefix&v=3.2.1') format('embedded-opentype'),url('../../feeds/css/font/fontawesome-webfont.woff?v=3.2.1') format('woff'),url('../../feeds/css/font/fontawesome-webfont.ttf?v=3.2.1') format('truetype'),url('../../feeds/css/font/fontawesome-webfont.svg#fontawesomeregular?v=3.2.1') format('svg'); }
+.fts-instagram-get-access-token:before {
+	font-family:'FontAwesomeSlick';
+	content:"\f16d";
+	margin-right:9px;
+	font-size:24px !important;
+	top:3px !important;
+	position:relative;
+	font-size:normal;
+	-webkit-font-smoothing: antialiased;
+}
+
