@@ -8,16 +8,17 @@ class FTS_Twitter_Feed extends feed_them_social_functions {
 	// Add Styles and Scripts functions
 	//**************************************************
 	function fts_twitter_head() {
-		wp_enqueue_style( 'fts_twitter_css', plugins_url( 'twitter/css/styles.css',  dirname(__FILE__) ) );
-		if (is_plugin_active('feed-them-premium/feed-them-premium.php')) {
-			wp_enqueue_style( 'fts_instagram_css_popup', plugins_url( 'instagram/css/magnific-popup.css',  dirname(__FILE__) ) );
-			wp_enqueue_script( 'fts_instagram_popup_js', plugins_url( 'instagram/js/magnific-popup.js',  dirname(__FILE__) ) );
-		}
-		$twitter_allow_shortlink_conversion = get_option('twitter_allow_shortlink_conversion');
-		// option to allow this action or not from the Twitter Options page
-		if (isset($twitter_allow_shortlink_conversion) && $twitter_allow_shortlink_conversion == 'yes') {
-			wp_enqueue_script( 'fts_instagram_longurl_js', plugins_url( 'feed-them-social/js/jquery.longurl.js') );
-		}
+		
+			  wp_enqueue_style( 'fts_twitter_css', plugins_url( 'twitter/css/styles.css',  dirname(__FILE__) ) );
+			  if (is_plugin_active('feed-them-premium/feed-them-premium.php')) {
+				  wp_enqueue_style( 'fts_instagram_css_popup', plugins_url( 'instagram/css/magnific-popup.css',  dirname(__FILE__) ) );
+				  wp_enqueue_script( 'fts_instagram_popup_js', plugins_url( 'instagram/js/magnific-popup.js',  dirname(__FILE__) ) );
+			  }
+			  $twitter_allow_shortlink_conversion = get_option('twitter_allow_shortlink_conversion');
+			  // option to allow this action or not from the Twitter Options page
+			  if (isset($twitter_allow_shortlink_conversion) && $twitter_allow_shortlink_conversion == 'yes') {
+				  wp_enqueue_script( 'fts_instagram_longurl_js', plugins_url( 'feed-them-social/js/jquery.longurl.js') );
+			  }
 	} 
 	//**************************************************
 	// Curl function to help return longurl API call
@@ -25,7 +26,7 @@ class FTS_Twitter_Feed extends feed_them_social_functions {
 	function curl_get($url) {
 		$curl = curl_init($url);
 		curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
-		curl_setopt($curl, CURLOPT_TIMEOUT, 30);
+		curl_setopt($curl, CURLOPT_TIMEOUT, 0);
 		curl_setopt($curl, CURLOPT_FOLLOWLOCATION, 1);
 		$return = curl_exec($curl);
 		curl_close($curl);
