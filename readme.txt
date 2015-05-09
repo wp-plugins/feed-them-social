@@ -23,17 +23,17 @@ With our plugin you can create social feeds of any or all your celebrities, fami
   * With our [Premium Extension](http://www.slickremix.com/product/feed-them-social-premium-extension/) you can set how many posts, pictures, tweets, or videos for each individual social feed! We now have simple widgets available for all the feeds. This premium edition also allows our basic shortcode to work with text widgets. Facebook Groups now has the option to hide the Title or Description too! [See Example Demo](http://feedthemsocial.com/)
 
 = Demos =
-All Demos can be found on [www.FeedThemSocial.com](http://feedthemsocial.com/)
-  * [Facebook Page Feed Demo](http://feedthemsocial.com/)
-  * [Facebook Album Photos Feed Demo](http://feedthemsocial.com/facebook-album-photos-demo/)
-  * [Facebook Album Covers Feed Demo](http://feedthemsocial.com/facebook-album-covers/)
-  * [Facebook Group Feed Demo](http://feedthemsocial.com/facebook-group-feed-demo/)
-  * [Facebook Event Feed Demo](http://feedthemsocial.com/facebook-event-feed-demo/)
-  * [Instagram Feed Demo](http://feedthemsocial.com/instagram-feed-demo/)
-  * [Twitter Feed Demo](http://feedthemsocial.com/twitter-feed-demo/)
-  * [Pinterest Boards Demo](http://feedthemsocial.com/pinterest/)
-  * [Pinterest Pins from a single Board](http://feedthemsocial.com/pinterest-pins-from-a-single-board/)
-  * [Pinterest Latest Pins from a User](http://feedthemsocial.com/pinterest-demo-pins-from-user/)
+ * All Demos can be found on [www.FeedThemSocial.com](http://feedthemsocial.com/)
+ * [Facebook Page Feed Demo](http://feedthemsocial.com/)
+ * [Facebook Album Photos Feed Demo](http://feedthemsocial.com/facebook-album-photos-demo/)
+ * [Facebook Album Covers Feed Demo](http://feedthemsocial.com/facebook-album-covers/)
+ * [Facebook Group Feed Demo](http://feedthemsocial.com/facebook-group-feed-demo/)
+ * [Facebook Event Feed Demo](http://feedthemsocial.com/facebook-event-feed-demo/)
+ * [Instagram Feed Demo](http://feedthemsocial.com/instagram-feed-demo/)
+ * [Twitter Feed Demo](http://feedthemsocial.com/twitter-feed-demo/)
+ * [Pinterest Boards Demo](http://feedthemsocial.com/pinterest/)
+ * [Pinterest Pins from a single Board](http://feedthemsocial.com/pinterest-pins-from-a-single-board/)
+ * [Pinterest Latest Pins from a User](http://feedthemsocial.com/pinterest-demo-pins-from-user/)
   
 = PREMIUM Demos =
  * [Youtube + Instagram + Pinterest Feeds Demo](http://feedthemsocial.com/youtube-instagram/)
