@@ -540,7 +540,7 @@ label.toggle-custom-textarea-show {
 	display:block;
 	clear:both;
 	float:left;
-	padding:5px 20px 9px 17px;
+	padding:6px 20px 10px 17px;
 	background:url(../images/instagram-backg.jpg) #517fa4;
 	text-decoration:none;
 	color: #FFF;
@@ -563,4 +563,12 @@ label.toggle-custom-textarea-show {
 	font-size:normal;
 	-webkit-font-smoothing: antialiased;
 }
-
+.fts-title-description-settings-page h3 {
+	margin:0 0 9px;
+	font-size:19px;
+}
+.fts-title-description-settings-page {
+	padding:25px 0 15px;
+	max-width:740px;
+	border-top:1px solid #ccc;
+}

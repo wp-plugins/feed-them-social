@@ -8,18 +8,26 @@ class FTS_Instagram_Feed extends feed_them_social_functions {
 	// Add Styles and Scripts functions
 	//**************************************************
 	function fts_instagram_head() {
-		wp_enqueue_style( 'fts_instagram_css', plugins_url( 'instagram/css/styles.css',  dirname(__FILE__) ) );
-		wp_enqueue_script( 'fts_instagram_masonry_pkgd_js', plugins_url( 'instagram/js/masonry.pkgd.min.js',  dirname(__FILE__) ), array( 'jquery' ) );
-		// masonry js snippet in date-format.js too
-		wp_enqueue_script( 'fts_instagram_date_js', plugins_url( 'instagram/js/date-format.js',  dirname(__FILE__) ), array( 'jquery' ) );
+			wp_enqueue_style( 'fts-feeds', plugins_url( 'feed-them-social/feeds/css/styles.css'));
 	}
 	//**************************************************
 	// Display Instagram Feed
 	//**************************************************
 	function fts_instagram_func($atts) {
+		
+			wp_enqueue_script( 'fts-masonry-pkgd', plugins_url( 'feed-them-social/feeds/js/masonry.pkgd.min.js'), array( 'jquery' ) );
+			// masonry and date js snippet in fts-global
+	 	wp_enqueue_script( 'fts-images-loaded', plugins_url( 'feed-them-social/feeds/js/imagesloaded.pkgd.min.js' ));
+			wp_enqueue_script( 'fts-global', plugins_url( 'feed-them-social/feeds/js/fts-global.js'), array( 'jquery' ) );
+		
 		include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
 		if (is_plugin_active('feed-them-premium/feed-them-premium.php')) {
 			include(WP_CONTENT_DIR.'/plugins/feed-them-premium/feeds/instagram/instagram-feed.php');
+					if ($popup == 'yes') {
+							// it's ok if these styles & scripts load at the bottom of the page
+							wp_enqueue_style( 'fts-popup', plugins_url( 'feed-them-social/feeds/css/magnific-popup.css'));
+							wp_enqueue_script( 'fts-popup-js', plugins_url( 'feed-them-social/feeds/js/magnific-popup.js'));
+					}
 		}
 		else {
 			extract( shortcode_atts( array(
@@ -35,16 +43,12 @@ class FTS_Instagram_Feed extends feed_them_social_functions {
 					), $atts ) );
 			$pics_count = '6';
 		}
-		$popup = isset($popup) ? $popup : "";
+		
 		$instagram_data_array = array();
 		$fts_instagram_access_token = get_option('fts_instagram_custom_api_token');
 		$fts_instagram_show_follow_btn = get_option('instagram_show_follow_btn');
 		$fts_instagram_show_follow_btn_where = get_option('instagram_show_follow_btn_where');
-		if ($popup == 'yes') {
-			// it's ok if these styles & scripts load at the bottom of the page because they are just for the popup
-			wp_enqueue_style( 'fts_instagram_css_popup', plugins_url( 'instagram/css/magnific-popup.css',  dirname(__FILE__) ) );
-			wp_enqueue_script( 'fts_instagram_popup_js', plugins_url( 'instagram/js/magnific-popup.js',  dirname(__FILE__) ) );
-		}
+		
 		ob_start();
 		if (empty($fts_instagram_access_token)) {
 			$fts_instagram_tokens_array = array('267791236.df31d88.30e266dda9f84e9f97d9e603f41aaf9e', '267791236.14c1243.a5268d6ed4cf4d2187b0e98b365443af', '267791236.f78cc02.bea846f3144a40acbf0e56b002c112f8', '258559306.502d2c4.c5ff817f173547d89477a2bd2e6047f9');
@@ -65,7 +69,7 @@ class FTS_Instagram_Feed extends feed_them_social_functions {
 		
 		$cache = WP_CONTENT_DIR.'/plugins/feed-them-social/feeds/instagram/cache/instagram-cache-'.$instagram_id.'.cache';
 		
-		$response = $this->fts_get_feed_json($instagram_data_array);;
+		$response = $this->fts_get_feed_json($instagram_data_array);
 		
 		//Error Check
 		$error_check = json_decode($response['data']);

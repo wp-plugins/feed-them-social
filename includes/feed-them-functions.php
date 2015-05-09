@@ -409,6 +409,7 @@ class feed_them_social_functions {
 	//**************************************************
 	function fts_facebook_style_options_page() {
 		$fb_style_options = array(
+			'fb_language',
 			'fb_show_follow_btn',
 			'fb_show_follow_like_box_cover',
 			'fb_show_follow_btn_where',
@@ -516,13 +517,19 @@ class feed_them_social_functions {
 	// Social Follow Button.
 	//**************************************************
 	function social_follow_button($feed, $user_id, $access_token = NULL) {
+		global $channel_id, $playlist_id, $username_subscribe_btn, $username;
 		$output = '';	
 		switch ($feed) {
 		case 'facebook':
 			//Facebook settings options for follow button
 			$fb_show_follow_btn = get_option('fb_show_follow_btn');
 			$fb_show_follow_like_box_cover = get_option('fb_show_follow_like_box_cover');
-			
+			if (get_option('fb_language')) {
+				$language_option = get_option('fb_language');
+			}
+			else {
+				$language_option = 'en_US';					
+			}
 			$show_faces = $fb_show_follow_btn == 'like-button-share-faces' || $fb_show_follow_btn == 'like-button-faces' || $fb_show_follow_btn == 'like-box-faces' ? 'true' : 'false';
 			$share_button = $fb_show_follow_btn == 'like-button-share-faces' || $fb_show_follow_btn == 'like-button-share' ? 'true' : 'false';
 			$page_cover = $fb_show_follow_like_box_cover == 'fb_like_box_cover-yes' ? 'true' : 'false';
@@ -532,7 +539,7 @@ class feed_them_social_functions {
 						  var js, fjs = d.getElementsByTagName(s)[0];
 						  if (d.getElementById(id)) return;
 						  js = d.createElement(s); js.id = id;
-						  js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&appId='.$access_token.'&version=v2.3";
+						  js.src = "//connect.facebook.net/'.$language_option.'/sdk.js#xfbml=1&appId='.$access_token.'&version=v2.3";
 						  fjs.parentNode.insertBefore(js, fjs);
 						}(document, "script", "facebook-jssd"));</script>';
 						$_POST['fts_facebook_script_loaded'] = 'yes';
@@ -581,12 +588,22 @@ class feed_them_social_functions {
 					$output .='<script src="https://apis.google.com/js/platform.js"></script>';
 					$_POST['fts_youtube_script_loaded'] = 'yes';
 				}
-				$output .='<div class="g-ytsubscribe" data-channel="'.$user_id.'" data-layout="full"></div>';
+					if($channel_id == '' && $playlist_id == '' && $username !== '' || $playlist_id !== '' && $username_subscribe_btn !== ''){
+							 
+								if($username_subscribe_btn !== ''){		
+										$output .='<div class="g-ytsubscribe" data-channel="'.$username_subscribe_btn.'" data-layout="full" data-count="default"></div>';
+								}
+								else {
+										$output .='<div class="g-ytsubscribe" data-channel="'.$user_id.'" data-layout="full" data-count="default"></div>';
+								}
+								
+					}
+					elseif($channel_id !== '' && $playlist_id !== '' || $channel_id !== '') {	
+						$output .='<div class="g-ytsubscribe" data-channelid="'.$channel_id.'" data-layout="full" data-count="default"></div>';
+					}
 				print $output;
 			break;
 		}
-		
-		
 	}
 	//**************************************************
 	// Clear Cache Folder.
@@ -731,9 +748,7 @@ class feed_them_social_functions {
 	// FTS Powered By.
 	//**************************************************
 	function fts_powered_by_js() {
-		wp_register_style( 'fts_powered_by_css', plugins_url( 'css/powered-by.css',  dirname(__FILE__) ) );
-		wp_enqueue_style('fts_powered_by_css');
-		wp_enqueue_script( 'fts_powered_by_js', plugins_url( 'js/powered-by.js',  dirname(__FILE__) ), array( 'jquery' )
+		wp_enqueue_script( 'fts_powered_by_js', plugins_url( 'feeds/js/powered-by.js',  dirname(__FILE__) ), array( 'jquery' )
 		);
 	}
 	//**************************************************
@@ -1256,7 +1271,7 @@ class feed_them_social_functions {
 			$output .= '<form class="feed-them-social-admin-form shortcode-generator-form youtube-shortcode-form" id="fts-youtube-form">';
 			$output .= '<h2>'.__('YouTube Shortcode Generator', 'feed-them-social').'</h2>';
 		}
-		$output .= '<div class="instructional-text">'.__('You must copy your', 'feed-them-social').' <a href="http://www.slickremix.com/2013/08/01/how-to-get-your-youtube-name/" target="_blank">'.__('YouTube Name', 'feed-them-social').'</a> '.__('and paste it in the first input below.', 'feed-them-social').'</div>';
+		$output .= '<div class="instructional-text">'.__('You must copy your YouTube ', 'feed-them-social').' <a href="http://www.slickremix.com/2013/08/01/how-to-get-your-youtube-name/" target="_blank">'.__('Username, Channel ID and or Playlist ID', 'feed-them-social').'</a> '.__('and paste it below.', 'feed-them-social').'</div>';
 		if (is_plugin_active('feed-them-premium/feed-them-premium.php')) {
 			include($this->premium.'admin/youtube-settings-fields.php');
 		}
@@ -1429,6 +1444,7 @@ class feed_them_social_functions {
 		}
 		return $response;
 	}
+
 	//**************************************************
 	// Create feed cache
 	//**************************************************
@@ -1484,6 +1500,15 @@ class feed_them_social_functions {
 				'href' => admin_url( 'admin.php?page=feed-them-settings-page') )
 		);
 	}
+	function xml_json_parse($url) {
+        $fileContents= file_get_contents($url);
+        $fileContents = str_replace(array("\n", "\r", "\t"), '', $fileContents);
+        $fileContents = trim(str_replace('"', "'", $fileContents));
+        $simpleXml = simplexml_load_string($fileContents);
+        $json = json_encode($simpleXml);
+
+        return $json;
+    }
 }//END Class
 new feed_them_social_functions();
 ?>

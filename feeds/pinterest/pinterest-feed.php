@@ -9,9 +9,7 @@ class FTS_Pinterest_Feed extends feed_them_social_functions {
 	// Add Styles and Scripts functions
 	//**************************************************
 	function fts_pinterest_head() {
-		wp_enqueue_style( 'fts_pinterest_css', plugins_url( 'pinterest/css/styles.css',  dirname(__FILE__) ) );
-	    wp_enqueue_script( 'fts_pinterest_masonry_js', plugins_url( 'feed-them-social/feeds/instagram/js/masonry.pkgd.min.js' ), array( 'jquery' ) );
-	    wp_enqueue_script( 'fts_pinterest_images_loaded', plugins_url( 'feed-them-social/js/imagesloaded.pkgd.min.js' ));
+			 				wp_enqueue_style( 'fts-feeds', plugins_url( 'feed-them-social/feeds/css/styles.css'));
 	}
 	function fts_pinterest_board_feed($atts) {
 		include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
@@ -45,13 +43,18 @@ class FTS_Pinterest_Feed extends feed_them_social_functions {
 		        echo $this->getBoards($pinterest_name,$boards_count);
 			   	 break;
 		}
-		
 		return ob_get_clean();
 	}
 	//**************************************************
 	// Get Pinterest Boards
 	//**************************************************
 	function getBoards($pinterest_name,$boards_count, $pins_count=NULL) {
+		
+		
+		wp_enqueue_script( 'fts-masonry-pkgd', plugins_url( 'feed-them-social/feeds/js/masonry.pkgd.min.js' ), array( 'jquery' ) );
+		// masonry snippet in fts-global
+		wp_enqueue_script( 'fts-global', plugins_url( 'feed-them-social/feeds/js/fts-global.js'), array( 'jquery' ) );
+		wp_enqueue_script( 'fts-images-loaded', plugins_url( 'feed-them-social/feeds/js/imagesloaded.pkgd.min.js' ));
 		
 		$pinterest_show_follow_btn = get_option('pinterest_show_follow_btn');
 		$pinterest_show_follow_btn_where = get_option('pinterest_show_follow_btn_where');
@@ -81,7 +84,6 @@ class FTS_Pinterest_Feed extends feed_them_social_functions {
 			//Create Cache
 			$this->fts_create_feed_cache($pin_cache_boards_pins_url, $pinfo);
 		}
-		
 		  // echo '<pre>';
           //       print_r($boards);
           //    echo '</pre>'; 
@@ -142,6 +144,12 @@ class FTS_Pinterest_Feed extends feed_them_social_functions {
 	// Get Pins from Pinterest Boards
 	//**************************************************
 	function getPinsFromBoards($boards, $pinterest_name, $pins_count) {
+		
+		wp_enqueue_script( 'fts-masonry-pkgd', plugins_url( 'feed-them-social/feeds/js/masonry.pkgd.min.js' ), array( 'jquery' ) );
+		// masonry snippet in fts-global
+		wp_enqueue_script( 'fts-global', plugins_url( 'feed-them-social/feeds/js/fts-global.js'), array( 'jquery' ) );
+		wp_enqueue_script( 'fts-images-loaded', plugins_url( 'feed-them-social/feeds/js/imagesloaded.pkgd.min.js' ));
+		
 		$pins_data = array();
 		foreach ($boards->body as $key => $board) {
 			// Check if the board is full url or just a single board name
@@ -156,6 +164,12 @@ class FTS_Pinterest_Feed extends feed_them_social_functions {
 	// Get Pins from Users/Single Board
 	//**************************************************
 	function getPins($pinterest_name, $board_id, $pins_count, $type) {
+		
+		wp_enqueue_script( 'fts-masonry-pkgd', plugins_url( 'feed-them-social/feeds/js/masonry.pkgd.min.js' ), array( 'jquery' ) );
+		// masonry snippet in fts-global
+		wp_enqueue_script( 'fts-global', plugins_url( 'feed-them-social/feeds/js/fts-global.js'), array( 'jquery' ) );
+		wp_enqueue_script( 'fts-images-loaded', plugins_url( 'feed-them-social/feeds/js/imagesloaded.pkgd.min.js' ));
+		
 		$output ='';
 		$pinterest_show_follow_btn = get_option('pinterest_show_follow_btn');
 		$pinterest_show_follow_btn_where = get_option('pinterest_show_follow_btn_where');
@@ -218,14 +232,11 @@ class FTS_Pinterest_Feed extends feed_them_social_functions {
 			
 				//Pinned To (User view ONLY)
 				$output .= !isset($board_id) ? '<a class="fts-single-pin-pinned-to-wrap" href="http://pinterest.com'.$pin->board->url.'" target="_blank"><img class="fts-single-pin-pinned-to-img" src="'.$pin->board->image_thumbnail_url.'"/><div class="fts-single-pin-pinned-to-text">Pinned onto</div><div class="fts-single-pin-pinned-to-title">'.$pin->board->name.'</div></a>': '';
-				
-				
 				$output .='</div>';	
 			}
 			$count++;
 		}
 		$output .= '</div><div class="clear"></div>';
-		
 		//******************
 		// SOCIAL BUTTON
 		//******************
@@ -234,7 +245,6 @@ class FTS_Pinterest_Feed extends feed_them_social_functions {
 				$output .= $this->social_follow_button('pinterest', $pinterest_name);
 			$output .= '</div>';
 		}
-		
 		return  $output;
 	}
 }//END FTS_Pinterest_Feed

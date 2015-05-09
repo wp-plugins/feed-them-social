@@ -20,6 +20,13 @@ function feed_them_instagram_options_page() {
   <!-- custom option for padding -->
   <form method="post" class="fts-facebook-feed-options-form" action="options.php">
     <div class="feed-them-social-admin-input-wrap">
+    
+    <div class="fts-title-description-settings-page" style="padding-top:0; border:none;">
+<h3>
+<?php _e('Follow Button Options', 'feed-them-social'); ?>
+</h3>
+</div>
+
       <div class="feed-them-social-admin-input-label fts-twitter-text-color-label">
         <?php _e('Show Follow Button', 'feed-them-social'); ?>
       </div>
@@ -54,13 +61,16 @@ function feed_them_instagram_options_page() {
     </div>
     <!--/fts-twitter-feed-styles-input-wrap-->
     
+   <div class="feed-them-social-admin-input-wrap">
+    <div class="fts-title-description-settings-page"> 
     <?php // get our registered settings from the fts functions 
 	 	   settings_fields('fts-instagram-feed-style-options'); ?>
-    <h2>
+    <h3>
       <?php _e('Instagram API Token', 'feed-them-social'); ?>
-    </h2>
+    </h3>
+     </div>
     <?php
-       
+      
 		 $insta_url = 'https://api.instagram.com/v1/tags/slickremix/media/recent/?access_token='.$fts_instagram_access_token;
 		 //Get Data for Instagram
 		 $response = wp_remote_fopen($insta_url);
@@ -113,6 +123,7 @@ jQuery( document ).ready(function($) {
 	?>
     <div class="clear"></div>
     <input type="submit" class="feed-them-social-admin-submit-btn" value="<?php _e('Save All Changes') ?>" />
+    </div>
   </form>
   <a class="feed-them-social-admin-slick-logo" href="http://www.slickremix.com" target="_blank"></a> </div>
 <!--/feed-them-social-admin-wrap-->

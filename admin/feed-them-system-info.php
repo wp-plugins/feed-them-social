@@ -46,13 +46,13 @@ function feed_them_system_info_page(){
 
 	    						if ( ! empty( $plugin_data['Name'] ) ) {
 
-	    							$wc_plugins[] = $plugin_data['Name'] . ' ' . __('by', 'feed-them-social') . ' ' . $plugin_data['Author'] . ' ' . __('version', 'feed-them-social') . ' ' . $plugin_data['Version'];
+	    							$wc_plugins[] = $plugin_data['Name'] . ' ' . __('by', 'feed-them-social') . ' ' . $plugin_data['Author'] . ' ' . __('version', 'feed-them-social') . ' ' . $plugin_data['Version'] ;
 
 	    						}
     						//}
 						}
 
-						if ( sizeof( $wc_plugins ) == 0 ) echo '-'; else echo '<ul><li>' . implode( ', </li><li>', $wc_plugins ) . '</li></ul>';
+						if ( sizeof( $wc_plugins ) == 0 ) echo '-'; else echo '<ul><li>' . implode( ',</li><li>', $wc_plugins ) . '</li></ul>';
 
              		?></td>
         </tr>

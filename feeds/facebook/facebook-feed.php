@@ -11,29 +11,30 @@ class FTS_Facebook_Feed extends feed_them_social_functions {
 	// Add Styles and Scripts functions
 	//**************************************************
 	function fts_fb_head() {
-		wp_enqueue_style( 'fts_fb_css', plugins_url( 'facebook/css/styles.css',  dirname(__FILE__ ) ) );
-		wp_register_style( 'fts-font-aweseom-min', plugins_url( 'css/font-awesome.min.css', dirname(__FILE__) ) );
-		wp_enqueue_style('fts-font-aweseom-min');
-		//  wp_enqueue_style( 'fts_instagram_css_popup', plugins_url( 'instagram/css/magnific-popup.css',  dirname(__FILE__) ) );
-		// wp_enqueue_script( 'fts_instagram_popup_js', plugins_url( 'instagram/js/magnific-popup.js',  dirname(__FILE__) ) );
+			 wp_enqueue_style( 'fts-feeds', plugins_url( 'feed-them-social/feeds/css/styles.css'));
 	}
 	//**************************************************
 	// Display Facebook Feed
 	//**************************************************
 	function fts_fb_func($atts) {
+			
 		$developer_mode = 'on';
 		//Facebook Follow Button Options
 		$fb_show_follow_btn = get_option('fb_show_follow_btn');
 		$fb_show_follow_btn_where = get_option('fb_show_follow_btn_where');
+		
+		wp_enqueue_script( 'fts-masonry-pkgd', plugins_url( 'feed-them-social/feeds/js/masonry.pkgd.min.js'), array( 'jquery' ) );
 		//Make sure everything is reset
 		include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
 		//Eventually add premium page file
 		if (is_plugin_active('feed-them-premium/feed-them-premium.php')) {
 			include(WP_CONTENT_DIR.'/plugins/feed-them-premium/feeds/facebook/facebook-premium-feed.php');
 			if ($fts_fb_popup == 'yes') {
-				// it's ok if these styles & scripts load at the bottom of the page because they are just for the popup
-				wp_enqueue_style( 'fts_instagram_css_popup', plugins_url( 'instagram/css/magnific-popup.css',  dirname(__FILE__) ) );
-				wp_enqueue_script( 'fts_instagram_popup_js', plugins_url( 'instagram/js/magnific-popup.js',  dirname(__FILE__) ) );
+				// it's ok if these styles & scripts load at the bottom of the page
+			 wp_enqueue_style( 'fts-popup', plugins_url( 'feed-them-social/feeds/css/magnific-popup.css'));
+		 	wp_enqueue_script( 'fts-popup-js', plugins_url( 'feed-them-social/feeds/js/magnific-popup.js'));
+	 	 wp_enqueue_script( 'fts-images-loaded', plugins_url( 'feed-them-social/feeds/js/imagesloaded.pkgd.min.js' ));
+				wp_enqueue_script( 'fts-global', plugins_url('feed-them-social/feeds/js/fts-global.js'), array( 'jquery' ));
 			}
 		}
 		else {
@@ -121,18 +122,20 @@ class FTS_Facebook_Feed extends feed_them_social_functions {
 			$response = $this->fts_get_feed_cache($fb_data_cache);
 		}
 		else {
+			$language_option = get_option('fb_language');
+			$language = !empty($language_option) ? '&locale='.$language_option : '';
 			//URL to get Feeds
 			if ($type == 'page' && $posts_displayed == 'page_only') {
-				$mulit_data = array('page_data' => 'https://graph.facebook.com/'.$fts_fb_id.'?access_token='.$access_token.'');
+				$mulit_data = array('page_data' => 'https://graph.facebook.com/'.$fts_fb_id.'?access_token='.$access_token.$language.'');
 				if (isset($_REQUEST['next_url'])) {
 					$mulit_data['feed_data'] = $_REQUEST['next_url'];
 				}
 				else {
-					$mulit_data['feed_data'] = 'https://graph.facebook.com/'.$fts_fb_id.'/posts?limit='.$fts_limiter.'&access_token='.$access_token.'';
+					$mulit_data['feed_data'] = 'https://graph.facebook.com/'.$fts_fb_id.'/posts?limit='.$fts_limiter.'&access_token='.$access_token.$language.'';
 				}
 			}
 			elseif ($type == 'events') {
-				$mulit_data = array('page_data' => 'https://graph.facebook.com/'.$fts_fb_id.'?access_token='.$access_token.'');
+				$mulit_data = array('page_data' => 'https://graph.facebook.com/'.$fts_fb_id.'?access_token='.$access_token.$language.'');
 				//Check If Ajax next URL needs to be used
 				if (isset($_REQUEST['next_url'])) {
 					$mulit_data['feed_data'] = $_REQUEST['next_url'];
@@ -140,43 +143,43 @@ class FTS_Facebook_Feed extends feed_them_social_functions {
 				else {
 					date_default_timezone_set(get_option('fts-timezone'));
 					$date = date('Y-m-d');
-					$mulit_data['feed_data'] = 'https://graph.facebook.com/'.$fts_fb_id.'/events?since='.$date.'&access_token='.$access_token.'';
+					$mulit_data['feed_data'] = 'https://graph.facebook.com/'.$fts_fb_id.'/events?since='.$date.'&access_token='.$access_token.$language.'';
 				}
 			}
 			elseif ($type == 'albums') {
 				$mulit_data = array(
-					'page_data' => 'https://graph.facebook.com/'.$fts_fb_id.'?access_token='.$access_token.''
+					'page_data' => 'https://graph.facebook.com/'.$fts_fb_id.'?access_token='.$access_token.$language.''
 				);
 				//Check If Ajax next URL needs to be used
 				if (isset($_REQUEST['next_url'])) {
 					$mulit_data['feed_data'] = $_REQUEST['next_url'];
 				}
 				else {
-					$mulit_data['feed_data'] = 'https://graph.facebook.com/'.$fts_fb_id.'/albums?limit='.$fts_limiter.'&access_token='.$access_token.'';
+					$mulit_data['feed_data'] = 'https://graph.facebook.com/'.$fts_fb_id.'/albums?limit='.$fts_limiter.'&access_token='.$access_token.$language.'';
 				}
 			}
 			elseif ($type == 'album_photos') {
 				$mulit_data = array(
-					'page_data' => 'https://graph.facebook.com/'.$fts_fb_id.'?access_token='.$access_token.''
+					'page_data' => 'https://graph.facebook.com/'.$fts_fb_id.'?access_token='.$access_token.$language.''
 				);
 				//Check If Ajax next URL needs to be used
 				if (isset($_REQUEST['next_url'])) {
 					$mulit_data['feed_data'] = $_REQUEST['next_url'];
 				}
 				else {
-					$mulit_data['feed_data'] = 'https://graph.facebook.com/'.$album_id.'/photos?limit='.$fts_limiter.'&access_token='.$access_token.'';
+					$mulit_data['feed_data'] = 'https://graph.facebook.com/'.$album_id.'/photos?limit='.$fts_limiter.'&access_token='.$access_token.$language.'';
 				}
 			}
 			elseif ($type == 'hashtag') {
 				$mulit_data = array(
-					'page_data' => 'https://graph.facebook.com/search?q=%23'.$fts_fb_id.'&access_token='.$access_token.''
+					'page_data' => 'https://graph.facebook.com/search?q=%23'.$fts_fb_id.'&access_token='.$access_token.$language.''
 				);
 				//Check If Ajax next URL needs to be used
 				if (isset($_REQUEST['next_url'])) {
 					$mulit_data['feed_data'] = $_REQUEST['next_url'];
 				}
 				else {
-					$mulit_data['feed_data'] = 'https://graph.facebook.com/search?q=%23'.$fts_fb_id.'&limit='.$fts_limiter.'&access_token='.$access_token.'';
+					$mulit_data['feed_data'] = 'https://graph.facebook.com/search?q=%23'.$fts_fb_id.'&limit='.$fts_limiter.'&access_token='.$access_token.$language.'';
 				}
 			}
 			// elseif ($type == 'videos') {
@@ -184,26 +187,26 @@ class FTS_Facebook_Feed extends feed_them_social_functions {
 			//  }
 			elseif ($type == 'group') {
 				$mulit_data = array(
-					'page_data' => 'https://graph.facebook.com/'.$fts_fb_id.'?access_token='.$access_token.''
+					'page_data' => 'https://graph.facebook.com/'.$fts_fb_id.'?access_token='.$access_token.$language.''
 				);
 				//Check If Ajax next URL needs to be used
 				if (isset($_REQUEST['next_url'])) {
 					$mulit_data['feed_data'] = $_REQUEST['next_url'];
 				}
 				else {
-					$mulit_data['feed_data'] = 'https://graph.facebook.com/'.$fts_fb_id.'/feed?limit='.$fts_limiter.'&access_token='.$access_token.'';
+					$mulit_data['feed_data'] = 'https://graph.facebook.com/'.$fts_fb_id.'/feed?limit='.$fts_limiter.'&access_token='.$access_token.$language.'';
 				}
 			}
 			else {
 				$mulit_data = array(
-					'page_data' => 'https://graph.facebook.com/'.$fts_fb_id.'?access_token='.$access_token.'',
+					'page_data' => 'https://graph.facebook.com/'.$fts_fb_id.'?access_token='.$access_token.$language.'',
 				);
 				//Check If Ajax next URL needs to be used
 				if (isset($_REQUEST['next_url'])) {
 					$mulit_data['feed_data'] = $_REQUEST['next_url'];
 				}
 				else {
-					$mulit_data['feed_data'] = 'https://graph.facebook.com/'.$fts_fb_id.'/feed?limit='.$fts_limiter.'&access_token='.$access_token.'';
+					$mulit_data['feed_data'] = 'https://graph.facebook.com/'.$fts_fb_id.'/feed?limit='.$fts_limiter.'&access_token='.$access_token.$language.'';
 				}
 			}
 			$response = $this->fts_get_feed_json($mulit_data);
@@ -218,9 +221,20 @@ class FTS_Facebook_Feed extends feed_them_social_functions {
 		$data = json_decode($response['feed_data']);
 		//If events array Flip it so it's in proper order
 		if ($type == 'events') {
+			//echo '<pre>';
+			//print_r($data->data);
+			//echo '</pre>';
+						
 				if($data->data){
-					$data->data = array_reverse($data->data);
-				}
+					
+				usort($data->data, function($a, $b) {
+					    $a = strtotime($a->start_time);
+				    $b = strtotime($b->start_time);
+					    return (($a == $b) ? (0) : (($a > $b) ? (1) : (-1)));
+					});
+				//	 $data->data = array_reverse($data->data);
+					
+							}
 		}
 		// return error if no data retreived
 		if (!isset($data->data) || empty($data->data)) {
@@ -243,7 +257,7 @@ class FTS_Facebook_Feed extends feed_them_social_functions {
 			if (isset($_REQUEST['fts_dynamic_name'])) {
 				$fts_dynamic_class_name =  'feed_dynamic_class'.$_REQUEST['fts_dynamic_name'];
 			}
-		        //******************
+		  //******************
 				// SOCIAL BUTTON
 				//****************** 
 				if(isset($fb_show_follow_btn) && $fb_show_follow_btn !== 'dont-display' && $fb_show_follow_btn_where == 'fb-like-top-above-title' && $type !== 'event' && $type !== 'group'){
@@ -287,7 +301,8 @@ class FTS_Facebook_Feed extends feed_them_social_functions {
 		if (!isset($_GET['load_more_ajaxing'])) {
 			$fts_grid = isset($fts_grid) ? $fts_grid : "";
 			if (!isset($FBtype) && $type == 'albums' || !isset($FBtype) && $type == 'album_photos' || $fts_grid == 'yes'  ) {
-				wp_enqueue_script( 'fts_instagram_masonry_pkgd_js', plugins_url( 'instagram/js/masonry.pkgd.min.js',  dirname(__FILE__) ) ); ?>
+		 	wp_enqueue_script( 'fts-masonry-pkgd', plugins_url( 'feed-them-social/feeds/js/masonry.pkgd.min.js'), array( 'jquery' ) );
+			?>
 		<script>
 		 jQuery(window).load(function(){
 			 jQuery('.<?php echo $fts_dynamic_class_name ?>').masonry({
@@ -323,14 +338,15 @@ class FTS_Facebook_Feed extends feed_them_social_functions {
 					break;
 					if ($type == 'events') {
 						$single_event_id = $counter->id;
+						$language = isset($language) ? $language : '';
 						//Event Info
-						$fb_single_events_array['event_single_'.$single_event_id.'_info'] = 'https://graph.facebook.com/'.$single_event_id.'/?access_token='.$access_token;
+						$fb_single_events_array['event_single_'.$single_event_id.'_info'] = 'https://graph.facebook.com/'.$single_event_id.'/?access_token='.$access_token.$language;
 						//Event Info
-						$fb_single_events_array['event_single_'.$single_event_id.'_location'] = 'https://graph.facebook.com/'.$single_event_id.'/?fields=place&access_token='.$access_token;
+						$fb_single_events_array['event_single_'.$single_event_id.'_location'] = 'https://graph.facebook.com/'.$single_event_id.'/?fields=place&access_token='.$access_token.$language;
 						//Event Cover Photo
-						$fb_single_events_array['event_single_'.$single_event_id.'_cover_photo'] = 'https://graph.facebook.com/'.$single_event_id.'/?fields=cover&access_token='.$access_token;
+						$fb_single_events_array['event_single_'.$single_event_id.'_cover_photo'] = 'https://graph.facebook.com/'.$single_event_id.'/?fields=cover&access_token='.$access_token.$language;
 						//Event Ticket Info
-						$fb_single_events_array['event_single_'.$single_event_id.'_ticket_info'] = 'https://graph.facebook.com/'.$single_event_id.'/?fields=ticket_uri&access_token='.$access_token;
+						$fb_single_events_array['event_single_'.$single_event_id.'_ticket_info'] = 'https://graph.facebook.com/'.$single_event_id.'/?fields=ticket_uri&access_token='.$access_token.$language;
 					}
 					else{
 						$FBtype = isset($counter->type) ? $counter->type : "";
@@ -574,8 +590,10 @@ class FTS_Facebook_Feed extends feed_them_social_functions {
 							}
 						}//END Output Message
 						elseif (!$FBmessage && $type == 'album_photos' || !$FBmessage && $type == 'albums') {
+					
 							print '<div class="fts-jal-fb-description-wrap">';
 							if ($FBname) {
+										$words = isset($words) ? $words : "";
 								print $this->fts_facebook_post_desc($FBname, $words, $FBtype, NULL, $FBby, $type);
 							};
 							//Output Photo Caption
@@ -593,7 +611,7 @@ class FTS_Facebook_Feed extends feed_them_social_functions {
 								print $this->fts_facebook_post_desc($FBdescription, $words, $FBtype, NULL, $FBby);
 							};
 							//Output Photo Description
-							if ($fts_fb_popup == 'yes') {
+							if (isset($fts_fb_popup) && $fts_fb_popup == 'yes') {
 								print '<div class="fts-fb-caption fts-fb-album-view-link" style="display:block;">';
 								if ($FBalbum_cover) {
 									print '<a href="'.$photo_data->images[0]->source.'" class="fts-view-album-photos-large" target="_blank">'.__('View Photo', 'feed-them-social').'</a></div>';
@@ -739,6 +757,7 @@ class FTS_Facebook_Feed extends feed_them_social_functions {
 					$FB_event_city = isset($event_data->venue->city) ? $event_data->venue->city : "";
 					$FB_event_state = isset($event_data->venue->state) ? $event_data->venue->state : "";
 					date_default_timezone_set(get_option('fts-timezone'));
+					$date = date('Y-m-d');
 					$FB_event_start_time = date($CustomDateFormat, strtotime($event_data->start_time));
 					echo '<a href="'.$FBlink.'" target="_blank" class="fts-jal-fb-picture"><img class="fts-fb-event-photo" src="http://graph.facebook.com/'.$event_id_number.'/picture"></img></a>';
 					print '<div class="fts-jal-fb-description-wrap">';
@@ -899,10 +918,12 @@ class FTS_Facebook_Feed extends feed_them_social_functions {
 					};
 					//Output Video Caption
 					if ($FBcaption) {
+						$words = isset($words) ? $words : '';
 						print $this->fts_facebook_post_cap($FBcaption, $words, $FBtype, $FBpost_id);
 					};
 					//Output Video Description
 					if ($FBdescription) {
+						$words = isset($words) ? $words : '';
 						print $this->fts_facebook_post_desc($FBdescription, $words, $FBtype, $FBpost_id);
 					};
 					print '<div class="clear"></div></div>';
@@ -1033,12 +1054,13 @@ class FTS_Facebook_Feed extends feed_them_social_functions {
 		$_REQUEST['next_url'] = isset($data->paging->next) ? $data->paging->next : "";
 		//If events array Flip it so it's in proper order
 		if ($type == 'events') {
-			$key_needed = $set_zero;
-			$single_event_id = $data->data[$key_needed]->id;
+			
+			$key_needed = isset($set_zero);
+			$single_event_id = isset($data->data[$key_needed]->id);
 			$single_event_info = json_decode($single_event_array_response['event_single_'.$single_event_id.'_info']);
 			$FB_event_start_time = date('Y-m-d', strtotime($single_event_info->start_time));
-			if($FB_event_start_time !== '1969-12-31'){
-				$_REQUEST['next_url'] = isset($data->paging->next) ? 'https://graph.facebook.com/'.$fts_fb_id.'/events?since='.$FB_event_start_time.'&access_token='.$access_token.'' : "";
+			if(isset($FB_event_start_time) && $FB_event_start_time  !== '1969-12-31'){
+				$_REQUEST['next_url'] = isset($data->paging->next) ? 'https://graph.facebook.com/'.$fts_fb_id.'/events?since='.$FB_event_start_time.'&access_token='.$access_token.$language.'' : "";
 			}
 			else{
 				$_REQUEST['next_url'] = 'no more';
@@ -1090,7 +1112,7 @@ var nextURL_<?php echo $_REQUEST['fts_dynamic_name']; ?>= "<?php echo $_REQUEST[
 						var fts_d_name = "<?php echo $fts_dynamic_name;?>";
 						var fts_security = "<?php echo $nonce;?>";
 						var fts_time = "<?php echo $time;?>";
-						var fts_offset_posts = "<?php echo $_REQUEST['next_offset'];?>";
+				//		var fts_offset_posts = "< ?php echo $_REQUEST['next_offset'];?>";
 					jQuery.ajax({
 						data: {action: "my_fts_fb_load_more", next_url: nextURL_<?php echo $fts_dynamic_name ?>, fts_dynamic_name: fts_d_name, rebuilt_shortcode: build_shortcode, load_more_ajaxing: yes_ajax, fts_security: fts_security, fts_time: fts_time},
 						type: 'GET',
@@ -1308,12 +1330,17 @@ var nextURL_<?php echo $_REQUEST['fts_dynamic_name']; ?>= "<?php echo $_REQUEST[
 	function fts_facebook_post_cap($FBcaption, $words, $FBtype, $FBpost_id = NULL) {
 		switch ($FBtype) {
 		case 'video':
-			$FBcaption = $this->fts_facebook_tag_filter($FBcaption);
+		
+			
+			$FBcaption = $this->fts_facebook_tag_filter(str_replace('www.', '', $FBcaption));
+			
 			$output = '<div class="fts-jal-fb-caption fb-id'.$FBpost_id.'">'.$FBcaption.'</div>';
 			return $output;
 		default:
 			include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
 			if (is_plugin_active('feed-them-premium/feed-them-premium.php')) {
+				
+			
 				// here we trim the words for the links description text... for the premium version. The $words string actually comes from the javascript
 				if ($words) {
 					$more = isset($more) ? $more : "";

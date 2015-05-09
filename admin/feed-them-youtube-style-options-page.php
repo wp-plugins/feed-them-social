@@ -22,7 +22,10 @@ function feed_them_youtube_options_page() {
   <!-- custom option for padding -->
   <form method="post" class="fts-youtube-feed-options-form" action="options.php">
   	<?php settings_fields('fts-youtube-feed-style-options'); ?>
-   <div class="feed-them-social-admin-input-wrap">
+   <div class="feed-them-social-admin-input-wrap"> 
+   <div class="fts-title-description-settings-page" style="padding-top:0; border:none;">
+       <h3><?php _e('Follow Button Options', 'feed-them-social'); ?></h3>
+      </div>
            <div class="feed-them-social-admin-input-label fts-twitter-text-color-label"><?php _e('Show Follow Button', 'feed-them-social'); ?></div>
     
     <select name="youtube_show_follow_btn" id="youtube-show-follow-btn" class="feed-them-social-admin-input">
@@ -42,7 +45,7 @@ function feed_them_youtube_options_page() {
 		  <option '<?php echo selected($fts_youtube_show_follow_btn_where, 'youtube-follow-above', false ) ?>' value="youtube-follow-above"><?php _e('Show Above Feed', 'feed-them-social'); ?></option>
   		  <option '<?php echo selected($fts_youtube_show_follow_btn_where, 'youtube-follow-below', false ) ?>' value="youtube-follow-below"><?php _e('Show Below Feed', 'feed-them-social'); ?></option>
     </select>
-
+		
       <div class="clear"></div>
  	  </div><!--/fts-twitter-feed-styles-input-wrap-->
   
@@ -59,11 +62,11 @@ function feed_them_youtube_options_page() {
 		//	echo'<pre>';
 		//	print_r($test_app_token_response);
 		//	echo'</pre>';
-		?>
-   <div class="fts-facebook-custom-api-token-label">
-  <h2><?php _e('YouTube API Key', 'feed-them-social'); ?></h2>
-      <?php _e('Read here and learn how to <a href="http://www.slickremix.com/docs/get-api-key-for-youtube" target="_blank">GET AN API KEY</a>.', 'feed-them-social'); ?>
-    </div>
+		?><div class="feed-them-social-admin-input-wrap">
+ <div class="fts-title-description-settings-page">
+       <h3><?php _e('YouTube API Key', 'feed-them-social'); ?></h3>
+        <?php _e('Read here and learn how to <a href="http://www.slickremix.com/docs/get-api-key-for-youtube" target="_blank">GET AN API KEY</a>.', 'feed-them-social'); ?>
+      </div>
     <div class="feed-them-social-admin-input-wrap" style="margin-bottom:0px;">
       <div class="feed-them-social-admin-input-label fts-twitter-border-bottom-color-label">
         <?php _e('API Key Required', 'feed-them-social'); ?>
@@ -88,6 +91,7 @@ function feed_them_youtube_options_page() {
 	?>
     <div class="clear"></div>
     <input type="submit" class="feed-them-social-admin-submit-btn" value="<?php _e('Save All Changes') ?>" />
+    </div>
   </form>
   <a class="feed-them-social-admin-slick-logo" href="http://www.slickremix.com" target="_blank"></a> </div>
 <!--/feed-them-social-admin-wrap-->

@@ -731,14 +731,14 @@ jQuery( document ).ready(function() {
 		});
 <?php } ?>
   }); //end document ready
-</script>
-
-
-
-<?php
+  
+  <?php 
 	//Premium JS
 	if(is_plugin_active('feed-them-premium/feed-them-premium.php')) {
-	   include(WP_CONTENT_DIR.'/plugins/feed-them-premium/admin/js/premium-js.php'); 
+	   include(WP_CONTENT_DIR.'/plugins/feed-them-premium/admin/js/youtube-settings-js.js'); 
 		}
-	}
-?>
+		
+		?>
+</script>
+
+<?php } ?>

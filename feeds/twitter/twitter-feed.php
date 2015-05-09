@@ -8,17 +8,7 @@ class FTS_Twitter_Feed extends feed_them_social_functions {
 	// Add Styles and Scripts functions
 	//**************************************************
 	function fts_twitter_head() {
-		
-			  wp_enqueue_style( 'fts_twitter_css', plugins_url( 'twitter/css/styles.css',  dirname(__FILE__) ) );
-			  if (is_plugin_active('feed-them-premium/feed-them-premium.php')) {
-				  wp_enqueue_style( 'fts_instagram_css_popup', plugins_url( 'instagram/css/magnific-popup.css',  dirname(__FILE__) ) );
-				  wp_enqueue_script( 'fts_instagram_popup_js', plugins_url( 'instagram/js/magnific-popup.js',  dirname(__FILE__) ) );
-			  }
-			  $twitter_allow_shortlink_conversion = get_option('twitter_allow_shortlink_conversion');
-			  // option to allow this action or not from the Twitter Options page
-			  if (isset($twitter_allow_shortlink_conversion) && $twitter_allow_shortlink_conversion == 'yes') {
-				  wp_enqueue_script( 'fts_instagram_longurl_js', plugins_url( 'feed-them-social/js/jquery.longurl.js') );
-			  }
+			  wp_enqueue_style( 'fts-feeds', plugins_url( 'feed-them-social/feeds/css/styles.css'));
 	} 
 	//**************************************************
 	// Curl function to help return longurl API call
@@ -36,14 +26,29 @@ class FTS_Twitter_Feed extends feed_them_social_functions {
 	// Display Twitter Feed
 	//**************************************************
 	function fts_twitter_func($atts) {
+		
 		global $connection;
 		$twitter_show_follow_btn = get_option('twitter_show_follow_btn');
 		$twitter_show_follow_btn_where = get_option('twitter_show_follow_btn_where');
 		$twitter_show_follow_count = get_option('twitter_show_follow_count');
 		include_once ABSPATH . 'wp-admin/includes/plugin.php';
 		//$fts_functions = new feed_them_social_functions;
+		$twitter_allow_shortlink_conversion = get_option('twitter_allow_shortlink_conversion');
+		$twitter_allow_videos = get_option('twitter_allow_videos');
+		
+		if (isset($twitter_allow_shortlink_conversion) && $twitter_allow_shortlink_conversion == 'yes' && isset($twitter_allow_shortlink_conversion) && $twitter_allow_shortlink_conversion == 'yes') {
+			wp_enqueue_script( 'fts-longurl-js', plugins_url( 'feed-them-social/feeds/js/jquery.longurl.js'));
+		}
+		// option to allow this action or not from the Twitter Options page
 		if (is_plugin_active('feed-them-premium/feed-them-premium.php')) {
+			
 			include WP_CONTENT_DIR.'/plugins/feed-them-premium/feeds/twitter/twitter-feed.php';
+			
+			if ($popup == 'yes') {
+				// it's ok if these styles & scripts load at the bottom of the page
+			wp_enqueue_style( 'fts-popup', plugins_url( 'feed-them-social/feeds/css/magnific-popup.css'));
+			wp_enqueue_script( 'fts-popup-js', plugins_url( 'feed-them-social/feeds/js/magnific-popup.js'));
+			}
 		}
 		else {
 			extract( shortcode_atts( array(
@@ -207,7 +212,7 @@ class FTS_Twitter_Feed extends feed_them_social_functions {
 				// echo '</pre>';
 				$twitter_allow_shortlink_conversion = get_option('twitter_allow_shortlink_conversion');
 ?>
-<div id="twitter-feed-<?php print $twitter_name?>" class="fts-twitter-div<?php if ($twitter_height !== 'auto' && empty($twitter_height) == NULL) {?> fts-twitter-scrollable<?php } if ($popup == 'yes') { ?> popup-gallery-twitter<?php } ?>" <?php if ($twitter_height !== 'auto' && empty($twitter_height) == NULL) {?>style="height:<?php echo $twitter_height; ?>"<?php }?>>
+<div id="twitter-feed-<?php print $twitter_name?>" class="fts-twitter-div<?php if ($twitter_height !== 'auto' && empty($twitter_height) == NULL) {?> fts-twitter-scrollable<?php } if (isset($popup) && $popup == 'yes') { ?> popup-gallery-twitter<?php } ?>" <?php if ($twitter_height !== 'auto' && empty($twitter_height) == NULL) {?>style="height:<?php echo $twitter_height; ?>"<?php }?>>
  <?php
 				//******************
 				// SOCIAL BUTTON
@@ -222,7 +227,8 @@ class FTS_Twitter_Feed extends feed_them_social_functions {
 					print '<div class="twitter-followers-fts"><a href="'.$user_permalink.'" target="_blank" class="black">'. __('Followers:', 'feed-them-social').'</a> '. number_format($followers_count).'</div>';
 				} ?>
   <?php foreach ($tweets as $t) :
-					if (!empty($t['urls'])) {
+		$twitter_allow_videos = get_option('twitter_allow_videos');
+					if (!empty($t['urls']) && $twitter_allow_videos !== 'no') {
 						$type = 'twitterFeed';
 						$fts_dynamic_vid_name_string =  trim($this->rand_string_twitter(10).'_'.$type);
 						$fts_dynamic_name =  '';
@@ -274,8 +280,10 @@ class FTS_Twitter_Feed extends feed_them_social_functions {
 	  })
 	});
 </script>
-<?php } // END if not empty $t['urls'] ?>
-  <div class="fts-tweeter-wrap <?php echo $fts_dynamic_name ?>">
+<?php } // END if not empty $t['urls'] 
+
+	$fts_dynamic_name = isset($fts_dynamic_name) ? $fts_dynamic_name : ''; ?>
+  <div class="fts-tweeter-wrap <?php echo $fts_dynamic_name; ?>">
     <div class="tweeter-info">
       <?php if ($fts_twitter_full_width !== 'yes') {?>
       <div class="fts-twitter-image"><a href="<?php print $t['user_permalink'];?>" target="_blank" class="black"><img class="twitter-image" src="<?php print $t['image'];?>" /></a></div>
@@ -284,11 +292,15 @@ class FTS_Twitter_Feed extends feed_them_social_functions {
         <div class="uppercase bold"><a href="<?php print $t['user_permalink'];?>" target="_blank" class="black">@<?php print $t['screen_name'];?></a></div>
         <span class="time"><a href="<?php print $t['permalink']?>"><?php print $t['time'];?></a></span><br/>
         <span class="fts-twitter-text"><?php print nl2br($t['text']);?>
-        <div class="fts-fb-caption"><a href="<?php print $t['permalink']?>" class="fts-view-on-twitter-link" target="_blank"><?php echo _e('View on Twitter', 'feed-them-social'); ?></a></div>
-        </span>
-        <?php if ($t['media_url']) { ?>
-        <a href="<?php if ($popup == 'yes') { print $t['media_url']; } else { print $t['permalink']; }?>" class="fts-twitter-link-image" target="_blank"><img class="fts-twitter-description-image" src="<?php print $t['media_url'];?>" /></a> <?php }
-				$tFinal = $t['urls'];
+        <div class="fts-twitter-caption"><a href="<?php print $t['permalink']?>" class="fts-view-on-twitter-link" target="_blank"><?php echo _e('View on Twitter', 'feed-them-social'); ?></a></div>
+        </span>	
+        <?php				if ($t['media_url'] !== '') { ?>
+										<a href="<?php if (isset($popup) && $popup == 'yes') { print $t['media_url']; } else { print $t['permalink']; }?>" class="fts-twitter-link-image" target="_blank"><img class="fts-twitter-description-image" src="<?php print $t['media_url'];?>" /></a> <?php }
+						$tFinal = $t['urls'];
+				 
+		$twitter_allow_videos = get_option('twitter_allow_videos');
+		if($twitter_allow_videos !== 'no') {
+
 				if (!empty($tFinal)) {
 					// && strpos($tFinal, 'vimeo') > 0 || strpos($tFinal, 'amp.twimg.com') > 0 || strpos($tFinal, 'youtube') > 0 || strpos($tFinal, 'youtu.be') > 0
 					print '<div class="fts-video-wrapper-padding"><div class="fts-video-wrapper"></div></div>';
@@ -310,7 +322,7 @@ setTimeout(function() {
 			}
 }, 1000);
 </script>
-<?php } ?>
+<?php } } ?>
         </div>
       <div class="fts-twitter-reply-wrap">
       <a href="<?php print $t['permalink']?>">

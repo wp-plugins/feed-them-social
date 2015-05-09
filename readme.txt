@@ -1,9 +1,9 @@
 === Feed Them Social (Facebook, Instagram, Twitter, etc) ===
 Contributors: slickremix
 Tags:  facebook photos, facebook albums, albums, photos facebook, photo, facebook feed, facebook posts, hastags, social, social plugin, social networking, networking, custom feed, custom facebook feed, facebook plugin, facebook group, facebook groups, events, facebook events, facebook page events, facebook group events, facebook page, facebook pages, twitter, twitter plugin, instagram, instagram plugin, feed me social, social plugin, feed, feeds, shortcode, facebook wall, slickremix, plugin, pages, posts, images, page, post, image, youtube, youtube feed, youtube channel, youtube video, youtube videos, videos, youtube embed, embed, video iframe, admin, comments, widgets, seo, wordpress, pinterest, pinterest boards, pinterest feeds, pinterest photos, pinterest widget, pinterest widgets, instagram popup
-Requires at least: 3.4.0
-Tested up to: 4.2
-Stable tag: 1.7.7
+Requires at least: 3.6.0
+Tested up to: 4.2.2
+Stable tag: 1.7.8
 License: GPLv2 or later
 
 Display custom feeds for Facebook Pages, Groups, Events, Album Photos and Covers -Twitter, Instagram, Pinterest and YouTube on pages, posts or widgets.
@@ -23,6 +23,7 @@ With our plugin you can create social feeds of any or all your celebrities, fami
   * With our [Premium Extension](http://www.slickremix.com/product/feed-them-social-premium-extension/) you can set how many posts, pictures, tweets, or videos for each individual social feed! We now have simple widgets available for all the feeds. This premium edition also allows our basic shortcode to work with text widgets. Facebook Groups now has the option to hide the Title or Description too! [See Example Demo](http://feedthemsocial.com/)
 
 = Demos =
+All Demos can be found on [www.FeedThemSocial.com](http://feedthemsocial.com/)
   * [Facebook Page Feed Demo](http://feedthemsocial.com/)
   * [Facebook Album Photos Feed Demo](http://feedthemsocial.com/facebook-album-photos-demo/)
   * [Facebook Album Covers Feed Demo](http://feedthemsocial.com/facebook-album-covers/)
@@ -54,6 +55,17 @@ If you enjoy using our plugin please tell others. [Click here to share](http://w
   * Extract the zip file and drop the contents in the wp-content/plugins/ directory of your WordPress installation and then activate the Plugin from Plugins page. 
 
 == Changelog ==
+= Version 1.7.8 Friday, May 8th, 2015 =
+ * NEW: Language Selection added to Facebook Settings Page in Wordpress Admin. List of Languages come directly from Facebook which means if they add a language our plugin automatically supports it.
+ * NEW: Deleted unnecessary files and folders and Truncated, combined and cleaned up files to speed up HTTP requests for better performace. 
+ * NEW IN PREMIUM: YouTube: Support for Channels, Channel Playlists and Playlist IDs.
+ * FIXED: Instagram: Small black line that would appear under photos with some themes. Added line-height:0px to resolve this issue.
+ * FIXED: Facebook: Improper parse of www.youtube.com. Link is now inactive like facebook does it.
+ * FIXED: Twitter Feed Options to hide Media and longurl.
+ * FIXED: Twitter Feed had improper CURL timeout set)
+ * FIXED: Twitter: Multiple php notices.
+ * FIXED: Misc. style adjustments throughout the plugin.
+ 
 = Version 1.7.7 Wednesday, April 29th, 2015 =
  * FIXED: Instagram: Convert username to ID on the Settings page.
  * NEW: Instagram: Simple button to get your Access Token now on the Instagram Options page.
