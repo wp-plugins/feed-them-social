@@ -1,8 +1,0 @@
-@font-face{font-family:'FontAwesomeSlick';src:url('../css/font/fontawesome-webfont.eot?v=3.2.1');src:url('../css/font/fontawesome-webfont.eot?#iefix&v=3.2.1') format('embedded-opentype'),url('../css/font/fontawesome-webfont.woff?v=3.2.1') format('woff'),url('../css/font/fontawesome-webfont.ttf?v=3.2.1') format('truetype'),url('../css/font/fontawesome-webfont.svg#fontawesomeregular?v=3.2.1') format('svg'); }
-pre {
- white-space: pre-wrap;       /* css-3 */
- white-space: -moz-pre-wrap;  /* Mozilla, since 1999 */
- white-space: -pre-wrap;      /* Opera 4-6 */
- white-space: -o-pre-wrap;    /* Opera 7 */
- word-wrap: break-word; 	
-}
