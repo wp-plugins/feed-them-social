@@ -122,7 +122,8 @@ class FTS_Facebook_Feed extends feed_them_social_functions {
 			$response = $this->fts_get_feed_cache($fb_data_cache);
 		}
 		else {
-			$language_option = get_option('fb_language');
+			//	$language_option =  get_option('fb_language')
+	 	$language_option =  'en_US';
 			$language = !empty($language_option) ? '&locale='.$language_option : '';
 			//URL to get Feeds
 			if ($type == 'page' && $posts_displayed == 'page_only') {
