@@ -17,37 +17,37 @@ With our plugin you can create Social Feeds of any or all your celebrities, fami
 If you're looking for more than just a custom facebook feed our plugin includes most of your favorite social networks!
 
 = Features include the following: =
- ✭ Easy to Install and Setup!
- ✭ View photos and videos from your Facebook Page, Group, Album Photos, Album Covers or Event in our FREE version!
- ✭ Add as many social feeds as you need!
- ✭ Display social feeds on any post, page, or sidebar!
- ✭ Easily generate all the shortcodes you need for any feed with our SUPER SIMPLE shortcode generator!
- ✭ Responsive Social Feeds!
- ✭ Customize Front Colors!
- ✭ Add Like and/or Follow Buttons above or below any feeds!
- ✭ With our [Premium Extension](http://www.slickremix.com/product/feed-them-social-premium-extension/) you can set how many posts, pictures, tweets, or videos for each individual social feed! We now have simple widgets available for all the feeds. This premium edition also allows our basic shortcode to work with text widgets. Facebook Groups now has the option to hide the Title or Description too! [See Example Demo](http://feedthemsocial.com/)
- ✭ Awesome Support!
+ *✭ Easy to Install and Setup!
+ *✭ View photos and videos from your Facebook Page, Group, Album Photos, Album Covers or Event in our FREE version!
+ *✭ Add as many social feeds as you need!
+ *✭ Display social feeds on any post, page, or sidebar!
+ *✭ Easily generate all the shortcodes you need for any feed with our SUPER SIMPLE shortcode generator!
+ *✭ Responsive Social Feeds!
+ *✭ Customize Front Colors!
+ *✭ Add Like and/or Follow Buttons above or below any feeds!
+ *✭ With our [Premium Extension](http://www.slickremix.com/product/feed-them-social-premium-extension/) you can set how many posts, pictures, tweets, or videos for each individual social feed! We now have simple widgets available for all the feeds. This premium edition also allows our basic shortcode to work with text widgets. Facebook Groups now has the option to hide the Title or Description too! [See Example Demo](http://feedthemsocial.com/)
+ *✭ Awesome Support!
 
 = Demos =
- ✭ All Demos can be found on [www.FeedThemSocial.com](http://feedthemsocial.com/)
- ✭ [Facebook Page Feed Demo](http://feedthemsocial.com/)
- ✭ [Facebook Album Photos Feed Demo](http://feedthemsocial.com/facebook-album-photos-demo/)
- ✭ [Facebook Album Covers Feed Demo](http://feedthemsocial.com/facebook-album-covers/)
- ✭ [Facebook Group Feed Demo](http://feedthemsocial.com/facebook-group-feed-demo/)
- ✭ [Facebook Multiple Events Feed Demo](http://feedthemsocial.com/facebook-page-events-list/)
- ✭ [Facebook Single Event Feed Demo](http://feedthemsocial.com/facebook-event-feed-demo/)
- ✭ [Instagram Feed Demo](http://feedthemsocial.com/instagram-feed-demo/)
- ✭ [Twitter Feed Demo](http://feedthemsocial.com/twitter-feed-demo/)
- ✭ [Pinterest Boards Demo](http://feedthemsocial.com/pinterest/)
- ✭ [Pinterest Pins from a single Board](http://feedthemsocial.com/pinterest-pins-from-a-single-board/)
- ✭ [Pinterest Latest Pins from a User](http://feedthemsocial.com/pinterest-demo-pins-from-user/)
+ *✭ All Demos can be found on [www.FeedThemSocial.com](http://feedthemsocial.com/)
+ *✭ [Facebook Page Feed Demo](http://feedthemsocial.com/)
+ *✭ [Facebook Album Photos Feed Demo](http://feedthemsocial.com/facebook-album-photos-demo/)
+ *✭ [Facebook Album Covers Feed Demo](http://feedthemsocial.com/facebook-album-covers/)
+ *✭ [Facebook Group Feed Demo](http://feedthemsocial.com/facebook-group-feed-demo/)
+ *✭ [Facebook Multiple Events Feed Demo](http://feedthemsocial.com/facebook-page-events-list/)
+ *✭ [Facebook Single Event Feed Demo](http://feedthemsocial.com/facebook-event-feed-demo/)
+ *✭ [Instagram Feed Demo](http://feedthemsocial.com/instagram-feed-demo/)
+ *✭ [Twitter Feed Demo](http://feedthemsocial.com/twitter-feed-demo/)
+ *✭ [Pinterest Boards Demo](http://feedthemsocial.com/pinterest/)
+ *✭ [Pinterest Pins from a single Board](http://feedthemsocial.com/pinterest-pins-from-a-single-board/)
+ *✭ [Pinterest Latest Pins from a User](http://feedthemsocial.com/pinterest-demo-pins-from-user/)
   
 = PREMIUM Demos =
- ✭ [Youtube + Instagram + Pinterest Feeds Demo](http://feedthemsocial.com/youtube-instagram/)
- ✭ [YouTube Feed Demo](http://feedthemsocial.com/youtube-demo-1-large-with-4-video-per-row/)
+ *✭ [Youtube + Instagram + Pinterest Feeds Demo](http://feedthemsocial.com/youtube-instagram/)
+ *✭ [YouTube Feed Demo](http://feedthemsocial.com/youtube-demo-1-large-with-4-video-per-row/)
 
 = PREMIUM FTS Bar =
- ✭ [NEW! Social Bar](http://feedthemsocial.com/fts-bar/)
+ *✭ [NEW! Social Bar](http://feedthemsocial.com/fts-bar/)
 
 ALL SlickRemix plugins come with FREE Basic Support! If you need help or have questions we are here to help just post on our [Support Forum](http://www.slickremix.com/support-forum/) and we’ll get to you as quickly as we can! (usually within 48hrs)
 	
