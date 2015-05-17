@@ -4,6 +4,9 @@ class feed_them_social_functions {
 	function __construct() {
 		$root_file = plugin_dir_path(dirname( __FILE__));
 		$this->premium = str_replace('feed-them-social/', 'feed-them-premium/', $root_file);
+		//FTS Activation Function. Commenting out for future use. SRL
+		// register_activation_hook( FEED_THEM_MAIN_FILE , array( $this, 'fts_plugin_activation'));
+		
 		//$load_fts->fts_get_check_plugin_version('feed-them-premium.php', '1.3.0');
 		register_deactivation_hook( __FILE__, array( $this, 'fts_get_check_plugin_version' ));
 		// Widget Code
@@ -24,6 +27,18 @@ class feed_them_social_functions {
 		add_action( 'wp_ajax_fts_load_videos', array($this, 'fts_load_videos'));
 		add_action( 'wp_ajax_nopriv_fts_load_videos', array($this, 'fts_load_videos'));
 	}
+	//**************************************************
+	// Add FTS options on activation. Commenting out for future use. SRL
+	//**************************************************
+	// function fts_plugin_activation() {
+		   //Options List
+	//	   $activation_options = array(
+	//		   'fb_language' => 'en_US',
+	//	   );
+	//	   foreach($activation_options as $option_key => $option_value){
+	//		   add_option($option_key, $option_value);
+	//	   }   
+//	}
 	//**************************************************
 	// For Loading in the Admin.
 	//**************************************************
@@ -115,7 +130,7 @@ class feed_them_social_functions {
 			exit( 'Sorry, You can\'t do that!' );
 		}
 		else {
-			if (preg_match('/\[fts facebook/', $_REQUEST['rebuilt_shortcode'])) {
+			if (preg_match('/\[fts facebook/', $_REQUEST['rebuilt_shortcode']) || preg_match('/\[fts instagram/', $_REQUEST['rebuilt_shortcode'])) {
 				$object = do_shortcode($_REQUEST['rebuilt_shortcode']);
 				echo $object;
 			}
@@ -268,29 +283,6 @@ class feed_them_social_functions {
 		die();
 	} // end of my_ajax_callback()
 	//**************************************************
-	// this function is being called from the twitter feed it calls the ajax in this case.
-	//**************************************************
-	function fts_clear_cache_ajax() {
-		$plugins = array (
-			1 => 'facebook',
-			2 => 'instagram',
-			3 => 'twitter',
-			4 => 'pinterest',
-			5 => 'youtube',
-		);
-		foreach ($plugins as $key => $value) {
-			$files = glob(WP_CONTENT_DIR.'/plugins/feed-them-social/feeds/'.$value.'/cache/*'); // get all file names
-			if ($files) {
-				foreach ($files as $file) { // iterate files
-					if (is_file($file))
-						unlink($file); // delete file
-				}//end foreach $files
-			}// end if($files)
-		}//end foreach $plugins
-		return 'Cache for all FTS Feeds cleared!';
-		die();
-	} // end of my_ajax_callback()
-	//**************************************************
 	// Admin menu buttons
 	//**************************************************
 	function Feed_Them_Main_Menu() {
@@ -409,6 +401,8 @@ class feed_them_social_functions {
 	//**************************************************
 	function fts_facebook_style_options_page() {
 		$fb_style_options = array(
+		 'fb_app_ID',
+			'fb_like_btn_color',
 			'fb_language',
 			'fb_show_follow_btn',
 			'fb_show_follow_like_box_cover',
@@ -524,12 +518,18 @@ class feed_them_social_functions {
 			//Facebook settings options for follow button
 			$fb_show_follow_btn = get_option('fb_show_follow_btn');
 			$fb_show_follow_like_box_cover = get_option('fb_show_follow_like_box_cover');
-			if (get_option('fb_language')) {
-				$language_option = get_option('fb_language');
+			$language_option_check = get_option('fb_language');
+			$fb_app_ID = get_option('fb_app_ID');
+			
+			if (isset($language_option_check) && $language_option_check !== 'Please Select Option') {
+				$language_option = get_option('fb_language', 'en_US');
 			}
 			else {
-				$language_option = 'en_US';					
+						$language_option = 'en_US';
 			}
+			$fb_like_btn_color = get_option('fb_like_btn_color', 'light');
+		//	var_dump( $fb_like_btn_color ); /* outputs 'default_value' */
+			
 			$show_faces = $fb_show_follow_btn == 'like-button-share-faces' || $fb_show_follow_btn == 'like-button-faces' || $fb_show_follow_btn == 'like-box-faces' ? 'true' : 'false';
 			$share_button = $fb_show_follow_btn == 'like-button-share-faces' || $fb_show_follow_btn == 'like-button-share' ? 'true' : 'false';
 			$page_cover = $fb_show_follow_like_box_cover == 'fb_like_box_cover-yes' ? 'true' : 'false';
@@ -539,7 +539,7 @@ class feed_them_social_functions {
 						  var js, fjs = d.getElementsByTagName(s)[0];
 						  if (d.getElementById(id)) return;
 						  js = d.createElement(s); js.id = id;
-						  js.src = "//connect.facebook.net/'.$language_option.'/sdk.js#xfbml=1&appId='.$access_token.'&version=v2.3";
+						  js.src = "//connect.facebook.net/'.$language_option.'/sdk.js#xfbml=1&appId='.$fb_app_ID.'&version=v2.3";
 						  fjs.parentNode.insertBefore(js, fjs);
 						}(document, "script", "facebook-jssd"));</script>';
 						$_POST['fts_facebook_script_loaded'] = 'yes';
@@ -550,7 +550,7 @@ class feed_them_social_functions {
 			}
 			//Like Button
 			else{
-				$output .='<div class="fb-like" data-href="https://www.facebook.com/'.$user_id.'" data-layout="standard" data-action="like" data-show-faces="'.$show_faces.'" data-share="'.$share_button.'" data-width:"100%"></div>';
+				$output .='<div class="fb-like" data-href="https://www.facebook.com/'.$user_id.'" data-layout="standard" data-action="like" data-colorscheme="'.$fb_like_btn_color.'" data-show-faces="'.$show_faces.'" data-share="'.$share_button.'" data-width:"100%"></div>';
 			}
 			print $output;
 			break;
@@ -604,27 +604,6 @@ class feed_them_social_functions {
 				print $output;
 			break;
 		}
-	}
-	//**************************************************
-	// Clear Cache Folder.
-	//**************************************************
-	function feed_them_clear_cache() {
-		$plugins = array (
-			1 => 'facebook',
-			2 => 'instagram',
-			3 => 'twitter',
-			4 => 'pinterest',
-		);
-		foreach ($plugins as $key => $value) {
-			$files = glob(WP_CONTENT_DIR.'/plugins/feed-them-social/feeds/'.$value.'/cache/*'); // get all file names
-			if ($files) {
-				foreach ($files as $file) { // iterate files
-					if (is_file($file))
-						unlink($file); // delete file
-				}//end foreach $files
-			}// end if($files)
-		}//end foreach $plugins
-		return 'Cache for all FTS Feeds cleared!';
 	}
 	//**************************************************
 	// Color Options for Facebook.
@@ -1160,6 +1139,7 @@ class feed_them_social_functions {
 			$instagram_id_option = get_option('instagram_id');
 			$pics_count_option = get_option('pics_count');
 			$instagram_popup_option = get_option('instagram_popup_option');
+			$instagram_load_more_option = get_option('instagram_load_more_option');
 		}
 		$output = '<div class="fts-instagram-shortcode-form">';
 		if ($save_options == false) {
@@ -1233,7 +1213,20 @@ class feed_them_social_functions {
            <div class="clear"></div></div>';
 			$output .= ' <div class="feed-them-social-admin-input-wrap"><div class="feed-them-social-admin-input-label">'.__('Image Stacking Animation On', 'feed-them-social').'<br/><small>'.__('This happens when resizing browser', 'feed-them-social').'</small></div>
         	 <select id="fts-slicker-instagram-container-animation" name="fts-slicker-instagram-container-animation" class="feed-them-social-admin-input"><option value="no">'.__('No', 'feed-them-social').'</option><option value="yes">'.__('Yes', 'feed-them-social').'</option></select><div class="clear"></div></div>';
+										
+										
+				// INSTAGRAM HEIGHT OPTION
+			$output .= '<div class="feed-them-social-admin-input-wrap instagram_fixed_height_option">';
+			$output .= '<div class="feed-them-social-admin-input-label">'.__('Instagram Fixed Height', 'feed-them-social').'<br/><small>'.__('Leave blank for auto height', 'feed-them-social').'</small></div>';
+			$output .= '<input type="text" name="instagram_page_height" id="instagram_page_height" class="feed-them-social-admin-input" value="" placeholder="450px '.__('for example', 'feed-them-social').'" />';
+			$output .= '<div class="clear"></div>';
+			$output .= '</div><!--/feed-them-social-admin-input-wrap-->';
+
+
 			$output .= '</div><!--fts-super-instagram-options-wrap-->';
+		 
+			
+
 		}
 		if (is_plugin_active('feed-them-premium/feed-them-premium.php')) {
 			include($this->premium.'admin/instagram-settings-fields.php');
@@ -1243,6 +1236,7 @@ class feed_them_social_functions {
 			$fields = array(
 				__('# of Pics (default 5)', 'feed-them-social'),
 				__('Display Photos in Popup', 'feed-them-social'),
+				__('Load More Posts', 'feed-them-social'),
 			);
 			$output .= $this->need_fts_premium_fields($fields);
 		}
@@ -1364,103 +1358,137 @@ class feed_them_social_functions {
 	// Generate Get Json (includes MultiCurl)
 	//**************************************************
 	function fts_get_feed_json($feeds_mulit_data) {
-		// data to be returned
-		$response = array();
-		$curl_success = true;
-		if (is_callable('curl_init')) {
-			// array of curl handles
-			$curly = array();
-			// multi handle
-			$mh = curl_multi_init();
-			// loop through $data and create curl handles
-			// then add them to the multi-handle
-			foreach ($feeds_mulit_data as $id => $d) {
-				$curly[$id] = curl_init();
-				$url = (is_array($d) && !empty($d['url'])) ? $d['url'] : $d;
-				curl_setopt($curly[$id], CURLOPT_URL,            $url);
-				curl_setopt($curly[$id], CURLOPT_HEADER,         0);
-				curl_setopt($curly[$id], CURLOPT_RETURNTRANSFER, 1);
-				curl_setopt($curly[$id], CURLOPT_SSL_VERIFYPEER, false);
-				curl_setopt($curly[$id], CURLOPT_SSL_VERIFYHOST, 0);
-				// post?
-				if (is_array($d)) {
-					if (!empty($d['post'])) {
-						curl_setopt($curly[$id], CURLOPT_POST,       1);
-						curl_setopt($curly[$id], CURLOPT_POSTFIELDS, $d['post']);
+			// data to be returned
+			$response = array();
+			$curl_success = true;
+			if (is_callable('curl_init')) {
+				if(is_array($feeds_mulit_data)){
+					// array of curl handles
+					$curly = array();
+					// multi handle
+					$mh = curl_multi_init();
+					// loop through $data and create curl handles
+					// then add them to the multi-handle
+					foreach ($feeds_mulit_data as $id => $d) {
+						$curly[$id] = curl_init();
+						$url = (is_array($d) && !empty($d['url'])) ? $d['url'] : $d;
+						curl_setopt($curly[$id], CURLOPT_URL,            $url);
+						curl_setopt($curly[$id], CURLOPT_HEADER,         0);
+						curl_setopt($curly[$id], CURLOPT_RETURNTRANSFER, 1);
+						curl_setopt($curly[$id], CURLOPT_SSL_VERIFYPEER, false);
+						curl_setopt($curly[$id], CURLOPT_SSL_VERIFYHOST, 0);
+						// post?
+						if (is_array($d)) {
+							if (!empty($d['post'])) {
+								curl_setopt($curly[$id], CURLOPT_POST,       1);
+								curl_setopt($curly[$id], CURLOPT_POSTFIELDS, $d['post']);
+							}
+						}
+						// extra options?
+						if (!empty($options)) {
+							curl_setopt_array($curly[$id], $options);
+						}
+						curl_multi_add_handle($mh, $curly[$id]);
 					}
-				}
-				// extra options?
-				if (!empty($options)) {
-					curl_setopt_array($curly[$id], $options);
-				}
-				curl_multi_add_handle($mh, $curly[$id]);
-			}
-			// execute the handles
-			$running = null;
-			do {
-				$curl_status = curl_multi_exec($mh, $running);
-				// Check for errors
-				$info = curl_multi_info_read($mh);
-				if (false !== $info) {
-					// Add connection info to info array:
-					if (!$info['result']) {
-						//$multi_info[(integer) $info['handle']]['error'] = 'OK';
-					} else {
-						$multi_info[(integer) $info['handle']]['error'] = curl_error($info['handle']);
-						$curl_success = false;
+					// execute the handles
+					$running = null;
+					do {
+						$curl_status = curl_multi_exec($mh, $running);
+						// Check for errors
+						$info = curl_multi_info_read($mh);
+						if (false !== $info) {
+							// Add connection info to info array:
+							if (!$info['result']) {
+								//$multi_info[(integer) $info['handle']]['error'] = 'OK';
+							} else {
+								$multi_info[(integer) $info['handle']]['error'] = curl_error($info['handle']);
+								$curl_success = false;
+							}
+						}
+					} while ($running > 0);
+					// get content and remove handles
+					foreach ($curly as $id => $c) {
+						$response[$id] = curl_multi_getcontent($c);
+						curl_multi_remove_handle($mh, $c);
 					}
+					curl_multi_close($mh);
+				}//END Is_ARRAY
+				//NOT ARRAY SINGLE CURL
+				else{
+					$ch = curl_init($feeds_mulit_data);
+					curl_setopt_array($ch, array(
+						CURLOPT_URL => $url,
+					    CURLOPT_RETURNTRANSFER => true,
+					    CURLOPT_HEADER => 0,
+					    CURLOPT_POST => true,
+					    CURLOPT_SSL_VERIFYPEER => false,
+					    CURLOPT_SSL_VERIFYHOST => 0
+					));
+					$response = curl_exec($ch);
+					curl_close($ch);
 				}
-			} while ($running > 0);
-			// get content and remove handles
-			foreach ($curly as $id => $c) {
-				$response[$id] = curl_multi_getcontent($c);
-				curl_multi_remove_handle($mh, $c);
+
 			}
-			// Display result messages:
-			//if($multi_info){
-			//      foreach ($multi_info as $each) {
-			//       echo $each['url'] . ' => ' . $each['error'] . "\n";
-			//      }
-			//    }
-			// All Done With Curl Call
-			curl_multi_close($mh);
-		}
-		//File_Get_Contents if Curl doesn't work
-		if (!$curl_success && ini_get('allow_url_fopen') == 1 || ini_get('allow_url_fopen') === TRUE) {
-			foreach ($feeds_mulit_data as $id => $d) {
-				$response[$id] = @file_get_contents($d);
-			}
-		} else {
-			//If nothing else use wordpress http API
-			if (!$curl_success && !class_exists( 'WP_Http' )) {
-				include_once( ABSPATH . WPINC. '/class-http.php' );
-				$wp_http_class = new WP_Http;
+			//File_Get_Contents if Curl doesn't work
+			if (!$curl_success && ini_get('allow_url_fopen') == 1 || ini_get('allow_url_fopen') === TRUE) {
 				foreach ($feeds_mulit_data as $id => $d) {
-					$wp_http_result = $wp_http_class->request($d);
-					$response[$id] = $wp_http_result['body'];
+					$response[$id] = @file_get_contents($d);
 				}
+			} else {
+				//If nothing else use wordpress http API
+				if (!$curl_success && !class_exists( 'WP_Http' )) {
+					include_once( ABSPATH . WPINC. '/class-http.php' );
+					$wp_http_class = new WP_Http;
+					foreach ($feeds_mulit_data as $id => $d) {
+						$wp_http_result = $wp_http_class->request($d);
+						$response[$id] = $wp_http_result['body'];
+					}
+				}
+				//Do nothing if Curl was Successful
 			}
-			//Do nothing if Curl was Successful
-		}
-		return $response;
+				return $response;
 	}
 
 	//**************************************************
 	// Create feed cache
 	//**************************************************
-	function fts_create_feed_cache($url_to_cache, $response) {
-		if (!file_exists($url_to_cache)) {
-			touch($url_to_cache);
-		}
-		file_put_contents($url_to_cache, serialize($response));
+	function fts_create_feed_cache($transient_name, $response) {
+		set_transient('fts_'.$transient_name, serialize($response), 900);
 	}
 	//**************************************************
 	// fts_get_feed_cache
 	//**************************************************
-	function fts_get_feed_cache($url_to_cache) {
-		$returned_cache_data = unserialize(file_get_contents($url_to_cache));
+	function fts_get_feed_cache($transient_name) {
+		$returned_cache_data = unserialize(get_transient('fts_'.$transient_name));
 		return $returned_cache_data;
 	}
+	//**************************************************
+	// fts_check_feed_cache_exists
+	//**************************************************
+	function fts_check_feed_cache_exists($transient_name) {
+		if(false === ($special_query_results = get_transient('fts_'.$transient_name))){
+			return false;
+		}
+		return true;
+	}
+	//**************************************************
+	// this function is being called from the twitter feed it calls the ajax in this case.
+	//**************************************************
+	function fts_clear_cache_ajax() {
+		global $wpdb;
+		$not_expired= $wpdb->query($wpdb->prepare("DELETE FROM $wpdb->options WHERE option_name LIKE %s ", '_transient_fts_%'));
+		$expired = $wpdb->query($wpdb->prepare("DELETE FROM $wpdb->options WHERE option_name LIKE %s ", '_transient_timeout_fts_%'));
+	} // end of my_ajax_callback()
+	//**************************************************
+	// Clear Cache Folder.
+	//**************************************************
+	function feed_them_clear_cache() {
+		global $wpdb;
+		$not_expired = $wpdb->query($wpdb->prepare("DELETE FROM $wpdb->options WHERE option_name LIKE %s ", '_transient_fts_%'));
+		$expired = $wpdb->query($wpdb->prepare("DELETE FROM $wpdb->options WHERE option_name LIKE %s ", '_transient_timeout_fts_%'));
+		return 'Cache for all FTS Feeds cleared!';
+	}
+
 	//**************************************************
 	// Create our custom menu in the admin bar.
 	//**************************************************
@@ -1501,7 +1529,9 @@ class feed_them_social_functions {
 		);
 	}
 	function xml_json_parse($url) {
-        $fileContents= file_get_contents($url);
+		$url_to_get['url'] = $url;
+        $fileContents_returned = $this->fts_get_feed_json($url_to_get);
+        $fileContents = $fileContents_returned['url'];
         $fileContents = str_replace(array("\n", "\r", "\t"), '', $fileContents);
         $fileContents = trim(str_replace('"', "'", $fileContents));
         $simpleXml = simplexml_load_string($fileContents);

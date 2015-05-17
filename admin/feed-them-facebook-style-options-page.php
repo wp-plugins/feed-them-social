@@ -15,13 +15,14 @@ function feed_them_facebook_options_page() {
 <form method="post" class="fts-facebook-feed-options-form" action="options.php">
 <br/>
 <?php // get our registered settings from the fts functions 
-	 	   settings_fields('fts-facebook-feed-style-options'); 
-	 	   //Language select
-	 	   $fb_language = get_option('fb_language');
+	 	   settings_fields('fts-facebook-feed-style-options');
+	 	    //Language select
+	 	   $fb_language = get_option('fb_language', 'en_US');
 		   //share button
 	 	   $fb_show_follow_btn = get_option('fb_show_follow_btn');
 	 	   $fb_show_follow_btn_where = get_option('fb_show_follow_btn_where');
 		   $fb_show_follow_btn_profile_pic = get_option('fb_show_follow_btn_profile_pic');
+		   $fb_like_btn_color = get_option('fb_like_btn_color', 'light');
 	  
 		   $lang_options_array = json_decode($fts_functions->xml_json_parse('https://www.facebook.com/translations/FacebookLocales.xml'));
 		   //echo'<pre>';
@@ -40,7 +41,7 @@ function feed_them_facebook_options_page() {
 <?php _e('Language For Facebook Feeds', 'feed-them-social'); ?>
 </div>
 <select name="fb_language" id="fb-lang-btn" class="feed-them-social-admin-input">
-<option>
+<option value="en_US">
 <?php _e('Please Select Option', 'feed-them-social'); ?>
 </option>
 <?php  
@@ -59,35 +60,40 @@ function feed_them_facebook_options_page() {
 <?php _e('Like Button or Box Options', 'feed-them-social'); ?>
 </h3>
 </div>
+
+
+
+
+
 <div class="feed-them-social-admin-input-label fts-twitter-text-color-label">
 <?php _e('Show Follow Button', 'feed-them-social'); ?>
 </div>
 <select name="fb_show_follow_btn" id="fb-show-follow-btn" class="feed-them-social-admin-input">
-<option >
+<option>
 <?php _e('Please Select Option', 'feed-them-social'); ?>
 </option>
-<option '<?php echo selected($fb_show_follow_btn, 'dont-display', false ) ?>' value="dont-display">
+<option <?php echo selected($fb_show_follow_btn, 'dont-display', false ) ?> value="dont-display">
 <?php _e('Don\'t Display a Button', 'feed-them-social'); ?>
 </option>
 <optgroup label="Like Box">
-<option '<?php echo selected($fb_show_follow_btn, 'like-box', false ) ?>' value="like-box">
+<option <?php echo selected($fb_show_follow_btn, 'like-box', false ) ?> value="like-box">
 <?php _e('Like Box', 'feed-them-social'); ?>
 </option>
-<option '<?php echo selected($fb_show_follow_btn, 'like-box-faces', false ) ?>' value="like-box-faces">
+<option <?php echo selected($fb_show_follow_btn, 'like-box-faces', false ) ?> value="like-box-faces">
 <?php _e('Like Box with Faces', 'feed-them-social'); ?>
 </option>
 </optgroup>
 <optgroup label="Like Button">
-<option '<?php echo selected($fb_show_follow_btn, 'like-button', false ) ?>' value="like-button">
+<option <?php echo selected($fb_show_follow_btn, 'like-button', false ) ?> value="like-button">
 <?php _e('Like Button', 'feed-them-social'); ?>
 </option>
-<option '<?php echo selected($fb_show_follow_btn, 'like-button-share', false ) ?>' value="like-button-share">
+<option <?php echo selected($fb_show_follow_btn, 'like-button-share', false ) ?> value="like-button-share">
 <?php _e('Like Button and Share Button', 'feed-them-social'); ?>
 </option>
-<option '<?php echo selected($fb_show_follow_btn, 'like-button-faces', false ) ?>' value="like-button-faces">
+<option <?php echo selected($fb_show_follow_btn, 'like-button-faces', false ) ?> value="like-button-faces">
 <?php _e('Like Button with Faces', 'feed-them-social'); ?>
 </option>
-<option '<?php echo selected($fb_show_follow_btn, 'like-button-share-faces', false ) ?>' value="like-button-share-faces">
+<option <?php echo selected($fb_show_follow_btn, 'like-button-share-faces', false ) ?> value="like-button-share-faces">
 <?php _e('Like Button and Share Button with Faces', 'feed-them-social'); ?>
 </option>
 </optgroup>
@@ -101,14 +107,34 @@ function feed_them_facebook_options_page() {
 <?php _e('Show Profile Icon next to social option above', 'feed-them-social'); ?>
 </div>
 <select name="fb_show_follow_like_box_cover" id="fb-show-follow-like-box-cover" class="feed-them-social-admin-input">
-<option >
+<option>
 <?php _e('Please Select Option', 'feed-them-social'); ?>
 </option>
-<option '<?php echo selected($fb_show_follow_btn_profile_pic, 'fb_like_box_cover-yes', false ) ?>' value="fb_like_box_cover-yes">
+<option <?php echo selected($fb_show_follow_btn_profile_pic, 'fb_like_box_cover-yes', false ) ?> value="fb_like_box_cover-yes">
 <?php _e('Display Cover Photo in Like Box', 'feed-them-social'); ?>
 </option>
-<option '<?php echo selected($fb_show_follow_btn_profile_pic, 'fb_like_box_cover-no', false ) ?>' value="fb_like_box_cover-no">
+<option <?php echo selected($fb_show_follow_btn_profile_pic, 'fb_like_box_cover-no', false ) ?> value="fb_like_box_cover-no">
 <?php _e('Hide Cover Photo in Like Box', 'feed-them-social'); ?>
+</option>
+</select>
+<div class="clear"></div>
+</div>
+<!--/fts-twitter-feed-styles-input-wrap-->
+
+
+<div class="feed-them-social-admin-input-wrap">
+<div class="feed-them-social-admin-input-label fts-twitter-text-color-label">
+<?php _e('Like Button Color', 'feed-them-social'); ?>
+</div>
+<select name="fb_like_btn_color" id="fb-like-btn-color" class="feed-them-social-admin-input">
+<option value="light">
+<?php _e('Please Select Option', 'feed-them-social'); ?>
+</option>
+<option <?php echo selected($fb_like_btn_color, 'light', false ) ?> value="light">
+<?php _e('Light', 'feed-them-social'); ?>
+</option>
+<option <?php echo selected($fb_like_btn_color, 'dark', false ) ?> value="dark">
+<?php _e('Dark', 'feed-them-social'); ?>
 </option>
 </select>
 <div class="clear"></div>
@@ -120,22 +146,32 @@ function feed_them_facebook_options_page() {
 <?php _e('Placement of the Button(s)', 'feed-them-social'); ?>
 </div>
 <select name="fb_show_follow_btn_where" id="fb-show-follow-btn-where" class="feed-them-social-admin-input">
-<option >
+<option value="">
 <?php _e('Please Select Option', 'feed-them-social'); ?>
 </option>
-<option '<?php echo selected($fb_show_follow_btn_where, 'fb-like-top-above-title', false ) ?>' value="fb-like-top-above-title">
+<option <?php echo selected($fb_show_follow_btn_where, 'fb-like-top-above-title', false ) ?> value="fb-like-top-above-title">
 <?php _e('Show Top of Feed Above Title', 'feed-them-social'); ?>
 </option>
-<option '<?php echo selected($fb_show_follow_btn_where, 'fb-like-top-below-title', false ) ?>' value="fb-like-top-below-title">
+<option <?php echo selected($fb_show_follow_btn_where, 'fb-like-top-below-title', false ) ?> value="fb-like-top-below-title">
 <?php _e('Show Top of Feed Below Title', 'feed-them-social'); ?>
 </option>
-<option '<?php echo selected($fb_show_follow_btn_where, 'fb-like-below', false ) ?>' value="fb-like-below">
+<option <?php echo selected($fb_show_follow_btn_where, 'fb-like-below', false ) ?> value="fb-like-below">
 <?php _e('Show Botton of Feed', 'feed-them-social'); ?>
 </option>
 </select>
 <div class="clear"></div>
 </div>
 <!--/fts-twitter-feed-styles-input-wrap-->
+
+<div class="feed-them-social-admin-input-wrap">
+<div class="feed-them-social-admin-input-label fts-twitter-text-color-label">
+<?php _e('Facebook APP ID<br/><small>View Step 3 to <a href="http://www.slickremix.com/docs/create-facebook-app-id-or-user-token" target="_blank">get APP ID</a>.</small>', 'feed-them-social'); ?>
+</div>
+<input type="text" name="fb_app_ID" class="feed-them-social-admin-input"  id="fb-app-ID" value="<?php echo get_option('fb_app_ID');?>"/>
+ <div class="clear"></div>
+</div>
+
+
 
 <div class="feed-them-social-admin-input-wrap">
 <div class="fts-title-description-settings-page" style="margin-top:0;">
@@ -270,7 +306,7 @@ function feed_them_facebook_options_page() {
 <h3>
 <?php _e('Facebook API Token', 'feed-them-social'); ?>
 </h3>
-<?php _e('Facebook App ID or User Token (for all facebook feeds). Not required to make the feed work. A User Token however will allow you to see certain post types that may be returning the message, Undefined Attachment. See how to <a href="http://www.slickremix.com/docs/create-facebook-app-id-or-user-token" target="_blank">GET APP ID or USER TOKEN</a>.', 'feed-them-social'); ?>
+<?php _e('Facebook App Token works for all facebook feeds. Not required to make the feed work BUT an APP Token will stop the feed from returning the error, Are you sure this is a Facebook ID... See how to <a href="http://www.slickremix.com/docs/create-facebook-app-id-or-user-token" target="_blank">Get APP Token or Extended User Token</a>.', 'feed-them-social'); ?>
 </div>
 <?php
          $test_app_token_id = get_option('fts_facebook_custom_api_token');
@@ -293,14 +329,14 @@ function feed_them_facebook_options_page() {
 	  ?>
 <div class="feed-them-social-admin-input-wrap" style="margin-bottom:0px;">
 <div class="feed-them-social-admin-input-label fts-twitter-border-bottom-color-label">
-<?php _e('APP ID or Token optional', 'feed-them-social'); ?>
+<?php _e('APP Token', 'feed-them-social'); ?>
 </div>
 <input type="text" name="fts_facebook_custom_api_token" class="feed-them-social-admin-input"  id="fts_facebook_custom_api_token" value="<?php echo get_option('fts_facebook_custom_api_token');?>"/>
 <div class="clear"></div>
 </div>
 <?php if (!empty($test_app_token_response)){	 
 			 	if(isset($test_app_token_response->data->is_valid)){
-					echo'<div class="fts-successful-api-token">'. __('Your access token is working!', 'feed-them-social').'</div>';
+					echo'<div class="fts-successful-api-token">'. __('Your APP Token is working!', 'feed-them-social').'</div>';
 				}
 				if(isset($test_app_token_response->data->error->message) || isset($test_app_token_response->error->message)){
 					if(isset($test_app_token_response->data->error->message)){
@@ -313,7 +349,7 @@ function feed_them_facebook_options_page() {
 				}
 				
 		} else{
-			  		echo'<div class="fts-successful-api-token">'. __('You are using our Default Access Token.', 'feed-them-social').'</div>';
+			  		echo'<div class="fts-successful-api-token">'. __('You are using our Default APP Token.', 'feed-them-social').'</div>';
 			  }
 			  ?>
 <div class="clear"></div>

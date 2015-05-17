@@ -60,12 +60,12 @@ class FTS_Pinterest_Feed extends feed_them_social_functions {
 		$pinterest_show_follow_btn_where = get_option('pinterest_show_follow_btn_where');
 		
 		//Pinterest Boards Cache Folder
-		$pin_cache_boards_url = WP_CONTENT_DIR.'/plugins/feed-them-social/feeds/pinterest/cache/pin-boards_list-'.$pinterest_name.'-bnum'.$boards_count.'.cache';
+		$pin_cache_boards_url = 'pin_boards_list_'.$pinterest_name.'_bnum'.$boards_count.'';
 		//Pinterest Boards' Pins Cache Folder
-		$pin_cache_boards_pins_url = WP_CONTENT_DIR.'/plugins/feed-them-social/feeds/pinterest/cache/pin-boards_list-'.$pinterest_name.'-bpnum'.$boards_count.'-pnum3.cache';
+		$pin_cache_boards_pins_url = 'pin_boards_list_'.$pinterest_name.'_bpnum'.$boards_count.'_pnum3';
 		
 		//Get Boards
-		if(file_exists($pin_cache_boards_url) && !filesize($pin_cache_boards_url) == 0 && filemtime($pin_cache_boards_url) > time() - 900 && false !== strpos($pin_cache_boards_url,'-bnum'.$boards_count)) {
+		if(false !== ($transient_exists = $this->fts_check_feed_cache_exists($pin_cache_boards_url))) {
 			$boards_returned = $this->fts_get_feed_cache($pin_cache_boards_url);
 		}
 		else{
@@ -76,7 +76,7 @@ class FTS_Pinterest_Feed extends feed_them_social_functions {
 		}
 		$boards = json_decode($boards_returned['boards']);
 		//Get Boards Pins
-		if(file_exists($pin_cache_boards_pins_url) && !filesize($pin_cache_boards_pins_url) == 0 && filemtime($pin_cache_boards_pins_url) > time() - 900 && false !== strpos($pin_cache_boards_pins_url,'-bpnum'.$boards_count.'-pnum3')) {
+		if(false !== ($transient_exists = $this->fts_check_feed_cache_exists($pin_cache_boards_pins_url))) {
 			$pinfo = $this->fts_get_feed_cache($pin_cache_boards_pins_url);
 		}
 		else{
@@ -174,10 +174,10 @@ class FTS_Pinterest_Feed extends feed_them_social_functions {
 		$pinterest_show_follow_btn = get_option('pinterest_show_follow_btn');
 		$pinterest_show_follow_btn_where = get_option('pinterest_show_follow_btn_where');
 		 //Pinterest Pins Cache Folder
-		$pin_cache_pins_url = WP_CONTENT_DIR.'/plugins/feed-them-social/feeds/pinterest/cache/pin-'.$type.'-'.$pinterest_name.(!empty($board_id) ? '-board'.$board_id : '').($type == 'single_board_pins' || $type == 'pins_from_user' ? '-pnum'.$pins_count : '-unum'.$pins_count).'.cache';
+		$pin_cache_pins_url ='pin_'.$type.'_'.$pinterest_name.(!empty($board_id) ? '_board'.$board_id : '').($type == 'single_board_pins' || $type == 'pins_from_user' ? '_pnum'.$pins_count : '_unum'.$pins_count).'';
 
 		//Get Boards Pins
-		if(file_exists($pin_cache_pins_url) && !filesize($pin_cache_pins_url) == 0 && filemtime($pin_cache_pins_url) > time() - 900 && (false !== strpos($pin_cache_pins_url,'-pnum'.$pins_count) || false !== strpos($pin_cache_pins_url,'-unum'.$pins_count))) {
+		if(false !== ($transient_exists = $this->fts_check_feed_cache_exists($pin_cache_pins_url))) {
 			$pins_returned = $this->fts_get_feed_cache($pin_cache_pins_url);
 		}
 		else{

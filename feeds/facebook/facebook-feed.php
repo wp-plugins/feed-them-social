@@ -31,9 +31,9 @@ class FTS_Facebook_Feed extends feed_them_social_functions {
 			include(WP_CONTENT_DIR.'/plugins/feed-them-premium/feeds/facebook/facebook-premium-feed.php');
 			if ($fts_fb_popup == 'yes') {
 				// it's ok if these styles & scripts load at the bottom of the page
-			 wp_enqueue_style( 'fts-popup', plugins_url( 'feed-them-social/feeds/css/magnific-popup.css'));
-		 	wp_enqueue_script( 'fts-popup-js', plugins_url( 'feed-them-social/feeds/js/magnific-popup.js'));
-	 	 wp_enqueue_script( 'fts-images-loaded', plugins_url( 'feed-them-social/feeds/js/imagesloaded.pkgd.min.js' ));
+				wp_enqueue_style( 'fts-popup', plugins_url( 'feed-them-social/feeds/css/magnific-popup.css'));
+				wp_enqueue_script( 'fts-popup-js', plugins_url( 'feed-them-social/feeds/js/magnific-popup.js'));
+				wp_enqueue_script( 'fts-images-loaded', plugins_url( 'feed-them-social/feeds/js/imagesloaded.pkgd.min.js' ));
 				wp_enqueue_script( 'fts-global', plugins_url('feed-them-social/feeds/js/fts-global.js'), array( 'jquery' ));
 			}
 		}
@@ -112,109 +112,75 @@ class FTS_Facebook_Feed extends feed_them_social_functions {
 		//URL to get page info
 		switch ($type) {
 		case 'album_photos':
-			$fb_data_cache = WP_CONTENT_DIR.'/plugins/feed-them-social/feeds/facebook/cache/fb-'.$type.'-'.$fts_fb_id.'-'.$album_id.'-num'.$fts_limiter.'.cache';
+			$fb_data_cache = 'fb_'.$type.'_'.$fts_fb_id.'_'.$album_id.'_num'.$fts_limiter.'';
 			break;
 		default:
-			$fb_data_cache = WP_CONTENT_DIR.'/plugins/feed-them-social/feeds/facebook/cache/fb-'.$type.'-'.$fts_fb_id.'-num'.$fts_limiter.'.cache';
+			$fb_data_cache = 'fb_'.$type.'_'.$fts_fb_id.'_num'.$fts_limiter.'';
 			break;
 		}
-		if (file_exists($fb_data_cache) && !filesize($fb_data_cache) == 0 && filemtime($fb_data_cache) > time() - 900 && false !== strpos($fb_data_cache, '-num'.$fts_limiter.'') and !isset($_GET['load_more_ajaxing'])) {
+		if (false !== ($transient_exists = $this->fts_check_feed_cache_exists($fb_data_cache)) and !isset($_GET['load_more_ajaxing'])) {
 			$response = $this->fts_get_feed_cache($fb_data_cache);
 		}
 		else {
-			//	$language_option =  get_option('fb_language')
-	 	$language_option =  'en_US';
+			//this check is in place because we used this option and it failed for many people because we use wp get contents instead of curl
+			// this can be removed in a future update and just keep the $language_option = get_option('fb_language', 'en_US');
+			$language_option_check = get_option('fb_language');
+			if (isset($language_option_check) && $language_option_check !== 'Please Select Option') {
+				$language_option = get_option('fb_language', 'en_US');
+			}
+			else {
+						$language_option = 'en_US';
+			}
 			$language = !empty($language_option) ? '&locale='.$language_option : '';
 			//URL to get Feeds
 			if ($type == 'page' && $posts_displayed == 'page_only') {
 				$mulit_data = array('page_data' => 'https://graph.facebook.com/'.$fts_fb_id.'?access_token='.$access_token.$language.'');
-				if (isset($_REQUEST['next_url'])) {
-					$mulit_data['feed_data'] = $_REQUEST['next_url'];
-				}
-				else {
-					$mulit_data['feed_data'] = 'https://graph.facebook.com/'.$fts_fb_id.'/posts?limit='.$fts_limiter.'&access_token='.$access_token.$language.'';
-				}
+				$mulit_data['feed_data'] = isset($_REQUEST['next_url']) ? $_REQUEST['next_url'] : 'https://graph.facebook.com/'.$fts_fb_id.'/posts?limit='.$fts_limiter.'&access_token='.$access_token.$language.'';
 			}
 			elseif ($type == 'events') {
+				date_default_timezone_set(get_option('fts-timezone'));
+				$date = date('Y-m-d');
 				$mulit_data = array('page_data' => 'https://graph.facebook.com/'.$fts_fb_id.'?access_token='.$access_token.$language.'');
 				//Check If Ajax next URL needs to be used
-				if (isset($_REQUEST['next_url'])) {
-					$mulit_data['feed_data'] = $_REQUEST['next_url'];
-				}
-				else {
-					date_default_timezone_set(get_option('fts-timezone'));
-					$date = date('Y-m-d');
-					$mulit_data['feed_data'] = 'https://graph.facebook.com/'.$fts_fb_id.'/events?since='.$date.'&access_token='.$access_token.$language.'';
-				}
+				$mulit_data['feed_data'] = isset($_REQUEST['next_url']) ? $_REQUEST['next_url'] : 'https://graph.facebook.com/'.$fts_fb_id.'/events?since='.$date.'&access_token='.$access_token.$language.'';
+
 			}
 			elseif ($type == 'albums') {
-				$mulit_data = array(
-					'page_data' => 'https://graph.facebook.com/'.$fts_fb_id.'?access_token='.$access_token.$language.''
-				);
+				$mulit_data = array('page_data' => 'https://graph.facebook.com/'.$fts_fb_id.'?access_token='.$access_token.$language.'');
 				//Check If Ajax next URL needs to be used
-				if (isset($_REQUEST['next_url'])) {
-					$mulit_data['feed_data'] = $_REQUEST['next_url'];
-				}
-				else {
-					$mulit_data['feed_data'] = 'https://graph.facebook.com/'.$fts_fb_id.'/albums?limit='.$fts_limiter.'&access_token='.$access_token.$language.'';
-				}
+				$mulit_data['feed_data'] = isset($_REQUEST['next_url']) ? $_REQUEST['next_url'] : 'https://graph.facebook.com/'.$fts_fb_id.'/albums?limit='.$fts_limiter.'&access_token='.$access_token.$language.'';
 			}
 			elseif ($type == 'album_photos') {
-				$mulit_data = array(
-					'page_data' => 'https://graph.facebook.com/'.$fts_fb_id.'?access_token='.$access_token.$language.''
-				);
+				$mulit_data = array('page_data' => 'https://graph.facebook.com/'.$fts_fb_id.'?access_token='.$access_token.$language.'');
 				//Check If Ajax next URL needs to be used
-				if (isset($_REQUEST['next_url'])) {
-					$mulit_data['feed_data'] = $_REQUEST['next_url'];
-				}
-				else {
-					$mulit_data['feed_data'] = 'https://graph.facebook.com/'.$album_id.'/photos?limit='.$fts_limiter.'&access_token='.$access_token.$language.'';
-				}
+				$mulit_data['feed_data'] = isset($_REQUEST['next_url']) ? $_REQUEST['next_url'] : 'https://graph.facebook.com/'.$album_id.'/photos?limit='.$fts_limiter.'&access_token='.$access_token.$language.'';
 			}
 			elseif ($type == 'hashtag') {
 				$mulit_data = array(
 					'page_data' => 'https://graph.facebook.com/search?q=%23'.$fts_fb_id.'&access_token='.$access_token.$language.''
 				);
 				//Check If Ajax next URL needs to be used
-				if (isset($_REQUEST['next_url'])) {
-					$mulit_data['feed_data'] = $_REQUEST['next_url'];
-				}
-				else {
-					$mulit_data['feed_data'] = 'https://graph.facebook.com/search?q=%23'.$fts_fb_id.'&limit='.$fts_limiter.'&access_token='.$access_token.$language.'';
-				}
+				$mulit_data['feed_data'] = isset($_REQUEST['next_url']) ? $_REQUEST['next_url'] : 'https://graph.facebook.com/search?q=%23'.$fts_fb_id.'&limit='.$fts_limiter.'&access_token='.$access_token.$language.'';
+				//Check If Ajax next URL needs to be used
 			}
 			// elseif ($type == 'videos') {
 			//  $mulit_data['feed_data'] = 'https://graph.facebook.com/'.$fts_fb_id.'/videos/uploaded?access_token='.$access_token.'';
 			//  }
 			elseif ($type == 'group') {
-				$mulit_data = array(
-					'page_data' => 'https://graph.facebook.com/'.$fts_fb_id.'?access_token='.$access_token.$language.''
-				);
+				$mulit_data = array('page_data' => 'https://graph.facebook.com/'.$fts_fb_id.'?access_token='.$access_token.$language.'');
 				//Check If Ajax next URL needs to be used
-				if (isset($_REQUEST['next_url'])) {
-					$mulit_data['feed_data'] = $_REQUEST['next_url'];
-				}
-				else {
-					$mulit_data['feed_data'] = 'https://graph.facebook.com/'.$fts_fb_id.'/feed?limit='.$fts_limiter.'&access_token='.$access_token.$language.'';
-				}
+				$mulit_data['feed_data'] = isset($_REQUEST['next_url']) ? $_REQUEST['next_url'] : 'https://graph.facebook.com/'.$fts_fb_id.'/feed?limit='.$fts_limiter.'&access_token='.$access_token.$language.'';
 			}
 			else {
-				$mulit_data = array(
-					'page_data' => 'https://graph.facebook.com/'.$fts_fb_id.'?access_token='.$access_token.$language.'',
-				);
+				$mulit_data = array('page_data' => 'https://graph.facebook.com/'.$fts_fb_id.'?access_token='.$access_token.$language.'');
 				//Check If Ajax next URL needs to be used
-				if (isset($_REQUEST['next_url'])) {
-					$mulit_data['feed_data'] = $_REQUEST['next_url'];
-				}
-				else {
-					$mulit_data['feed_data'] = 'https://graph.facebook.com/'.$fts_fb_id.'/feed?limit='.$fts_limiter.'&access_token='.$access_token.$language.'';
-				}
+				$mulit_data['feed_data'] = isset($_REQUEST['next_url']) ? $_REQUEST['next_url'] : 'https://graph.facebook.com/'.$fts_fb_id.'/feed?limit='.$fts_limiter.'&access_token='.$access_token.$language.'';
 			}
 			$response = $this->fts_get_feed_json($mulit_data);
 			//Make sure it's not ajaxing
 			if (!isset($_GET['load_more_ajaxing']) && !empty($response['feed_data'])) {
 				//Create Cache
-				$this->fts_create_feed_cache($fb_data_cache, $response );
+				$this->fts_create_feed_cache($fb_data_cache, $response);
 			}
 		} // end main else
 		//Json decode data and build it from cache or response
@@ -258,7 +224,7 @@ class FTS_Facebook_Feed extends feed_them_social_functions {
 			if (isset($_REQUEST['fts_dynamic_name'])) {
 				$fts_dynamic_class_name =  'feed_dynamic_class'.$_REQUEST['fts_dynamic_name'];
 			}
-		  //******************
+				//******************
 				// SOCIAL BUTTON
 				//****************** 
 				if(isset($fb_show_follow_btn) && $fb_show_follow_btn !== 'dont-display' && $fb_show_follow_btn_where == 'fb-like-top-above-title' && $type !== 'event' && $type !== 'group'){
@@ -324,7 +290,7 @@ class FTS_Facebook_Feed extends feed_them_social_functions {
 ?>
         <div class="fts-jal-fb-group-display fts-simple-fb-wrapper <?php if ($fts_fb_popup == 'yes') { ?>popup-gallery-fb-posts <?php } echo $fts_dynamic_class_name ?><?php if ($height !== 'auto' && empty($height) == NULL) {?> fts-fb-scrollable<?php } ?>" <?php if ($height !== 'auto' && empty($height) == NULL) {?>style="height:<?php echo $height; ?>"<?php } ?>> <?php }
 		} //End ajaxing Check
-		$fb_post_data_cache = WP_CONTENT_DIR.'/plugins/feed-them-social/feeds/facebook/cache/fb-'.$type.'-post-'.$fts_fb_id.'-num'.$fts_limiter.'.cache';
+		$fb_post_data_cache = 'fb_'.$type.'_post_'.$fts_fb_id.'_num'.$fts_limiter.'';
 		if (file_exists($fb_post_data_cache) && !filesize($fb_post_data_cache) == 0 && filemtime($fb_post_data_cache) > time() - 900 && false !== strpos($fb_post_data_cache, '-num'.$fts_limiter.'' ) && !isset($_GET['load_more_ajaxing']) && $developer_mode !== 'on') {
 			$response_post_array = $this->fts_get_feed_cache($fb_post_data_cache);
 		}
@@ -552,12 +518,12 @@ class FTS_Facebook_Feed extends feed_them_social_functions {
 						print '<div class="fts-jal-fb-top-wrap">';
 					}
 					print '<div class="fts-jal-fb-user-thumb">';
-					print '<a href="http://facebook.com/profile.php?id='.$d->from->id.'"><img border="0" alt="'.$d->from->name.'" src="https://graph.facebook.com/'.$d->from->id.'/picture"/></a>';
+					print '<a href="http://facebook.com/profile.php?id='.$d->from->id.'" target="_blank"><img border="0" alt="'.$d->from->name.'" src="https://graph.facebook.com/'.$d->from->id.'/picture"/></a>';
 					print '</div>';
 					if ($type == 'album_photos' && $hide_date_likes_comments == 'yes' || $type == 'albums' && $hide_date_likes_comments == 'yes') { }
 					else {
 						date_default_timezone_set(get_option('fts-timezone'));
-						print '<span class="fts-jal-fb-user-name"><a href="http://facebook.com/profile.php?id='.$d->from->id.'">'.$d->from->name.'</a>'.$FBfinalstory.'</span>';
+						print '<span class="fts-jal-fb-user-name"><a href="http://facebook.com/profile.php?id='.$d->from->id.'" target="_blank">'.$d->from->name.'</a>'.$FBfinalstory.'</span>';
 						print '<span class="fts-jal-fb-post-time">'.date($CustomDateFormat, $CustomTimeFormat).'</span><div class="clear"></div>';
 						//Comments Count
 						$FBpost_id_final = substr($FBpost_id, strpos($FBpost_id, "_") + 1);
@@ -1095,7 +1061,7 @@ var nextURL_<?php echo $_REQUEST['fts_dynamic_name']; ?>= "<?php echo $_REQUEST[
 <script>
 	 jQuery(document).ready(function() {
 		  <?php
-			// $scrollMore = load_more_posts_style shortcode att
+			
 			if ($scrollMore == 'autoscroll') { ?>
 			// this is where we do SCROLL function to LOADMORE if = autoscroll in shortcode
 			jQuery(".<?php echo $fts_dynamic_class_name ?>").bind("scroll",function() {

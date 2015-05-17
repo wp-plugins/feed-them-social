@@ -13,15 +13,15 @@ class FTS_Twitter_Feed extends feed_them_social_functions {
 	//**************************************************
 	// Curl function to help return longurl API call
 	//**************************************************
-	function curl_get($url) {
-		$curl = curl_init($url);
-		curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
-		curl_setopt($curl, CURLOPT_TIMEOUT, 0);
-		curl_setopt($curl, CURLOPT_FOLLOWLOCATION, 1);
-		$return = curl_exec($curl);
-		curl_close($curl);
-		return $return;
-	}
+//	function curl_get($url) {
+//		$curl = curl_init($url);
+//		curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);/
+//		curl_setopt($curl, CURLOPT_TIMEOUT, 0);
+//		curl_setopt($curl, CURLOPT_FOLLOWLOCATION, 1);
+//		$return = curl_exec($curl);
+//		curl_close($curl);
+//		return $return;
+//	}
 	//**************************************************
 	// Display Twitter Feed
 	//**************************************************
@@ -62,9 +62,9 @@ class FTS_Twitter_Feed extends feed_them_social_functions {
 		$numTweets      = $tweets_count;
 		$name           = $twitter_name;
 		$excludeReplies = true;
-		$data_cache = WP_CONTENT_DIR.'/plugins/feed-them-social/feeds/twitter/cache/twitter_data_cache-'.$name.'-num'.$numTweets.'.cache';
+		$data_cache = 'twitter_data_cache_'.$name.'_num'.$numTweets.'';
 		//Check Cache
-		if (file_exists($data_cache) && !filesize($data_cache) == 0 && filemtime($data_cache) > time() - 1800 && false !== strpos($data_cache, '-num'.$numTweets.'')) {
+		if (false !== ($transient_exists = $this->fts_check_feed_cache_exists($data_cache))) {
 			$fetchedTweets = $this->fts_get_feed_cache($data_cache);
 			$cache_used = true;
 		}

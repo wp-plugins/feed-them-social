@@ -8,9 +8,9 @@ $fts_functions = new feed_them_social_functions();
   <h1><?php _e('Feed Them Social', 'feed-them-social'); ?></h1>
   <div class="use-of-plugin"><?php _e('Select what type of feed you would like to generate a shortcode for using the select option below. Then you\'ll copy that shortcode to a page or post.', 'feed-them-social'); ?></div>
   <div class="feed-them-icon-wrap">
-    <a href="#" class="youtube-icon"></a>
-    <a href="#" class="twitter-icon"></a>
-    <a href="#" class="facebook-icon"></a>
+   <a href="#" class="youtube-icon"></a>
+   <a href="#" class="twitter-icon"></a>
+   <a href="#" class="facebook-icon"></a>
   	<a href="#" class="instagram-icon"></a>
   	<a href="#" class="pinterest-icon"></a>
     <?php
@@ -31,10 +31,10 @@ $fts_functions = new feed_them_social_functions();
         </select>
     </form><!--/feed-them-social-admin-form-->
 	 <?php
-     //Add Facebook Event Form
-     echo $fts_functions->fts_facebook_group_form(false); 
+   //Add Facebook Event Form
+  echo $fts_functions->fts_facebook_group_form(false); 
 	 //Add Facebook Page Form
-     echo $fts_functions->fts_facebook_page_form(false); 
+  echo $fts_functions->fts_facebook_page_form(false); 
 	 //Add Facebook List of Events Form
 	 echo $fts_functions->fts_facebook_list_of_events_form(false); 
 	 //Add Facebook Single Event Form
@@ -369,6 +369,15 @@ jQuery(function() {
       jQuery('.fts-facebook-load-more-options-wrap').hide();
     }         
   });
+		 // Instagram show load more options
+  jQuery('#instagram_load_more_option').bind('change', function (e) { 
+    if( jQuery('#instagram_load_more_option').val() == 'yes') {
+      jQuery('.fts-instagram-load-more-options-wrap').show();
+    }
+    else{
+      jQuery('.fts-instagram-load-more-options-wrap').hide();
+    }         
+  });
    // Pinterest options
   	// hide this div till needed for free version
 	  jQuery(".feed-them-social-admin-input-label:contains('<?php _e('# of Pins', 'feed-them-social'); ?>')").parent('div').hide();
@@ -641,6 +650,7 @@ jQuery('.twitter-final-shortcode').val(final_twitter_shorcode);
 //START Instagram//
 function updateTextArea_instagram() {
 	var instagram_id = ' instagram_id=' + jQuery("input#instagram_id").val();
+	var instagram_page_height = jQuery("input#instagram_page_height").val();
 	var super_gallery = ' super_gallery=' + jQuery("select#instagram-custom-gallery").val();
 	var image_size = ' image_size=' + jQuery("input#fts-slicker-instagram-container-image-size").val();  
 	var icon_size = ' icon_size=' + jQuery("input#fts-slicker-instagram-icon-center").val();  
@@ -658,6 +668,12 @@ function updateTextArea_instagram() {
 	if (instagram_id != " instagram_id=") {
 	  	 jQuery(".instagram_name").removeClass('fts-empty-error');  
 	}
+	if (instagram_page_height != "")	{
+		var instagram_page_height_final = ' height=' + jQuery("input#instagram_page_height").val();
+	}
+	else {
+		var instagram_page_height_final = ''; 
+	}
 <?php 
 	//Premium Plugin
 	if(is_plugin_active('feed-them-premium/feed-them-premium.php')) {
@@ -665,10 +681,10 @@ function updateTextArea_instagram() {
 	}//end if Premium version
 	else 	{ ?>
 			if (jQuery("select#instagram-custom-gallery").val() == "no") {
-	  			var final_instagram_shorcode = '[fts instagram' + instagram_id + instagram_feed_type +']';
+	  			var final_instagram_shorcode = '[fts instagram' + instagram_id + instagram_feed_type + instagram_page_height_final +']';
 			}
 			else {
-				var final_instagram_shorcode = '[fts instagram' + instagram_id + super_gallery + image_size + icon_size + space_between_photos + hide_date_likes_comments + center_container + image_stack_animation + instagram_feed_type +']';
+				var final_instagram_shorcode = '[fts instagram' + instagram_id + super_gallery + image_size + icon_size + space_between_photos + hide_date_likes_comments + center_container + image_stack_animation + instagram_feed_type + instagram_page_height_final +']';
 			}
 <?php } ?>
 	jQuery('.instagram-final-shortcode').val(final_instagram_shorcode);
