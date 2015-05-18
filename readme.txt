@@ -12,19 +12,19 @@ Display custom feeds for Facebook Pages, Groups, Events, Album Photos and Covers
 
 With our plugin you can create Social Feeds of any or all your celebrities, family, friends, yourself, or businesses. Looks great on Desktops, Tablets, and Mobile Devices.
 
-If you're looking for more than just a custom facebook feed our plugin includes most of your favorite social networks!
+If you're looking for more than just a custom facebook feed our plugin includes most of your favorite social networks.
 
 = Features include the following: =
- * Easy to Install and Setup!
- * View photos and videos from your Facebook Page, Group, Album Photos, Album Covers or Event in our FREE version!
+ * Easy to Install and Setup.
+ * View photos and videos from your Facebook Page, Group, Album Photos, Album Covers or Event in our FREE version.
  * Add as many social feeds as you need!
  * Display social feeds on any post, page, or sidebar!
- * Easily generate all the shortcodes you need for any feed with our SUPER SIMPLE shortcode generator!
- * Responsive Social Feeds!
- * Customize Front Colors!
- * Add Like and/or Follow Buttons above or below any feeds!
+ * Easily generate all the shortcodes you need for any feed with our SUPER SIMPLE shortcode generator.
+ * Responsive Social Feeds.
+ * Customize Front Colors.
+ * Add Like and/or Follow Buttons above or below any feeds.
  * With our [Premium Extension](http://www.slickremix.com/product/feed-them-social-premium-extension/) you can set how many posts, pictures, tweets, or videos for each individual social feed! Facebook Groups now has the option to hide the Title or Description too! [See Example Demo](http://feedthemsocial.com/)
-	* Facebook and Instagram feeds now have Load More Button and Infinite Scroll features available in Premium Version and they are mobile friendly!
+	* Facebook and Instagram feeds now have Load More Button and Infinite Scroll features available in Premium Version and they are mobile friendly.
  * Awesome Support!
 
 = Demos =
