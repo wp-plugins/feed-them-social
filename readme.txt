@@ -24,7 +24,7 @@ If you're looking for more than just a custom facebook feed our plugin includes 
  * Customize Front Colors.
  * Add Like and/or Follow Buttons above or below any feeds.
  * With our [Premium Extension](http://www.slickremix.com/product/feed-them-social-premium-extension/) you can set how many posts, pictures, tweets, or videos for each individual social feed! Facebook Groups now has the option to hide the Title or Description too! [See Example Demo](http://feedthemsocial.com/)
-	* Facebook and Instagram feeds now have Load More Button and Infinite Scroll features available in Premium Version and they are mobile friendly.
+ * Facebook and Instagram feeds now have Load More Button and Infinite Scroll features available in Premium Version and they are mobile friendly.
  * Awesome Support!
 
 = Demos =
