@@ -66,7 +66,7 @@ If you enjoy using our plugin please tell others. [Click here to share](http://w
  * FIXED: New cache method using transient instead of cache folder.
  * FIXED: Facebook post icon link and name link now open in new window.
  * FIXED: Facebook Language problem that was causing fb feeds to fail. Thanks to [Brad Allen](http://www.slickremix.com/support-forum/topic/facebook-feed-issue) for pointing this issue out.
- * NEW: Facebook like button color option, dark or light, now on the Facebook Options page.
+ * NEW: Facebook like button color option, Dark or Light, now on the Facebook Options page.
  * NEW: Instagram height option available when you generate a shortcode so you can create a scrolling feed.
 	* NEW: Instagram comment and like counts have proper number formatting including rounding for numbers above 10k and 1m like Instagram.
  * REMOVED: Unneeded get_curl function for retrieving short url for Twitter videos.
