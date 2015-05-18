@@ -12,8 +12,6 @@ Display custom feeds for Facebook Pages, Groups, Events, Album Photos and Covers
 
 With our plugin you can create Social Feeds of any or all your celebrities, family, friends, yourself, or businesses. Looks great on Desktops, Tablets, and Mobile Devices.
 
-**NOTE** Facebook and Instagram feeds now have Load More Button and Infinite Scroll features available in Premium Version and they are mobile friendly!
-
 If you're looking for more than just a custom facebook feed our plugin includes most of your favorite social networks!
 
 = Features include the following: =
@@ -25,7 +23,8 @@ If you're looking for more than just a custom facebook feed our plugin includes 
  * Responsive Social Feeds!
  * Customize Front Colors!
  * Add Like and/or Follow Buttons above or below any feeds!
- * With our [Premium Extension](http://www.slickremix.com/product/feed-them-social-premium-extension/) you can set how many posts, pictures, tweets, or videos for each individual social feed! We now have simple widgets available for all the feeds. This premium edition also allows our basic shortcode to work with text widgets. Facebook Groups now has the option to hide the Title or Description too! [See Example Demo](http://feedthemsocial.com/)
+ * With our [Premium Extension](http://www.slickremix.com/product/feed-them-social-premium-extension/) you can set how many posts, pictures, tweets, or videos for each individual social feed! Facebook Groups now has the option to hide the Title or Description too! [See Example Demo](http://feedthemsocial.com/)
+	* Facebook and Instagram feeds now have Load More Button and Infinite Scroll features available in Premium Version and they are mobile friendly!
  * Awesome Support!
 
 = Demos =
@@ -66,7 +65,7 @@ If you enjoy using our plugin please tell others. [Click here to share](http://w
  * FIXED: New cache method using transient instead of cache folder.
  * FIXED: Facebook post icon link and name link now open in new window.
  * FIXED: Facebook Language problem that was causing fb feeds to fail. Thanks to [Brad Allen](http://www.slickremix.com/support-forum/topic/facebook-feed-issue) for pointing this issue out.
- * NEW: Facebook like button color option, Dark or Light, now on the Facebook Options page.
+ * NEW: Facebook like button color option, dark or light, now on the Facebook Options page.
  * NEW: Instagram height option available when you generate a shortcode so you can create a scrolling feed.
 	* NEW: Instagram comment and like counts have proper number formatting including rounding for numbers above 10k and 1m like Instagram.
  * REMOVED: Unneeded get_curl function for retrieving short url for Twitter videos.
