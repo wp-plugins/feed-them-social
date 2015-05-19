@@ -67,7 +67,7 @@ If you enjoy using our plugin please tell others. [Click here to share](http://w
  * FIXED: Facebook Language problem that was causing fb feeds to fail. Thanks to [Brad Allen](http://www.slickremix.com/support-forum/topic/facebook-feed-issue) for pointing this issue out.
  * NEW: Facebook like button color option, dark or light, now on the Facebook Options page.
  * NEW: Instagram height option available when you generate a shortcode so you can create a scrolling feed.
-	* NEW: Instagram comment and like counts have proper number formatting including rounding for numbers above 10k and 1m like Instagram.
+ * NEW: Instagram comment and like counts have proper number formatting including rounding for numbers above 10k and 1m like Instagram.
  * REMOVED: Unneeded get_curl function for retrieving short url for Twitter videos.
  * NEW IN PREMIUM: Instagram Load More Options. Includes loadmore button, or if you set the height of the Instagram feed you can choose Autoscroll so when the scrollbar reaches the bottom it will automatically load the next set of images.
 	
