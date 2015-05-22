@@ -1452,7 +1452,7 @@ class feed_them_social_functions {
 	// Create feed cache
 	//**************************************************
 	function fts_create_feed_cache($transient_name, $response) {
-		$serialized_data = !is_serialized($response) ? maybe_serialize($response) : $response; 
+		$serialized_data = maybe_serialize($response); 
 		set_transient('fts_'.$transient_name, $serialized_data, 900);
 	}
 	//**************************************************
