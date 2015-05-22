@@ -1448,18 +1448,19 @@ class feed_them_social_functions {
 			}
 				return $response;
 	}
-
 	//**************************************************
 	// Create feed cache
 	//**************************************************
 	function fts_create_feed_cache($transient_name, $response) {
-		set_transient('fts_'.$transient_name, serialize($response), 900);
+		$serialized_data = !is_serialized($response) ? maybe_serialize($response) : $response; 
+		set_transient('fts_'.$transient_name, $serialized_data, 900);
 	}
 	//**************************************************
 	// fts_get_feed_cache
 	//**************************************************
 	function fts_get_feed_cache($transient_name) {
-		$returned_cache_data = unserialize(get_transient('fts_'.$transient_name));
+		$returned_cache_data = get_transient('fts_'.$transient_name);
+		$unserialize_data =  maybe_unserialize($returned_cache_data); 
 		return $returned_cache_data;
 	}
 	//**************************************************
