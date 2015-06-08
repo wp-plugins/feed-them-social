@@ -71,7 +71,7 @@ class FTS_Instagram_Feed extends feed_them_social_functions {
 		}
 		//URL to get Feeds
 		if ($type == 'hashtag') {
-			$instagram_data_array['data'] = 'https://api.instagram.com/v1/tags/'.$instagram_id.'/media/recent/?access_token='.$fts_instagram_access_token;
+			$instagram_data_array['data'] = isset($_REQUEST['next_url']) ? $_REQUEST['next_url'] : 'https://api.instagram.com/v1/tags/'.$instagram_id.'/media/recent/?access_token='.$fts_instagram_access_token;
 		}
 		else {
 			// $instagram_data_array['data'] = 'https://api.instagram.com/v1/users/'.$instagram_id.'/media/recent/?access_token='.$fts_instagram_access_token;
@@ -191,7 +191,7 @@ class FTS_Instagram_Feed extends feed_them_social_functions {
 			$instagram_caption = preg_replace($pattern, $replace, $instagram_caption_a_title);
 			// Super Gallery If statement
 			if (isset($super_gallery) && $super_gallery == 'yes') { ?>
-		<div class='slicker-instagram-placeholder fts-instagram-wrapper' style='width:<?php print $image_size ?>; margin:<?php print $space_between_photos ?>;'>
+		<div class='slicker-instagram-placeholder fts-instagram-wrapper' style='width:<?php print $image_size ?>; height:<?php print $image_size ?>; margin:<?php print $space_between_photos ?>;'>
 		<?php if (isset($popup) && $popup == 'yes') {  ?>
 		<div class="fts-instagram-caption"><?php if (!$instagram_caption == '') { print ''.$instagram_caption.'<br/>';} ?><a href='<?php print $instagram_link ?>' class="fts-view-on-instagram-link" target="_blank"><?php _e('View on Instagram', 'feed-them-social');?></a></div>
 		 <?php } ?>
