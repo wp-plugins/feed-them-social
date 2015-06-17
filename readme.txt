@@ -61,7 +61,7 @@ If you enjoy using our plugin please tell others. [Click here to share](http://w
   * Extract the zip file and drop the contents in the wp-content/plugins/ directory of your WordPress installation and then activate the Plugin from Plugins page. 
 
 == Changelog ==
-= Version 1.8.2 Saturday, June 17th, 2015 =
+= Version 1.8.2 Wednesday, June 17th, 2015 =
  * NEW: Facebook Option: Hide the text that appears after your facebook name for instance... added a new video, or shared something or added a new album. Most of these things are apparent when viewing the post anyway.
  * NEW: System Info: Now we are gathering more of the info we need in order to speed up support requests.
  * FIXED: Removed Serialize from our caching process as it was not needed and was causing some people errors when logged out and trying to view any feeds. 
