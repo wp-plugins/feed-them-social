@@ -65,7 +65,7 @@ $fts_functions = new feed_them_social_functions();
 
 
     <form method="post" action="?page=feed-them-settings-page&cache=clearcache">
-       <p><input class="feed-them-social-admin-submit-btn" type="submit" value="<?php _e('Clear All FTS Feeds Cache', 'feed-them-social'); ?>" /></p>
+       <input class="feed-them-social-admin-submit-btn" type="submit" value="<?php _e('Clear All FTS Feeds Cache', 'feed-them-social'); ?>" />
     </form>
   </div><!--/feed-them-clear-cache-->
   <!-- custom option for padding -->
@@ -257,7 +257,16 @@ $fts_functions = new feed_them_social_functions();
        <div class="fts-custom-css-text"><?php _e('Thanks for using our plugin :) Add your custom CSS additions or overrides below.', 'feed-them-social'); ?></div>
       <textarea name="fts-color-options-main-wrapper-css-input" class="fts-color-settings-admin-input" id="fts-color-options-main-wrapper-css-input"><?php echo get_option('fts-color-options-main-wrapper-css-input'); ?></textarea>
       </div><!--/feed-them-custom-css--> 
+      
+      <?php if(is_plugin_active('feed-them-premium/feed-them-premium.php')) { ?>
     <div class="feed-them-custom-logo-css">
+     <h2><?php _e('Load More Options', 'feed-them-social'); ?></h2>
+     <p>
+        <input name="fts_fix_loadmore" class="fts-powered-by-settings-admin-input" type="checkbox" id="fts_fix_loadmore" value="1" <?php echo checked( '1', get_option( 'fts_fix_loadmore' ) ); ?>/> <?php _e('Check this if you are using the loadmore button for Facebook or Instagram and are seeing a bunch of code under it.', 'feed-them-social'); ?>
+      </p>
+     <br/>
+     <?php } ?>
+     
    <h2><?php _e('Powered by Text', 'feed-them-social'); ?></h2>
      <p>
         <input name="fts-powered-text-options-settings" class="fts-powered-by-settings-admin-input" type="checkbox" id="fts-powered-text-options-settings" value="1" <?php echo checked( '1', get_option( 'fts-powered-text-options-settings' ) ); ?>/>

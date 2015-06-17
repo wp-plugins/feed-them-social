@@ -117,13 +117,13 @@ class FTS_Instagram_Feed extends feed_them_social_functions {
 				$this->social_follow_button('instagram', $instagram_user_info->data->username);
 				echo '</div>';
 			}
-			if($scrollMore == 'autoscroll' || $height !== '') { ?>
+			if(isset($scrollMore) && $scrollMore == 'autoscroll' || isset($height) && $height !== '') { ?>
 				 <div class="fts-instagram-scrollable <?php echo $fts_dynamic_class_name ?>instagram" style="overflow:auto;<?php if ($height !== '') {?> height:<?php echo $height; } ?>">
      <?php }
 			if (isset($super_gallery) && $super_gallery == 'yes') { ?>
 				<div class="fts-slicker-instagram masonry js-masonry <?php if ($popup == 'yes') { print 'popup-gallery '; } echo $fts_dynamic_class_name ?>" style="margin:auto" data-masonry-options='{ "isFitWidth": <?php if ($center_container == 'no') { ?>false<?php } else {?>true<?php } if ($image_stack_animation == 'no') { ?>, "transitionDuration": 0<?php } ?> }'>
 					<?php }
-			elseif($scrollMore == 'autoscroll' || $height !== '') { ?>
+		elseif(isset($scrollMore) && $scrollMore == 'autoscroll' || isset($height) && $height !== '') { ?>
 									<div class="fts-instagram masonry js-masonry <?php if ($popup == 'yes') { print 'popup-gallery '; } echo $fts_dynamic_class_name ?>" style="margin:auto;" data-masonry-options='{ "isFitWidth": true , "transitionDuration": 0 }'>
 							<?php }
 			else { ?>
@@ -143,7 +143,7 @@ class FTS_Instagram_Feed extends feed_them_social_functions {
 		//echo '</pre>';
 		
 		foreach ($insta_data->data as $insta_d) {
-			if ($set_zero==$pics_count)
+			if (isset($set_zero) && $set_zero == $pics_count)
 				break;
 				
 			//Create Instagram Variables
@@ -228,7 +228,9 @@ class FTS_Instagram_Feed extends feed_them_social_functions {
 		  </ul>
 		</div>
 		<?php }
-			$set_zero++;
+			if (isset($set_zero)) {
+				$set_zero++;
+			}
 		}
 
 		//******************
@@ -253,21 +255,18 @@ var nextURL_<?php echo $_REQUEST['fts_dynamic_name']; ?>= "<?php echo $_REQUEST[
 ?>
 <script>
 	 jQuery(document).ready(function() {
-		  <?php
-			// $scrollMore = load_more_posts_style shortcode att
-			if ($scrollMore == 'autoscroll') { ?>
-			// this is where we do SCROLL function to LOADMORE if = autoscroll in shortcode
+		  <?php // $scrollMore = load_more_posts_style shortcode att
+			if ($scrollMore == 'autoscroll') { // this is where we do SCROLL function to LOADMORE if = autoscroll in shortcode ?>
 			jQuery(".<?php echo $fts_dynamic_class_name ?>instagram").bind("scroll",function() {
    				 if(jQuery(this).scrollTop() + jQuery(this).innerHeight() >= jQuery(this)[0].scrollHeight) {
 		 <?php }
-			else { ?>
-				// this is where we do CLICK function to LOADMORE if  = button in shortcode
+			else { // this is where we do CLICK function to LOADMORE if = button in shortcode ?>
 				jQuery("#loadMore_<?php echo $fts_dynamic_name ?>").click(function() {
 			<?php } ?>
 					jQuery("#loadMore_<?php echo $fts_dynamic_name ?>").addClass('fts-fb-spinner');
 						var button = jQuery('#loadMore_<?php echo $fts_dynamic_name ?>').html('<div class="bounce1"></div><div class="bounce2"></div><div class="bounce3"></div>');
 						console.log(button);
-						var build_shortcode = '<?php if (is_plugin_active('nextgen-gallery/nggallery.php')) { ?>[<?php print $build_shortcode;?>]<?php } else { print $build_shortcode; } ?>';
+						var build_shortcode = "<?php if (get_option('fts_fix_loadmore')) { ?>[<?php print $build_shortcode;?>]<?php } else { print $build_shortcode; } ?>";
 						var yes_ajax = "yes";
 						var fts_d_name = "<?php echo $fts_dynamic_name;?>";
 						var fts_security = "<?php echo $nonce;?>";
@@ -275,32 +274,22 @@ var nextURL_<?php echo $_REQUEST['fts_dynamic_name']; ?>= "<?php echo $_REQUEST[
 					jQuery.ajax({
 						data: {action: "my_fts_fb_load_more", next_url: nextURL_<?php echo $fts_dynamic_name ?>, fts_dynamic_name: fts_d_name, rebuilt_shortcode: build_shortcode, load_more_ajaxing: yes_ajax, fts_security: fts_security, fts_time: fts_time},
 						type: 'GET',
-						url: myAjax.ajaxurl,
+						url: myAjaxFTS,
 						success: function( data ) {
 							console.log('Well Done and got this from sever: ' + data);
-				 <?php if ($super_gallery == 'yes' || $type='user') {  ?>
 					 	jQuery('.<?php echo $fts_dynamic_class_name ?>').append(data).filter('.<?php echo $fts_dynamic_class_name ?>').html();
+				 <?php if ($super_gallery == 'yes') {  ?>
 							jQuery('.<?php echo $fts_dynamic_class_name ?>').masonry( 'reloadItems' );
 						setTimeout(function() {
-      // Do something after 3 seconds
-      // This can be direct code, or call to some other function
-	  jQuery('.<?php echo $fts_dynamic_class_name ?>').masonry( 'layout' );
-     }, 500);
+									// Do something after 3 seconds
+								jQuery('.<?php echo $fts_dynamic_class_name ?>').masonry( 'layout' );
+								}, 500);
+						<?php } ?>
 						if(!nextURL_<?php echo $_REQUEST['fts_dynamic_name']; ?> || nextURL_<?php echo $_REQUEST['fts_dynamic_name']; ?> == 'no more'){
-						  jQuery('#loadMore_<?php echo $fts_dynamic_name ?>').replaceWith('<div class="fts-fb-load-more no-more-posts-fts-fb">No More Photos</div>');
+						  jQuery('#loadMore_<?php echo $fts_dynamic_name ?>').replaceWith('<div class="fts-fb-load-more no-more-posts-fts-fb"><?php _e('No More Photos', 'feed-them-social') ?></div>');
 						  jQuery('#loadMore_<?php echo $fts_dynamic_name ?>').removeAttr('id');
 						  jQuery(".<?php echo $fts_dynamic_class_name ?>instagram").unbind('scroll');
 						}
-					<?php }
-			else { ?>
-						var result = jQuery('#output_<?php echo $fts_dynamic_name ?>').append(data).filter('#output_<?php echo $fts_dynamic_name ?>').html();
-						jQuery('#output_<?php echo $fts_dynamic_name ?>').html(result);
-						if(!nextURL_<?php echo $_REQUEST['fts_dynamic_name']; ?> || nextURL_<?php echo $_REQUEST['fts_dynamic_name']; ?> == 'no more'){
-						  jQuery('#loadMore_<?php echo $fts_dynamic_name ?>').replaceWith('<div class="fts-fb-load-more no-more-posts-fts-fb">No More Posts</div>');
-						  jQuery('#loadMore_<?php echo $fts_dynamic_name ?>').removeAttr('id');
-						  jQuery(".<?php echo $fts_dynamic_class_name ?>instagram").unbind('scroll');
-						}
-					<?php } ?>
 					 jQuery('#loadMore_<?php echo $fts_dynamic_name ?>').html('<?php _e('Load More', 'feed-them-social') ?>');
 					  //	jQuery('#loadMore_< ?php echo $fts_dynamic_name ?>').removeClass('flip360-fts-load-more');
 					 jQuery("#loadMore_<?php echo $fts_dynamic_name ?>").removeClass('fts-fb-spinner');
@@ -317,7 +306,6 @@ var nextURL_<?php echo $_REQUEST['fts_dynamic_name']; ?>= "<?php echo $_REQUEST[
 <?php
 		}//End Check
 		// main closing div not included in ajax check so we can close the wrap at all times
-
 
 		print '</div>'; // closing main div for photos and scroll wrap
 
@@ -352,7 +340,7 @@ var nextURL_<?php echo $_REQUEST['fts_dynamic_name']; ?>= "<?php echo $_REQUEST[
 										 </script>
 									   <?php } //end $height !== 'auto' && empty($height) == NULL ?>
 			<?php
-		if($scrollMore == 'autoscroll' || $height !== '') {
+		if(isset($scrollMore) && $scrollMore == 'autoscroll' || isset($height) && $height !== '') {
 			print '</div>'; // closing height div for scrollable feeds
 		}
 

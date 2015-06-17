@@ -23,6 +23,7 @@ function feed_them_facebook_options_page() {
 	 	   $fb_show_follow_btn_where = get_option('fb_show_follow_btn_where');
 		   $fb_show_follow_btn_profile_pic = get_option('fb_show_follow_btn_profile_pic');
 		   $fb_like_btn_color = get_option('fb_like_btn_color', 'light');
+		   $fb_hide_shared_by_etc_text = get_option('fb_hide_shared_by_etc_text');
 	  
 		   $lang_options_array = json_decode($fts_functions->xml_json_parse('https://www.facebook.com/translations/FacebookLocales.xml'));
 		   //echo'<pre>';
@@ -179,6 +180,27 @@ function feed_them_facebook_options_page() {
 <?php _e('Style Options', 'feed-them-social'); ?>
 </h3>
 </div>
+
+<div class="feed-them-social-admin-input-label fts-twitter-text-color-label">
+<?php _e('Text after your FB name <br/><small>ie* Shared by or New Photo Added etc.</small>', 'feed-them-social'); ?>
+</div>
+<select name="fb_hide_shared_by_etc_text" id="fb_hide_shared_by_etc_text" class="feed-them-social-admin-input">
+<option value="">
+<?php _e('Please Select Option', 'feed-them-social'); ?>
+</option>
+<option <?php echo selected($fb_hide_shared_by_etc_text, 'no', false ) ?> value="no">
+<?php _e('No', 'feed-them-social'); ?>
+</option>
+<option <?php echo selected($fb_hide_shared_by_etc_text, 'yes', false ) ?> value="yes">
+<?php _e('Yes', 'feed-them-social'); ?>
+</option>
+</select>
+<div class="clear"></div>
+</div>
+<!--/fts-twitter-feed-styles-input-wrap-->
+
+
+<div class="feed-them-social-admin-input-wrap">
 <div class="feed-them-social-admin-input-label fts-fb-text-color-label">
 <?php _e('Feed Header Extra Text Color', 'feed-them-social'); ?>
 </div>

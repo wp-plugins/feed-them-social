@@ -12,12 +12,13 @@ class feed_them_social_functions {
 		// Widget Code
 		add_filter('widget_text', 'do_shortcode');
 		// This is for the fts_clear_cache_ajax submission
-		add_action( 'init', array( $this, 'fts_clear_cache_script'));
+	 add_action( 'init', array( $this, 'fts_clear_cache_script'));
+		add_action( 'wp_head', array($this, 'my_fts_ajaxurl'));
 		add_action( 'wp_ajax_fts_clear_cache_ajax', array($this, 'fts_clear_cache_ajax'));
 		// If Premium is actuive
 		if (is_plugin_active('feed-them-premium/feed-them-premium.php')) {
 			// Load More Options
-			add_action( 'init', array($this, 'my_fts_fb_script_enqueuer'));
+		//	add_action( 'init', array($this, 'my_fts_fb_script_enqueuer'));
 			add_action( 'wp_ajax_my_fts_fb_load_more', array($this, 'my_fts_fb_load_more'));
 			add_action( 'wp_ajax_nopriv_my_fts_fb_load_more', array($this, 'my_fts_fb_load_more'));
 		}//END if premium
@@ -112,13 +113,13 @@ class feed_them_social_functions {
 		}
 	}
 	//**************************************************
-	// Added Scripts to allow loadmore but only if premium is active. Additional code in premium too.
-	//**************************************************
-	function my_fts_fb_script_enqueuer() {
-		$ftsFBfileJS = dirname(dirname(__FILE__)) . '/feed-them-social.php';
-		$FTS_plugin_url = plugin_dir_url($ftsFBfileJS);
-		wp_enqueue_script( 'my-fts-ajax-handle', $FTS_plugin_url . '/feeds/facebook/js/ajax.js', array( 'jquery' ) );
-		wp_localize_script( 'my-fts-ajax-handle', 'myAjax', array( 'ajaxurl' => admin_url( 'admin-ajax.php' ) ) );
+	// ajax var on front end for twitter videos and loadmore button (if premium active)
+	function my_fts_ajaxurl() {
+			wp_enqueue_script( 'jquery' ); ?>
+<script type="text/javascript">
+var myAjaxFTS = '<?php echo admin_url('admin-ajax.php'); ?>';
+</script>
+<?php
 	}
 	//**************************************************
 	// enqueue and localise scripts
@@ -168,8 +169,6 @@ class feed_them_social_functions {
 	function fts_load_videos_script() {
 		$ftsFBfileJS = dirname(dirname(__FILE__)) . '/feed-them-social.php';
 		$FTS_plugin_url = plugin_dir_url($ftsFBfileJS);
-		wp_enqueue_script( 'fts_load_videos_script', $FTS_plugin_url . '/feeds/facebook/js/ajax.js', array( 'jquery' ) );
-		wp_localize_script( 'fts_load_videos_script', 'ftsVideosAjax', array( 'ajaxurl' => admin_url( 'admin-ajax.php' )));
 		wp_enqueue_script( 'jquery' );
 		wp_enqueue_script( 'fts_load_videos_script' );
 	}
@@ -424,6 +423,7 @@ class feed_them_social_functions {
 			'fb_events_title_color',
 			'fb_events_title_size',
 			'fb_events_map_link_color',
+			'fb_hide_shared_by_etc_text',
 		);
 		$this->register_settings('fts-facebook-feed-style-options', $fb_style_options);
 	}
@@ -504,6 +504,7 @@ class feed_them_social_functions {
 			'fts-slicker-instagram-container-position',
 			'fts-slicker-instagram-container-animation',
 			'fts-slicker-instagram-container-margin',
+			'fts_fix_loadmore',
 		);
 		$this->register_settings('feed-them-social-settings', $settings);
 	}
@@ -1452,13 +1453,13 @@ class feed_them_social_functions {
 	// Create feed cache
 	//**************************************************
 	function fts_create_feed_cache($transient_name, $response) {
-		set_transient('fts_'.$transient_name, serialize($response), 900);
+			set_transient('fts_'.$transient_name, $response, 900);
 	}
 	//**************************************************
 	// fts_get_feed_cache
 	//**************************************************
 	function fts_get_feed_cache($transient_name) {
-		$returned_cache_data = unserialize(get_transient('fts_'.$transient_name));
+		$returned_cache_data = get_transient('fts_'.$transient_name);
 		return $returned_cache_data;
 	}
 	//**************************************************
@@ -1486,8 +1487,7 @@ class feed_them_social_functions {
 		$not_expired = $wpdb->query($wpdb->prepare("DELETE FROM $wpdb->options WHERE option_name LIKE %s ", '_transient_fts_%'));
 		$expired = $wpdb->query($wpdb->prepare("DELETE FROM $wpdb->options WHERE option_name LIKE %s ", '_transient_timeout_fts_%'));
 		return 'Cache for all FTS Feeds cleared!';
-	}
-
+	}	
 	//**************************************************
 	// Create our custom menu in the admin bar.
 	//**************************************************

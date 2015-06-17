@@ -256,7 +256,7 @@ class FTS_Twitter_Feed extends feed_them_social_functions {
 		  jQuery.ajax({
 				  data: {action: "fts_load_videos", fts_link: fts_link, fts_security: fts_security, fts_time: fts_time, fts_post_id: fts_post_id},
 				  type: 'GET',
-				  url: ftsVideosAjax.ajaxurl,
+				  url: myAjaxFTS,
 				  beforeSend: function() {
 				  	jQuery('.<?php echo $fts_dynamic_name ?> .fts-video-loading-notice').fadeIn();
            		   },

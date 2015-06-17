@@ -523,7 +523,11 @@ class FTS_Facebook_Feed extends feed_them_social_functions {
 					if ($type == 'album_photos' && $hide_date_likes_comments == 'yes' || $type == 'albums' && $hide_date_likes_comments == 'yes') { }
 					else {
 						date_default_timezone_set(get_option('fts-timezone'));
-						print '<span class="fts-jal-fb-user-name"><a href="http://facebook.com/profile.php?id='.$d->from->id.'" target="_blank">'.$d->from->name.'</a>'.$FBfinalstory.'</span>';
+						
+						$fb_hide_shared_by_etc_text = get_option('fb_hide_shared_by_etc_text');
+		   	$fb_hide_shared_by_etc_text = isset($fb_hide_shared_by_etc_text) && $fb_hide_shared_by_etc_text == 'no' ? '' : $FBfinalstory;
+						
+						print '<span class="fts-jal-fb-user-name"><a href="http://facebook.com/profile.php?id='.$d->from->id.'" target="_blank">'.$d->from->name.'</a>'. $fb_hide_shared_by_etc_text .'</span>';
 						print '<span class="fts-jal-fb-post-time">'.date($CustomDateFormat, $CustomTimeFormat).'</span><div class="clear"></div>';
 						//Comments Count
 						$FBpost_id_final = substr($FBpost_id, strpos($FBpost_id, "_") + 1);
@@ -1035,20 +1039,6 @@ class FTS_Facebook_Feed extends feed_them_social_functions {
 		}
 ?>
 <script>
-jQuery(document).ready(function() {
-	//Video Clickable
-	jQuery("video").click(function() {
-		if (!this.paused) {
-		  jQuery(this).trigger("pause");
-		}
-		else if (this.paused) {
-		  jQuery(this).trigger("play");
-		}
-		else{
-		  jQuery(this).trigger("play");
-		}
-	  });
-});
 var nextURL_<?php echo $_REQUEST['fts_dynamic_name']; ?>= "<?php echo $_REQUEST['next_url']; ?>";
 </script>
 <?php
@@ -1074,8 +1064,8 @@ var nextURL_<?php echo $_REQUEST['fts_dynamic_name']; ?>= "<?php echo $_REQUEST[
 					jQuery("#loadMore_<?php echo $fts_dynamic_name ?>").addClass('fts-fb-spinner');
 						var button = jQuery('#loadMore_<?php echo $fts_dynamic_name ?>').html('<div class="bounce1"></div><div class="bounce2"></div><div class="bounce3"></div>');
 						console.log(button);
-						var build_shortcode = '<?php if (is_plugin_active('nextgen-gallery/nggallery.php')) { ?>[<?php print $build_shortcode;?>]<?php } else { print $build_shortcode; } ?>';
-						var yes_ajax = "yes";
+						var build_shortcode = "<?php if (get_option('fts_fix_loadmore')) { ?>[<?php print $build_shortcode;?>]<?php } else { print $build_shortcode; } ?>";
+						var yes_ajax = "yes"; 
 						var fts_d_name = "<?php echo $fts_dynamic_name;?>";
 						var fts_security = "<?php echo $nonce;?>";
 						var fts_time = "<?php echo $time;?>";
@@ -1083,7 +1073,7 @@ var nextURL_<?php echo $_REQUEST['fts_dynamic_name']; ?>= "<?php echo $_REQUEST[
 					jQuery.ajax({
 						data: {action: "my_fts_fb_load_more", next_url: nextURL_<?php echo $fts_dynamic_name ?>, fts_dynamic_name: fts_d_name, rebuilt_shortcode: build_shortcode, load_more_ajaxing: yes_ajax, fts_security: fts_security, fts_time: fts_time},
 						type: 'GET',
-						url: myAjax.ajaxurl,
+						url: myAjaxFTS,
 						success: function( data ) {
 							console.log('Well Done and got this from sever: ' + data);
 				 <?php if ($FBtype && $type == 'albums' || $FBtype && $type == 'album_photos' || $fts_grid == 'yes') {  ?>
@@ -1095,7 +1085,7 @@ var nextURL_<?php echo $_REQUEST['fts_dynamic_name']; ?>= "<?php echo $_REQUEST[
 	  jQuery('.<?php echo $fts_dynamic_class_name ?>').masonry( 'layout' );
      }, 500);
 						if(!nextURL_<?php echo $_REQUEST['fts_dynamic_name']; ?> || nextURL_<?php echo $_REQUEST['fts_dynamic_name']; ?> == 'no more'){
-						  jQuery('#loadMore_<?php echo $fts_dynamic_name ?>').replaceWith('<div class="fts-fb-load-more no-more-posts-fts-fb">No More Photos</div>');
+						  jQuery('#loadMore_<?php echo $fts_dynamic_name ?>').replaceWith('<div class="fts-fb-load-more no-more-posts-fts-fb"><?php _e('No More Photos', 'feed-them-social') ?></div>');
 						  jQuery('#loadMore_<?php echo $fts_dynamic_name ?>').removeAttr('id');
 						  jQuery(".<?php echo $fts_dynamic_class_name ?>").unbind('scroll');
 						}
@@ -1104,7 +1094,7 @@ var nextURL_<?php echo $_REQUEST['fts_dynamic_name']; ?>= "<?php echo $_REQUEST[
 						var result = jQuery('#output_<?php echo $fts_dynamic_name ?>').append(data).filter('#output_<?php echo $fts_dynamic_name ?>').html();
 						jQuery('#output_<?php echo $fts_dynamic_name ?>').html(result);
 						if(!nextURL_<?php echo $_REQUEST['fts_dynamic_name']; ?> || nextURL_<?php echo $_REQUEST['fts_dynamic_name']; ?> == 'no more'){
-						  jQuery('#loadMore_<?php echo $fts_dynamic_name ?>').replaceWith('<div class="fts-fb-load-more no-more-posts-fts-fb">No More Posts</div>');
+						  jQuery('#loadMore_<?php echo $fts_dynamic_name ?>').replaceWith('<div class="fts-fb-load-more no-more-posts-fts-fb"><?php _e('No More Posts', 'feed-them-social') ?></div>');
 						  jQuery('#loadMore_<?php echo $fts_dynamic_name ?>').removeAttr('id');
 						  jQuery(".<?php echo $fts_dynamic_class_name ?>").unbind('scroll');
 						}

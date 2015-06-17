@@ -1,29 +1,18 @@
-// This is only for the slicker instagram feed
- jQuery(window).load(function(){ 
-	jQuery('.fts-slicker-instagram').masonry({
-	  itemSelector: '.slicker-instagram-placeholder'
-	});
- 			
-//	if(jQuery(".fts-pins-wrapper") != '') {
-		// For Pinterest
-		var $container = jQuery(".fts-pins-wrapper");
-		// initialize Masonry after all images have loaded  
-		$container.imagesLoaded( function() {
-		  $container.masonry();
-		});
-//	}
-	
-//	if(jQuery(".fts-slicker-facebook-posts") != '') {	 
-		// For Facebook
-		var $container2 = jQuery(".fts-slicker-facebook-posts");
-		// initialize Masonry after all images have loaded  
-		$container2.imagesLoaded( function() {
-		  $container2.masonry();
-		});
-//	}
- });
- 
-var dateFormat = function () {
+jQuery(document).ready(function() {
+	//Video Clickable for html5 videos when clicking the screen instead of play button
+	jQuery("video").click(function() {
+		if (!this.paused) {
+		  jQuery(this).trigger("pause");
+		}
+		else if (this.paused) {
+		  jQuery(this).trigger("play");
+		}
+		else{
+		  jQuery(this).trigger("play");
+		}
+	  });
+		// this is for twitter	
+			var dateFormat = function () {
     var token = /d{1,4}|m{1,4}|yy(?:yy)?|([HhMsTt])\1?|[LloSZ]|"[^"]*"|'[^']*'/g,
         timezone = /\b(?:[PMCEA][SDP]T|(?:Pacific|Mountain|Central|Eastern|Atlantic) (?:Standard|Daylight|Prevailing) Time|(?:GMT|UTC)(?:[-+]\d{4})?)\b/g,
         timezoneClip = /[^-+\dA-Z]/g,
@@ -134,3 +123,23 @@ dateFormat.i18n = {
 Date.prototype.format = function (mask, utc) {
     return dateFormat(this, mask, utc);
 };
+
+});
+// This is only for the slicker instagram feed
+ jQuery(window).load(function(){ 
+	jQuery('.fts-slicker-instagram').masonry({
+	  itemSelector: '.slicker-instagram-placeholder'
+	});
+		// For Pinterest
+		var $container = jQuery(".fts-pins-wrapper");
+		// initialize Masonry after all images have loaded  
+		$container.imagesLoaded( function() {
+		  $container.masonry();
+		});
+		// For Facebook
+		var $container2 = jQuery(".fts-slicker-facebook-posts");
+		// initialize Masonry after all images have loaded  
+		$container2.imagesLoaded( function() {
+		  $container2.masonry();
+		});
+ });

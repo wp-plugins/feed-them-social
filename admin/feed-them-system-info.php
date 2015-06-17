@@ -93,17 +93,15 @@ foreach ( $plugins as $plugin_path ) {
 
 endif;
 
-$facebookOptions = get_option('fts_facebook_custom_api_token') ? 'yes' : 'no' ;
-$facebookOptionsAppID = get_option('fb_app_ID') ? 'yes' : 'no' ;
-$twitterOptions1 = get_option('fts_twitter_custom_consumer_key') ? 'yes' : 'no' ;
-$twitterOptions2 = get_option('fts_twitter_custom_consumer_secret') ? 'yes' : 'no' ;
-$twitterOptions3 = get_option('fts_twitter_custom_access_token') ? 'yes' : 'no' ;
-$twitterOptions4 = get_option('fts_twitter_custom_access_token_secret') ? 'yes' : 'no' ;
-$youtubeOptions = get_option('youtube_custom_api_token') ?'yes' :'no' ;
-$instagramOptions = get_option('fts_instagram_custom_api_token') ? 'yes' : 'no' ;
+$facebookOptions = get_option('fts_facebook_custom_api_token') ? 'Yes' : 'No' ;
+$facebookOptionsAppID = get_option('fb_app_ID') ? 'Yes' : 'no' ;
+$twitterOptions1 = get_option('fts_twitter_custom_consumer_key') ? 'Yes' : 'No' ;
+$twitterOptions2 = get_option('fts_twitter_custom_consumer_secret') ? 'Yes' : 'No' ;
+$twitterOptions3 = get_option('fts_twitter_custom_access_token') ? 'Yes' : 'No' ;
+$twitterOptions4 = get_option('fts_twitter_custom_access_token_secret') ? 'Yes' : 'No' ;
+$instagramOptions = get_option('fts_instagram_custom_api_token') ? 'Yes' : 'No' ;
 
-$ftsDateTimeFormat = get_option('fts-date-and-time-format') ? get_option('fts-date-and-time-format') : 'no' ;
-$ftsTimezone = get_option('fts-timezone') ? get_option('fts-timezone') : 'no' ;
+$ftsDateTimeFormat = get_option('fts-date-and-time-format') ? get_option('fts-date-and-time-format') : 'No' ;
 
 ?>
 
@@ -117,7 +115,24 @@ Twitter Secret:           <?php echo $twitterOptions2      . "\n"; ?>
 Twitter Token:            <?php echo $twitterOptions3 					. "\n"; ?>
 Twitter Token Secret:     <?php echo $twitterOptions4 					. "\n"; ?>
 Instagram:                <?php echo $instagramOptions   		. "\n"; ?>
+<?php if (is_plugin_active('feed-them-premium/feed-them-premium.php')) { 
+$youtubeOptions = get_option('youtube_custom_api_token') ?'Yes' :'No' ;
+$ftsFixLoadmore = get_option('fts_fix_loadmore') ? get_option('fts_fix_loadmore') : 'No' ;
+$feed_them_social_premium_license_key = get_option('feed_them_social_premium_license_key');
+$fts_bar_license_key = get_option('fts_bar_license_key');
+
+?>
 YouTube:                  <?php echo $youtubeOptions   		. "\n"; ?>
+
+-- Load More Options
+
+Override:                 <?php echo isset($ftsFixLoadmore) && $ftsFixLoadmore == 1 ? 'Yes'. "\n" : 'No'. "\n"; ?>
+
+-- Premium License
+
+Premium Active:           <?php echo isset($feed_them_social_premium_license_key) && $feed_them_social_premium_license_key !== '' ? 'Yes'. "\n" : 'No'. "\n"; } if (is_plugin_active('fts-bar/fts-bar.php')) { ?>
+FTS Bar Active:           <?php echo isset($fts_bar_license_key) && $fts_bar_license_key !== '' ? 'Yes'. "\n" : 'No'. "\n";
+ } ?>
 
 -- FaceBook & Twitter Date Format and Timezone
 

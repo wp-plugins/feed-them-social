@@ -28,7 +28,7 @@ class EDD_SL_Plugin_Licence_Manager	{
 		add_action('admin_init', array($this, 'deactivate_license'));
 	}
 function license_menu() {
-	add_plugins_page( 'Plugin License', 'Plugin License', 'manage_options', 'pluginname-license', array($this, 'license_page') );
+	add_submenu_page('feed-them-settings-page', __('Plugin License', 'feed-them-social'),  __('Plugin License', 'feed-them-social'), 'manage_options', 'pluginname-license', array($this, 'license_page') );
 }
 
 function license_page() {
