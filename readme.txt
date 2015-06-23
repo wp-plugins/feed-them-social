@@ -61,9 +61,9 @@ If you enjoy using our plugin please tell others. [Click here to share](http://w
   * Extract the zip file and drop the contents in the wp-content/plugins/ directory of your WordPress installation and then activate the Plugin from Plugins page. 
 
 == Changelog ==
-= Version 1.8.3 Friday, June 19th, 2015 =
+= Version 1.8.3 Tuesday, June 23rd, 2015 =
   * FIXED: WooCommerce Product search conflict.
-  * CLEANED: Namespacing and Classification for rest of files.
+  * CLEANED: Namespacing and Classification to help with other plugin and theme conflicts.
 
 = Version 1.8.2 Wednesday, June 17th, 2015 =
  * NEW: Facebook Option: Hide the text that appears after your facebook name for instance... added a new video, or shared something or added a new album. Most of these things are apparent when viewing the post anyway.
