@@ -1,4 +1,5 @@
 <?php
+namespace feedthemsocial;
 class feed_them_social_functions {
 	public $output = "";
 	function __construct() {
@@ -18,7 +19,7 @@ class feed_them_social_functions {
 		// If Premium is actuive
 		if (is_plugin_active('feed-them-premium/feed-them-premium.php')) {
 			// Load More Options
-		//	add_action( 'init', array($this, 'my_fts_fb_script_enqueuer'));
+		//	add_action( 'init', array($this, 'my_fts_fb_script_enqueuer')); 
 			add_action( 'wp_ajax_my_fts_fb_load_more', array($this, 'my_fts_fb_load_more'));
 			add_action( 'wp_ajax_nopriv_my_fts_fb_load_more', array($this, 'my_fts_fb_load_more'));
 		}//END if premium
@@ -27,6 +28,13 @@ class feed_them_social_functions {
 		add_action( 'wp_ajax_fts_load_videos_ajax', array($this, 'fts_load_videos_ajax'));
 		add_action( 'wp_ajax_fts_load_videos', array($this, 'fts_load_videos'));
 		add_action( 'wp_ajax_nopriv_fts_load_videos', array($this, 'fts_load_videos'));
+		$old_plugs = $this->old_extenstions_check();
+		//If there are old plugins Display notice!
+		if($old_plugs == true){
+			add_action('admin_notices', array($this,'fts_old_plugin_admin_notice'));
+			add_action('admin_init', array($this, 'fts_old_plugins_ignore'));
+		}
+		add_action( 'admin_init', array($this, 'fts_old_extenstions_block'));
 	}
 	//**************************************************
 	// Add FTS options on activation. Commenting out for future use. SRL
@@ -39,7 +47,89 @@ class feed_them_social_functions {
 	//	   foreach($activation_options as $option_key => $option_value){
 	//		   add_option($option_key, $option_value);
 	//	   }   
-//	}
+	//	}
+	//**************************************************
+	// Block for Old Extenstions 
+	//**************************************************
+	function fts_old_extenstions_block() {
+		global $current_user;
+		$user_id = $current_user->ID;
+		$list_old_plugins = array(
+			'feed-them-premium/feed-them-premium.php',
+			'fts-bar/fts-bar.php'
+		);
+		$plugins = get_plugins();
+		foreach($list_old_plugins as $single_plugin){	
+				require_once( ABSPATH . '/wp-admin/includes/plugin.php' );
+				if(isset($plugins[$single_plugin])) {
+					global $fts_versions_needed;
+					if ($plugins[$single_plugin]['Version'] < $fts_versions_needed[$single_plugin]) {
+						
+						//Don't Let Old Plugins Activate
+						deactivate_plugins($single_plugin);
+						if (isset( $_GET['activate'] ) ) {
+							delete_user_meta( $user_id, 'fts_old_plugins_ignore');
+		                   	  unset( $_GET['activate'] );
+		                }
+					}
+				}	
+		}		
+	}
+	//**************************************************
+	// Check for Old Extenstions 
+	//**************************************************
+	function old_extenstions_check() {
+		// Check if get_plugins() function exists. This is required on the front end of the
+		// site, since it is in a file that is normally only loaded in the admin.
+		if ( ! function_exists( 'get_plugins' ) ) {
+			require_once ABSPATH . 'wp-admin/includes/plugin.php';
+		}
+		$all_plugins = get_plugins();
+		$list_old_plugins = array(
+			'feed-them-premium/feed-them-premium.php',
+			'fts-bar/fts-bar.php'
+		);
+		
+		$any_old_plugins = false;
+		if($all_plugins){
+			foreach($all_plugins as $single_plugin => $single_plugin_info){
+				//Are there old plugins Install in WordPress
+				$any_old_plugins = in_array($single_plugin, $list_old_plugins);
+				if($any_old_plugins){
+				  return true;
+				}
+			}
+		}
+	}
+	//**************************************************
+	// Old Extenstions List
+	//**************************************************
+	function fts_old_plugin_admin_notice() {
+		global $current_user ;
+			//$is_an_admin = in_array('administrator', $current_user->roles);
+	        $user_id = $current_user->ID;
+	        /* Check that the user hasn't already clicked to ignore the message */
+		if (!get_user_meta($user_id, 'fts_old_plugins_ignore') && !isset($_POST['fts-prem-notice'])) {
+	        echo '<div class="fts-update-message fts_old_plugins_message">'; 
+	        printf(__('Please update ALL Premium Extensions for Feed Them Social because they will no longer work with this version of Feed Them Social. We have made some Major Changes to the Core of the plugin to help with plugin conflicts. Please update your extensions from your <a href="http://www.slickremix.com/my-account" target="_blank">My Account</a> page on our website if you are not receiving notifications for updates on the premium extensions. Thanks again for using our plugin! | <a href="%1$s">HIDE NOTICE</a>'), '?fts_old_plugins_ignore=0');
+	        echo "</div>";
+	        $_POST['fts-prem-notice']= 1;
+		}
+	}
+	//**************************************************
+	// Ignore Old Extenstions List
+	//**************************************************
+	function fts_old_plugins_ignore() {
+		global $current_user;
+			$is_an_admin = in_array('administrator', $current_user->roles);
+	        $user_id = $current_user->ID;
+	        /* If user clicks to ignore the notice, add that to their user meta */
+	        if ( isset($_GET['fts_old_plugins_ignore']) && '0' == $_GET['fts_old_plugins_ignore'] && $is_an_admin == true) {
+	             add_user_meta($user_id, 'fts_old_plugins_ignore', 'true', true);
+	             //delete_user_meta( $user_id, 'das_old_plugins_ignore');
+		    }
+	}
+
 	//**************************************************
 	// For Loading in the Admin.
 	//**************************************************
@@ -86,32 +176,6 @@ class feed_them_social_functions {
 			add_action('wp_enqueue_scripts', array( $this, 'fts_powered_by_js'));
 		}
 	}//end if init
-	//**************************************************
-	// Check Plugin Version
-	//**************************************************
-	function fts_get_check_plugin_version($plugin_file = 'feed-them-premium.php', $version_needed = '1.3.0', $return_version = false) {
-		if (!empty($_GET['activate'])) {
-			if (is_admin() && $_GET['activate'] == 'true') {
-				require_once( ABSPATH . '/wp-admin/includes/plugin.php' );
-				$plugins = get_plugins();
-				foreach ($plugins as $plugin_file => $plugin_info) {
-					//Check if plugin is active if not don't bug em
-					if (is_plugin_active($plugin_file)) {
-						$plugin_file_name = explode('/', $plugin_file);
-						if ($plugin_file_name[1] ==  isset($_plugin_file) && $plugin_info['Version'] < $version_needed) {
-							$download_location = "__( 'If you have not received an update notification for this plugin you may re-download the plugin/extension from your <a href='http://slickremix.com/my-account' target='_blank'>SlickRemix 'My Account' page.</a>, 'fts-bar' ) . ";
-							$error_msg = '<div class="error"><p>' . __( 'Warning: <strong>'.$plugin_info['Name'].'</strong> needs to be <strong>UPDATED</strong> to <strong>version '.$version_needed.'</strong> to function properly. '.$download_location, 'fts-bar' ) . '</p></div>';
-							add_action( 'admin_notices', function() use ($error_msg) {
-									echo $error_msg;
-								});
-							deactivate_plugins($plugin_file);
-							return $error_msg;
-						}
-					}
-				}
-			}
-		}
-	}
 	//**************************************************
 	// ajax var on front end for twitter videos and loadmore button (if premium active)
 	function my_fts_ajaxurl() {
@@ -285,68 +349,76 @@ var myAjaxFTS = '<?php echo admin_url('admin-ajax.php'); ?>';
 	// Admin menu buttons
 	//**************************************************
 	function Feed_Them_Main_Menu() {
-		add_menu_page('Feed Them Social', 'Feed Them', 'manage_options', 'feed-them-settings-page', 'feed_them_settings_page', '');
+		//Main Settings Page
+		$main_settings_page = new FTS_settings_page();
+		add_menu_page('Feed Them Social', 'Feed Them', 'manage_options', 'feed-them-settings-page', array($main_settings_page,'feed_them_settings_page'), '');
 		add_submenu_page('feed-them-settings-page', __('Settings', 'feed-them-social'),  __('Settings', 'feed-them-social'), 'manage_options', 'feed-them-settings-page' );
 	}
 	//**************************************************
 	// Admin Submenu buttons // add the word setting in place of the default menu page name 'Feed Them'
 	//**************************************************
 	function Feed_Them_Submenu_Pages() {
-		//System Info
+		//Facebook Options Page
+		$facebook_options_page = new FTS_facebook_options_page();
 		add_submenu_page(
 			'feed-them-settings-page',
 			__('Facebook Options', 'feed-them-social'),
 			__('Facebook Options', 'feed-them-social'),
 			'manage_options',
 			'fts-facebook-feed-styles-submenu-page',
-			'feed_them_facebook_options_page'
+			array($facebook_options_page,'feed_them_facebook_options_page')
 		);
-		//System Info
+		//Twitter Options Page
+		$twitter_options_page = new FTS_twitter_options_page(); 
 		add_submenu_page(
 			'feed-them-settings-page',
 			__('Twitter Options', 'feed-them-social'),
 			__('Twitter Options', 'feed-them-social'),
 			'manage_options',
 			'fts-twitter-feed-styles-submenu-page',
-			'feed_them_twitter_options_page'
+			array($twitter_options_page,'feed_them_twitter_options_page')
 		);
-		//System Info
+		//Pinterest Options Page
+		$pinterest_options_page = new FTS_pinterest_options_page(); 
 		add_submenu_page(
 			'feed-them-settings-page',
 			__('Pinterest Options', 'feed-them-social'),
 			__('Pinterest Options', 'feed-them-social'),
 			'manage_options',
 			'fts-pinterest-feed-styles-submenu-page',
-			'feed_them_pinterest_options_page'
+			array($pinterest_options_page,'feed_them_pinterest_options_page')
 		);
 		if (is_plugin_active('feed-them-premium/feed-them-premium.php')) {
-			//System Info
+			//Youtube Options Page
+			$youtube_options_page = new FTS_youtube_options_page();
 			add_submenu_page(
 				'feed-them-settings-page',
 				__('YouTube Options', 'feed-them-social'),
 				__('YouTube Options', 'feed-them-social'),
 				'manage_options',
 				'fts-youtube-feed-styles-submenu-page',
-				'feed_them_youtube_options_page'
+				array($youtube_options_page,'feed_them_youtube_options_page')
 			);
 		}
-		//System Info
+		//Instagram Options Page
+		$instagram_options_page = new FTS_instagram_options_page();
 		add_submenu_page(
 			'feed-them-settings-page',
 			__('Instagram Options', 'feed-them-social'),
 			__('Instagram Options', 'feed-them-social'),
 			'manage_options',
 			'fts-instagram-feed-styles-submenu-page',
-			'feed_them_instagram_options_page'
+			array($instagram_options_page,'feed_them_instagram_options_page')
 		);
 		//System Info
+		$system_info_page = new FTS_system_info_page();
 		add_submenu_page(
 			'feed-them-settings-page',
 			__('System Info', 'feed-them-social'),
 			__('System Info', 'feed-them-social'),
 			'manage_options',
 			'fts-system-info-submenu-page',
-			'feed_them_system_info_page'
+			array($system_info_page,'feed_them_system_info_page')
 		);
 	}
 	//**************************************************
@@ -1478,6 +1550,8 @@ var myAjaxFTS = '<?php echo admin_url('admin-ajax.php'); ?>';
 		global $wpdb;
 		$not_expired= $wpdb->query($wpdb->prepare("DELETE FROM $wpdb->options WHERE option_name LIKE %s ", '_transient_fts_%'));
 		$expired = $wpdb->query($wpdb->prepare("DELETE FROM $wpdb->options WHERE option_name LIKE %s ", '_transient_timeout_fts_%'));
+		wp_reset_query();
+		return;
 	} // end of my_ajax_callback()
 	//**************************************************
 	// Clear Cache Folder.
@@ -1486,6 +1560,7 @@ var myAjaxFTS = '<?php echo admin_url('admin-ajax.php'); ?>';
 		global $wpdb;
 		$not_expired = $wpdb->query($wpdb->prepare("DELETE FROM $wpdb->options WHERE option_name LIKE %s ", '_transient_fts_%'));
 		$expired = $wpdb->query($wpdb->prepare("DELETE FROM $wpdb->options WHERE option_name LIKE %s ", '_transient_timeout_fts_%'));
+		wp_reset_query();
 		return 'Cache for all FTS Feeds cleared!';
 	}	
 	//**************************************************

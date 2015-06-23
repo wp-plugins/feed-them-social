@@ -1,4 +1,5 @@
 <?php
+namespace feedthemsocial;	
 class FTS_Pinterest_Feed extends feed_them_social_functions {
 	
 	function __construct() {

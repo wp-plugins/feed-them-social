@@ -29,3 +29,9 @@
 	line-height: normal !important;
 }
 }
+.fts-activation-msg { margin:14px 0 -25px 0; font-size:14px;}
+.fts-activation-msg ol { margin:10px 0 0 20px;}
+.fts-update-message:before { color: #FFF; content: '\e600'; display: inline-block; font: 400 16px/1 SlickRemix; speak: none; margin: 0 8px 0 -1px; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; vertical-align: top; }
+.fts-update-message { font-weight: 400; color: #fff; background: #d54d21; padding: 1em; margin: 9px 0; }
+.fts_old_plugins_message { margin: 15px 15px 0 0; }
+.fts-update-message a { color: #fff; text-decoration: underline; }

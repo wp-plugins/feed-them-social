@@ -1,4 +1,5 @@
 <?php
+namespace feedthemsocial;
 class FTS_Instagram_Feed extends feed_them_social_functions {
 	function __construct() {
 		add_shortcode( 'fts instagram',  array( $this, 'fts_instagram_func'));

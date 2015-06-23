@@ -3,7 +3,7 @@ Contributors: slickremix
 Tags:  facebook photos, facebook albums, albums, photos facebook, photo, facebook feed, facebook posts, hastags, social, social plugin, social networking, networking, custom feed, custom facebook feed, facebook plugin, facebook group, facebook groups, events, facebook events, facebook page events, facebook group events, facebook page, facebook pages, twitter, twitter plugin, instagram, instagram plugin, feed me social, social plugin, feed, feeds, shortcode, facebook wall, slickremix, plugin, pages, posts, images, page, post, image, youtube, youtube feed, youtube channel, youtube video, youtube videos, videos, youtube embed, embed, video iframe, admin, comments, widgets, seo, wordpress, pinterest, pinterest boards, pinterest feeds, pinterest photos, pinterest widget, pinterest widgets, instagram popup, Facebook videos, twitter videos
 Requires at least: 3.6.0
 Tested up to: 4.2.2
-Stable tag: 1.8.2
+Stable tag: 1.8.3
 License: GPLv2 or later
 
 Display custom feeds for Facebook Pages, Groups, Events, Album Photos and Covers -Twitter, Instagram, Pinterest and YouTube on pages, posts or widgets.
@@ -61,6 +61,10 @@ If you enjoy using our plugin please tell others. [Click here to share](http://w
   * Extract the zip file and drop the contents in the wp-content/plugins/ directory of your WordPress installation and then activate the Plugin from Plugins page. 
 
 == Changelog ==
+= Version 1.8.3 Friday, June 19th, 2015 =
+  * FIXED: WooCommerce Product search conflict.
+  * CLEANED: Namespacing and Classification for rest of files.
+
 = Version 1.8.2 Wednesday, June 17th, 2015 =
  * NEW: Facebook Option: Hide the text that appears after your facebook name for instance... added a new video, or shared something or added a new album. Most of these things are apparent when viewing the post anyway.
  * NEW: System Info: Now we are gathering more of the info we need in order to speed up support requests.

@@ -35,6 +35,8 @@ function license_page() {
 ?>
 	<div class="wrap">
 			<h2><?php _e('Plugin License Options'); ?></h2>
+			<div class="fts-activation-msg"><ol><li>Enter your License Key and Click the Save Changes button.</li>
+   <li>Click Activate License. When activated it will show the word "<span style="color:green;">Active</span>" in green next to the button.</li></ol></div>
 			<form method="post" action="options.php">
 				<?php settings_fields('EDD_license_manager_page'); ?>
 				
@@ -47,7 +49,6 @@ function license_page() {
 			</form>
 <?php
 	}
-
 function register_option() {
 	// creates our settings in the options table
 	register_setting('EDD_license_manager_page',$this->plugin_identifier.'_license_key', array($this,'edd_sanitize_license') );

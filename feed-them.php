@@ -3,12 +3,12 @@
 Plugin Name: Feed Them Social (Facebook, Instagram, Twitter, etc)
 Plugin URI: http://slickremix.com/
 Description: Create and display custom feeds for Facebook Groups, Facebook Pages, Facebook Events, Facebook Photos, Facebook Album Covers, Twitter, Instagram, Pinterest and YouTube.
-Version: 1.8.2
+Version: 1.8.3
 Author: SlickRemix
 Author URI: http://slickremix.com/
 Requires at least: wordpress 3.6.0
 Tested up to: WordPress 4.2.2
-Stable tag: 1.8.2
+Stable tag: 1.8.3
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -19,7 +19,14 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
 If you need support or want to tell us thanks please contact us at support@slickremix.com or use our support forum on slickremix.com.
 */
+
 define( 'FEED_THEM_PLUGIN_PATH', plugins_url());
+//Define minimum premium version allowed to be active with Free Version
+global $fts_versions_needed;
+$fts_versions_needed = array(
+	'feed-them-premium/feed-them-premium.php' => '1.4.9',
+	'fts-bar/fts-bar.php' => '1.0.7',
+);
 
 if ( ! function_exists( 'is_plugin_active' ) )
     require_once( ABSPATH . '/wp-admin/includes/plugin.php' );
@@ -56,17 +63,19 @@ include( $fts_plugin_rel_url.'admin/feed-them-youtube-style-options-page.php' );
 // Include core files and classes
 include( $fts_plugin_rel_url.'includes/feed-them-functions.php' );
 
-$load_fts = new feed_them_social_functions();
-$load_fts->fts_get_check_plugin_version('feed-them-premium.php', '1.3.0');
+
+
+$load_fts = new feedthemsocial\feed_them_social_functions();
 $load_fts->init();
+
 
 
 // Include feeds
 include( $fts_plugin_rel_url.'feeds/facebook/facebook-feed.php' );
-new FTS_Facebook_Feed();
+new feedthemsocial\FTS_Facebook_Feed();
 
 include_once( $fts_plugin_rel_url.'feeds/twitter/twitter-feed.php' );
-new FTS_Twitter_Feed();
+new feedthemsocial\FTS_Twitter_Feed();
 
 include_once( $fts_plugin_rel_url.'feeds/instagram/instagram-feed.php' );
 include_once( $fts_plugin_rel_url.'feeds/pinterest/pinterest-feed.php' );
@@ -96,4 +105,9 @@ else  {
 	}
    }
 } // end fts_required_php_check
+
+//Prevent errors for now WILL BE REMOVED IN FuTURE VERSIONS
+class feed_them_social_functions{
+	function register_settings(){}
+}
 ?>

@@ -1,4 +1,5 @@
 <?php
+namespace feedthemsocial;
 class FTS_Facebook_Feed extends feed_them_social_functions {
 	function __construct() {
 		add_shortcode( 'fts facebook group', array($this, 'fts_fb_func'));

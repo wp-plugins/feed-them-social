@@ -1,4 +1,5 @@
 <?php
+namespace feedthemsocial;
 class FTS_Twitter_Feed extends feed_them_social_functions {
 	function __construct() {
 		add_shortcode( 'fts twitter', array( $this, 'fts_twitter_func'));
