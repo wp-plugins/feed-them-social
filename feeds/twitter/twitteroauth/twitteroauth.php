@@ -1,5 +1,5 @@
 <?php
-
+namespace feedthemsocial;
 /*
  * Abraham Williams (abraham@abrah.am) http://abrah.am
  *

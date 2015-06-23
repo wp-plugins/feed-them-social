@@ -1,11 +1,12 @@
 <?php
+namespace feedthemsocial;
 // vim: foldmethod=marker
 
 /* Generic exception class
  */
  
 if (!class_exists('FTSOAuthException')) {
-	class FTSOAuthException extends Exception {
+	class FTSOAuthException extends \Exception {
 	  // pass
 	}
 	
@@ -720,7 +721,7 @@ if (!class_exists('FTSOAuthException')) {
 	class OAuthUtilFTS {
 	  public static function urlencode_rfc3986($input) {
 	  if (is_array($input)) {
-		return array_map(array('OAuthUtilFTS', 'urlencode_rfc3986'), $input);
+		return array_map(array('feedthemsocial\OAuthUtilFTS', 'urlencode_rfc3986'), $input);
 	  } else if (is_scalar($input)) {
 		return str_replace(
 		  '+',
