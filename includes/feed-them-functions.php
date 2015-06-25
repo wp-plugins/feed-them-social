@@ -106,10 +106,10 @@ class feed_them_social_functions {
 	//**************************************************
 	function fts_old_plugin_admin_notice() {
 		global $current_user ;
-			//$is_an_admin = in_array('administrator', $current_user->roles);
+			$is_an_admin = in_array('administrator', $current_user->roles);
 	        $user_id = $current_user->ID;
 	        /* Check that the user hasn't already clicked to ignore the message */
-		if (!get_user_meta($user_id, 'fts_old_plugins_ignore') && !isset($_POST['fts-prem-notice'])) {
+		if (!get_user_meta($user_id, 'fts_old_plugins_ignore') && !isset($_POST['fts-prem-notice']) && $is_an_admin == true) {
 	        echo '<div class="fts-update-message fts_old_plugins_message">'; 
 	        printf(__('Please update ALL Premium Extensions for Feed Them Social because they will no longer work with this version of Feed Them Social. We have made some Major Changes to the Core of the plugin to help with plugin conflicts. Please update your extensions from your <a href="http://www.slickremix.com/my-account" target="_blank">My Account</a> page on our website if you are not receiving notifications for updates on the premium extensions. Thanks again for using our plugin! | <a href="%1$s">HIDE NOTICE</a>'), '?fts_old_plugins_ignore=0');
 	        echo "</div>";
