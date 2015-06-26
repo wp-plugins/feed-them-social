@@ -64,13 +64,12 @@ class feed_them_social_functions {
 				if(isset($plugins[$single_plugin])) {
 					global $fts_versions_needed;
 					if ($plugins[$single_plugin]['Version'] < $fts_versions_needed[$single_plugin]) {
-						
 						//Don't Let Old Plugins Activate
 						deactivate_plugins($single_plugin);
 						if (isset( $_GET['activate'] ) ) {
 							delete_user_meta( $user_id, 'fts_old_plugins_ignore');
-		                   	  unset( $_GET['activate'] );
-		                }
+		     unset( $_GET['activate'] );
+							}
 					}
 				}	
 		}		
