@@ -113,7 +113,7 @@ class FTS_Twitter_Feed extends feed_them_social_functions {
 				array(
 					'screen_name'     => $name,
 					'count'           => $totalToFetch,
-					'exclude_replies' => $excludeReplies,
+				//	'exclude_replies' => $excludeReplies,
 					'images'    => $description_image,
 				)
 			);
