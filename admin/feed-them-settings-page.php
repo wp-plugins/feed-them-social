@@ -738,7 +738,7 @@ class FTS_settings_page {
 			}
 		<?php 
 			//Premium Plugin
-			if(is_plugin_active('feed-them-premium/feed-them-premium.php')) {
+			if(is_plugin_active('feed-them-premium/feed-them-premium.php') && WP_CONTENT_DIR.'/plugins/feed-them-premium/admin/js/vine-settings-js.js') {
 			   include(WP_CONTENT_DIR.'/plugins/feed-them-premium/admin/js/instagram-settings-js.js');
 			}//end if Premium version
 			else 	{ ?>
