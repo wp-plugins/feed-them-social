@@ -1188,7 +1188,7 @@ var nextURL_<?php echo $_REQUEST['fts_dynamic_name']; ?>= "<?php echo $_REQUEST[
 	//**************************************************
 	// Facebook Post Photo
 	//**************************************************
-	function fts_facebook_post_photo($FBlink, $type, $photo_from, $photo_source, $image_position_lr = NULL, $image_position_top = NULL, $d) {
+	function fts_facebook_post_photo($FBlink, $type, $photo_from, $photo_source, $image_position_lr = NULL, $image_position_top = NULL) {
 		if ($type == 'album_photos' || $type == 'albums') {
 			$output =  '<a href="'.$FBlink.'" target="_blank" class="fts-jal-fb-picture album-photo-fts"';
 			if ($image_position_lr !== '-0%' || $image_position_top !== '-0%') {
