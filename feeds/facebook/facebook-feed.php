@@ -187,11 +187,13 @@ class FTS_Facebook_Feed extends feed_them_social_functions {
 		//Json decode data and build it from cache or response
 		$des = json_decode($response['page_data']);
 		$data = json_decode($response['feed_data']);
+		
+	//		echo '<pre>';
+	//		print_r($data->data);
+	//		echo '</pre>';
+			
 		//If events array Flip it so it's in proper order
 		if ($type == 'events') {
-			//echo '<pre>';
-			//print_r($data->data);
-			//echo '</pre>';
 						
 				if($data->data){
 					
@@ -586,7 +588,7 @@ class FTS_Facebook_Feed extends feed_them_social_functions {
 							if (isset($fts_fb_popup) && $fts_fb_popup == 'yes') {
 								print '<div class="fts-fb-caption fts-fb-album-view-link" style="display:block;">';
 								if ($FBalbum_cover) {
-									print '<a href="'.$photo_data->images[0]->source.'" class="fts-view-album-photos-large" target="_blank">'.__('View Photo', 'feed-them-social').'</a></div>';
+									print '<a href="https://graph.facebook.com/'.$FBalbum_cover.'/picture" class="fts-view-album-photos-large" target="_blank">'.__('View Photo', 'feed-them-social').'</a></div>';
 								}
 								else {
 									print '<a href="https://graph.facebook.com/'.$FBpost_id.'/picture" class="fts-view-album-photos-large" target="_blank">'.__('View Photo', 'feed-them-social').'</a></div>';
@@ -982,7 +984,7 @@ class FTS_Facebook_Feed extends feed_them_social_functions {
 				print '>';
 				//Output Photo Picture
 				if ($FBalbum_cover) {
-					print $this->fts_facebook_post_photo($FBlink, $type, $d->from->name, $photo_data->images[0]->source, $image_position_lr, $image_position_top);
+					print $this->fts_facebook_post_photo($FBlink, $type, $d->from->name, $d->cover_photo, $image_position_lr, $image_position_top);
 				};
 				print '<div class="slicker-facebook-album-photoshadow"></div>';
 				if (!$type == 'albums') {
@@ -1186,13 +1188,19 @@ var nextURL_<?php echo $_REQUEST['fts_dynamic_name']; ?>= "<?php echo $_REQUEST[
 	//**************************************************
 	// Facebook Post Photo
 	//**************************************************
-	function fts_facebook_post_photo($FBlink, $type, $photo_from, $photo_source, $image_position_lr = NULL, $image_position_top = NULL) {
+	function fts_facebook_post_photo($FBlink, $type, $photo_from, $photo_source, $image_position_lr = NULL, $image_position_top = NULL, $d) {
 		if ($type == 'album_photos' || $type == 'albums') {
 			$output =  '<a href="'.$FBlink.'" target="_blank" class="fts-jal-fb-picture album-photo-fts"';
 			if ($image_position_lr !== '-0%' || $image_position_top !== '-0%') {
 				$output .= 'style="right:'.$image_position_lr.';left:'.$image_position_lr.';top:'.$image_position_top.'"';
-			}
-			$output .= '><img border="0" alt="' .$photo_from.'" src="'.$photo_source.'"/></a>';
+			} 
+						if ($type == 'albums') {
+					$output .= '><img border="0" alt="' .$photo_from.'" src="https://graph.facebook.com/'.$photo_source.'/picture"/>';
+						}
+						else {
+					$output .= '><img border="0" alt="' .$photo_from.'" src="'.$photo_source.'"/>';
+						}
+		$output .= '</a>';
 		}
 		else {
 			$output =  '<a href="'.$FBlink.'" target="_blank" class="fts-jal-fb-picture"><img border="0" alt="' .$photo_from.'" src="'.$photo_source.'"/></a>';
