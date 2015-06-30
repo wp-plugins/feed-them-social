@@ -699,7 +699,7 @@ class FTS_settings_page {
 				var round_thumb_corner_size = ''; 
 			}
 			<?php
-			if(is_plugin_active('feed-them-premium/feed-them-premium.php')) {
+			if(is_plugin_active('feed-them-premium/feed-them-premium.php')  && file_exists(WP_CONTENT_DIR.'/plugins/feed-them-premium/admin/js/vine-settings-js.js')) {
 			   include(WP_CONTENT_DIR.'/plugins/feed-them-premium/admin/js/vine-settings-js.js');
 			}
 			else 	{ ?>
