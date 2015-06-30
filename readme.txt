@@ -63,7 +63,7 @@ If you enjoy using our plugin please tell others. [Click here to share](http://w
 
 == Changelog ==
 = Version 1.8.4 Monday, June 29th, 2015 =
-  * NEW: Vine Feed. Now you can add a gallery of Vine videos with thumbnails. Premium users will need to upgrade the feed-them-premium plugin to 1.5.0 to get the premium features.
+  * NEW: Vine Feed. Now you can add a gallery of Vine videos with thumbnails. Premium users will need to upgrade the feed-them-premium plugin to 1.5.0 to get the premium features. See example here: [http://feedthemsocial.com/vine-demo/](http://feedthemsocial.com/vine-demo/)
   * FIXED: Facebook: API change for call to Album Cover photo source. Thanks to all who let us know this was not working.
 		
 = Version 1.8.3 Tuesday, June 23rd, 2015 =
