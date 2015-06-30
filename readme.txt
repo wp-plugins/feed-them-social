@@ -1,9 +1,9 @@
 === Feed Them Social (Facebook, Instagram, Twitter, etc) ===
 Contributors: slickremix
-Tags:  facebook photos, facebook albums, albums, photos facebook, photo, facebook feed, facebook posts, hastags, social, social plugin, social networking, networking, custom feed, custom facebook feed, facebook plugin, facebook group, facebook groups, events, facebook events, facebook page events, facebook group events, facebook page, facebook pages, twitter, twitter plugin, instagram, instagram plugin, feed me social, social plugin, feed, feeds, shortcode, facebook wall, slickremix, plugin, pages, posts, images, page, post, image, youtube, youtube feed, youtube channel, youtube video, youtube videos, videos, youtube embed, embed, video iframe, admin, comments, widgets, seo, wordpress, pinterest, pinterest boards, pinterest feeds, pinterest photos, pinterest widget, pinterest widgets, instagram popup, Facebook videos, twitter videos
+Tags:  facebook photos, facebook albums, albums, photos facebook, photo, facebook feed, facebook posts, hastags, social, social plugin, social networking, networking, custom feed, custom facebook feed, facebook plugin, facebook group, facebook groups, events, facebook events, facebook page events, facebook group events, facebook page, facebook pages, twitter, twitter plugin, vine, vine videos, vine gallery, vine plugin, vine seo, instagram, instagram plugin, feed me social, social plugin, feed, feeds, shortcode, facebook wall, slickremix, plugin, pages, posts, images, page, post, image, youtube, youtube feed, youtube channel, youtube video, youtube videos, videos, youtube embed, embed, video iframe, admin, comments, widgets, seo, wordpress, pinterest, pinterest boards, pinterest feeds, pinterest photos, pinterest widget, pinterest widgets, instagram popup, Facebook videos, twitter videos
 Requires at least: 3.6.0
 Tested up to: 4.2.2
-Stable tag: 1.8.3
+Stable tag: 1.8.4
 License: GPLv2 or later
 
 Display custom feeds for Facebook Pages, Groups, Events, Album Photos and Covers -Twitter, Instagram, Pinterest and YouTube on pages, posts or widgets.
@@ -37,6 +37,7 @@ If you're looking for more than just a custom facebook feed our plugin includes 
  * [Facebook Single Event Feed Demo](http://feedthemsocial.com/facebook-event-feed-demo/)
  * [Instagram Feed Demo](http://feedthemsocial.com/instagram-feed-demo/)
  * [Twitter Feed Demo](http://feedthemsocial.com/twitter-feed-demo/)
+ * [Vine Gallery Feed Demo](http://feedthemsocial.com/vine-demo/)
  * [Pinterest Boards Demo](http://feedthemsocial.com/pinterest/)
  * [Pinterest Pins from a single Board](http://feedthemsocial.com/pinterest-pins-from-a-single-board/)
  * [Pinterest Latest Pins from a User](http://feedthemsocial.com/pinterest-demo-pins-from-user/)
