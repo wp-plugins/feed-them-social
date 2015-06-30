@@ -109,5 +109,25 @@ jQuery('.popup-gallery').each(function() { // the containers for all your galler
 			}
 		});
 	});
-	
+// Vine Videos
+jQuery('.fts-vine-wrapper').each(function() { // the containers for all your galleries
+		jQuery(this).magnificPopup({
+			delegate: 'a.fts-vine-thumbnail',
+			tLoading: 'Loading image #%curr%...',
+			type: 'video',
+  type:'inline',
+  midClick: true, // allow opening popup on middle mouse click. Always set it to true if you don't provide alternative source.
+			gallery: {
+				enabled: true,
+				navigateByImgClick: true,
+				preload: [0,1] // Will preload 0 - before current, and 1 after the current image
+			},
+				video: {
+				tError: '<a href="%url%">The image #%curr%</a> could not be loaded.',
+				titleSrc: function(item) { 
+					return item.el.parent('.fts-vine-content').find('.fts-vine-text').html();
+				}
+			}
+});
+	});
 });

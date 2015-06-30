@@ -1203,6 +1203,66 @@ var myAjaxFTS = '<?php echo admin_url('admin-ajax.php'); ?>';
 		return $output;
 	}
 	//**************************************************
+	// Vine Form.
+	//**************************************************
+	function fts_vine_form() {
+		$output = '<div class="fts-vine-shortcode-form">';
+			$output .= '<form class="feed-them-social-admin-form shortcode-generator-form vine-shortcode-form" id="fts-vine-form">';
+			$output .= '<h2>'.__('Vine Shortcode Generator', 'feed-them-social').'</h2>';
+			
+			$output .= '<div class="instructional-text">'.__('You can copy any', 'feed-them-social').' <a href="http://www.slickremix.com/docs/get-your-vine-video-id" target="_blank">'.__('Vine Video ID', 'feed-them-social').'</a> '.__('and paste it in the first input below.<br/>Add more videos by adding a comma(,) after each id. Limit is 6 in the Free Version.<br/>For example: ee59033wulP,eBVBFTUzUHY', 'feed-them-social').'</div>';
+			$output .= '<div class="feed-them-social-admin-input-wrap vine_id">';
+		
+			$output .= '<div class="feed-them-social-admin-input-label">'.__('Video ID or IDs (required)', 'feed-them-social').'</div>';
+			$output .= '<input type="text" name="vine_id" id="vine_id" class="feed-them-social-admin-input" />';
+			$output .= '<div class="clear"></div>';
+			$output .= '</div><!--/feed-them-social-admin-input-wrap-->';
+			
+			$output .= '<div class="feed-them-social-admin-input-wrap">';
+			$output .= '<div class="feed-them-social-admin-input-label">'.__('Max width of thumbnail', 'feed-them-social').'<br/><small>'.__('480px is max suggested', 'feed-them-social').'</small></div>';
+			$output .= '<input type="text" name="vine_maxwidth" id="vine_maxwidth" class="feed-them-social-admin-input" value="" placeholder="200px '.__('for example', 'feed-them-social').'" />';
+			$output .= '<div class="clear"></div>';
+			$output .= '</div><!--/feed-them-social-admin-input-wrap-->';
+			
+			$output .= '<div class="feed-them-social-admin-input-wrap">';
+			$output .= '<div class="feed-them-social-admin-input-label">'.__('Space between thumbnails', 'feed-them-social').'<br/><small>'.__('Leave blank for default none', 'feed-them-social').'</small></div>';
+			$output .= '<input type="text" name="space_between_photos" id="space_between_photos" class="feed-them-social-admin-input" value="" placeholder="4px '.__('for example', 'feed-them-social').'" />';
+			$output .= '<div class="clear"></div>';
+			$output .= '</div><!--/feed-them-social-admin-input-wrap-->';
+			
+			$output .= '<div class="feed-them-social-admin-input-wrap">';
+			$output .= '<div class="feed-them-social-admin-input-label">'.__('Rounded Thumb Corner Amount', 'feed-them-social').'<br/><small>'.__('Leave blank for none', 'feed-them-social').'</small></div>';
+			$output .= '<input type="text" name="round_thumb_corner_size" id="round_thumb_corner_size" class="feed-them-social-admin-input" value="" placeholder="3px '.__('for example', 'feed-them-social').'" />';
+			$output .= '<div class="clear"></div>';
+			$output .= '</div><!--/feed-them-social-admin-input-wrap-->';
+			
+			
+		if (is_plugin_active('feed-them-premium/feed-them-premium.php')) {
+		 // Check the premium version contains these new settings othwerise the settings page will show errors	
+			if (!file_exists($this->premium.'admin/vine-settings-fields.php')) {
+						$output .= '<div class="error feed-them-social-admin-input-wrap" style="margin:0px;"><p>' . __( 'Warning: You will need to upgrade the Premium Version of FTS to at least 1.5.0 to see the new premium settings.', 'feed-them-social' ) . '</p></div>';
+			}
+			else {
+			include($this->premium.'admin/vine-settings-fields.php');
+			}
+		}
+		else {
+			//Create Need Premium Fields
+			$fields = array(
+				__('Hide Title and Text', 'feed-them-social'),
+				__('Vine Logo Size', 'feed-them-social'),
+				__('Hide Vine Logo', 'feed-them-social'),
+			);
+			$output .= $this->need_fts_premium_fields($fields);
+	}
+	
+			$output .= $this->generate_shortcode('updateTextArea_vine();', 'Vine Feed Shortcode', 'vine-final-shortcode');
+			$output .= '</form>';
+		$output .= '</div><!--/fts-vine-shortcode-form-->';
+		return $output;
+		
+	}
+	//**************************************************
 	// Instagram Twitter Form.
 	//**************************************************
 	function fts_instagram_form($save_options = false) {
@@ -1300,8 +1360,11 @@ var myAjaxFTS = '<?php echo admin_url('admin-ajax.php'); ?>';
 			
 
 		}
+			
 		if (is_plugin_active('feed-them-premium/feed-them-premium.php')) {
+			
 			include($this->premium.'admin/instagram-settings-fields.php');
+			
 		}
 		else {
 			//Create Need Premium Fields

@@ -14,6 +14,7 @@ class FTS_settings_page {
 		  <div class="use-of-plugin"><?php _e('Select what type of feed you would like to generate a shortcode for using the select option below. Then you\'ll copy that shortcode to a page or post.', 'feed-them-social'); ?></div>
 		  <div class="feed-them-icon-wrap">
 		   <a href="#" class="youtube-icon"></a>
+		   <a href="#" class="vine-icon"></a>
 		   <a href="#" class="twitter-icon"></a>
 		   <a href="#" class="facebook-icon"></a>
 		  	<a href="#" class="instagram-icon"></a>
@@ -30,6 +31,7 @@ class FTS_settings_page {
 		        	<option value=""><?php _e('Please Select Feed Type', 'feed-them-social'); ?> </option>
 		            <option value="fb-page-shortcode-form"><?php _e('Facebook Feed', 'feed-them-social'); ?></option>
 		            <option value="twitter-shortcode-form"><?php _e('Twitter Feed', 'feed-them-social'); ?></option>
+		            <option value="vine-shortcode-form"><?php _e('Vine Feed', 'feed-them-social'); ?></option>
 		            <option value="instagram-shortcode-form"><?php _e('Instagram Feed', 'feed-them-social'); ?></option>
 		            <option value="youtube-shortcode-form"><?php _e('YouTube Feed'); ?></option>
 		            <option value="pinterest-shortcode-form"><?php _e('Pinterest Feed', 'feed-them-social'); ?></option>
@@ -45,7 +47,9 @@ class FTS_settings_page {
 			 //Add Facebook Single Event Form
 			 echo $fts_functions->fts_facebook_event_form(false); 
 			 //Add Twitter Form
-			 echo $fts_functions->fts_twitter_form(false); 
+			 echo $fts_functions->fts_twitter_form(); 
+			 //Add Vine Form
+			 echo $fts_functions->fts_vine_form(false); 
 			 //Add Instagram Form
 			 echo $fts_functions->fts_instagram_form(false);
 			 //Add Youtube Form
@@ -661,6 +665,50 @@ class FTS_settings_page {
 			jQuery('.twitter-shortcode-form .final-shortcode-textarea').slideDown();
 		}
 		//END Twitter//
+		//START Vine//
+		function updateTextArea_vine() {
+			var vine_id = ' id=' + jQuery("input#vine_id").val();
+			var vine_maxwidth = jQuery("input#vine_maxwidth").val();
+			var space_between_photos = jQuery("input#space_between_photos").val();
+			var round_thumb_corner_size = jQuery("input#round_thumb_corner_size").val();
+			
+			if (vine_id == " id=") {
+			  	 jQuery(".vine_id").addClass('fts-empty-error');  
+		      	 jQuery("input#vine_id").focus();
+				 return false;
+			}
+			if (vine_id != " id=") {
+			  	 jQuery(".vine_id").removeClass('fts-empty-error');  
+			}
+			if (vine_maxwidth)	{
+				var vine_maxwidth = ' maxwidth=' + jQuery("input#vine_maxwidth").val();
+			}
+			else {
+				var vine_maxwidth = ' maxwidth=200px'; 
+			}
+			if (space_between_photos)	{
+				var space_between_photos = ' space_between_photos=' + jQuery("input#space_between_photos").val();
+			}
+				else {
+				var round_thumb_corner_size = ''; 
+			}
+				if (round_thumb_corner_size)	{
+				var round_thumb_corner_size = ' round_thumb_corner_size=' + jQuery("input#round_thumb_corner_size").val();
+			}
+				else {
+				var round_thumb_corner_size = ''; 
+			}
+			<?php
+			if(is_plugin_active('feed-them-premium/feed-them-premium.php')) {
+			   include(WP_CONTENT_DIR.'/plugins/feed-them-premium/admin/js/vine-settings-js.js');
+			}
+			else 	{ ?>
+					var final_vine_shorcode = '[fts vine' + vine_id + vine_maxwidth + space_between_photos + round_thumb_corner_size +']';
+		<?php } ?>
+		jQuery('.vine-final-shortcode').val(final_vine_shorcode);
+			jQuery('.vine-shortcode-form .final-shortcode-textarea').slideDown();
+		}
+		//END Vine//
 		//START Instagram//
 		function updateTextArea_instagram() {
 			var instagram_id = ' instagram_id=' + jQuery("input#instagram_id").val();

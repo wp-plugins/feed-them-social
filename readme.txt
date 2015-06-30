@@ -48,7 +48,7 @@ If you're looking for more than just a custom facebook feed our plugin includes 
 = PREMIUM FTS Bar =
  ✭ [NEW! Social Bar](http://feedthemsocial.com/fts-bar/)
 
-ALL SlickRemix plugins come with FREE Basic Support! If you need help or have questions we are here to help just post on our [Support Forum](http://www.slickremix.com/support-forum/) and we’ll get to you as quickly as we can! (usually within 48hrs)
+ALL SlickRemix plugins come with FREE Basic Support! If you need help or have questions we're here to help, just post on our [Support Forum](http://www.slickremix.com/support-forum/) and we’ll get to you as quickly as we can! (usually within 48hrs)
 	
 If you enjoy using our plugin please tell others. [Click here to share](http://www.facebook.com/sharer.php?u=http://wordpress.org/plugins/feed-them-social/&t=FeedThemSocial).
 
@@ -61,6 +61,10 @@ If you enjoy using our plugin please tell others. [Click here to share](http://w
   * Extract the zip file and drop the contents in the wp-content/plugins/ directory of your WordPress installation and then activate the Plugin from Plugins page. 
 
 == Changelog ==
+= Version 1.8.4 Monday, June 29th, 2015 =
+  * NEW: Vine Feed. Now you can add a gallery of Vine videos with thumbnails. Premium users will need to upgrade the feed-them-premium plugin to 1.5.0 to get the premium features.
+  * FIXED: Facebook: API change for call to Album Cover photo source. Thanks to all who let us know this was not working.
+		
 = Version 1.8.3 Tuesday, June 23rd, 2015 =
   * FIXED: WooCommerce Product search conflict.
   * CLEANED: Namespacing and Classification to help with other plugin and theme conflicts.

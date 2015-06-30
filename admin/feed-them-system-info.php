@@ -105,7 +105,7 @@ if ( is_multisite() ) :
 			endif;
 	
 			$facebookOptions = get_option('fts_facebook_custom_api_token') ? 'Yes' : 'No' ;
-			$facebookOptionsAppID = get_option('fb_app_ID') ? 'Yes' : 'no' ;
+			$facebookOptionsAppID = get_option('fb_app_ID') ? 'Yes' : 'No' ;
 			$twitterOptions1 = get_option('fts_twitter_custom_consumer_key') ? 'Yes' : 'No' ;
 			$twitterOptions2 = get_option('fts_twitter_custom_consumer_secret') ? 'Yes' : 'No' ;
 			$twitterOptions3 = get_option('fts_twitter_custom_access_token') ? 'Yes' : 'No' ;
@@ -120,8 +120,8 @@ if ( is_multisite() ) :
 -- Custom Token or Keys added to Options Pages
 -- You must have a custom token to use the feeds
 	
-Facebook:                 <?php echo $facebookOptions      . "\n"; ?>
-Facebook App ID:          <?php echo $facebookOptionsAppID . "\n"; ?>
+Facebook App Token:       <?php echo $facebookOptions      . "\n"; ?>
+FB App ID for Like Button:<?php echo $facebookOptionsAppID . "\n"; ?>
 Twitter Consumer Key:     <?php echo $twitterOptions1      . "\n"; ?>
 Twitter Secret:           <?php echo $twitterOptions2      . "\n"; ?>
 Twitter Token:            <?php echo $twitterOptions3      . "\n"; ?>

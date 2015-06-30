@@ -62,13 +62,8 @@ include( $fts_plugin_rel_url.'admin/feed-them-youtube-style-options-page.php' );
 
 // Include core files and classes
 include( $fts_plugin_rel_url.'includes/feed-them-functions.php' );
-
-
-
 $load_fts = new feedthemsocial\feed_them_social_functions();
 $load_fts->init();
-
-
 
 // Include feeds
 include( $fts_plugin_rel_url.'feeds/facebook/facebook-feed.php' );
@@ -79,6 +74,9 @@ new feedthemsocial\FTS_Twitter_Feed();
 
 include_once( $fts_plugin_rel_url.'feeds/instagram/instagram-feed.php' );
 include_once( $fts_plugin_rel_url.'feeds/pinterest/pinterest-feed.php' );
+
+include_once( $fts_plugin_rel_url.'feeds/twitter/vine-feed.php' );
+new feedthemsocial\FTS_Vine_Feed();
 
 /**
  * Returns current plugin version. SRL added

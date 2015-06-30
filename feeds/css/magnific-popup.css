@@ -400,3 +400,10 @@ img.mfp-img {
 .fts-instagram-fade.mfp-wrap.mfp-removing .mfp-content {
   opacity: 0;
 }
+.fts-instagram-fade .mfp-close {
+  left: 0% !important;
+  margin-left: 5px !important;
+}
+.fts-instagram-fade .mfp-close:before {
+ display:none !important;
+}
