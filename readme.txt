@@ -1,12 +1,12 @@
 === Feed Them Social (Facebook, Instagram, Twitter, Vine, Pinterest, etc) ===
 Contributors: slickremix
-Tags:  facebook photos, facebook albums, albums, photos facebook, photo, facebook feed, facebook posts, hastags, social, social plugin, social networking, networking, custom feed, custom facebook feed, facebook plugin, facebook group, facebook groups, events, facebook events, facebook page events, facebook group events, facebook page, facebook pages, twitter, twitter plugin, vine, vine videos, vine gallery, vine plugin, vine seo, instagram, instagram plugin, feed me social, social plugin, feed, feeds, shortcode, facebook wall, slickremix, plugin, pages, posts, images, page, post, image, youtube, youtube feed, youtube channel, youtube video, youtube videos, videos, youtube embed, embed, video iframe, admin, comments, widgets, seo, wordpress, pinterest, pinterest boards, pinterest feeds, pinterest photos, pinterest widget, pinterest widgets, instagram popup, Facebook videos, twitter videos
+Tags:  facebook photos, facebook videos, videos, facebook albums, albums, photos facebook, photo, facebook feed, facebook posts, hastags, social, social plugin, social networking, networking, custom feed, custom facebook feed, facebook plugin, facebook group, facebook groups, events, facebook events, facebook page events, facebook group events, facebook page, facebook pages, twitter, twitter plugin, vine, vine videos, vine gallery, vine plugin, vine seo, instagram, instagram plugin, feed me social, social plugin, feed, feeds, shortcode, facebook wall, slickremix, plugin, pages, posts, images, page, post, image, youtube, youtube feed, youtube channel, youtube video, youtube videos, videos, youtube embed, embed, video iframe, admin, comments, widgets, seo, wordpress, pinterest, pinterest boards, pinterest feeds, pinterest photos, pinterest widget, pinterest widgets, instagram popup, Facebook videos, twitter videos
 Requires at least: 3.6.0
 Tested up to: 4.2.2
-Stable tag: 1.8.4
+Stable tag: 1.8.5
 License: GPLv2 or later
 
-Display custom feeds for Facebook Pages, Groups, Events, Album Photos and Covers -Twitter, Instagram, Pinterest and YouTube on pages, posts or widgets.
+Display custom feeds for Facebook Pages, Groups, Events, Album Photos, Videos and Covers -Twitter, Instagram, Pinterest and YouTube on pages, posts or widgets.
 
 == Description ==
 
@@ -62,6 +62,17 @@ If you enjoy using our plugin please tell others. [Click here to share](http://w
   * Extract the zip file and drop the contents in the wp-content/plugins/ directory of your WordPress installation and then activate the Plugin from Plugins page. 
 
 == Changelog ==
+= Version 1.8.5 Wednesday, July 8th, 2015 =
+  * FIXED: Fatal error on install for users under php 5.3 due to new namespace name overiding our initial php version error check.
+  * FIXED: Misc cleanup on files to speed things up.
+  * PREMIUM USERS: The below new options can be found on the settings page when you generate your shortcode for the facebook feed you need.
+  * NEW: Facebook Video Feed. Now you can add a feed of your Facebook page's uploaded videos. Only Works with Facebook Pages. Not user accounts or groups etc. See example here: [http://feedthemsocial.com/facebook-videos-demo/](hhttp://feedthemsocial.com/facebook-videos-demo/)
+  * NEW: Facebook: Type 0 for the words= option and the description for each post will disappear.
+  * NEW: Facebook: Hide the Like Button or Box if you are using more than one feed on a page.
+  * NEW: Facebook: Align the Like Button or Box left, center or right.
+  * NEW: Facebook: Set the Max Width for the Load More button.
+  * NEW: Facebook: Set the margin for the Load More button. Even setting this to 0 will align the button in the center.
+		
 = Version 1.8.4 Monday, June 29th, 2015 =
   * NEW: Vine Feed. Now you can add a gallery of Vine videos with thumbnails. Premium users will need to upgrade the feed-them-premium plugin to 1.5.0 to get the premium features. See example here: [http://feedthemsocial.com/vine-demo/](http://feedthemsocial.com/vine-demo/)
   * FIXED: Facebook: API change for call to Album Cover photo source. Thanks to all who let us know this was not working.

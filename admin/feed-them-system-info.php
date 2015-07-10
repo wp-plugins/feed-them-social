@@ -62,7 +62,6 @@ Post Max Size:            <?php echo ini_get( 'post_max_size' ) . "\n"; ?>
 Upload Max Filesize:      <?php echo ini_get( 'upload_max_filesize' ) . "\n"; ?>
 Time Limit:               <?php echo ini_get( 'max_execution_time' ) . "\n"; ?>
 Max Input Vars:           <?php echo ini_get( 'max_input_vars' ) . "\n"; ?>
-Arg Separator:            <?php echo ini_get( 'arg_separator.output' ) . "\n"; ?>
 Allow URL File Open:      <?php echo ( ini_get( 'allow_url_fopen' ) ) ? 'On (' . ini_get( 'display_errors' ) . ')' : 'N/A'; ?><?php echo "\n"; ?>
 Display Erros:            <?php echo ( ini_get( 'display_errors' ) ) ? 'On (' . ini_get( 'display_errors' ) . ')' : 'N/A'; ?><?php echo "\n"; ?>
 	

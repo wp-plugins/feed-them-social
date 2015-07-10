@@ -266,9 +266,9 @@ class FTS_settings_page {
 		       <div class="fts-custom-css-text"><?php _e('Thanks for using our plugin :) Add your custom CSS additions or overrides below.', 'feed-them-social'); ?></div>
 		      <textarea name="fts-color-options-main-wrapper-css-input" class="fts-color-settings-admin-input" id="fts-color-options-main-wrapper-css-input"><?php echo get_option('fts-color-options-main-wrapper-css-input'); ?></textarea>
 		      </div><!--/feed-them-custom-css--> 
-		      
+		     
+		    <div class="feed-them-custom-logo-css"> 
 		      <?php if(is_plugin_active('feed-them-premium/feed-them-premium.php')) { ?>
-		    <div class="feed-them-custom-logo-css">
 		     <h2><?php _e('Load More Options', 'feed-them-social'); ?></h2>
 		     <p>
 		        <input name="fts_fix_loadmore" class="fts-powered-by-settings-admin-input" type="checkbox" id="fts_fix_loadmore" value="1" <?php echo checked( '1', get_option( 'fts_fix_loadmore' ) ); ?>/> <?php _e('Check this if you are using the loadmore button for Facebook or Instagram and are seeing a bunch of code under it.', 'feed-them-social'); ?>
@@ -297,11 +297,24 @@ class FTS_settings_page {
 		</div><!--/feed-them-social-admin-wrap-->
 		<script>
 		jQuery(function() {    
+		
+		
 			// Master feed selector
 		    jQuery('#shortcode-form-selector').change(function(){
 		        jQuery('.shortcode-generator-form').hide();
 		        jQuery('.' + jQuery(this).val()).fadeIn('fast');
+										
 		    });
+						
+								jQuery('#fb_hide_like_box_button').change(function(){
+								jQuery('.fb_align_likebox').toggle();
+						});
+						
+								jQuery('#facebook_show_video_button').change(function(){
+								jQuery('.fb-video-play-btn-options-content').toggle();
+						});
+						
+						
 			 // change the feed type 'how to' message when a feed type is selected
 			jQuery('#facebook-messages-selector').change(function(){
 		        jQuery('.facebook-message-generator').hide();
@@ -310,7 +323,51 @@ class FTS_settings_page {
 				jQuery('.final-shortcode-textarea').hide();
 			// only show the Super Gallery Options if the facebook ablum or album covers feed type is selected	
 			 var facebooktype = jQuery("select#facebook-messages-selector").val();
-				 if (facebooktype == 'albums' || facebooktype == 'album_photos') {
+				
+				//		if (facebooktype == 'albums' || facebooktype == 'album_photos' || facebooktype == 'page'  || facebooktype == 'group' || facebooktype == 'event' || facebooktype == 'events') {
+				//			
+				//		}
+				
+				<?php 	if (is_plugin_active('feed-them-premium/feed-them-premium.php')) { ?>
+				
+			
+						
+					if (facebooktype == 'album_videos') {
+						jQuery('.fts-premium-options-message, .fts-photos-popup, #facebook_super_gallery_container, #facebook_super_gallery_animate').hide();
+				 	jQuery('.video, .fb-video-play-btn-options-wrap, #facebook_video_align_images_wrapper').show();
+				 	jQuery(".feed-them-social-admin-input-label:contains('Album')").html("<?php _e('Video Album ID (required)', 'feed-them-social') ?>");
+				  jQuery(".feed-them-social-admin-input-label:contains('# of Posts')").html("<?php _e('# of Videos', 'feed-them-social') ?>");
+						}
+					else {
+					 jQuery('.video, .fb-video-play-btn-options-wrap, #facebook_video_align_images_wrapper').hide();
+						jQuery('.fts-photos-popup, #facebook_super_gallery_container, #facebook_super_gallery_animate').show();
+				  jQuery(".feed-them-social-admin-input-label:contains('Video Album ID (required)')").html("<?php _e('Album ID (required)', 'feed-them-social') ?>");
+				  jQuery(".feed-them-social-admin-input-label:contains('# of Videos')").html("<?php _e('# of Posts', 'feed-them-social') ?>");
+					}
+			<?php	}
+			else { ?>
+					if (facebooktype == 'album_videos') {
+						// we are hiding all fields in the free verison and adding am upgrade message, much easier this way as the options add up.
+						jQuery('.fb-options-wrap').hide();
+						jQuery('.fts-premium-options-message').show();
+						
+					}
+					else {
+						jQuery('.fb-options-wrap').show();
+					 	jQuery('.fts-premium-options-message, .video').hide();
+					}
+					<?php } ?>
+				
+				
+				
+					if (facebooktype == 'events' || facebooktype == 'page') {
+						jQuery('.inst-text-facebook-page').show();
+					}
+					else {
+						jQuery('.inst-text-facebook-page').hide();
+					}
+					
+					if (facebooktype == 'albums' || facebooktype == 'album_photos' || facebooktype == 'album_videos') {
 		       		 jQuery('.fts-super-facebook-options-wrap').show();
 						jQuery('.fixed_height_option').hide();
 						jQuery('.fb-posts-in-grid-option-wrap').hide();
@@ -331,7 +388,7 @@ class FTS_settings_page {
 		 		 	jQuery('.facebook-post-type-visible').show();
 				 }
 			var fb_feed_type_option = jQuery("select#facebook-messages-selector").val();  
-				if (fb_feed_type_option == 'album_photos') {
+				if (fb_feed_type_option == 'album_photos' || fb_feed_type_option == 'album_videos') {
 						jQuery('.fb_album_photos_id').show();
 					}
 					else {
@@ -381,10 +438,15 @@ class FTS_settings_page {
 		   // facebook show load more options
 		  jQuery('#fb_load_more_option').bind('change', function (e) { 
 		    if( jQuery('#fb_load_more_option').val() == 'yes') {
-		      jQuery('.fts-facebook-load-more-options-wrap').show();
-		    }
+											
+											if(jQuery('#facebook-messages-selector').val() !== 'album_videos') {
+												jQuery('.fts-facebook-load-more-options-wrap').show();
+											}
+												jQuery('.fts-facebook-load-more-options2-wrap').show();
+										}
+										
 		    else{
-		      jQuery('.fts-facebook-load-more-options-wrap').hide();
+		      jQuery('.fts-facebook-load-more-options-wrap, .fts-facebook-load-more-options2-wrap').hide();
 		    }         
 		  });
 				 // Instagram show load more options
@@ -425,6 +487,7 @@ class FTS_settings_page {
 			  jQuery(".feed-them-social-admin-input-label:contains('<?php _e('# of Pins', 'feed-them-social'); ?>')").parent('div').show();
 		    }   
 		  });
+				
 		});
 		// JS
 		function updateTextArea_pinterest() {
@@ -503,7 +566,7 @@ class FTS_settings_page {
 			if (fb_page_id != " id=") {
 			  	 jQuery(".fb_page_id").removeClass('fts-empty-error');  
 			}
-			if (fb_album_id == " album_id=" && fb_feed_type == " type=album_photos") {
+			if (fb_album_id == " album_id=" && fb_feed_type == " type=album_photos" || fb_album_id == " album_id=" && fb_feed_type == " type=album_videos") {
 			  	 jQuery(".fb_album_photos_id").addClass('fts-empty-error');  
 		      	 jQuery("input#fb_album_id").focus();
 				 return false;

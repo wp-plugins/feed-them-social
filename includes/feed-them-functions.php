@@ -1024,16 +1024,17 @@ var myAjaxFTS = '<?php echo admin_url('admin-ajax.php'); ?>';
 		// ONLY SHOW SUPER GALLERY OPTIONS ON FTS SETTINGS PAGE FOR NOW, NOT FTS BAR
 		if (isset($_GET['page']) && $_GET['page'] == 'feed-them-settings-page') {
 			// FACEBOOK FEED TYPE
-			$output .= '<div class="feed-them-social-admin-input-wrap">';
+			$output .= '<div class="feed-them-social-admin-input-wrap" id="fts-social-selector">';
 			$output .= '<div class="feed-them-social-admin-input-label">'.__('Feed Type', 'feed-them-social').'</div>';
 			$output .= '<select name="facebook-messages-selector" id="facebook-messages-selector" class="feed-them-social-admin-input">';
 			$output .= '<option value="page">'.__('Facebook Page', 'feed-them-social').'</option>';
 			$output .= '<option value="events">'.__('Facebook Page List of Events', 'feed-them-social').'</option>';
 			$output .= '<option value="group">'.__('Facebook Group', 'feed-them-social').'</option>';
 			$output .= '<option value="event">'.__('Facebook Single Event', 'feed-them-social').'</option>';
+			$output .= '<option value="album_videos">'.__('Facebook Videos', 'feed-them-social').'</option>';
 			$output .= '<option value="album_photos">'.__('Facebook Album Photos', 'feed-them-social').'</option>';
 			$output .= '<option value="albums">'.__('Facebook Album Covers', 'feed-them-social').'</option>';
-			$output .= '<option value="hashtag">'.__('Facebook Hashtag', 'feed-them-social').'</option>';
+			// $output .= '<option value="hashtag">'.__('Facebook Hashtag', 'feed-them-social').'</option>';
 			$output .= '</select>';
 			$output .= '<div class="clear"></div>';
 			$output .= '</div><!--/feed-them-social-admin-input-wrap-->';
@@ -1044,8 +1045,15 @@ var myAjaxFTS = '<?php echo admin_url('admin-ajax.php'); ?>';
 			<div class="instructional-text facebook-message-generator event inst-text-facebook-event">'.__('Copy your', 'feed-them-social').' <a href="http://www.slickremix.com/2012/12/14/how-to-get-your-facebook-event-id/" target="_blank">'.__('Facebook Event ID', 'feed-them-social').'</a> '.__('and paste it in the first input below.', 'feed-them-social').'</div>
 			<div class="instructional-text facebook-message-generator album_photos inst-text-facebook-album-photos">'.__('Copy your', 'feed-them-social').' <a href="http://www.slickremix.com/docs/how-to-get-your-facebook-photo-gallery-id/" target="_blank">'.__('Facebook Album ID', 'feed-them-social').'</a> '.__('and paste it in the first input below.', 'feed-them-social').'</div>
 			<div class="instructional-text facebook-message-generator albums inst-text-facebook-albums">'.__('Copy your', 'feed-them-social').' <a href="http://www.slickremix.com/docs/how-to-get-your-facebook-photo-gallery-id/" target="_blank">'.__('Facebook Album Covers ID', 'feed-them-social').'</a> '.__('and paste it in the first input below.', 'feed-them-social').'</div>
-			<div class="instructional-text facebook-message-generator hashtag inst-text-facebook-hashtag">'.__('Copy your', 'feed-them-social').' <a href="http://www.slickremix.com/docs/how-to-get-your-facebook-photo-gallery-id/" target="_blank">'.__('Facebook Hashtag', 'feed-them-social').'</a> '.__('and paste it in the first input below.', 'feed-them-social').'</div>';
+			<div class="instructional-text facebook-message-generator video inst-text-facebook-video">'.__('Copy your', 'feed-them-social').' <a href="http://www.slickremix.com/docs/how-to-get-your-facebook-id-and-video-gallery-id" target="_blank">'.__('Facebook ID and Video Album ID', 'feed-them-social').'</a> '.__('and paste them below.', 'feed-them-social').'</div>';
+					if (isset($_GET['page']) && $_GET['page'] == 'feed-them-settings-page') {
+			// this is for the facebook videos
+			$output .= '<div class="feed-them-social-admin-input-wrap fts-premium-options-message" style="display:none;"><a target="_blank" href="http://www.slickremix.com/downloads/feed-them-social-premium-extension/">Premium Version Required</a><br/>The Facebook video feed allows you to view your uploaded videos from facebook. See these great examples and options of all the different ways you can bring new life to your wordpress site! <a href="http://feedthemsocial.com/facebook-videos-demo/" target="_blank">View Demo</a></div>';
+					}
 		// FACEBOOK PAGE ID
+				if (isset($_GET['page']) && $_GET['page'] !== 'fts-bar-settings-page') {
+		$output .= '<div class="fb-options-wrap">';
+				}
 		$output .= '<div class="feed-them-social-admin-input-wrap fb_page_id ">';
 		$output .= '<div class="feed-them-social-admin-input-label">'.__('Facebook ID (required)', 'feed-them-social').'</div>';
 		$output .= '<input type="text" name="fb_page_id" id="fb_page_id" class="feed-them-social-admin-input" value="'.$fb_page_id_option.'" />';
@@ -1075,6 +1083,7 @@ var myAjaxFTS = '<?php echo admin_url('admin-ajax.php'); ?>';
 			}
 		}
 		else {
+			
 			//Create Need Premium Fields
 			$fields = array(
 				__('# of Posts (default 5)', 'feed-them-social'),
@@ -1086,6 +1095,8 @@ var myAjaxFTS = '<?php echo admin_url('admin-ajax.php'); ?>';
 				__('Display Posts in Grid', 'feed-them-social'),
 				__('Center Grid', 'feed-them-social'),
 				__('Grid Stack Animation', 'feed-them-social'),
+				__('Align Like button or Box', 'feed-them-social'),
+				__('Hide Like button or Box', 'feed-them-social'),
 			);
 			$output .= $this->need_fts_premium_fields($fields);
 		}
@@ -1107,11 +1118,11 @@ var myAjaxFTS = '<?php echo admin_url('admin-ajax.php'); ?>';
 			// SUPER FACEBOOK GALLERY OPTIONS
 			$output .= '<div class="fts-super-facebook-options-wrap" style="display:none">';
 			// FACEBOOK IMAGE HEIGHT
-			$output .= '<div class="feed-them-social-admin-input-wrap facebook_name"><div class="feed-them-social-admin-input-label">'.__('Facebook Image Width', 'feed-them-social').'<br/><small>'.__('Max is 640px. You can use % too.', 'feed-them-social').'</small></div>
+			$output .= '<div class="feed-them-social-admin-input-wrap facebook_name"><div class="feed-them-social-admin-input-label">'.__('Facebook Image Width', 'feed-them-social').'<br/><small>'.__('Max width is 640px', 'feed-them-social').'</small></div>
 	           <input type="text" name="fts-slicker-instagram-container-image-width" id="fts-slicker-facebook-container-image-width" class="feed-them-social-admin-input" value="250px" placeholder="">
 	           <div class="clear"></div> </div>';
 			// FACEBOOK IMAGE WIDTH
-			$output .= '<div class="feed-them-social-admin-input-wrap facebook_name"><div class="feed-them-social-admin-input-label">'.__('Facebook Image Height', 'feed-them-social').'<br/><small>'.__('Max is 640px. You can use % too.', 'feed-them-social').'</small></div>
+			$output .= '<div class="feed-them-social-admin-input-wrap facebook_name"><div class="feed-them-social-admin-input-label">'.__('Facebook Image Height', 'feed-them-social').'<br/><small>'.__('Max width is 640px', 'feed-them-social').'</small></div>
 	           <input type="text" name="fts-slicker-instagram-container-image-height" id="fts-slicker-facebook-container-image-height" class="feed-them-social-admin-input" value="250px" placeholder="">
 	           <div class="clear"></div> </div>';
 			// FACEBOOK SPACE BETWEEN PHOTOS
@@ -1119,14 +1130,15 @@ var myAjaxFTS = '<?php echo admin_url('admin-ajax.php'); ?>';
 	           <input type="text" name="fts-slicker-facebook-container-margin" id="fts-slicker-facebook-container-margin" class="feed-them-social-admin-input" value="1px" placeholder="">
 	           <div class="clear"></div></div>';
 			// HIDE DATES, LIKES AND COMMENTS ETC
-			$output .= '<div class="feed-them-social-admin-input-wrap facebook_name"><div class="feed-them-social-admin-input-label">'.__('Hide Date, Likes and Comments', 'feed-them-social').'<br/><small>'.__('Facebook Fixed Height', 'feed-them-social').'Good for image sizes under 120px</small></div>
+			$output .= '<div class="feed-them-social-admin-input-wrap facebook_name"><div class="feed-them-social-admin-input-label">'.__('Hide Date, Likes and Comments', 'feed-them-social').'<br/><small>'.__('Good for image sizes under 120px', 'feed-them-social').'</small></div>
 	       		 <select id="fts-slicker-facebook-container-hide-date-likes-comments" name="fts-slicker-facebook-container-hide-date-likes-comments" class="feed-them-social-admin-input">
 	        	  <option value="no">'.__('No', 'feed-them-social').'</option><option value="yes">'.__('Yes', 'feed-them-social').'</option></select><div class="clear"></div></div>';
+												
 			// CENTER THE FACEBOOK CONTAINER
-			$output .= '<div class="feed-them-social-admin-input-wrap facebook_name"><div class="feed-them-social-admin-input-label">'.__('Center Facebook Container', 'feed-them-social').'</div>
+			$output .= '<div class="feed-them-social-admin-input-wrap" id="facebook_super_gallery_container"><div class="feed-them-social-admin-input-label">'.__('Center Facebook Container', 'feed-them-social').'</div>
 	        	<select id="fts-slicker-facebook-container-position" name="fts-slicker-facebook-container-position" class="feed-them-social-admin-input"><option value="no">'.__('No', 'feed-them-social').'</option><option value="yes">'.__('Yes', 'feed-them-social').'</option></select><div class="clear"></div></div>';
 			// ANIMATE PHOTO POSITIONING
-			$output .= ' <div class="feed-them-social-admin-input-wrap facebook_name"><div class="feed-them-social-admin-input-label">'.__('Image Stacking Animation On', 'feed-them-social').'<br/><small>'.__('This happens when resizing browsert', 'feed-them-social').'</small></div>
+			$output .= ' <div class="feed-them-social-admin-input-wrap" id="facebook_super_gallery_animate"><div class="feed-them-social-admin-input-label">'.__('Image Stacking Animation On', 'feed-them-social').'<br/><small>'.__('This happens when resizing browsert', 'feed-them-social').'</small></div>
 	        	 <select id="fts-slicker-facebook-container-animation" name="fts-slicker-facebook-container-animation" class="feed-them-social-admin-input"><option value="no">'.__('No', 'feed-them-social').'</option><option value="yes">'.__('Yes', 'feed-them-social').'</option></select><div class="clear"></div></div>';
 			// POSITION IMAGE LEFT RIGHT
 			$output .= '<div class="instructional-text" style="display: block;">'.__('These options allow you to make the thumbnail larger if you do not want to see black bars above or below your photos.', 'feed-them-social').' <a href="http://www.slickremix.com/docs/fit-thumbnail-on-facebook-galleries/" target="_blank">'.__('View Examples', 'feed-them-social').'</a> '.__('and simple details or leave default options.', 'feed-them-social').'</div>
@@ -1145,7 +1157,10 @@ var myAjaxFTS = '<?php echo admin_url('admin-ajax.php'); ?>';
 		}
 		if ($save_options == false) {
 			$output .= $this->generate_shortcode('updateTextArea_fb_page();', 'Facebook Page Feed Shortcode', 'facebook-page-final-shortcode');
-			$output .= '</form>';
+	 if (isset($_GET['page']) && $_GET['page'] !== 'fts-bar-settings-page') {
+			$output .= '</div>'; // END fb-options-wrap
+					}
+				$output .= '</form>';
 		}
 		else {
 			$output .= '<input type="submit" class="feed-them-social-admin-submit-btn" value="Save Changes" />';
@@ -1328,7 +1343,7 @@ var myAjaxFTS = '<?php echo admin_url('admin-ajax.php'); ?>';
 			$output .= '<div class="clear"></div>';
 			$output .= '</div><!--/feed-them-social-admin-input-wrap-->';
 			$output .= '<div class="fts-super-instagram-options-wrap"><h2>'.__('Super Instagram Gallery Options', 'feed-them-social').'</h2><div class="instructional-text">'.__('View demos and', 'feed-them-social').' <a href="#">read more</a> '.__('on setup instructions.', 'feed-them-social').'</div>';
-			$output .= '<div class="feed-them-social-admin-input-wrap"><div class="feed-them-social-admin-input-label">'.__('Instagram Image Size', 'feed-them-social').'<br/><small>'.__('Max is 640px. You can use % too.', 'feed-them-social').'</small></div>
+			$output .= '<div class="feed-them-social-admin-input-wrap"><div class="feed-them-social-admin-input-label">'.__('Instagram Image Size', 'feed-them-social').'<br/><small>'.__('Max width is 640px', 'feed-them-social').'</small></div>
            <input type="text" name="fts-slicker-instagram-container-image-size" id="fts-slicker-instagram-container-image-size" class="feed-them-social-admin-input" value="250px" placeholder="">
            <div class="clear"></div> </div>';
 			$output .= '<div class="feed-them-social-admin-input-wrap"><div class="feed-them-social-admin-input-label">'.__('Size of the Instagram Icon', 'feed-them-social').'<br/><small>'.__('Visible when you hover over photo', 'feed-them-social').'</small></div>
@@ -1369,7 +1384,7 @@ var myAjaxFTS = '<?php echo admin_url('admin-ajax.php'); ?>';
 		else {
 			//Create Need Premium Fields
 			$fields = array(
-				__('# of Pics (default 5)', 'feed-them-social'),
+				__('# of Pics (default 6)', 'feed-them-social'),
 				__('Display Photos in Popup', 'feed-them-social'),
 				__('Load More Posts', 'feed-them-social'),
 			);

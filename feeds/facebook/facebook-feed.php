@@ -18,13 +18,14 @@ class FTS_Facebook_Feed extends feed_them_social_functions {
 	// Display Facebook Feed
 	//**************************************************
 	function fts_fb_func($atts) {
-			
+		global $type, $grid;
 		$developer_mode = 'on';
-		//Facebook Follow Button Options
+		//Facebook Follow Button Options 
 		$fb_show_follow_btn = get_option('fb_show_follow_btn');
 		$fb_show_follow_btn_where = get_option('fb_show_follow_btn_where');
-		
+		if (isset($type) && $type == 'albums' || isset($type) && $type == 'albums_photos' || isset($grid) && $grid == 'yes' ) {
 		wp_enqueue_script( 'fts-masonry-pkgd', plugins_url( 'feed-them-social/feeds/js/masonry.pkgd.min.js'), array( 'jquery' ) );
+		}
 		//Make sure everything is reset
 		include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
 		//Eventually add premium page file
@@ -35,7 +36,9 @@ class FTS_Facebook_Feed extends feed_them_social_functions {
 				wp_enqueue_style( 'fts-popup', plugins_url( 'feed-them-social/feeds/css/magnific-popup.css'));
 				wp_enqueue_script( 'fts-popup-js', plugins_url( 'feed-them-social/feeds/js/magnific-popup.js'));
 				wp_enqueue_script( 'fts-images-loaded', plugins_url( 'feed-them-social/feeds/js/imagesloaded.pkgd.min.js' ));
+			if(!isset($video_album) && $video_album == 'yes' ){ 	
 				wp_enqueue_script( 'fts-global', plugins_url('feed-them-social/feeds/js/fts-global.js'), array( 'jquery' ));
+			}
 			}
 		}
 		else {
@@ -100,8 +103,9 @@ class FTS_Facebook_Feed extends feed_them_social_functions {
 		case 'albums':
 			$fts_view_fb_link ='https://www.facebook.com/'.$fts_fb_id.'/photos_stream?tab=photos_albums';
 			break;
+		// album photos and videos album	
 		case 'album_photos':
-			$fts_view_fb_link ='https://www.facebook.com/'.$fts_fb_id.'/photos_stream';
+			$fts_view_fb_link = isset($video_album) && $video_album == 'yes' ?  'https://www.facebook.com/'.$fts_fb_id.'/videos/' : 'https://www.facebook.com/'.$fts_fb_id.'/photos_stream/';
 			break;
 		case 'hashtag':
 			$fts_view_fb_link ='https://www.facebook.com/hashtag/'.$fts_fb_id.'/';
@@ -153,8 +157,14 @@ class FTS_Facebook_Feed extends feed_them_social_functions {
 			}
 			elseif ($type == 'album_photos') {
 				$mulit_data = array('page_data' => 'https://graph.facebook.com/'.$fts_fb_id.'?access_token='.$access_token.$language.'');
-				//Check If Ajax next URL needs to be used
-				$mulit_data['feed_data'] = isset($_REQUEST['next_url']) ? $_REQUEST['next_url'] : 'https://graph.facebook.com/'.$album_id.'/photos?limit='.$fts_limiter.'&access_token='.$access_token.$language.'';
+								//Check If Ajax next URL needs to be used
+								//The reason I did not create a whole new else if for the video album is because I did not want to duplicate all the code required to make the video because the videos gallery comes from the photo albums on facebook.
+								if (isset($video_album) && $video_album == 'yes') {
+								$mulit_data['feed_data'] = isset($_REQUEST['next_url']) ? $_REQUEST['next_url'] : 'https://graph.facebook.com/'.$album_id.'/videos?limit='.$fts_limiter.'&access_token='.$access_token.$language.'';
+								}
+								else {
+								$mulit_data['feed_data'] = isset($_REQUEST['next_url']) ? $_REQUEST['next_url'] : 'https://graph.facebook.com/'.$album_id.'/photos?limit='.$fts_limiter.'&access_token='.$access_token.$language.'';
+								}
 			}
 			elseif ($type == 'hashtag') {
 				$mulit_data = array(
@@ -164,9 +174,6 @@ class FTS_Facebook_Feed extends feed_them_social_functions {
 				$mulit_data['feed_data'] = isset($_REQUEST['next_url']) ? $_REQUEST['next_url'] : 'https://graph.facebook.com/search?q=%23'.$fts_fb_id.'&limit='.$fts_limiter.'&access_token='.$access_token.$language.'';
 				//Check If Ajax next URL needs to be used
 			}
-			// elseif ($type == 'videos') {
-			//  $mulit_data['feed_data'] = 'https://graph.facebook.com/'.$fts_fb_id.'/videos/uploaded?access_token='.$access_token.'';
-			//  }
 			elseif ($type == 'group') {
 				$mulit_data = array('page_data' => 'https://graph.facebook.com/'.$fts_fb_id.'?access_token='.$access_token.$language.'');
 				//Check If Ajax next URL needs to be used
@@ -188,9 +195,9 @@ class FTS_Facebook_Feed extends feed_them_social_functions {
 		$des = json_decode($response['page_data']);
 		$data = json_decode($response['feed_data']);
 		
-	//		echo '<pre>';
-	//		print_r($data->data);
-	//		echo '</pre>';
+//		echo '<pre>';
+//		print_r($data->data);
+//		echo '</pre>';
 			
 		//If events array Flip it so it's in proper order
 		if ($type == 'events') {
@@ -230,8 +237,9 @@ class FTS_Facebook_Feed extends feed_them_social_functions {
 				//******************
 				// SOCIAL BUTTON
 				//****************** 
-				if(isset($fb_show_follow_btn) && $fb_show_follow_btn !== 'dont-display' && $fb_show_follow_btn_where == 'fb-like-top-above-title' && $type !== 'event' && $type !== 'group'){
-					 	echo '<div class="fb-social-btn-top">';
+				if(isset($fb_show_follow_btn) && $fb_show_follow_btn !== 'dont-display' && $fb_show_follow_btn_where == 'fb-like-top-above-title' && $type !== 'event' && $type !== 'group' && isset($hide_like_option) && $hide_like_option !== 'yes'){
+					 $like_option_align_final = isset($like_option_align) ? 'fts-fb-social-btn-'.$like_option_align.'' : '';
+						echo '<div class="fb-social-btn-top '.$like_option_align_final.'">';
 						$this->social_follow_button('facebook', $id, $access_token);
 						echo '</div>';
 				}
@@ -270,10 +278,11 @@ class FTS_Facebook_Feed extends feed_them_social_functions {
 		//Make sure it's not ajaxing
 		if (!isset($_GET['load_more_ajaxing'])) {
 			$fts_grid = isset($fts_grid) ? $fts_grid : "";
-			if (!isset($FBtype) && $type == 'albums' || !isset($FBtype) && $type == 'album_photos' || $fts_grid == 'yes'  ) {
-		 	wp_enqueue_script( 'fts-masonry-pkgd', plugins_url( 'feed-them-social/feeds/js/masonry.pkgd.min.js'), array( 'jquery' ) );
+			if (!isset($FBtype) && $type == 'albums' || !isset($FBtype) && $type == 'album_photos' || $fts_grid == 'yes') {
+				if(isset($video_album) && $video_album == 'yes' ){ } else {
+				wp_enqueue_script( 'fts-masonry-pkgd', plugins_url( 'feed-them-social/feeds/js/masonry.pkgd.min.js'), array( 'jquery' ) ); 
 			?>
-		<script>
+<script>
 		 jQuery(window).load(function(){
 			 jQuery('.<?php echo $fts_dynamic_class_name ?>').masonry({
               // select the items we want to mason
@@ -281,17 +290,19 @@ class FTS_Facebook_Feed extends feed_them_social_functions {
             });
 		 });
         </script>
-	<?php if (!isset($FBtype) && $type == 'albums' || !isset($FBtype) && $type == 'album_photos' ) {  ?>
-        <div class="fts-slicker-facebook-photos fts-slicker-facebook-albums masonry js-masonry popup-gallery-fb <?php echo $fts_dynamic_class_name ?>" style="margin:auto" data-masonry-options='{ "isFitWidth": <?php if ($center_container == 'no') { ?>false<?php } else {?>true<?php } if ($image_stack_animation == 'no') { ?>, "transitionDuration": 0<?php } ?> }'>
-	<?php } ?>
-        <?php if ($fts_grid == 'yes') { ?>
-          <div class="fts-slicker-facebook-posts masonry js-masonry <?php if ($fts_fb_popup == 'yes') { ?>popup-gallery-fb-posts <?php } echo $fts_dynamic_class_name ?>" style="margin:auto" data-masonry-options='{ "isFitWidth": <?php if ($center_container == 'no') { ?>false<?php } else {?>true<?php } if ($image_stack_animation == 'no') { ?>, "transitionDuration": 0<?php } ?> }'>
-          <?php
-				}
+<?php } 
+		if (!isset($FBtype) && $type == 'albums' || !isset($FBtype) && $type == 'album_photos' ) {  ?>
+
+<div class="fts-slicker-facebook-photos fts-slicker-facebook-albums <?php if (isset($video_album) && $video_album == 'yes') { echo 'popup-video-gallery-fb'; } else { echo ' popup-gallery-fb masonry js-masonry'; } if (isset($images_align)) { echo ' popup-video-gallery-align-'.$images_align.''; } ?> popup-gallery-fb <?php echo $fts_dynamic_class_name ?>" style="margin:auto;" <?php if (isset($video_album) && $video_album !== 'yes') { ?>data-masonry-options='{ "isFitWidth": <?php if ($center_container == 'no') { ?>false<?php } else {?>true<?php } if ($image_stack_animation == 'no') { ?>, "transitionDuration": 0<?php } } ?> }'>
+<?php } ?>
+<?php if ($fts_grid == 'yes') { ?>
+<div class="fts-slicker-facebook-posts masonry js-masonry <?php if ($fts_fb_popup == 'yes') { ?>popup-gallery-fb-posts <?php } echo $fts_dynamic_class_name ?>" style="margin:auto" data-masonry-options='{ "isFitWidth": <?php if ($center_container == 'no') { ?>false<?php } else {?>true<?php } if ($image_stack_animation == 'no') { ?>, "transitionDuration": 0<?php } ?> }'>
+<?php
+       }
 			}
-			else {
-?>
-        <div class="fts-jal-fb-group-display fts-simple-fb-wrapper <?php if ($fts_fb_popup == 'yes') { ?>popup-gallery-fb-posts <?php } echo $fts_dynamic_class_name ?><?php if ($height !== 'auto' && empty($height) == NULL) {?> fts-fb-scrollable<?php } ?>" <?php if ($height !== 'auto' && empty($height) == NULL) {?>style="height:<?php echo $height; ?>"<?php } ?>> <?php }
+			else { ?>
+<div class="fts-jal-fb-group-display fts-simple-fb-wrapper <?php if ($fts_fb_popup == 'yes') { ?>popup-gallery-fb-posts <?php } echo $fts_dynamic_class_name ?><?php if ($height !== 'auto' && empty($height) == NULL) {?> fts-fb-scrollable<?php } ?>" <?php if ($height !== 'auto' && empty($height) == NULL) {?>style="height:<?php echo $height; ?>"<?php } ?>>
+<?php }
 		} //End ajaxing Check
 		$fb_post_data_cache = 'fb_'.$type.'_post_'.$fts_fb_id.'_num'.$fts_limiter.'';
 		if (file_exists($fb_post_data_cache) && !filesize($fb_post_data_cache) == 0 && filemtime($fb_post_data_cache) > time() - 900 && false !== strpos($fb_post_data_cache, '-num'.$fts_limiter.'' ) && !isset($_GET['load_more_ajaxing']) && $developer_mode !== 'on') {
@@ -304,6 +315,7 @@ class FTS_Facebook_Feed extends feed_them_social_functions {
 			$fb_single_events_array = array();
 			$set_zero = 0;
 			foreach ($data->data as $counter) {
+				
 				if ($set_zero==$fts_limiter)
 					break;
 					if ($type == 'events') {
@@ -360,6 +372,9 @@ class FTS_Facebook_Feed extends feed_them_social_functions {
 		$set_zero = 0;
 		//THE MAIN FEED
 		foreach ($data->data as $d) {
+			
+		$fts_dynamic_vid_name_string = trim($this->rand_string(10).'_'.$type);		
+		
 			if ($set_zero==$fts_limiter)
 				break;
 			//Create Facebook Variables
@@ -388,6 +403,10 @@ class FTS_Facebook_Feed extends feed_them_social_functions {
 			$FBpost_object_id = isset($d->object_id) ? $d->object_id : "";
 			$FBalbum_photo_count = isset($d->count) ? $d->count : "";
 			$FBalbum_cover = isset($d->cover_photo) ? $d->cover_photo : "";
+			
+			$FBvideo = isset($d->embed_html) ? $d->embed_html : "";
+			$FBvideoPicture = isset($d->format[2]->picture) ? $d->format[2]->picture : "";
+			
 			if ($FBalbum_cover) {
 				$photo_data = json_decode($response_post_array[$FBalbum_cover.'_photo']);
 			}
@@ -495,9 +514,9 @@ class FTS_Facebook_Feed extends feed_them_social_functions {
 			case 'wall':
 			case 'normal':
 			case 'photo':
-				print ' <div class="fts-jal-single-fb-post  fts-fb-photo-post-wrap" ';
+				print '<div class="fts-jal-single-fb-post  fts-fb-photo-post-wrap" ';
 				if ($type == 'album_photos' || $type == 'albums') {
-					print 'style="width:'.$image_width.'; height:'.$image_height.'; margin:'.$space_between_photos.'"';
+					print 'style="width:'.$image_width.' !important; height:'.$image_height.'!important; margin:'.$space_between_photos.'!important"';
 				}
 				if ($fts_grid == 'yes') {
 					print 'style="width:'.$fts_colmn_width.'; margin:'.$space_between_posts.'"';
@@ -539,7 +558,7 @@ class FTS_Facebook_Feed extends feed_them_social_functions {
 						if ($FBmessage) {
 							if (is_plugin_active('feed-them-premium/feed-them-premium.php')) {
 								// here we trim the words for the premium version. The $words string actually comes from the javascript
-								if ($words) {
+								if ($words !== '0') {
 									$more = isset($more) ? $more : "";
 									$trimmed_content = $this->fts_custom_trim_words($FBmessage, $words, $more);
 									print '<div class="fts-jal-fb-message">'.$trimmed_content.'';
@@ -550,7 +569,7 @@ class FTS_Facebook_Feed extends feed_them_social_functions {
 								}
 								else {
 									$FB_final_message = $this->fts_facebook_tag_filter($FBmessage);
-									print '<div class="fts-jal-fb-message">'.nl2br($FB_final_message).'';
+									print '<div class="fts-jal-fb-message">'; if ($words !== '0') { nl2br($FB_final_message);}
 									if ($fts_fb_popup == 'yes') {
 										print '<div class="fts-fb-caption"><a href="'.$FBlink.'" class="fts-view-on-facebook-link" target="_blank">'.__('View on Facebook', 'feed-them-social').'</a></div> ';
 									}
@@ -589,6 +608,12 @@ class FTS_Facebook_Feed extends feed_them_social_functions {
 								print '<div class="fts-fb-caption fts-fb-album-view-link" style="display:block;">';
 								if ($FBalbum_cover) {
 									print '<a href="https://graph.facebook.com/'.$FBalbum_cover.'/picture" class="fts-view-album-photos-large" target="_blank">'.__('View Photo', 'feed-them-social').'</a></div>';
+								}
+						elseif(isset($video_album) && $video_album == 'yes') {
+							if($play_btn !== 'yes'){	
+										print '<a href="'.$d->source.'"  data-poster="'.$d->format[3]->picture.'" id="fts-view-vid1-'.$fts_dynamic_vid_name_string.'" class="fts-view-fb-videos-large fts-view-fb-videos-btn fb-video-popup-'.$fts_dynamic_vid_name_string.'">'.__('View Video', 'feed-them-social').'</a>';		
+							}
+										print '</div>';
 								}
 								else {
 									print '<a href="https://graph.facebook.com/'.$FBpost_id.'/picture" class="fts-view-album-photos-large" target="_blank">'.__('View Photo', 'feed-them-social').'</a></div>';
@@ -649,8 +674,8 @@ class FTS_Facebook_Feed extends feed_them_social_functions {
 				//print_r($single_event_info);
 				//echo'</pre>';
 				//Event Cover Photo
-				$event_cover_photo = $single_event_cover_photo->cover->source;
-				$event_description = $single_event_info->description;
+				$event_cover_photo = isset($single_event_cover_photo->cover->source) ? $single_event_cover_photo->cover->source : "";
+				$event_description = isset($single_event_info->description) ? $single_event_info->description : "";
 					print '<div class="fts-jal-fb-right-wrap fts-events-list-wrap">';
 					//Link Picture
 					$FB_event_name = isset($single_event_info->name) ? $single_event_info->name : "";
@@ -697,7 +722,7 @@ class FTS_Facebook_Feed extends feed_them_social_functions {
 						print '<a target="_blank" class="fts-fb-ticket-info" href="'.$single_event_ticket_info->ticket_uri.'">Ticket Info</a>';
 					}
 					//Output Message
-							if (!empty($words) && $single_event_info->description && is_plugin_active('feed-them-premium/feed-them-premium.php')) {
+							if (!empty($words) && $event_description && is_plugin_active('feed-them-premium/feed-them-premium.php')) {
 								// here we trim the words for the premium version. The $words string actually comes from the javascript
 									print $this->fts_facebook_post_desc($event_description, $words, $FBtype, NULL, $FBby, $type);
 							} //END is_plugin_active
@@ -720,7 +745,7 @@ class FTS_Facebook_Feed extends feed_them_social_functions {
 					$spliturl= $url_parts['path'];
 					$path_components = explode('/', $spliturl);
 					$first_dir = $path_components[1];
-					$event_id_number = $path_components[2];
+					$event_id_number = isset($path_components[2]) && $path_components[2] ? $path_components[2] : '';
 				}
 				//end url check
 				if ($host == 'www.facebook.com' and $first_dir == 'events') {
@@ -945,10 +970,22 @@ class FTS_Facebook_Feed extends feed_them_social_functions {
 						print $this->fts_facebook_post_photo($FBlink, $type, $d->from->name, 'https://graph.facebook.com/'.$FBpost_object_id.'/picture', $image_position_lr, $image_position_top);
 					}
 					else {
-						print $this->fts_facebook_post_photo($FBlink, $type, $d->from->name, 'https://graph.facebook.com/'.$FBpost_id.'/picture', $image_position_lr, $image_position_top);
+						if (isset($video_album) && $video_album == 'yes'){
+						print $this->fts_facebook_post_photo($FBlink, $type, $d->from->name, $d->format[1]->picture, $image_position_lr, $image_position_top);
+						}
+						else {
+						print $this->fts_facebook_post_photo($FBlink, $type, $d->from->name, 'https://graph.facebook.com/'.$FBpost_id.'/picture/', $image_position_lr, $image_position_top);
+						}
 					}
 				};
 				print '<div class="slicker-facebook-album-photoshadow"></div>';
+				   // FB Video play button for facebook videos. This button takes data from our a tag and along with additional js in the magnific-popup.js we can now load html5 videos. SO lightweight this way because no pre-loading of videos are on the page. We only show the posterboard on mobile devices because tablets and desktops will auto load the videos. SRL
+							if(isset($video_album) && $video_album == 'yes') {	
+							if($play_btn == 'yes'){
+								$fb_play_btn_visible = isset($play_btn_visible) && $play_btn_visible== 'yes' ? ' visible-video-button' : '';
+								print '<a href="'.$d->source.'" data-poster="'.$d->format[3]->picture.'" id="fts-view-vid1-'.$fts_dynamic_vid_name_string.'" title="'.$FBdescription.'" class="fts-view-fb-videos-btn fb-video-popup-'.$fts_dynamic_vid_name_string . $fb_play_btn_visible.' fts-slicker-backg" style="height:'.$play_btn_size.' !important; width:'.$play_btn_size.'; line-height: '.$play_btn_size.'; font-size:'.$play_btn_size.'"><span class="fts-fb-video-icon" style="height:'.$play_btn_size.' width:'.$play_btn_size.'; line-height:'.$play_btn_size.'; font-size:'.$play_btn_size.'"></span></a>';
+								 } 
+							 }
 				if (!$type == 'album_photos') {
 					print '<div class="fts-jal-fb-description-wrap" style="display:none">';
 					//Output Photo Name
@@ -1017,6 +1054,7 @@ class FTS_Facebook_Feed extends feed_them_social_functions {
 			print '</div>';
 			$set_zero++;
 		}
+if (isset($loadmore) && $loadmore == 'button' || isset($loadmore) && $loadmore == 'autoscroll') {		
 		//******************
 		//Load More BUTTON Start
 		//****************** 
@@ -1079,22 +1117,31 @@ var nextURL_<?php echo $_REQUEST['fts_dynamic_name']; ?>= "<?php echo $_REQUEST[
 						url: myAjaxFTS,
 						success: function( data ) {
 							console.log('Well Done and got this from sever: ' + data);
-				 <?php if ($FBtype && $type == 'albums' || $FBtype && $type == 'album_photos' || $fts_grid == 'yes') {  ?>
+				 <?php if ($FBtype && $type == 'albums'|| $FBtype && $type == 'album_photos' && $video_album !== 'yes' || $fts_grid == 'yes') {  ?>
 					 	jQuery('.<?php echo $fts_dynamic_class_name ?>').append(data).filter('.<?php echo $fts_dynamic_class_name ?>').html();
-							jQuery('.<?php echo $fts_dynamic_class_name ?>').masonry( 'reloadItems' );
-						setTimeout(function() {
-      // Do something after 3 seconds
-      // This can be direct code, or call to some other function
-	  jQuery('.<?php echo $fts_dynamic_class_name ?>').masonry( 'layout' );
-     }, 500);
+													jQuery('.<?php echo $fts_dynamic_class_name ?>').masonry( 'reloadItems' );
+												setTimeout(function() {
+												// Do something after 3 seconds
+												// This can be direct code, or call to some other function
+									jQuery('.<?php echo $fts_dynamic_class_name ?>').masonry( 'layout' );
+											}, 500);
 						if(!nextURL_<?php echo $_REQUEST['fts_dynamic_name']; ?> || nextURL_<?php echo $_REQUEST['fts_dynamic_name']; ?> == 'no more'){
 						  jQuery('#loadMore_<?php echo $fts_dynamic_name ?>').replaceWith('<div class="fts-fb-load-more no-more-posts-fts-fb"><?php _e('No More Photos', 'feed-them-social') ?></div>');
 						  jQuery('#loadMore_<?php echo $fts_dynamic_name ?>').removeAttr('id');
 						  jQuery(".<?php echo $fts_dynamic_class_name ?>").unbind('scroll');
 						}
 					<?php }
-			else { ?>
-						var result = jQuery('#output_<?php echo $fts_dynamic_name ?>').append(data).filter('#output_<?php echo $fts_dynamic_name ?>').html();
+			else { 
+										
+																if(isset($video_album) && $video_album == 'yes') { ?>
+													var result = jQuery(data).insertBefore( jQuery('#output_<?php echo $fts_dynamic_name ?>') );
+													
+					var result = jQuery('.feed_dynamic_<?php echo $fts_dynamic_name ?>_album_photos').append(data).filter('#output_<?php echo $fts_dynamic_name ?>').html();
+												<?php }else{ ?>
+												
+					var result = jQuery('#output_<?php echo $fts_dynamic_name ?>').append(data).filter('#output_<?php echo $fts_dynamic_name ?>').html();
+												
+												<?php } ?>
 						jQuery('#output_<?php echo $fts_dynamic_name ?>').html(result);
 						if(!nextURL_<?php echo $_REQUEST['fts_dynamic_name']; ?> || nextURL_<?php echo $_REQUEST['fts_dynamic_name']; ?> == 'no more'){
 						  jQuery('#loadMore_<?php echo $fts_dynamic_name ?>').replaceWith('<div class="fts-fb-load-more no-more-posts-fts-fb"><?php _e('No More Posts', 'feed-them-social') ?></div>');
@@ -1121,17 +1168,20 @@ var nextURL_<?php echo $_REQUEST['fts_dynamic_name']; ?>= "<?php echo $_REQUEST[
 		//Make sure it's not ajaxing
 		if (!isset($_GET['load_more_ajaxing'])) {
 			$fts_dynamic_name = $_REQUEST['fts_dynamic_name'];
-			// this div returns outputs our ajax request via jquery appenc html from above
+			// this div returns outputs our ajax request via jquery appenc html from above  style="display:nonee;"
 			print '<div id="output_'.$fts_dynamic_name.'"></div>';
 			if (is_plugin_active('feed-them-premium/feed-them-premium.php') && $scrollMore == 'autoscroll') {
 				print '<div id="loadMore_'.$fts_dynamic_name.'" class="fts-fb-load-more fts-fb-autoscroll-loader">Facebook</div>';
 			}
 		}
+	
+}// end of if loadmore is button or autoscroll
+
 		print '</div>'; // closing main div for fb photos, groups etc
 ?>
-		 <?php //only show this script if the height option is set to a number
+<?php //only show this script if the height option is set to a number
 		if ($height !== 'auto' && empty($height) == NULL) { ?>
-										 <script>
+<script>
 											// this makes it so the page does not scroll if you reach the end of scroll bar or go back to top
 											jQuery.fn.isolatedScrollFacebookFTS = function() {
 													this.bind('mousewheel DOMMouseScroll', function (e) {
@@ -1146,15 +1196,15 @@ var nextURL_<?php echo $_REQUEST['fts_dynamic_name']; ?>= "<?php echo $_REQUEST[
 											};
 											jQuery('.fts-fb-scrollable').isolatedScrollFacebookFTS();
 										 </script>
-									   <?php } //end $height !== 'auto' && empty($height) == NULL ?>
-			<?php
+<?php } //end $height !== 'auto' && empty($height) == NULL ?>
+<?php
 		//Make sure it's not ajaxing
 		if (!isset($_GET['load_more_ajaxing'])) {
 			print '<div class="clear"></div><div id="fb-root"></div>';
 			if (is_plugin_active('feed-them-premium/feed-them-premium.php') && $scrollMore == 'button') {
 				// fts-fb-header-wrapper
 				if ($fts_grid !== 'yes' && $type !== 'album_photos' && $type !== 'albums') {  print '<div class="fts-fb-load-more-wrapper">'; }
-				print '<div id="loadMore_'.$fts_dynamic_name.'" class="fts-fb-load-more">'.__('Load More', 'feed-them-social').'</div>';
+				print '<div id="loadMore_'.$fts_dynamic_name.'" style="max-width:'.$loadmore_btn_maxwidth.';margin:'.$loadmore_btn_margin.' auto '.$loadmore_btn_margin.'" class="fts-fb-load-more">'.__('Load More', 'feed-them-social').'</div>';
 				if ($fts_grid !== 'yes' && $type !== 'album_photos' && $type !== 'albums') {  print '</div>'; }
 			}
 		}//End Check
@@ -1162,10 +1212,13 @@ var nextURL_<?php echo $_REQUEST['fts_dynamic_name']; ?>= "<?php echo $_REQUEST[
 		//******************
 		// SOCIAL BUTTON
 		//****************** 
-		if(isset($fb_show_follow_btn) && $fb_show_follow_btn !== 'dont-display' && $fb_show_follow_btn_where == 'fb-like-below'){
-					echo '<div class="fb-social-btn-bottom">';
+	if (!isset($_GET['load_more_ajaxing'])) {
+		if(isset($fb_show_follow_btn) && $fb_show_follow_btn !== 'dont-display' && $fb_show_follow_btn_where == 'fb-like-below'  && $type !== 'event' && $type !== 'group' && isset($hide_like_option) && $hide_like_option !== 'yes'){
+					$like_option_align_final = isset($like_option_align) ? 'fts-fb-social-btn-'.$like_option_align.'' : '';
+					echo '<div class="fb-social-btn-bottom '.$like_option_align_final.'">';
 					$this->social_follow_button('facebook', $id, $access_token);
 					echo '</div>';
+		 }
 		}
 		return ob_get_clean();
 	}
@@ -1239,7 +1292,7 @@ var nextURL_<?php echo $_REQUEST['fts_dynamic_name']; ?>= "<?php echo $_REQUEST[
 					$output = '<div class="fts-jal-fb-description">'.$trimmed_content.'</div>';
 					return $output;
 				}
-				else {
+				elseif($words !== '0') {
 					$FBdescription = $this->fts_facebook_tag_filter($FBdescription);
 					$output = '<div class="fts-jal-fb-description">'.nl2br($FBdescription).'</div>';
 					return $output;
@@ -1259,12 +1312,25 @@ var nextURL_<?php echo $_REQUEST['fts_dynamic_name']; ?>= "<?php echo $_REQUEST[
 					return $output;
 				}
 			}
-			//Do for Default feeds
+			//Do for Default feeds or the video gallery feed
 			else {
 				$FBdescription = $this->fts_facebook_tag_filter($FBdescription);
-				$output = '<div class="fts-jal-fb-description">'.nl2br($FBdescription).'</div>';
+				if ($words && $words !== '0') {
+				$more = isset($more) ? $more : "";
+				$trimmed_content = $this->fts_custom_trim_words($FBdescription, $words, $more);
+				$output = '<div class="fts-jal-fb-description">'.$trimmed_content.'</div>';
+				}
+				else {
+							$output = '<div class="fts-jal-fb-description">';
+							$output .= nl2br($FBdescription); 
+							$output .= '</div>';
+				}
+				if (!empty($FBlink)) {
 				$output .= '<div>By: <a href="'.$FBlink.'">'.$FBby.'<a/></div>';
+				}
+				if($words !== '0') {	
 				return $output;
+					}
 			}
 		default:
 			include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
@@ -1276,7 +1342,7 @@ var nextURL_<?php echo $_REQUEST['fts_dynamic_name']; ?>= "<?php echo $_REQUEST[
 					$output = '<div class="jal-fb-description">'.$trimmed_content.'</div>';
 					return $output;
 				}
-				else {
+				elseif($words !== '0') {
 					$FBdescription = $this->fts_facebook_tag_filter($FBdescription);
 					$output = '<div class="jal-fb-description">'.nl2br($FBdescription).'</div>';
 					return $output;
@@ -1335,7 +1401,13 @@ var nextURL_<?php echo $_REQUEST['fts_dynamic_name']; ?>= "<?php echo $_REQUEST[
 			$output = '<a href="http://facebook.com/events/'.$single_event_id.'" target="_blank" class="fts-jal-fb-see-more">'.__('View on Facebook', 'feed-them-social').'</a>';
 			return $output;
 		case 'photo':
+		if (!empty($FBlink)) {
 			$output = '<a href="'.$FBlink.'" target="_blank" class="fts-jal-fb-see-more">';
+		}
+		// exception for videos
+		else {
+			$output = '<a href="http://facebook.com/'.$FBpost_id.'/" target="_blank" class="fts-jal-fb-see-more">';
+		}
 			if ($type == 'album_photos' && $hide_date_likes_comments == 'yes') { }
 			else {
 				$output .= ''.$final_FBpost_like_count.' '.$final_FBpost_comments_count.' '.$final_FBpost_share_count.' &nbsp;&nbsp;';
@@ -1367,7 +1439,9 @@ var nextURL_<?php echo $_REQUEST['fts_dynamic_name']; ?>= "<?php echo $_REQUEST[
 	// Trim Word
 	//**************************************************
 	function fts_custom_trim_words( $text, $num_words = 45, $more) {
-		$more = __( '...' );
+		
+		isset($num_words) && $num_words !== 0 ? $more = __( '...' ) : '';
+		
 		$text = nl2br($text);
 		//Filter for Hashtags and Mentions Before returning.
 		$text= $this->fts_facebook_tag_filter($text);
@@ -1400,13 +1474,14 @@ var nextURL_<?php echo $_REQUEST['fts_dynamic_name']; ?>= "<?php echo $_REQUEST[
 	//**************************************************
 	// Create a random string
 	//**************************************************
-	function rand_string( $length ) {
-		$chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
-		$size = strlen( $chars );
-		for ( $i = 0; $i < $length; $i++ ) {
-			$str = $chars[ rand( 0, $size - 1 ) ];
+	function rand_string( $length = 10) {
+			$characters = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+		$charactersLength = strlen($characters);
+		$randomString = '';
+		for ($i = 0; $i < $length; $i++) {
+			$randomString .= $characters[rand(0, $charactersLength - 1)];
 		}
-		return $str;
+		return $randomString;
 	}
 }// FTS_Facebook_Feed END CLASS
 ?>
