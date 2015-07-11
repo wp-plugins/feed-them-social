@@ -1,5 +1,4 @@
-<?php
-namespace feedthemsocial;
+<?php namespace feedthemsocial;
 class FTS_Facebook_Feed extends feed_them_social_functions {
 	function __construct() {
 		add_shortcode( 'fts facebook group', array($this, 'fts_fb_func'));
@@ -140,7 +139,7 @@ class FTS_Facebook_Feed extends feed_them_social_functions {
 			//URL to get Feeds
 			if ($type == 'page' && $posts_displayed == 'page_only') {
 				$mulit_data = array('page_data' => 'https://graph.facebook.com/'.$fts_fb_id.'?access_token='.$access_token.$language.'');
-				$mulit_data['feed_data'] = isset($_REQUEST['next_url']) ? $_REQUEST['next_url'] : 'https://graph.facebook.com/'.$fts_fb_id.'/posts?limit='.$fts_limiter.'&access_token='.$access_token.$language.'';
+				$mulit_data['feed_data'] = isset($_REQUEST['next_url']) ? $_REQUEST['next_url'] : 'https://graph.facebook.com/'.$fts_fb_id.'/posts?fields=id,caption,created_time,description,from,icon,link,message,name,object_id,picture,place,shares,source,status_type,story,to,type&limit='.$fts_limiter.'&access_token='.$access_token.$language.'';
 			}
 			elseif ($type == 'events') {
 				date_default_timezone_set(get_option('fts-timezone'));
@@ -153,17 +152,17 @@ class FTS_Facebook_Feed extends feed_them_social_functions {
 			elseif ($type == 'albums') {
 				$mulit_data = array('page_data' => 'https://graph.facebook.com/'.$fts_fb_id.'?access_token='.$access_token.$language.'');
 				//Check If Ajax next URL needs to be used
-				$mulit_data['feed_data'] = isset($_REQUEST['next_url']) ? $_REQUEST['next_url'] : 'https://graph.facebook.com/'.$fts_fb_id.'/albums?limit='.$fts_limiter.'&access_token='.$access_token.$language.'';
+				$mulit_data['feed_data'] = isset($_REQUEST['next_url']) ? $_REQUEST['next_url'] : 'https://graph.facebook.com/'.$fts_fb_id.'/albums?fields=id,created_time,name,from,cover_photo,count,updated_time,type&limit='.$fts_limiter.'&access_token='.$access_token.$language.'';
 			}
 			elseif ($type == 'album_photos') {
 				$mulit_data = array('page_data' => 'https://graph.facebook.com/'.$fts_fb_id.'?access_token='.$access_token.$language.'');
 								//Check If Ajax next URL needs to be used
 								//The reason I did not create a whole new else if for the video album is because I did not want to duplicate all the code required to make the video because the videos gallery comes from the photo albums on facebook.
 								if (isset($video_album) && $video_album == 'yes') {
-								$mulit_data['feed_data'] = isset($_REQUEST['next_url']) ? $_REQUEST['next_url'] : 'https://graph.facebook.com/'.$album_id.'/videos?limit='.$fts_limiter.'&access_token='.$access_token.$language.'';
+								$mulit_data['feed_data'] = isset($_REQUEST['next_url']) ? $_REQUEST['next_url'] : 'https://graph.facebook.com/'.$album_id.'/videos?fields=id,created_time,description,from,icon,link,message,name,object_id,picture,place,shares,source,to,type,format,embed_html&limit='.$fts_limiter.'&access_token='.$access_token.$language.'';
 								}
 								else {
-								$mulit_data['feed_data'] = isset($_REQUEST['next_url']) ? $_REQUEST['next_url'] : 'https://graph.facebook.com/'.$album_id.'/photos?limit='.$fts_limiter.'&access_token='.$access_token.$language.'';
+								$mulit_data['feed_data'] = isset($_REQUEST['next_url']) ? $_REQUEST['next_url'] : 'https://graph.facebook.com/'.$album_id.'/photos?fields=id,caption,created_time,description,from,icon,link,message,name,object_id,picture,place,shares,source,status_type,story,to,type&limit='.$fts_limiter.'&access_token='.$access_token.$language.'';
 								}
 			}
 			elseif ($type == 'hashtag') {
@@ -177,12 +176,12 @@ class FTS_Facebook_Feed extends feed_them_social_functions {
 			elseif ($type == 'group') {
 				$mulit_data = array('page_data' => 'https://graph.facebook.com/'.$fts_fb_id.'?access_token='.$access_token.$language.'');
 				//Check If Ajax next URL needs to be used
-				$mulit_data['feed_data'] = isset($_REQUEST['next_url']) ? $_REQUEST['next_url'] : 'https://graph.facebook.com/'.$fts_fb_id.'/feed?limit='.$fts_limiter.'&access_token='.$access_token.$language.'';
+				$mulit_data['feed_data'] = isset($_REQUEST['next_url']) ? $_REQUEST['next_url'] : 'https://graph.facebook.com/'.$fts_fb_id.'/feed?fields=id,caption,created_time,description,from,icon,link,message,name,object_id,picture,place,shares,source,status_type,story,to,type&limit='.$fts_limiter.'&access_token='.$access_token.$language.'';
 			}
 			else {
 				$mulit_data = array('page_data' => 'https://graph.facebook.com/'.$fts_fb_id.'?access_token='.$access_token.$language.'');
 				//Check If Ajax next URL needs to be used
-				$mulit_data['feed_data'] = isset($_REQUEST['next_url']) ? $_REQUEST['next_url'] : 'https://graph.facebook.com/'.$fts_fb_id.'/feed?limit='.$fts_limiter.'&access_token='.$access_token.$language.'';
+				$mulit_data['feed_data'] = isset($_REQUEST['next_url']) ? $_REQUEST['next_url'] : 'https://graph.facebook.com/'.$fts_fb_id.'/feed?fields=id,caption,created_time,description,from,icon,link,message,name,object_id,picture,place,shares,source,status_type,story,to,type&limit='.$fts_limiter.'&access_token='.$access_token.$language.'';
 			}
 			$response = $this->fts_get_feed_json($mulit_data);
 			//Make sure it's not ajaxing
@@ -193,12 +192,7 @@ class FTS_Facebook_Feed extends feed_them_social_functions {
 		} // end main else
 		//Json decode data and build it from cache or response
 		$des = json_decode($response['page_data']);
-		$data = json_decode($response['feed_data']);
-		
-//		echo '<pre>';
-//		print_r($data->data);
-//		echo '</pre>';
-			
+		$data = json_decode($response['feed_data']);			
 		//If events array Flip it so it's in proper order
 		if ($type == 'events') {
 						
@@ -346,7 +340,7 @@ class FTS_Facebook_Feed extends feed_them_social_functions {
 							$fb_post_array[$post_data_key.'_video'] = 'https://graph.facebook.com/'.$post_data_key;
 						}
 						//Photo
-						$FBalbum_cover = isset($counter->cover_photo) ? $counter->cover_photo : "";
+						$FBalbum_cover = isset($counter->cover_photo->id) ? $counter->cover_photo->id : "";
 						if ($type == 'albums' && !$FBalbum_cover) {
 							unset($counter);
 							continue;
@@ -402,7 +396,7 @@ class FTS_Facebook_Feed extends feed_them_social_functions {
 			$FBpost_comments_count_array = isset($d->comments->data) ? $d->comments->data : "";
 			$FBpost_object_id = isset($d->object_id) ? $d->object_id : "";
 			$FBalbum_photo_count = isset($d->count) ? $d->count : "";
-			$FBalbum_cover = isset($d->cover_photo) ? $d->cover_photo : "";
+			$FBalbum_cover = isset($d->cover_photo->id) ? $d->cover_photo->id : "";
 			
 			$FBvideo = isset($d->embed_html) ? $d->embed_html : "";
 			$FBvideoPicture = isset($d->format[2]->picture) ? $d->format[2]->picture : "";
@@ -1021,7 +1015,7 @@ class FTS_Facebook_Feed extends feed_them_social_functions {
 				print '>';
 				//Output Photo Picture
 				if ($FBalbum_cover) {
-					print $this->fts_facebook_post_photo($FBlink, $type, $d->from->name, $d->cover_photo, $image_position_lr, $image_position_top);
+					print $this->fts_facebook_post_photo($FBlink, $type, $d->from->name, $d->cover_photo->id, $image_position_lr, $image_position_top);
 				};
 				print '<div class="slicker-facebook-album-photoshadow"></div>';
 				if (!$type == 'albums') {

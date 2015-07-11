@@ -3,7 +3,7 @@ Contributors: slickremix
 Tags:  facebook photos, facebook videos, videos, facebook albums, albums, photos facebook, photo, facebook feed, facebook posts, hastags, social, social plugin, social networking, networking, custom feed, custom facebook feed, facebook plugin, facebook group, facebook groups, events, facebook events, facebook page events, facebook group events, facebook page, facebook pages, twitter, twitter plugin, vine, vine videos, vine gallery, vine plugin, vine seo, instagram, instagram plugin, feed me social, social plugin, feed, feeds, shortcode, facebook wall, slickremix, plugin, pages, posts, images, page, post, image, youtube, youtube feed, youtube channel, youtube video, youtube videos, videos, youtube embed, embed, video iframe, admin, comments, widgets, seo, wordpress, pinterest, pinterest boards, pinterest feeds, pinterest photos, pinterest widget, pinterest widgets, instagram popup, Facebook videos, twitter videos
 Requires at least: 3.6.0
 Tested up to: 4.2.2
-Stable tag: 1.8.5
+Stable tag: 1.8.6
 License: GPLv2 or later
 
 Display custom feeds for Facebook Pages, Groups, Events, Album Photos, Videos and Covers -Twitter, Instagram, Pinterest and YouTube on pages, posts or widgets.
@@ -43,7 +43,7 @@ If you're looking for more than just a custom facebook feed our plugin includes 
  * [Pinterest Latest Pins from a User](http://feedthemsocial.com/pinterest-demo-pins-from-user/)
   
 = PREMIUM Demos =
- * [Youtube + Instagram + Pinterest Feeds Demo](http://feedthemsocial.com/youtube-instagram/)
+ * [Facebook Video Feed Demo](http://feedthemsocial.com/facebook-videos-demo/)
  * [YouTube Feed Demo](http://feedthemsocial.com/youtube-demo-1-large-with-4-video-per-row/)
 
 = PREMIUM FTS Bar =
@@ -62,6 +62,10 @@ If you enjoy using our plugin please tell others. [Click here to share](http://w
   * Extract the zip file and drop the contents in the wp-content/plugins/ directory of your WordPress installation and then activate the Plugin from Plugins page. 
 
 == Changelog ==
+= Version 1.8.6 Saturday, July 11th, 2015 =
+  * MAJOR: Facebook: [New API v2.4 update released July 8th from Facebook](https://developers.facebook.com/docs/apps/changelog) so we had to make a few changes to calls in the Facebook feeds only. All previously created APPS using v2.3 will still work with this update unless you are using the Album Covers feed. Then you will need to create a new APP on Facebook. It is suggested that you create a new APP in Facebook and replace your old APP Token but not required with this update. [http://feedthemsocial.com/facebook-videos-demo/](http://www.slickremix.com/docs/create-facebook-app-id-or-user-token)
+  * FIXED: Decrease font size for share icon slightly and make sure the font-style is normal so other themes don't override it.
+		
 = Version 1.8.5 Wednesday, July 8th, 2015 =
   * FIXED: Fatal error on install for users under php 5.3 due to new namespace name overiding our initial php version error check.
   * FIXED: Misc cleanup on files to speed things up.
