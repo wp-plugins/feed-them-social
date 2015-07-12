@@ -125,19 +125,19 @@ class FTS_settings_page {
 		<div style="float:left; max-width:330px"> <h2><?php _e('TimeZone', 'feed-them-social'); ?></h2>
 		    <fieldset>
 		        <select id="fts-timezone" name="fts-timezone">
+		          <option value="Kwajalein" <?php if($ftsTimezone == "Kwajalein") echo 'selected="selected"' ?> >
+		          <?php _e('UTC-12:00'); ?>
+		          </option>
 		          <option value="Pacific/Midway" <?php if($ftsTimezone == "Pacific/Midway") echo 'selected="selected"' ?> >
 		          <?php _e('UTC-11:00'); ?>
 		          </option>
-		          <option value="Etc/UTC+10" <?php if($ftsTimezone == "Etc/UTC+10") echo 'selected="selected"' ?> >
+		          <option value="Pacific/Honolulu" <?php if($ftsTimezone == "Pacific/Honolulu") echo 'selected="selected"' ?> >
 		          <?php _e('UTC-10:00'); ?>
 		          </option>
-		          <option value="Pacific/Marquesas" <?php if($ftsTimezone == "Pacific/Marquesas") echo 'selected="selected"' ?> >
-		          <?php _e('UTC-09:30'); ?>
-		          </option>
-		          <option value="Pacific/Gambier" <?php if($ftsTimezone == "Pacific/Gambier") echo 'selected="selected"' ?> >
+		          <option value="America/Anchorage" <?php if($ftsTimezone == "America/Anchorage") echo 'selected="selected"' ?> >
 		          <?php _e('UTC-09:00'); ?>
 		          </option>
-		          <option value="Etc/UTC+8" <?php if($ftsTimezone == "Etc/UTC+8") echo 'selected="selected"' ?> >
+		          <option value="America/Los_Angeles" <?php if($ftsTimezone == "America/Los_Angeles") echo 'selected="selected"' ?> >
 		          <?php _e('UTC-08:00'); ?>
 		          </option>
 		          <option value="America/Denver" <?php if($ftsTimezone == "America/Denver") echo 'selected="selected"' ?> >
@@ -146,13 +146,13 @@ class FTS_settings_page {
 		          <option value="America/Chicago" <?php if($ftsTimezone == "America/Chicago") echo 'selected="selected"' ?> >
 		          <?php _e('UTC-06:00'); ?>
 		          </option>
-		          <option value="America/Havana" <?php if($ftsTimezone == "America/Havana") echo 'selected="selected"' ?> >
+		          <option value="America/New_York" <?php if($ftsTimezone == "America/New_York") echo 'selected="selected"' ?> >
 		          <?php _e('UTC-05:00'); ?>
 		          </option>
 		          <option value="America/Caracas" <?php if($ftsTimezone == "America/Caracas") echo 'selected="selected"' ?> >
 		          <?php _e('UTC-04:30'); ?>
 		          </option>
-		          <option value="America/Glace_Bay" <?php if($ftsTimezone == "America/Glace_Bay") echo 'selected="selected"' ?> >
+		          <option value="America/Halifax" <?php if($ftsTimezone == "America/Halifax") echo 'selected="selected"' ?> >
 		          <?php _e('UTC-04:00'); ?>
 		          </option>
 		          <option value="America/St_Johns" <?php if($ftsTimezone == "America/St_Johns") echo 'selected="selected"' ?> >
@@ -226,7 +226,7 @@ class FTS_settings_page {
 		          <option value="Australia/Lord_Howe" <?php if($ftsTimezone == "Australia/Lord_Howe") echo 'selected="selected"' ?> >
 		          <?php _e('UTC+10:30'); ?>
 		          </option>
-		          <option value="Etc/UTC-11" <?php if($ftsTimezone == "Etc/UTC-11") echo 'selected="selected"' ?> >
+		          <option value="Asia/Magadan" <?php if($ftsTimezone == "Asia/Magadan") echo 'selected="selected"' ?> >
 		          <?php _e('UTC+11:00'); ?>
 		          </option>
 		          <option value="Pacific/Norfolk" <?php if($ftsTimezone == "Pacific/Norfolk") echo 'selected="selected"' ?> >
