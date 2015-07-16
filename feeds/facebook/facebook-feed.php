@@ -138,24 +138,24 @@ class FTS_Facebook_Feed extends feed_them_social_functions {
 			$language = !empty($language_option) ? '&locale='.$language_option : '';
 			//URL to get Feeds
 			if ($type == 'page' && $posts_displayed == 'page_only') {
-				$mulit_data = array('page_data' => 'https://graph.facebook.com/'.$fts_fb_id.'?access_token='.$access_token.$language.'');
+				$mulit_data = array('page_data' => 'https://graph.facebook.com/'.$fts_fb_id.'?fields=id,name,description&access_token='.$access_token.$language.'');
 				$mulit_data['feed_data'] = isset($_REQUEST['next_url']) ? $_REQUEST['next_url'] : 'https://graph.facebook.com/'.$fts_fb_id.'/posts?fields=id,caption,created_time,description,from,icon,link,message,name,object_id,picture,place,shares,source,status_type,story,to,type&limit='.$fts_limiter.'&access_token='.$access_token.$language.'';
 			}
 			elseif ($type == 'events') {
 				date_default_timezone_set(get_option('fts-timezone'));
 				$date = date('Y-m-d');
-				$mulit_data = array('page_data' => 'https://graph.facebook.com/'.$fts_fb_id.'?access_token='.$access_token.$language.'');
+				$mulit_data = array('page_data' => 'https://graph.facebook.com/'.$fts_fb_id.'?fields=id,name&access_token='.$access_token.$language.'');
 				//Check If Ajax next URL needs to be used
 				$mulit_data['feed_data'] = isset($_REQUEST['next_url']) ? $_REQUEST['next_url'] : 'https://graph.facebook.com/'.$fts_fb_id.'/events?since='.$date.'&access_token='.$access_token.$language.'';
 
 			}
 			elseif ($type == 'albums') {
-				$mulit_data = array('page_data' => 'https://graph.facebook.com/'.$fts_fb_id.'?access_token='.$access_token.$language.'');
+				$mulit_data = array('page_data' => 'https://graph.facebook.com/'.$fts_fb_id.'?fields=id,name,description&access_token='.$access_token.$language.'');
 				//Check If Ajax next URL needs to be used
 				$mulit_data['feed_data'] = isset($_REQUEST['next_url']) ? $_REQUEST['next_url'] : 'https://graph.facebook.com/'.$fts_fb_id.'/albums?fields=id,created_time,name,from,cover_photo,count,updated_time,type&limit='.$fts_limiter.'&access_token='.$access_token.$language.'';
 			}
 			elseif ($type == 'album_photos') {
-				$mulit_data = array('page_data' => 'https://graph.facebook.com/'.$fts_fb_id.'?access_token='.$access_token.$language.'');
+				$mulit_data = array('page_data' => 'https://graph.facebook.com/'.$fts_fb_id.'?fields=id,name,description&access_token='.$access_token.$language.'');
 								//Check If Ajax next URL needs to be used
 								//The reason I did not create a whole new else if for the video album is because I did not want to duplicate all the code required to make the video because the videos gallery comes from the photo albums on facebook.
 								if (isset($video_album) && $video_album == 'yes') {
@@ -174,12 +174,12 @@ class FTS_Facebook_Feed extends feed_them_social_functions {
 				//Check If Ajax next URL needs to be used
 			}
 			elseif ($type == 'group') {
-				$mulit_data = array('page_data' => 'https://graph.facebook.com/'.$fts_fb_id.'?access_token='.$access_token.$language.'');
+				$mulit_data = array('page_data' => 'https://graph.facebook.com/'.$fts_fb_id.'?fields=id,name,description&access_token='.$access_token.$language.'');
 				//Check If Ajax next URL needs to be used
 				$mulit_data['feed_data'] = isset($_REQUEST['next_url']) ? $_REQUEST['next_url'] : 'https://graph.facebook.com/'.$fts_fb_id.'/feed?fields=id,caption,created_time,description,from,icon,link,message,name,object_id,picture,place,shares,source,status_type,story,to,type&limit='.$fts_limiter.'&access_token='.$access_token.$language.'';
 			}
 			else {
-				$mulit_data = array('page_data' => 'https://graph.facebook.com/'.$fts_fb_id.'?access_token='.$access_token.$language.'');
+				$mulit_data = array('page_data' => 'https://graph.facebook.com/'.$fts_fb_id.'?fields=id,name,description&access_token='.$access_token.$language.'');
 				//Check If Ajax next URL needs to be used
 				$mulit_data['feed_data'] = isset($_REQUEST['next_url']) ? $_REQUEST['next_url'] : 'https://graph.facebook.com/'.$fts_fb_id.'/feed?fields=id,caption,created_time,description,from,icon,link,message,name,object_id,picture,place,shares,source,status_type,story,to,type&limit='.$fts_limiter.'&access_token='.$access_token.$language.'';
 			}
@@ -194,6 +194,11 @@ class FTS_Facebook_Feed extends feed_them_social_functions {
 		$des = json_decode($response['page_data']);
 		$data = json_decode($response['feed_data']);			
 		//If events array Flip it so it's in proper order
+		
+			//echo'<pre>';
+				//print_r($single_event_info);
+				//echo'</pre>';
+				
 		if ($type == 'events') {
 						
 				if($data->data){
