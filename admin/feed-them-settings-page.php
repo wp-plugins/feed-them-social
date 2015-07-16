@@ -295,10 +295,18 @@ class FTS_settings_page {
 		       </form>
 		  	<a class="feed-them-social-admin-slick-logo" href="http://www.slickremix.com" target="_blank"></a>
 		</div><!--/feed-them-social-admin-wrap-->
+  
+  <h1 class="plugin-author-note"><?php _e('Plugin Authors Note', 'feed-them-social'); ?></h1>
+  <div class="fts-plugin-reviews">
+			<div class="fts-plugin-reviews-rate"><?php _e(' Feed Them Social was created by 2 Brothers, Spencer and Justin Labadie, who spend all their time creating and supporting this plugin. That’s it, 2 people! Show us some love if you like our plugin and leave a quick review for us, it will make our day! And thanks in advance!', 'feed-them-social'); ?> <a href="https://wordpress.org/support/view/plugin-reviews/feed-them-social" target="_blank" title="Pagination by BestWebSoft reviews"><?php _e('Leave us a Review', 'feed-them-social'); ?> ★★★★★</a>
+			</div>
+			<div class="fts-plugin-reviews-support"><?php _e('If you\'re having troubles getting setup please contact us. We will respond within 24hrs, but usually within 1-6hrs.', 'feed-them-social'); ?>
+				 <a href="http://www.slickremix.com/support-forum/forum/feed-them-social-2" target="_blank"><?php _e('Support Forum', 'feed-them-social'); ?></a>
+			</div>
+		</div>
+  
 		<script>
 		jQuery(function() {    
-		
-		
 			// Master feed selector
 		    jQuery('#shortcode-form-selector').change(function(){
 		        jQuery('.shortcode-generator-form').hide();
@@ -330,7 +338,6 @@ class FTS_settings_page {
 				
 				<?php 	if (is_plugin_active('feed-them-premium/feed-them-premium.php')) { ?>
 				
-			
 						
 					if (facebooktype == 'album_videos') {
 						jQuery('.fts-premium-options-message, .fts-photos-popup, #facebook_super_gallery_container, #facebook_super_gallery_animate').hide();
