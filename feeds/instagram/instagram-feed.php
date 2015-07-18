@@ -134,10 +134,15 @@ class FTS_Instagram_Feed extends feed_them_social_functions {
 
 			$set_zero = 0;
 		} // END Make sure it's not ajaxing
-
+	
 
 		if (!isset($insta_data->data)) {
-			return '<div style="padding-right:35px;">Looks like instagram\'s API down. Please try clearing cache and reloading this page in the near future. If it continues try adding your own API Token to the Instragram Options page of our plugin.</div></div>';
+				if(!function_exists( 'curl_init' )) {
+							echo 'cURL is not installed on this server. It is required to use this plugin. Please contact your host provider to install this.</div>';
+						}
+						else {
+							echo 'To see the Instagram feed you need to add your own API Token to the Instagram Options page of our plugin.</div>';
+						}
 		}
 		//echo '<pre>';
 		//print_r($insta_data);
