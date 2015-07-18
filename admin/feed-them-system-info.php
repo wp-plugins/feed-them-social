@@ -69,7 +69,8 @@ Display Erros:            <?php echo ( ini_get( 'display_errors' ) ) ? 'On (' . 
 	
 FSOCKOPEN:                <?php echo ( function_exists( 'fsockopen' ) ) ? 'Your server supports fsockopen.' : 'Your server does not support fsockopen.'; ?><?php echo "\n"; ?>
 cURL:                     <?php echo ( function_exists( 'curl_init' ) ) ? 'Your server supports cURL.' : 'Your server does not support cURL.'; ?><?php echo "\n"; ?>
-	
+
+
 -- Active Plugins:
 
 <?php $plugins = get_plugins();

@@ -8,7 +8,11 @@ class FTS_settings_page {
 	//**************************************************
 	function feed_them_settings_page() {
 		$fts_functions = new feed_them_social_functions();
-	?>		
+	
+	if(!function_exists( 'curl_init' )) { 
+		print '<div class="error"><p>'.__('Warning: cURL is not installed on this server. It is required to use this plugin. Please contact your host provider to install this.', 'feed-them-social').'</p></div>';
+ } ?>
+     
 		<div class="feed-them-social-admin-wrap">
 		  <h1><?php _e('Feed Them Social', 'feed-them-social'); ?></h1>
 		  <div class="use-of-plugin"><?php _e('Select what type of feed you would like to generate a shortcode for using the select option below. Then you\'ll copy that shortcode to a page or post.', 'feed-them-social'); ?></div>
