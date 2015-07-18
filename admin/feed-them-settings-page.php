@@ -102,7 +102,7 @@ class FTS_settings_page {
 		  		isset($ftsTimezone) ? $ftsTimezone : "";
 		  		$ftsDateTimeFormat = get_option('fts-date-and-time-format');
 				$ftsTimezone = get_option('fts-timezone');
-				date_default_timezone_set(get_option('fts-timezone'));
+				date_default_timezone_set(get_option('fts-timezone', 'America/Los_Angeles'));
 		   ?>
 		  <div style="float:left; max-width:400px; margin-right:30px;"><h2><?php _e('FaceBook & Twitter Date Format', 'feed-them-social'); ?></h2>
 		   <fieldset>
