@@ -21,16 +21,25 @@ If you need support or want to tell us thanks please contact us at support@slick
 */
 
 define( 'FEED_THEM_PLUGIN_PATH', plugins_url());
-//Define minimum premium version allowed to be active with Free Version
+
+// Makes sure the plugin is defined before trying to use it
+if ( ! function_exists( 'is_plugin_active' ) )
+ require_once( ABSPATH . '/wp-admin/includes/plugin.php' );
+	
+// Returns current plugin version. SRL added
+// @return string Plugin version
+function ftsystem_version() {
+	$plugin_data = get_plugin_data( __FILE__ );
+	$plugin_version = $plugin_data['Version'];
+	return $plugin_version;
+}
+
+// Define minimum premium version allowed to be active with Free Version
 global $fts_versions_needed;
 $fts_versions_needed = array(
 	'feed-them-premium/feed-them-premium.php' => '1.4.9',
 	'fts-bar/fts-bar.php' => '1.0.7',
 );
-
-if ( ! function_exists( 'is_plugin_active' ) )
-    require_once( ABSPATH . '/wp-admin/includes/plugin.php' );
-    // Makes sure the plugin is defined before trying to use it
 
 // Make sure php version is greater than 5.3
 if ( function_exists( 'phpversion' ) )
@@ -83,17 +92,6 @@ include_once( $fts_plugin_rel_url.'feeds/pinterest/pinterest-feed.php' );
 include_once( $fts_plugin_rel_url.'feeds/twitter/vine-feed.php' );
 $load_vn_fts = 'feedthemsocial\FTS_Vine_Feed';
 new $load_vn_fts;
-
-/**
- * Returns current plugin version. SRL added
- * 
- * @return string Plugin version
- */
-function ftsystem_version() {
-	$plugin_data = get_plugin_data( __FILE__ );
-	$plugin_version = $plugin_data['Version'];
-	return $plugin_version;
-}
 
 } // end if php version check
 

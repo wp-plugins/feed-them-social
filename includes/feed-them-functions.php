@@ -28,13 +28,19 @@ class feed_them_social_functions {
 		add_action( 'wp_ajax_fts_load_videos_ajax', array($this, 'fts_load_videos_ajax'));
 		add_action( 'wp_ajax_fts_load_videos', array($this, 'fts_load_videos'));
 		add_action( 'wp_ajax_nopriv_fts_load_videos', array($this, 'fts_load_videos'));
+		// 1.8.3 is where we changed everything to be namespaced.
+		$plugins_proper_vs = '1.8.3';
+		// ftsystem_version() function is coming from feed-them.php our main page
+		$plugins_newer_check = ftsystem_version();
 		$old_plugs = $this->old_extenstions_check();
 		//If there are old plugins Display notice!
-		if($old_plugs == true){
+		if($old_plugs == true && $plugins_proper_vs > $plugins_newer_check){
 			add_action('admin_notices', array($this,'fts_old_plugin_admin_notice'));
 			add_action('admin_init', array($this, 'fts_old_plugins_ignore'));
 		}
-		add_action( 'admin_init', array($this, 'fts_old_extenstions_block'));
+		if( $plugins_proper_vs > $plugins_newer_check) {
+			add_action( 'admin_init', array($this, 'fts_old_extenstions_block'));
+		}
 	}
 	//**************************************************
 	// Add FTS options on activation. Commenting out for future use. SRL
@@ -48,6 +54,7 @@ class feed_them_social_functions {
 	//		   add_option($option_key, $option_value);
 	//	   }   
 	//	}
+	
 	//**************************************************
 	// Block for Old Extenstions 
 	//**************************************************
