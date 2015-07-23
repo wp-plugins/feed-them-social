@@ -367,7 +367,9 @@ class FTS_Facebook_Feed extends feed_them_social_functions {
 			}
 		} //End else
 		//Single event info call 
-		$single_event_array_response = $this->fts_get_feed_json($fb_single_events_array);
+		if ($type == 'events') {
+			$single_event_array_response = $this->fts_get_feed_json($fb_single_events_array);
+		}
 		$set_zero = 0;
 		//THE MAIN FEED
 		foreach ($data->data as $d) {

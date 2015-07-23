@@ -51,7 +51,6 @@ WP_DEBUG:                 <?php echo defined( 'WP_DEBUG' ) ? WP_DEBUG ? 'Enabled
 -- Webserver Configuration
 	
 PHP Version:              <?php echo PHP_VERSION . "\n"; ?>
-MySQL Version:            <?php echo mysql_get_server_info() . "\n"; ?>
 Web Server Info:          <?php echo $_SERVER['SERVER_SOFTWARE'] . "\n"; ?>
 	
 -- PHP Configuration:
