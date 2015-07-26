@@ -150,9 +150,9 @@ class FTS_Facebook_Feed extends feed_them_social_functions {
 
 			}
 			elseif ($type == 'albums') {
-				$mulit_data = array('page_data' => 'https://graph.facebook.com/'.$fts_fb_id.'?fields=id,name,description&access_token='.$access_token.$language.'');
+				$mulit_data = array('page_data' => 'https://graph.facebook.com/'.$fts_fb_id.'?fields=id,name,description,link&access_token='.$access_token.$language.'');
 				//Check If Ajax next URL needs to be used
-				$mulit_data['feed_data'] = isset($_REQUEST['next_url']) ? $_REQUEST['next_url'] : 'https://graph.facebook.com/'.$fts_fb_id.'/albums?fields=id,created_time,name,from,cover_photo,count,updated_time,type&limit='.$fts_limiter.'&access_token='.$access_token.$language.'';
+				$mulit_data['feed_data'] = isset($_REQUEST['next_url']) ? $_REQUEST['next_url'] : 'https://graph.facebook.com/'.$fts_fb_id.'/albums?fields=id,created_time,name,from,link,cover_photo,count,updated_time,type&limit='.$fts_limiter.'&access_token='.$access_token.$language.'';
 			}
 			elseif ($type == 'album_photos') {
 				$mulit_data = array('page_data' => 'https://graph.facebook.com/'.$fts_fb_id.'?fields=id,name,description&access_token='.$access_token.$language.'');
@@ -193,12 +193,30 @@ class FTS_Facebook_Feed extends feed_them_social_functions {
 		//Json decode data and build it from cache or response
 		$des = json_decode($response['page_data']);
 		$data = json_decode($response['feed_data']);			
-		//If events array Flip it so it's in proper order
 		
-			//echo'<pre>';
-				//print_r($single_event_info);
-				//echo'</pre>';
-				
+	if (is_plugin_active('feed-them-premium/feed-them-premium.php')) {		
+	//Make sure it's not ajaxing and we will allow the omition of certain album covers from the list by using omit_album_covers=0,1,2,3 in the shortcode
+		if (!isset($_GET['load_more_ajaxing'])) {		
+				if ($type == 'albums') {
+					// omit_album_covers=0,1,2,3 for example
+					$omit_album_covers = $omit_album_covers;
+					$omit_album_covers_new = array();
+					$omit_album_covers_new = explode(',', $omit_album_covers);
+		
+					foreach ($data->data as $d) {
+						 foreach ($omit_album_covers_new as $omit) {
+											unset($data->data[$omit]);
+							}
+					}
+				}
+		}
+	}
+		
+	//		echo'<pre>';
+	//			print_r($data);
+	//		echo'</pre>';
+			
+		//If events array Flip it so it's in proper order		
 		if ($type == 'events') {
 						
 				if($data->data){
