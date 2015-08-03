@@ -252,7 +252,7 @@ class FTS_Twitter_Feed extends feed_them_social_functions {
 				if(!empty($search)) {
 					$screen_name = $twitter_name;
 				}
-				if (isset($twitter_show_follow_btn) && $twitter_show_follow_btn == 'yes' && $twitter_show_follow_btn_where == 'twitter-follow-above') {
+				if (isset($twitter_show_follow_btn) && $twitter_show_follow_btn == 'yes' && $twitter_show_follow_btn_where == 'twitter-follow-above' && $twitter_name !== '') {
 					echo '<div class="twitter-social-btn-top">';
 					$this->social_follow_button('twitter', $screen_name);
 					echo '</div>';
@@ -392,7 +392,7 @@ setTimeout(function() {
 		//******************
 		// SOCIAL BUTTON
 		//******************
-		if (isset($twitter_show_follow_btn) && $twitter_show_follow_btn == 'yes' && $twitter_show_follow_btn_where == 'twitter-follow-below') {
+		if (isset($twitter_show_follow_btn) && $twitter_show_follow_btn == 'yes' && $twitter_show_follow_btn_where == 'twitter-follow-below' && $twitter_name !== '') {
 					echo '<div class="twitter-social-btn-bottom">';
 					$this->social_follow_button('twitter', $screen_name);
 					echo '</div>';
