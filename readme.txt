@@ -2,7 +2,7 @@
 Contributors: slickremix
 Tags:  facebook photos, facebook videos, videos, facebook albums, albums, photos facebook, photo, facebook feed, facebook posts, hastags, social, social plugin, social networking, networking, custom feed, custom facebook feed, facebook plugin, facebook group, facebook groups, events, facebook events, facebook page events, facebook group events, facebook page, facebook pages, twitter, twitter plugin, twitter hashtag, twitter @, twitter search, vine, vine videos, vine gallery, vine plugin, vine seo, instagram, instagram plugin, feed me social, social plugin, feed, feeds, shortcode, facebook wall, slickremix, plugin, pages, posts, images, page, post, image, youtube, youtube feed, youtube channel, youtube video, youtube videos, videos, youtube embed, embed, video iframe, admin, comments, widgets, seo, wordpress, pinterest, pinterest boards, pinterest feeds, pinterest photos, pinterest widget, pinterest widgets, instagram popup, Facebook videos, twitter videos
 Requires at least: 3.6.0
-Tested up to: 4.2.2
+Tested up to: 4.2.3
 Stable tag: 1.8.7
 License: GPLv2 or later
 
@@ -68,11 +68,11 @@ If you enjoy using our plugin please tell others. [Click here to share](http://w
   * NEW: Option to not allow certain facebook Album Covers. See how here: [http://feedthemsocial.com/facebook-album-covers/](http://feedthemsocial.com/facebook-album-covers/)
   * NEW: Settings page newer look.
   * NEW: Authors Note on Settings Page.
-		* FIXED: Facebook: Missed call in new v2.4 API for the main feeds description.
+  * FIXED: Facebook: Missed call in new v2.4 API for the main feeds description.
   * FIXED: Album Cover View on Facebook link.
-		* FIXED: typ=events json call that was not needed unless called.
-		* FIXED: Settings Page: UTC for -8 and -10
-		* CLEANED: Minifed all CSS scripts for wp-admin pages.
+  * FIXED: typ=events json call that was not needed unless called.
+  * FIXED: Settings Page: UTC for -8 and -10
+  * CLEANED: Minifed all CSS scripts for wp-admin pages.
 		
 = Version 1.8.6 Saturday, July 11th, 2015 =
   * MAJOR: Facebook: [New API v2.4 update released July 8th from Facebook](https://developers.facebook.com/docs/apps/changelog) so we had to make a few changes to calls in the Facebook feeds only. All previously created APPS using v2.3 will still work with this update unless you are using the Album Covers feed. Then you will need to create a new APP on Facebook. It is suggested that you create a new APP in Facebook and replace your old APP Token but not required with this update. [http://feedthemsocial.com/facebook-videos-demo/](http://www.slickremix.com/docs/create-facebook-app-id-or-user-token)
