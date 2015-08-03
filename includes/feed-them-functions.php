@@ -573,6 +573,7 @@ var myAjaxFTS = '<?php echo admin_url('admin-ajax.php'); ?>';
 			'fts_clear_cache_developer_mode',
 			'fts-date-and-time-format',
 			'fts-timezone',
+			'fts_fix_magnific',
 			'fts-color-options-settings-custom-css',
 			'fts-color-options-main-wrapper-css-input',
 			'fts-powered-text-options-settings',
@@ -1047,7 +1048,7 @@ var myAjaxFTS = '<?php echo admin_url('admin-ajax.php'); ?>';
 			$output .= '</div><!--/feed-them-social-admin-input-wrap-->';
 		};
 		// INSTRUCTIONAL TEXT FOR FACEBOOK TYPE SELECTION. PAGE, GROUP, EVENT, ALBUMS, ALBUM COVERS AND HASH TAGS
-		$output .= '<div class="instructional-text facebook-message-generator page inst-text-facebook-page" style="display:block;">'.__('Copy your', 'feed-them-social').'<a href="http://www.slickremix.com/2013/09/09/how-to-get-your-facebook-page-vanity-url/" target="_blank">'.__('Facebook Page ID', 'feed-them-social').'</a> '.__('and paste it in the first input below.', 'feed-them-social').'</div>
+		$output .= '<div class="instructional-text facebook-message-generator page inst-text-facebook-page" style="display:block;">'.__('Copy your', 'feed-them-social').' <a href="http://www.slickremix.com/2013/09/09/how-to-get-your-facebook-page-vanity-url/" target="_blank">'.__('Facebook Page ID', 'feed-them-social').'</a> '.__('and paste it in the first input below.', 'feed-them-social').'</div>
 			<div class="instructional-text facebook-message-generator group inst-text-facebook-group">'.__('Copy your', 'feed-them-social').' <a href="http://www.slickremix.com/2012/12/14/how-to-get-your-facebook-group-id/" target="_blank">'.__('Facebook Group ID', 'feed-them-social').'</a> '.__('and paste it in the first input below.', 'feed-them-social').'</div>
 			<div class="instructional-text facebook-message-generator event inst-text-facebook-event">'.__('Copy your', 'feed-them-social').' <a href="http://www.slickremix.com/2012/12/14/how-to-get-your-facebook-event-id/" target="_blank">'.__('Facebook Event ID', 'feed-them-social').'</a> '.__('and paste it in the first input below.', 'feed-them-social').'</div>
 			<div class="instructional-text facebook-message-generator album_photos inst-text-facebook-album-photos">'.__('Copy your', 'feed-them-social').' <a href="http://www.slickremix.com/docs/how-to-get-your-facebook-photo-gallery-id/" target="_blank">'.__('Facebook Album ID', 'feed-them-social').'</a> '.__('and paste it in the first input below.', 'feed-them-social').'</div>
@@ -1183,16 +1184,41 @@ var myAjaxFTS = '<?php echo admin_url('admin-ajax.php'); ?>';
 			$twitter_name_option = get_option('twitter_name');
 			$tweets_count_option = get_option('tweets_count');
 			$twitter_popup_option = get_option('twitter_popup_option');
+			$twitter_hashtag_etc_name = get_option('twitter_hashtag_etc_name');
 		}
+			
 		$twitter_name_option = isset($twitter_name_option) ? $twitter_name_option : "";
+		$twitter_hashtag_etc_name = isset($twitter_hashtag_etc_name) ? $twitter_hashtag_etc_name : "";
 		$output = '<div class="fts-twitter-shortcode-form">';
 		if ($save_options == false) {
 			$output .= '<form class="feed-them-social-admin-form shortcode-generator-form twitter-shortcode-form" id="fts-twitter-form">';
 			$output .= '<h2>'.__('Twitter Shortcode Generator', 'feed-them-social').'</h2>';
 		}
-		$output .= '<div class="instructional-text">'.__('You must copy your', 'feed-them-social').' <a href="http://www.slickremix.com/2012/12/18/how-to-get-your-twitter-name/" target="_blank">'.__('Twitter Name', 'feed-them-social').'</a> '.__('and paste it in the first input below.', 'feed-them-social').'</div>';
+		// TWITTER FEED TYPE
+				$output .= '<div class="feed-them-social-admin-input-wrap twitter-gen-selection">';
+				$output .= '<div class="feed-them-social-admin-input-label">'.__('Feed Type', 'feed-them-social').'</div>';
+				$output .= '<select name="twitter-messages-selector" id="twitter-messages-selector" class="feed-them-social-admin-input">';
+				$output .= '<option value="user">'.__('User Feed', 'feed-them-social').'</option>';
+				$output .= '<option value="hashtag">'.__('#hashtag, @person, or single words', 'feed-them-social').'</option>';
+				//$output .= '<option value="hashtag">Facebook Hashtag</option>';
+				$output .= '</select>';
+				$output .= '<div class="clear"></div>';
+				$output .= '</div><!--/feed-them-social-admin-input-wrap-->';
+				
+		$output .= '<div class="twitter-hashtag-etc-wrap">';
+		$output .= '<h3>'.__('Twitter Search', 'feed-them-social').'</h3>';
+		$output .= '<div class="instructional-text">'.__('You can use #hashtag, @person, or single words. For example, weather or weather-channel. No spaces allowed.', 'feed-them-social').'</div>';
+		$output .= '<div class="feed-them-social-admin-input-wrap twitter_hashtag_etc_name">';
+		$output .= '<div class="feed-them-social-admin-input-label">'.__('Twitter Search Name (required)', 'feed-them-social').'</div>';
+		$output .= '<input type="text" name="twitter_hashtag_etc_name" id="twitter_hashtag_etc_name" class="feed-them-social-admin-input" value="'.$twitter_hashtag_etc_name.'" />';
+		$output .= '<div class="clear"></div>';
+		$output .= '</div><!--/feed-them-social-admin-input-wrap-->';
+		$output .= '</div><!--/twitter-hashtag-etc-wrap-->';
+		
+		
+		$output .= '<div class="instructional-text"><span class="hashtag-option-small-text">'.__('Twitter Name is only required if you want to show a', 'feed-them-social').' <a href="admin.php?page=fts-twitter-feed-styles-submenu-page">'.__('Follow Button', 'feed-them-social').'</a>.</span><span class="must-copy-twitter-name">'.__('You must copy your', 'feed-them-social').' <a href="http://www.slickremix.com/2012/12/18/how-to-get-your-twitter-name/" target="_blank">'.__('Twitter Name', 'feed-them-social').'</a> '.__('and paste it in the first input below.', 'feed-them-social').'</span></div>';
 		$output .= '<div class="feed-them-social-admin-input-wrap twitter_name">';
-		$output .= '<div class="feed-them-social-admin-input-label">'.__('Twitter Name (required)', 'feed-them-social').'</div>';
+		$output .= '<div class="feed-them-social-admin-input-label">'.__('Twitter Name', 'feed-them-social').' <span class="hashtag-option-not-required">'.__('(required)', 'feed-them-social').'</span></div>';
 		$output .= '<input type="text" name="twitter_name" id="twitter_name" class="feed-them-social-admin-input" value="'.$twitter_name_option.'" />';
 		$output .= '<div class="clear"></div>';
 		$output .= '</div><!--/feed-them-social-admin-input-wrap-->';
@@ -1301,7 +1327,7 @@ var myAjaxFTS = '<?php echo admin_url('admin-ajax.php'); ?>';
 			// ONLY SHOW SUPER GALLERY OPTIONS ON FTS SETTINGS PAGE FOR NOW, NOT FTS BAR
 			if (isset($_GET['page']) && $_GET['page'] == 'feed-them-settings-page') {
 				// INSTAGRAM FEED TYPE
-				$output .= '<h2>'.__('Instagram Feed', 'feed-them-social').'</h2><div class="feed-them-social-admin-input-wrap instagram-gen-selection">';
+				$output .= '<h2>'.__('Instagram Shortcode Generator', 'feed-them-social').'</h2><div class="feed-them-social-admin-input-wrap instagram-gen-selection">';
 				$output .= '<div class="feed-them-social-admin-input-label">'.__('Feed Type', 'feed-them-social').'</div>';
 				$output .= '<select name="instagram-messages-selector" id="instagram-messages-selector" class="feed-them-social-admin-input">';
 				$output .= '<option value="user">'.__('User Feed', 'feed-them-social').'</option>';
@@ -1312,7 +1338,7 @@ var myAjaxFTS = '<?php echo admin_url('admin-ajax.php'); ?>';
 				$output .= '</div><!--/feed-them-social-admin-input-wrap-->';
 			};
 			$output .= '<div class="instagram-id-option-wrap">';
-			$output .= '<h2>'.__('Instagram Feed', 'feed-them-social').'Convert Instagram Name to ID</h2>';
+			$output .= '<h3>'.__('Convert Instagram Name to ID', 'feed-them-social').'</h3>';
 		}
 		$instagram_name_option = isset($instagram_name_option) ? $instagram_name_option : "";
 		$instagram_id_option = isset($instagram_id_option) ? $instagram_id_option : "";
@@ -1332,10 +1358,9 @@ var myAjaxFTS = '<?php echo admin_url('admin-ajax.php'); ?>';
 		}
 		if ($save_options == false) {
 			$output .= '<form class="feed-them-social-admin-form shortcode-generator-form instagram-shortcode-form">';
-			$output .= '<h2>'.__('Instagram Shortcode Generator', 'feed-them-social').'</h2>';
 		}
-		$output .= '<div class="instructional-text instagram-user-option-text">'.__('If you added your ID above and clicked convert, a number should appear in the input below, now continue.', 'feed-them-social').'</div>';
-		$output .= '<div class="instructional-text instagram-hashtag-option-text" style="display:none;">'.__('Add your Hashtag below. Do not add the #, just the name.', 'feed-them-social').'</div>';
+		$output .= '<div class="instructional-text instagram-user-option-text" style="margin-top:12px;">'.__('If you added your ID above and clicked convert, a number should appear in the input below, now continue.', 'feed-them-social').'</div>';
+		$output .= '<div class="instructional-text instagram-hashtag-option-text" style="display:none;margin-top:12px;">'.__('Add your Hashtag below. Do not add the #, just the name.', 'feed-them-social').'</div>';
 		$output .= '<div class="feed-them-social-admin-input-wrap instagram_name">';
 		$output .= '<div class="feed-them-social-admin-input-label instagram-user-option-text">'.__('Instagram ID # (required)', 'feed-them-social').'</div>';
 		$output .= '<div class="feed-them-social-admin-input-label instagram-hashtag-option-text" style="display:none;">'.__('Hashtag (required)', 'feed-them-social').'</div>';
@@ -1349,7 +1374,7 @@ var myAjaxFTS = '<?php echo admin_url('admin-ajax.php'); ?>';
 			$output .= '<select id="instagram-custom-gallery" name="instagram-custom-gallery" class="feed-them-social-admin-input"><option value="no">'.__('No', 'feed-them-social').'</option><option value="yes">'.__('Yes', 'feed-them-social').'</option></select>';
 			$output .= '<div class="clear"></div>';
 			$output .= '</div><!--/feed-them-social-admin-input-wrap-->';
-			$output .= '<div class="fts-super-instagram-options-wrap"><h2>'.__('Super Instagram Gallery Options', 'feed-them-social').'</h2><div class="instructional-text">'.__('View demos and', 'feed-them-social').' <a href="#">read more</a> '.__('on setup instructions.', 'feed-them-social').'</div>';
+			$output .= '<div class="fts-super-instagram-options-wrap"><h3>'.__('Super Instagram Gallery Options', 'feed-them-social').'</h3><div class="instructional-text">'.__('View demos and', 'feed-them-social').' <a href="#">read more</a> '.__('on setup instructions.', 'feed-them-social').'</div>';
 			$output .= '<div class="feed-them-social-admin-input-wrap"><div class="feed-them-social-admin-input-label">'.__('Instagram Image Size', 'feed-them-social').'<br/><small>'.__('Max width is 640px', 'feed-them-social').'</small></div>
            <input type="text" name="fts-slicker-instagram-container-image-size" id="fts-slicker-instagram-container-image-size" class="feed-them-social-admin-input" value="250px" placeholder="">
            <div class="clear"></div> </div>';
@@ -1435,7 +1460,7 @@ var myAjaxFTS = '<?php echo admin_url('admin-ajax.php'); ?>';
 				__('Display First video full size', 'feed-them-social'),
 			);
 			$output .= $this->need_fts_premium_fields($fields);
-			$output .= '<a href="http://www.slickremix.com/downloads/feed-them-social-premium-extension/" target="_blank" class="feed-them-social-admin-submit-btn" style="margin-right:1em; margin-top: 15px; display:block; float:left; text-decoration:none !important;">'.__('Click to see Premium Version', 'feed-them-social').'</a>';
+			$output .= '<a href="http://www.slickremix.com/downloads/feed-them-social-premium-extension/" target="_blank" class="feed-them-social-admin-submit-btn" style="margin-right:1em; margin-top: 15px; display:inline-block; text-decoration:none !important;">'.__('Click to see Premium Version', 'feed-them-social').'</a>';
 			$output .= '</form>';
 		}
 		$output .= '</div><!--/fts-youtube-shortcode-form-->';
@@ -1454,7 +1479,7 @@ var myAjaxFTS = '<?php echo admin_url('admin-ajax.php'); ?>';
 			$output .= '<form class="feed-them-social-admin-form shortcode-generator-form pinterest-shortcode-form" id="fts-pinterest-form">';
 		}
 		// Pinterest FEED TYPE
-		$output .= '<h2>'.__('Pinterest Feed', 'feed-them-social').'</h2><div class="feed-them-social-admin-input-wrap pinterest-gen-selection">';
+		$output .= '<h2>'.__('Pinterest Shortcode Generator', 'feed-them-social').'</h2><div class="feed-them-social-admin-input-wrap pinterest-gen-selection">';
 		$output .= '<div class="feed-them-social-admin-input-label">'.__('Feed Type', 'feed-them-social').'</div>';
 		$output .= '<select name="pinterest-messages-selector" id="pinterest-messages-selector" class="feed-them-social-admin-input">';
 		$output .= '<option value="boards_list">'.__('Board List', 'feed-them-social').'</option>';
@@ -1463,7 +1488,7 @@ var myAjaxFTS = '<?php echo admin_url('admin-ajax.php'); ?>';
 		$output .= '</select>';
 		$output .= '<div class="clear"></div>';
 		$output .= '</div><!--/feed-them-social-admin-input-wrap-->';
-		$output .= '<div class="instructional-text pinterest-name-text">'.__('Copy your', 'feed-them-social').' <a href="http://www.slickremix.com/2013/08/01/how-to-get-your-pinterest-name/" target="_blank">'.__('Pinterest Name', 'feed-them-social').'</a> '.__('and paste it in the first input below.', 'feed-them-social').'</div>';
+		$output .= '<h3>'.__('Pinterest Feed', 'feed-them-social').'</h3><div class="instructional-text pinterest-name-text">'.__('Copy your', 'feed-them-social').' <a href="http://www.slickremix.com/2013/08/01/how-to-get-your-pinterest-name/" target="_blank">'.__('Pinterest Name', 'feed-them-social').'</a> '.__('and paste it in the first input below.', 'feed-them-social').'</div>';
 		$output .= '<div class="instructional-text pinterest-board-and-name-text" style="display:none;">'.__('Copy your', 'feed-them-social').' <a href="http://www.slickremix.com/2013/08/01/how-to-get-your-pinterest-name/" target="_blank">'.__('Pinterest and Board Name', 'feed-them-social').'</a> '.__('and paste them below.', 'feed-them-social').'</div>';
 		$pinterest_name_option = isset($pinterest_name_option) ? $pinterest_name_option : "";
 		$boards_count_option = isset($boards_count_option) ? $boards_count_option : "";
@@ -1505,7 +1530,7 @@ var myAjaxFTS = '<?php echo admin_url('admin-ajax.php'); ?>';
 		$output = '<input type="button" class="feed-them-social-admin-submit-btn" value="'.__('Generate Shortcode', 'feed-them-social').'" onclick="'.$onclick.'" tabindex="4" style="margin-right:1em;" />';
 		$output .= '<div class="feed-them-social-admin-input-wrap final-shortcode-textarea">';
 		$output .= '<h4>'.__('Copy the ShortCode below and paste it on a page or post that you want to display your feed.', 'feed-them-social').'</h4>';
-		$output .= '<div class="feed-them-social-admin-input-label">'.$label.'></div>';
+		$output .= '<div class="feed-them-social-admin-input-label">'.$label.'</div>';
 		$output .= '<input class="copyme '.$input_class.' feed-them-social-admin-input" value="" />';
 		$output .= '<div class="clear"></div>';
 		$output .= '</div><!--/feed-them-social-admin-input-wrap-->';

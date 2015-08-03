@@ -10,8 +10,12 @@ class FTS_Vine_Feed extends feed_them_social_functions {
 	//**************************************************
 	function fts_vine_head() {
 		wp_enqueue_style( 'fts-feeds', plugins_url( 'feed-them-social/feeds/css/styles.css'));
-		wp_enqueue_style( 'fts-popup', plugins_url( 'feed-them-social/feeds/css/magnific-popup.css'));
-		wp_enqueue_script( 'fts-popup-js', plugins_url( 'feed-them-social/feeds/js/magnific-popup.js'), array( 'jquery' ));
+		
+		$fts_fix_magnific = get_option('fts_fix_magnific') ? get_option('fts_fix_magnific') : '';
+		if(isset($fts_fix_magnific) && $fts_fix_magnific !== '1'){
+			wp_enqueue_style( 'fts-popup', plugins_url( 'feed-them-social/feeds/css/magnific-popup.css'));
+		}
+			wp_enqueue_script( 'fts-popup-js', plugins_url( 'feed-them-social/feeds/js/magnific-popup.js'), array( 'jquery' ));
 	}
 	function fts_vine_footer() {
 					echo '<script src="https://platform.vine.co/static/scripts/embed.js"></script>';

@@ -26,7 +26,10 @@ class FTS_Instagram_Feed extends feed_them_social_functions {
 			include WP_CONTENT_DIR.'/plugins/feed-them-premium/feeds/instagram/instagram-feed.php';
 			if ($popup == 'yes') {
 				// it's ok if these styles & scripts load at the bottom of the page
-				wp_enqueue_style( 'fts-popup', plugins_url( 'feed-them-social/feeds/css/magnific-popup.css'));
+					$fts_fix_magnific = get_option('fts_fix_magnific') ? get_option('fts_fix_magnific') : '';
+					if(isset($fts_fix_magnific) && $fts_fix_magnific !== '1'){
+						wp_enqueue_style( 'fts-popup', plugins_url( 'feed-them-social/feeds/css/magnific-popup.css'));
+					}
 				wp_enqueue_script( 'fts-popup-js', plugins_url( 'feed-them-social/feeds/js/magnific-popup.js'));
 			}
 		}

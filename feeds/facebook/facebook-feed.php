@@ -32,7 +32,10 @@ class FTS_Facebook_Feed extends feed_them_social_functions {
 			include(WP_CONTENT_DIR.'/plugins/feed-them-premium/feeds/facebook/facebook-premium-feed.php');
 			if ($fts_fb_popup == 'yes') {
 				// it's ok if these styles & scripts load at the bottom of the page
-				wp_enqueue_style( 'fts-popup', plugins_url( 'feed-them-social/feeds/css/magnific-popup.css'));
+					$fts_fix_magnific = get_option('fts_fix_magnific') ? get_option('fts_fix_magnific') : '';
+					if(isset($fts_fix_magnific) && $fts_fix_magnific !== '1'){
+						wp_enqueue_style( 'fts-popup', plugins_url( 'feed-them-social/feeds/css/magnific-popup.css'));
+					}
 				wp_enqueue_script( 'fts-popup-js', plugins_url( 'feed-them-social/feeds/js/magnific-popup.js'));
 				wp_enqueue_script( 'fts-images-loaded', plugins_url( 'feed-them-social/feeds/js/imagesloaded.pkgd.min.js' ));
 			if(!isset($video_album) && $video_album == 'yes' ){ 	

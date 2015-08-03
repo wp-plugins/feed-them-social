@@ -14,8 +14,10 @@ class FTS_settings_page {
  } ?>
      
 		<div class="feed-them-social-admin-wrap">
+  <div class="fts-backg"></div>
+  <div class="fts-content">
 		  <h1><?php _e('Feed Them Social', 'feed-them-social'); ?></h1>
-		  <div class="use-of-plugin"><?php _e('Select what type of feed you would like to generate a shortcode for using the select option below. Then you\'ll copy that shortcode to a page or post.', 'feed-them-social'); ?></div>
+		  <div class="use-of-plugin"><?php _e('Please select what type of feed you would like to see. Then you can copy and paste the shortcode to a page, post or widget.', 'feed-them-social'); ?></div>
 		  <div class="feed-them-icon-wrap">
 		   <a href="#" class="youtube-icon"></a>
 		   <a href="#" class="vine-icon"></a>
@@ -32,7 +34,7 @@ class FTS_settings_page {
 		  </div>
 			<form class="feed-them-social-admin-form"> 
 		    	<select id="shortcode-form-selector">
-		        	<option value=""><?php _e('Please Select Feed Type', 'feed-them-social'); ?> </option>
+		        	<option value=""><?php _e('Select a social network to get started', 'feed-them-social'); ?> </option>
 		            <option value="fb-page-shortcode-form"><?php _e('Facebook Feed', 'feed-them-social'); ?></option>
 		            <option value="twitter-shortcode-form"><?php _e('Twitter Feed', 'feed-them-social'); ?></option>
 		            <option value="vine-shortcode-form"><?php _e('Vine Feed', 'feed-them-social'); ?></option>
@@ -64,7 +66,7 @@ class FTS_settings_page {
 		    <div class="clear"></div>
 		 <div class="feed-them-clear-cache">
 		 <h2><?php _e('Clear All Cache Options', 'feed-them-social'); ?></h2>
-		    <div class="use-of-plugin"><?php _e('Please Clear Cache if you have changed a FTS Shortcode. This will Allow you to see the NEW feed\'s options you just set!', 'feed-them-social'); ?></div>
+		    <div class="use-of-plugin"><?php _e('Please Clear Cache if you have changed a Feed Them Social Shortcode. This will Allow you to see the changes right away.', 'feed-them-social'); ?></div>
 		<?php if(isset($_GET['cache']) && $_GET['cache']=='clearcache'){ 
 		 	echo '<div class="feed-them-clear-cache-text">'.$fts_functions->feed_them_clear_cache().'</div>';
 		}
@@ -94,7 +96,7 @@ class FTS_settings_page {
 		                        }
 		          ?>
 		         </p>
-		        <select id="fts-date-and-time-format" name="fts_admin_bar_menu">
+		        <select id="fts_admin_bar_menu" name="fts_admin_bar_menu">
 		            <option value="show-admin-bar-menu" <?php if ($ftsAdminBarMenu == 'show-admin-bar-menu' ) echo 'selected="selected"'; ?>><?php _e('Show Admin Bar Menu', 'feed-them-social'); ?></option>
 		            <option value="hide-admin-bar-menu" <?php if ($ftsAdminBarMenu == 'hide-admin-bar-menu' ) echo 'selected="selected"'; ?>><?php _e('Hide Admin Bar Menu', 'feed-them-social'); ?></option>
 		        </select>
@@ -271,7 +273,14 @@ class FTS_settings_page {
 		      <textarea name="fts-color-options-main-wrapper-css-input" class="fts-color-settings-admin-input" id="fts-color-options-main-wrapper-css-input"><?php echo get_option('fts-color-options-main-wrapper-css-input'); ?></textarea>
 		      </div><!--/feed-them-custom-css--> 
 		     
-		    <div class="feed-them-custom-logo-css"> 
+		    <div class="feed-them-custom-logo-css">
+      <h2><?php _e('Disable Magnific Popup CSS', 'feed-them-social'); ?></h2>
+		     <p>
+		        <input name="fts_fix_magnific" class="fts-powered-by-settings-admin-input" type="checkbox" id="fts_fix_magnific" value="1" <?php echo checked( '1', get_option( 'fts_fix_magnific' ) ); ?>/> <?php _e('Check this if you are experiencing problems with your theme(s) or other plugin(s) popups.', 'feed-them-social'); ?>
+		      </p>
+		     <br/>
+       
+        
 		      <?php if(is_plugin_active('feed-them-premium/feed-them-premium.php')) { ?>
 		     <h2><?php _e('Load More Options', 'feed-them-social'); ?></h2>
 		     <p>
@@ -297,8 +306,8 @@ class FTS_settings_page {
 		      <div class="clear"></div>
 		      </div><!--/feed-them-custom-logo-css--> 
 		       </form>
-		  	<a class="feed-them-social-admin-slick-logo" href="http://www.slickremix.com" target="_blank"></a>
-		</div><!--/feed-them-social-admin-wrap-->
+  </div><!--/font-content-->
+</div><!--/feed-them-social-admin-wrap-->
   
   <h1 class="plugin-author-note"><?php _e('Plugin Authors Note', 'feed-them-social'); ?></h1>
   <div class="fts-plugin-reviews">
@@ -306,6 +315,7 @@ class FTS_settings_page {
 			</div>
 			<div class="fts-plugin-reviews-support"><?php _e('If you\'re having troubles getting setup please contact us. We will respond within 24hrs, but usually within 1-6hrs.', 'feed-them-social'); ?>
 				 <a href="http://www.slickremix.com/support-forum/forum/feed-them-social-2" target="_blank"><?php _e('Support Forum', 'feed-them-social'); ?></a>
+		  	<div class="fts-text-align-center"><a class="feed-them-social-admin-slick-logo" href="http://www.slickremix.com" target="_blank"></a></div>
 			</div>
 		</div>
   
@@ -406,7 +416,7 @@ class FTS_settings_page {
 						jQuery('.fb_album_photos_id').hide();
 					}
 		    });
-			// Instagram Super Gallery option
+			 // Instagram Super Gallery option
 		   jQuery('#instagram-custom-gallery').bind('change', function (e) { 
 		    if( jQuery('#instagram-custom-gallery').val() == 'yes') {
 		      jQuery('.fts-super-instagram-options-wrap').show();
@@ -427,6 +437,21 @@ class FTS_settings_page {
 		      jQuery(".instagram-user-option-text").show(); 
 		    } 
 		  });
+				
+				 jQuery('#twitter-messages-selector').bind('change', function (e) { 
+		    if( jQuery('#twitter-messages-selector').val() == 'hashtag') {
+		      jQuery(".hashtag-option-small-text").show(); 
+		      jQuery(".twitter-hashtag-etc-wrap").show(); 
+		      jQuery(".hashtag-option-not-required, .must-copy-twitter-name").hide(); 
+		    }
+			 else{
+		      jQuery(".hashtag-option-not-required, .must-copy-twitter-name").show(); 
+		      jQuery(".twitter-hashtag-etc-wrap").hide(); 
+		      jQuery(".hashtag-option-small-text").hide(); 
+		    } 
+		  });
+				
+				
 		   // facebook show grid options
 		  jQuery('#fb-grid-option').bind('change', function (e) { 
 		    if( jQuery('#fb-grid-option').val() == 'yes') {
@@ -712,15 +737,37 @@ class FTS_settings_page {
 		//END Facebook Single Event//
 		//START Twitter//
 		function updateTextArea_twitter() {
-			var twitter_name = ' twitter_name=' + jQuery("input#twitter_name").val();
+			var twitter_name = jQuery("input#twitter_name").val();
+			var twitter_search = jQuery("input#twitter_hashtag_etc_name").val();
 			var twitter_height = jQuery("input#twitter_height").val();
-			if (twitter_name == " twitter_name=") {
+			
+			 jQuery('#twitter-messages-selector').bind('change', function (e) { 
+		    if( jQuery('#twitter-messages-selector').val() == 'hashtag') {
+			  	 jQuery(".twitter_name").removeClass('fts-empty-error');
+		    }
+		  });
+				
+				
+			if (twitter_name == "" && jQuery('#twitter-messages-selector').val() !== 'hashtag') {
 			  	 jQuery(".twitter_name").addClass('fts-empty-error');  
 		      	 jQuery("input#twitter_name").focus();
 				 return false;
 			}
-			if (twitter_name != " twitter_name=") {
+			else if (twitter_name != "") {
 			  	 jQuery(".twitter_name").removeClass('fts-empty-error');  
+							var twitter_name = ' twitter_name=' + jQuery("input#twitter_name").val();
+			}
+			if (twitter_search == "" && jQuery('#twitter-messages-selector').val() == 'hashtag') {
+			  	 jQuery(".twitter_hashtag_etc_name").addClass('fts-empty-error');  
+		      	 jQuery("input#twitter_hashtag_etc_name").focus();
+				 return false;
+			}
+			else if (twitter_search != ""  && jQuery('#twitter-messages-selector').val() == 'hashtag') {
+			  	 jQuery(".twitter_search").removeClass('fts-empty-error');
+							var twitter_search_final = ' search=' + jQuery("input#twitter_hashtag_etc_name").val();
+			}
+			else {
+				var twitter_search_final = ''; 
 			}
 			if (twitter_height)	{
 				var twitter_height_final = ' twitter_height=' + jQuery("input#twitter_height").val();
@@ -733,7 +780,7 @@ class FTS_settings_page {
 			   include(WP_CONTENT_DIR.'/plugins/feed-them-premium/admin/js/twitter-settings-js.js');
 			}
 			else 	{ ?>
-					var final_twitter_shorcode = '[fts twitter' + twitter_name + twitter_height_final + ']';
+					var final_twitter_shorcode = '[fts twitter' + twitter_name  + twitter_search_final + twitter_height_final + ']';
 		<?php } ?>
 		jQuery('.twitter-final-shortcode').val(final_twitter_shorcode);
 			jQuery('.twitter-shortcode-form .final-shortcode-textarea').slideDown();

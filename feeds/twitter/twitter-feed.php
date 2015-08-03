@@ -47,7 +47,10 @@ class FTS_Twitter_Feed extends feed_them_social_functions {
 			
 			if ($popup == 'yes') {
 				// it's ok if these styles & scripts load at the bottom of the page
-			wp_enqueue_style( 'fts-popup', plugins_url( 'feed-them-social/feeds/css/magnific-popup.css'));
+				$fts_fix_magnific = get_option('fts_fix_magnific') ? get_option('fts_fix_magnific') : '';
+				if(isset($fts_fix_magnific) && $fts_fix_magnific !== '1'){
+					wp_enqueue_style( 'fts-popup', plugins_url( 'feed-them-social/feeds/css/magnific-popup.css'));
+				}
 			wp_enqueue_script( 'fts-popup-js', plugins_url( 'feed-them-social/feeds/js/magnific-popup.js'));
 			}
 		}
@@ -56,12 +59,14 @@ class FTS_Twitter_Feed extends feed_them_social_functions {
 						'twitter_name' => '',
 						'twitter_height' => '',
 						'description_image' => '',
+						'search' => '',
 					), $atts ) );
 			$tweets_count ='5';
 		}
 		ob_start();
 		$numTweets      = $tweets_count;
 		$name           = $twitter_name;
+		$search    = $search;
 		$excludeReplies = true;
 		$data_cache = 'twitter_data_cache_'.$name.'_num'.$numTweets.'';
 		//Check Cache
@@ -108,15 +113,41 @@ class FTS_Twitter_Feed extends feed_them_social_functions {
 			$description_image = !empty($description_image) ? $description_image : "";
 			// $url_of_status = !empty($url_of_status) ? $url_of_status : "";
 			// $widget_type_for_videos = !empty($widget_type_for_videos) ? $widget_type_for_videos : "";
-			$fetchedTweets = $connection->get(
-				'statuses/user_timeline',
-				array(
-					'screen_name'     => $name,
-					'count'           => $totalToFetch,
-				//	'exclude_replies' => $excludeReplies,
-					'images'    => $description_image,
-				)
-			);
+			if(!empty($search)) {
+						$fetchedTweets = $connection->get(
+						'search/tweets',
+						array(
+							'q'     => $search,
+							'count' => $totalToFetch,
+							'result_type' => 'recent',
+						)
+					);
+			}
+			else {
+					$fetchedTweets = $connection->get(
+						'statuses/user_timeline',
+					array(
+							'screen_name'     => $name,
+							'count'           => $totalToFetch,
+							'exclude_replies' => $excludeReplies,
+							'images'    => $description_image,
+						)
+					);
+			}
+			
+			
+	//			echo'<pre>';
+//			print_r($fetchedTweets->statuses);
+//			echo'</pre>';
+			if(!empty($search)) {
+				$fetchedTweets = $fetchedTweets->statuses;
+			}
+			else {
+				$fetchedTweets = $fetchedTweets;
+			}
+			
+		//	$screen_name = $q;
+			
 		}//END ELSE
 		//Error Check
 		if (isset($fetchedTweets->errors)) {
@@ -218,13 +249,16 @@ class FTS_Twitter_Feed extends feed_them_social_functions {
 				//******************
 				// SOCIAL BUTTON
 				//******************
+				if(!empty($search)) {
+					$screen_name = $twitter_name;
+				}
 				if (isset($twitter_show_follow_btn) && $twitter_show_follow_btn == 'yes' && $twitter_show_follow_btn_where == 'twitter-follow-above') {
 					echo '<div class="twitter-social-btn-top">';
 					$this->social_follow_button('twitter', $screen_name);
 					echo '</div>';
 				}
 				// option to allow the followers plus count to show
-				if (isset($twitter_show_follow_count) && $twitter_show_follow_count == 'yes') {
+				if (isset($twitter_show_follow_count) && $twitter_show_follow_count == 'yes' && $search == '') {
 					print '<div class="twitter-followers-fts"><a href="'.$user_permalink.'" target="_blank" class="black">'. __('Followers:', 'feed-them-social').'</a> '. number_format($followers_count).'</div>';
 				} ?>
   <?php foreach ($tweets as $t) :
