@@ -7,9 +7,8 @@ class FTS_facebook_options_page {
 	// Facebook Options Page
 	//**************************************************
 	function feed_them_facebook_options_page() {
-			$fts_functions = new feed_them_social_functions();
-		?>
-		<link href='http://fonts.googleapis.com/css?family=Rambla:400,700' rel='stylesheet' type='text/css'>
+		$fts_functions = new feed_them_social_functions();
+?>
 		<div class="feed-them-social-admin-wrap">
 		<h1>
 		<?php _e('Facebook Feed Options', 'feed-them-social'); ?>
@@ -21,22 +20,22 @@ class FTS_facebook_options_page {
 		<form method="post" class="fts-facebook-feed-options-form" action="options.php">
 		<br/>
 		<?php // get our registered settings from the fts functions
-			settings_fields('fts-facebook-feed-style-options');
-			//Language select
-			$fb_language = get_option('fb_language', 'en_US');
-			//share button
-			$fb_show_follow_btn = get_option('fb_show_follow_btn');
-			$fb_show_follow_btn_where = get_option('fb_show_follow_btn_where');
-			$fb_show_follow_btn_profile_pic = get_option('fb_show_follow_btn_profile_pic');
-			$fb_like_btn_color = get_option('fb_like_btn_color', 'light');
-			$fb_hide_shared_by_etc_text = get_option('fb_hide_shared_by_etc_text');
-		
-			$lang_options_array = json_decode($fts_functions->xml_json_parse('https://www.facebook.com/translations/FacebookLocales.xml'));
-			//echo'<pre>';
-			// print_r($lang_options_array);
-			//echo'</pre>';
-		
-		?>
+		settings_fields('fts-facebook-feed-style-options');
+		//Language select
+		$fb_language = get_option('fb_language', 'en_US');
+		//share button
+		$fb_show_follow_btn = get_option('fb_show_follow_btn');
+		$fb_show_follow_btn_where = get_option('fb_show_follow_btn_where');
+		$fb_show_follow_btn_profile_pic = get_option('fb_show_follow_btn_profile_pic');
+		$fb_like_btn_color = get_option('fb_like_btn_color', 'light');
+		$fb_hide_shared_by_etc_text = get_option('fb_hide_shared_by_etc_text');
+
+		$lang_options_array = json_decode($fts_functions->xml_json_parse('https://www.facebook.com/translations/FacebookLocales.xml'));
+		//echo'<pre>';
+		// print_r($lang_options_array);
+		//echo'</pre>';
+
+?>
 		<div class="feed-them-social-admin-input-wrap">
 		<div class="fts-title-description-settings-page" style="padding-top:0; border:none;">
 		<h3>
@@ -52,26 +51,26 @@ class FTS_facebook_options_page {
 		<?php _e('Please Select Option', 'feed-them-social'); ?>
 		</option>
 		<?php
-			foreach ($lang_options_array->locale as $language ) {
-				echo'<option '.selected($fb_language, $language->codes->code->standard->representation, true ).' value="'.$language->codes->code->standard->representation.'">'.$language->englishName.'</option>';
-			}
-		?>
+		foreach ($lang_options_array->locale as $language ) {
+			echo'<option '.selected($fb_language, $language->codes->code->standard->representation, true ).' value="'.$language->codes->code->standard->representation.'">'.$language->englishName.'</option>';
+		}
+?>
 		</select>
 		<div class="clear"></div>
 		</div>
 		<!--/fts-twitter-feed-styles-input-wrap-->
-		
+
 		<div class="feed-them-social-admin-input-wrap">
 		<div class="fts-title-description-settings-page">
 		<h3>
 		<?php _e('Like Button or Box Options', 'feed-them-social'); ?>
 		</h3>
 		</div>
-		
-		
-		
-		
-		
+
+
+
+
+
 		<div class="feed-them-social-admin-input-label fts-twitter-text-color-label">
 		<?php _e('Show Follow Button', 'feed-them-social'); ?>
 		</div>
@@ -108,7 +107,7 @@ class FTS_facebook_options_page {
 		<div class="clear"></div>
 		</div>
 		<!--/fts-twitter-feed-styles-input-wrap-->
-		
+
 		<div class="feed-them-social-admin-input-wrap" style="display:none">
 		<div class="feed-them-social-admin-input-label fts-twitter-text-color-label">
 		<?php _e('Show Profile Icon next to social option above', 'feed-them-social'); ?>
@@ -127,8 +126,8 @@ class FTS_facebook_options_page {
 		<div class="clear"></div>
 		</div>
 		<!--/fts-twitter-feed-styles-input-wrap-->
-		
-		
+
+
 		<div class="feed-them-social-admin-input-wrap">
 		<div class="feed-them-social-admin-input-label fts-twitter-text-color-label">
 		<?php _e('Like Button Color', 'feed-them-social'); ?>
@@ -147,7 +146,7 @@ class FTS_facebook_options_page {
 		<div class="clear"></div>
 		</div>
 		<!--/fts-twitter-feed-styles-input-wrap-->
-		
+
 		<div class="feed-them-social-admin-input-wrap">
 		<div class="feed-them-social-admin-input-label fts-twitter-text-color-label">
 		<?php _e('Placement of the Button(s)', 'feed-them-social'); ?>
@@ -169,7 +168,7 @@ class FTS_facebook_options_page {
 		<div class="clear"></div>
 		</div>
 		<!--/fts-twitter-feed-styles-input-wrap-->
-		
+
 		<div class="feed-them-social-admin-input-wrap">
 		<div class="feed-them-social-admin-input-label fts-twitter-text-color-label">
 		<?php _e('Facebook APP ID<br/><small>View Step 3 to <a href="http://www.slickremix.com/docs/create-facebook-app-id-or-user-token" target="_blank">get APP ID</a>.</small>', 'feed-them-social'); ?>
@@ -177,16 +176,16 @@ class FTS_facebook_options_page {
 		<input type="text" name="fb_app_ID" class="feed-them-social-admin-input"  id="fb-app-ID" value="<?php echo get_option('fb_app_ID');?>"/>
 		 <div class="clear"></div>
 		</div>
-		
-		
-		
+
+
+
 		<div class="feed-them-social-admin-input-wrap">
 		<div class="fts-title-description-settings-page" style="margin-top:0;">
 		<h3>
 		<?php _e('Style Options', 'feed-them-social'); ?>
 		</h3>
 		</div>
-		
+
 		<div class="feed-them-social-admin-input-label fts-twitter-text-color-label">
 		<?php _e('Text after your FB name <br/><small>ie* Shared by or New Photo Added etc.</small>', 'feed-them-social'); ?>
 		</div>
@@ -204,8 +203,8 @@ class FTS_facebook_options_page {
 		<div class="clear"></div>
 		</div>
 		<!--/fts-twitter-feed-styles-input-wrap-->
-		
-		
+
+
 		<div class="feed-them-social-admin-input-wrap">
 		<div class="feed-them-social-admin-input-label fts-fb-text-color-label">
 		<?php _e('Feed Header Extra Text Color', 'feed-them-social'); ?>
@@ -214,7 +213,7 @@ class FTS_facebook_options_page {
 		<div class="clear"></div>
 		</div>
 		<!--/fts-facebook-feed-styles-input-wrap-->
-		
+
 		<div class="feed-them-social-admin-input-wrap">
 		<div class="feed-them-social-admin-input-label fts-fb-text-color-label">
 		<?php _e('Feed Text Color', 'feed-them-social'); ?>
@@ -223,7 +222,7 @@ class FTS_facebook_options_page {
 		<div class="clear"></div>
 		</div>
 		<!--/fts-facebook-feed-styles-input-wrap-->
-		
+
 		<div class="feed-them-social-admin-input-wrap">
 		<div class="feed-them-social-admin-input-label fts-fb-link-color-label">
 		<?php _e('Feed Link Color', 'feed-them-social'); ?>
@@ -232,7 +231,7 @@ class FTS_facebook_options_page {
 		<div class="clear"></div>
 		</div>
 		<!--/fts-facebook-feed-styles-input-wrap-->
-		
+
 		<div class="feed-them-social-admin-input-wrap">
 		<div class="feed-them-social-admin-input-label fts-fb-link-color-hover-label">
 		<?php _e('Feed Link Color Hover', 'feed-them-social'); ?>
@@ -241,7 +240,7 @@ class FTS_facebook_options_page {
 		<div class="clear"></div>
 		</div>
 		<!--/fts-facebook-feed-styles-input-wrap-->
-		
+
 		<div class="feed-them-social-admin-input-wrap">
 		<div class="feed-them-social-admin-input-label fts-fb-feed-width-label">
 		<?php _e('Feed Width', 'feed-them-social'); ?>
@@ -250,7 +249,7 @@ class FTS_facebook_options_page {
 		<div class="clear"></div>
 		</div>
 		<!--/fts-facebook-feed-styles-input-wrap-->
-		
+
 		<div class="feed-them-social-admin-input-wrap">
 		<div class="feed-them-social-admin-input-label fts-fb-feed-margin-label">
 		<?php _e('Feed Margin <br/><small>To center feed type auto</small>', 'feed-them-social'); ?>
@@ -259,7 +258,7 @@ class FTS_facebook_options_page {
 		<div class="clear"></div>
 		</div>
 		<!--/fts-facebook-feed-styles-input-wrap-->
-		
+
 		<div class="feed-them-social-admin-input-wrap">
 		<div class="feed-them-social-admin-input-label fts-fb-feed-padding-label">
 		<?php _e('Feed Padding', 'feed-them-social'); ?>
@@ -268,7 +267,7 @@ class FTS_facebook_options_page {
 		<div class="clear"></div>
 		</div>
 		<!--/fts-facebook-feed-styles-input-wrap-->
-		
+
 		<div class="feed-them-social-admin-input-wrap">
 		<div class="feed-them-social-admin-input-label fts-fb-feed-background-color-label">
 		<?php _e('Feed Background Color', 'feed-them-social'); ?>
@@ -277,7 +276,7 @@ class FTS_facebook_options_page {
 		<div class="clear"></div>
 		</div>
 		<!--/fts-facebook-feed-styles-input-wrap-->
-		
+
 		<div class="feed-them-social-admin-input-wrap">
 		<div class="feed-them-social-admin-input-label fts-fb-grid-posts-background-color-label">
 		<?php _e('Feed Grid Posts Background Color (Grid style feeds ONLY)', 'feed-them-social'); ?>
@@ -286,7 +285,7 @@ class FTS_facebook_options_page {
 		<div class="clear"></div>
 		</div>
 		<!--/fts-facebook-feed-styles-input-wrap-->
-		
+
 		<div class="feed-them-social-admin-input-wrap">
 		<div class="feed-them-social-admin-input-label fts-fb-border-bottom-color-label">
 		<?php _e('Feed Border Bottom Color', 'feed-them-social'); ?>
@@ -295,7 +294,7 @@ class FTS_facebook_options_page {
 		<div class="clear"></div>
 		</div>
 		<!--/fts-facebook-feed-styles-input-wrap-->
-		
+
 		<div class="feed-them-social-admin-input-wrap">
 		<div class="fts-title-description-settings-page">
 		<h3>
@@ -310,7 +309,7 @@ class FTS_facebook_options_page {
 		<div class="clear"></div>
 		</div>
 		<!--/fts-facebook-feed-styles-input-wrap-->
-		
+
 		<div class="feed-them-social-admin-input-wrap">
 		<div class="feed-them-social-admin-input-label fb-events-title-size-label">
 		<?php _e('Events Feed: Title Size', 'feed-them-social'); ?>
@@ -319,7 +318,7 @@ class FTS_facebook_options_page {
 		<div class="clear"></div>
 		</div>
 		<!--/fts-facebook-feed-styles-input-wrap-->
-		
+
 		<div class="feed-them-social-admin-input-wrap">
 		<div class="feed-them-social-admin-input-label fb-events-map-link-color-label">
 		<?php _e('Events Feed: Map Link Color', 'feed-them-social'); ?>
@@ -328,7 +327,7 @@ class FTS_facebook_options_page {
 		<div class="clear"></div>
 		</div>
 		<!--/fts-facebook-feed-styles-input-wrap-->
-		
+
 		<div class="feed-them-social-admin-input-wrap">
 		<div class="fts-title-description-settings-page">
 		<h3>
@@ -337,24 +336,24 @@ class FTS_facebook_options_page {
 		<?php _e('Facebook App Token works for all facebook feeds. Not required to make the feed work BUT an APP Token will stop the feed from returning the error, Are you sure this is a Facebook ID... See how to <a href="http://www.slickremix.com/docs/create-facebook-app-id-or-user-token" target="_blank">Get APP Token or Extended User Token</a>.', 'feed-them-social'); ?>
 		</div>
 		<?php
-			$test_app_token_id = get_option('fts_facebook_custom_api_token');
-			if (!empty($test_app_token_id)) {
-				$fts_fb_access_token = '226916994002335|ks3AFvyAOckiTA1u_aDoI4HYuuw';
-				$test_app_token_URL = array(
-					'app_token_id' => 'https://graph.facebook.com/debug_token?input_token='.$test_app_token_id.'&access_token='.$test_app_token_id
-					// 'app_token_id' => 'https://graph.facebook.com/oauth/access_token?client_id=705020102908771&client_secret=70166128c6a7b5424856282a5358f47b&grant_type=fb_exchange_token&fb_exchange_token=CAAKBNkjLG2MBAK5jVUp1ZBCYCiLB8ZAdALWTEI4CesM8h3DeI4Jotngv4TKUsQZBwnbw9jiZCgyg0eEmlpiVauTsReKJWBgHe31xWCsbug1Tv3JhXZBEZBOdOIaz8iSZC6JVs4uc9RVjmyUq5H52w7IJVnxzcMuZBx4PThN3CfgKC5E4acJ9RnblrbKB37TBa1yumiPXDt72yiISKci7sqds0WFR3XsnkwQZD'
-				);
-		
-				//Test App ID
-				// Leave these for reference:
-				// App token for FTS APP2: 358962200939086|lyXQ5-zqXjvYSIgEf8mEhE9gZ_M
-				// App token for FTS APP3: 705020102908771|rdaGxW9NK2caHCtFrulCZwJNPyY
-				$test_app_token_response = $fts_functions->fts_get_feed_json($test_app_token_URL);
-				$test_app_token_response = json_decode($test_app_token_response['app_token_id']);
-			}
-		
-		
-		?>
+		$test_app_token_id = get_option('fts_facebook_custom_api_token');
+		if (!empty($test_app_token_id)) {
+			$fts_fb_access_token = '226916994002335|ks3AFvyAOckiTA1u_aDoI4HYuuw';
+			$test_app_token_URL = array(
+				'app_token_id' => 'https://graph.facebook.com/debug_token?input_token='.$test_app_token_id.'&access_token='.$test_app_token_id
+				// 'app_token_id' => 'https://graph.facebook.com/oauth/access_token?client_id=705020102908771&client_secret=70166128c6a7b5424856282a5358f47b&grant_type=fb_exchange_token&fb_exchange_token=CAAKBNkjLG2MBAK5jVUp1ZBCYCiLB8ZAdALWTEI4CesM8h3DeI4Jotngv4TKUsQZBwnbw9jiZCgyg0eEmlpiVauTsReKJWBgHe31xWCsbug1Tv3JhXZBEZBOdOIaz8iSZC6JVs4uc9RVjmyUq5H52w7IJVnxzcMuZBx4PThN3CfgKC5E4acJ9RnblrbKB37TBa1yumiPXDt72yiISKci7sqds0WFR3XsnkwQZD'
+			);
+
+			//Test App ID
+			// Leave these for reference:
+			// App token for FTS APP2: 358962200939086|lyXQ5-zqXjvYSIgEf8mEhE9gZ_M
+			// App token for FTS APP3: 705020102908771|rdaGxW9NK2caHCtFrulCZwJNPyY
+			$test_app_token_response = $fts_functions->fts_get_feed_json($test_app_token_URL);
+			$test_app_token_response = json_decode($test_app_token_response['app_token_id']);
+		}
+
+
+?>
 		<div class="feed-them-social-admin-input-wrap" style="margin-bottom:0px;">
 		<div class="feed-them-social-admin-input-label fts-twitter-border-bottom-color-label">
 		<?php _e('APP Token', 'feed-them-social'); ?>
@@ -363,31 +362,31 @@ class FTS_facebook_options_page {
 		<div class="clear"></div>
 		</div>
 		<?php if (!empty($test_app_token_response)) {
-				if (isset($test_app_token_response->data->is_valid)) {
-					echo'<div class="fts-successful-api-token">'. __('Your APP Token is working!', 'feed-them-social').'</div>';
-				}
-				if (isset($test_app_token_response->data->error->message) || isset($test_app_token_response->error->message)) {
-					if (isset($test_app_token_response->data->error->message)) {
-						echo'<div class="fts-failed-api-token">'. __('Oh No something\'s wrong.', 'feed-them-social').' '.$test_app_token_response->data->error->message.'</div>';
-					}
-					if (isset($test_app_token_response->error->message)) {
-						echo'<div class="fts-failed-api-token">'. __('Oh No something\'s wrong.', 'feed-them-social').' '.$test_app_token_response->error->message.'</div>';
-					}
-		
-				}
-		
-			} else {
-				echo'<div class="fts-successful-api-token">'. __('You are using our Default APP Token.', 'feed-them-social').'</div>';
+			if (isset($test_app_token_response->data->is_valid)) {
+				echo'<div class="fts-successful-api-token">'. __('Your APP Token is working!', 'feed-them-social').'</div>';
 			}
-		?>
+			if (isset($test_app_token_response->data->error->message) || isset($test_app_token_response->error->message)) {
+				if (isset($test_app_token_response->data->error->message)) {
+					echo'<div class="fts-failed-api-token">'. __('Oh No something\'s wrong.', 'feed-them-social').' '.$test_app_token_response->data->error->message.'</div>';
+				}
+				if (isset($test_app_token_response->error->message)) {
+					echo'<div class="fts-failed-api-token">'. __('Oh No something\'s wrong.', 'feed-them-social').' '.$test_app_token_response->error->message.'</div>';
+				}
+
+			}
+
+		} else {
+			echo'<div class="fts-successful-api-token">'. __('You are using our Default APP Token.', 'feed-them-social').'</div>';
+		}
+?>
 		<div class="clear"></div>
 		<input type="submit" class="feed-them-social-admin-submit-btn" value="<?php _e('Save All Changes') ?>" />
 		</div>
 		<!--/fts-facebook-feed-styles-input-wrap-->
-		
+
 		</form>
 		<a class="feed-them-social-admin-slick-logo" href="http://www.slickremix.com" target="_blank"></a> </div>
 		<!--/feed-them-social-admin-wrap-->
-	
-	<?php } 
+
+	<?php }
 }//END Class

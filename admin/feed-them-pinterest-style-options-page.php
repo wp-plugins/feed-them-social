@@ -13,7 +13,6 @@ function feed_them_pinterest_options_page() {
 		$fts_pinterest_show_follow_btn_where = get_option('pinterest_show_follow_btn_where');
 		
 ?>
-	<link href='http://fonts.googleapis.com/css?family=Rambla:400,700' rel='stylesheet' type='text/css'>
 	<div class="feed-them-social-admin-wrap">
 	  <h1>
 	    <?php _e('Pinterest Feed Options', 'feed-them-social'); ?>
