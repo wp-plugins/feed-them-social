@@ -6,7 +6,7 @@ Tested up to: 4.2.3
 Stable tag: 1.8.7
 License: GPLv2 or later
 
-Display custom feeds for Facebook Pages, Groups, Events, Album Photos, Videos and Covers -Twitter, Instagram, Pinterest and YouTube on pages, posts or widgets.
+Custom feeds for Facebook Pages, Groups, Events, Album Photos, Videos & Covers, Twitter, Vine, Instagram, Pinterest & YouTube on pages, posts or widgets.
 
 == Description ==
 
