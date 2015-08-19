@@ -2,7 +2,7 @@
 Contributors: slickremix
 Tags:  facebook photos, facebook videos, videos, facebook albums, albums, photos facebook, photo, facebook feed, facebook posts, hastags, social, social plugin, social networking, networking, custom feed, custom facebook feed, facebook plugin, facebook group, facebook groups, events, facebook events, facebook page events, facebook group events, facebook page, facebook pages, twitter, twitter plugin, twitter hashtag, twitter #, twitter @, twitter search, vine, vine videos, vine gallery, vine plugin, vine seo, instagram, instagram plugin, feed me social, social plugin, feed, feeds, shortcode, facebook wall, slickremix, plugin, pages, posts, images, page, post, image, youtube, youtube feed, youtube channel, youtube video, youtube videos, videos, youtube embed, embed, video iframe, admin, comments, widgets, seo, wordpress, pinterest, pinterest boards, pinterest feeds, pinterest photos, pinterest widget, pinterest widgets, instagram popup, Facebook videos, twitter videos
 Requires at least: 3.6.0
-Tested up to: 4.2.3
+Tested up to: 4.3.0
 Stable tag: 1.8.7
 License: GPLv2 or later
 
@@ -26,6 +26,8 @@ If you're looking for more than just a custom facebook feed our plugin includes 
  * With our [Premium Extension](http://www.slickremix.com/product/feed-them-social-premium-extension/) you can set how many posts, pictures, tweets, or videos for each individual social feed! Facebook Groups now has the option to hide the Title or Description too! [See Example Demo](http://feedthemsocial.com/)
  * Facebook and Instagram feeds now have Load More Button and Infinite Scroll features available in Premium Version and they are mobile friendly.
  * Awesome Support!
+ * Frequent Updates.
+ * We maintain with Facebook API changes.
 
 = Demos =
  * All Demos can be found on [www.FeedThemSocial.com](http://feedthemsocial.com/)
@@ -49,7 +51,13 @@ If you're looking for more than just a custom facebook feed our plugin includes 
 = PREMIUM FTS Bar =
  ✭ [NEW! Social Bar](http://feedthemsocial.com/fts-bar/)
 
+= AWESOME Support =
 ALL SlickRemix plugins come with FREE Basic Support! If you need help or have questions we're here to help, just post on our [Support Forum](http://www.slickremix.com/support-forum/) and we’ll get to you as quickly as we can! (usually within 48hrs)
+
+= Other Social plugins we’ve created! =
+[Custom Google Plus Feed](https://wordpress.org/plugins/custom-google-plus-feed/) Create and display custom feeds for your Google Plus Profile or Page accounts.
+
+[BaseCamp Feed](https://wordpress.org/plugins/basecamp-feed/) Allows you to display single or multiple To-do Lists from Basecamp.
 	
 If you enjoy using our plugin please tell others. [Click here to share](http://www.facebook.com/sharer.php?u=http://wordpress.org/plugins/feed-them-social/&t=FeedThemSocial).
 
