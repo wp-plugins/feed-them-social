@@ -118,7 +118,11 @@ if ( is_multisite() ) :
 	
 -- Custom Token or Keys added to Options Pages
 -- You must have a custom token to use the feeds
-	
+
+<?php if (is_plugin_active('feed-them-social-facebook-reviews/feed-them-social-facebook-reviews.php')) {
+	$fb_reviews_token = get_option('fts_facebook_custom_api_token_biz') ?'Yes' :'No' ;
+	?>
+Facebook Reviews App Token:       <?php echo $fb_reviews_token      . "\n"; } ?>
 Facebook App Token:       <?php echo $facebookOptions      . "\n"; ?>
 FB App ID for Like Button:<?php echo $facebookOptionsAppID . "\n"; ?>
 Twitter Consumer Key:     <?php echo $twitterOptions1      . "\n"; ?>
@@ -140,7 +144,8 @@ Override:                 <?php echo isset($ftsFixLoadmore) && $ftsFixLoadmore =
 -- Premium License
 	
 Premium Active:           <?php echo isset($feed_them_social_premium_license_key) && $feed_them_social_premium_license_key !== '' ? 'Yes'. "\n" : 'No'. "\n"; } if (is_plugin_active('fts-bar/fts-bar.php')) { ?>
-FTS Bar Active:           <?php echo isset($fts_bar_license_key) && $fts_bar_license_key !== '' ? 'Yes'. "\n" : 'No'. "\n";
+FTS Bar Active:           <?php echo isset($fts_bar_license_key) && $fts_bar_license_key !== '' ? 'Yes'. "\n" : 'No'. "\n"; } if (is_plugin_active('feed-them-social-facebook-reviews/feed-them-social-facebook-reviews.php')) { ?>
+Facebook Reviews Active:  <?php echo isset($fb_reviews_token) && $fb_reviews_token !== '' ? 'Yes'. "\n" : 'No'. "\n";
 			} ?>
 	
 -- FaceBook & Twitter Date Format and Timezone

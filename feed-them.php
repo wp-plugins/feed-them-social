@@ -3,12 +3,12 @@
 Plugin Name: Feed Them Social (Facebook, Instagram, Twitter, etc)
 Plugin URI: http://slickremix.com/
 Description: Create and display custom feeds for Facebook Groups, Facebook Pages, Facebook Events, Facebook Photos, Facebook Album Covers, Twitter, Instagram, Pinterest and YouTube.
-Version: 1.8.7
+Version: 1.9.0
 Author: SlickRemix
 Author URI: http://slickremix.com/
 Requires at least: wordpress 3.6.0
-Tested up to: WordPress 4.2.3
-Stable tag: 1.8.7
+Tested up to: WordPress 4.3.1
+Stable tag: 1.9.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -35,17 +35,20 @@ function ftsystem_version() {
 }
 
 // Define minimum premium version allowed to be active with Free Version
-global $fts_versions_needed;
-$fts_versions_needed = array(
-	'feed-them-premium/feed-them-premium.php' => '1.4.9',
-	'fts-bar/fts-bar.php' => '1.0.7',
+function fts_versions_needed(){
+	$fts_versions_needed = array(
+	'feed-them-premium/feed-them-premium.php' => '1.5.3',
+	'fts-bar/fts-bar.php' => '1.0.8',
+	'feed-them-social-facebook-reviews/feed-them-social-facebook-reviews.php' => '1.0.0',
 );
+	return $fts_versions_needed;
+}
+
 
 // Make sure php version is greater than 5.3
-if ( function_exists( 'phpversion' ) )
-					
-					$phpversion = phpversion();
-					$phpcheck = '5.2.9';
+if ( function_exists( 'phpversion' ) )					
+	$phpversion = phpversion();
+	$phpcheck = '5.2.9';
 
 if ($phpversion > $phpcheck) {
 						
@@ -60,7 +63,6 @@ add_action('init', 'fts_action_init');
 $fts_plugin_rel_url = plugin_dir_path( __FILE__ );
 
 // Include admin
-include( $fts_plugin_rel_url.'updates/update-functions.php' );
 include( $fts_plugin_rel_url.'admin/feed-them-system-info.php' );
 include( $fts_plugin_rel_url.'admin/feed-them-settings-page.php' );
 include( $fts_plugin_rel_url.'admin/feed-them-facebook-style-options-page.php' );
@@ -78,7 +80,9 @@ $load_fts->init();
 
 
 // Include feeds
+
 include( $fts_plugin_rel_url.'feeds/facebook/facebook-feed.php' );
+include( $fts_plugin_rel_url.'feeds/facebook/facebook-feed-post-types.php' );
 $load_fb_fts = 'feedthemsocial\FTS_Facebook_Feed';
 new $load_fb_fts;
 
@@ -111,5 +115,11 @@ else  {
 //Prevent errors for now WILL BE REMOVED IN FuTURE VERSIONS
 class feed_them_social_functions{
 	function register_settings(){}
+}
+if( !class_exists('EDD_SL_Plugin_Updater')) {
+	class EDD_SL_Plugin_Updater{}
+}
+if( !class_exists('EDD_SL_Plugin_Licence_Manager')) {
+	class EDD_SL_Plugin_Licence_Manager{}
 }
 ?>

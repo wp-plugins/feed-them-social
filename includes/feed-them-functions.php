@@ -5,6 +5,8 @@ class feed_them_social_functions {
 	function __construct() {
 		$root_file = plugin_dir_path(dirname( __FILE__));
 		$this->premium = str_replace('feed-them-social/', 'feed-them-premium/', $root_file);
+		$this->facebook_reviews = str_replace('feed-them-social/', 'feed-them-social-facebook-reviews/', $root_file);
+		
 		//FTS Activation Function. Commenting out for future use. SRL
 		// register_activation_hook( FEED_THEM_MAIN_FILE , array( $this, 'fts_plugin_activation'));
 		
@@ -17,7 +19,8 @@ class feed_them_social_functions {
 		add_action( 'wp_head', array($this, 'my_fts_ajaxurl'));
 		add_action( 'wp_ajax_fts_clear_cache_ajax', array($this, 'fts_clear_cache_ajax'));
 		// If Premium is actuive
-		if (is_plugin_active('feed-them-premium/feed-them-premium.php')) {
+		
+		if (is_plugin_active('feed-them-premium/feed-them-premium.php') || is_plugin_active('feed-them-social-facebook-reviews/feed-them-social-facebook-reviews.php') || is_plugin_active('fts-bar/fts-bar.php')) {
 			// Load More Options
 		//	add_action( 'init', array($this, 'my_fts_fb_script_enqueuer')); 
 			add_action( 'wp_ajax_my_fts_fb_load_more', array($this, 'my_fts_fb_load_more'));
@@ -28,19 +31,14 @@ class feed_them_social_functions {
 		add_action( 'wp_ajax_fts_load_videos_ajax', array($this, 'fts_load_videos_ajax'));
 		add_action( 'wp_ajax_fts_load_videos', array($this, 'fts_load_videos'));
 		add_action( 'wp_ajax_nopriv_fts_load_videos', array($this, 'fts_load_videos'));
-		// 1.8.3 is where we changed everything to be namespaced.
-		$plugins_proper_vs = '1.8.3';
-		// ftsystem_version() function is coming from feed-them.php our main page
-		$plugins_newer_check = ftsystem_version();
+	
 		$old_plugs = $this->old_extenstions_check();
 		//If there are old plugins Display notice!
-		if($old_plugs == true && $plugins_proper_vs > $plugins_newer_check){
+		if($old_plugs == true){
 			add_action('admin_notices', array($this,'fts_old_plugin_admin_notice'));
 			add_action('admin_init', array($this, 'fts_old_plugins_ignore'));
 		}
-		if( $plugins_proper_vs > $plugins_newer_check) {
 			add_action( 'admin_init', array($this, 'fts_old_extenstions_block'));
-		}
 	}
 	//**************************************************
 	// Add FTS options on activation. Commenting out for future use. SRL
@@ -63,20 +61,31 @@ class feed_them_social_functions {
 		$user_id = $current_user->ID;
 		$list_old_plugins = array(
 			'feed-them-premium/feed-them-premium.php',
-			'fts-bar/fts-bar.php'
+			'fts-bar/fts-bar.php',
+			'feed-them-social-facebook-reviews/feed-them-social-facebook-reviews.php'
 		);
 		$plugins = get_plugins();
 		foreach($list_old_plugins as $single_plugin){	
 				require_once( ABSPATH . '/wp-admin/includes/plugin.php' );
 				if(isset($plugins[$single_plugin])) {
-					global $fts_versions_needed;
-					if ($plugins[$single_plugin]['Version'] < $fts_versions_needed[$single_plugin]) {
+					$fts_versions_needed = \fts_versions_needed();
+					if ($plugins[$single_plugin]['Version'] < $fts_versions_needed[$single_plugin] && is_plugin_active($single_plugin)) {
 						//Don't Let Old Plugins Activate
 						deactivate_plugins($single_plugin);
 						if (isset( $_GET['activate'] ) ) {
 							delete_user_meta( $user_id, 'fts_old_plugins_ignore');
 		     unset( $_GET['activate'] );
 							}
+					}
+					elseif($plugins[$single_plugin]['Version'] >= $fts_versions_needed[$single_plugin] && is_plugin_active($single_plugin)){
+						global $current_user;
+						$is_an_admin = in_array('administrator', $current_user->roles);
+				        $user_id = $current_user->ID;
+				        /* If user clicks to ignore the notice, add that to their user meta */
+				        if (isset($_GET['fts_old_plugins_ignore']) && '0' == $_GET['fts_old_plugins_ignore'] && $is_an_admin == true) {
+				             add_user_meta($user_id, 'fts_old_plugins_ignore', 'true', true);
+				             //delete_user_meta( $user_id, 'das_old_plugins_ignore');
+					    }
 					}
 				}	
 		}		
@@ -93,7 +102,8 @@ class feed_them_social_functions {
 		$all_plugins = get_plugins();
 		$list_old_plugins = array(
 			'feed-them-premium/feed-them-premium.php',
-			'fts-bar/fts-bar.php'
+			'fts-bar/fts-bar.php',
+			'feed-them-social-facebook-reviews/feed-them-social-facebook-reviews.php'
 		);
 		
 		$any_old_plugins = false;
@@ -201,7 +211,7 @@ var myAjaxFTS = '<?php echo admin_url('admin-ajax.php'); ?>';
 			exit( 'Sorry, You can\'t do that!' );
 		}
 		else {
-			if (preg_match('/\[fts facebook/', $_REQUEST['rebuilt_shortcode']) || preg_match('/\[fts instagram/', $_REQUEST['rebuilt_shortcode'])) {
+			if (preg_match('/\[fts facebook/', $_REQUEST['rebuilt_shortcode']) || preg_match('/\[fts facebookbiz/', $_REQUEST['rebuilt_shortcode']) || preg_match('/\[fts instagram/', $_REQUEST['rebuilt_shortcode'])) {
 				$object = do_shortcode($_REQUEST['rebuilt_shortcode']);
 				echo $object;
 			}
@@ -502,6 +512,9 @@ var myAjaxFTS = '<?php echo admin_url('admin-ajax.php'); ?>';
 			'fb_events_title_size',
 			'fb_events_map_link_color',
 			'fb_hide_shared_by_etc_text',
+			'fts_facebook_custom_api_token_biz',
+			'fb_reviews_text_color',
+			'fb_reviews_backg_color',
 		);
 		$this->register_settings('fts-facebook-feed-style-options', $fb_style_options);
 	}
@@ -591,48 +604,49 @@ var myAjaxFTS = '<?php echo admin_url('admin-ajax.php'); ?>';
 	// Social Follow Button.
 	//**************************************************
 	function social_follow_button($feed, $user_id, $access_token = NULL) {
+		
 		global $channel_id, $playlist_id, $username_subscribe_btn, $username;
 		$output = '';	
 		switch ($feed) {
 		case 'facebook':
-			//Facebook settings options for follow button
-			$fb_show_follow_btn = get_option('fb_show_follow_btn');
-			$fb_show_follow_like_box_cover = get_option('fb_show_follow_like_box_cover');
-			$language_option_check = get_option('fb_language');
-			$fb_app_ID = get_option('fb_app_ID');
-			
-			if (isset($language_option_check) && $language_option_check !== 'Please Select Option') {
-				$language_option = get_option('fb_language', 'en_US');
-			}
-			else {
-						$language_option = 'en_US';
-			}
-			$fb_like_btn_color = get_option('fb_like_btn_color', 'light');
-		//	var_dump( $fb_like_btn_color ); /* outputs 'default_value' */
-			
-			$show_faces = $fb_show_follow_btn == 'like-button-share-faces' || $fb_show_follow_btn == 'like-button-faces' || $fb_show_follow_btn == 'like-box-faces' ? 'true' : 'false';
-			$share_button = $fb_show_follow_btn == 'like-button-share-faces' || $fb_show_follow_btn == 'like-button-share' ? 'true' : 'false';
-			$page_cover = $fb_show_follow_like_box_cover == 'fb_like_box_cover-yes' ? 'true' : 'false';
-			if(!isset($_POST['fts_facebook_script_loaded'])){
-						$output .='<div id="fb-root"></div>
-						<script>(function(d, s, id) {
-						  var js, fjs = d.getElementsByTagName(s)[0];
-						  if (d.getElementById(id)) return;
-						  js = d.createElement(s); js.id = id;
-						  js.src = "//connect.facebook.net/'.$language_option.'/sdk.js#xfbml=1&appId='.$fb_app_ID.'&version=v2.3";
-						  fjs.parentNode.insertBefore(js, fjs);
-						}(document, "script", "facebook-jssd"));</script>';
-						$_POST['fts_facebook_script_loaded'] = 'yes';
-			}	
-			//Page Box
-			if($fb_show_follow_btn == 'like-box' || $fb_show_follow_btn == 'like-box-faces') {
-				$output .='<div class="fb-page" data-href="https://www.facebook.com/'.$user_id.'" data-hide-cover="'.$page_cover.'" data-show-facepile="'.$show_faces.'" data-show-posts="false"></div>';
-			}
-			//Like Button
-			else{
-				$output .='<div class="fb-like" data-href="https://www.facebook.com/'.$user_id.'" data-layout="standard" data-action="like" data-colorscheme="'.$fb_like_btn_color.'" data-show-faces="'.$show_faces.'" data-share="'.$share_button.'" data-width:"100%"></div>';
-			}
-			print $output;
+				//Facebook settings options for follow button
+				$fb_show_follow_btn = get_option('fb_show_follow_btn');
+				$fb_show_follow_like_box_cover = get_option('fb_show_follow_like_box_cover');
+				$language_option_check = get_option('fb_language');
+				$fb_app_ID = get_option('fb_app_ID');
+				
+				if (isset($language_option_check) && $language_option_check !== 'Please Select Option') {
+					$language_option = get_option('fb_language', 'en_US');
+				}
+				else {
+							$language_option = 'en_US';
+				}
+				$fb_like_btn_color = get_option('fb_like_btn_color', 'light');
+			//	var_dump( $fb_like_btn_color ); /* outputs 'default_value' */
+				
+				$show_faces = $fb_show_follow_btn == 'like-button-share-faces' || $fb_show_follow_btn == 'like-button-faces' || $fb_show_follow_btn == 'like-box-faces' ? 'true' : 'false';
+				$share_button = $fb_show_follow_btn == 'like-button-share-faces' || $fb_show_follow_btn == 'like-button-share' ? 'true' : 'false';
+				$page_cover = $fb_show_follow_like_box_cover == 'fb_like_box_cover-yes' ? 'true' : 'false';
+				if(!isset($_POST['fts_facebook_script_loaded'])){
+							$output .='<div id="fb-root"></div>
+							<script>(function(d, s, id) {
+							  var js, fjs = d.getElementsByTagName(s)[0];
+							  if (d.getElementById(id)) return;
+							  js = d.createElement(s); js.id = id;
+							  js.src = "//connect.facebook.net/'.$language_option.'/sdk.js#xfbml=1&appId='.$fb_app_ID.'&version=v2.3";
+							  fjs.parentNode.insertBefore(js, fjs);
+							}(document, "script", "facebook-jssd"));</script>';
+							$_POST['fts_facebook_script_loaded'] = 'yes';
+				}	
+				//Page Box
+				if($fb_show_follow_btn == 'like-box' || $fb_show_follow_btn == 'like-box-faces') {
+					$output .='<div class="fb-page" data-href="https://www.facebook.com/'.$user_id.'" data-hide-cover="'.$page_cover.'" data-show-facepile="'.$show_faces.'" data-show-posts="false"></div>';
+				}
+				//Like Button
+				else{
+					$output .='<div class="fb-like" data-href="https://www.facebook.com/'.$user_id.'" data-layout="standard" data-action="like" data-colorscheme="'.$fb_like_btn_color.'" data-show-faces="'.$show_faces.'" data-share="'.$share_button.'" data-width:"100%"></div>';
+				}
+				return $output;
 			break;
 		case 'instagram':
 			$output .='<a href="https://instagram.com/'.$user_id.'/" target="_blank">Follow on Instagram</a>';
@@ -706,12 +720,13 @@ var myAjaxFTS = '<?php echo admin_url('admin-ajax.php'); ?>';
 		$fb_feed_background_color = get_option('fb_feed_background_color');
 		$fb_grid_posts_background_color = get_option('fb_grid_posts_background_color');
 		$fb_border_bottom_color = get_option('fb_border_bottom_color');
-		
+		$fb_grid_posts_background_color = get_option('fb_grid_posts_background_color');
+		$fb_reviews_backg_color = get_option('fb_reviews_backg_color');
+		$fb_reviews_text_color = get_option('fb_reviews_text_color');
 		
 		$fb_events_title_color = get_option('fb_events_title_color');
 		$fb_events_title_size = get_option('fb_events_title_size');
 		$fb_events_maplink_color = get_option('fb_events_map_link_color');
-		
 		
 		$twitter_hide_profile_photo = get_option('twitter_hide_profile_photo');
 		$twitter_text_color = get_option('twitter_text_color');
@@ -775,6 +790,12 @@ var myAjaxFTS = '<?php echo admin_url('admin-ajax.php'); ?>';
 			<?php }
 					if (!empty($fb_border_bottom_color)) { ?>
 			.fts-slicker-facebook-posts .fts-jal-single-fb-post, .fts-jal-single-fb-post { border-bottom:1px solid <?php echo $fb_border_bottom_color ?>!important; }
+			<?php }
+					if (!empty($fb_reviews_backg_color)) { ?>
+			.fts-review-star { background:<?php echo $fb_reviews_backg_color ?>!important; }
+			<?php }
+					if (!empty($fb_reviews_text_color)) { ?>
+			.fts-review-star { color:<?php echo $fb_reviews_text_color ?>!important; }
 			<?php } ?>
 			<?php if (!empty($twitter_text_color)) { ?>
 			.tweeter-info .fts-twitter-text, .fts-twitter-reply-wrap:before, a span.fts-video-loading-notice { color:<?php echo $twitter_text_color ?>!important; }
@@ -1039,10 +1060,10 @@ var myAjaxFTS = '<?php echo admin_url('admin-ajax.php'); ?>';
 			$output .= '<option value="events">'.__('Facebook Page List of Events', 'feed-them-social').'</option>';
 			$output .= '<option value="group">'.__('Facebook Group', 'feed-them-social').'</option>';
 			$output .= '<option value="event">'.__('Facebook Single Event', 'feed-them-social').'</option>';
-			$output .= '<option value="album_videos">'.__('Facebook Videos', 'feed-them-social').'</option>';
 			$output .= '<option value="album_photos">'.__('Facebook Album Photos', 'feed-them-social').'</option>';
 			$output .= '<option value="albums">'.__('Facebook Album Covers', 'feed-them-social').'</option>';
-			// $output .= '<option value="hashtag">'.__('Facebook Hashtag', 'feed-them-social').'</option>';
+			$output .= '<option value="album_videos">'.__('Facebook Videos', 'feed-them-social').'</option>';
+			$output .= '<option value="reviews">'.__('Facebook Page Reviews', 'feed-them-social').'</option>';
 			$output .= '</select>';
 			$output .= '<div class="clear"></div>';
 			$output .= '</div><!--/feed-them-social-admin-input-wrap-->';
@@ -1057,6 +1078,8 @@ var myAjaxFTS = '<?php echo admin_url('admin-ajax.php'); ?>';
 					if (isset($_GET['page']) && $_GET['page'] == 'feed-them-settings-page') {
 			// this is for the facebook videos
 			$output .= '<div class="feed-them-social-admin-input-wrap fts-premium-options-message" style="display:none;"><a target="_blank" href="http://www.slickremix.com/downloads/feed-them-social-premium-extension/">Premium Version Required</a><br/>The Facebook video feed allows you to view your uploaded videos from facebook. See these great examples and options of all the different ways you can bring new life to your wordpress site! <a href="http://feedthemsocial.com/facebook-videos-demo/" target="_blank">View Demo</a></div>';
+			// this is for the facebook reviews
+			$output .= '<div class="feed-them-social-admin-input-wrap fts-premium-options-message2" style="display:none;"><a target="_blank" href="http://www.slickremix.com/downloads/feed-them-social-facebook-reviews/">Facebook Reviews Required</a><br/>The Facebook Reviews feed allows you to view all of the reviews people have made on your Facebook Page. See these great examples and options of all the different ways you can display your Facebook Page Reviews on your website. <a href="http://feedthemsocial.com/facebook-page-reviews-demo/" target="_blank">View Demo</a></div>';
 					}
 		// FACEBOOK PAGE ID
 				if (isset($_GET['page']) && $_GET['page'] !== 'fts-bar-settings-page') {
@@ -1083,12 +1106,50 @@ var myAjaxFTS = '<?php echo admin_url('admin-ajax.php'); ?>';
 		$output .= '</select>';
 		$output .= '<div class="clear"></div>';
 		$output .= '</div><!--/feed-them-social-admin-input-wrap-->';
-		if (is_plugin_active('feed-them-premium/feed-them-premium.php')) {
+		if (is_plugin_active('feed-them-premium/feed-them-premium.php') && !is_plugin_active('feed-them-social-facebook-reviews/feed-them-social-facebook-reviews.php')) {
+			
 			include($this->premium.'admin/facebook-page-settings-fields.php');
 			if (isset($_GET['page']) && $_GET['page'] == 'fts-bar-settings-page') {
 				//PREMIUM LOAD MORE SETTINGS & LOADS in FTS BAR
 				include($this->premium.'admin/facebook-loadmore-settings-fields.php');
 			}
+			
+		}
+		elseif(is_plugin_active('feed-them-premium/feed-them-premium.php') && is_plugin_active('feed-them-social-facebook-reviews/feed-them-social-facebook-reviews.php')) {
+			
+			// these are the new options for reviews only
+			include($this->facebook_reviews.'admin/facebook-review-settings-fields.php');	
+				
+			include($this->premium.'admin/facebook-page-settings-fields.php');
+			if (isset($_GET['page']) && $_GET['page'] == 'fts-bar-settings-page') {
+				//PREMIUM LOAD MORE SETTINGS & LOADS in FTS BAR
+				include($this->premium.'admin/facebook-loadmore-settings-fields.php');
+			}
+		}
+		elseif(is_plugin_active('feed-them-social-facebook-reviews/feed-them-social-facebook-reviews.php') && !is_plugin_active('feed-them-premium/feed-them-premium.php')){
+			// include($this->facebook_reviews.'admin/facebook-page-settings-fields.php');
+			
+				// these are the new options for reviews only
+			 include($this->facebook_reviews.'admin/facebook-review-settings-fields.php');	
+ 
+	   // these are the additional options only for reviews from premium		
+			 include($this->facebook_reviews.'admin/facebook-loadmore-settings-fields.php');	
+				
+				//Create Need Premium Fields
+			$fields = array(
+				__('# of Posts (default 5)', 'feed-them-social'),
+				__('Show the Page Title', 'feed-them-social'),
+				__('Show the Page Description', 'feed-them-social'),
+				__('Amount of words per post', 'feed-them-social'),
+				__('Load More Posts', 'feed-them-social'),
+				__('Display Photos in Popup', 'feed-them-social'),
+				__('Display Posts in Grid', 'feed-them-social'),
+				__('Center Grid', 'feed-them-social'),
+				__('Grid Stack Animation', 'feed-them-social'),
+				__('Align Like button or Box', 'feed-them-social'),
+				__('Hide Like button or Box', 'feed-them-social'),
+			);
+			$output .= '<div class="need-for-premium-fields-wrap">'.$this->need_fts_premium_fields($fields).'</div>';
 		}
 		else {
 			
