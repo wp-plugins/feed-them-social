@@ -6,6 +6,8 @@ Description: Create and display custom feeds for Facebook Groups, Facebook Pages
 Version: 1.9.0
 Author: SlickRemix
 Author URI: http://slickremix.com/
+Text Domain: feed-them-social
+Domain Path: /languages
 Requires at least: wordpress 3.6.0
 Tested up to: WordPress 4.3.1
 Stable tag: 1.9.0
