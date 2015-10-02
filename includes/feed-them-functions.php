@@ -1047,6 +1047,21 @@ var myAjaxFTS = '<?php echo admin_url('admin-ajax.php'); ?>';
 		$output = '<div class="fts-facebook_page-shortcode-form">';
 		if ($save_options == false) {
 			$output .= '<form class="feed-them-social-admin-form shortcode-generator-form fb-page-shortcode-form" id="fts-fb-page-form">';
+			
+			// Check to see if token is in place otherwise show a message letting person no what they need to do
+			$facebookOptions = get_option('fts_facebook_custom_api_token') ? 'Yes' : 'No' ;
+			$output .= isset($facebookOptions) && $facebookOptions !== 'No' ? ''. "\n" : '<div class="feed-them-social-admin-input-wrap fts-required-token-message">Please add a Facebook API Token to our <a href="admin.php?page=fts-facebook-feed-styles-submenu-page">Facebook Options</a> page before trying to view your feed.</div>'. "\n";
+			// end custom message for requiring token
+			
+			
+			if(is_plugin_active('feed-them-social-facebook-reviews/feed-them-social-facebook-reviews.php')) {
+			$facebookOptions2 = get_option('fts_facebook_custom_api_token_biz') ? 'Yes' : 'No' ;
+				// Check to see if token is in place otherwise show a message letting person no what they need to do
+			$output .= isset($facebookOptions2) && $facebookOptions2 !== 'No' ? ''. "\n" : '<div class="feed-them-social-admin-input-wrap fts-required-token-message">Please add a Facebook Page Reviews API Token to our <a href="admin.php?page=fts-facebook-feed-styles-submenu-page">Facebook Options</a> page before trying to view your Facebook Reviews feed.</div>'. "\n";
+			// end custom message for requiring token
+			}
+			
+			
 			$output .= '<h2>'.__('Facebook Page Shortcode Generator', 'feed-them-social').'</h2>';
 		}
 		$fb_page_id_option = isset($fb_page_id_option) ? $fb_page_id_option : "";
@@ -1253,6 +1268,13 @@ var myAjaxFTS = '<?php echo admin_url('admin-ajax.php'); ?>';
 		$output = '<div class="fts-twitter-shortcode-form">';
 		if ($save_options == false) {
 			$output .= '<form class="feed-them-social-admin-form shortcode-generator-form twitter-shortcode-form" id="fts-twitter-form">';
+			
+					// Check to see if token is in place otherwise show a message letting person no what they need to do
+			$twitterOptions4 = get_option('fts_twitter_custom_access_token_secret') ? 'Yes' : 'No' ;
+			$output .= isset($twitterOptions4) && $twitterOptions4 !== 'No' ? ''. "\n" : '<div class="feed-them-social-admin-input-wrap fts-required-token-message">Please add Twitter API Tokens to our <a href="admin.php?page=fts-twitter-feed-styles-submenu-page">Twitter Options</a> page before trying to view your feed.</div>'. "\n";
+			// end custom message for requiring token
+			
+			
 			$output .= '<h2>'.__('Twitter Shortcode Generator', 'feed-them-social').'</h2>';
 		}
 		// TWITTER FEED TYPE
@@ -1385,6 +1407,12 @@ var myAjaxFTS = '<?php echo admin_url('admin-ajax.php'); ?>';
 		$output = '<div class="fts-instagram-shortcode-form">';
 		if ($save_options == false) {
 			$output .= '<form class="feed-them-social-admin-form shortcode-generator-form instagram-shortcode-form" id="fts-instagram-form">';
+			
+			// Check to see if token is in place otherwise show a message letting person no what they need to do
+			$instagramOptions = get_option('fts_instagram_custom_api_token') ? 'Yes' : 'No' ;
+			$output .= isset($instagramOptions) && $instagramOptions !== 'No' ? ''. "\n" : '<div class="feed-them-social-admin-input-wrap fts-required-token-message">Please add an Instagram API Token to our <a href="admin.php?page=fts-instagram-feed-styles-submenu-page">Instagram Options</a> page before trying to view your feed.</div>'. "\n";
+			// end custom message for requiring token
+			
 			// ONLY SHOW SUPER GALLERY OPTIONS ON FTS SETTINGS PAGE FOR NOW, NOT FTS BAR
 			if (isset($_GET['page']) && $_GET['page'] == 'feed-them-settings-page') {
 				// INSTAGRAM FEED TYPE
@@ -1506,6 +1534,12 @@ var myAjaxFTS = '<?php echo admin_url('admin-ajax.php'); ?>';
 		$output = '<div class="fts-youtube-shortcode-form">';
 		if ($save_options == false) {
 			$output .= '<form class="feed-them-social-admin-form shortcode-generator-form youtube-shortcode-form" id="fts-youtube-form">';
+			
+				// Check to see if token is in place otherwise show a message letting person no what they need to do
+			$youtubeOptions = get_option('youtube_custom_api_token') ?'Yes' :'No' ;
+			$output .= isset($youtubeOptions) && $youtubeOptions !== 'No' ? ''. "\n" : '<div class="feed-them-social-admin-input-wrap fts-required-token-message">Please add a YouTube API Key to our <a href="admin.php?page=fts-youtube-feed-styles-submenu-page">YouTube Options</a> page before trying to view your feed.</div>'. "\n";
+			// end custom message for requiring token
+			
 			$output .= '<h2>'.__('YouTube Shortcode Generator', 'feed-them-social').'</h2>';
 		}
 		$output .= '<div class="instructional-text">'.__('You must copy your YouTube ', 'feed-them-social').' <a href="http://www.slickremix.com/2013/08/01/how-to-get-your-youtube-name/" target="_blank">'.__('Username, Channel ID and or Playlist ID', 'feed-them-social').'</a> '.__('and paste it below.', 'feed-them-social').'</div>';

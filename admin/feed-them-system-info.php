@@ -152,11 +152,12 @@ Facebook Reviews Active:  <?php echo isset($fb_reviews_token) && $fb_reviews_tok
 	
 Date Format:              <?php echo $ftsDateTimeFormat     . "\n"; ?>
 Timezone:                 <?php echo $ftsTimezone     . "\n"; ?>
-	
--- Pages or Posts with Shortcode(s).
--- If you are using our shortcode in a widget you'll need to paste your shortcode in our support forum.
-	
-<?php echo do_shortcode("[shortcodefinderSlick find='[fts']"); ?>
+	<?php
+//-- Pages or Posts with Shortcode(s).
+//-- If you are using our shortcode in a widget you'll need to paste your shortcode in our support forum.
+
+ // COMMENTING OUT FOR NOW BECAUSE TO MUCH INFO FROM PEOPLES SITES ARE BEING ADDED TO OUR SUPPORT FORUMS.
+ //echo do_shortcode("[shortcodefinderSlick find='[fts']"); ?>
 	
 
 ### End System Info ###</textarea>
