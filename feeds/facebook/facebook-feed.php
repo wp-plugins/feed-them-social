@@ -17,6 +17,8 @@ class FTS_Facebook_Feed extends feed_them_social_functions {
 	// Display Facebook Feed
 	//**************************************************
 	function fts_fb_func($atts) {
+		// masonry snippet in fts-global
+		wp_enqueue_script( 'fts-global', plugins_url( 'feed-them-social/feeds/js/fts-global.js'), array( 'jquery' ) );
 		$developer_mode = 'on';
 		//Make sure everything is reset
 		include_once( ABSPATH . 'wp-admin/includes/plugin.php' );

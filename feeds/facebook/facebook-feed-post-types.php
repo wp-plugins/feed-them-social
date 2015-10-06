@@ -374,7 +374,7 @@ class FTS_Facebook_Feed_Post_Types extends FTS_Facebook_Feed {
 							foreach ($video_data->format as $video_data_format) {
 								if ($video_data_format->filter == 'native') {
 									$FTS_FB_OUTPUT .= '<div class="fts-fluid-videoWrapper-html5">';
-									$FTS_FB_OUTPUT .= '<video controls poster="'.$video_data_format->picture.'" width="100%;" style="max-width:100%;" >';
+									$FTS_FB_OUTPUT .= '<video controls poster="'.$video_data_format->picture.'" width="100%;" style="max-width:100%;">';
 									$FTS_FB_OUTPUT .= '<source src="'.$video_data->source.'" type="video/mp4">';
 									$FTS_FB_OUTPUT .= '</video>';
 									$FTS_FB_OUTPUT .= '</div>';
