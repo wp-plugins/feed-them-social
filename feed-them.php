@@ -73,8 +73,11 @@ include( $fts_plugin_rel_url.'admin/feed-them-instagram-style-options-page.php' 
 include( $fts_plugin_rel_url.'admin/feed-them-pinterest-style-options-page.php' );
 include( $fts_plugin_rel_url.'admin/feed-them-youtube-style-options-page.php' );
 
+//Error Handler
+include( $fts_plugin_rel_url.'includes/error-handler.php' );
 // Include core files and classes
 include( $fts_plugin_rel_url.'includes/feed-them-functions.php' );
+
 
 $load_fts = 'feedthemsocial\feed_them_social_functions';
 $load_fts = new $load_fts;
