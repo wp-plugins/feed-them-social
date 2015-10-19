@@ -88,7 +88,7 @@ class FTS_Facebook_Feed_Post_Types extends FTS_Facebook_Feed {
 			switch ($FBtype) {
 				case 'video'  :
 				$FTS_FB_OUTPUT .= '<div class="fts-jal-single-fb-post fts-fb-video-post-wrap" ';
-				if ($FB_Shortcode['grid'] == 'yes') {
+				if (isset($FB_Shortcode['grid']) && $FB_Shortcode['grid'] == 'yes') {
 					$FTS_FB_OUTPUT .= 'style="width:'.$FB_Shortcode['colmn_width'].'; margin:'.$FB_Shortcode['space_between_posts'].'"';
 				}
 				$FTS_FB_OUTPUT .= '>';
@@ -105,7 +105,7 @@ class FTS_Facebook_Feed_Post_Types extends FTS_Facebook_Feed {
 					if ($FB_Shortcode['type'] == 'album_photos' || $FB_Shortcode['type'] == 'albums') {
 						$FTS_FB_OUTPUT .=  'style="width:'.$FB_Shortcode['image_width'].' !important; height:'.$FB_Shortcode['image_height'].'!important; margin:'.$FB_Shortcode['space_between_photos'].'!important"';
 					}
-					if ($FB_Shortcode['grid'] == 'yes') {
+					if (isset($FB_Shortcode['grid']) && $FB_Shortcode['grid'] == 'yes') {
 						$FTS_FB_OUTPUT .=  'style="width:'.$FB_Shortcode['colmn_width'].'; margin:'.$FB_Shortcode['space_between_posts'].'"';
 					}
 				$FTS_FB_OUTPUT .=  '>';
@@ -115,7 +115,7 @@ class FTS_Facebook_Feed_Post_Types extends FTS_Facebook_Feed {
 				case 'album':
 				default:
 				$FTS_FB_OUTPUT .= '<div class="fts-jal-single-fb-post" ';
-					if ($FB_Shortcode['grid'] == 'yes') {
+					if (isset($FB_Shortcode['grid']) && $FB_Shortcode['grid'] == 'yes') {
 						$FTS_FB_OUTPUT .= 'style="width:'.$FB_Shortcode['colmn_width'].'; margin:'.$FB_Shortcode['space_between_posts'].'"';
 					}
 				$FTS_FB_OUTPUT .= '>';
@@ -399,7 +399,7 @@ class FTS_Facebook_Feed_Post_Types extends FTS_Facebook_Feed {
 							$FTS_FB_OUTPUT .= 'jQuery(this).addClass("fts-vid-div");';
 							$FTS_FB_OUTPUT .= 'jQuery(this).removeClass("fts-jal-fb-vid-picture");';
 							$FTS_FB_OUTPUT .= 'jQuery(this).prepend(\'<div class="fts-fluid-videoWrapper"><iframe height="281" class="video'.$FBpost_id.'" src="http://www.youtube.com/embed/'.$youtubeURLfinal.'?autoplay=1" frameborder="0" allowfullscreen></iframe></div>\');';
-							if ($FB_Shortcode['grid'] == 'yes') {
+							if (isset($FB_Shortcode['grid']) && $FB_Shortcode['grid'] == 'yes') {
 								$FTS_FB_OUTPUT .= 'jQuery(".fts-slicker-facebook-posts").masonry( "reloadItems");';
 								$FTS_FB_OUTPUT .= 'jQuery(".fts-slicker-facebook-posts").masonry( "layout" );';
 							}
@@ -418,7 +418,7 @@ class FTS_Facebook_Feed_Post_Types extends FTS_Facebook_Feed {
 								$FTS_FB_OUTPUT .= 'jQuery(this).addClass("fts-vid-div");';
 								$FTS_FB_OUTPUT .= 'jQuery(this).removeClass("fts-jal-fb-vid-picture");';
 								$FTS_FB_OUTPUT .= 'jQuery(this).prepend(\'<div class="fts-fluid-videoWrapper"><iframe height="281" class="video'.$FBpost_id.'" src="http://www.youtube.com/embed/'.$youtubeURLfinal.'?autoplay=1" frameborder="0" allowfullscreen></iframe></div>\');';
-								if ($FB_Shortcode['grid'] == 'yes') {
+								if (isset($FB_Shortcode['grid']) && $FB_Shortcode['grid'] == 'yes') {
 									$FTS_FB_OUTPUT .= 'jQuery(".fts-slicker-facebook-posts").masonry( "reloadItems");';
 									$FTS_FB_OUTPUT .= 'jQuery(".fts-slicker-facebook-posts").masonry( "layout" );';
 								}
@@ -437,7 +437,7 @@ class FTS_Facebook_Feed_Post_Types extends FTS_Facebook_Feed {
 								$FTS_FB_OUTPUT .= 'jQuery(this).addClass("fts-vid-div");';
 								$FTS_FB_OUTPUT .= 'jQuery(this).removeClass("fts-jal-fb-vid-picture");';
 								$FTS_FB_OUTPUT .= 'jQuery(this).prepend(\'<div class="fts-fluid-videoWrapper"><iframe src="http://player.vimeo.com/video/'.$vimeoURLfinal.'?autoplay=1" class="video'.$FBpost_id.'" height="390" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe></div>\');';
-								if ($FB_Shortcode['grid'] == 'yes') {
+								if (isset($FB_Shortcode['grid']) && $FB_Shortcode['grid'] == 'yes') {
 									$FTS_FB_OUTPUT .= 'jQuery(".fts-slicker-facebook-posts").masonry( "reloadItems");';
 									$FTS_FB_OUTPUT .= 'jQuery(".fts-slicker-facebook-posts").masonry( "layout" );';
 								}
@@ -462,7 +462,7 @@ class FTS_Facebook_Feed_Post_Types extends FTS_Facebook_Feed {
 								$FTS_FB_OUTPUT .= 'jQuery(this).addClass("fts-vid-div");';
 								$FTS_FB_OUTPUT .= 'jQuery(this).removeClass("fts-jal-fb-vid-picture");';
 								$FTS_FB_OUTPUT .= '	jQuery(this).prepend(\'<div class="fts-fluid-videoWrapper">'.$jsonObj->html.'</div>\');';
-								if ($FB_Shortcode['grid'] == 'yes') {
+								if (isset($FB_Shortcode['grid']) && $FB_Shortcode['grid'] == 'yes') {
 									$FTS_FB_OUTPUT .= 'jQuery(".fts-slicker-facebook-posts").masonry( "reloadItems");';
 									$FTS_FB_OUTPUT .= 'jQuery(".fts-slicker-facebook-posts").masonry( "layout" );';
 								}
@@ -493,14 +493,14 @@ class FTS_Facebook_Feed_Post_Types extends FTS_Facebook_Feed {
 					$FTS_FB_OUTPUT .= 'style="line-height:'.$FB_Shortcode['image_height'].' !important;"';
 				}
 				$FTS_FB_OUTPUT .= '>';
-					$FTS_FB_OUTPUT .= $FB_Shortcode['popup'] == 'yes' ? '<div class="fts-fb-caption"><a href="'.$FBlink.'" class="fts-view-on-facebook-link" target="_blank">'.__('View on Facebook', 'feed-them-social').'</a></div> ' : '';
+					$FTS_FB_OUTPUT .= isset($FB_Shortcode['popup']) && $FB_Shortcode['popup'] == 'yes' ? '<div class="fts-fb-caption"><a href="'.$FBlink.'" class="fts-view-on-facebook-link" target="_blank">'.__('View on Facebook', 'feed-them-social').'</a></div> ' : '';
 				//Output Photo Picture
 				if ($FBpost_object_id) {
 					if ($FBpost_object_id) {
-						$FTS_FB_OUTPUT .= '<a href="'.($FB_Shortcode['popup'] == 'yes' ? 'https://graph.facebook.com/'.$FBpost_object_id.'/picture' : $FBlink). '" target="_blank" class="fts-jal-fb-picture fts-fb-large-photo"><img border="0" alt="'.$post_data->from->name.'" src="https://graph.facebook.com/'.$FBpost_object_id.'/picture"></a>';
+						$FTS_FB_OUTPUT .= '<a href="'.(isset($FB_Shortcode['popup']) && $FB_Shortcode['popup'] == 'yes' ? 'https://graph.facebook.com/'.$FBpost_object_id.'/picture' : $FBlink). '" target="_blank" class="fts-jal-fb-picture fts-fb-large-photo"><img border="0" alt="'.$post_data->from->name.'" src="https://graph.facebook.com/'.$FBpost_object_id.'/picture"></a>';
 					}
 					else {
-						$FTS_FB_OUTPUT .= '<a href="'.($FB_Shortcode['popup'] == 'yes' ? 'https://graph.facebook.com/'.$FBpost_object_id.'/picture' : $FBlink).'" target="_blank" class="fts-jal-fb-picture fts-fb-large-photo"><img border="0" alt="'.$post_data->from->name.'" src="https://graph.facebook.com/'.$FBpost_id.'/picture"></a>';
+						$FTS_FB_OUTPUT .= '<a href="'.(isset($FB_Shortcode['popup']) && $FB_Shortcode['popup'] == 'yes' ? 'https://graph.facebook.com/'.$FBpost_object_id.'/picture' : $FBlink).'" target="_blank" class="fts-jal-fb-picture fts-fb-large-photo"><img border="0" alt="'.$post_data->from->name.'" src="https://graph.facebook.com/'.$FBpost_id.'/picture"></a>';
 					}
 				}
 				elseif ($FBpicture) {

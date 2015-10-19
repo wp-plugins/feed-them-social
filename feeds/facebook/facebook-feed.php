@@ -127,18 +127,19 @@ class FTS_Facebook_Feed extends feed_them_social_functions {
 				//******************
 				$FTS_FB_OUTPUT .= $this->fb_social_btn_placement($FB_Shortcode, $access_token, 'fb-like-top-above-title');
 				$page_data->description = isset($page_data->description) ? $page_data->description : "";
+				$page_data->name = isset($page_data->name) ? $page_data->name : "";
 				// fts-fb-header-wrapper (for grid)
-				$FTS_FB_OUTPUT .= $FB_Shortcode['grid'] !== 'yes' ? '<div class="fts-fb-header-wrapper">' : '';
+				$FTS_FB_OUTPUT .= isset($FB_Shortcode['grid']) && $FB_Shortcode['grid'] !== 'yes' ? '<div class="fts-fb-header-wrapper">' : '';
 					//Header 
 					$FTS_FB_OUTPUT .= '<div class="fts-jal-fb-header">';
 						// $FTS_FB_OUTPUT .= our Facebook Page Title or About Text. Commented out the group description because in the future we will be adding the about description.
-						$FTS_FB_OUTPUT .= $FB_Shortcode['title'] == 'yes' || $FB_Shortcode['title'] == '' ? '<h1><a href="'.$fts_view_fb_link.'" target="_blank">'.$page_data->name.'</a></h1>' : '';
+						$FTS_FB_OUTPUT .= isset($FB_Shortcode['title']) && $FB_Shortcode['title'] == 'yes' || isset($FB_Shortcode['title']) && $FB_Shortcode['title'] == '' ? '<h1><a href="'.$fts_view_fb_link.'" target="_blank">'.$page_data->name.'</a></h1>' : '';
 						//Description
-						$FTS_FB_OUTPUT .= $FB_Shortcode['description'] == 'yes' || $FB_Shortcode['description'] == '' ? '<div class="fts-jal-fb-group-header-desc">'.$this->fts_facebook_tag_filter($page_data->description).'</div>' : '';
+						$FTS_FB_OUTPUT .= isset($FB_Shortcode['description']) && $FB_Shortcode['description'] == 'yes' || isset($FB_Shortcode['description']) && $FB_Shortcode['description'] == '' ? '<div class="fts-jal-fb-group-header-desc">'.$this->fts_facebook_tag_filter($page_data->description).'</div>' : '';
 					//END Header
 					$FTS_FB_OUTPUT .= '</div>';
 				// Close fts-fb-header-wrapper
-				$FTS_FB_OUTPUT .= $FB_Shortcode['grid'] !== 'yes' && $FB_Shortcode['type'] !== 'album_photos' && $FB_Shortcode['type'] !== 'albums' ? '</div>' : ''; 
+				$FTS_FB_OUTPUT .= isset($FB_Shortcode['grid']) && $FB_Shortcode['grid'] !== 'yes' && $FB_Shortcode['type'] !== 'album_photos' && $FB_Shortcode['type'] !== 'albums' ? '</div>' : ''; 
 			} //End check
 			//******************
 			// SOCIAL BUTTON
@@ -149,7 +150,7 @@ class FTS_Facebook_Feed extends feed_them_social_functions {
 			//*********************
 			//Make sure it's not ajaxing
 				if (!isset($_GET['load_more_ajaxing'])) {
-						if (!isset($FBtype) && $FB_Shortcode['type'] == 'albums' || !isset($FBtype) && $FB_Shortcode['type'] == 'album_photos' || $FB_Shortcode['grid'] == 'yes') {
+						if (!isset($FBtype) && $FB_Shortcode['type'] == 'albums' || !isset($FBtype) && $FB_Shortcode['type'] == 'album_photos' || isset($FB_Shortcode['grid']) && $FB_Shortcode['grid'] == 'yes') {
 								if(isset($FB_Shortcode['video_album']) && $FB_Shortcode['video_album'] == 'yes' ){ } else {
 								wp_enqueue_script( 'fts-masonry-pkgd', plugins_url( 'feed-them-social/feeds/js/masonry.pkgd.min.js'), array( 'jquery' ) ); 
 				$FTS_FB_OUTPUT .='<script>';
@@ -161,14 +162,14 @@ class FTS_Facebook_Feed extends feed_them_social_functions {
 				        $FTS_FB_OUTPUT .='</script>';
 				       } 
 			if (!isset($FBtype) && $FB_Shortcode['type'] == 'albums' || !isset($FBtype) && $FB_Shortcode['type'] == 'album_photos' ) {  
-	$FTS_FB_OUTPUT .= '<div class="fts-slicker-facebook-photos fts-slicker-facebook-albums '.($FB_Shortcode['video_album'] && $FB_Shortcode['video_album'] == 'yes' ? 'popup-video-gallery-fb' : ' popup-gallery-fb masonry js-masonry').' '.($FB_Shortcode['images_align'] ? ' popup-video-gallery-align-'.$FB_Shortcode['images_align'] : '').' popup-gallery-fb '.$fts_dynamic_class_name.'" style="margin:auto;" data-masonry-options=\'{ "isFitWidth": '.($FB_Shortcode['center_container'] == 'no' ? 'false' : 'true') .' '.($FB_Shortcode['image_stack_animation'] == 'no' ? ', "transitionDuration": 0' : '').'}\'>';
+	$FTS_FB_OUTPUT .= '<div class="fts-slicker-facebook-photos fts-slicker-facebook-albums '.(isset($FB_Shortcode['video_album']) && $FB_Shortcode['video_album'] && $FB_Shortcode['video_album'] == 'yes' ? 'popup-video-gallery-fb' : ' popup-gallery-fb masonry js-masonry').' '.(isset($FB_Shortcode['images_align']) && $FB_Shortcode['images_align'] ? ' popup-video-gallery-align-'.$FB_Shortcode['images_align'] : '').' popup-gallery-fb '.$fts_dynamic_class_name.'" style="margin:auto;" data-masonry-options=\'{ "isFitWidth": '.($FB_Shortcode['center_container'] == 'no' ? 'false' : 'true') .' '.($FB_Shortcode['image_stack_animation'] == 'no' ? ', "transitionDuration": 0' : '').'}\'>';
 			}
-				if ($FB_Shortcode['grid'] == 'yes') { 
+				if (isset($FB_Shortcode['grid']) && $FB_Shortcode['grid'] == 'yes') { 
 	$FTS_FB_OUTPUT .='<div class="fts-slicker-facebook-posts masonry js-masonry '.($FB_Shortcode['popup'] == 'yes' ? 'popup-gallery-fb-posts ' : '').($FB_Shortcode['type'] == 'reviews' ? 'fts-reviews-feed ' : '').$fts_dynamic_class_name.' " style="margin:auto;" data-masonry-options=\'{ "isFitWidth": '.($FB_Shortcode['center_container'] == 'no' ? 'false' : 'true').' '.($FB_Shortcode['image_stack_animation'] == 'no' ? ', "transitionDuration": 0' : '').'}\'>';
 	            }
 				}
 				else { 
-					$FTS_FB_OUTPUT .= '<div class="fts-jal-fb-group-display fts-simple-fb-wrapper '.($FB_Shortcode['popup'] == 'yes' ? 'popup-gallery-fb-posts ' :'').($FB_Shortcode['type'] == 'reviews' ? 'fts-reviews-feed ' : '').$fts_dynamic_class_name.' '.($FB_Shortcode['height'] !== 'auto' && empty($FB_Shortcode['height']) == NULL ? 'fts-fb-scrollable" style="height:'.$FB_Shortcode['height'].'"' : '"').'>';
+					$FTS_FB_OUTPUT .= '<div class="fts-jal-fb-group-display fts-simple-fb-wrapper '.(isset($FB_Shortcode['popup']) && $FB_Shortcode['popup'] == 'yes' ? 'popup-gallery-fb-posts ' :'').($FB_Shortcode['type'] == 'reviews' ? 'fts-reviews-feed ' : '').$fts_dynamic_class_name.' '.($FB_Shortcode['height'] !== 'auto' && empty($FB_Shortcode['height']) == NULL ? 'fts-fb-scrollable" style="height:'.$FB_Shortcode['height'].'"' : '"').'>';
 				}
 			} //End ajaxing Check
 			//*********************
@@ -319,7 +320,7 @@ class FTS_Facebook_Feed extends feed_them_social_functions {
 					$output = '<div class="fts-jal-fb-description">'.$trimmed_content.'</div>';
 					return $output;
 				}
-				elseif($FB_Shortcode['words'] !== '0') {
+				elseif(isset($FB_Shortcode['words']) && $FB_Shortcode['words'] !== '0') {
 					$FBdescription = $this->fts_facebook_tag_filter($FBdescription);
 					$output = '<div class="fts-jal-fb-description">'.nl2br($FBdescription).'</div>';
 					return $output;
@@ -342,7 +343,7 @@ class FTS_Facebook_Feed extends feed_them_social_functions {
 			//Do for Default feeds or the video gallery feed
 			else {
 				$FBdescription = $this->fts_facebook_tag_filter($FBdescription);
-				if (array_key_exists('words',$FB_Shortcode) && $FB_Shortcode['words'] !== '0') {
+				if (is_array($FB_Shortcode) && array_key_exists('words',$FB_Shortcode) && $FB_Shortcode['words'] !== '0') {
 					$more = isset($more) ? $more : "";
 					$trimmed_content = $this->fts_custom_trim_words($FBdescription, $FB_Shortcode['words'], $more);
 					$output = '<div class="fts-jal-fb-description">'.$trimmed_content.'</div>';
@@ -355,7 +356,7 @@ class FTS_Facebook_Feed extends feed_them_social_functions {
 				if (!empty($FBlink)) {
 				 $output .= '<div>By: <a href="'.$FBlink.'">'.$FBby.'<a/></div>';
 				}
-				if($FB_Shortcode['words'] !== '0') {	
+				if(isset($FB_Shortcode['words']) && $FB_Shortcode['words'] !== '0') {	
 				 return $output;
 				}
 			}
@@ -363,13 +364,13 @@ class FTS_Facebook_Feed extends feed_them_social_functions {
 			include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
 			if (is_plugin_active('feed-them-premium/feed-them-premium.php')) {
 				// here we trim the words for the links description text... for the premium version. The $FB_Shortcode['words'] string actually comes from the javascript
-				if (array_key_exists('words',$FB_Shortcode)) {
+				if (is_array($FB_Shortcode) && array_key_exists('words',$FB_Shortcode)) {
 					$more = isset($more) ? $more : "";
 					$trimmed_content = $this->fts_custom_trim_words($FBdescription, $FB_Shortcode['words'], $more);
 					$output = '<div class="jal-fb-description">'.$trimmed_content.'</div>';
 					return $output;
 				}
-				elseif(array_key_exists('words',$FB_Shortcode) && $FB_Shortcode['words'] !== '0') {
+				elseif(is_array($FB_Shortcode) && array_key_exists('words',$FB_Shortcode) && $FB_Shortcode['words'] !== '0') {
 					$FBdescription = $this->fts_facebook_tag_filter($FBdescription);
 					$output = '<div class="jal-fb-description">'.nl2br($FBdescription).'</div>';
 					return $output;
@@ -513,6 +514,7 @@ class FTS_Facebook_Feed extends feed_them_social_functions {
 		default:
 			
 		if ($FB_Shortcode['type'] == 'reviews' && is_plugin_active('feed-them-social-facebook-reviews/feed-them-social-facebook-reviews.php')){
+			$output = '';
 			$output .= ' <a href="https://facebook.com/'.$FB_Shortcode['id'].'/reviews" target="_blank" class="fts-jal-fb-see-more">'.__('See More Reviews', 'feed-them-social').'</a>';
 		}	
 		else{
@@ -733,6 +735,9 @@ class FTS_Facebook_Feed extends feed_them_social_functions {
 			$fb_single_events_array = array();
 			$set_zero = 0;
 			foreach ($feed_data->data as $counter) {
+				
+				$counter->id = isset($counter->id) ? $counter->id : "";
+				
 				if ($set_zero==$FB_Shortcode['posts'])
 					break;
 				if ($FB_Shortcode['type'] == 'events') {
