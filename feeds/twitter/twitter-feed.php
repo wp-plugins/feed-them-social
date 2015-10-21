@@ -66,9 +66,14 @@ class FTS_Twitter_Feed extends feed_them_social_functions {
 		ob_start();
 		$numTweets      = $tweets_count;
 		$name           = $twitter_name;
-		$search    = $search;
 		$excludeReplies = true;
-		$data_cache = 'twitter_data_cache_'.$name.'_num'.$numTweets.'';
+		if($search){
+			$clean_search = preg_replace('/[^a-zA-Z0-9]/s', '', $search);
+			$data_cache = 'twitter_data_cache_'.$clean_search.'_num'.$numTweets.'_hashtag';
+		}
+		else{
+			$data_cache = 'twitter_data_cache_'.$name.'_num'.$numTweets.'';
+		}
 		//Check Cache
 		if (false !== ($transient_exists = $this->fts_check_feed_cache_exists($data_cache))) {
 			$fetchedTweets = $this->fts_get_feed_cache($data_cache);
