@@ -650,7 +650,7 @@ class FTS_Facebook_Feed extends feed_them_social_functions {
 					//Check If Ajax next URL needs to be used
 					//The reason I did not create a whole new else if for the video album is because I did not want to duplicate all the code required to make the video because the videos gallery comes from the photo albums on facebook.
 					if (isset($FB_Shortcode['video_album']) && $FB_Shortcode['video_album'] == 'yes') {
-					$mulit_data['feed_data'] = isset($_REQUEST['next_url']) ? $_REQUEST['next_url'] : 'https://graph.facebook.com/'.$FB_Shortcode['album_id'].'/videos?fields=id,created_time,description,from,icon,link,message,name,object_id,picture,place,shares,source,to,type,format,embed_html&limit='.$FB_Shortcode['posts'].'&access_token='.$access_token.$language.'';
+					$mulit_data['feed_data'] = isset($_REQUEST['next_url']) ? $_REQUEST['next_url'] : 'https://graph.facebook.com/'.$FB_Shortcode['album_id'].'/videos?fields=id,created_time,description,from,icon,link,message,object_id,picture,place,shares,source,to,type,format,embed_html&limit='.$FB_Shortcode['posts'].'&access_token='.$access_token.$language.'';
 					}
 					else {
 					$mulit_data['feed_data'] = isset($_REQUEST['next_url']) ? $_REQUEST['next_url'] : 'https://graph.facebook.com/'.$FB_Shortcode['album_id'].'/photos?fields=id,caption,created_time,description,from,icon,link,message,name,object_id,picture,place,shares,source,status_type,story,to,type&limit='.$FB_Shortcode['posts'].'&access_token='.$access_token.$language.'';
