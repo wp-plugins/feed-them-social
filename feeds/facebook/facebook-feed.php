@@ -70,11 +70,11 @@ class FTS_Facebook_Feed extends feed_them_social_functions {
 		//Json decode data and build it from cache or response
 		$page_data = json_decode($response['page_data']);
 		$feed_data = json_decode($response['feed_data']);
-		
+				
 		//If No Response or Error then return
 		if($response == false){return;}
 					
-			if (is_plugin_active('feed-them-premium/feed-them-premium.php') && is_plugin_active('feed-them-social-facebook-reviews/feed-them-social-facebook-reviews.php')) {		
+			if (is_plugin_active('feed-them-premium/feed-them-premium.php')) {		
 			//Make sure it's not ajaxing and we will allow the omition of certain album covers from the list by using omit_album_covers=0,1,2,3 in the shortcode
 				if (!isset($_GET['load_more_ajaxing'])) {		
 					if ($FB_Shortcode['type'] == 'albums') {
@@ -90,7 +90,7 @@ class FTS_Facebook_Feed extends feed_them_social_functions {
 					}
 				}
 				//Reviews Rating Filter
-				if ($FB_Shortcode['type'] == 'reviews') {
+				if (is_plugin_active('feed-them-premium/feed-them-premium.php') && is_plugin_active('feed-them-social-facebook-reviews/feed-them-social-facebook-reviews.php') && $FB_Shortcode['type'] == 'reviews') {
 					foreach ($feed_data->data as $key => $post_data) {
 						if($post_data->rating < $FB_Shortcode['reviews_type_to_show']){
 							unset($feed_data->data[$key]);
