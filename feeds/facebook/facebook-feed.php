@@ -73,7 +73,9 @@ class FTS_Facebook_Feed extends feed_them_social_functions {
 				
 		//If No Response or Error then return
 		if($response == false){return;}
-					
+	
+				
+				
 			if (is_plugin_active('feed-them-premium/feed-them-premium.php')) {		
 			//Make sure it's not ajaxing and we will allow the omition of certain album covers from the list by using omit_album_covers=0,1,2,3 in the shortcode
 				if (!isset($_GET['load_more_ajaxing'])) {		
@@ -183,6 +185,20 @@ class FTS_Facebook_Feed extends feed_them_social_functions {
 			$set_zero = 0;
 			//THE MAIN FEED		
 			foreach ($feed_data->data as $post_data) {
+				
+								
+						//Get Response (AKA Page & Feed Information) ERROR CHECK inside this function
+	//	$response = $this->get_facebook_feed_response($FB_Shortcode, $fb_cache_name, $access_token, $language);
+		//Json decode data and build it from cache or response
+		$response1 = 'https://graph.facebook.com/191302131204449?fields=picture,full_picture&access_token=1493650764263755|xBS5Sh5HzEfkCrs1p3DMMY9il0c';
+		$page_data1 = json_decode($response1['full_picture']);
+//		$FTS_FB_OUTPUT .= $page_data1;
+//	$feed_data = json_decode($response['feed_data']);
+	//		$FTS_FB_OUTPUT .='<pre>';
+					$FTS_FB_OUTPUT .= $page_data1;
+		//		$FTS_FB_OUTPUT .='</pre>';
+				
+				
 				//Define Type NOTE Also affects Load More Fucntion call
 				$FBtype = isset($post_data->type) ? $post_data->type : "";
 				if (!$FBtype && $FB_Shortcode['type'] == 'album_photos') {
@@ -755,6 +771,7 @@ class FTS_Facebook_Feed extends feed_them_social_functions {
 				else {
 					$FBtype = isset($counter->type) ? $counter->type : "";
 					$post_data_key = isset($counter->object_id) ? $counter->object_id : $counter->id;
+				
 					//Likes & Comments
 					$fb_post_array[$post_data_key.'_likes'] = 'https://graph.facebook.com/'.$post_data_key.'/likes?summary=1&access_token='.$access_token;
 					$fb_post_array[$post_data_key.'_comments'] = 'https://graph.facebook.com/'.$post_data_key.'/comments?summary=1&access_token='.$access_token;
@@ -773,6 +790,10 @@ class FTS_Facebook_Feed extends feed_them_social_functions {
 					}
 					if ($FB_Shortcode['type'] == 'hashtag') {
 						$fb_post_array[$post_data_key.'_photo'] = 'https://graph.facebook.com/'.$counter->source;
+					}
+					//GROUP Photo
+					if ($FB_Shortcode['type'] == 'group') {
+						$fb_post_array[$post_data_key.'_group_post_photo'] = 'https://graph.facebook.com/'.$counter->id.'?fields=picture,full_picture&access_token='.$access_token;
 					}
 				}
 			}

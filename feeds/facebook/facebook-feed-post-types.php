@@ -488,6 +488,11 @@ class FTS_Facebook_Feed_Post_Types extends FTS_Facebook_Feed {
 			//START PHOTO POST
 			//**************************************************
 			case 'photo'  :
+			
+			$photo_source = json_decode($response_post_array[$post_data_key.'_group_post_photo']);
+			//Group or page?
+			$photo_source_final = isset($photo_source->full_picture) && $FB_Shortcode['type'] == 'group' ? $photo_source->full_picture : 'https://graph.facebook.com/'.$FBpost_object_id.'/picture';
+			
 				$FTS_FB_OUTPUT .= '<div class="fts-jal-fb-link-wrap fts-album-photos-wrap"';
 				if ($FB_Shortcode['type'] == 'album_photos' || $FB_Shortcode['type'] == 'albums') {
 					$FTS_FB_OUTPUT .= 'style="line-height:'.$FB_Shortcode['image_height'].' !important;"';
@@ -497,10 +502,10 @@ class FTS_Facebook_Feed_Post_Types extends FTS_Facebook_Feed {
 				//Output Photo Picture
 				if ($FBpost_object_id) {
 					if ($FBpost_object_id) {
-						$FTS_FB_OUTPUT .= '<a href="'.(isset($FB_Shortcode['popup']) && $FB_Shortcode['popup'] == 'yes' ? 'https://graph.facebook.com/'.$FBpost_object_id.'/picture' : $FBlink). '" target="_blank" class="fts-jal-fb-picture fts-fb-large-photo"><img border="0" alt="'.$post_data->from->name.'" src="https://graph.facebook.com/'.$FBpost_object_id.'/picture"></a>';
+						$FTS_FB_OUTPUT .= '<a href="'.(isset($FB_Shortcode['popup']) && $FB_Shortcode['popup'] == 'yes' ? $photo_source_final : $FBlink). '" target="_blank" class="fts-jal-fb-picture fts-fb-large-photo"><img border="0" alt="'.$post_data->from->name.'" src="'.$photo_source_final.'"></a>';
 					}
 					else {
-						$FTS_FB_OUTPUT .= '<a href="'.(isset($FB_Shortcode['popup']) && $FB_Shortcode['popup'] == 'yes' ? 'https://graph.facebook.com/'.$FBpost_object_id.'/picture' : $FBlink).'" target="_blank" class="fts-jal-fb-picture fts-fb-large-photo"><img border="0" alt="'.$post_data->from->name.'" src="https://graph.facebook.com/'.$FBpost_id.'/picture"></a>';
+						$FTS_FB_OUTPUT .= '<a href="'.(isset($FB_Shortcode['popup']) && $FB_Shortcode['popup'] == 'yes' ? $photo_source_final : $FBlink).'" target="_blank" class="fts-jal-fb-picture fts-fb-large-photo"><img border="0" alt="'.$post_data->from->name.'" src="'.$photo_source_final.'"></a>';
 					}
 				}
 				elseif ($FBpicture) {
